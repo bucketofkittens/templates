@@ -1,0 +1,55 @@
+.service-list .disabled {
+	filter:progid:DXImageTransform.Microsoft.Alpha(opacity=50);
+}
+
+.blue-button {
+	position: relative;
+	zoom: 1;
+}
+form input.line.full {
+	font-size: 31px;
+	line-height: 41px;
+}
+
+.top-nav ul .select {
+	-pie-background: linear-gradient(to bottom, #005076, #00daf3);
+}
+.footer-nav ul .select {
+	-pie-background: linear-gradient(to bottom, #005076, #00daf3);
+}
+
+.two-cell .left .column.last { 
+	position: relative;
+	left: 10px;
+	width: 45% !important;
+}
+.two-cell .left .column.first { 
+	position: relative;
+	width: 47% !important;
+	padding-right: 20px;
+}
+
+.back {
+	 -pie-background: rgba(255, 255, 255, 0.67);
+	 position: absolute;
+}
+.back:before {
+	content: ".";
+	text-indent: -999px;
+	position: absolute;
+	left: 8px;
+	top: 50%;
+	background: url("../images/back/bg.png") 0px 0px no-repeat;
+	width: 10px;
+	height: 10px;
+	display: block;
+	z-index: 10;
+}
+.top-nav ul li.white a, .top-nav ul li.current a {
+	color: #0084bc;
+	text-decoration: underline;
+}
+.footer-nav ul li.white a, .footer-nav ul li.current a {
+	color: #0084bc;
+	text-decoration: underline;
+}

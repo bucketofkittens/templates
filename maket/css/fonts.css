@@ -1,0 +1,56 @@
+@font-face {
+    font-family: 'pf_din_text_comp_promedium';
+    src: url('../fonts/fontscore.com_p_pfdintextcomppromedium-webfont.eot');
+    src: url('../fonts/fontscore.com_p_pfdintextcomppromedium-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/fontscore.com_p_pfdintextcomppromedium-webfont.woff') format('woff'),
+         url('../fonts/fontscore.com_p_pfdintextcomppromedium-webfont.ttf') format('truetype'),
+         url('../fonts/fontscore.com_p_pfdintextcomppromedium-webfont.svg#pf_din_text_comp_promedium') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'pf_din_text_comp_proregular';
+    src: url('../fonts/fontscore.com_p_pfdintextcompproregular-webfont.eot');
+    src: url('../fonts/fontscore.com_p_pfdintextcompproregular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/fontscore.com_p_pfdintextcompproregular-webfont.woff') format('woff'),
+         url('../fonts/fontscore.com_p_pfdintextcompproregular-webfont.ttf') format('truetype'),
+         url('../fonts/fontscore.com_p_pfdintextcompproregular-webfont.svg#pf_din_text_comp_proregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'pf_dindisplay_problack';
+    src: url('../fonts/pfdindisplaypro-black-webfont.eot');
+    src: url('../fonts/pfdindisplaypro-black-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/pfdindisplaypro-black-webfont.woff') format('woff'),
+         url('../fonts/pfdindisplaypro-black-webfont.ttf') format('truetype'),
+         url('../fonts/pfdindisplaypro-black-webfont.svg#pf_dindisplay_problack') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'pf_dindisplay_prothin';
+    src: url('../fonts/pfdindisplaypro-thin-webfont.eot');
+    src: url('../fonts/pfdindisplaypro-thin-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/pfdindisplaypro-thin-webfont.woff') format('woff'),
+         url('../fonts/pfdindisplaypro-thin-webfont.ttf') format('truetype'),
+         url('../fonts/pfdindisplaypro-thin-webfont.svg#pf_dindisplay_prothin') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'Albertus-Bold';
+    src: url('../fonts/albr65w.eot');
+    src: url('../fonts/albr65w.eot?#iefix') format('embedded-opentype'),
+             url('../fonts/albr65w.woff') format('woff'),
+             url('../fonts/albr65w.ttf') format('truetype'),
+             url('../fonts/albr65w.svg#albr65w') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}

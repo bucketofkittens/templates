@@ -1,0 +1,6 @@
+.about ul.column li:hover {
+	left: 0px;
+	top: 0px;
+	width: auto;
+	position: relative;
+}

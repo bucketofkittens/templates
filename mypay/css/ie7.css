@@ -1,0 +1,66 @@
+header #logo,
+header .my-money,
+header .my-money a,
+header .payed,
+header .lang,
+header .phone,
+header .lang li,
+.top-nav ul li,
+.service-list ul li,
+.infos1 li,
+.footer-nav ul li,
+#center aside, 
+#center section.content,
+#center section.content .service-list-inner ul li ul li,
+#center section.content ol span, 
+#center section.content ol p,
+#center section.content .news .titlenews,
+#center section.content .news .date,
+#center section.content .news .textnews,
+#center section.content .allnews,
+#center .newstime,
+#center section.content .pagination a,
+#center section.content .pagination span,
+#center section.content .pagination .left,
+#center section.content .pagination .right {
+	zoom: 1;
+	display: inline;
+}
+
+#my_counter_1 {
+	position: relative;
+	margin-left: -65px;
+}
+header .phone {
+	position: absolute;
+	right: 0px;
+}
+#center aside {
+	float: left;
+}
+#center section.content {
+	width: 670px;
+	float: right;
+}
+#center section.content ol p {
+	width: 575px;
+	overflow: hidden;
+}
+#center section.content .allnews {
+	float: left;
+	width: 535px;
+}
+#center section.content .pagination {
+	clear: both;
+}
+#center section.content .news .date {
+	line-height: 120%;
+}
+#center section.content .news .date * {
+	line-height: 120%;
+}
+#center section.content .news .date a {
+	letter-spacing: 120%;
+	position: relative;
+	top: -3px;
+}

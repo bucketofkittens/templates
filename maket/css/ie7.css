@@ -1,0 +1,26 @@
+footer #c-menu li, .scroll1 h1, #info-box1 .center *, #info-box2 .phone ul li,
+#top-nav ul li, .bbutton, .services .scroll ul li, footer #bottom-nav li,
+footer #bottom-nav a, footer #b-menu li,  #main-news ul li *,
+#main-jobs nav ul li, #main-facts nav ul li,
+.services .scroll ul li, .scroll1 li, 
+#info-box1 .center div, #info-box1 .center a {
+	zoom: 1;
+	display: inline;
+}
+#info-box1 .center h1 {
+	display: block;
+}
+#top-nav ul li a, #top-nav ul li span {
+	display: block;
+	background: none;
+}
+#top-nav ul li a i, #top-nav ul li span i {
+	position: relative;
+	top: 2px;
+}
+.services .scroll ul {
+	width: 10000px;
+}
+.services .scroll ul li {
+	float: left;
+}

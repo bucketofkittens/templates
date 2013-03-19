@@ -1,0 +1,393 @@
+@import "reset.css";
+@import "sexy-combo.css";
+@import "elements.css";
+@import "fonts.css";
+
+/** MAIN { **/
+html {
+    height: 100%;
+}
+body {
+    position: relative;
+    font-family: Arial, sans-serif;
+    min-width: 1000px;
+    height: 100%;
+}
+a {
+    color: #0084bc;
+}
+a:hover {
+    text-decoration: none;
+}
+h2 {
+    font-size: 17px;
+    font-family: 'proxima_nova_rgbold';
+    font-weight: normal;
+    margin: 0px 0px 14px 0px;
+}
+body:before {
+    content: ".";
+    width: 180px;
+    height: 568px;
+    background: url("../images/body/left.png") 0px 0px  no-repeat;
+    display: block;
+    position: absolute;
+    left: 0px;
+    top: 218px;
+    overflow: hidden;
+    text-indent: -999px;
+}
+body:after {
+    content: ".";
+    width: 180px;
+    height: 568px;
+    background: url("../images/body/right.png") 0px 0px  no-repeat;
+    display: block;
+    position: absolute;
+    right: 0px;
+    top: 54px;
+    overflow: hidden;
+    text-indent: -999px;
+}
+/** } **/
+
+/** main { **/
+#main {
+   background: url("../images/body/center.png") 0px 0px repeat-x;
+   min-height: 100%;
+}
+#main-bg {
+    background: url("../images/body/bg.jpg") center 0px no-repeat;
+}
+#main-wrapper {
+    position: relative;
+    width: 940px;
+    margin: 0px auto;
+    z-index: 10;
+    padding: 0px 0px 170px 0px;
+}
+/** } **/
+
+/** header { **/
+header {
+    padding: 0px 0px 5px 0px;
+}
+header > * {
+    vertical-align: middle;
+}
+header #logo {
+    display: inline-block;
+    margin: 11px 0px 0px 15px;
+    padding: 0px;
+
+    -webkit-transition: all 0.1s linear;
+    -o-transition: all 0.1s linear;
+    -moz-transition: all 0.1s linear;
+    -ms-transition: all 0.1s linear;
+    -kthtml-transition: all 0.1s linear;
+    transition: all 0.1s linear;
+}
+header #logo img {
+    display: block;
+}
+header a#logo:hover {
+    opacity: 0.5;
+}
+header .my-money {
+    display: inline-block;
+    padding: 0px;
+    margin: 0px 0px 0px 21px;
+    text-align: right;
+}
+header .my-money a {
+    display: inline-block;
+}
+header .my-money .link {
+    font-size: 9px;
+    font-weight: bold;
+    margin: 4px 0px 0px 0px;
+}
+header .payed {
+    display: inline-block;
+    margin: 1px 0px 0px 40px;
+    text-align: center;
+    position: relative;
+    top: 3px;
+    max-width: 150px;
+    max-height: 55px;
+}
+header .payed p {
+    font-family: 'proxima_nova_rgbold';
+    color: #000000;
+    font-size: 11px;
+    margin: 0px 0px 8px 0px;
+}
+header .lang {
+    display: inline-block;
+    margin: 0px;
+    list-style: none;
+    padding: 0px 0px 0px 45px;
+}
+header .lang li {
+    display: inline-block;
+    margin: 0px 10px 0px 0px;
+}
+header .lang li a, header .lang li span {
+    font-family: 'proxima_nova_rgbold';
+    color: #000000;
+    text-transform: uppercase;
+    font-size: 8px;
+    display: inline-block;
+
+    background: url("../images/lang/sprite.png") 0px 0px no-repeat;
+    padding: 18px 0px 0px 0px;
+
+    -webkit-transition: all 0.1s linear;
+    -o-transition: all 0.1s linear;
+    -moz-transition: all 0.1s linear;
+    -ms-transition: all 0.1s linear;
+    -kthtml-transition: all 0.1s linear;
+    transition: all 0.1s linear;
+}
+header .lang li.thai a {
+    background-position: -32px 0px;
+}
+header .lang li.eng a {
+    background-position: -64px 0px;
+}
+header .lang li.current a, header .lang li a:hover {
+    opacity: 0.5;
+    text-decoration: none;
+}
+header .phone {
+    display: inline-block;
+    background: url("../images/phone/bg.png") 0px 0px no-repeat;
+    min-height: 42px;
+    padding: 3px 0px 0px 52px;
+    margin: 20px 0px 0px 0px;
+    font-size: 12px;
+    float: right;
+    font-family: 'helveticaneuecyrbold';
+    max-width: 148px;
+}
+header .phone span {
+    font-family: 'PT Sans';
+    font-weight: bold;
+    font-size: 18px;
+}
+/** } **/
+
+/** footer { **/
+footer {
+    height: 170px;
+    background: url("../images/footer/bg.png") center bottom no-repeat;
+    position: relative;
+    bottom: 0px;
+    left: -25px;
+    width: 100%;
+    margin-top: -170px;
+    z-index: 11;
+}
+footer .footer-wrapper {
+    width: 940px;
+    margin: 0px auto;
+    position: relative;
+    left: 25px;
+}
+footer .phone {
+    position: absolute;
+    left: 380px;
+    top: 54px;
+    color: #ffffff;
+    background: url("../images/phone/bg2.png") 0px 0px no-repeat;
+    padding: 0px 0px 0px 27px;
+    font-family: 'helveticaneuecyrroman';
+    font-size: 11px;
+}
+footer .phone span {
+    display: block;
+    font-family: 'PT Sans';
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 120%;
+    margin-top: -3px;
+}
+/** } **/
+
+#center {
+    padding: 0px 0px 40px 0px;
+    width: 100%;
+    overflow: hidden;
+}
+#center > aside, #center section.content {
+    display: inline-block;
+    vertical-align: top;
+}
+
+#center > aside {
+    width: 260px;
+}
+#center section.content {
+    width: 675px;
+    float: right;
+}
+#center section.content h1 {
+    font-size: 48px;
+    font-family: 'proxima_nova_rgbold';
+    color: #0084bc;
+    padding: 0px 0px 20px 0px;
+    border-bottom: 3px solid #0084bc;
+    font-weight: normal;
+    margin: 0px 0px 28px 0px;
+    position: relative;
+}
+#center section.content h2, #center section.content h3 {
+    margin: 26px 0px 22px 0px;
+    padding: 0px 0px 3px 0px;
+    color: #0084bc;
+    font-size: 30px;
+    font-weight: normal;
+    font-family: 'proxima_nova_rgregular';
+    border-bottom: 1px solid #cce6f2;
+}
+#center section.content p {
+    font-family: 'PT Sans';
+    font-size: 15px;
+    line-height: 21px;
+    margin: 0px 0px 10px 0px;
+}
+#center section.content ul {
+    list-style: none;
+    margin: 0px;
+    padding: 0px;
+    font-size: 15px;
+    font-family: 'PT Sans';
+}
+#center section.content ol {
+    margin: 0px 0px 35px 0px;
+    padding: 0px;
+    list-style: none;
+}
+#center section.content ol li {
+    margin: 0px 0px 22px 0px;
+}
+#center section.content ol span, #center section.content ol p {
+    display: inline-block;
+    vertical-align: middle;
+}
+#center section.content ol span {
+    width: 60px;
+    line-height: 60px;
+    color: #0077be;
+    font-size: 24px;
+    font-weight: bold;
+    border: 6px solid #e7f7fb;
+    border-radius: 100%;
+    text-align: center;
+    margin-right: 15px;
+    font-family: 'PT Sans';
+}
+#center section.content ol p {
+    width: 580px;
+    margin: 0px 0px 0px 0px;
+}
+#center section.content ul li {
+    margin: 0px 0px 10px 0px;
+    padding: 0px 0px 0px 22px;
+    background: url("../images/left-nav/bg.png") 0px 8px no-repeat;
+}
+#center section.content ul li ul {
+    margin: 10px 0px 25px 0px;
+}
+#center section.content ul li ul li {
+    background: url("../images/left-nav/bg2.png") 0px 8px no-repeat;
+    padding-left: 18px;
+    margin-left: 18px;
+}
+#center section.content .style1 {
+    font-size: 21px;
+    font-family: 'proxima_nova_rgregular';
+    padding: 12px 50px 12px 27px;
+    line-height: 27px;
+    border: 7px solid #e7f7fb;
+    margin: 0px 0px 22px 0px;
+}
+#center section.content h4 {
+    font-family: 'proxima_nova_rgbold';
+    font-weight: normal;
+    font-size: 17px;
+    margin: 0px 0px 3px 0px;
+}
+#center section.content .seo p {
+    font-size: 13px;
+    color: #545454;
+    line-height: 17px;
+}
+#center section.content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 22px 0px 40px 0px;
+}
+#center section.content table th, #center section.content table td {
+    font-family: 'PT Sans';
+    padding: 4px 0px 4px 10px;
+    margin: 0px;
+    text-align: left;
+    font-size: 15px;
+}
+#center section.content table th {
+    background: #e7f7fb;
+    font-weight: bold;
+}
+#center section.content table td {
+    border-bottom: 1px solid #e2e2e2;
+}
+
+#center > aside .infos1 li {
+    margin: 0px 0px 20px 0px;
+    opacity: 1;
+    cursor: pointer;
+}
+#center > aside .infos1 li:hover {
+    opacity: 0.5;
+}
+
+/** on_news { **/
+#center section.content .on_news .date {
+    font-family: 'proxima_nova_rgregular';
+    font-size: 34px;
+    color: #000000;
+    max-width: 35px;
+    display: inline-block;
+    line-height: 60%;
+    margin-top: 15px;
+    vertical-align: top;
+}
+#center section.content .on_news .date span {
+    font-size: 12px;
+    display: block;
+}
+#center section.content .on_news .date a {
+    font-size: 10px;
+    color: #000000;
+    opacity: 0.5;
+    display: block;
+    line-height: 60%;
+}
+#center section.content .on_news .newstitle {
+    font-family: 'proxima_nova_rgregular';
+    font-size: 30px;
+    color: #000000;
+    display: inline-block;
+    max-width: 600px;
+    border: 0px;
+    margin: 5px 0px 27px 30px;
+}
+#center section.content .on_news .newstext {
+    font-family: 'PT Sans';
+    font-size: 15px;
+    line-height: 21px;
+    color: #000000;
+    margin-left: 150px;
+}
+/** } **/

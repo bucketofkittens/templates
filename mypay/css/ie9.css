@@ -1,0 +1,16 @@
+.banner1 p {
+	filter: Shadow(Color=#000000, Direction=135, Strength=1);
+}
+.service-list ul li {
+	margin-right: 61px;
+}
+
+.two-cell .left .column.last { 
+	position: relative;
+	left: 10px;
+	width: 45% !important;
+}
+
+#center > section.content .service-list-inner ul li ul {
+	margin-top: 10px;
+}

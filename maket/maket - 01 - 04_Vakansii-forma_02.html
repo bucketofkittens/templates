@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>TITLE</title>
+    <meta charset="utf-8" /> 
+
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800&subset=latin,cyrillic-ext,latin-ext,cyrillic' rel='stylesheet' type='text/css'/>
+
+    <link rel="stylesheet" href="./css/niceforms-default.css" media="screen" />
+	<link rel="stylesheet" href="./css/ui-lightness/jquery-ui-1.10.2.custom.min.css" media="screen" />
+    <link rel="stylesheet" href="./css/fonts.css" />
+    <link rel="stylesheet" href="./css/default.css" />
+    
+    <!--[if lt IE 8]>
+      <link rel="stylesheet" href="./css/ie7.css" />
+    <![endif]-->
+
+    <!--[if lt IE 9]>
+      <script src="./js/html5shiv.js"></script>
+    <![endif]-->
+
+    <!--[if lt IE 9]>
+		<script src="http://ie7-js.googlecode.com/svn/version/2.1(beta4)/IE9.js"></script>
+	<![endif]-->
+
+    <script src="./js/jquery-1.9.1.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="./js/jquery-migrate-1.1.1.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="./js/jquery.mousewheel.js" type="text/javascript" charset="utf-8"></script>
+    <script src="./js/mwheelIntent.js" type="text/javascript" charset="utf-8"></script>
+    <script src="./js/jquery.jscrollpane.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="./js/niceforms.js"></script>
+    <script src="./js/jquery-ui-1.10.2.custom.min.js"></script>
+    <script src="./js/jquery.maskedinput.min.js"></script>
+    <script src="./js/default.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+
+	<body>
+		<div id="main">
+			<header class="inner">
+			    <div class="bg2"></div>
+			    <p class="breadcrumbs2">
+					<span><a href="#">Главная</a> → <a href="#">Карьера</a> → Отправить резюме</span>
+			    </p>
+			    <div class="wrap">
+					<h2>Отправить резюме</h2>
+				</div>
+			    <div class="gray-box" id="info-box1">
+			      <p class="left"></p>
+			      <div class="center">
+			        <a href="index.html" title="">
+			          <img src="./images/header/logo.png" alt="" />
+			        </a>
+			        <div>
+			          <h1>когалымнефтегеоФизика</h1>
+			          <p>Все виды геофизических  исследований</p>
+			        </div>
+			      </div>
+			      <p class="right"></p>
+			    </div>
+			    <div class="gray-box" id="info-box2">
+			      <p class="left"></p>
+			      <div class="center">
+			        <nav>
+			          <ul>
+			            <li><a href="2.html" title="О компании">О компании</a></li>
+			            <li><span>Карьера</span></li>
+			          </ul>
+			          <ul>
+			            <li><a href="#" title="Услуги">Услуги</a></li>
+			            <li><a href="#" title="Статьи">Статьи</a></li>
+			          </ul>
+			          <ul>
+			            <li><a href="#" title="Сотрудничество">Сотрудничество</a></li>
+			            <li><a href="#" title="Контакты">Контакты</a></li>
+			          </ul>
+			        </nav>
+			        <div class="phone">
+			          <p>
+			            Телефон: <span>(34667) 4-45-39</span>
+			          </p>
+			          <ul>
+			            <li><a href="#" title="заказать звонок">заказать звонок</a></li>
+			            <li><a href="#" title="обратиться к директору">обратиться к директору</a></li>
+			          </ul>
+			        </div>
+			      </div>
+			      <p class="right"></p>
+			    </div>
+			</header>
+
+			<div class="feedback resume">
+				<div class="content-inner">
+					<div class="form">	
+					    <form action="" class="niceform">
+						<div>
+							<label>Меня интересует вакансия:<span class="red">*</span></label>
+							<input type="text" />
+						</div>
+						<div>
+							<label>Источник информации о вакансии:<span class="red">*</span></label>
+						    <input class="no-valid" type="text" value="Обязательное поле" />
+						</div>      
+
+						    <h3>Личные данные</h3>					
+						    <div>
+								<label>ФИО:<span class="red">*</span></label>
+								<input type="text" />
+							</div>
+							<div>
+								<label>Дата рождения:<span class="red">*</span></label>
+								<input type="text" class="mask1" />
+							</div>
+							<div>
+								<label>Адрес прописки:<span class="red">*</span></label>
+								<textarea cols="30" rows="10"></textarea>
+							</div>
+							<div>
+								<label>Фактический адрес проживания:</label>
+								<textarea cols="30" rows="10"></textarea>
+							</div>
+							<div>
+								<label>Контактный телефон:<span class="red">*</span></label>
+								<input type="text" />
+							</div>
+							<div>
+								<label>Домашний телефон:</label>
+								<input type="text" />
+							</div>
+							<div>
+								<label>E-mail:<span class="red">*</span></label>
+								<input type="text" />
+							</div>
+							<div>
+								<label>Фото:<span class="red">*</span></label>
+								<input type="file" />
+							</div>
+							<div>
+								<label>Семейное положение:<span class="red">*</span></label>
+								<select id="test_select" size="1" name="dobMonth">
+									<option value="1">Не определено</option>
+									<option value="2">Женат (замужем)</option>
+									<option value="3">Холост (не замужем)</option>
+									<option value="4">Разведен (разведена)</option>
+									<option value="5">Вдовец (вдова)</option>
+								</select>
+							</div>
+
+							<h4>Ваши ближайшие родственники</h4>
+							<div>
+								<label>ФИО:</label>
+								<input type="text" />
+							</div>
+							<div>
+								<label>Степень родства:</label>
+								<input type="text" />
+							</div>
+							<p class="comment">Близкими родственниками являются Ваши отец, мать, братья, сестры и дети, а также муж (жена).</p>
+							<div>
+								<label>Место работы:</label>
+								<input type="text" />
+							</div>
+							<div>
+								<label>Должность:</label>
+								<input type="text" />
+							</div>
+							<div>
+								<label>Дата рождения:</label>
+								<input type="text" />
+							</div>
+							<br/>
+							<a href="#"><i>Ещё родственники</i></a>
+
+							<h3>Основное образование</h3>					
+						    <div>
+								<label>Уровень образования:<span class="red">*</span></label>
+								<input type="text" />
+							</div>
+							<div>
+								<label>Учебное заведение:<span class="red">*</span></label>
+								<input type="text" />
+							</div>
+							<div>
+								<label>Дата поступления:<span class="red">*</span></label>
+								<input type="text" class="datepicker" />
+							</div>
+							<div>
+								<label>Дата окончания:<span class="red">*</span></label>
+								<input type="text" class="datepicker" />
+							</div>
+							<div>
+								<label>Специальностьпо диплому:<span class="red">*</span></label>
+								<input type="text" />
+							</div>
+							<div>
+								<label>Квалификация по диплому:<span class="red">*</span></label>
+								<input type="text" />
+							</div>
+							<span></span>
+							<a href="#"><i>Добавить учебное заведение</i></a>
+
+							<h3>Дополнительное образование</h3>
+							<div>
+								<label>Учебное заведение:</label>
+								<input type="text" />
+							</div>
+							<div>
+								<label>Программа:</label>
+								<input type="text" />
+							</div>
+							<div>
+								<label>Дата поступления:</label>
+								<input type="text" class="datepicker" />
+							</div>
+							<div>
+								<label>Дата окончания:</label>
+								<input type="text" class="datepicker" />
+							</div>
+							<div>
+								<label>Присвоенная квалификация:</label>
+								<input type="text" />
+							</div>
+							<div>
+								<label>Полученныйдокумент:</label>
+								<input type="text" />
+							</div>
+							<span></span>
+							<a href="#"><i>Добавить учебное заведение</i></a>
+
+							<h3>Сведения о трудовой деятельности</h3>
+							<h4>Последнее (настоящее) место работы</h4>
+							<div>
+								<label>Наименование организации:<span class="red">*</span></label>
+								<input type="text" />
+							</div>
+							<div>
+								<label>Занимаемая должность:<span class="red">*</span></label>
+								<input type="text" />
+							</div>
+							<div>
+								<label>Дата приема:<span class="red">*</span></label>
+								<input type="text" class="datepicker" />
+							</div>
+							<div>
+								<label>Дата увольнения:<span class="red">*</span></label>
+								<input type="text" class="datepicker" />
+							</div>
+							<div>
+								<label>Должностные обязанности:<span class="red">*</span></label>
+								<textarea cols="30" rows="10"></textarea>
+							</div>
+							<div>
+								<label>Личные и профессиональные достижения:</label>
+								<textarea cols="30" rows="10"></textarea>
+							</div>
+							<div>
+								<label>Стаж руководящей работы:</label>
+								<input type="text" />
+							</div>
+							<div>
+								<label>Количество подчиненных:</label>
+								<input type="text" />
+							</div>
+							<div>
+								<label>Ваш последний доход:<span class="red">*</span></label>
+								<input type="text" />
+							</div>
+							<div>
+								<label>Причина увольнения:<span class="red">*</span></label>
+								<input type="text" />
+							</div>
+
+							<h4>Опыт работы</h4>
+							<div>
+								<label>Наименование организации:</label>
+								<input type="text" />
+							</div>
+							<div>
+								<label>Занимаемая должность:</label>
+								<input type="text" />
+							</div>
+							<div>
+								<label>Дата приема:</label>
+								<input type="text" class="datepicker" />
+							</div>
+							<div>
+								<label>Дата увольнения:</label>
+								<input type="text" class="datepicker" />
+							</div>
+							<div>
+								<label>Должностные обязанности:</label>
+								<textarea cols="30" rows="10"></textarea>
+							</div>
+							<div>
+								<label>Количество подчиненных:</label>
+								<input type="text" />
+							</div>
+							<span></span>
+							<a href="#"><i>Добавить место работы</i></a>
+
+							<h3>Иностранный язык</h3>
+							<div>
+								<label>Каким иностранным языком владеете:</label>
+								<input type="text" />
+							</div>
+							<div>
+								<label>Степень владения:</label>
+								<input type="text" />
+							</div>
+							<div>
+								<label>Название учебного заведения:</label>
+								<input type="text" />
+							</div>
+							<div>
+								<label>Длительность обучения:</label>
+								<input type="text" />
+							</div>
+							<span></span>
+							<a href="#"><i>Добавить владение иностранным языком</i></a>
+
+							<h3>Личный автомобиль, водительское удостоверение</h3>
+							<div>
+								<label>Личный автомобиль:</label>
+								<input type="text" />
+							</div>
+							<div>
+								<label>Стаж вождения:</label>
+								<input type="text" />
+							</div>
+							<div>
+								<label>Водительские права:</label>
+								<input type="text" />
+							</div>
+							<div>
+								<label>Категория:</label>
+								<input type="text" />
+							</div>
+							<div>
+								<label>Готовы ли вы использовать личный автомобиль в рабочих целях:</label>
+								<input type="text" />
+							</div>
+
+							<h3>Отношение к воинской обязанности</h3>
+							<div>
+								<div class="radior">
+									<input type="radio" name="slave" />
+									<label>офицер запаса</label>
+								</div>
+								<div class="radior">
+									<input type="radio" name="slave" />
+									<label>рядовой запаса</label>
+								</div>
+								<div class="radior">
+								    <input type="radio" name="slave" />
+								    <label>допризывник</label>
+								</div>								
+							</div>
+							<div>	
+							    <div class="radior">
+									<input type="radio" name="slave" />
+									<label>белый билет</label>
+								</div>
+								<div class="radior">
+									<input type="radio" name="slave" />
+									<label>отсрочка</label>
+								</div>
+								<div class="radior">
+								    <input type="radio" name="slave" />
+								    <label>другое</label>
+								</div>							
+							</div>
+
+							<h3>Рекомендатели</h3>
+							<div>
+								<label>ФИО:</label>
+								<input type="text" />
+							</div>
+							<div>
+								<label>Контактный телефон:</label>
+								<input type="text" />
+							</div>
+							<div>
+								<label>Место работы:</label>
+								<input type="text" />
+							</div>
+							<div>
+								<label>Должность:</label>
+								<input type="text" />
+							</div>
+							<span></span>
+							<a href="#"><i>Добавить рекомендателя</i></a>
+
+							<h3>Характеристика требуемой работы</h3>					
+						    <div>
+								<label>Желаемая зарплата:<span class="red">*</span></label>
+								<input type="text" />
+							</div>
+							<div>
+								<label>Готовность приступить к работе:<span class="red">*</span></label>
+								<input type="text" />
+							</div>
+							<div>
+								<label>Для выполнения какой работы вы считаете себя наиболее подготовленным и почему:</label>
+								<textarea cols="30" rows="10"></textarea>
+							</div>
+							<div>
+								<label>Как Вы видите свой дальнейший профессиональный рост:<span class="red">*</span></label>
+								<textarea cols="30" rows="10"></textarea>
+							</div>
+							<div>
+								<label>Ваши сильные качества:</label>
+								<textarea cols="30" rows="10"></textarea>
+							</div>
+							<div>
+								<label>Ваши слабые качества:</label>
+								<textarea cols="30" rows="10"></textarea>
+							</div>
+
+
+							<h3>Дополнительные вопросы</h3>	
+							<div>
+							    <div>
+									<label>Заинтересованность в карьерном росте:<span class="red">*</span></label>
+									<input type="text" />
+								</div>
+								<div>
+									<label>Владение офисной техникой:</label>
+									<input type="text" />
+							    </div>
+							</div>	
+							<div>
+								<label>Сведения о хронических заболеваниях:</label>
+								<textarea cols="30" rows="10"></textarea>
+							</div>
+							<div>
+								<label>Сведения о судимостях:</label>
+								<textarea cols="30" rows="10"></textarea>
+							</div>
+							<div>
+								<label>Почему Вы выбрали нашу компанию:</label>
+								<textarea cols="30" rows="10"></textarea>
+							</div>
+							<div>
+								<label>Источник информации о компании:</label>
+								<input type="text" />
+							</div>
+
+							<h3>Место для самопрезентации</h3>
+							<div>
+								<label>Расскажите о себе:<span class="red">*</span></label>
+								<textarea cols="30" rows="10"></textarea>
+							</div>
+							
+							<input type="submit" class="yellow-button" value="отправить" />
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	    <footer>
+			<nav id="bottom-nav">
+				<ul>
+					<li>
+					  <a href="#">Вертикальное<br />сейсмическое<br />профилирование</a>
+					</li>
+					<li>
+					  <a href="#">Вызов притока</a>
+					</li>
+					<li>
+					  <a href="#">Газовый каротаж<br />и ГТИ</a>
+					</li>
+					<li>
+					  <a href="#">Исследования,<br />применяемые в<br />открытом стволе</a>
+					</li>
+					<li>
+					  <a href="#">Контроль за<br />разработкой<br />месторождений</a>
+					</li>
+					<li>
+					  <a href="#">Исследования<br />скважин с<br />горизонтальным<br />окончанием</a>
+					</li>
+					<li>
+					  <a href="#">Контроль технического<br />состояния обсадных<br />колонн</a>
+					</li>
+				</ul>
+				</nav>
+				<nav id="b-menu">
+					<ul>
+					<li>
+					  <a href="#">О компании</a>
+					</li>
+					<li>
+					  <a href="#">Услуги</a>
+					</li>
+					<li>
+					  <a href="#">Сотрудничество</a>
+					</li>
+					<li>
+					  <a href="#">Карьера</a>
+					</li>
+					<li>
+					  <a href="#">Статьи</a>
+					</li>
+					<li>
+					  <a href="#">Контакты</a>
+					</li>
+					<li>
+					  <a href="#">Карта сайта</a>
+					</li>
+				</ul>
+			</nav>
+			<nav id="c-menu">
+				<ul>
+					<li>
+					  <a href="#">2012 © ОАО «Когалымнефтегеофизика»</a>
+					</li>
+					<li>
+					  <a href="#">Сайт в PDF</a>
+					</li>
+					<li>Создание сайта — <a href="#">Individ</a></li>
+				</ul>
+			</nav>
+			<div id="search">
+				<input type="text" placeholder="поиск" class="search" />
+				<input type="submit" class="searcher" />
+			</div>
+	    </footer>
+	</body>
+</html>

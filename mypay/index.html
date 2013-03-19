@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>MYPAY</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link type="text/css" rel="stylesheet" href="./css/camera.css" />
+        <link type="text/css" rel="stylesheet" href="./css/main.css" />
+        <!--[if IE 9]>
+            <link type="text/css" rel="stylesheet" href="./css/ie9.css" />
+            <script src="./js/PIE_IE9.js" type="text/javascript" charset="utf-8" ></script>
+        <![endif]-->
+        <!--[if lt IE 9]>
+            <script src="./js/html5shiv.js" type="text/javascript" charset="utf-8" ></script>
+            <script src="./js/PIE_IE678.js" type="text/javascript" charset="utf-8" ></script>
+            <link type="text/css" rel="stylesheet" href="./css/ie8.css" />
+        <![endif]-->
+        <!--[if IE 7]>
+            <link type="text/css" rel="stylesheet" href="./css/ie7.css" />
+        <![endif]-->
+        <script src="./js/jquery-1.9.1.min.js" type="text/javascript" charset="utf-8" ></script>
+        <script src="./js/jquery-migrate-1.1.1.min.js" type="text/javascript" charset="utf-8" ></script>
+        <script src="./js/jquery.autosize-min.js" type="text/javascript" charset="utf-8" ></script>
+        <script src="./js/jquery.columnizer.js" type="text/javascript" charset="utf-8" ></script>
+        <script src="./js/jquery.tools.min.js" type="text/javascript" charset="utf-8" ></script>
+        <script src="./js/counter.js" type="text/javascript" charset="utf-8" ></script>
+        <script src="./js/timers.js" type="text/javascript" charset="utf-8" ></script>
+        <script src="./js/jquery.easing.1.3.js" type="text/javascript" charset="utf-8" ></script>
+        <script src="./js/camera.min.js" type="text/javascript" charset="utf-8" ></script>
+        <script src="./js/main.js" type="text/javascript" charset="utf-8" ></script>
+    </head>
+    <body>
+        <div id="main">
+            <div id="main-bg">
+                <div id="main-wrapper">
+                    <p class="ask">задать вопрос</p>
+                    <header>
+                        <h1 id="logo">
+                            <img src="./images/header/logo.png" alt="my pay" />
+                        </h1>
+                        <p class="my-money">
+                            <a href="#" class="green-button">Войти в MyMoney кошелек</a><br />
+                            <a href="#" class="link">Узнать подробнее о кошельке MyMoney</a>
+                        </p>
+                        <div class="payed">
+                            <p>В системе принято платежей</p>
+                            <!--counter-->
+                            <div class="counter">
+                                <div id="my_counter_1" class="bg_numbers1"></div>
+                                <script type="text/javascript">
+                                
+                                var myCounter = null
+                                var timerId = null
+                                
+                                function loadCounter(){
+                                    myCounter = new Counter(
+                                        "my_counter_1", {
+                                            digitsNumber : 9,
+                                            direction : Counter.ScrollDirection.Upwards,
+                                            characterSet : Counter.DefaultCharacterSets.numericUp,
+                                            charsImageUrl : "images/numeric_up_blackbg51.png",
+                                            markerImageUrl : "images/marker1.png"
+                                        }
+                                    );
+                                    myCounter.value = 3;
+                                    timerId = window.setInterval("myCounter.setValue(709, 300);", 150);
+                                
+                                }
+                                
+                                loadCounter();
+                                </script>
+                            </div>
+                        </div>
+                        <ul class="lang">
+                            <li class="rus current">
+                                <span>rus</span>
+                            </li>
+                            <li class="thai">
+                                <a href="#">thai</a>
+                            </li>
+                            <li class="eng">
+                                <a href="#">eng</a>
+                            </li>
+                        </ul>
+                        <p class="phone">
+                            техническая поддержка<br />
+                            <span>026-633-758</span>
+                        </p>
+                        <nav class="top-nav">
+                            <p class="select"></p>
+                            <ul>
+                                <li>
+                                    <a href="about.html">О компании</a>
+                                </li>
+                                <li>
+                                    <a href="news.html">Новости</a>
+                                </li>
+                                <li>
+                                    <a href="services.html">Услуги</a>
+                                </li>
+                                <li>
+                                    <a href="how_to_pay.html">Как оплатить</a>
+                                </li>
+                                <li>
+                                    <a href="where_to_pay.html">Где оплатить?</a>
+                                </li>
+                                <li>
+                                    <a href="#">Бизнесу</a>
+                                </li>
+                                <li>
+                                    <a href="contacts.html">Контакты</a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </header>
+                    <div id="center">
+                        <section class="banner1">
+                            <div class="item" data-src="./images/banner1/bg.jpg" data-link="#">
+                                <div class="fadeIn camera_effected">
+                                    <p>Денежные переводы без границ на&nbsp;карты Visа и&nbsp;MasterCard</p>
+                                    <a class="banner-link" href="#" title="подробнее"><span>подробнее</span></a>
+                                </div>
+                            </div>
+                            <div class="item" data-src="./images/banner1/bg.jpg" data-link="#">
+                                <div class="fadeIn camera_effected">
+                                    <p>Денежные переводы без границ на&nbsp;карты Visа и&nbsp;MasterCard</p>
+                                    <a class="banner-link" href="#" title="подробнее"><span>подробнее</span></a>
+                                </div>
+                            </div>
+                            <div class="item" data-src="./images/banner1/bg.jpg" data-link="#">
+                                <div class="fadeIn camera_effected">
+                                    <p>Денежные переводы без границ на&nbsp;карты Visа и&nbsp;MasterCard</p>
+                                    <a class="banner-link" href="#" title="подробнее"><span>подробнее</span></a>
+                                </div> 
+                            </div>
+                        </section>
+                        <section class="service-list">
+                            <h2>С MyPay Вы можете оплатить:</h2>
+                            <nav class="scroller">
+                                <span class="left_nav prev"></span>
+                                <span class="right_nav next"></span>
+                                <div class="scroll">
+                                    <ul>
+                                        <li>
+                                            <a href="#" title="Сотовая связь"><img src="./images/service-list/1.png" alt="" /><br />Сотовая<br /> связь</a>
+                                        </li>
+                                        <li>
+                                            
+                                            <a href="#" title="Электронные деньги"><img src="./images/service-list/2.png" alt="" /><br />Электронные<br /> деньги</a>
+                                        </li>
+                                        <li>
+                                            <a href="#" title="Страхование"><img src="./images/service-list/3.png" alt="" /><br />Страхование</a>
+                                        </li>
+                                        <li>
+                                            <a href="#" title="IP телефония"><img src="./images/service-list/4.png" alt="" /><br />IP телефония</a>
+                                        </li>
+                                        <li>
+                                            <a href="#" title="Игры"><img src="./images/service-list/5.png" alt="" /><br />Игры</a>
+                                        </li>
+                                        <li>
+                                            <a href="#" title="Телевидение"><img src="./images/service-list/6.png" alt="" /><br />Телевидение</a>
+                                        </li>
+                                        <li>
+                                            <a href="#" title="Туризм"><img src="./images/service-list/7.png" alt="" /><br />Туризм</a>
+                                        </li>
+                                        <li>
+                                            <a href="#" title="Игры"><img src="./images/service-list/5.png" alt="" /><br />Игры</a>
+                                        </li>
+                                        <li>
+                                            <a href="#" title="Телевидение"><img src="./images/service-list/6.png" alt="" /><br />Телевидение</a>
+                                        </li>
+                                        <li>
+                                            <a href="#" title="Туризм"><img src="./images/service-list/7.png" alt="" /><br />Туризм</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </nav>
+                        </section>
+                        <ul class="infos1">
+                            <li>
+                                <h2>Рекламодателю</h2>
+                                <img src="./images/infos1/1.png" alt="" />
+                                <section>
+                                    <p>Более того, построение последовательно осознавая социальную ответственность бизнеса.</p>
+                                    <a href="#" title="подробнее">подробнее</a>
+                                </section>
+                            </li>
+                            <li>
+                                <h2>Дилеру</h2>
+                                <img src="./images/infos1/2.png" alt="" />
+                                <section>
+                                    <p>К&nbsp;тому&nbsp;же ценовая стратегия директивно усиливает экспериментальный нишевый проект</p>
+                                    <a href="#" title="подробнее">подробнее</a>
+                                </section>
+                            </li>
+                            <li>
+                                <h2>Сервис провайдеру</h2>
+                                <img src="./images/infos1/3.png" alt="" />
+                                <section>
+                                    <p>К&nbsp;тому&nbsp;же ценовая стратегия директивно усиливает экспериментальный нишевый проект</p>
+                                    <a href="#" title="подробнее">подробнее</a>
+                                </section>
+                            </li>
+                            <li>
+                                <h2>Арендодателю</h2>
+                                <img src="./images/infos1/4.png" alt="" />
+                                <section>
+                                    <p>Такое понимание ситуации восходит к&nbsp;Эл&nbsp;Райс, при этом таргетирование позиционирует</p>
+                                    <a href="#" title="подробнее">подробнее</a>
+                                </section>
+                            </li>
+                        </ul>
+                        <div class="two-cell">
+                            <div class="left">
+                                <h2>Компания</h2>
+                                <section>
+                                    <p>Конвесия покупателя тормозит популярный целевой сегмент рынка, оптимизируя бюджеты. Объемная скидка концентрирует поведенческий таргетинг, полагаясь на&nbsp;инсайдерскую информацию. Исходя из&nbsp;структуры пирамиды</p>
+        <p>Маслоу, объемная скидка неестественно концентрирует ролевой рекламный блок, оптимизируя бюджеты.</p>
+        <p>Маркетингово-ориентированное издание последовательно программирует комплексный анализ ситуации, не&nbsp;считаясь с&nbsp;затратами. Традиционный канал, в&nbsp;рамках сегодняшних воззрений, сфокусирован. Партисипативное планирование, как принято считать, развивает эмпирический анализ рыночных цен</p>
+                                    <a href="#" title="подробнее">подробнее</a>
+                                </section>
+                            </div>
+                            <div class="right">
+                                <h2>Новости</h2>
+                                <ul class="news">
+                                    <li>
+                                        <span>
+                                            <i>12</i>сент
+                                        </span>
+                                        <section>
+                                            <h3><a href="#" title="Получено новое прочное">Получено новое прочное</a> </h3>
+                                            <p>водостойкое клеевое соединение.Изобретение относится к области получения и применения клеящих составов.</p>
+                                        </section>
+                                    </li>
+                                    <li>
+                                        <span>
+                                            <i>12</i>сент
+                                        </span>
+                                        <section>
+                                            <h3><a href="#" title="Получено новое прочное">Получено новое прочное</a> </h3>
+                                            <p>водостойкое клеевое соединение.Изобретение относится к области получения и применения клеящих составов.</p>
+                                        </section>
+                                    </li>
+                                </ul>
+                                <a href="#" title="Архив новостей" class="all_news">Архив новостей</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer>
+            <div class="footer-wrapper">
+                <nav class="footer-nav">
+                    <p class="select"></p>
+                    <ul>
+                        <li>
+                            <a href="about.html">О компании</a>
+                        </li>
+                        <li>
+                            <a href="news.html">Новости</a>
+                        </li>
+                        <li>
+                            <a href="services.html">Услуги</a>
+                        </li>
+                        <li>
+                            <a href="how_to_pay.html">Как оплатить</a>
+                        </li>
+                        <li>
+                            <a href="where_to_pay.html">Где оплатить?</a>
+                        </li>
+                        <li>
+                            <a href="#">Бизнесу</a>
+                        </li>
+                        <li>
+                            <a href="contacts.html">Контакты</a>
+                        </li>
+                    </ul>
+                </nav>
+                <p class="copyright">
+                    &copy; 2013 mypay<br /> Все права защищены
+                </p>
+                <!-- AddThis Button BEGIN -->
+                <div class="addthis_toolbox addthis_default_style social">
+                    <a class="addthis_button_vk"></a>
+                    <a class="addthis_button_facebook"></a>
+                    <a class="addthis_button_google"></a>
+                    <a class="addthis_counter addthis_bubble_style"></a>
+                </div>
+                <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=xa-4ed7c5c25d51e28a"></script>
+                <!-- AddThis Button END -->
+                <p class="creative-team">
+                    <a href="http://www.c-tm.ru/">создание сайтов</a>
+                    <span>2013</span>
+                </p>
+                <p class="phone">
+                    <span>026-633-758</span>
+                    техническая поддержка
+                </p>
+            </div>
+        </footer>
+    </body>
+</html>
