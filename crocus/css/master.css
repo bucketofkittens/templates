@@ -427,7 +427,7 @@ footer .links li a {
   overflow: hidden;
 }
 #page #content .inner {
-  width: 760px;
+  width: 756px;
   display: inline-block;
 }
 #page #content .inner .innerblock {
@@ -435,13 +435,13 @@ footer .links li a {
   vertical-align: top;
 }
 #page #content .inner .innerblock.events {
-  width: 437px;
+  width: 433px;
 }
 #page #content .inner .innerblock.videos {
   width: 319px;
 }
 #page #content .inner .innerblock.offers {
-  width: 760px;
+  width: 756px;
 }
 #page #content .inner .innerblock .topic, #page #content .musthave .topic {
   height: 40px;
@@ -468,7 +468,7 @@ footer .links li a {
   margin-right: 30px;
 }
 #page #content .inner .events .topic {
-  width: 437px;
+  width: 433px;
   background: url("../images/pink.png") center top no-repeat;
 }
 #page #content .inner .videos .topic {
@@ -476,7 +476,7 @@ footer .links li a {
   background: url("../images/blue.png") center top no-repeat;
 }
 #page #content .inner .offers .topic {
-  width: 760px;
+  width: 756px;
   background: url("../images/purple.png") center top no-repeat;
   margin-left: -5px;
 }
@@ -535,19 +535,27 @@ footer .links li a {
   top: 20px;
   right: -10px;
 }
+#page #content .inner .offers span {
+ position: absolute;
+ right: 0px;
+}
 #page #content .musthave {
-  width: 236px;
+  width: 240px;
   display: inline-block;
   vertical-align: top;
 }
 #page #content .musthave .topic {
   background: #3a3a3a;
-  width: 241px;
-  margin-left: -5px;
+  width: 240px;
 }
-#page #content .inner .offers span {
- position: absolute;
- right: 0px;
+#page #content .musthave a {
+  width: 240px;
+}
+#page #content .dotts {
+  background: url("../images/dotts.png") center bottom no-repeat;
+  width: 1000px;
+  height: 25px;
+  display: block;
 }
 
 #social-right {
