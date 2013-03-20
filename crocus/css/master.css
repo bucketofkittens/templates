@@ -1,6 +1,7 @@
 @import url(http://fonts.googleapis.com/css?family=Roboto:400,500,700,900,100&subset=latin,cyrillic-ext,latin-ext,cyrillic);
 @import url(http://fonts.googleapis.com/css?family=PT+Serif:400,700,400italic,700italic&subset=latin,cyrillic);
 @import "reset.css";
+@import "jquery.jscrollpane.css";
 
 body {
   background: #000000 url("../images/main.jpg") center -53px no-repeat;
@@ -219,7 +220,7 @@ body #page {
 }
 #page header .topnav li img {
   opacity: 0;
-  transition: all 1s;
+  transition: all 0.3s;
   -webkit-transition: all 0.3s;
   -moz-transition: all 0.3s;
 }
@@ -402,6 +403,63 @@ footer .links li a {
   bottom: 0px;
   display: block;
 }
+#page #content .banner .left {
+  position: absolute;
+  left: 30px;
+  top: 125px;
+  width: 44px;
+  height: 44px;
+  cursor: pointer;
+  background: url("../images/left2.png") center top no-repeat;
+  transition: all 0.3s;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+}
+#page #content .banner .left:hover {
+  background: url("../images/left2_hover.png") center top no-repeat;
+}
+#page #content .banner .right {
+  position: absolute;
+  right: 30px;
+  top: 125px;
+  width: 44px;
+  height: 44px;
+  cursor: pointer;
+  background: url("../images/right2.png") center top no-repeat;
+  transition: all 0.3s;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+}
+#page #content .banner .right:hover {
+  background: url("../images/right2_hover.png") center top no-repeat;
+}
+#page #content .banner ul {
+  position: absolute;
+  right: 9px;
+  bottom: 10px;
+  z-index: 5;
+}
+#page #content .banner ul li {
+  display: inline-block;
+  margin-left: 4px;
+  background: #797979;
+  width: 14px;
+  height: 12px;
+  cursor: pointer;
+  border-radius: 100%;
+}
+#page #content .banner ul li.current {
+  background: #d7d7d7;
+  background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2Q3ZDdkNyIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjglIiBzdG9wLWNvbG9yPSIjZmJmYmZiIiBzdG9wLW9wYWNpdHk9IjEiLz4KICAgIDxzdG9wIG9mZnNldD0iMTUlIiBzdG9wLWNvbG9yPSIjZjZmNmY2IiBzdG9wLW9wYWNpdHk9IjEiLz4KICAgIDxzdG9wIG9mZnNldD0iMzElIiBzdG9wLWNvbG9yPSIjZWFlYWVhIiBzdG9wLW9wYWNpdHk9IjEiLz4KICAgIDxzdG9wIG9mZnNldD0iNjklIiBzdG9wLWNvbG9yPSIjYzNjM2MzIiBzdG9wLW9wYWNpdHk9IjEiLz4KICAgIDxzdG9wIG9mZnNldD0iOTIlIiBzdG9wLWNvbG9yPSIjYWZhZmFmIiBzdG9wLW9wYWNpdHk9IjEiLz4KICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzhmOGY4ZiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgPC9saW5lYXJHcmFkaWVudD4KICA8cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iMSIgaGVpZ2h0PSIxIiBmaWxsPSJ1cmwoI2dyYWQtdWNnZy1nZW5lcmF0ZWQpIiAvPgo8L3N2Zz4=);
+  background: -moz-linear-gradient(top,  #d7d7d7 0%, #fbfbfb 8%, #f6f6f6 15%, #eaeaea 31%, #c3c3c3 69%, #afafaf 92%, #8f8f8f 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#d7d7d7), color-stop(8%,#fbfbfb), color-stop(15%,#f6f6f6), color-stop(31%,#eaeaea), color-stop(69%,#c3c3c3), color-stop(92%,#afafaf), color-stop(100%,#8f8f8f));
+  background: -webkit-linear-gradient(top,  #d7d7d7 0%,#fbfbfb 8%,#f6f6f6 15%,#eaeaea 31%,#c3c3c3 69%,#afafaf 92%,#8f8f8f 100%);
+  background: -o-linear-gradient(top,  #d7d7d7 0%,#fbfbfb 8%,#f6f6f6 15%,#eaeaea 31%,#c3c3c3 69%,#afafaf 92%,#8f8f8f 100%);
+  background: -ms-linear-gradient(top,  #d7d7d7 0%,#fbfbfb 8%,#f6f6f6 15%,#eaeaea 31%,#c3c3c3 69%,#afafaf 92%,#8f8f8f 100%);
+  background: linear-gradient(to bottom,  #d7d7d7 0%,#fbfbfb 8%,#f6f6f6 15%,#eaeaea 31%,#c3c3c3 69%,#afafaf 92%,#8f8f8f 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d7d7d7', endColorstr='#8f8f8f',GradientType=0 );
+  cursor: default;
+}
 #page #content .banner i {
   font-family: 'Arial';
   font-size: 17px;
@@ -442,6 +500,12 @@ footer .links li a {
 }
 #page #content .inner .innerblock.offers {
   width: 756px;
+}
+#page #content .inner .innerblock.offers span {
+  position: absolute;
+  right: 0px;
+  top: 60px;
+  z-index: 10;
 }
 #page #content .inner .innerblock .topic, #page #content .musthave .topic {
   height: 40px;
@@ -508,8 +572,13 @@ footer .links li a {
 #page #content .inner .offers {
   position: relative;
 }
+#page #content .inner .offers .items {
+  white-space: nowrap;
+}
 #page #content .inner .offers .offer {
   display: inline-block;
+  vertical-align: top;
+  margin-right: 70px;
 }
 #page #content .inner .offers .offer img {
   margin-top: 20px;
@@ -525,9 +594,10 @@ footer .links li a {
   display: inline-block;
   line-height: 20px;
   margin-top: 32px;
+  white-space: normal;
+  text-decoration: none;
 }
 #page #content .inner .offers .offer:last-child {
-  float: right;
   overflow: hidden;
 }
 #page #content .inner .offers .offer span {
@@ -584,4 +654,24 @@ footer .links li a {
 }
 #social-right li.yt a {
   background-position: 0px -129px;
+}
+
+.scroll-pane {
+  overflow-x: auto;
+  overflow-y: hidden;
+  position: relative;
+  white-space: nowrap;
+  height: 140px;
+}
+.jspTrack {
+  background: none;
+  height: 21px;
+}
+.jspHorizontalBar {
+  background: url("../images/track.png") left center no-repeat;
+  height: 21px;
+}
+.jspDrag {
+  background: url("../images/drag.png") left top no-repeat;
+  height: 21px;
 }
