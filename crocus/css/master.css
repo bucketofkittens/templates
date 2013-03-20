@@ -82,7 +82,22 @@ body #page {
 #page header .search {
   background: none;
   border: none;
-  width: 150px;  
+  width: 150px;
+  padding-left: 12px;
+  line-height: 20px;
+  height: 20px;
+}
+#page header .search::-webkit-input-placeholder {
+    color: #ffffff;
+}
+#page header .search:-moz-placeholder {
+    color: #ffffff;
+}
+#page header .search::-moz-placeholder {
+    color: #ffffff;
+}
+#page header .search:-ms-input-placeholder { 
+    color: #ffffff;
 }
 #page header #search {
   margin-left: 480px;
@@ -92,15 +107,21 @@ body #page {
   display: inline-block;
   height: 16px;
   margin-top: 5px;
+  background: #000000;
 }
 #page header #search .searcher {
   width: 15px;
-  margin-left: 20px;
   background: url("../images/searcher.png") center top no-repeat;
   text-decoration: none;
   border: none;
   text-indent: 200px;
   overflow: hidden;
+  float: right;
+  margin-right: 7px;
+}
+#page header .vegases {
+  position: relative;
+  z-index: 10;
 }
 #page header .vegases a {
   font-family: 'Roboto';
@@ -150,8 +171,15 @@ body #page {
 }
 #top-header {
   position: relative;
+  z-index: 10;
+}
+#top-header-bg {
+  position: absolute;
+  left: 0px;
+  top: 0px;
   background: rgba(0,0,0,0.8);
   height: 34px;
+  width: 100%;
 }
 
 #logo {
