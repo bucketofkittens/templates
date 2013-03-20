@@ -151,8 +151,17 @@ body #page {
   left: 23px;
 }
 
-#page header .topnav {
+
+#page header .topnav-bg {
+  position: absolute;
   background: url("../images/topnav.png") center top no-repeat;
+  width: 100%;
+  height: 68px;
+  top: 147px;
+}
+#page header .topnav {
+  position: relative;
+  z-index: 10;
   height: 68px;
   margin-top: 40px;
 }
@@ -287,6 +296,8 @@ footer .links li a {
 
 #page #content {
   padding-bottom: 470px;
+  position: relative;
+  z-index: 10;
 }
 #page #content nav.navtop {
   background: #000000;
@@ -325,19 +336,23 @@ footer .links li a {
   height: 325px;
   display: block;  
 }
-#page #content .banner i {
+#page #content .banner p {
   background: rgba(0,0,0,0.8);
-  height: 67px;
+  height: 90px;
   position: absolute;
   width: 100%;
-  margin-top: 232px;  
+  bottom: 0px;
+  display: block;
 }
-#page #content .banner p {
+#page #content .banner i {
   font-family: 'Arial';
   font-size: 17px;
   line-height: 22px;
   color: #ffffff;
   padding: 15px 10px;
+  display: block;
+  width: 100%;
+  height: auto;
 }
 #page #content p.best {
   font-family: 'Roboto';
@@ -388,7 +403,7 @@ footer .links li a {
   font-size: 11px;
   color: #ffffff;
   display: inline-block;
-  margin-top: 12px;
+  margin-top: 15px;
   float: right;
   overflow: hidden;
   margin-right: 30px;
