@@ -296,13 +296,19 @@ header .bg2 {
 /** end box: top-nav **/
 /** begin box: info1 **/
 #info1 {
-  background: url("../images/header/info/bg.png") left top no-repeat;
-  width: 775px;
+  width: 1264px;
   height: 416px;
   z-index: 5;
   position: absolute;
   margin-top: 92px;
-  left: 0px;
+  left: 50%;
+  margin-left: -632px;
+}
+#info1-bg {
+  background: url("../images/header/info/bg.png") left top no-repeat;
+  width: 775px;
+  height: 416px;
+  z-index: 5;
 }
 #info1 p {
   font-size: 11px;
@@ -318,7 +324,7 @@ header .bg2 {
 /** begin box: info2 **/
 #info2 {
   width: 430px;
-  margin-left: 706px;
+  right: 10%;
   margin-top: 208px;
   z-index: 5;
   position: absolute;
@@ -357,13 +363,17 @@ header .bg2 {
 /** end box: bbutton **/
 /** begin box: services **/
 .services {
-  background: url("../images/header/services/bg.png") left top no-repeat;
+  background: url("../images/header/services/bg2.png") center top repeat-x;
   height: 247px;
   position: absolute;
   bottom: -14px;
   left: 0px;
   width: 100%;
   z-index: 5;
+}
+.services .services-bg {
+  height: 247px;
+  background: url("../images/header/services/bg.png") center top no-repeat;
 }
 .services h2 {
   font-family: 'pf_din_text_comp_promedium';
@@ -374,7 +384,7 @@ header .bg2 {
 }
 .services .scroll {
   margin: 0px auto;
-  width: 940px;
+  width: 80%;
   overflow: auto;
   position: relative;
   height: 97px;
@@ -688,7 +698,6 @@ footer #search .searcher {
   background: -o-linear-gradient(top,  #f8c244 0%,#f6ab00 4%,#f59f00 29%,#f17f00 75%,#f07500 96%,#874000 100%);
   background: -ms-linear-gradient(top,  #f8c244 0%,#f6ab00 4%,#f59f00 29%,#f17f00 75%,#f07500 96%,#874000 100%);
   background: linear-gradient(to bottom,  #f8c244 0%,#f6ab00 4%,#f59f00 29%,#f17f00 75%,#f07500 96%,#874000 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f8c244', endColorstr='#874000',GradientType=0 );
 
   border-radius: 4px;
 
@@ -704,7 +713,6 @@ footer #search .searcher {
   background: -o-linear-gradient(top,  #f9c644 0%,#f6af00 4%,#f5a100 22%,#f17d00 56%,#ef6e00 78%,#ef6d00 85%,#f07100 89%,#f28800 100%);
   background: -ms-linear-gradient(top,  #f9c644 0%,#f6af00 4%,#f5a100 22%,#f17d00 56%,#ef6e00 78%,#ef6d00 85%,#f07100 89%,#f28800 100%);
   background: linear-gradient(to bottom,  #f9c644 0%,#f6af00 4%,#f5a100 22%,#f17d00 56%,#ef6e00 78%,#ef6d00 85%,#f07100 89%,#f28800 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f9c644', endColorstr='#f28800',GradientType=0 );
 
 }
 /** end box: yellow-button **/
@@ -1477,7 +1485,7 @@ header.inner {
   padding-right: 0px;
   font-family: 'Open Sans';
   border: 1px solid transparent;
-  resize: both;
+  resize: none;
   line-height: 150%;
 }
 .feedback.resume .form textarea:focus {
@@ -1529,7 +1537,7 @@ header.inner {
 }
 .ui-datepicker {
   background: #ffffff;
-  border-radius: 0px 0px 5px 5px;
+  border-radius: 5px;
   width: 260px;
   margin-top: -3px;
   padding: 10px 20px 10px 20px;
@@ -1574,7 +1582,8 @@ header.inner {
   background: #ffffff;
   border: 0px;
   padding: 1px;
-  top: 3px;
+  top: 5px;
+  font-size: 14px;
 }
 .ui-datepicker .ui-datepicker-prev span {
   background: url("../images/333/left.png") left top no-repeat;
@@ -2318,4 +2327,19 @@ div.selector span {
 
 noindex:-o-prefocus, p.comment { 
     margin-top: -10px !important;
-};
+}
+
+.main-mainpage {
+  width: 100%;
+  max-width: 100% !important;
+  min-width: 1000px !important;
+}
+.main-mainpage header {
+  background: #051141;
+}
+
+#main-header {
+  position: relative;
+  margin: 0px auto;
+  height: 749px;
+}

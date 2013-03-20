@@ -1,0 +1,6 @@
+.yellow-button, .NFButton {
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f9c644', endColorstr='#f28800',GradientType=0 );
+}
+.yellow-button:hover, .NFButton:hover {
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f8c244', endColorstr='#874000',GradientType=0 );
+}
