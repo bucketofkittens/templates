@@ -88,8 +88,9 @@ body #page {
   margin-top: 50px;
   margin-left: 15px;
 }
-#page header .vegases a:last-child {
-  margin-left: 500px;
+#page header .vegases a.last {
+  position: absolute;
+  right: 0px;
 }
 #page header .vegases span, i {
   width: 20px;
@@ -457,7 +458,6 @@ footer .links li a {
   background: -o-linear-gradient(top,  #d7d7d7 0%,#fbfbfb 8%,#f6f6f6 15%,#eaeaea 31%,#c3c3c3 69%,#afafaf 92%,#8f8f8f 100%);
   background: -ms-linear-gradient(top,  #d7d7d7 0%,#fbfbfb 8%,#f6f6f6 15%,#eaeaea 31%,#c3c3c3 69%,#afafaf 92%,#8f8f8f 100%);
   background: linear-gradient(to bottom,  #d7d7d7 0%,#fbfbfb 8%,#f6f6f6 15%,#eaeaea 31%,#c3c3c3 69%,#afafaf 92%,#8f8f8f 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d7d7d7', endColorstr='#8f8f8f',GradientType=0 );
   cursor: default;
 }
 #page #content .banner i {

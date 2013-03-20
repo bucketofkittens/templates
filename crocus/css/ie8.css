@@ -1,0 +1,10 @@
+#page #content .banner p {
+	-pie-background: rgba(0,0,0,0.8);
+}
+
+#page #content .banner ul li.current {
+	-pie-background: linear-gradient(to bottom, #d7d7d7, #8f8f8f);
+}
+#top-header-bg {
+	-pie-background: rgba(0,0,0,0.8);
+}
