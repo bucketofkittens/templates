@@ -1,56 +1,6 @@
 @import url(http://fonts.googleapis.com/css?family=Roboto:400,500,700,900,100&subset=latin,cyrillic-ext,latin-ext,cyrillic);
 @import url(http://fonts.googleapis.com/css?family=PT+Serif:400,700,400italic,700italic&subset=latin,cyrillic);
-
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-/** RESET **/
-article, aside, canvas, details, embed, 
-figure, figcaption, footer, header, hgroup, 
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  font-size: 100%;
-  font: inherit;
-  vertical-align: baseline;
-}
-/* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure, 
-footer, header, hgroup, menu, nav, section {
-  display: block;
-}
-body {
-  line-height: 1;
-}
-body, html {
-  height: 100%;
-}
-ol, ul {
-  list-style: none;
-}
-blockquote, q {
-  quotes: none;
-}
-blockquote:before, blockquote:after,
-q:before, q:after {
-  content: '';
-  content: none;
-}
-table {
-  border-collapse: collapse;
-  border-spacing: 0;
-}
-* {
-  outline: none;
-}
+@import "reset.css";
 
 body {
   background: #000000 url("../images/main.jpg") center -53px no-repeat;
@@ -61,6 +11,7 @@ body #page {
   position: relative;
   min-height: 100%;
 }
+
 #page header .navigation {
   display: inline-block;
 }
@@ -148,12 +99,24 @@ body #page {
   top: -2px;
 }
 #page header .vegases span {
+  transition: all 1s;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
   background: url("../images/left.png");
   margin-right: 10px;
 }
 #page header .vegases i {
+  transition: all 1s;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
   background: url("../images/right.png");
   margin-left: 10px;
+}
+#page header .vegases a:hover span {
+  background: url("../images/left_hover.png");
+}
+#page header .vegases a:hover i {
+  background: url("../images/right_hover.png");
 }
 #page header .center-text {
   font-family: 'Roboto';
@@ -169,6 +132,7 @@ body #page {
     filter: dropshadow(color=#ffffff, offx=0, offy=0);
   z-index: 11;
 }
+
 #top-header {
   position: relative;
   z-index: 10;
@@ -198,17 +162,73 @@ body #page {
   position: relative;
   left: 23px;
 }
-#page header .topnav {
+
+
+#page header .topnav-bg {
+  position: absolute;
   background: url("../images/topnav.png") center top no-repeat;
+  width: 100%;
+  height: 68px;
+  top: 147px;
+}
+#page header .topnav {
+  position: relative;
+  z-index: 10;
   height: 68px;
   margin-top: 40px;
+  background: url("../images/topnav/sprite1.png") center top no-repeat;
 }
 #page header .topnav li {
-  vertical-align: middle;
+  vertical-align: top;
   display: inline-block;
-  margin-left: 27px;
+  position: relative;
 }
-
+#page header .topnav li.item1 {
+  top: -24px;
+  left: -3px;
+}
+#page header .topnav li.item2 {
+  top: -26px;
+  left: -33px;
+}
+#page header .topnav li.item3 {
+  top: -34px;
+  left: -64px;
+}
+#page header .topnav li.item4 {
+  top: -30px;
+  left: -100px;
+}
+#page header .topnav li.item5 {
+  top: -22px;
+  margin-left: -100px;
+  left: -57px;
+}
+#page header .topnav li.item6 {
+  top: -20px;
+  left: -45px;
+}
+#page header .topnav li.item7 {
+  top: -37px;
+  left: -64px;
+}
+#page header .topnav li.item8 {
+  right: 25px;
+  margin-top: -11px;
+  position: absolute;
+}
+#page header .topnav li img {
+  opacity: 0;
+  transition: all 1s;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+}
+#page header .topnav li a {
+  display: block;
+}
+#page header .topnav li:hover img {
+  opacity: 1;
+}
 footer {
   position: relative;
   width: 1000px;
@@ -334,6 +354,8 @@ footer .links li a {
 
 #page #content {
   padding-bottom: 470px;
+  position: relative;
+  z-index: 10;
 }
 #page #content nav.navtop {
   background: #000000;
@@ -372,19 +394,23 @@ footer .links li a {
   height: 325px;
   display: block;  
 }
-#page #content .banner i {
+#page #content .banner p {
   background: rgba(0,0,0,0.8);
-  height: 67px;
+  height: 90px;
   position: absolute;
   width: 100%;
-  margin-top: 232px;  
+  bottom: 0px;
+  display: block;
 }
-#page #content .banner p {
+#page #content .banner i {
   font-family: 'Arial';
   font-size: 17px;
   line-height: 22px;
   color: #ffffff;
   padding: 15px 10px;
+  display: block;
+  width: 100%;
+  height: auto;
 }
 #page #content p.best {
   font-family: 'Roboto';
@@ -436,7 +462,7 @@ footer .links li a {
   font-size: 11px;
   color: #ffffff;
   display: inline-block;
-  margin-top: 12px;
+  margin-top: 15px;
   float: right;
   overflow: hidden;
   margin-right: 30px;
@@ -518,4 +544,36 @@ footer .links li a {
   background: #3a3a3a;
   width: 241px;
   margin-left: -5px;
+}
+#page #content .inner .offers span {
+ position: absolute;
+ right: 0px;
+}
+
+#social-right {
+  position: absolute;
+  right: 0px;
+  top: 145px;
+  width: 43px;
+  height: 170px;
+  padding: 8px 0px 0px 0px;
+  background: url("../images/social-right/bg.png") left top no-repeat;
+  z-index: 399;
+}
+#social-right li a {
+  width: 43px;
+  height: 43px;
+  text-indent: -999px;
+  overflow: hidden;
+  background: url("../images/social-right/sprite.png") left top no-repeat;
+  display: block;
+}
+#social-right li.tw a {
+  background-position: 0px -43px;
+}
+#social-right li.vk a {
+  background-position: 0px -86px;
+}
+#social-right li.yt a {
+  background-position: 0px -129px;
 }
