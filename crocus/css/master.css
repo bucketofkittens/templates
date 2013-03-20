@@ -402,6 +402,7 @@ footer .links li a {
 }
 #page #content .inner {
   width: 760px;
+  display: inline-block;
 }
 #page #content .inner .innerblock {
   display: inline-block;
@@ -416,10 +417,10 @@ footer .links li a {
 #page #content .inner .innerblock.offers {
   width: 760px;
 }
-#page #content .inner .innerblock .topic {
+#page #content .inner .innerblock .topic, #page #content .musthave .topic {
   height: 40px;
 }
-#page #content .inner .innerblock .topic p {
+#page #content .inner .innerblock .topic p, #page #content .musthave .topic p {
   font-family: 'Roboto';
   font-weight: 500;
   font-size: 16px;
@@ -451,6 +452,7 @@ footer .links li a {
 #page #content .inner .offers .topic {
   width: 760px;
   background: url("../images/purple.png") center top no-repeat;
+  margin-left: -5px;
 }
 #page #content .inner .events section {
   margin-top: 12px;
@@ -477,12 +479,18 @@ footer .links li a {
 #page #content .inner .videos ul li {
   margin-bottom: 5px;
 }
-#page #content .inner .offers img {
+#page #content .inner .offers {
+  position: relative;
+}
+#page #content .inner .offers .offer {
+  display: inline-block;
+}
+#page #content .inner .offers .offer img {
   margin-top: 20px;
   margin-right: 20px;
   display: inline-block;
 }
-#page #content .inner .offers .offer {
+#page #content .inner .offers .offer a {
   font-family: 'Arial';
   font-size: 11px;
   color: #ffffff;
@@ -496,7 +504,18 @@ footer .links li a {
   float: right;
   overflow: hidden;
 }
-#page #content .inner .offers span {
- position: absolute;
- right: 0px;
+#page #content .inner .offers .offer span {
+  position: absolute;
+  top: 20px;
+  right: -10px;
+}
+#page #content .musthave {
+  width: 236px;
+  display: inline-block;
+  vertical-align: top;
+}
+#page #content .musthave .topic {
+  background: #3a3a3a;
+  width: 241px;
+  margin-left: -5px;
 }
