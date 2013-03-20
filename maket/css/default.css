@@ -413,7 +413,11 @@ header .bg2 {
   color: #4191c3;
 }
 .services .scroll .jspTrack {
-  background: url("../images/header/services/track.png") left top no-repeat;
+  background: #ffffff;
+  height: 7px;
+  border-radius: 5px;
+  -webkit-box-shadow: inset 1px 1px 2px 2px rgba(0, 0, 0, 0.15);
+  box-shadow: inset 1px 1px 2px 2px rgba(0, 0, 0, 0.15);
 }
 .services .scroll .jspHorizontalBar {
   background: none;
@@ -2342,4 +2346,58 @@ noindex:-o-prefocus, p.comment {
   position: relative;
   margin: 0px auto;
   height: 749px;
+  min-width: 1000px;
+  max-width: 1264px;
+}
+
+#shadow-popup {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  z-index: 299;
+  background: rgba(0, 0, 0, 0.5);
+  width: 100%;
+  height: 100%;
+}
+
+.popup {
+  background: #f8f8f8;
+  position: absolute;
+  top: 230px;
+  left: 50%;
+  width: 380px;
+  margin-left: -190px;
+  z-index: 300;
+  border-radius: 5px;
+}
+
+.popup-form {
+  position: relative;
+  padding: 30px 40px 30px 40px;
+}
+.popup-form h2 {
+  font-size: 30px;
+  color: #010101;
+  margin: 0px 0px 22px 0px;
+  font-family: 'pf_din_text_comp_proregular';
+  padding: 0px;
+}
+.popup-form .form {
+  width: 100% !important;
+}
+.popup-form .form form > div {
+  width: 100% !important;
+  display: block !important;
+}
+.popup-form .form select {
+  position: absolute;
+}
+.popup-form.feedback.resume .form input[type="submit"] {
+  display: inline-block;
+  margin-top: 0px;
+}
+.popup-form.feedback.resume p.comment {
+  right: 0px;
+  font-size: 13px;
+  font-style: normal;
 }

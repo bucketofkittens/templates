@@ -344,6 +344,8 @@
   padding: 0px 0px 0px 0px;
   width: 940px;
   border-bottom: 1px solid #e9e9e9;
+  position: relative;
+  z-index: 44;
 }
 /** end box: main-box1 **/
 

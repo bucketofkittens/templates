@@ -112,4 +112,5 @@ $(document).ready(function() {
         });
     }
     
+    $("#shadow-popup").height($("#main").height()+$("footer").outerHeight(true));
 });
