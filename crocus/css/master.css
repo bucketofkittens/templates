@@ -99,12 +99,24 @@ body #page {
   top: -2px;
 }
 #page header .vegases span {
+  transition: all 1s;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
   background: url("../images/left.png");
   margin-right: 10px;
 }
 #page header .vegases i {
+  transition: all 1s;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
   background: url("../images/right.png");
   margin-left: 10px;
+}
+#page header .vegases a:hover span {
+  background: url("../images/left_hover.png");
+}
+#page header .vegases a:hover i {
+  background: url("../images/right_hover.png");
 }
 #page header .center-text {
   font-family: 'Roboto';
@@ -164,13 +176,59 @@ body #page {
   z-index: 10;
   height: 68px;
   margin-top: 40px;
+  background: url("../images/topnav/sprite1.png") center top no-repeat;
 }
 #page header .topnav li {
-  vertical-align: middle;
+  vertical-align: top;
   display: inline-block;
-  margin-left: 27px;
+  position: relative;
 }
-
+#page header .topnav li.item1 {
+  top: -24px;
+  left: -3px;
+}
+#page header .topnav li.item2 {
+  top: -26px;
+  left: -33px;
+}
+#page header .topnav li.item3 {
+  top: -34px;
+  left: -64px;
+}
+#page header .topnav li.item4 {
+  top: -30px;
+  left: -100px;
+}
+#page header .topnav li.item5 {
+  top: -22px;
+  margin-left: -100px;
+  left: -57px;
+}
+#page header .topnav li.item6 {
+  top: -20px;
+  left: -45px;
+}
+#page header .topnav li.item7 {
+  top: -37px;
+  left: -64px;
+}
+#page header .topnav li.item8 {
+  right: 25px;
+  margin-top: -11px;
+  position: absolute;
+}
+#page header .topnav li img {
+  opacity: 0;
+  transition: all 1s;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+}
+#page header .topnav li a {
+  display: block;
+}
+#page header .topnav li:hover img {
+  opacity: 1;
+}
 footer {
   position: relative;
   width: 1000px;
