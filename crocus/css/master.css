@@ -1,56 +1,6 @@
 @import url(http://fonts.googleapis.com/css?family=Roboto:400,500,700,900,100&subset=latin,cyrillic-ext,latin-ext,cyrillic);
 @import url(http://fonts.googleapis.com/css?family=PT+Serif:400,700,400italic,700italic&subset=latin,cyrillic);
-
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-/** RESET **/
-article, aside, canvas, details, embed, 
-figure, figcaption, footer, header, hgroup, 
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  font-size: 100%;
-  font: inherit;
-  vertical-align: baseline;
-}
-/* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure, 
-footer, header, hgroup, menu, nav, section {
-  display: block;
-}
-body {
-  line-height: 1;
-}
-body, html {
-  height: 100%;
-}
-ol, ul {
-  list-style: none;
-}
-blockquote, q {
-  quotes: none;
-}
-blockquote:before, blockquote:after,
-q:before, q:after {
-  content: '';
-  content: none;
-}
-table {
-  border-collapse: collapse;
-  border-spacing: 0;
-}
-* {
-  outline: none;
-}
+@import "reset.css";
 
 body {
   background: #000000 url("../images/main.jpg") center -53px no-repeat;
@@ -61,6 +11,7 @@ body #page {
   position: relative;
   min-height: 100%;
 }
+
 #page header .navigation {
   display: inline-block;
 }
@@ -169,6 +120,7 @@ body #page {
     filter: dropshadow(color=#ffffff, offx=0, offy=0);
   z-index: 11;
 }
+
 #top-header {
   position: relative;
   z-index: 10;
@@ -198,6 +150,7 @@ body #page {
   position: relative;
   left: 23px;
 }
+
 #page header .topnav {
   background: url("../images/topnav.png") center top no-repeat;
   height: 68px;
@@ -499,4 +452,32 @@ footer .links li a {
 #page #content .inner .offers span {
  position: absolute;
  right: 0px;
+}
+
+#social-right {
+  position: absolute;
+  right: 0px;
+  top: 145px;
+  width: 43px;
+  height: 170px;
+  padding: 8px 0px 0px 0px;
+  background: url("../images/social-right/bg.png") left top no-repeat;
+  z-index: 399;
+}
+#social-right li a {
+  width: 43px;
+  height: 43px;
+  text-indent: -999px;
+  overflow: hidden;
+  background: url("../images/social-right/sprite.png") left top no-repeat;
+  display: block;
+}
+#social-right li.tw a {
+  background-position: 0px -43px;
+}
+#social-right li.vk a {
+  background-position: 0px -86px;
+}
+#social-right li.yt a {
+  background-position: 0px -129px;
 }
