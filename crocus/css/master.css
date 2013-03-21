@@ -1,7 +1,9 @@
 @import url(http://fonts.googleapis.com/css?family=Roboto:400,500,700,900,100&subset=latin,cyrillic-ext,latin-ext,cyrillic);
 @import url(http://fonts.googleapis.com/css?family=PT+Serif:400,700,400italic,700italic&subset=latin,cyrillic);
+
 @import "reset.css";
 @import "jquery.jscrollpane.css";
+@import "fonts.css";
 
 body {
   background: #000000 url("../images/main.jpg") center -53px no-repeat;
@@ -11,6 +13,10 @@ body #page {
   margin: auto;
   position: relative;
   min-height: 100%;
+  font-family: Arial;
+}
+a:hover {
+  text-decoration: none;
 }
 
 #page header .navigation {
@@ -260,7 +266,7 @@ footer .two-cell .left-cell .cell h2 {
   color: #ffffff;
   text-transform: uppercase;
   font-family: 'Roboto';
-  font-weight: 700;
+  font-weight: 500;
   padding: 0px 0px 28px 0px;
 }
 footer .two-cell .left-cell .cell ul {
@@ -362,40 +368,117 @@ footer .links li a {
 }
 #page #content nav.navtop {
   background: #000000;
-  height: 40px;
+  height: 56px;
   width: 100%;
+  position: relative;
 }
-#page #content nav.navtop li {
-  margin: 15px 40px 0px 20px;
-  display: inline-block;
+#page #content nav.navtop > ul {
+  position: relative;
 }
-#page #content nav.navtop li a {
+#page #content nav.navtop > ul > li {
+  margin: 0px 28px 0px 0px;
+  padding: 0px 0px 0px 8px;
+  float: left;
+  position: relative;
+}
+#page #content nav.navtop > ul > li:hover {
+  color: #000000;
+  background: #ffffff;
+  z-index: 30;
+}
+#page #content nav.navtop > ul > li:hover > a {
+  color: #000000;
+}
+#page #content nav.navtop > ul > li > a {
   font-family: 'Roboto';
   font-weight: 500;
   font-size: 20px;
+  padding: 14px 12px 18px 12px;
   color: #ffffff;
   text-transform: uppercase;
   text-decoration: none;
-}
-/*
-#page #content nav.navtop span {
-  background: url("../images/dott.png") left top repeat-x;
-  height: 5px;
-  width: 100%;
   display: inline-block;
-  position: relative;
-  z-index: 15;
-  margin-top: 15px;
-  margin-left: 2px;
 }
-*/
+#page #content nav.navtop li .second-menu {
+  position: absolute;
+  z-index: 42;
+  width: 1040px;
+  display: none;
+  background: #ffffff;
+  -webkit-box-shadow:  20px 20px 40px 1px rgba(0, 0, 0, 0.7);
+  box-shadow:  20px 20px 40px 1px rgba(0, 0, 0, 0.7);
+}
+#page #content nav.navtop li:hover .second-menu {
+  display: block;
+}
+#page #content nav.navtop li .second-menu .inner {
+  padding: 20px 40px 20px 35px;
+  width: auto;
+  display: block;
+}
+#page #content nav.navtop li .second-menu .inner2 {
+  width: 100%;
+  overflow: hidden;
+}
+#page #content nav.navtop li .second-menu ul {
+  float: left;
+  max-width: 250px;
+  padding-left: 100px;
+}
+#page #content nav.navtop li .second-menu ul:first-child {
+  padding: 0px;
+}
+#page #content nav.navtop li .second-menu ul li {
+  padding-bottom: 12px;
+}
+#page #content nav.navtop li .second-menu ul li a {
+  font-size: 13px;
+  color: #5a5a5a;
+  text-decoration: none;
+}
+#page #content nav.navtop li .second-menu ul li a:hover {
+  color: #000000;
+}
+#page #content nav.navtop li .second-menu section {
+  float: right;
+  width: 210px;
+  background: url("../images/border1.png") left center no-repeat;
+  min-height: 237px;
+  padding: 0px 0px 0px 45px;
+}
+#page #content nav.navtop li .second-menu section h2 {
+  font-family: 'heliosregular';
+  font-size: 30px;
+  padding-bottom: 12px;
+}
+#page #content nav.navtop li .second-menu section img {
+  position: relative;
+  left: 30px;
+}
+#page #content nav.navtop li .second-menu section h3 {
+  color: #5a5a5a;
+  font-size: 15px;
+  font-weight: bold;
+  padding: 10px 0px 0px 0px;
+}
+#page #content nav.navtop li .second-menu section p {
+  font-size: 13px;
+}
+#page #content nav.navtop li .second-menu section p strong {
+  font-weight: bold;
+}
 #page #content .banner {
   position: relative;
+  background: url("../images/b2.png") center top no-repeat;
+  padding: 34px 0px;
+  margin-top: -23px;
 }
 #page #content .banner span {
-  background: url("../images/banner.jpg") center top no-repeat;
-  height: 325px;
   display: block;  
+}
+#page #content .banner .element {
+  position: relative;
+  display: none;
 }
 #page #content .banner p {
   background: rgba(0,0,0,0.8);
@@ -416,6 +499,7 @@ footer .links li a {
   transition: all 0.3s;
   -webkit-transition: all 0.3s;
   -moz-transition: all 0.3s;
+  z-index: 10;
 }
 #page #content .banner .left:hover {
   background: url("../images/left2_hover.png") center top no-repeat;
@@ -431,6 +515,7 @@ footer .links li a {
   transition: all 0.3s;
   -webkit-transition: all 0.3s;
   -moz-transition: all 0.3s;
+  z-index: 10;
 }
 #page #content .banner .right:hover {
   background: url("../images/right2_hover.png") center top no-repeat;
@@ -438,7 +523,7 @@ footer .links li a {
 #page #content .banner ul {
   position: absolute;
   right: 9px;
-  bottom: 10px;
+  bottom: 40px;
   z-index: 5;
 }
 #page #content .banner ul li {
@@ -446,7 +531,7 @@ footer .links li a {
   margin-left: 4px;
   background: #797979;
   width: 14px;
-  height: 12px;
+  height: 14px;
   cursor: pointer;
   border-radius: 100%;
 }
@@ -546,8 +631,14 @@ footer .links li a {
   margin-left: -5px;
 }
 #page #content .inner .events section {
-  margin-top: 12px;
-  margin-bottom: 35px;
+  padding-top: 20px;
+  padding-bottom: 0px;
+  position: relative;
+  transition: all 0.3s;
+   -moz-transition: all 0.3s;
+   -o-transition: all 0.3s;
+   -webkit-transition: all 0.3s;
+   width: 100%;
 }
 #page #content .inner .events section p {
   font-family: 'Arial';
@@ -558,9 +649,74 @@ footer .links li a {
   display: inline-block;
   line-height: 20px;
 }
+#page #content .inner .events section:hover {
+  background: #ffffff;
+  left: -20px;
+  position: relative;
+  width: 456px;
+  padding: 20px 0px 0px 0px;
+  -webkit-box-shadow:  10px 10px 40px 1px rgba(0, 0, 0, 0.5);
+  box-shadow:  10px 10px 40px 1px rgba(0, 0, 0, 0.5);
+}
+#page #content .inner .events section:hover p {
+  color: #000000;
+}
+#page #content .inner .events section article {
+  padding: 0px;
+}
+#page #content .inner .events section:hover article {
+  padding: 0px 20px 0px 20px;
+  width: auto;
+}
 #page #content .inner .events section img {
   padding-right: 10px;
   display: inline-block;
+}
+#page #content .inner .events section a {
+  text-decoration: none;
+}
+#page #content .inner .events section .social {
+  visibility: hidden;
+  border-top: 1px solid #ebebeb;
+  margin: 7px 0px 0px 0px;
+  padding: 3px 0px 3px 0px;
+  width: 100%;
+  overflow: hidden;
+}
+#page #content .inner .events section:hover .social {
+ visibility: visible;
+}
+#page #content .inner .events section .social ul {
+  float: right;
+  position: relative;
+  right: 5px;
+}
+#page #content .inner .events section .social li {
+  display: inline-block;
+  color: #000000;
+  font-size: 11px;
+  vertical-align: middle;
+  line-height: 120%;
+}
+#page #content .inner .events section .social li.title {
+  padding-top: 4px;
+  position: relative;
+  top: -4px;
+}
+#page #content .inner .events section .social li.vk span, 
+#page #content .inner .events section .social li.fb span, 
+#page #content .inner .events section .social li.tw span {
+  width: 12px;
+  height: 12px;
+  display: inline-block;
+  cursor: pointer;
+  background: url("../images/social2.png") left top no-repeat;
+}
+#page #content .inner .events section .social li.tw span {
+  background-position: -18px 0px;
+}
+#page #content .inner .events section .social li.vk span {
+  background-position: -36px 0px;
 }
 #page #content .inner .videos ul {
   margin: 25px 8px 0px 12px;
@@ -630,7 +786,7 @@ footer .links li a {
 }
 
 #social-right {
-  position: absolute;
+  position: fixed;
   right: 0px;
   top: 145px;
   width: 43px;
