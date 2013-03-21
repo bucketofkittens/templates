@@ -8,6 +8,7 @@
 
     <link rel="stylesheet" href="./css/niceforms-default.css" media="screen" />
 	<link rel="stylesheet" href="./css/ui-lightness/jquery-ui-1.10.2.custom.min.css" media="screen" />
+	<link rel="stylesheet" href="./css/niceforms-default.css" media="screen" />
     <link rel="stylesheet" href="./css/fonts.css" />
     <link rel="stylesheet" href="./css/default.css" />
     
@@ -36,15 +37,96 @@
 	</head>
 
 	<body>
+		<div id="shadow-popup"></div>
+  	<div class="popup" id="popup1">
+  		<div class="popup-form feedback resume">
+  			<span class="close"></span>
+  			<h2>Обратиться к директору</h2>
+  			<div class="form">
+	  			<form action="" class="niceform">
+					<div>
+						<label for="i1_i">ФИО:<span class="red">*</span></label>
+						<input type="text" id="i1_i" />
+					</div>
+					<div>
+						<label for="i2_i">Компания:</label>
+						<input type="text" id="i2_i" />
+					</div>
+					<div>
+						<label for="i3_i">Должность:</label>
+						<input type="text" id="i3_i" />
+					</div>
+					<div>
+						<label for="i4_i">E-mail:<span class="red">*</span></label>
+						<input type="text" id="i4_i" class="no-valid" value="Обязательное поле" />
+					</div>
+					<div>
+						<label for="i5_i">Текст сообщения:<span class="red">*</span></label>
+						<textarea cols="30" rows="10" id="i5_i"></textarea>
+					</div>
+					<div>
+						<input type="submit" class="yellow-button" value="отправить" />
+						<p class="comment"><span class="red">*</span> Поля, обязательные для заполнения</p>
+					</div>
+				</form>
+			</div>
+  		</div>
+  	</div>
+  	<div class="popup" id="popup2">
+  		<div class="popup-form feedback resume">
+  			<span class="close"></span>
+  			<h2>Заказать звонок</h2>
+  			<div class="form">
+	  			<form action="" class="niceform">
+					<div>
+						<label for="i1_i">ФИО:<span class="red">*</span></label>
+						<input type="text" id="i1_i" />
+					</div>
+					<div>
+						<label for="i2_i">Компания:</label>
+						<input type="text" id="i2_i" />
+					</div>
+					<div>
+						<label for="i3_i">Должность:</label>
+						<input type="text" id="i3_i" />
+					</div>
+					<div>
+						<label for="i4_i">E-mail:<span class="red">*</span></label>
+						<input type="text" id="i4_i" class="no-valid" value="Обязательное поле" />
+					</div>
+					<div>
+						<label for="i3_i">Телефон:</label>
+						<input type="text" id="i3_i" />
+					</div>
+					<div>
+						<label for="i5_i">Текст сообщения:<span class="red">*</span></label>
+						<textarea cols="30" rows="10" id="i5_i"></textarea>
+					</div>
+					<div>
+						<label>В какое время с вами удобно связаться:</label>
+						<select id="test_select" size="1" name="dobMonth">
+							<option value="1">Не определено</option>
+						</select>
+					</div>
+					<div>
+						<input type="submit" class="yellow-button" value="отправить" />
+						<p class="comment"><span class="red">*</span> Поля, обязательные для заполнения</p>
+					</div>
+				</form>
+			</div>
+  		</div>
+  	</div>
 		<div id="main">
 			<header class="inner">
 			    <div class="bg2"></div>
+			    <div class="bg3"></div>
 			    <p class="breadcrumbs2">
 					<span><a href="#">Главная</a> → <a href="#">Карьера</a> → Отправить резюме</span>
 			    </p>
 			    <div class="wrap">
 					<h2>Отправить резюме</h2>
 				</div>
+				<div class="wrap4">
 			    <div class="gray-box" id="info-box1">
 			      <p class="left"></p>
 			      <div class="center">
@@ -86,7 +168,7 @@
 			        </div>
 			      </div>
 			      <p class="right"></p>
-			    </div>
+			    </div></div>
 			</header>
 
 			<div class="feedback resume">
@@ -166,7 +248,7 @@
 							</div>
 							<div>
 								<label>Дата рождения:</label>
-								<input type="text" />
+								<input type="text" class="mask1" />
 							</div>
 							<br/>
 							<a href="#"><i>Ещё родственники</i></a>
@@ -221,7 +303,7 @@
 								<input type="text" />
 							</div>
 							<div>
-								<label>Полученныйдокумент:</label>
+								<label>Полученный документ:</label>
 								<input type="text" />
 							</div>
 							<span></span>

@@ -236,6 +236,7 @@ footer {
   width: 1000px;
   margin: -460px auto 0px auto;
   height: 460px;
+  z-index: 10;
 }
 footer .wrap1 {
   background: #333333;

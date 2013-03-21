@@ -83,11 +83,23 @@ $(document).ready(function() {
             yearSuffix: ''};
         $.datepicker.setDefaults($.datepicker.regional['ru']);
 
+        $(document.body).delegate('select.ui-datepicker-year', 'mousedown', function() {
+          (function(sel) {
+            var el = $(sel);
+            var ops = $(el).children().get();
+            if ( ops.length > 0 && $(ops).first().val() < $(ops).last().val() ) {
+              $(el).empty();
+              $(el).html(ops.reverse());
+            }
+          })(this);
+        });
+
         $(".datepicker").datepicker({
           showOn: "button",
           buttonImage: "./images/333/calendar.png",
           buttonImageOnly: true,
-          changeYear: true
+          changeYear: true,
+          yearRange: '-35:+0'
         });    
     }
 
@@ -113,4 +125,18 @@ $(document).ready(function() {
     }
     
     $("#shadow-popup").height($("#main").height()+$("footer").outerHeight(true));
+
+    $("#info-box2 .phone ul li:first-child a").on("click",function() {
+        $("#shadow-popup").fadeIn();
+        $("#popup2").fadeIn();
+    });
+    $("#info-box2 .phone ul li:last-child a").on("click",function() {
+        $("#shadow-popup").fadeIn();
+        $("#popup1").fadeIn();
+    });
+
+    $(".popup .close").on("click", function() {
+        $("#shadow-popup").fadeOut();
+        $(".popup").fadeOut();
+    });
 });
