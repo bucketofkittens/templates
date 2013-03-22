@@ -175,6 +175,36 @@ $(document).ready(function() {
             items.hide();
             items.eq(currentIndex).slideDown();    
         }
-        
     });
+
+    if($(".jcarousel > div").size() > 0) {
+        $(".jcarousel > div").jcarousel({
+            wrap: 'circular'
+        });
+        $(".jcarousel .left").on("click", function() {
+            $(".jcarousel > div").jcarousel('scroll', '-=1');
+        });
+        $(".jcarousel .right").on("click", function() {
+            $(".jcarousel > div").jcarousel('scroll', '+=1');
+        });
+    }
+
+    $("#spec .states i").on("click", function() {
+        $(this).parents("dt").next().slideToggle();
+        $(this).parent().find("i").removeClass("show");
+        if($(this).index()+1 >= $(this).parent().find("i").size()) {
+            $(this).parent().find("i").eq(0).addClass("show");
+        } else {
+            $(this).parent().find("i").eq($(this).index()+1).addClass("show");    
+        }
+    });
+
+    var maxHeight = 0;
+    $.each($(".news-list ul li"), function(k, v) {
+        if($(v).height() > maxHeight) {
+            maxHeight = $(v).height();
+        }
+    });
+
+    $(".news-list ul li").css("min-height", maxHeight);
 });

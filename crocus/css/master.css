@@ -110,14 +110,14 @@ a:hover {
   top: -2px;
 }
 #page header .vegases span {
-  transition: all 1s;
+  transition: all 0.3s;
   -webkit-transition: all 0.3s;
   -moz-transition: all 0.3s;
   background: url("../images/left.png");
   margin-right: 10px;
 }
 #page header .vegases i {
-  transition: all 1s;
+  transition: all 0.3s;
   -webkit-transition: all 0.3s;
   -moz-transition: all 0.3s;
   background: url("../images/right.png");
@@ -561,12 +561,15 @@ footer .links li a {
   width: 100%;
   height: auto;
 }
-#page #content .headline {
+.headline {
   height: 50px;
   background: #ffffff;
   position: relative;
 }
-#page #content .headline p.best {
+.headline.news {
+  margin: 25px 0px 0px 0px;
+}
+.best {
   font-family: 'Roboto';
   font-weight: 500;
   font-size: 20px;
@@ -861,6 +864,25 @@ footer .links li a {
   max-width: 500px;
   vertical-align: top;
 }
+#content #hm section ul.social {
+  margin: 20px 0px 0px 0px;
+}
+#content #hm section ul.social li {
+  display: inline-block;
+  padding-right: 3px;
+}
+#content #hm section ul.social li a {
+  display: block;
+  width: 24px;
+  height: 24px;
+  background: url("../images/social3.png") left top no-repeat;
+}
+#content #hm section ul.social li a.vk {
+  background-position: -31px 0px;
+}
+#content #hm section ul.social li a.tw {
+  background-position: -63px 0px;
+}
 #content #hm section {
   margin: 15px 0px 30px 25px; 
 }
@@ -889,18 +911,39 @@ footer .links li a {
   height: 330px;
   position: relative;
 }
-#content .galery span {
-  background: url("../images/HM/g-left.png") left center no-repeat;
+#content .galery section {
+  position: relative;
+  overflow: hidden;
+  width: 100000px;
+
+}
+#content .galery > div {
+  overflow: hidden;
+  position: relative;
+  margin-right: 52px;
+}
+#content .galery span.left,
+#content .galery span.right {
   height: 44px;
   width: 44px;
   display: inline-block;
   position: absolute;
-  left: auto;
   top: 155px;
+  cursor: pointer;
 }
-#content .galery span:last-child {
+#content .galery span.left {
+  background: url("../images/HM/g-left.png") left center no-repeat;
+  left: 0px;
+}
+#content .galery span.right {
   background: url("../images/HM/g-right.png") center center no-repeat;
   right: 0px;
+}
+#content .galery span.left:hover {
+  background: url("../images/left2_hover.png") center top no-repeat;
+}
+#content .galery span.right:hover {
+  background: url("../images/right2_hover.png") center top no-repeat;
 }
 #content .galery div {
   margin-left: 50px;
@@ -1266,24 +1309,180 @@ footer .links li a {
   padding-bottom: 8px;
   font-size: 11px;
 }
-#content #spec dl {
-  display: inline-block;
-  width: 498px;
+
+#spec {
+
 }
-#content #spec dl dd, #content #spec dl dt {
-  margin-top: 10px;
-  width: 498px;
+#spec dt, #spec dd {
+  background: #ffffff;
+}
+#spec dt {
+  margin: 10px 0px 0px 0px;
+  position: relative;
+}
+#spec dt article {
+  display: inline-block;
+  vertical-align: top;
+  width: 470px;
+  padding: 23px 0px 0px 23px;
+  color: #000000;
+  font-weight: bold;
+}
+#spec dt article p {
+  font-size: 17px;
+  line-height: 24px;
+}
+#spec dt img {
+  display: inline-block;
   vertical-align: top;
 }
-#content #spec dl dd {
-  background: #ffffff;
+#spec dt article h2 {
+  font-size: 25px;
+  padding: 8px 0px 0px 0px;
 }
-#content #spec dl dd p {
-  background: #ffffff;
-  font-family: 'Arial';
+#spec dt .states {
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+  display: block;
+  padding: 10px 15px 7px 15px;
+  background: #000000;
+  line-height: 100%;
+}
+#spec dt .states.left {
+  left: 0px;
+  right: auto;
+}
+#spec dt .states i {
+  display: none;
+  width: auto;
+  height: auto;
+  color: #ffffff;
+  cursor: pointer;
+  border-bottom: 1px dotted #ffffff;
+  background: url("../images/ar1.png") right center no-repeat;
+  padding: 0px 15px 0px 0px;
+  font-size: 11px;
+}
+#spec dt .states i.state2 {
+  background: url("../images/ar2.png") right center no-repeat;
+}
+#spec dt .states i:hover {
+  border-bottom: 1px solid transparent;
+}
+#spec dt .states i.show {
+  display: block;
+}
+#spec dd {
+  display: none;
+  padding: 27px;
+}
+#spec dd article {
+  display: inline-block;
+  width: 470px;
   font-size: 13px;
-  line-height: 23px;
   color: #000000;
-  padding: 35px 10px 35px 15px;
-  width: 473px;
+  line-height: 23px;
+}
+.scaled_gallery.news {
+  background: none;
+  height: 513px;
+}
+.scaled_gallery.news .left {
+  background: url("../images/NEWS/left.png") center top no-repeat;
+  bottom: 16px;
+}
+.scaled_gallery.news .right {
+  background: url("../images/NEWS/right.png") center top no-repeat;
+  bottom: 16px;
+}
+.scaled_gallery.news .left:hover {
+  background: url("../images/NEWS/left_hover.png") center top no-repeat;
+}
+.scaled_gallery.news .right:hover {
+  background: url("../images/NEWS/right_hover.png") center top no-repeat;
+}
+.scaled_gallery.news .center_img {
+  width: 650px;
+  height: 450px;
+  background: #ffffff;
+  padding: 7px;
+  top: 0px;
+  margin-top: -10px;
+}
+.scaled_gallery.news .left_img {
+  left: 40px;
+  top: 45px;
+  width: 520px;
+  height: 350px;
+}
+.scaled_gallery.news .right_img {
+  right: 40px;
+  top: 45px;
+  width: 520px;
+  height: 350px;
+}
+.scaled_gallery.news ul {
+  bottom: 23px;
+  width: 100% !important;
+  margin: 0px !important;
+}
+.scaled_gallery.news ul li {
+  padding: 0px !important;
+}
+
+.news-list {
+  position: relative;
+}
+.news-list ul {
+  position: relative;
+  width: 120%;
+  margin-top: 5px;
+}
+.news-list ul li {
+  display: inline-block;
+  vertical-align: top;
+  width: 328px;
+  margin: 0px 3px 0px 0px;
+  overflow: hidden;
+  margin-top: 10px;
+  transition: all 0.3s;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  position: relative;
+}
+.news-list ul li:hover {
+  padding: 4px 4px 14px 4px;
+  margin-left: -8px;
+  margin-top: -4px;
+  background: #ffffff;
+  -webkit-box-shadow:  1px 1px 30px 20px rgba(122, 69, 244, 0.5);
+  box-shadow:  1px 1px 30px 20px rgba(122, 69, 244, 0.5);
+  z-index: 20;
+}
+.news-list ul li img {
+  display: block;
+}
+.news-list ul li span.date {
+  line-height: 26px;
+  height: 26px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #ffffff;
+  padding: 0px 0px 0px 10px;
+  background: url("../images/NEWSLIST/2.png") center top no-repeat;
+  display: block;
+}
+.news-list ul li p {
+  padding: 24px 71px 24px 11px;
+  font-size: 16px;
+  line-height: 24px;
+  color: #000000;
+  background: #ffffff;
+  margin-bottom: -10000px;
+  padding-bottom: 10024px;
+}
+.news-list ul li p a {
+  color: #000000;
+  text-decoration: none;
 }
