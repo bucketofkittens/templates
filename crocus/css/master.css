@@ -903,14 +903,21 @@ footer .links li a {
 }
 #content #breadcrumbs {
   margin: 10px 0px 20px 35px;
+  height: 14px;
+  position: relative;
 }
 #content #breadcrumbs a {
-  font-family: ;
+  font-family: 'Arial';
   font-size: 13px;
   color: #ffffff;
+  margin-right: 20px;
 }
 #content #breadcrumbs span {
-  background: url("../images/HN/crumb.png");
+  background: url("../images/HM/crumb.png") center top no-repeat;
   height: 14px;
   width: 10px;
+  display: inline-block;
+  position: relative;
+  top: 3px;
+  left: -10px;
 }
