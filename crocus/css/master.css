@@ -1,5 +1,6 @@
 @import url(http://fonts.googleapis.com/css?family=Roboto:400,500,700,900,100&subset=latin,cyrillic-ext,latin-ext,cyrillic);
 @import url(http://fonts.googleapis.com/css?family=PT+Serif:400,700,400italic,700italic&subset=latin,cyrillic);
+@import url(http://fonts.googleapis.com/css?family=Roboto+Condensed&subset=latin,cyrillic-ext,latin-ext,cyrillic);
 
 @import "reset.css";
 @import "jquery.jscrollpane.css";
@@ -7,6 +8,9 @@
 
 body {
   background: #000000 url("../images/main.jpg") center -53px no-repeat;
+}
+body.primary {
+  background: url("../images/primary.jpg") center -53px no-repeat;
 }
 body #page {
   width: 1000px;
@@ -143,6 +147,13 @@ a:hover {
     filter: dropshadow(color=#ffffff, offx=0, offy=0);
   z-index: 11;
 }
+#page header.primary .center-text {
+  font-weight: 400;
+  font-size: 23px;
+  top: 170px;
+  line-height: 21px;
+  text-transform: none;
+}
 
 #top-header {
   position: relative;
@@ -172,6 +183,9 @@ a:hover {
   margin: 0px auto;
   position: relative;
   left: 23px;
+}
+.primary #logo span {
+  background: url("../images/prim-logo.png") center top no-repeat;
 }
 
 
@@ -240,12 +254,17 @@ a:hover {
 #page header .topnav li:hover img {
   opacity: 1;
 }
+
 footer {
   position: relative;
   width: 1000px;
   margin: -460px auto 0px auto;
   height: 460px;
   z-index: 10;
+}
+footer.primary {
+  height: 120px;
+  margin-top: -120px;
 }
 footer .wrap1 {
   background: #333333;
@@ -362,6 +381,67 @@ footer .links li a {
   color: #8f8f8f;
   font-size: 10px;
   font-family: Arial;
+}
+footer.primary .links li a {
+  color: #ffffff;
+}
+
+#page.primary {
+  background: url("../images/prim-ground.png") center top no-repeat;
+  position: relative;
+  width: auto;
+  min-width: 1000px;
+  max-width: 1400px;
+  left: -20px;
+}
+#page.primary #content .places {
+  padding-top: 420px;
+  width: 1000px;
+  position: relative;
+  margin: auto;
+  background: url("../images/prim-light.png") -113px top no-repeat;
+}
+#page.primary #content .places a {
+  background: url("../images/prim-shad3.png") center top no-repeat;
+  width: 360px;
+  height: 158px;
+  position: absolute;
+  margin-left: 335px;
+  margin-top: 5px;
+  padding-top: 30px;
+  padding-right: 50px;
+}
+#page.primary #content .places a:first-child {
+  background: url("../images/prim-shad1.png") left top no-repeat;
+  width: 374px;
+  height: 152px;
+  margin-left: -77px;
+  margin-top: 11px;
+  padding-top: 35px;
+  padding-right: 50px;
+}
+#page.primary #content .places a:last-child {
+  background: url("../images/prim-shad2.png") right top no-repeat;
+  width: 372px;
+  height: 140px;
+  margin-left: 730px;
+  margin-top: 5px;
+  padding-top: 27px;
+  padding-right: 50px;
+}
+#page.primary #content .places a {
+  display: inline-block;
+  font-family: 'Roboto';
+  font-weight: 100;
+  font-size: 40px;
+  color: #ffffff;
+  text-decoration: none;
+  text-align: right;
+}
+#page.primary #content .places strong {
+  display: block;
+  font-family: 'Roboto Condensed';
+  font-size: 40px;
 }
 
 #page #content {
