@@ -15,6 +15,9 @@ body #page {
   min-height: 100%;
   font-family: Arial;
 }
+a {
+  color: #ffffff;
+}
 a:hover {
   text-decoration: none;
 }
@@ -381,12 +384,14 @@ footer .links li a {
   float: left;
   position: relative;
 }
-#page #content nav.navtop > ul > li:hover {
+#page #content nav.navtop > ul > li:hover, 
+#page #content nav.navtop > ul > li.current {
   color: #000000;
   background: #ffffff;
   z-index: 30;
 }
-#page #content nav.navtop > ul > li:hover > a {
+#page #content nav.navtop > ul > li:hover > a,
+#page #content nav.navtop > ul > li.current > a {
   color: #000000;
 }
 #page #content nav.navtop > ul > li > a {
@@ -1169,6 +1174,7 @@ footer .links li a {
   padding: 4px 15px;
   margin: 0px;
 }
+
 .logos {
   padding: 24px 0px 0px 6px;
 }
@@ -1178,6 +1184,88 @@ footer .links li a {
   padding: 0px 13px 12px 13px;
 }
 
+.category {
+  display: inline-block;
+  vertical-align: top;
+  background: #ffffff;
+  margin: 24px 0px 0px 0px;
+  padding: 15px 0px 6px 0px;
+}
+.category li {
+  padding: 8px 8px 8px 20px;
+  font-size: 15px;
+}
+.category li a {
+  text-decoration: none;
+  color: #000000;
+}
+.category li.current {
+  background: #f1f1f1;
+  font-size: 18px;
+  font-weight: bold;
+}
+.category li.current a {
+  background: url("../images/CATEGORY/ar.png") right center no-repeat;
+  font-size: 18px;
+  font-weight: bold;
+  display: inline-block;
+  padding-right: 22px;
+}
+
+.right_box {
+  display: inline-block;
+  vertical-align: top;
+  width: 759px;
+  margin: 24px 0px 0px 3px;
+  padding: 0px 0px 10px 0px;
+  background: #212121;
+}
+
+.list_type {
+  text-align: right;
+  padding: 18px 33px 20px 0px;
+  color: #ffffff;
+  font-size: 13px;
+}
+.list_type a {
+  display: inline-block;
+  margin: 0px 4px;
+  text-decoration: none;
+  border-bottom: 1px dotted #ffffff;
+}
+.list_type a:hover {
+  border: 0px;
+}
+
+.logos2 {
+  padding: 24px 0px 0px 9px;
+}
+.logos2 li {
+  display: inline-block;
+  vertical-align: middle;
+  padding: 0px 15px 12px 15px;
+}
+
+.brands {
+  width: 100%;
+  overflow: hidden;
+  color: #ffffff;
+  padding: 25px 0px 0px 0px;
+}
+.brands a {
+  color: #ffffff;
+}
+.brands ul {
+  float: left;
+  width: 245px;
+}
+.brands ul:first-child {
+  margin-left: 24px;
+}
+.brands ul li {
+  padding-bottom: 8px;
+  font-size: 11px;
+}
 #content #spec dl {
   display: inline-block;
   width: 498px;
