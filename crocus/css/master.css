@@ -832,3 +832,85 @@ footer .links li a {
   background: url("../images/drag.png") left top no-repeat;
   height: 21px;
 }
+
+
+#content #hm {
+  height: 500px;
+  width: 100%;
+  background: #ffffff;
+  margin-top: 30px;
+  padding-top: 1px;
+}
+#content #hm section img, #content #hm section div, #content #hm section h2, #content #hm strong {
+  display: inline-block;
+  font-family: 'Arial';
+  color: #000000;
+  font-size: 15px;
+  line-height: 25px;
+}
+#content #hm section h2 {
+  font-size: 13px;
+  max-width: 500px;
+  vertical-align: top;
+}
+#content #hm section {
+  margin: 15px 0px 30px 25px; 
+}
+#content #hm strong {
+  font-weight: 700;
+}
+#content #hm > strong {
+  margin-left: 25px;
+}
+#content #hm section img {
+  margin-right: 25px;
+}
+#content #hm section:first-child img {
+  padding-left: 100px;
+  padding-right: 155px;
+}
+#content #hm section h1 {
+  font-family: 'Roboto';
+  font-weight: 500;
+  font-size: 40px;
+  color: #000000;
+  margin-bottom: 50px;
+}
+#content .galery {
+  background: url("../images/HM/galery-bg.png") center top no-repeat;
+  height: 330px;
+  position: relative;
+}
+#content .galery span {
+  background: url("../images/HM/g-left.png") left center no-repeat;
+  height: 44px;
+  width: 44px;
+  display: inline-block;
+  position: absolute;
+  left: auto;
+  top: 155px;
+}
+#content .galery span:last-child {
+  background: url("../images/HM/g-right.png") center center no-repeat;
+  right: 0px;
+}
+#content .galery div {
+  margin-left: 50px;
+}
+#content .galery img {
+  margin-top: 95px;
+  margin-right: 10px;
+}
+#content #breadcrumbs {
+  margin: 10px 0px 20px 35px;
+}
+#content #breadcrumbs a {
+  font-family: ;
+  font-size: 13px;
+  color: #ffffff;
+}
+#content #breadcrumbs span {
+  background: url("../images/HN/crumb.png");
+  height: 14px;
+  width: 10px;
+}
