@@ -115,12 +115,7 @@ $(document).ready(function() {
 
             old_center_img.removeClass("center_img");
             old_right_img.removeClass("right_img");
-            
-            old_left_img.css("z-index", "5").animate({
-                opacity: "0"
-            }, 300, function() {
-                $(this).removeClass("left_img").css("left","auto").hide();
-            });
+            old_left_img.removeClass("left_img");
 
             center_img.show().css("z-index", "20");
             center_img.animate({
@@ -179,9 +174,11 @@ $(document).ready(function() {
         this.bindEvent_ = function() {
             var self = this;
             $("body").on("click", this.elementName+" > ul li", function() {
-                self.currentElement = $(this).index();
-                self.setNavCurrentElement(self.currentElement);
-                self.showElement(self.currentElement);
+                if($(self.itemName+":animated", self.element).size() == 0) {
+                    self.currentElement = $(this).index();
+                    self.setNavCurrentElement(self.currentElement);
+                    self.showElement(self.currentElement);
+                }
             });
 
             $(this.prevElement).on("click", function() {
