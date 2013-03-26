@@ -398,44 +398,65 @@ footer.primary .links li a {
 }
 
 #page.primary {
-  background: url("../images/prim-ground.png") center top no-repeat;
+  background: url("../images/prim-ground.png") right top no-repeat;
   position: relative;
   width: auto;
-  min-width: 1000px;
+  min-width: 1380px;
   max-width: 1400px;
-  left: -20px;
+  left: -50px;
 }
 #page.primary #content .places {
-  padding-top: 420px;
-  width: 1000px;
+  padding-top: 432px;
   position: relative;
   margin: auto;
 }
 #page.primary #content .places a {
-  width: 360px;
+  width: 345px;
   height: 158px;
   position: absolute;
-  margin-left: 330px;
-  padding-top: 30px;
+  padding-top: 60px;
+  padding-right: 15px;
+  font-weight: 300; 
 }
-#page.primary #content .places a:first-child {
-  width: 374px;
+#page.primary #content .places a.item1 {
+  width: 354px;
   height: 152px;
-  margin-left: -75px;
-  margin-top: 10px;
+  left: 51px;
+  margin-top: -21px;
+  padding-right: 20px;
+  padding-left: 60px;
 }
-#page.primary #content .places a:last-child {
-  width: 372px;
-  height: 140px;
-  margin-left: 725px;
-  margin-top: 5px;
-  padding-top: 27px;
+#page.primary #content .places a.item2 {
+  width: 364px;
+  height: 152px;
+  left: 484px;
+  margin-top: -12px;
+  padding-right: 70px;
+  padding-top: 42px;
+  background: url("../images/12_h.png") 0px 0px no-repeat;
+}
+#page.primary #content .places a.item3 {
+  width: 394px;
+  height: 152px;
+  left: 872px;
+  margin-top: -8px;
+  padding-top: 36px;
+  padding-right: 50px;
+}
+#page.primary #content .places a.item1:hover {
+  background: url("../images/11.png") 0px 0px no-repeat;
+}
+#page.primary #content .places a.item2:hover {
+  background: url("../images/12.png") 0px 0px no-repeat;
+}
+#page.primary #content .places a.item3:hover {
+  background: url("../images/13.png") 0px 0px no-repeat;
 }
 #page.primary #content .places a {
   display: inline-block;
   font-family: 'Roboto';
   font-weight: 100;
-  font-size: 40px;
+  font-size: 28px;
   color: #ffffff;
   text-decoration: none;
   text-align: right;
@@ -449,8 +470,11 @@ footer.primary .links li a {
 #page.primary #content #botnav {
   height: 77px;
   width: 1240px;
-  margin: 290px auto 0px auto;
+  margin: 275px auto 0px auto;
   position: relative;
+}
+#page.primary #content #botnav ul {
+  margin: 0px 0px 0px 70px;
 }
 #page.primary #content #botnav li {
   vertical-align: top;  
@@ -464,7 +488,6 @@ footer.primary .links li a {
   width: 200px;
   font-size: 14px;
   line-height: 21px;
-  margin-top: -10px;
 }
 #page.primary #content #botnav li a {
   font-family: 'Arial';
@@ -479,35 +502,59 @@ footer.primary .links li a {
   font-size: 12px;
   background: #073352;
   line-height: 21px;
-  padding: 0px 5px;
+  padding: 2px 10px;
   display: inline-block;
   width: auto;
+  position: relative;
+  left: -10px;
   margin-top: 10px;
 }
-#page.primary #content #botnav li.lr {
+#page.primary #content #botnav .lr {
   width: 25px;
   height: 77px;
   position: absolute;
-  top: 15px;
+  top: 25px;
 }
-#page.primary #content #botnav li.lr.l {
+#page.primary #content #botnav .lr.l {
   left: 20px;
+  cursor: pointer;
+  width: 20px;
+  height: 32px;
+  background: url("../images/left.png") left top no-repeat;
 }
-#page.primary #content #botnav li.lr.r {
-  right: 0px;
+#page.primary #content #botnav .lr.r {
+  right: 15px;
   margin-right: 5px;
+  cursor: pointer;
+  width: 20px;
+  height: 32px;
+  background: url("../images/right.png") left top no-repeat;
 }
-#page.primary #content #botnav li:nth-child(2) {
+#page.primary #content #botnav .lr.l2 {
+  right: 395px;
+  cursor: pointer;
+  width: 20px;
+  height: 32px;
+  background: url("../images/left.png") left top no-repeat;
+}
+#page.primary #content #botnav .lr.l:hover, #page.primary #content #botnav .lr.l2:hover {
+  background: url("../images/left3.png") left top no-repeat;
+}
+#page.primary #content #botnav .lr.r:hover {
+  background: url("../images/right3.png") left top no-repeat;
+}
+#page.primary #content #botnav li.item1 {
   width: 360px;
-  padding-left: 80px;
+  font-size: 16px;
 }
-#page.primary #content #botnav li:nth-child(3) {
+#page.primary #content #botnav li.item2 {
   width: 365px;
-  padding-left: 5px;
+  padding-left: 16px;
 }
-#page.primary #content #botnav li:nth-child(4) {
+#page.primary #content #botnav li.item3 {
   width: 350px;
   padding-left: 50px;
+  font-size: 16px;
 }
 #page.primary #content {
   padding-bottom: 120px;
@@ -1671,4 +1718,13 @@ footer.primary .links li a {
   left: -120px;
   display: block;
   padding-bottom: 30px;
+}
+
+#up_img {
+  position: absolute;
+  left: -105px;
+  top: 0px;
+  z-index: 9;
+  width: 100%;
+  height: 788px;
 }
