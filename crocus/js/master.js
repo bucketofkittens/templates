@@ -80,8 +80,9 @@ $(document).ready(function() {
     	this.init_();
     }
 
-    function ScalledGallery(elementName) {
+    function ScalledGallery(elementName, params) {
         this.elementName = elementName;
+        this.params = params;
         this.element = $(this.elementName);
         this.itemName = "img";
         this.navElement = $("> ul", this.element);
@@ -100,15 +101,64 @@ $(document).ready(function() {
         }
 
         this.showElement = function(index) {
-            $(this.itemName, this.element).removeClass("center_img").removeClass("left_img").removeClass("right_img");
-            $(this.itemName, this.element).eq(index).addClass("center_img");
-            $(this.itemName, this.element).eq(index-1).addClass("left_img");
-
             var rightIndex = index+1;
             if(rightIndex >= this.elementCount) {
                 rightIndex = 0;
             }
-            $(this.itemName, this.element).eq(rightIndex).addClass("right_img");
+
+            var center_img = $(this.itemName, this.element).eq(index);
+            var left_img = $(this.itemName, this.element).eq(index-1);
+            var right_img = $(this.itemName, this.element).eq(rightIndex);
+            var old_left_img = $(this.itemName+".left_img", this.element);
+            var old_right_img = $(this.itemName+".right_img", this.element);
+            var old_center_img = $(this.itemName+".center_img", this.element);
+
+            old_center_img.removeClass("center_img");
+            old_right_img.removeClass("right_img");
+            
+            old_left_img.css("z-index", "5").animate({
+                opacity: "0"
+            }, 300, function() {
+                $(this).removeClass("left_img").css("left","auto").hide();
+            });
+
+            center_img.show().css("z-index", "20");
+            center_img.animate({
+                opacity: 1,
+                width: this.params.maxImageX,
+                height: this.params.maxImageY,
+                left: "auto",
+                right: this.params.maxImageLeft,
+                top: this.params.maxImageTop
+            }, 700, function() {
+                $(this).addClass("center_img");
+            });
+
+            right_img.show().css("z-index", "10");
+            right_img.animate({
+                opacity: 1,
+                width: this.params.minImageX,
+                height: this.params.minImageY,
+                top: this.params.minImageTop,
+                right: this.params.minImageLeft,
+                left: "auto"
+            }, 700, function() {
+                $(this).addClass("right_img");
+            });
+
+            left_img.show().css("z-index", "10");
+            left_img.animate({
+                opacity: 1,
+                width: this.params.minImageX,
+                height: this.params.minImageY,
+                top: this.params.minImageTop,
+                right: this.element.width()-this.params.minImageX-this.params.minImageLeft,
+                left: "auto",
+                "zIndex": 10
+            }, 700, function() {
+                $(this).addClass("left_img");
+            });
+
         }
 
         this.drawNavItems_ = function(index) {
@@ -135,22 +185,25 @@ $(document).ready(function() {
             });
 
             $(this.prevElement).on("click", function() {
-                self.currentElement -= 1;
-                if(self.currentElement < 0) {
-                    self.currentElement = self.elementCount-1;
-                }
-                self.setNavCurrentElement(self.currentElement);
-                self.showElement(self.currentElement);
+                if($(self.itemName+":animated", self.element).size() == 0) {
+                        self.currentElement -= 1;
+                    if(self.currentElement < 0) {
+                        self.currentElement = self.elementCount-1;
+                    }
+                    self.setNavCurrentElement(self.currentElement);
+                    self.showElement(self.currentElement);    
+                } 
             });
 
             $(this.nextElement).on("click", function() {
-                self.currentElement += 1;
-                if(self.currentElement == self.elementCount) {
-                    self.currentElement = 0;
+                if($(self.itemName+":animated", self.element).size() == 0) {
+                    self.currentElement += 1;
+                    if(self.currentElement == self.elementCount) {
+                        self.currentElement = 0;
+                    }
+                    self.setNavCurrentElement(self.currentElement);
+                    self.showElement(self.currentElement);
                 }
-                console.log(self.currentElement);
-                self.setNavCurrentElement(self.currentElement);
-                self.showElement(self.currentElement);
             });
         }
 
@@ -158,7 +211,26 @@ $(document).ready(function() {
     }
 
     var cameraScroller = new CameraScroller(".banner");
-    var scalledGallery = new ScalledGallery(".scaled_gallery");
+    var scalledGallery = new ScalledGallery("#scaled1", {
+        "minImageX": "615",
+        "minImageY": "410",
+        "minImageLeft": "0",
+        "minImageTop": "65",
+        "maxImageX": "750",
+        "maxImageY": "500",
+        "maxImageTop": "20",
+        "maxImageLeft": "125"
+    });
+    var scalledGallery2 = new ScalledGallery("#scaled2", {
+        "minImageX": "520",
+        "minImageY": "350",
+        "minImageLeft": "40",
+        "minImageTop": "45",
+        "maxImageX": "550",
+        "maxImageY": "450",
+        "maxImageTop": "-10",
+        "maxImageLeft": "225"
+    });
 
     $.each($(".second-menu"), function(k, v) {
     	$(v).css("left", "-"+parseInt($(v).parents("li").position().left+20)+"px");
