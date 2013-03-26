@@ -165,12 +165,12 @@ $(document).ready(function() {
     });
     
 
-    $(".tabs .titles li span").on("click", function() {
+    $(".tabs .titles li").on("click", function() {
         if(!$(this).hasClass("current")) {
             var currentIndex = $(this).parent().index();
             var items = $(this).parents(".tabs").find(".items");
 
-            $(this).parents(".titles").find("li span").removeClass("current");
+            $(this).parents(".titles").find("li").removeClass("current");
             $(this).addClass("current");
             items.hide();
             items.eq(currentIndex).slideDown();    
@@ -190,7 +190,12 @@ $(document).ready(function() {
     }
 
     $("#spec .states i").on("click", function() {
-        $(this).parents("dt").next().slideToggle();
+        var nextDd = $(this).parents("dt").next();
+        var currentDt = $(this).parents("dt");
+        $("#spec dd").not(nextDd).slideUp();
+        $("#spec dt").not(currentDt).find(".states i").removeClass("show");
+        $("#spec dt").not(currentDt).find(".states i:first-child").addClass("show");
+        nextDd.slideToggle();
         $(this).parent().find("i").removeClass("show");
         if($(this).index()+1 >= $(this).parent().find("i").size()) {
             $(this).parent().find("i").eq(0).addClass("show");
@@ -207,4 +212,19 @@ $(document).ready(function() {
     });
 
     $(".news-list ul li").css("min-height", maxHeight);
+
+    $(".innerblock.toggle .topic a").on("click", function() {
+        var allBlock = $(".innerblock.toggle");
+        var currentBlock = $(this).closest(".innerblock");
+        var notCurrentBlock = allBlock.not(currentBlock);
+        notCurrentBlock.animate({
+            opacity: 0,
+        }, function() {
+            notCurrentBlock.hide();
+            currentBlock.animate({
+                width: "760px"
+            });
+        });
+        return false;
+    });
 });
