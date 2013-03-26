@@ -1,3 +1,4 @@
+
 $(document).ready(function() {
 	$('.services .scroll').jScrollPane( {
         horizontalDragMaxWidth: 98
@@ -6,28 +7,40 @@ $(document).ready(function() {
 	if($(".scroll1 .scroll").size() > 0) {
         var scroller1 = $('.scroll1 .scroll').jcarousel({
             wrap: 'circular',
-            visible: 3,
-            scroll: 1
+            visible: 4,
+            scroll: 1,
+            buttonNextHTML: null,
+            buttonPrevHTML: null,
+            initCallback: scroll1_initCallback,
+            itemFallbackDimension: 75
         });
-        $(".scroller .prev").on("click", function() {
-            scroller1.jcarousel('scroll', '-=1');
-        });
-        $(".scroller .next").on("click", function() {
-            scroller1.jcarousel('scroll', '+=1');
-        });
+        function scroll1_initCallback(carousel) {
+            $(".scroller .prev").on("click", function() {
+                carousel.prev();
+            });
+            $(".scroller .next").on("click", function() {
+                carousel.next();
+            });
+        };
+        
     }
     if($("#main-facts .scroll2").size() > 0) {
         var scroller2 = $('#main-facts .scroll2').jcarousel({
             wrap: 'circular',
-            visible: 3,
-            scroll: 1
+            visible: 7,
+            scroll: 1,
+            buttonNextHTML: null,
+            buttonPrevHTML: null,
+            initCallback: scroll2_initCallback,
         }); 
-        $("#main-facts .prev").on("click", function() {
-            scroller2.jcarousel('scroll', '-=1');
-        });
-        $("#main-facts .next").on("click", function() {
-            scroller2.jcarousel('scroll', '+=1');
-        });
+        function scroll2_initCallback(carousel2) {
+            $("#main-facts .prev").on("click", function() {
+                carousel2.prev();
+            });
+            $("#main-facts .next").on("click", function() {
+                carousel2.next();
+            });
+        };
     }
 
     $(".vtur .player nav ul li .play").on("click", function() {
@@ -138,5 +151,18 @@ $(document).ready(function() {
     $(".popup .close").on("click", function() {
         $("#shadow-popup").fadeOut();
         $(".popup").fadeOut();
+    });
+
+    $(window).scroll(function () {
+        if($(".about").size() > 0) {
+            if(($(window).innerHeight() + $(window).scrollTop()) >= $("body").height()) {
+                $.each($(".content-inner .column"), function(k, v) {
+                    var cloned = $(v).clone();
+                    $(v).append(cloned.html());
+                })
+               
+            } 
+        }
+      
     });
 });

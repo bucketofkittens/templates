@@ -382,7 +382,7 @@ header .bg2 {
 }
 .services .scroll {
   margin: 0px auto;
-  width: 80%;
+  width: 950px;
   overflow: auto;
   position: relative;
   height: 97px;
@@ -626,10 +626,6 @@ footer #search .searcher {
   position: relative;
   left: 14px;
 }
-.scroll1 li {
-  display: inline-block;
-  padding: 0px 27px 0px 0px;
-}
 .scroll1 .scroll {
   width: 400px;
   overflow: hidden;
@@ -844,6 +840,8 @@ header.inner {
   transition: all 0.5s;
   position: relative;
   width: 100%;
+  left: 0px;
+  top: 0px;
 }
 .about ul.column li:hover {
   top: -10px;
