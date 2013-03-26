@@ -410,35 +410,26 @@ footer.primary .links li a {
   width: 1000px;
   position: relative;
   margin: auto;
-  background: url("../images/prim-light.png") -113px top no-repeat;
 }
 #page.primary #content .places a {
-  background: url("../images/prim-shad3.png") center top no-repeat;
   width: 360px;
   height: 158px;
   position: absolute;
-  margin-left: 335px;
-  margin-top: 5px;
+  margin-left: 330px;
   padding-top: 30px;
-  padding-right: 50px;
 }
 #page.primary #content .places a:first-child {
-  background: url("../images/prim-shad1.png") left top no-repeat;
   width: 374px;
   height: 152px;
-  margin-left: -77px;
-  margin-top: 11px;
-  padding-top: 35px;
-  padding-right: 50px;
+  margin-left: -75px;
+  margin-top: 10px;
 }
 #page.primary #content .places a:last-child {
-  background: url("../images/prim-shad2.png") right top no-repeat;
   width: 372px;
   height: 140px;
-  margin-left: 730px;
+  margin-left: 725px;
   margin-top: 5px;
   padding-top: 27px;
-  padding-right: 50px;
 }
 #page.primary #content .places a {
   display: inline-block;
@@ -453,6 +444,73 @@ footer.primary .links li a {
   display: block;
   font-family: 'Roboto Condensed';
   font-size: 40px;
+}
+
+#page.primary #content #botnav {
+  height: 77px;
+  width: 1240px;
+  margin: 290px auto 0px auto;
+  position: relative;
+}
+#page.primary #content #botnav li {
+  vertical-align: top;  
+  padding-top: 10px;
+}
+#page.primary #content #botnav li, #page.primary #content #botnav li img, #page.primary #content #botnav li span {
+  display: inline-block;
+  vertical-align: middle;
+}
+#page.primary #content #botnav li span {
+  width: 200px;
+  font-size: 14px;
+  line-height: 21px;
+  margin-top: -10px;
+}
+#page.primary #content #botnav li a {
+  font-family: 'Arial';
+  font-size: 16px;
+  color: #ffffff;
+  line-height: 27px;
+  width: 360px;
+  text-decoration: none;
+  display: block;
+}
+#page.primary #content #botnav li a.mark {
+  font-size: 12px;
+  background: #073352;
+  line-height: 21px;
+  padding: 0px 5px;
+  display: inline-block;
+  width: auto;
+  margin-top: 10px;
+}
+#page.primary #content #botnav li.lr {
+  width: 25px;
+  height: 77px;
+  position: absolute;
+  top: 15px;
+}
+#page.primary #content #botnav li.lr.l {
+  left: 20px;
+}
+#page.primary #content #botnav li.lr.r {
+  right: 0px;
+  margin-right: 5px;
+}
+#page.primary #content #botnav li:nth-child(2) {
+  width: 360px;
+  padding-left: 80px;
+}
+#page.primary #content #botnav li:nth-child(3) {
+  width: 365px;
+  padding-left: 5px;
+}
+#page.primary #content #botnav li:nth-child(4) {
+  width: 350px;
+  padding-left: 50px;
+}
+#page.primary #content {
+  padding-bottom: 120px;
 }
 
 #page #content {
