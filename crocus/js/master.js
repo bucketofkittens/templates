@@ -1,3 +1,20 @@
+$.fn.animateAuto = function(prop, speed, callback){
+    var elem, height, width;
+    return this.each(function(i, el){
+        el = jQuery(el), elem = el.clone().css({"height":"auto","width":"auto"}).appendTo("body");
+        height = elem.css("height"),
+        width = elem.css("width"),
+        elem.remove();
+        
+        if(prop === "height")
+            el.animate({"height":height}, speed, callback);
+        else if(prop === "width")
+            el.animate({"width":width}, speed, callback);  
+        else if(prop === "both")
+            el.animate({"width":width,"height":height}, speed, callback);
+    });  
+}
+
 $(document).ready(function() {
 	$('.scroll-pane').jScrollPane({
 		horizontalDragMaxWidth: 89
@@ -248,7 +265,8 @@ $(document).ready(function() {
 
     if($(".jcarousel > div").size() > 0) {
         $(".jcarousel > div").jcarousel({
-            wrap: 'circular'
+            wrap: 'circular',
+            size: 3
         });
         $(".jcarousel .left").on("click", function() {
             $(".jcarousel > div").jcarousel('scroll', '-=1');
@@ -286,14 +304,38 @@ $(document).ready(function() {
         var allBlock = $(".innerblock.toggle");
         var currentBlock = $(this).closest(".innerblock");
         var notCurrentBlock = allBlock.not(currentBlock);
-        notCurrentBlock.animate({
+        if(!currentBlock.hasClass("all")) {
+            notCurrentBlock.animate({
             opacity: 0,
-        }, function() {
-            notCurrentBlock.hide();
+            }, function() {
+                notCurrentBlock.hide();
+                currentBlock.animate({
+                    width: "760px"
+                }, function() {
+                    $(this).addClass("all");
+                });
+            });    
+        } else {
             currentBlock.animate({
-                width: "760px"
+                width: currentBlock.attr("data-width")
+            }, function() {
+                $(this).removeClass("all");
+                notCurrentBlock.show();
+                notCurrentBlock.animate({
+                    opacity: 1
+                })
             });
-        });
+        }
+        
         return false;
+    });
+
+    $(window).scroll(function () {
+        if($(".news-list").size() > 0) {
+            if($(window).scrollTop() + $(window).height() == $(document).height()) {
+                var cloned = $(".news-list ul").clone();
+                $(".news-list ul").append(cloned.html());
+            } 
+        }
     });
 });

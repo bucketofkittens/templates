@@ -607,7 +607,6 @@ footer.primary .links li a {
   background: #ffffff;
   -webkit-box-shadow:  20px 40px 40px 1px rgba(0, 0, 0, 0.7);
   box-shadow:  20px 40px 40px 1px rgba(0, 0, 0, 0.7);
-  transition: all 0.3s;
 }
 #page #content nav.navtop li:hover .second-menu {
   display: block;
@@ -872,22 +871,27 @@ footer.primary .links li a {
 }
 #page #content .inner .events section:hover {
   background: #ffffff;
-  left: -20px;
+  margin-left: -20px;
+  padding-top: 20px;
   position: relative;
-  width: 456px;
-  padding: 20px 0px 0px 0px;
+  width: 100%;
+  padding: 20px 20px 0px 0px;
   -webkit-box-shadow:  10px 10px 40px 1px rgba(0, 0, 0, 0.5);
   box-shadow:  10px 10px 40px 1px rgba(0, 0, 0, 0.5);
+}
+#page #content .inner .events.all section:hover {
+  width: 50%;
 }
 #page #content .inner .events section:hover p {
   color: #000000;
 }
 #page #content .inner .events section article {
   padding: 0px;
+  width: 110%;
 }
 #page #content .inner .events section:hover article {
   padding: 0px 20px 0px 20px;
-  width: auto;
+  width: 110%;
 }
 #page #content .inner .events section img {
   padding-right: 10px;
@@ -1125,7 +1129,8 @@ footer.primary .links li a {
   position: relative;
   overflow: hidden;
   width: 100000px;
-
+  margin-top: 95px;
+  margin-left: 5px;
 }
 #content .galery > div {
   overflow: hidden;
@@ -1158,9 +1163,13 @@ footer.primary .links li a {
 #content .galery div {
   margin-left: 50px;
 }
+#content .galery span {
+  float: left;
+  width: 225px;
+  vertical-align: top;
+}
+
 #content .galery img {
-  margin-top: 95px;
-  margin-right: 10px;
 }
 #content #breadcrumbs {
   margin: 10px 0px 20px 35px;
