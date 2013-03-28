@@ -403,7 +403,7 @@ footer.primary .links li a {
   width: auto;
   min-width: 1380px;
   max-width: 1400px;
-  left: -50px;
+  left: -5px;
 }
 #page.primary #content .places {
   padding-top: 432px;
@@ -549,11 +549,11 @@ footer.primary .links li a {
 }
 #page.primary #content #botnav li.item2 {
   width: 365px;
-  padding-left: 16px;
+  padding-left: 5px;
 }
 #page.primary #content #botnav li.item3 {
   width: 350px;
-  padding-left: 50px;
+  padding-left: 80px;
   font-size: 16px;
 }
 #page.primary #content {
@@ -575,8 +575,7 @@ footer.primary .links li a {
   position: relative;
 }
 #page #content nav.navtop > ul > li {
-  margin: 0px 28px 0px 0px;
-  padding: 0px 0px 0px 8px;
+  padding: 0px 28px 0px 8px;
   float: left;
   position: relative;
 }
@@ -594,7 +593,7 @@ footer.primary .links li a {
   font-family: 'Roboto';
   font-weight: 500;
   font-size: 20px;
-  padding: 14px 12px 21px 12px;
+  padding: 14px 12px 22px 12px;
   color: #ffffff;
   text-transform: uppercase;
   text-decoration: none;
@@ -606,8 +605,9 @@ footer.primary .links li a {
   width: 1040px;
   display: none;
   background: #ffffff;
-  -webkit-box-shadow:  20px 20px 40px 1px rgba(0, 0, 0, 0.7);
-  box-shadow:  20px 20px 40px 1px rgba(0, 0, 0, 0.7);
+  -webkit-box-shadow:  20px 40px 40px 1px rgba(0, 0, 0, 0.7);
+  box-shadow:  20px 40px 40px 1px rgba(0, 0, 0, 0.7);
+  transition: all 0.3s;
 }
 #page #content nav.navtop li:hover .second-menu {
   display: block;
@@ -1524,6 +1524,9 @@ footer.primary .links li a {
 .brands ul li {
   padding-bottom: 8px;
   font-size: 11px;
+}
+.brands ul li  a {
+  text-decoration: none;
 }
 
 #spec {
