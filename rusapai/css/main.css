@@ -3,7 +3,64 @@
 
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,400,300,600,700,800|Open+Sans+Condensed:300,700,300italic&subset=latin,cyrillic-ext,latin-ext,cyrillic);
 
+
 #page {
 	background: url("../images/top-bg.png") center -3px no-repeat;
 	height: 1588px;
+}
+body {
+	font-size: 1.000em;
+	font-family: "Open Sans";
+}
+a:hover {
+	text-decoration: none;
+}
+/** footer { **/
+footer {
+	background: #019fdb url("../images/footer/bg.png") center top no-repeat;
+}
+footer section {
+	padding: 24px 0px 24px 0px;
+	color: #ffffff;
+	width: 940px;
+	margin: 0px auto;
+	font-size: 0.688em;
+	-webkit-transition: all 0.5s;
+	transition: all 0.5s;
+}
+footer a {
+	color: #ffffff;
+}
+footer #copyright {
+	float: left;
+	line-height: 200%;
+	padding-bottom: 4px;
+}
+footer #copyright strong {
+	font-weight: 600;
+}
+footer section:after {
+	content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+footer #individ {
+	float: right;
+}
+/** } **/
+
+@media (max-width: 980px) {
+	footer section {
+		width: 80%;
+	}
+	footer #copyright, footer #individ {
+		float: none;
+	}
+}
+@media (max-width: 480px) {
+	footer section {
+		width: 92%;
+	}
 }
