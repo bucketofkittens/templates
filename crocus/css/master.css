@@ -498,6 +498,12 @@ footer.primary .links li a {
   text-decoration: none;
   display: block;
 }
+#page.primary #content #botnav li a:hover, #page.primary #content #botnav li a:hover span {
+  text-decoration: underline;
+}
+#page.primary #content #botnav li.item2 a:hover {
+  text-decoration: none;
+}
 #page.primary #content #botnav li a.mark {
   font-size: 12px;
   background: #073352;
@@ -582,12 +588,13 @@ footer.primary .links li a {
 #page #content nav.navtop > ul > li:hover, 
 #page #content nav.navtop > ul > li.current {
   color: #000000;
-  background: #ffffff;
+  
   z-index: 30;
 }
 #page #content nav.navtop > ul > li:hover > a,
 #page #content nav.navtop > ul > li.current > a {
   color: #000000;
+  background: #ffffff;
 }
 #page #content nav.navtop > ul > li > a {
   font-family: 'Roboto';
@@ -615,6 +622,7 @@ footer.primary .links li a {
   padding: 20px 40px 20px 35px;
   width: auto;
   display: block;
+  float: none;
 }
 #page #content nav.navtop li .second-menu .inner2 {
   width: 100%;
@@ -778,11 +786,10 @@ footer.primary .links li a {
 }
 #page #content .inner {
   width: 756px;
-  display: inline-block;
+  float: left;
 }
 #page #content .inner .innerblock {
-  display: inline-block;
-  vertical-align: top;
+  float: left;
 }
 #page #content .inner .innerblock.events {
   width: 433px;
@@ -993,8 +1000,7 @@ footer.primary .links li a {
 }
 #page #content .musthave {
   width: 240px;
-  display: inline-block;
-  vertical-align: top;
+  float: right;
 }
 #page #content .musthave .topic {
   background: #3a3a3a;
@@ -1002,6 +1008,13 @@ footer.primary .links li a {
 }
 #page #content .musthave a {
   width: 240px;
+}
+#page #content .container2:after {
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
 }
 #page #content .dotts {
   background: url("../images/dotts.png") center bottom no-repeat;
@@ -1537,7 +1550,9 @@ footer.primary .links li a {
 .brands ul li  a {
   text-decoration: none;
 }
-
+.brands ul li  a:hover {
+  text-decoration: underline;
+}
 #spec {
 
 }

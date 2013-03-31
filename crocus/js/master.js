@@ -1,20 +1,3 @@
-$.fn.animateAuto = function(prop, speed, callback){
-    var elem, height, width;
-    return this.each(function(i, el){
-        el = jQuery(el), elem = el.clone().css({"height":"auto","width":"auto"}).appendTo("body");
-        height = elem.css("height"),
-        width = elem.css("width"),
-        elem.remove();
-        
-        if(prop === "height")
-            el.animate({"height":height}, speed, callback);
-        else if(prop === "width")
-            el.animate({"width":width}, speed, callback);  
-        else if(prop === "both")
-            el.animate({"width":width,"height":height}, speed, callback);
-    });  
-}
-
 $(document).ready(function() {
 	$('.scroll-pane').jScrollPane({
 		horizontalDragMaxWidth: 89
@@ -258,8 +241,9 @@ $(document).ready(function() {
 
             $(this).parents(".titles").find("li").removeClass("current");
             $(this).addClass("current");
-            items.hide();
-            items.eq(currentIndex).slideDown();    
+            items.slideUp(1000, function() {
+                items.eq(currentIndex).slideDown(1000);
+            });
         }
     });
 
@@ -332,7 +316,7 @@ $(document).ready(function() {
 
     $(window).scroll(function () {
         if($(".news-list").size() > 0) {
-            if($(window).scrollTop() + $(window).height() == $(document).height()) {
+            if($(window).scrollTop() + $(window).height() >= $(document).height()-460) {
                 var cloned = $(".news-list ul").clone();
                 $(".news-list ul").append(cloned.html());
             } 
