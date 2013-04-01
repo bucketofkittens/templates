@@ -328,6 +328,9 @@ footer #individ {
 #page #content #team .tinf {
 	overflow: hidden;
 	display: block;
+	background: url("../images/sep1.png") center bottom no-repeat;
+	margin: 0px 0px 35px 0px;
+	padding: 0px 0px 7px 0px;
 }
 #page #content #team .years, #page #content #team .empls {
 	float: left;
@@ -378,16 +381,101 @@ footer #individ {
 	text-align: center;
 }
 #page #content #team .empls li {
-	background: url("../images/gal.png") center top no-repeat;
+	background: url("../images/gal.png") left top no-repeat;
 	display: inline-block;
 	width: 20px;
 	height: 16px;
 	margin: 30px 0px 15px 0px;
 }
 #page #content #team .empls li.current {
-	background: url("../images/gal-c.png") center top no-repeat;
+	background: url("../images/gal-c.png") left top no-repeat;
 }
-
+#do {
+	width: 960px;
+	margin: 0px auto;
+	left: 2%;
+}
+#do .titles {
+	width: 100%;
+	overflow: hidden;
+}
+#do .titles h1 {
+	width: 227px;
+	height: 183px;
+	background: url("../images/t1.png") left top no-repeat;
+	display: inline-block;
+	vertical-align: bottom;
+	margin-left: 50px;
+}
+#do .titles h2 {
+	display: inline-block;
+	vertical-align: bottom;
+	max-width: 60%;
+	padding: 0px 0px 21px 90px;
+	font-size: 23px;
+	color: #222222;
+	line-height: 34px;
+	font-weight: 600;
+}
+#do .body {
+	width: 100%;
+	overflow: hidden;
+	padding: 36px 0px 0px 0px;
+}
+#do .body .left, #do .body .right, #do .body .gallery {
+	vertical-align: top;
+	display: inline-block;
+}
+#do .body .left {
+	width: 227px;
+	margin-left: 50px;
+}
+#do .body .right {
+	width: 300px;
+	margin-left: 90px;
+}
+#do .body .gallery {
+	width: 250px;
+	margin-left: 30px;
+}
+#do .body h3 {
+	font-size: 25px;
+	color: #01aff1;
+	font-weight: 600;
+	padding: 0px 0px 15px 0px;
+}
+#do .body ul {
+	list-style: none;
+}
+#do .body span {
+	cursor: pointer;
+	background: url("../images/b1.png") left top no-repeat;
+	width: 234px;
+	height: 53px;
+	display: inline-block;
+	line-height: 45px;
+	text-align: center;
+	font-size: 16px;
+	color: #44caff;
+	font-weight: 600;
+	margin: 36px 0px 0px -7px;
+}
+#do .body ul li {
+	background: url("../images/dot1.png") left 6px no-repeat;
+	padding: 0px 0px 6px 14px;
+	font-size: 15px;
+	color: #222222;
+	line-height: 21px;
+}
+#about {
+	background: url("../images/about_bg.png") center top no-repeat;
+	min-height: 200px;
+}
+#about .inner {
+	width: 960px;
+	margin: 0px auto;
+	left: 2%;
+}
 @media (max-width: 980px) {
 	footer section {
 		width: 94%;
