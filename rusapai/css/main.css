@@ -529,3 +529,65 @@ footer #individ {
 	font-size: 120px;
 	margin: -3px 60px 0px 0px;
 }
+#page #content #team .tinf {
+	overflow: hidden;
+	display: block;
+}
+#page #content #team .years, #page #content #team .empls {
+	float: left;
+	margin-top: 140px;
+}
+#page #content #team .empls {
+	margin-left: 90px;
+}
+#page #content #team .years, #page #content #team .empls span {
+	width: 320px;
+	display: inline-block;
+	vertical-align: top;
+	margin-left: 20px;
+}
+#page #content #team h3, #page #content #team h4, #page #content #team h5, #page #content #team h6, #page #content #team i, #page #content #team p {
+	font-family: 'Open Sans';
+	color: #000000;
+	font-size: 15px;
+	line-height: 21px;
+}
+#page #content #team h3, #page #content #team h4 {
+	font-weight: 800;
+	color: #36b92f;
+	line-height: 35px;
+	font-size: 30px;
+}
+#page #content #team h4 {
+	font-weight: 300;
+}
+#page #content #team h5, #page #content #team h6 {
+	font-weight: 600;
+	color: #01aff1;
+	font-size: 30px;
+	margin-bottom: 33px;
+}
+#page #content #team h6 {
+	font-size: 23px;
+	margin-bottom: 3px;
+}
+#page #content #team i {
+	font-weight: 300;
+}
+#page #content #team p {
+	margin-top: 30px;
+}
+#page #content #team .empls ul {
+	display: block;
+	text-align: center;
+}
+#page #content #team .empls li {
+	background: url("../images/gal.png") center top no-repeat;
+	display: inline-block;
+	width: 20px;
+	height: 16px;
+	margin: 30px 0px 15px 0px;
+}
+#page #content #team .empls li.current {
+	background: url("../images/gal-c.png") center top no-repeat;
+}
