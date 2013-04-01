@@ -219,3 +219,39 @@ footer #individ {
 		top: -1px;
 	}
 }
+
+#page #content #maintop {
+	position: relative;
+}
+#page #content #maintop .map {
+	text-align: center;
+	margin-top: 120px;
+	margin-left: 205px;
+}
+#page #content #maintop .map h1, #page #content #maintop .map h2 {
+	font-family: 'Open Sans';
+	font-size: 44px;
+	color: #ffffff;
+	font-weight: 800;
+	text-align: left;
+	z-index: 5;
+	position: relative;
+}
+#page #content #maintop .map h2 {
+	font-weight: 300;
+}
+#page #content #maintop .map i {
+	background: #061d28;
+	font-style: normal;
+	padding: 10px 20px 0px 15px;
+	line-height: 130%;
+}
+#page #content #maintop .map span {
+	background: url("../images/map.png") right center no-repeat;
+	width: 708px;
+	height: 483px;
+	position: absolute;
+	top: -130px;
+	left: 490px;
+	z-index: 3;
+}
