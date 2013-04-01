@@ -5,7 +5,7 @@
 
 
 #page {
-	background: url("../images/top-bg.png") center -3px no-repeat;
+	background: url("../images/top-bg.png") center -55px no-repeat;
 	height: 1588px;
 }
 body {
@@ -63,4 +63,44 @@ footer #individ {
 	footer section {
 		width: 92%;
 	}
+}
+#page header {
+	background: url("../images/header-sh.png") left -1px repeat-x;
+	height: 92px;
+	text-align: center;
+	padding-top: 18px;
+}
+#page header ul, #page header li, #page header .cu, #page header span {
+	display: inline-block;	
+	vertical-align: middle;
+}
+#page header ul {
+	padding: 0px 40px;
+}
+#page header li {
+	margin-left: 15px;
+}
+#page header a {		
+	font-family: 'Open+Sans';
+	font-weight: 300;
+	font-size: 0.875em;
+	color: #ffffff;
+	text-decoration: none;
+}
+#page header span:first-child {
+	background: url("../images/logo.png") left center no-repeat;
+	width: 217px;
+	height: 49px;
+}
+#page header span:last-child {
+	background: url("../images/logo2.png") right center no-repeat;
+	width: 82px;
+	height: 37px;
+}
+#page header a.cu {
+	font-weight: 700;
+	color: #44caff;
+	border: 1px solid #ffffff;
+	padding: 13px;
+	margin: 0px 10px 0px 30px;
 }
