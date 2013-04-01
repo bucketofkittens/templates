@@ -160,20 +160,17 @@ footer #individ {
 	font-weight: 800;
 	position: relative;
 	top: -5px;
+	line-height: 120%;
 }
 #page #content #maintop .map h1 span {
-	line-height: 150%;
+	line-height: 120%;
 	font-weight: 300;
 }
 #page #content #maintop .map h1 strong, #page #content #maintop .map h1 span {
 	background: #061d28;
 	font-style: normal;
-	padding: 0px 20px 0px 15px;
+	padding: 0px 20px 0px 10px;
 	display: inline-block;
-}
-#page #content #maintop .map h2 {
-	position: relative;
-	top: -3px;
 }
 #page #content #maintop .map img {
 	position: absolute;
@@ -512,7 +509,8 @@ footer #individ {
 
 #page #content #team {
 	position: relative;
-	left: 210px;
+	width: 960px;
+	margin: 0px auto;
 }
 #page #content #team h1, #page #content #team h2 {
 	font-family: 'Open Sans';
