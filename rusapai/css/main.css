@@ -184,6 +184,115 @@ footer #individ {
 	max-width: 113%;
 }
 
+#page #content #maintop {
+	position: relative;
+}
+#page #content #maintop .map {
+	text-align: center;
+	margin-top: 120px;
+	margin-left: 205px;
+}
+#page #content #maintop .map h1, #page #content #maintop .map h2 {
+	font-family: 'Open Sans';
+	font-size: 44px;
+	color: #ffffff;
+	font-weight: 800;
+	text-align: left;
+	z-index: 5;
+	position: relative;
+}
+#page #content #maintop .map h2 {
+	font-weight: 300;
+}
+#page #content #maintop .map i {
+	background: #061d28;
+	font-style: normal;
+	padding: 10px 20px 0px 15px;
+	line-height: 130%;
+}
+
+#page #content #wwt {
+	position: relative;
+	top: 270px;
+	left: 220px;
+}
+#page #content #wwt div.wwtb {
+	background: url("../images/wwtsh.png") center top no-repeat;
+	z-index: 7;
+	position: absolute;
+	width: 539px;
+	height: 280px;
+	left: 380px;
+	top: -100px;
+}
+#page #content #wwt div.wwtb h1, #page #content #wwt div.wwtb h2 {
+	max-width: 450px;
+	line-height: 40px;
+	padding: 30px 0px 0px 70px;
+}
+#page #content #wwt div.wwtb h2, #page #content #wwt p {
+	line-height: 21px;
+}
+#page #content #wwt div.wwtb h1, #page #content #wwt div.wwtb h2, #page #content #wwt h3, #page #content #wwt p {
+	font-family: 'Open Sans';
+	font-size: 15px;
+	color: #ffffff;
+}
+#page #content #wwt div.wwtb h1, #page #content #wwt h3 {
+	font-weight: 600px;
+	font-size: 30px;
+}
+#page #content #wwt h3 {
+	font-size: 23px;
+	color: #0e05f4;
+	margin: 45px 0px 30px 0px;
+	width: 895px;
+	line-height: 34px;
+}
+#page #content #wwt p {
+	color: #000000;
+	margin-right: 20px;
+	vertical-align: top;
+	width: 480px;
+}
+#page #content #wwt div.p p:first-child {
+	width: 380px;
+}
+#page #content #wwt div.p p:last-child {
+	width: 530px;
+}
+#page #content #wwt strong {	
+	font-weight: 800;
+}
+#page #content #wwt img, #page #content #wwt div, #page #content #wwt p, #page #content #wwt span {
+	display: inline-block;
+}
+#page #content #wwt img {
+	margin-right: 60px;
+}
+#page #content #wwt img.chapter {
+	vertical-align: bottom;
+	margin-right: 0px;
+}
+#page #content #wwt i {
+	background: url("../images/stripe.png") center top no-repeat;
+	width: 938px;
+	height: 2px;
+	display: block;
+	margin: 25px 0px 35px 0px;
+}
+#page #content #wwt span {
+	background: url("../images/contactus.png") center center no-repeat;
+	width: 154px;
+	height: 53px;
+	padding: 25px 0px 0px 65px;
+	color: #44caff;
+	font-weight: 600;
+	font-size: 16px;
+	font-family: 'Open Sans';
+	margin-top: -10px;
+}
+
 @media (max-width: 980px) {
 	footer section {
 		width: 90%;
@@ -327,3 +436,4 @@ footer #individ {
 		display: none;
 	}
 }
+
