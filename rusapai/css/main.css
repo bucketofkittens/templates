@@ -5,8 +5,12 @@
 
 
 #page {
-	background: url("../images/top-bg.png") center -55px no-repeat;
+	background: url("../images/top-bg.png") center -50px no-repeat;
 	min-width: 1000px;
+}
+#content {
+	margin-top: -45px;
+	padding-top: 45px;
 }
 body {
 	font-size: 1.000em;
@@ -64,8 +68,11 @@ footer #individ {
 	background: linear-gradient(to bottom,  rgba(12,13,13,1) 0%,rgba(16,22,23,1) 35%,rgba(8,29,37,1) 70%,rgba(1,30,45,1) 99%,rgba(0,0,0,1) 100%);
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0c0d0d', endColorstr='#000000',GradientType=0 );
 
-	position: relative;
+	position: fixed;
 	z-index: 10;
+	top: 0px;
+	left: 0px;
+	width: 100%;
 }
 #page header section {
 	position: relative;
@@ -141,7 +148,7 @@ footer #individ {
 	width: 960px;
 	position: relative;
 	left: 2%;
-	margin: 10% auto 0px auto;
+	margin: 15% auto 0px auto;
 	height: 544px;
 }
 #page #content #maintop .map h1 {
@@ -193,15 +200,6 @@ footer #individ {
 	text-align: left;
 	z-index: 5;
 	position: relative;
-}
-#page #content #maintop .map h2 {
-	font-weight: 300;
-}
-#page #content #maintop .map i {
-	background: #061d28;
-	font-style: normal;
-	padding: 10px 20px 0px 15px;
-	line-height: 130%;
 }
 
 #page #content #wwt {
@@ -467,6 +465,9 @@ footer #individ {
 	color: #222222;
 	line-height: 21px;
 }
+#do .small {
+	display: none !important;
+}
 #about {
 	background: url("../images/about_bg.png") center top no-repeat;
 	min-height: 200px;
@@ -545,6 +546,7 @@ footer #individ {
 }
 #about .items2 {
 	padding: 35px 0px 0px 0px;
+	margin-left: 50px;
 }
 #about .items2 li {
 	display: inline-block;
@@ -680,6 +682,9 @@ footer #individ {
 	#do .body .right {
 		margin-left: 4%;
 	}
+	#page #content #maintop .map {
+		margin-top: 19%;
+	}
 }
 @media (max-width: 640px) {
 	#page {
@@ -699,7 +704,7 @@ footer #individ {
 		line-height: 160%;
 	}
 	#page #content #maintop .map {
-		margin-top: 7%;
+		margin-top: 19%;
 	}
 	#page #content #wwt {
 		padding-top: 70px;
@@ -734,6 +739,9 @@ footer #individ {
 	}
 }
 @media (max-width: 550px) {
+	header {
+		position: relative !important;
+	}
 	footer section {
 		width: 92%;
 	}
@@ -918,5 +926,46 @@ footer #individ {
 		width: 25%;
 		line-height: 140%;
 	}
+	#do .titles h2 {
+		padding-left: 0px;
+		width: 100%;
+		max-width: 100%;
+		padding: 10px 0px 0px 0px;
+	}
+	#do .body {
+		padding-top: 17px;
+	}
+	#do span {
+		display: none !important;
+	}
+	#do .small {
+		display: block !important;
+	}
+	#do .body .right {
+		margin-left: 0px;
+		margin-top: 15px;
+	}
+	#about .items2 {
+		margin-left: 0px;
+	}
+	#about .items2 li {
+		margin-left: 0px;
+		margin-right: 0px;
+		width: 100%;
+		padding-bottom: 20px;
+	}
+	#about .inner {
+		padding-bottom: 0px;
+	}
+	#about .titles .left {
+		width: 100%;
+		margin-left: 0px;
+		padding-bottom: 15px;
+	}
+	#about .titles .left p {
+		padding-top: 4px;
+	}
+	#about .titles .right h2 {
+		font-size: 21px;
+	}
 }
-
