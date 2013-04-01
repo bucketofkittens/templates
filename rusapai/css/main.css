@@ -159,10 +159,12 @@ footer #individ {
 		height: 51px;
 	}
 	#page header section {
-		height: 130px;
+		height: 120px;
+		width: 92%;
 	}
 	#page header .logo2 {
 		bottom: 13px;
+		right: -5px;
 		top: auto;
 		background: none;
 		text-indent: 0px;
@@ -172,6 +174,7 @@ footer #individ {
 	#page header a.cu {
 		bottom: 13px;
 		top: auto;
+		right: 85px;
 	}
 	#page header ul {
 		display: none;
