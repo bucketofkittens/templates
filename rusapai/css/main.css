@@ -1603,10 +1603,14 @@ footer #individ {
 	}
 	#page #content #welcome .ways h4 {
 		vertical-align: top;
-		font-size: 17px;
-		width: 115px;
+		font-size: 16px;
+		width: 102px;
 		padding-left: 0px;
-		padding-right: 10px;
+		padding-right: 14px;
+		font-weight: 300;
+	}
+	#page #content #welcome .ways h4.lll {
+		margin-left: -30px;
 	}
 	#page #content #welcome .ways h2 {
 		letter-spacing: 1px;
@@ -1633,9 +1637,10 @@ footer #individ {
 	}
 	#page #content #welcome .offices div {
 		margin-bottom: 15px;
+		width: 330px;
 	}
 	#page #content #welcome .offices span {
-		margin-top: 112px;
+		margin-top: 145px;
 	}
 	#page #content #time {
 		margin-top: -15px;
@@ -1645,21 +1650,28 @@ footer #individ {
 		vertical-align: top;
 	}
 	#page #content #time div:first-child h2 {
-		width: 37%;
+		width: 45%;
 		line-height: 26px;
 		font-size: 19px;
 	}
 	#page #content #time b {
-		padding-left: 40px;
+		padding-left: 10px;
 		float: right;
+	}
+	#page #content #time {
+		padding-bottom: 10px;
 	}
 	#page #content #time div:first-child {
 		width: auto;
+		margin: 3% 7% 0% 4%;
 	}
 	#page #content #time div.time {
 		width: 100%;
 		padding-top: 15px;
 		margin-left: 4%;
+	}
+	#page #content #time div.time p {
+		font-size: 11px;
 	}
 	#page #content #time strong {
 		width: 35%;
