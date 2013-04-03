@@ -1255,6 +1255,9 @@ footer #individ {
 	#do .titles h1 {
 		max-width: 35%;
 	}
+	#page #content #team .years {
+		margin-top: 80px;
+	}
 }
 @media (max-width: 550px) {	
 	footer section {
