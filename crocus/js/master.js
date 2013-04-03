@@ -228,10 +228,6 @@ $(document).ready(function() {
         "maxImageTop": "-10",
         "maxImageLeft": "225"
     });
-
-    $.each($(".second-menu"), function(k, v) {
-    	$(v).css("left", "-"+parseInt($(v).parents("li").position().left+20)+"px");
-    });
     
 
     $(".tabs .titles li").on("click", function() {
@@ -322,4 +318,60 @@ $(document).ready(function() {
             } 
         }
     });
+
+    $("#page.primary #content #botnav .lr.l2, #page.primary #content #botnav .lr.r").on("click", function() {
+        var index = $("#page.primary #content #botnav ul li ul.news li.show").index();
+        var newIndex = index + 1;
+        var sign = "";
+        var size = $("#page.primary #content #botnav ul li ul.news li").size();
+        if($(this).hasClass("l2")) {
+            newIndex = index - 1;
+        }
+        if(newIndex >= size) {
+            newIndex = 0;
+        }
+
+        $("#page.primary #content #botnav ul li ul.news li.show").animate({
+                left: "-"+500
+            },
+            "slow",
+            function() {
+                $("#page.primary #content #botnav ul li ul.news li.show").removeClass("show");
+                var newVal = $("#page.primary #content #botnav ul li ul.news li").eq(newIndex);
+                newVal.css("left", "500px");
+                newVal.addClass("show");
+                newVal.animate({
+                    left: 0
+                })
+            }
+        );
+      });
+
+    $("#page.primary #content #botnav .lr.l1, #page.primary #content #botnav .lr.r2").on("click", function() {
+        var index = $("#page.primary #content #botnav ul li ul.news2 li.show").index();
+        var newIndex = index + 1;
+        var sign = "";
+        var size = $("#page.primary #content #botnav ul li ul.news2 li").size();
+        if($(this).hasClass("l2")) {
+            newIndex = index - 1;
+        }
+        if(newIndex >= size) {
+            newIndex = 0;
+        }
+
+        $("#page.primary #content #botnav ul li ul.news2 li.show").animate({
+                left: "-"+500
+            },
+            "slow",
+            function() {
+                $("#page.primary #content #botnav ul li ul.news2 li.show").removeClass("show");
+                var newVal = $("#page.primary #content #botnav ul li ul.news2 li").eq(newIndex);
+                newVal.css("left", "500px");
+                newVal.addClass("show");
+                newVal.animate({
+                    left: 0
+                })
+            }
+        );
+      });
 });

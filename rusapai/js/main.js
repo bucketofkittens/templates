@@ -113,10 +113,12 @@ $(function () {
 
   $('input[type="checkbox"]').styler();
 
-  $("#page header a.cu").on("click", function(){
+  $("#page header a.cu, #page #content #wwt span").on("click", function(){
     $("#shadow").fadeIn();
     $("#shadow").css("height", $("#page").height()+$("footer").height());
     $(".popup").fadeIn();
+    $("#popup1").css("top", $(window).scrollTop()+50);
+    return false;
   });
 
   $(".popup .close").on("click", function() {
@@ -130,6 +132,7 @@ $(function () {
     $("#shadow").fadeIn();
     $("#shadow").css("height", $("#page").height()+$("footer").height());
     $(".popup").fadeIn();
+    $("#popup1").css("top", $(window).scrollTop()+50);
   });
 
   $("#page header .menu").on("click", function() {

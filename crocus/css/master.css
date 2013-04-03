@@ -475,6 +475,19 @@ footer.primary .links li a {
 }
 #page.primary #content #botnav ul {
   margin: 0px 0px 0px 70px;
+  position: relative;
+}
+#page.primary #content #botnav ul li ul {
+  margin: 0px;
+  overflow: hidden;
+}
+#page.primary #content #botnav ul li ul li {
+  padding-top: 0px !important;
+  display: none;
+  position: relative;
+}
+#page.primary #content #botnav ul li ul li.show {
+  display: block;
 }
 #page.primary #content #botnav li {
   vertical-align: top;  
@@ -520,6 +533,7 @@ footer.primary .links li a {
   height: 77px;
   position: absolute;
   top: 25px;
+  z-index: 10;
 }
 #page.primary #content #botnav .lr.l {
   left: 20px;
@@ -536,6 +550,14 @@ footer.primary .links li a {
   height: 32px;
   background: url("../images/right.png") left top no-repeat;
 }
+#page.primary #content #botnav .lr.r2 {
+  left: 395px;
+  margin-right: 5px;
+  cursor: pointer;
+  width: 20px;
+  height: 32px;
+  background: url("../images/right.png") left top no-repeat;
+}
 #page.primary #content #botnav .lr.l2 {
   right: 395px;
   cursor: pointer;
@@ -546,7 +568,7 @@ footer.primary .links li a {
 #page.primary #content #botnav .lr.l:hover, #page.primary #content #botnav .lr.l2:hover {
   background: url("../images/left3.png") left top no-repeat;
 }
-#page.primary #content #botnav .lr.r:hover {
+#page.primary #content #botnav .lr.r:hover, #page.primary #content #botnav .lr.r2:hover {
   background: url("../images/right3.png") left top no-repeat;
 }
 #page.primary #content #botnav li.item1 {
@@ -561,6 +583,7 @@ footer.primary .links li a {
   width: 350px;
   padding-left: 80px;
   font-size: 16px;
+  overflow: hidden;
 }
 #page.primary #content {
   padding-bottom: 120px;
@@ -576,6 +599,7 @@ footer.primary .links li a {
   height: 56px;
   width: 100%;
   position: relative;
+  z-index: 30;
 }
 #page #content nav.navtop > ul {
   position: relative;
@@ -583,7 +607,6 @@ footer.primary .links li a {
 #page #content nav.navtop > ul > li {
   padding: 0px 28px 0px 8px;
   float: left;
-  position: relative;
 }
 #page #content nav.navtop > ul > li:hover, 
 #page #content nav.navtop > ul > li.current {
@@ -600,7 +623,7 @@ footer.primary .links li a {
   font-family: 'Roboto';
   font-weight: 500;
   font-size: 20px;
-  padding: 14px 12px 22px 12px;
+  padding: 10px 12px 22px 12px;
   color: #ffffff;
   text-transform: uppercase;
   text-decoration: none;
@@ -614,6 +637,7 @@ footer.primary .links li a {
   background: #ffffff;
   -webkit-box-shadow:  20px 40px 40px 1px rgba(0, 0, 0, 0.7);
   box-shadow:  20px 40px 40px 1px rgba(0, 0, 0, 0.7);
+  left: -20px;
 }
 #page #content nav.navtop li:hover .second-menu {
   display: block;
