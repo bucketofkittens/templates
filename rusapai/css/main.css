@@ -611,7 +611,29 @@ footer #individ {
 #about .gallery {
 	display: none;
 }
-
+#about .gallery li {
+	display: none;
+	position: relative;
+}
+#about .gallery li.show {
+	display: block;
+}
+#about ul.list_items {
+	display: none;
+	text-align: center;
+}
+#about ul.list_items li {
+	background: url("../images/gal.png") center top no-repeat;
+	display: inline-block;
+	width: 15px;
+	height: 16px;
+	margin: 0px 2px 15px 2px;
+	cursor: pointer;
+}
+#about ul.list_items li.current {
+	background: url("../images/gal-c.png") center top no-repeat;
+	cursor: default;
+}
 #page #content #welcome .ways i, #page #content #welcome .ways h2, #page #content #welcome .ways b, #page #content #welcome .ways p {
 	font-family: 'Open Sans';
 	color: #ffffff;
@@ -921,6 +943,15 @@ footer #individ {
 	cursor: pointer;
 	vertical-align: top;
 	display: inline-block;
+}
+.popup form .alert {
+	width: 16px;
+	height: 16px;
+	display: inline-block;
+	background: url("../images/warr.png") left top no-repeat;
+	position: relative;
+	left: -27px;
+	top: 3px;
 }
 /** } **/
 @media (max-width: 980px) {
@@ -1634,5 +1665,8 @@ footer #individ {
 		width: 35%;
 		padding-bottom: 6%;
 		max-width: 1000px;
+	}
+	#about ul.list_items {
+		display: block;
 	}
 }
