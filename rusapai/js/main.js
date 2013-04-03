@@ -1,5 +1,5 @@
 $(function () {
-  $("#page header a").click(function () {
+  $("#page header li a").click(function () {
     var elementClick = $(this).attr("href");
     var stp = 104;
     if(elementClick == "#wwt") {
@@ -54,5 +54,26 @@ $(function () {
             }
         );
     }
+  });
+
+  $('input[type="checkbox"]').styler();
+
+  $("#page header a.cu").on("click", function(){
+    $("#shadow").fadeIn();
+    $("#shadow").css("height", $("#page").height()+$("footer").height());
+    $(".popup").fadeIn();
+  });
+
+  $(".popup .close").on("click", function() {
+    $(".popup h2").html("Contact us");
+    $(this).closest(".popup").fadeOut();
+    $("#shadow").fadeOut();
+  });
+
+  $("#do .body span").on("click", function(){
+    $(".popup h2").html("Order research");
+    $("#shadow").fadeIn();
+    $("#shadow").css("height", $("#page").height()+$("footer").height());
+    $(".popup").fadeIn();
   });
 });

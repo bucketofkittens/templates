@@ -784,6 +784,136 @@ footer #individ {
 	padding: 0px 10px;
 	line-height: 27px;
 }
+#shadow {
+	position: absolute;
+	z-index: 99;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.6);
+	display: none;
+}
+
+/** popup { **/
+.popup {
+	position: absolute;
+	z-index: 199;
+	top: 50%;
+	left: 50%;
+	margin-left: -230px;
+	margin-top: -260px;
+	display: none;
+}
+.popup .wrap1 {
+	width: 460px;
+	background: #ffffff;
+	min-height: 540px;
+	position: relative;
+	border-radius: 6px;
+	box-shadow: 0px -1px 5px 5px rgba(0, 0, 0, 0.2);
+}
+.popup .wrap2 {
+	position: relative;
+	padding: 40px 0px 28px 50px;
+}
+.popup .close {
+	cursor: pointer;
+	width: 12px;
+	height: 13px;
+	background: url("../images/popup/close.png") left top no-repeat;
+	position: absolute;
+	display: block;
+	right: 15px;
+	top: 15px;
+}
+.popup h2 {
+	font-size: 23px;
+	color: #01aff1;
+	font-weight: 600;
+	padding: 0px 0px 28px 0px;
+}
+.popup .red, .popup .win {
+	padding-left: 97px;
+	padding-bottom: 7px;
+	color: #01aff1;
+	font-size: 14px;
+	font-weight: 600;
+}
+.popup .red {
+	color: #ff3600;
+}
+.popup form {
+	margin: 0px 0px 0px 26px;
+}
+.popup form label {
+	display: inline-block;
+	font-size: 14px;
+	color: #222222;
+	font-weight: 300;
+	width: 67px;
+	vertical-align: top;
+}
+.popup form {
+	padding-top: 12px;
+}
+.popup form div {
+	padding-bottom: 6px;
+	padding-top: 0px;
+}
+.popup form .red {
+	padding: 0px;
+}
+.popup form input[type="text"], .popup form textarea {
+	width: 225px;
+	padding: 0px 5px;
+	line-height: 27px;
+	height: 27px;
+	border: 1px solid #d4d4d4;
+	border-radius: 5px;
+	box-shadow: inset 0px 5px 10px 1px rgba(0, 0, 0, 0.1);
+}
+.popup form textarea {
+	overflow: auto;
+	height: 90px;
+}
+.popup form div.check {
+	margin-left: 65px;
+	margin-top: 15px;
+	margin-bottom: 9px;
+}
+.popup form div.check label {
+	width: auto;
+	vertical-align: middle;
+	position: relative;
+	top: -6px;
+	margin-left: 5px;
+}
+.popup form .jq-checkbox {
+	background: url("../images/popup/1.png") left top no-repeat;
+	width: 22px;
+	height: 21px;
+}
+.popup form .jq-checkbox.checked {
+	background: url("../images/popup/2.png") left top no-repeat;
+}
+.popup form div .submit {
+	width: 154px;
+	height: 53px;
+	background: url("../images/popup/send.png") left top no-repeat;
+	padding: 0px;
+	margin: 0px;
+	border: none;
+	text-align: center;
+	margin-left: 68px;
+	line-height:45px;
+	font-size: 16px;
+	font-weight: 600;
+	color: #44caff;
+	font-family: "Open Sans";
+	cursor: pointer;
+	vertical-align: top;
+	display: inline-block;
+}
+/** } **/
 @media (max-width: 980px) {
 	footer section {
 		width: 94%;
