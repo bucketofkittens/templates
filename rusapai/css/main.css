@@ -68,8 +68,9 @@ footer #individ {
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0c0d0d', endColorstr='#000000',GradientType=0 );
 
 	width: 100%;
-	position: relative;
+	position: fixed;
 	z-index: 10;
+	margin-top: 45px;
 }
 #page header section {
 	position: relative;
@@ -100,6 +101,12 @@ footer #individ {
 	font-size: 0.875em;
 	color: #ffffff;
 	text-decoration: none;
+	line-height: 40px;
+}
+#page header a.current {
+	background: #2e8fb4;
+	border-radius: 5px;
+	padding: 1px 7px;
 }
 #page header a:hover {
 	text-decoration: underline;
@@ -173,13 +180,13 @@ footer #individ {
 #page #content #maintop .map h1 strong, #page #content #maintop .map h1 span {
 	background: #061d28;
 	font-style: normal;
-	padding: 0px 20px 0px 10px;
+	padding: 0px 20px 5px 10px;
 	display: inline-block;
 }
 #page #content #maintop .map img {
 	position: absolute;
-	top: -31%;
-	left: 30%;
+	top: -28%;
+	left: 37%;
 	z-index: 3;
 	-webkit-transition: all 0.5s;
 	transition: all 0.5s;
@@ -209,7 +216,7 @@ footer #individ {
 }
 #page #content #wwt .title {
 	display: block;
-	width: 314px;
+	width: 386px;
 	height: 177px;
 	background: url("../images/wwt.png") left top no-repeat;
 }
@@ -219,11 +226,11 @@ footer #individ {
 	position: absolute;
 	width: 539px;
 	height: 280px;
-	left: 380px;
+	left: 400px;
 	top: -100px;
 }
 #page #content #wwt div.wwtb h1, #page #content #wwt div.wwtb h2 {
-	max-width: 450px;
+	max-width: 430px;
 	line-height: 40px;
 	padding: 30px 0px 0px 70px;
 }
@@ -375,6 +382,7 @@ footer #individ {
 #page #content #team .empls ul {
 	display: block;
 	text-align: center;
+	margin-left: -45px;
 }
 #page #content #team .empls li {
 	background: url("../images/gal.png") center top no-repeat;
@@ -416,7 +424,7 @@ footer #individ {
 	display: inline-block;
 	vertical-align: bottom;
 	max-width: 60%;
-	padding: 0px 0px 21px 4%;
+	padding: 0px 0px 21px 8%;
 	font-size: 23px;
 	color: #222222;
 	line-height: 34px;
@@ -762,11 +770,13 @@ footer #individ {
 	font-size: 23px;
 	line-height: 34px;
 	padding-bottom: 35px;
+	padding-top: 5px;
 }
 #page #content #time h3 {
 	font-size: 24px;
 	line-height: 26px;
 	padding-bottom: 20px;
+	padding-top: 0px;
 }
 #page #content #time b {
 	font-size: 60px;
@@ -939,6 +949,13 @@ footer #individ {
 	}
 	#page #content #maintop .map {
 		width: 94%;
+	}
+	#page #content #maintop .map h1 {
+		padding-top: 240px;
+	}
+	#page #content #maintop .map img {
+		top: 40px;
+		left: 30%
 	}
 	#page {
 		min-width: 100%;
