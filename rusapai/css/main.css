@@ -92,9 +92,6 @@ footer #individ {
 	position: relative;
 	top: 10px;
 }
-#page header li {
-	margin-left: 15px;
-}
 #page header a {		
 	font-family: 'Open Sans';
 	font-weight: 300;
@@ -102,11 +99,11 @@ footer #individ {
 	color: #ffffff;
 	text-decoration: none;
 	line-height: 40px;
+	padding: 1px 7px;
 }
 #page header a.current {
 	background: #2e8fb4;
 	border-radius: 5px;
-	padding: 1px 7px;
 }
 #page header a:hover {
 	text-decoration: underline;
@@ -293,7 +290,7 @@ footer #individ {
 	background: url("../images/contactus.png") center center no-repeat;
 	width: 154px;
 	height: 53px;
-	padding: 25px 0px 0px 65px;
+	padding: 28px 0px 0px 65px;
 	color: #44caff;
 	font-weight: 600;
 	font-size: 16px;
@@ -904,9 +901,10 @@ footer #individ {
 .popup form textarea {
 	overflow: auto;
 	height: 90px;
+	font-family: 'Open Sans';
 }
 .popup form div.check {
-	margin-left: 65px;
+	margin-left: 70px;
 	margin-top: 15px;
 	margin-bottom: 9px;
 }
@@ -1258,10 +1256,7 @@ footer #individ {
 		max-width: 35%;
 	}
 }
-@media (max-width: 550px) {
-	header {
-		position: relative !important;
-	}
+@media (max-width: 550px) {	
 	footer section {
 		width: 92%;
 	}
@@ -1294,32 +1289,17 @@ footer #individ {
 	#page header .menu {
 		position: absolute;
 		left: 0px;
-		bottom: 13px;
+		bottom: 5px;
 		display: inline-block;
-		line-height: 36px;
+		line-height: 40px;
 		color: #ffffff;
 		cursor: pointer;
 		text-transform: uppercase;
 		font-size: 0.875em;
 		font-weight: 600;
-
-		background: rgb(1,30,45);
-		background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzAxMWUyZCIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjU3JSIgc3RvcC1jb2xvcj0iIzBlMTgxYiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjkxJSIgc3RvcC1jb2xvcj0iIzBlMGYwZiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9Ijk0JSIgc3RvcC1jb2xvcj0iIzBjMTkxYyIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMwOTNiNGEiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
-		background: -moz-linear-gradient(top,  rgba(1,30,45,1) 0%, rgba(14,24,27,1) 57%, rgba(14,15,15,1) 91%, rgba(12,25,28,1) 94%, rgba(9,59,74,1) 100%);
-		background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(1,30,45,1)), color-stop(57%,rgba(14,24,27,1)), color-stop(91%,rgba(14,15,15,1)), color-stop(94%,rgba(12,25,28,1)), color-stop(100%,rgba(9,59,74,1)));
-		background: -webkit-linear-gradient(top,  rgba(1,30,45,1) 0%,rgba(14,24,27,1) 57%,rgba(14,15,15,1) 91%,rgba(12,25,28,1) 94%,rgba(9,59,74,1) 100%);
-		background: -o-linear-gradient(top,  rgba(1,30,45,1) 0%,rgba(14,24,27,1) 57%,rgba(14,15,15,1) 91%,rgba(12,25,28,1) 94%,rgba(9,59,74,1) 100%);
-		background: -ms-linear-gradient(top,  rgba(1,30,45,1) 0%,rgba(14,24,27,1) 57%,rgba(14,15,15,1) 91%,rgba(12,25,28,1) 94%,rgba(9,59,74,1) 100%);
-		background: linear-gradient(to bottom,  rgba(1,30,45,1) 0%,rgba(14,24,27,1) 57%,rgba(14,15,15,1) 91%,rgba(12,25,28,1) 94%,rgba(9,59,74,1) 100%);
-		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#011e2d', endColorstr='#093b4a',GradientType=0 );
-		border: 1px solid #000000;
-		padding: 0px 21px 0px 28px;
-		border-radius: 5px;
-		-webkit-transition: all 0.5s;
-		transition: all 0.5s;
-	}
-	#page header .menu:hover {
-		border: 1px solid #ffffff;
+		background: url("../images/menu.png") left center no-repeat;
+		width: 122px;
+		height: 48px;
 	}
 	#page header .menu i {
 		display: inline-block;
@@ -1563,6 +1543,9 @@ footer #individ {
 	.popup {
 		margin-left: -160px;
 		margin-top: -200px;
+	}
+	.popup form div.check {
+		margin-left: 0px;
 	}
 	#page header li {
 		display: block;
