@@ -1520,4 +1520,105 @@ footer #individ {
 		margin-left: -160px;
 		margin-top: -200px;
 	}
+	#page header li {
+		display: block;
+		text-align: left;
+		background: rgb(12,13,13);
+		width: 100px;
+		padding-left: 20px;
+		padding-right: 20px;
+		line-height: 120%;
+		padding-bottom: 10px;
+		padding-top: 10px;
+	}
+	#page header li a {
+		line-height: 120%;
+
+	}
+	#page header ul {
+		left: -20px;
+		top: 125px;
+	}
+	#page #content #wwt div.wwtb {
+		width: auto;
+	}
+	.popup .red, .popup .win {
+		padding-left: 27px;
+	}
+	#page #content #welcome .ways div:first-child img {
+		max-width: 70%;
+		padding-bottom: 17px;
+		margin-left: 2%;
+	}
+	#page #content #welcome .ways div.wall {
+		margin-top: 5%;
+	}
+	#page #content #welcome .ways div:last-child img {
+		display: none;
+	}
+	#page #content #welcome .ways h4 {
+		vertical-align: top;
+		font-size: 17px;
+		width: 115px;
+		padding-left: 0px;
+		padding-right: 10px;
+	}
+	#page #content #welcome .ways h2 {
+		letter-spacing: 1px;
+	}
+	#page #content #welcome .ways p {
+		width: auto;
+		padding-right: 15px;
+	}
+	#page #content #welcome .offices div:first-child {
+		display: none;
+	}
+	#page #content #welcome .ways {
+		padding-bottom: 25px;
+	}
+	#page #content #welcome .offices {
+		margin-left: 4%;
+	}
+	#page #content #welcome .offices p {
+		width: 100%;
+	}
+	#page #content #welcome .offices .last {
+		position: static;
+		padding-top: 0px;
+	}
+	#page #content #welcome .offices div {
+		margin-bottom: 15px;
+	}
+	#page #content #welcome .offices span {
+		margin-top: 112px;
+	}
+	#page #content #time {
+		margin-top: -15px;
+	}
+	#page #content #time div:first-child h2, #page #content #time div:first-child b {
+		display: inline-block;
+		vertical-align: top;
+	}
+	#page #content #time div:first-child h2 {
+		width: 37%;
+		line-height: 26px;
+		font-size: 19px;
+	}
+	#page #content #time b {
+		padding-left: 40px;
+		float: right;
+	}
+	#page #content #time div:first-child {
+		width: auto;
+	}
+	#page #content #time div.time {
+		width: 100%;
+		padding-top: 15px;
+		margin-left: 4%;
+	}
+	#page #content #time strong {
+		width: 35%;
+		padding-bottom: 6%;
+		max-width: 1000px;
+	}
 }

@@ -80,4 +80,8 @@ $(function () {
     $("#shadow").css("height", $("#page").height()+$("footer").height());
     $(".popup").fadeIn();
   });
+
+  $("#page header .menu").on("click", function() {
+    $("#page header ul").toggle();
+  });
 });
