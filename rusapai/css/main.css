@@ -410,7 +410,7 @@ footer #individ {
 	margin-left: 50px;
 }
 #do .titles h1 img {
-	max-width: 70%;
+	max-width: 225px;
 }
 #do .titles h2 {
 	display: inline-block;
@@ -920,6 +920,9 @@ footer #individ {
 	}
 	footer #copyright, footer #individ {
 		float: none;
+	}
+	#do .titles h1 img {
+		max-width: 70%;
 	}
 	#page header section {
 		width: 94%;
