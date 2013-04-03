@@ -70,7 +70,7 @@ footer #individ {
 	width: 100%;
 	position: fixed;
 	z-index: 10;
-	margin-top: 45px;
+	top: 0px;
 }
 #page header section {
 	position: relative;
@@ -152,7 +152,7 @@ footer #individ {
 	width: 960px;
 	position: relative;
 	left: 2%;
-	margin: 10% auto 0px auto;
+	margin: 15% auto 0px auto;
 	height: 544px;
 }
 #page #content #maintop .map h1 {
@@ -190,7 +190,6 @@ footer #individ {
 	z-index: 3;
 	-webkit-transition: all 0.5s;
 	transition: all 0.5s;
-	max-width: 113%;
 }
 
 #page #content #maintop {
@@ -210,7 +209,7 @@ footer #individ {
 	position: relative;
 	top: 0px;
 	width: 960px;
-	margin: -120px auto 0px auto;
+	margin: -105px auto 0px auto;
 	left: 2%;
 	min-height: 650px;
 }
@@ -252,7 +251,7 @@ footer #individ {
 #page #content #wwt h3 {
 	font-size: 1.438em;
 	color: #0e05f4;
-	margin: 4% 0px 4% 0px;
+	margin: 3% 0px 3% 0px;
 	line-height: 140%;
 }
 #page #content #wwt p {
@@ -931,6 +930,9 @@ footer #individ {
 	footer #copyright, footer #individ {
 		float: none;
 	}
+	#page #content #wwt {
+		margin-top: 12%;
+	}
 	#do .titles h1 img {
 		max-width: 70%;
 	}
@@ -951,11 +953,11 @@ footer #individ {
 		width: 94%;
 	}
 	#page #content #maintop .map h1 {
-		padding-top: 240px;
+		padding-top: 155px;
 	}
 	#page #content #maintop .map img {
 		top: 40px;
-		left: 30%
+		left: 30%;
 	}
 	#page {
 		min-width: 100%;
@@ -1163,6 +1165,12 @@ footer #individ {
 	#page #content #time h4 {
 
 	}
+	#page #content #team .empls .elements img {
+		width: 32%;
+	}
+	#page #content #team .empls span {
+		width: 355px;
+	}
 }
 @media (max-width: 640px) {
 	#page {
@@ -1173,9 +1181,10 @@ footer #individ {
 	}
 	#page #content #maintop .map img {
 		top: auto;
-		bottom: 100px;
+		bottom: -10px;
 		left: -7%;
-		max-width: 113%;
+	}
+	#page #content #maintop {
 	}
 	#page #content #maintop .map h1, #page #content #maintop .map h2 {
 		font-size: 1.875em;
@@ -1185,7 +1194,6 @@ footer #individ {
 		margin-top: 19%;
 	}
 	#page #content #wwt {
-		padding-top: 70px;
 		min-height: 950px;
 	}
 	#page #content #wwt div.wwtb {
@@ -1216,7 +1224,9 @@ footer #individ {
 		position: relative;
 		top: -13px;
 	}
-	
+	#do .titles h1 {
+		max-width: 35%;
+	}
 }
 @media (max-width: 550px) {
 	header {
@@ -1498,5 +1508,16 @@ footer #individ {
 	}
 	#about .gallery {
 		display: block;
+	}
+	.popup .wrap2 {
+		padding-left: 10px;
+		padding-right: 10px;
+	}
+	.popup .wrap1 {
+		width: 320px;
+	}
+	.popup {
+		margin-left: -160px;
+		margin-top: -200px;
 	}
 }

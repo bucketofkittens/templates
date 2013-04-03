@@ -2,11 +2,15 @@ $(function () {
   $("#page header li a").click(function () {
     var elementClick = $(this).attr("href");
     var stp = 104;
+    var self = this;
     if(elementClick == "#wwt") {
     	stp = 190;
     }
     var destination = $(elementClick).offset().top - stp;
-    $('html,body').animate({ scrollTop: destination }, 500);
+    $('html,body').animate({ scrollTop: destination }, 500, function() {
+        $("#page header li a").removeClass("current");
+        $(self).addClass("current");
+    });
     return false;
   });
 
