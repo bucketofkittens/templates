@@ -1666,4 +1666,7 @@ footer #individ {
 	#about ul.list_items {
 		display: block;
 	}
+	#about .titles .right p {
+		vertical-align: top !important;
+	}
 }
