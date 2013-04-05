@@ -70,13 +70,13 @@ $(function () {
     $("#about ul.list_items li.current").removeClass("current");
     $("#about ul.list_items li").eq(currentIndex).addClass("current");
 
-    $("#about .gallery li.show").animate({
+    $("#about .items li.show").animate({
                 left: -300
             },
             "slow",
             function() {
-                $("#about .gallery li.show").removeClass("show");
-                var newVal = $("#about .gallery li").eq(currentIndex);
+                $("#about .items li.show").removeClass("show");
+                var newVal = $("#about .items li").eq(currentIndex);
                 newVal.css("left", "300px");
                 newVal.addClass("show");
                 newVal.animate({
@@ -92,13 +92,13 @@ $(function () {
         $("#about ul.list_items li.current").removeClass("current");
         $(this).addClass("current");
 
-        $("#about .gallery li.show").animate({
+        $("#about .items li.show").animate({
                 left: -300
             },
             "slow",
             function() {
-                $("#about .gallery li.show").removeClass("show");
-                var newVal = $("#about .gallery li").eq(index);
+                $("#about .items li.show").removeClass("show");
+                var newVal = $("#about .items li").eq(index);
                 newVal.css("left", "300px");
                 newVal.addClass("show");
                 newVal.animate({
@@ -137,5 +137,11 @@ $(function () {
 
   $("#page header .menu").on("click", function() {
     $("#page header ul").toggle();
+  });
+  $(document).on("click", function() {
+    if ($(event.target).closest(".menu").length) return;
+    if($(window).width() < 450) {
+        $("#page header ul").hide();
+    }
   });
 });

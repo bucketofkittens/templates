@@ -1274,7 +1274,7 @@ footer #individ {
 	}
 	#page header .logo2 {
 		bottom: 13px;
-		right: -5px;
+		right: -12px;
 		top: auto;
 		background: none;
 		text-indent: 0px;
@@ -1492,12 +1492,14 @@ footer #individ {
 	}
 	#about .items li {
 		display: none;
-	}
-	#about .items li:first-child {
-		display: block;
 		width: 100%;
 		text-align: center;
 		padding: 0px;
+		position: relative;
+		min-height: 50px;
+	}
+	#about .items li.show {
+		display: block;
 	}
 	#about .gallery {
 		text-align: center;
@@ -1554,7 +1556,7 @@ footer #individ {
 		display: block;
 		text-align: left;
 		background: rgb(12,13,13);
-		width: 100px;
+		width: 150px;
 		padding-left: 20px;
 		padding-right: 20px;
 		line-height: 120%;
