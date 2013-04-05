@@ -602,6 +602,7 @@ footer.primary .links li a {
 }
 #page #content nav.navtop > ul {
   position: relative;
+  height: 50px;
 }
 #page #content nav.navtop > ul > li {
   padding: 0px 28px 0px 8px;
@@ -622,7 +623,7 @@ footer.primary .links li a {
   font-family: 'Roboto';
   font-weight: 500;
   font-size: 20px;
-  padding: 10px 12px 22px 12px;
+  padding: 18px 12px 15px 12px;
   color: #ffffff;
   text-transform: uppercase;
   text-decoration: none;
@@ -1042,6 +1043,10 @@ footer.primary .links li a {
 }
 #page #content .musthave a img:hover {
   width: 260px;
+  -webkit-box-shadow:  1px 1px 30px 15px rgba(122, 69, 244, 0.3);
+  box-shadow:  1px 1px 30px 15px rgba(122, 69, 244, 0.3);
+  position: relative;
+  z-index: 10;
 }
 #page #content .container2:after {
   content: ".";
@@ -1731,13 +1736,15 @@ footer.primary .links li a {
   position: relative;
 }
 .news-list ul li:hover {
-  padding: 4px 4px 7px 4px;
-  margin-left: -8px;
-  margin-top: -2px;
+  padding: 4px 3px 1px 3px;
+  margin-left: -3px;
+  margin-top: 6px;
+  margin-bottom: -5px;
   background: #ffffff;
   -webkit-box-shadow:  1px 1px 30px 15px rgba(122, 69, 244, 0.3);
   box-shadow:  1px 1px 30px 15px rgba(122, 69, 244, 0.3);
   z-index: 20;
+  width: 328px;
 }
 .news-list ul li img {
   display: block;

@@ -373,4 +373,8 @@ $(document).ready(function() {
             }
         );
       });
+
+    if($("#content .galery span").size() > 0) {
+        $(".fancybox").fancybox();
+    }
 });
