@@ -400,15 +400,14 @@ footer.primary .links li a {
 #page.primary {
   background: url("../images/prim-ground.png") right top no-repeat;
   position: relative;
-  width: auto;
-  min-width: 1380px;
-  max-width: 1400px;
-  left: -5px;
+  width: 1400px;
+  left: -55px;
 }
 #page.primary #content .places {
   padding-top: 432px;
   position: relative;
-  margin: auto;
+  margin: 0px auto;
+  width: 1359px;
 }
 #page.primary #content .places a {
   width: 345px;
@@ -1032,6 +1031,17 @@ footer.primary .links li a {
 }
 #page #content .musthave a {
   width: 240px;
+}
+#page #content .musthave a img {
+  display: block;
+  width: 100%;
+  transition: all 0.3s;
+   -moz-transition: all 0.3s;
+   -o-transition: all 0.3s;
+   -webkit-transition: all 0.3s;
+}
+#page #content .musthave a img:hover {
+  width: 260px;
 }
 #page #content .container2:after {
   content: ".";

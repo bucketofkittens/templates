@@ -71,7 +71,6 @@ $(document).ready(function() {
     			if(self.currentElement == self.elementCount) {
     				self.currentElement = 0;
     			}
-    			console.log(self.currentElement);
     			self.setNavCurrentElement(self.currentElement);
     			self.showElement(self.currentElement);
     		});
@@ -347,7 +346,7 @@ $(document).ready(function() {
         );
       });
 
-    $("#page.primary #content #botnav .lr.l1, #page.primary #content #botnav .lr.r2").on("click", function() {
+    $("#page.primary #content #botnav .lr.l, #page.primary #content #botnav .lr.r2").on("click", function() {
         var index = $("#page.primary #content #botnav ul li ul.news2 li.show").index();
         var newIndex = index + 1;
         var sign = "";
