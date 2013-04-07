@@ -6,6 +6,9 @@
 #page {
 	background: url("../images/top-bg.png") center -50px no-repeat;
 	min-width: 1000px;
+	overflow-x: hidden;
+	position: relative;
+	width: 100%;
 }
 #content {
 	margin-top: -45px;
@@ -15,6 +18,7 @@ body {
 	font-size: 1.000em;
 	font-family: "Open Sans";
 	overflow-x: hidden;
+	position: relative;
 }
 a:hover {
 	text-decoration: none;
@@ -91,6 +95,7 @@ footer #individ {
 	line-height: 34px;
 	position: relative;
 	top: 10px;
+	left: 15px;
 }
 #page header a {		
 	font-family: 'Open Sans';
@@ -143,13 +148,21 @@ footer #individ {
 
 #page #content #maintop {
 	position: relative;
+	overflow: visible;
+}
+#page .center {
+	max-width: 960px;
+	margin-left: auto;
+	margin-right: auto;
+	width: 94%;
+	left: 2%;
+	overflow: hidden;
+	position: relative;
 }
 #page #content #maintop .map {
 	text-align: center;
-	width: 960px;
 	position: relative;
-	left: 2%;
-	margin: 15% auto 0px auto;
+	margin-top: 15%;
 	height: 544px;
 }
 #page #content #maintop .map h1 {
@@ -182,7 +195,7 @@ footer #individ {
 }
 #page #content #maintop .map img {
 	position: absolute;
-	top: -28%;
+	top: -17%;
 	left: 37%;
 	z-index: 3;
 	-webkit-transition: all 0.5s;
@@ -205,25 +218,17 @@ footer #individ {
 #page #content #wwt {
 	position: relative;
 	top: 0px;
-	width: 960px;
-	margin: -105px auto 0px auto;
-	left: 2%;
-	min-height: 650px;
-}
-#page #content #wwt .title {
-	display: block;
-	width: 386px;
-	height: 177px;
-	background: url("../images/wwt.png") left top no-repeat;
+	margin-top: -145px;
+	min-height: 750px;
+	overflow: visible;
 }
 #page #content #wwt div.wwtb {
 	background: url("../images/wwtsh.png") center top no-repeat;
 	z-index: 7;
-	position: absolute;
+	position: relative;
 	width: 539px;
 	height: 280px;
-	left: 400px;
-	top: -100px;
+	display: inline-block;
 }
 #page #content #wwt div.wwtb h1, #page #content #wwt div.wwtb h2 {
 	max-width: 430px;
@@ -255,7 +260,7 @@ footer #individ {
 	color: #000000;
 	margin-right: 20px;
 	vertical-align: top;
-	width: 45%;
+	width: 58%;
 }
 #page #content #wwt div.p p:first-child {
 	width: 40%;
@@ -275,6 +280,8 @@ footer #individ {
 	position: relative;
 	margin-right: 20px;
 	top: 5px;
+	display: inline-block;
+	vertical-align: bottom;
 }
 #page #content #wwt img.chapter {
 	vertical-align: bottom;
@@ -288,9 +295,9 @@ footer #individ {
 }
 #page #content #wwt span {
 	background: url("../images/contactus.png") center center no-repeat;
-	width: 154px;
+	width: 124px;
 	height: 53px;
-	padding: 28px 0px 0px 65px;
+	padding: 28px 0px 0px 45px;
 	color: #44caff;
 	font-weight: 600;
 	font-size: 16px;
@@ -301,9 +308,9 @@ footer #individ {
 
 #page #content #team {
 	position: relative;
-	width: 960px;
-	margin: 0px auto;
-	left: 2%;
+}
+#page #content #team .titles {
+	min-height: 265px;
 }
 #page #content #team h1, #page #content #team h2 {
 	font-family: 'Open Sans';
@@ -332,7 +339,7 @@ footer #individ {
 }
 #page #content #team .years, #page #content #team .empls {
 	float: left;
-	margin-top: 140px;
+	position: relative;
 }
 #page #content #team .empls {
 	margin-left: 90px;
@@ -343,6 +350,9 @@ footer #individ {
 	display: inline-block;
 	vertical-align: top;
 	margin-left: 20px;
+}
+#page #content #team .years, #page #content #team .empls span:first-child {
+	margin-left: 0px;
 }
 #page #content #team h3, #page #content #team h4, #page #content #team h5, #page #content #team h6, #page #content #team i, #page #content #team p {
 	font-family: 'Open Sans';
@@ -393,16 +403,17 @@ footer #individ {
 	cursor: default;
 }
 #page #content #team .empls .elements {
+	opacity: 0;
 	display: none;
 	position: relative;
+	width: 100%;
 }
 #page #content #team .empls .elements.show {
+	opacity: 1;
 	display: block;
 }
 #do {
-	width: 960px;
-	margin: 0px auto;
-	left: 2%;
+	overflow: visible !important;
 }
 #do .titles {
 	width: 100%;
@@ -411,7 +422,7 @@ footer #individ {
 #do .titles h1 {
 	display: inline-block;
 	vertical-align: bottom;
-	margin-left: 50px;
+	width: 22%;
 }
 #do .titles h1 img {
 	max-width: 225px;
@@ -433,6 +444,7 @@ footer #individ {
 #do .body .left, #do .body .right, #do .body .gallery {
 	vertical-align: top;
 	display: inline-block;
+	position: relative;
 }
 #do .body .gallery {
 	overflow: hidden;
@@ -445,16 +457,19 @@ footer #individ {
 	display: block;
 }
 #do .body .left {
-	width: 227px;
-	margin-left: 50px;
+	width: 31%;
+}
+#do .body .two {
+	width: 68%;
+	display: inline-block;
+	vertical-align: top;
 }
 #do .body .right {
-	width: 300px;
-	margin-left: 90px;
+	width: 50%;
 }
 #do .body .gallery {
-	width: 220px;
-	margin-left: 30px;
+	width: 38%;
+	margin-left: 5%;
 }
 #do .body h3 {
 	font-size: 25px;
@@ -493,7 +508,7 @@ footer #individ {
 	vertical-align: top;
 	list-style: none;
 	position: relative;
-	left: 15px;
+	left: -10px;
 }
 #do .items_list li {
 	background: url("../images/gal.png") center top no-repeat !important;
@@ -512,11 +527,9 @@ footer #individ {
 	background: url("../images/about_bg.png") center top no-repeat;
 	min-height: 200px;
 }
-#about .inner {
-	width: 960px;
-	margin: 0px auto;
-	left: 2%;
+#about .center {
 	padding-bottom: 40px;
+	overflow: visible;
 }
 #about .titles {
 	padding: 120px 0px 20px 0px;
@@ -525,7 +538,6 @@ footer #individ {
 	width: 50%;
 	display: inline-block;
 	vertical-align: top;
-	margin-left: 50px;
 }
 #about .titles .right {
 	width: 43%;
@@ -570,7 +582,6 @@ footer #individ {
 	margin: -160px 0px 0px -10px;
 }
 #about .items {
-	margin-left: 50px;
 	z-index: 10;
 	position: relative;
 	padding-bottom: 40px;
@@ -586,7 +597,6 @@ footer #individ {
 }
 #about .items2 {
 	padding: 35px 0px 0px 0px;
-	margin-left: 50px;
 }
 #about .items2 li {
 	display: inline-block;
@@ -603,7 +613,9 @@ footer #individ {
 	line-height: 33px;
 }
 #about .big_image {
-
+	position: relative;
+	left: -50px;
+	max-width: 100%;
 }
 #about .gallery {
 	display: none;
@@ -631,6 +643,7 @@ footer #individ {
 	background: url("../images/gal-c.png") center top no-repeat;
 	cursor: default;
 }
+
 #page #content #welcome .ways i, #page #content #welcome .ways h2, #page #content #welcome .ways b, #page #content #welcome .ways p {
 	font-family: 'Open Sans';
 	color: #ffffff;
@@ -647,20 +660,26 @@ footer #individ {
 	font-weight: 300;
 	color: #000000;
 	font-size: 40px;
-	margin: 30px 70px 0px 0px;
+	margin: 30px 10% 0px 0px;
 }
 #page #content #welcome {
 	background: #01aff1;
-	padding-left: 210px;
 }
 #page #content #welcome .ways {
 	overflow: hidden;
 	display: block;
 	padding: 60px 0px 55px 0px;
 }
-#page #content #welcome .ways div {
-	float: left;
+#page #content #welcome .ways div.slogan {
 	vertical-align: bottom;
+	display: inline-block;
+	width: 48%;
+	position: relative;
+	top: -7px;
+}
+#page #content #welcome .ways div.wall {
+	width: 51%;
+	display: inline-block;
 }
 #page #content #welcome .ways div:first-child img {
 	padding-top: 60px;
@@ -675,9 +694,9 @@ footer #individ {
 }
 #page #content #welcome .ways h4 {
 	display: inline-block;
-	width: 98px;
+	width: 20%;
 	vertical-align: middle;
-	padding: 0px 20px 0px 5px;
+	padding: 0px 0px 0px 5px;
 }
 
 #page #content #welcome .offices {
@@ -688,15 +707,19 @@ footer #individ {
 	float: left;
 }
 #page #content #welcome .offices div {
-	width: 380px;
+	width: 53%;
 	font-family: 'Open Sans';
 	color: #ffffff;
 	line-height: 21px;
 	font-size: 15px;
-	margin-bottom: 40px;
+	margin-bottom: 20px;
 }
-#page #content #welcome .offices div:first-child {
-	width: 240px;
+#page #content #welcome .offices .first {
+	width: 26%;
+}
+#page #content #welcome .offices .two {
+	width: 73%;
+	display: inline-block;
 }
 #page #content #welcome .offices .last {
 	width: 170px;
@@ -719,10 +742,10 @@ footer #individ {
 }
 #page #content #welcome .offices span {
 	background: url("../images/contactus.png") left bottom no-repeat;
-	width: 154px;
+	width: 119px;
 	height: 53px;
 	margin-top: 40px;
-	padding: 10px 0px 0px 30px;
+	padding: 10px 0px 0px 35px;
 	color: #44caff;
 	font-weight: 600;
 	font-size: 16px;
@@ -738,23 +761,26 @@ footer #individ {
 }
 
 #page #content #time {
-	padding: 0px 0px 35px 210px;
+	padding: 30px 0px 35px 0px;
 	overflow: hidden;
 	display: block;
-	background: #01aff1;
+	background: #01aff1 url("../images/time.png") center top no-repeat;
 }
-#page #content #time div {
+#page #content #time div div {
 	float: left;
+	max-width: 73%;
 }
-#page #content #time div:first-child {
-	width: 160px;
-	margin-right: 80px;
+#page #content #time .title {
+	width: 26%;
 	position: relative;
 	top: -10px;
 }
 #page #content #time span {
 	display: block;
 	overflow: hidden;
+}
+#page #content #time span.items {
+	margin-top: 5px;
 }
 #page #content #time i {
 	float: right;
@@ -767,9 +793,9 @@ footer #individ {
 	text-align: center;
 }
 #page #content #time strong {
-	max-width: 140px;
+	max-width: 22%;
 	vertical-align: top;
-	margin-left: 50px;
+	margin-left: 4%;
 }
 #page #content #time strong:first-child {
 	margin-left: 0px;
@@ -795,6 +821,7 @@ footer #individ {
 	line-height: 26px;
 	padding-bottom: 20px;
 	padding-top: 0px;
+	float: left;
 }
 #page #content #time b {
 	font-size: 60px;
@@ -820,7 +847,9 @@ footer #individ {
 	background: rgba(0, 0, 0, 0.6);
 	display: none;
 }
-
+#page #content #wwt img.rusapai {
+	vertical-align: top;
+}
 /** popup { **/
 .popup {
 	position: absolute;
@@ -959,7 +988,8 @@ footer #individ {
 		float: none;
 	}
 	#page #content #wwt {
-		margin-top: 12%;
+		margin-top: 0%;
+		min-height: 750px;
 	}
 	#do .titles h1 img {
 		max-width: 100%;
@@ -994,7 +1024,7 @@ footer #individ {
 		width: 94%;
 	}
 	#page #content #wwt div.wwtb {
-		display: none;
+		
 	}
 	#page #content #wwt p {
 		width: 53%;
@@ -1013,6 +1043,7 @@ footer #individ {
 		width: 100%;
 		float: none;
 		margin-left: 0px;
+		position: relative;
 	}
 	#page #content #team .years .inner_text {
 		display: inline-block;
@@ -1029,9 +1060,6 @@ footer #individ {
 	#page #content #team .empls {
 		margin-top: 30px;
 	}
-	#about .inner {
-		width: 94%;
-	}
 	#about .titles .right p {
 		width: 100% !important;
 		font-size: 23px;
@@ -1039,7 +1067,7 @@ footer #individ {
 		padding-bottom: 4%;
 	}
 	#about .titles .right {
-		width: 40%;
+		width: 30%;
 	}
 	#about .inner > img {
 		max-width: 100%;
@@ -1061,9 +1089,6 @@ footer #individ {
 		padding-right: 2%;
 		width: 22%;
 		font-size: 18px;
-	}
-	#do {
-		width: 94%;
 	}
 	#about img {
 		margin-top: -120px;
@@ -1098,12 +1123,14 @@ footer #individ {
 		padding: 0px;
 	}
 	#page #content #welcome .ways div:first-child img {
-		max-width: 40%;
+		max-width: 80%;
 		display: inline-block;
 		vertical-align: middle;
 		margin-left: 4%;
 		padding-top: 0px;
+		padding-bottom: 5px;
 	}
+	
 	#page #content #welcome .ways i {
 		display: inline-block;
 		vertical-align: middle;
@@ -1128,12 +1155,14 @@ footer #individ {
 	#about .titles {
 		padding-top: 90px;
 	}
+	#page #content #welcome .ways div.slogan {
+		width: 33%;
+	}
 	#page #content #welcome .ways div.wall {
-		margin-left: 4%;
-		margin-top: 8%;
+		margin-left: 2%;
+		width: 64%;
 	}
 	#page #content #welcome .offices div:first-child {
-		margin-left: 4%;
 		width: 23%;
 	}
 	#page #content #welcome .offices p {
@@ -1146,8 +1175,9 @@ footer #individ {
 	}
 	#page #content #welcome .offices span {
 		position: absolute;
-		right: 0px;
-		margin-top: 130px;
+		right: -70px;
+		width: 37%;
+		bottom: 0px;
 	}
 	#page #content #welcome .offices h2 {
 		padding-bottom: 0px;
@@ -1160,10 +1190,6 @@ footer #individ {
 		margin: 0px auto;
 		margin-left: 0px;
 		padding-left: 0px;
-	}
-	#page #content #time div:first-child {
-		margin-left: 4%;
-		margin-right: 7%;
 	}
 	#page #content #time div:first-child h2 {
 		padding-bottom: 0px;
@@ -1190,14 +1216,82 @@ footer #individ {
 		margin-right: 5%;
 		margin-left: 0px;
 	}
-	#page #content #time h4 {
-
-	}
 	#page #content #team .empls .elements img {
 		width: 32%;
 	}
 	#page #content #team .empls span {
-		width: 355px;
+		width: 60%;
+	}
+	#do .body .right {
+		width: 90%;
+	}
+	#page #content #wwt p {
+		width: 46%;
+		line-height: 140%;
+	}
+	#page #content #wwt img {
+		width: 30%;
+	}
+	#page #content #wwt span {
+		margin-left: 0px;
+	}
+	#page #content #wwt h3 {
+		margin-top: 2%;
+		margin-bottom: 2%;
+	}
+	#page #content #welcome .ways i {
+		font-size: 20px;
+	}
+	#page #content #time div.time {
+		float: right;
+	}
+	#page #content #welcome .offices div:first-child {
+		width: 25%;
+	}
+}
+@media (max-width: 868px) {
+	#page #content #wwt img {
+		width: 20%;
+		margin-bottom: 10px;
+	}
+	#page #content #wwt div.wwtb {
+		background: url("../images/123.png") center top no-repeat;
+	}
+	#page #content #team .empls span {
+		width: 60%;
+	}
+	#do .body .left {
+		width: 42%;
+	}
+	#do .body .two {
+		width: 55%;
+	}
+	#about .big_image {
+		left: -0px;
+	}
+	#page #content #time div.time {
+		float: right;
+	}
+	#page #content #welcome .offices div:first-child {
+		width: 27%;
+	}
+	#page #content #welcome .offices p {
+		width: 150%;
+	}
+	#page #content #welcome .offices h3 {
+		width: 300%;
+	}
+	#page #content #welcome .offices div:first-child {
+		width: 25%;
+	}
+	#page #content #welcome .offices .two {
+		float: right;
+	}
+	#page #content #welcome .offices .last {
+		width: 30%;
+	}
+	#page #content #welcome .offices span {
+		width: 27%;
 	}
 }
 @media (max-width: 640px) {
@@ -1214,15 +1308,21 @@ footer #individ {
 	}
 	#page #content #maintop {
 	}
+	#page #content #team {
+		overflow: visible;
+	}
 	#page #content #maintop .map h1, #page #content #maintop .map h2 {
 		font-size: 1.875em;
 		line-height: 160%;
+	}
+	#page #content #team .titles {
+		min-height: 160px;
 	}
 	#page #content #maintop .map {
 		margin-top: 19%;
 	}
 	#page #content #wwt {
-		min-height: 950px;
+		min-height: 985px;
 	}
 	#page #content #wwt div.wwtb {
 		position: relative;
@@ -1230,12 +1330,12 @@ footer #individ {
 		left: 0px;
 		margin-top: 18px;
 		display: block;
+		margin: 20px 0px 20px 0px;
 	}
 	#page #content #wwt .title {
 		display: block;
-		width: 235px;
-		height: 100px;
-		background: url("../images/wwt_640.png") left top no-repeat;
+		width: 40%;
+		margin-top: 60px;
 	}
 	#page #content #team {
 		left: 2%;
@@ -1258,6 +1358,18 @@ footer #individ {
 	#page #content #team .years {
 		margin-top: 80px;
 	}
+	#page #content #wwt p {
+		width: 61%;
+	}
+	#page #content #wwt img.rusapai {
+		width: 31%;
+	}
+	#page #content #wwt span {
+		margin-left: 33%;
+	}
+	#page #content #wwt h3 {
+		padding-bottom: 4%;
+	}
 }
 @media (max-width: 550px) {	
 	footer section {
@@ -1265,7 +1377,7 @@ footer #individ {
 	}
 	#page header #logo1 {
 		background: url("../images/logo_320.png") right center no-repeat;
-		width: 298px;
+		width: 260px;
 		height: 51px;
 	}
 	#page header section {
@@ -1280,11 +1392,18 @@ footer #individ {
 		text-indent: 0px;
 		line-height: 34px;
 		color: #9f9e9e;
+		width: 65px;
 	}
 	#page header a.cu {
 		bottom: 13px;
 		top: auto;
-		right: 85px;
+		right: 65px;
+		font-size: 12px;
+		padding: 0px 9px;
+	}
+	#page header .logo2 {
+		font-size: 12px;
+		line-height: 36px;
 	}
 	#page header ul {
 		display: none;
@@ -1326,7 +1445,7 @@ footer #individ {
 	}
 	#page #content #maintop .map {
 		background: #0e6fb3 url("../images/map_320.jpg") center bottom no-repeat;
-		height: 380px;
+		height: 505px;
 		padding: 0px;
 		margin: 0px;
 		width: 100%;
@@ -1361,7 +1480,7 @@ footer #individ {
 	#page #content #wwt div.p p:last-child {
 		width: auto;
 		float: none;
-		padding-bottom: 7px;
+		padding-bottom: 12px;
 	}
 	#page #content #wwt h3 {
 		font-size: 1.222em;
@@ -1578,7 +1697,7 @@ footer #individ {
 		padding-left: 27px;
 	}
 	#page #content #welcome .ways div:first-child img {
-		max-width: 70%;
+		max-width: 90%;
 		padding-bottom: 17px;
 		margin-left: 2%;
 	}
@@ -1591,7 +1710,7 @@ footer #individ {
 	#page #content #welcome .ways h4 {
 		vertical-align: top;
 		font-size: 16px;
-		width: 102px;
+		width: 30%;
 		padding-left: 0px;
 		padding-right: 14px;
 		font-weight: 300;
@@ -1606,7 +1725,7 @@ footer #individ {
 		width: auto;
 		padding-right: 15px;
 	}
-	#page #content #welcome .offices div:first-child {
+	#page #content #welcome .first {
 		display: none;
 	}
 	#page #content #welcome .ways {
@@ -1621,13 +1740,16 @@ footer #individ {
 	#page #content #welcome .offices .last {
 		position: static;
 		padding-top: 0px;
+		width: 45%;
 	}
 	#page #content #welcome .offices div {
 		margin-bottom: 15px;
 		width: 330px;
 	}
 	#page #content #welcome .offices span {
-		margin-top: 145px;
+		margin-top: 0px;
+		position: static;
+		width: 40%;
 	}
 	#page #content #time {
 		margin-top: -15px;
@@ -1637,7 +1759,7 @@ footer #individ {
 		vertical-align: top;
 	}
 	#page #content #time div:first-child h2 {
-		width: 45%;
+		width: 48%;
 		line-height: 26px;
 		font-size: 19px;
 	}
@@ -1650,7 +1772,7 @@ footer #individ {
 	}
 	#page #content #time div:first-child {
 		width: auto;
-		margin: 3% 7% 0% 4%;
+		margin: 3% 0% 0% 2%;
 	}
 	#page #content #time div.time {
 		width: 100%;
@@ -1670,5 +1792,121 @@ footer #individ {
 	}
 	#about .titles .right p {
 		vertical-align: top !important;
+	}
+	#page .center {
+		width: 100%;
+		left: 2%;
+	}
+	#page #content #maintop .map h1 {
+		padding-top: 150px;
+		font-size: 22px;
+	}
+	.popup h2 {
+		margin-left: 26px;
+	}
+	#page #content #team {
+		padding-top: 10px;
+	}
+	#page #content #team .years, #page #content #team .empls {
+		margin-top: 0px;
+	}
+	#page #content #team h3, #page #content #team h4 {
+		display: inline-block;
+		font-size: 21px !important;
+	}
+	#page #content #team h5 {
+		font-size: 25px !important;
+		padding-top: 20px;
+		margin-bottom: 12px;
+	}
+	#page #content #team .empls .elements img {
+		width: 46%;
+	}
+	#do .titles h1 {
+		max-width: 50%;
+		width: 50%;
+	}
+	#page #content #maintop {
+		left: 0px;
+	}
+	#do .body .left {
+		width: 100%;
+	}
+	#about .gallery img {
+		max-width: 90%;
+	}
+	#about .items li {
+		font-size: 16px;
+	}
+	#page #content #welcome .ways div.slogan {
+		width: 80%;
+	}
+	#page #content #welcome .ways i {
+		font-size: 24px;
+	}
+	#page #content #welcome .ways div.wall {
+		width: 100%;
+	}
+	#page #content #welcome .ways h4 {
+		margin-right: -10px;
+	}
+	#page #content #welcome .ways h2 {
+		font-size: 20px;
+	}
+	#page #content #time b {
+		font-size: 48px;
+	}
+	#page #content #time div:first-child {
+		width: auto;
+		max-width: 100%;
+		padding-right: 4%;
+		float: none;
+	}
+	#page #content #time div.time {
+		max-width: 100%;
+		float: none;
+		margin-left: 0px;
+	}
+	#page #content #time a {
+		padding: 0px 5px;
+		font-size: 13px;
+	}
+	#page #content #time strong {
+		width: 43%;
+	}
+	#page #content #welcome .offices div:first-child {
+		width: 100%;
+	}
+	#page #content #welcome .offices h2, #page #content #welcome .offices h3 {
+		line-height: 120%;
+		padding-bottom: 7px;
+	}
+	#page #content #welcome .offices .two {
+		width: 100%;
+	}
+	#page #content #wwt span {
+		left: -20px;
+	}
+	#page #content #team .titles {
+		min-height: 260px;
+	}
+	#page #content #wwt .title {
+		width: 60%;
+		margin-top: 20px;
+	}
+	#page #content #welcome .offices h3 {
+		width: 100%;
+	}
+	#page #content #welcome .offices span {
+		margin-top: 0px;
+	}
+	#page #content #team .tinf {
+		position: relative;
+		left: -5%;
+		padding-left: 5%;
+		width: 110%;
+	}
+	#page #content #team .years, #page #content #team .empls {
+		width: 90%;
 	}
 }
