@@ -1,0 +1,125 @@
+@import "reset.css";
+@import "stylesheet.css";
+
+body {
+	background: #000000;
+	width: 100%;
+	min-height: 100%;
+}
+body #page {
+	background: url("../images/bg.png") center top repeat-y;
+	max-width: 1300px;
+	margin: 0px auto;
+	min-width: 1000px;
+	min-height: 100%;
+}
+body header {
+	background: url("../images/hbg.png") center top repeat;
+	height: 285px;
+	width: 100%;
+	overflow: hidden;
+	position: relative;
+}
+body footer {
+	height: 220px;
+	width: 100%;
+	margin-top: -220px;
+}
+
+header img, header span {
+	display: inline-block;
+	vertical-align: middle;
+	margin: 30px 60px;
+}
+header span {
+	float: right;
+}
+header span p, header span a {
+	display: block;
+}
+header span p {
+	font-family: 'PT Sans Narrow';
+	font-size: 24px;
+	color: #ffffff;
+	padding-bottom: 5px;
+}
+header span a {
+	font-family: 'Arial';
+	font-size: 12px;
+	color: #209add;
+	text-decoration: none;
+}
+header section {
+	position: absolute;
+	top: 100px;
+	background: url("../images/header.png") center top no-repeat;
+	width: 1300px;
+	height: 71px;
+	overflow: hidden;
+	z-index: 3;
+}
+header ul {
+	display: inline-block;
+	margin: 4px 0px 0px 160px;
+}
+header section ul:last-child {
+	float: right;
+	margin: 4px 160px 0px 0px;
+}
+header ul li {
+	display: inline-block;
+	padding: 10px 10px;
+	margin: 5px 8px;
+}
+header ul li.current {
+	background: url("../images/bc.png") center center repeat-x;
+	position: relative;
+	height: 33px;
+	top: -7px;
+}
+header ul li.current:before {
+	content: ".";
+	display: inline-block;
+	position: absolute;
+	background: url("../images/bl.png") left center no-repeat;
+	width: 12px;
+	height: 33px;
+	left: 0px;
+	text-indent: -100px;
+	overflow: hidden;
+}
+header ul li.current:after {
+	content: ".";
+	display: inline-block;
+	position: absolute;
+	background: url("../images/br.png") right center no-repeat;
+	width: 51px;
+	height: 33px;
+	right: 0px;
+	text-indent: -100px;
+	overflow: hidden;
+}
+header ul li a {
+	font-family: 'PT Sans Narrow';
+	font-weight: bold;
+	font-size: 14px;
+	color: #ffffff;
+	text-decoration: none;
+	position: relative;
+	z-index: 4;
+}
+header ul li.current a {
+	color: #000000;
+	position: relative;
+	top: 7px;
+}
+header i {
+	background: url("../images/logo.png") center top no-repeat;
+	position: absolute;
+	width: 276px;
+	height: 167px;
+	top: 3px;
+	left: 50%;
+	margin-left: -140px;
+	z-index: 7;
+}
