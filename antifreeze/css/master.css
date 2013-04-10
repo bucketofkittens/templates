@@ -29,7 +29,7 @@ body footer {
 header img, header span {
 	display: inline-block;
 	vertical-align: middle;
-	margin: 30px 60px;
+	margin: 30px 220px;
 }
 header span {
 	float: right;
@@ -134,7 +134,7 @@ header i {
 	height: 579px;
 	width: 100%;
 	position: relative;
-	top: -131px;
+	margin-top: -131px;
 	z-index: 6;
 }
 #content .adv h1 {
@@ -192,6 +192,7 @@ header i {
 }
 #content .adv section a p {
 	padding: 10px 0px 25px 0px;
+	text-transform: uppercase;
 }
 #content .adv section a img {
 	width: 177px;
@@ -200,8 +201,151 @@ header i {
 #content .adv section a i {
 	font-size: 14px;
 	font-family: 'PT Sans Narrow';
+	padding-left: 11px;
 }
 #content .adv section a b {
 	font-size: 32px;
 	font-family: 'PT Sans Narrow';
+}
+
+#content .com {
+	background: url("../images/com.png") center top repeat-y;
+	position: relative;
+	width: 100%;
+}
+#content .com h1 {
+	font-family: 'PT Sans Narrow';
+	font-weight: bold;
+	font-size: 30px;
+	color: #ffffff;
+	text-transform: uppercase;
+	text-align: center;
+	padding-top: 80px;
+}
+#content .com i {	
+	background: url("../images/comt.png") center top no-repeat;
+	width: 100%;
+	display: block;
+}
+#content .com b {	
+	background: url("../images/comb.png") center bottom no-repeat;
+	min-height: 860px;
+	width: 100%;
+	display: block;
+}
+#content .com span.w {
+	background: url("../images/cmpr.png") center top no-repeat;
+	position: absolute;
+	height: 63px;
+	width: 100%;
+	bottom: -33px;
+	display: block;
+	text-align: center;
+	vertical-align: middle;
+}
+#content .com span.w a {
+	font-family: 'PT Sans';
+	font-weight: bold;
+	font-size: 24px;
+	color: #ffffff;
+	text-decoration: none;
+	line-height: 55px;
+}
+
+#content .com .plu, #content .com .tos {
+	display: inline-block;
+	margin: 40px 25px 30px 18px;
+	vertical-align: top;
+}
+
+#content .com .plu .sort {
+	display: block;	
+	margin: 0px 0px 40px 30px;
+}
+#content .com .plu .sort img, #content .com .plu .sort .srt {
+	display: inline-block;
+	vertical-align: middle;
+}
+#content .com .plu .sort img {
+	width: 108px;
+	margin-right: 10px;
+}
+#content .com .plu .sort h3, #content .com .plu .sort p {
+	display: block;
+	text-align: center;
+}
+#content .com .plu .sort h3 {
+	background: url("../images/sr2.png") center center no-repeat;
+	display: block;
+	width: 218px;
+	height: 38px;
+	font-family: 'PT Sans';
+	font-weight: bold;
+	font-size: 16px;
+	color: #ffffff;
+	padding-top: 10px;
+}
+#content .com .plu .sort:first-child h3 {
+	background: url("../images/sr1.png") center center no-repeat;
+}
+#content .com .plu .sort:nth-child(3) h3 {
+	background: url("../images/sr3.png") center center no-repeat;
+}
+#content .com .plu .sort:last-child h3 {
+	background: url("../images/sr4.png") center center no-repeat;
+}
+#content .com .plu .sort p {
+	font-family: 'PT Sans';
+	font-weight: bold;
+	font-size: 14px;
+	color: #444444;
+}
+#content .com .plu .sort:nth-child(2n) p {
+	color: #ffffff;
+}
+#content .com .tos h2 {
+	color: #272525;
+	font-family: 'PT Sans Narrow';
+	font-weight: bold;
+	font-size: 36px;
+	padding: 35px 0px 15px 0px;
+}
+#content .com .tos p {
+	font-family: 'Arial';
+	font-size: 13px;
+	color: #444444;
+	line-height: 18px;
+	padding-top: 20px;
+	max-width: 520px;
+}
+#content .com .tos h4 {
+	font-family: 'PT Sans';
+	font-size: 18px;
+	color: #444444;
+	font-weight: bold;
+	padding: 37px 0px 33px 0px;
+}
+#content .com .tos ul {
+
+}
+#content .com .tos li {
+	font-family: 'Arial';
+	font-size: 14px;
+	color: #444444;
+	line-height: 36px;
+	padding-left: 30px;
+	background: url("../images/p2.png") left center no-repeat;
+}
+#content .com .tos li:first-child {
+	background: url("../images/p1.png") left center no-repeat;
+}
+#content .com .tos li:nth-child(3) {
+	background: url("../images/p3.png") left center no-repeat;
+}
+#content .com .tos li:last-child {
+	background: url("../images/p4.png") left center no-repeat;
+}
+#content .com .tos img {
+	width: 400px;
+	margin: 5px 60px;
 }
