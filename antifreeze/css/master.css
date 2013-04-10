@@ -10,7 +10,7 @@ body {
 }
 body #page {
 	background: url("../images/bg.png") center top repeat-y;
-	max-width: 1300px;
+	max-width: 100%;
 	margin: 0px auto;
 	min-width: 1000px;
 	min-height: 100%;
@@ -23,9 +23,9 @@ body header {
 	position: relative;
 }
 body footer {
-	height: 220px;
+	height: 250px;
 	width: 100%;
-	margin-top: -220px;
+	margin-top: -255px;
 }
 
 header img, header span {
@@ -45,6 +45,9 @@ header span p {
 	color: #ffffff;
 	padding-bottom: 5px;
 }
+header span p b {
+	font-weight: bold;
+}
 header span a {
 	font-family: 'Arial';
 	font-size: 12px;
@@ -55,18 +58,18 @@ header section {
 	position: absolute;
 	top: 100px;
 	background: url("../images/header.png") center top no-repeat;
-	width: 1300px;
+	width: 100%;
 	height: 71px;
 	overflow: hidden;
 	z-index: 3;
 }
 header ul {
 	display: inline-block;
-	margin: 4px 0px 0px 160px;
+	margin: 4px 0px 0px 180px;
 }
 header section ul:last-child {
 	float: right;
-	margin: 4px 160px 0px 0px;
+	margin: 4px 180px 0px 0px;
 }
 header ul li {
 	display: inline-block;
@@ -130,6 +133,7 @@ header i {
 #content {
 	width: 980px;
 	margin: 0px auto;
+	padding-bottom: 255px;
 }
 #content .adv {
 	background: url("../images/adv.png") center top no-repeat;
@@ -352,6 +356,105 @@ header i {
 	margin: 5px 60px;
 }
 
+footer {
+	position: relative;
+	width: 100%;
+	margin: 0px auto;
+	padding-top: 1px;
+}
+footer .menu {
+	background: url("../images/foot.png") center 75px no-repeat;
+	width: 100%;
+	height: 250px;
+	position: absolute;
+}
+footer nav {
+	display: block;
+	width: 980px;
+	margin: 80px auto 0px auto;
+	position: relative;
+	overflow: hidden;
+}
+footer ul a {
+	font-family: 'PT Sans Narrow';
+	font-weight: bold;
+	font-size: 14px;
+	color: #ffffff;
+	text-decoration: none;
+	text-transform: uppercase;
+}
+footer ul li {
+	display: inline-block;
+	padding: 10px 9px;
+	margin: 5px;
+}
+footer ul, footer input {
+	display: inline-block;
+	vertical-align: middle;
+}
+footer input {
+	font-family: 'Arial';
+	font-size: 12px;
+	color: #9fa1a2;
+	line-height: 25px;
+	margin-left: 15px;
+	float: right;
+	right: 180px;
+	margin-top: 9px;
+}
+footer nav input:last-child {
+	background: url("../images/srch.png") left center no-repeat;
+	border: none;
+	width: 192px;
+	height: 26px;
+	padding-left: 30px;
+}
+footer input.sr {
+	position: absolute;
+	right: 200px;
+	top: 10px;
+}
+
+footer section {
+	margin: 125px auto 40px auto;
+	width: 980px;
+}
+footer section img, footer section p, footer section span, footer section h6 {
+	display: inline-block;
+	vertical-align: top;
+}
+footer section span p {
+	display: block;
+	margin-top: 0px;
+}
+footer section span {
+	margin: 40px 60px 0px 60px;
+}
+footer section img {
+	width: 113px;
+	height: 73px;
+	margin: 20px 30px 0px 20px;
+}
+footer section p, footer section a {
+	font-family: 'Arial';
+	font-size: 12px;
+	line-height: 18px;
+	color: #cbcbcb;
+	margin-top: 40px;
+}
+footer section a {
+	color: #209cde;
+	margin-top: 0px;
+}
+footer section h6 {
+	font-family: 'PT Sans Narrow';
+	font-size: 24px;
+	color: #ffffff;
+	margin-top: 40px;
+}
+footer section h6 b {
+	font-weight: bold;
+}
 .content-inner {
 	margin-top: -130px !important;
 	position: relative;
