@@ -69,7 +69,7 @@ header section ul:last-child {
 header ul li {
 	display: inline-block;
 	padding: 10px 10px;
-	margin: 5px 8px;
+	margin: 5px;
 }
 header ul li.current {
 	background: url("../images/bc.png") center center repeat-x;
@@ -107,6 +107,7 @@ header ul li a {
 	text-decoration: none;
 	position: relative;
 	z-index: 4;
+	text-transform: uppercase;
 }
 header ul li.current a {
 	color: #000000;
@@ -122,4 +123,85 @@ header i {
 	left: 50%;
 	margin-left: -140px;
 	z-index: 7;
+}
+
+#content {
+	width: 980px;
+	margin: 0px auto;
+}
+#content .adv {
+	background: url("../images/adv.png") center top no-repeat;
+	height: 579px;
+	width: 100%;
+	position: relative;
+	top: -131px;
+	z-index: 6;
+}
+#content .adv h1 {
+	font-family: 'PT Sans Narrow';
+	font-weight: bold;
+	font-size: 36px;
+	color: #000000;
+	text-align: center;
+	text-transform: uppercase;
+	padding: 40px 0px 45px 0px;
+}
+#content .adv span {
+	background: url("../images/advrt.png") center top no-repeat;
+	position: absolute;
+	height: 58px;
+	width: 100%;
+	bottom: -30px;
+	display: block;
+	text-align: center;
+	vertical-align: middle;
+}
+#content .adv span a {
+	font-family: 'PT Sans';
+	font-weight: bold;
+	font-size: 24px;
+	color: #ffffff;
+	text-decoration: none;
+	line-height: 58px;
+}
+#content .adv section {
+	display: block;
+}
+#content .adv section a {
+	display: inline-block;
+	margin-left: 10px;
+	width: 310px;
+	height: 410px;
+	background: url("../images/a2.png") center top no-repeat;
+	text-decoration: none;
+}
+#content .adv section a:first-child {
+	background: url("../images/a1.png") center top no-repeat;
+}
+#content .adv section a:last-child {
+	background: url("../images/a3.png") center top no-repeat;
+}
+#content .adv section a p, #content .adv section a img, #content .adv section a i, #content .adv section a b {
+	display: block;
+	font-family: 'PT Sans';
+	font-weight: bold;
+	font-size: 16px;
+	color: #ffffff;
+	text-align: center;
+	max-width: 310px;
+}
+#content .adv section a p {
+	padding: 10px 0px 25px 0px;
+}
+#content .adv section a img {
+	width: 177px;
+	margin: 15px auto;
+}
+#content .adv section a i {
+	font-size: 14px;
+	font-family: 'PT Sans Narrow';
+}
+#content .adv section a b {
+	font-size: 32px;
+	font-family: 'PT Sans Narrow';
 }
