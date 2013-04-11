@@ -9,8 +9,8 @@ body {
 	font-size: 13px;
 }
 body #page {
-	background: url("../images/bg.png") center top repeat-y;
-	max-width: 100%;
+	background: url("../images/bg.jpg") center top repeat-y;
+	max-width: 1300px;
 	margin: 0px auto;
 	min-width: 1000px;
 	min-height: 100%;
@@ -27,14 +27,14 @@ body footer {
 	width: 100%;
 	margin-top: -255px;
 }
-
-header img, header span {
-	display: inline-block;
-	vertical-align: middle;
-	margin: 30px 220px;
+input, textarea {
+	font-family: Arial;
 }
+
 header span {
 	float: right;
+	margin-right: 220px;
+	margin-top: 25px;
 }
 header span p, header span a {
 	display: block;
@@ -65,11 +65,14 @@ header section {
 }
 header ul {
 	display: inline-block;
-	margin: 4px 0px 0px 180px;
+	margin: 4px 0px 0px 160px;
 }
 header section ul:last-child {
 	float: right;
-	margin: 4px 180px 0px 0px;
+	margin: 4px 160px 0px 0px;
+}
+header section ul:last-child li:last-child {
+	margin-right: 0px;
 }
 header ul li {
 	display: inline-block;
@@ -80,7 +83,7 @@ header ul li.current {
 	background: url("../images/bc.png") center center repeat-x;
 	position: relative;
 	height: 33px;
-	top: -7px;
+	top: -9px;
 }
 header ul li.current:before {
 	content: ".";
@@ -104,6 +107,9 @@ header ul li.current:after {
 	text-indent: -100px;
 	overflow: hidden;
 }
+header ul li:first-child {
+	margin-left: 0px;
+}
 header ul li a {
 	font-family: 'PT Sans Narrow';
 	font-weight: bold;
@@ -113,11 +119,15 @@ header ul li a {
 	position: relative;
 	z-index: 4;
 	text-transform: uppercase;
+	text-shadow: 1px 1px 2px #666666;
+    filter: dropshadow(color=#666666, offx=1, offy=1);
 }
 header ul li.current a {
 	color: #000000;
 	position: relative;
-	top: 7px;
+	top: 9px;
+	text-shadow: 1px 1px 2px #ffffff;
+    filter: dropshadow(color=#ffffff, offx=1, offy=1);
 }
 header i {
 	background: url("../images/logo.png") center top no-repeat;
@@ -136,7 +146,7 @@ header i {
 	padding-bottom: 255px;
 }
 #content .adv {
-	background: url("../images/adv.png") center top no-repeat;
+	background: url("../images/adv.jpg") center top no-repeat;
 	height: 579px;
 	width: 100%;
 	position: relative;
@@ -169,6 +179,8 @@ header i {
 	color: #ffffff;
 	text-decoration: none;
 	line-height: 58px;
+	text-shadow: 1px 1px 2px #666666;
+    filter: dropshadow(color=#666666, offx=1, offy=1);
 }
 #content .adv section {
 	display: block;
@@ -199,6 +211,8 @@ header i {
 #content .adv section a p {
 	padding: 10px 0px 25px 0px;
 	text-transform: uppercase;
+	text-shadow: 1px 1px 2px #666666;
+    filter: dropshadow(color=#666666, offx=1, offy=1);
 }
 #content .adv section a img {
 	width: 177px;
@@ -208,6 +222,8 @@ header i {
 	font-size: 14px;
 	font-family: 'PT Sans Narrow';
 	padding-left: 11px;
+	text-shadow: 1px 1px 2px #666666;
+    filter: dropshadow(color=#666666, offx=1, offy=1);
 }
 #content .adv section a b {
 	font-size: 32px;
@@ -226,15 +242,16 @@ header i {
 	color: #ffffff;
 	text-transform: uppercase;
 	text-align: center;
-	padding-top: 80px;
+	padding-top: 70px;
+	line-height: 150%;
 }
 #content .com i, #content .com_1 {	
-	background: url("../images/comt.png") center top no-repeat;
+	background: url("../images/comt.jpg") center top no-repeat;
 	width: 100%;
 	display: block;
 }
 #content .com b, #content .com_2 {	
-	background: url("../images/comb.png") center bottom no-repeat;
+	background: url("../images/comb.jpg") center bottom no-repeat;
 	min-height: 860px;
 	width: 100%;
 	display: block;
@@ -290,6 +307,9 @@ header i {
 	font-size: 16px;
 	color: #ffffff;
 	padding-top: 10px;
+	text-transform: uppercase;
+	text-shadow: 1px 1px 2px #666666;
+    filter: dropshadow(color=#666666, offx=1, offy=1);
 }
 #content .com .plu .sort:first-child h3 {
 	background: url("../images/sr1.png") center center no-repeat;
@@ -382,6 +402,8 @@ footer ul a {
 	color: #ffffff;
 	text-decoration: none;
 	text-transform: uppercase;
+	text-shadow: 1px 1px 2px #666666;
+    filter: dropshadow(color=#666666, offx=1, offy=1);
 }
 footer ul li {
 	display: inline-block;
@@ -418,6 +440,8 @@ footer input.sr {
 footer section {
 	margin: 125px auto 40px auto;
 	width: 980px;
+	position: relative;
+	z-index: 20;
 }
 footer section img, footer section p, footer section span, footer section h6 {
 	display: inline-block;
@@ -515,6 +539,8 @@ footer section h6 b {
 	text-decoration: none;
 	font-family: 'PT Sans';
 	font-weight: bold;
+	text-shadow: 1px 1px 2px #666666;
+    filter: dropshadow(color=#666666, offx=1, offy=1);
 }
 .left_nav ul li:first-child {
 	margin-top: 0px;
@@ -543,6 +569,8 @@ footer section h6 b {
 	text-decoration: none;
 	font-family: 'PT Sans';
 	font-weight: bold;
+	text-shadow: 1px 1px 2px #666666;
+    filter: dropshadow(color=#666666, offx=1, offy=1);
 }
 
 .article {
@@ -664,6 +692,8 @@ footer section h6 b {
 	font-weight: bold;
 	padding: 0px 0px 0px 20px;
 	text-align: left;
+	text-shadow: 1px 1px 2px #666666;
+    filter: dropshadow(color=#666666, offx=1, offy=1);
 }
 .two-cell .right table td {
 	padding: 20px 20px 10px 20px;
@@ -697,4 +727,31 @@ footer section h6 b {
 .inset-image img {
 	float: right;
 	padding: 10px 0px 0px 20px;
+}
+
+.social {
+	display: inline-block;
+	vertical-align: middle;
+	margin: 30px 0px 0px 175px;
+}
+.social li {
+	display: inline-block;
+	margin: 0;
+	margin-right: 5px;
+	padding: 0;
+}
+.social li a {
+	background: url("../images/sex.png") left top no-repeat;
+	width: 23px;
+	height: 24px;
+	display: inline-block;
+}
+.social li.vk a {
+	background-position: -31px 0px;
+}
+.social li.tw a {
+	background-position: -62px 0px;
+}
+.social li.od a {
+	background-position: -93px 0px;
 }

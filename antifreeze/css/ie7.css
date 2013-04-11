@@ -1,0 +1,13 @@
+.social li, .social, header ul li, footer ul li, footer section *  {
+	display: inline;
+	zoom: 1;
+}
+.social {
+	float: left;
+}
+header section {
+	left: 0px;
+}
+header ul:first-child {
+	float: left;
+}
