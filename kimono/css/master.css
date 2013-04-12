@@ -15,6 +15,62 @@ header {
 	font-size: 14px;
 	padding-bottom: 400px;
 }
+header .logo {
+	background: url("../img/frame.png") center top no-repeat;
+	position: absolute;
+	width: 215px;
+	height: 190px;
+	left: 50%;
+	margin-left: -450px;
+	z-index: 8;
+}
+header .logo.in {
+	margin-left: 230px;
+}
+header .logo.in em {
+	background: url("../img/login.jpg") center center no-repeat;
+}
+header .logo em {
+	background: url("../img/logo.jpg") center center no-repeat;
+	position: absolute;
+	width: 175px;
+	height: 148px;
+	margin: 20px 21px;
+}
+header .logo.in input {
+	background: url("../img/log-in.jpg") center top no-repeat;
+	width: 124px;
+	height: 19px;
+	font-family: 'Century Gothic';
+	font-size: 14px;
+	color: #554c3e;
+	line-height: 16px;
+	display: block;
+	border: none;
+	margin: 8px 0px 0px 10px;
+	padding-left: 10px;
+}
+header .logo.in input.log {
+	background: url("../img/in.png") center top no-repeat;
+	width: 91px;
+	height: 38px;
+	font-family: 'geisha';
+	font-size: 18px;
+	color: #762f26;
+	line-height: 45px;
+	margin: 8px 0px 5px 50px;
+	cursor: pointer;
+}
+header .logo.in a {
+	font-family: 'Century Gothic';
+	font-size: 14px;
+	color: #ebe7dc;
+	margin-left: 15px;
+}
+header .logo.in a.frgt {
+	font-size: 12px;
+	margin-left: 20px;
+}
 header b {
 	font-family: 'Century Gothic';
 	font-size: 18px;
@@ -54,6 +110,11 @@ header img.wallet {
 }
 header img.galery {
 	margin: 159px 0px 0px 0px;
+}
+header img.reg {
+	margin: 160px 0px 0px 0px;
+	width: 336px;
+	height: 452px;
 }
 header sub {
 	background: url("../img/hbg.jpg") left top repeat-x;
@@ -102,7 +163,7 @@ header section {
 }
 header section:last-child {
 	text-align: left;
-	left: 765px;
+	left: 770px;
 }
 header section a {
 	font-weight: bold;
@@ -319,4 +380,51 @@ footer b {
 }
 #content .else span.lr:last-child {
 	background: url("../img/right.png") center center no-repeat;
+}
+
+header form.reg {
+	position: absolute;
+	z-index: 10;
+	top: 180px;
+	left: 50%;
+	margin-left: -170px;
+	width: 340px;
+}
+header form.reg p {
+	text-align: right;
+	font-family: 'Century Gothic';
+	font-size: 14px;
+	color: #eae4ca;
+	width: 100px;
+	display: inline-block;
+}
+header form.reg input {
+	background: url("../img/fill.jpg") left center no-repeat;
+	border: none;
+	font-family: 'Century Gothic';
+	font-size: 14px;
+	color: #554c3e;
+	line-height: 16px;
+	padding-left: 10px;
+	width: 194px;
+	height: 19px;
+	display: inline-block;
+	margin: 5px 10px 10px 20px;
+}
+header form.reg input.rgs {
+	background: url("../img/rgs.png") center center no-repeat;
+	width: 213px;
+	height: 42px;
+	font-family: 'geisha';
+	font-size: 18px;
+	color: #762f26;
+	line-height: 45px;
+	display: block;
+	margin: 10px auto;
+}
+header form.reg img {
+	display: block;
+	width: 95px;
+	height: 45px;
+	margin: 10px 0px 20px 170px;
 }
