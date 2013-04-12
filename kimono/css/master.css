@@ -5,6 +5,7 @@ body {
 	background: url("../img/bg.png") center top repeat;
 	z-index: 1;
 	height: 100%;
+	min-width: 1000px;
 }
 #all {	
 	min-height: 100%;
@@ -18,11 +19,16 @@ header b {
 	font-family: 'Century Gothic';
 	font-size: 18px;
 	color: #ffffff;
-	width: 30px;
-	margin: -28px auto;
+	width: 51px;
+	height: 47px;
 	text-align: center;
 	display: block;
-	padding-left: 13px;
+	background: url("../img/wal.png") 0px 0px no-repeat;	
+	line-height: 58px;
+	position: absolute;
+	left: 50%;
+	margin-left: -18px;
+	bottom: 7px;
 }
 header i {
 	background: url("../img/header.jpg") center -155px no-repeat;
@@ -46,6 +52,9 @@ header img.cloth {
 header img.wallet {
 	margin: 265px 0px 0px 0px;
 }
+header img.galery {
+	margin: 159px 0px 0px 0px;
+}
 header sub {
 	background: url("../img/hbg.jpg") left top repeat-x;
 	z-index: 2;
@@ -56,10 +65,10 @@ header sub {
 }
 header sup {
 	background: url("../img/hg.jpg") left top repeat-x;
-	height: 187px;
+	height: 191px;
 	width: 100%;
 	position: absolute;
-	top: 73px;
+	top: 70px;
 }
 header span {
 	color: #ffffff;
@@ -77,6 +86,10 @@ header span h1 {
 	margin-top: 50px;
 	font-size: 30px;
 	font-family: 'geisha';
+}
+header span h1.short {
+	margin-top: 60px;
+	font-size: 20px;
 }
 header section {
 	color: #762f26;
@@ -104,42 +117,47 @@ header section h2 a {
 }
 
 #content {
-	width: 1024px;
+	width: 1000px;
 	margin: 0px auto;
 }
 #content h2 {
 	font-size: 36px;
 	color: #554c3e;
 	text-align: center;
-	margin: 30px 0px 20px 0px;
+	margin: 50px 0px 30px 0px;
 	font-family: 'geisha';
 }
 #content p, #content b {
 	font-family: 'Century Gothic';
 	font-size: 14px;
 	line-height: 20px;
-	color: #000000;
+	color: #554c3e;
 	text-align: center;
 	padding: 10px 0px;
 }
-#content section {
+#content section.tk {
 	height: auto;
 }
 #content b {
-	width: 430px;
+	width: 468px;
 	vertical-align: middle;
 	padding-right: 50px;
 	display: inline-block;
 }
+#content b.h7 {
+	width: auto;
+	display: block;
+	padding: 15px 0px;
+}
 #content strong {
 	font-weight: bold;
 }
-#content section img {
+#content section.tk img {
 	width: auto;
 	text-align: center;
 	vertical-align: middle;
 	display: inline-block;
-	padding: 20px 180px;
+	padding: 25px 150px;
 }
 
 footer {
@@ -241,4 +259,64 @@ footer b {
 	font-family: 'geisha';
 	font-size: 18px;
 	color: #631e1e;
+}
+
+#content .gal {
+	display: block;
+	margin: 70px auto;
+	width: 850px
+}
+#content .gal .prod {
+	display: inline-block;
+	width: 200px;
+	margin: 0px 20px 0px 60px;
+}
+#content .gal .prod img, #content .gal .prod p, #content .gal .prod i, #content .gal .prod a {
+	display: block;
+	text-align: center;
+	width: 200px;
+	height: auto;
+	font-family: 'Century Gothic';
+	font-size: 14px;
+	color: #631e1e;
+	padding-bottom: 10px;
+}
+#content .gal .prod p {
+	color: #554c3e;
+	font-size: 16px;
+}
+#content .gal .prod i {
+	font-weight: bold;
+	font-size: 18px;
+}
+#content .else {
+	display: block;
+	width: 410px;
+	margin: 0px auto 50px auto;
+	position: relative;
+	left: 30px;
+}
+#content .else a {
+	font-family: 'Century Gothic';
+	font-size: 14px;
+	color: #631e1e;
+	text-decoration: none;
+	padding: 0px 10px;
+}
+#content .else a.current {
+	font-weight: bold;
+	color: #554c3e;
+	font-size: 15px;
+}
+#content .else span.lr {
+	min-height: 14px;
+	min-width: 24px;
+	display: inline-block;
+	padding: 0px 25px;
+}
+#content .else span.lr:first-child {
+	background: url("../img/left.png") center center no-repeat;
+}
+#content .else span.lr:last-child {
+	background: url("../img/right.png") center center no-repeat;
 }
