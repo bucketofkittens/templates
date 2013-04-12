@@ -25,7 +25,7 @@ header .logo {
 	z-index: 8;
 }
 header .logo.in {
-	margin-left: 230px;
+	margin-left: 232px;
 }
 header .logo.in em {
 	background: url("../img/login.jpg") center center no-repeat;
@@ -243,9 +243,9 @@ footer sup {
 	display: block;
 }
 footer p {
-	font-size: 18px;
+	font-size: 17px;
 	color: #6c3911;
-	padding: 20px 190px;
+	padding: 20px 160px;
 	display: inline-block;
 	font-family: 'geisha';
 }
