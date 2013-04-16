@@ -6,6 +6,8 @@
 		<title>TITLE</title>
 		<!--[if lt IE 9]>
 			<script src="./js/html5.js"></script>
+			<script src="./js/PIE.js"></script>
+			<link rel="stylesheet" href="./css/ie8.css" />
 		<![endif]-->
 		<!--[if lt IE 8]>
 			<link rel="stylesheet" href="./css/ie7.css" />
@@ -14,29 +16,34 @@
 	<body>
 		<div id="page">
 			<header>
-				<ul class="social">
-					<li class="fb"><a href=""></a></li>
-					<li class="vk"><a href=""></a></li>
-					<li class="tw"><a href=""></a></li>
-					<li class="od"><a href=""></a></li>
-				</ul>
-				<span>
-					<p>(495) <b>966-08-09<b/></p>
-					<a href="#">info@spektrogen.ru</a>
-				</span>
+				<div class="center">
+					<ul class="social">
+						<li class="fb"><a href=""></a></li>
+						<li class="vk"><a href=""></a></li>
+						<li class="tw"><a href=""></a></li>
+						<li class="od"><a href=""></a></li>
+					</ul>
+					<span>
+						<p>(495) <b>966-08-09</b></p>
+						<a href="#">info@spektrogen.ru</a>
+					</span>
+				</div>
 				<a href="#"><i></i></a>
 				<section>
-					<ul>
-						<li class="current"><a href="#">Главная</a></li>
-						<li><a href="#">Каталог Антифризов</a></li>
-						<li><a href="#">Техподдержка</a></li>
-					</ul>
-					<ul>
-						<li><a href="#">Статьи</a></li>
-						<li><a href="#">Где купить</a></li>
-						<li><a href="#">О компании</a></li>
-						<li><a href="#">Контакты</a></li>
-					</ul>
+					<nav>
+						<ul>
+							<li class="current"><a href="#">Главная</a></li>
+							<li><a href="#">Каталог Антифризов</a></li>
+							<li><a href="#">Техподдержка</a></li>
+						</ul>
+						<ul class="last">
+							<li><a href="#">Статьи</a></li>
+							<li><a href="#">Где купить</a></li>
+							<li><a href="#">О компании</a></li>
+							<li class="last"><a href="#">Контакты</a></li>
+						</ul>
+					</nav>
+					<sapan class="right_bg"></sapan>
 				</section>
 			</header>
 			<div id="content">
@@ -44,18 +51,18 @@
 					<h1>Инновационные антифризы для автотранспорта</h1>
 					<section>
 						<a href="#">
-							<p>Антифризы для быстрого <br />прогрева двигателя</p>
-							<img src="./images/ad1.png" alt="">
+							<p>Антифризы для быстрого прогрева двигателя</p>
+							<img src="./images/ad1.png" alt="" />
 							<i>от<b>2200</b>рублей</i>
 						</a>
 						<a href="#">
-							<p>Антифризы повышенной <br />экологичности</p>
-							<img src="./images/ad2.png" alt="">
+							<p>Антифризы повышенной экологичности</p>
+							<img src="./images/ad2.png" alt="" />
 							<i>от<b>2200</b>рублей</i>
 						</a>
-						<a href="#">
-							<p>Классический антифриз <br />ОЖ-40</p>
-							<img src="./images/ad3.png" alt="">
+						<a href="#" class="last">
+							<p>Классический антифриз ОЖ&mdash;40</p>
+							<img src="./images/ad3.png" alt="" />
 							<i>от<b>2200</b>рублей</i>
 						</a>
 					</section>	
@@ -64,34 +71,34 @@
 				<div class="com">
 					<i>
 						<b>
-							<h1>Нетоксичные, энергосебергающие антифризы Spectrogen -<br />лучшие антифризы для замены тосола</h1>
+							<h1>НЕТОКСИЧНЫЕ, ЭНЕРГОСЕБЕРГАЮЩИЕ АНТИФРИЗЫ SPECTROGEN&nbsp;&mdash; ЛУЧШИЕ АНТИФРИЗЫ ДЛЯ ЗАМЕНЫ ТОСОЛА</h1>
 							<section class="plu">
 								<div class="sort">
-									<img src="./images/s1.png" alt="">
+									<div class="image"><img src="./images/s1.png" alt="" /></div>
 									<span class="srt">
 										<h3>энергоэффективность</h3>
-										<p>Экономия энергии <br />до 20%!</p>
+										<p>Экономия энергии до 20%!</p>
 									</span>
 								</div>
-								<div class="sort">
-									<img src="./images/s2.png" alt="">
+								<div class="sort item2">
+									<div class="image"><img src="./images/s2.png" alt="" /></div>
 									<span class="srt">
 										<h3>низкая вязкость</h3>
-										<p>Эксплуатация <br />до -40 ос</p>
+										<p>Эксплуатация до -40 ос</p>
 									</span>
 								</div>
-								<div class="sort">
-									<img src="./images/s3.png" alt="">
+								<div class="sort item3">
+									<div class="image"><img src="./images/s3.png" alt="" /></div>
 									<span class="srt">
 										<h3>высокая надежность</h3>
-										<p>Надежная защита от <br />коррозии</p>
+										<p>Надежная защита от коррозии</p>
 									</span>
 								</div>
-								<div class="sort">
-									<img src="./images/s4.png" alt="">
+								<div class="sort item4">
+									<div class="image"><img src="./images/s4.png" alt="" /></div>
 									<span class="srt">
 										<h3>пожаробезопасность</h3>
-										<p>Высочайшие показатели <br />безопастности</p>
+										<p>Высочайшие показатели безопастности</p>
 									</span>
 								</div>
 							</section>
@@ -116,19 +123,21 @@
 		</div>
 		<footer>
 			<div class="menu">
-				<nav>
-					<ul>
-						<li><a href="#">Главная</a></li>
-						<li><a href="#">Каталог Антифризов</a></li>
-						<li><a href="#">Техподдержка</a></li>
-						<li><a href="#">Статьи</a></li>
-						<li><a href="#">Где купить</a></li>
-						<li><a href="#">О компании</a></li>
-						<li><a href="#">Контакты</a></li>
-					</ul>
-					<input  class="sr" type="image" src="./images/search.png" />
-					<input type="text" placeholder="Поиск по сайту" value="" />
-				</nav>
+				<div class="menu_sub">
+					<nav>
+						<ul>
+							<li><a href="#">Главная</a></li>
+							<li><a href="#">Каталог Антифризов</a></li>
+							<li><a href="#">Техподдержка</a></li>
+							<li><a href="#">Статьи</a></li>
+							<li><a href="#">Где купить</a></li>
+							<li><a href="#">О компании</a></li>
+							<li><a href="#">Контакты</a></li>
+						</ul>
+						<input  class="sr" type="image" src="./images/search.png" />
+						<input type="text" class="text" placeholder="Поиск по сайту" value="" />
+					</nav>
+				</div>
 			</div>
 			<section>
 				<img src="./images/logo.png" alt="">
@@ -141,5 +150,10 @@
 				<h6>(495) <b>966-08-09</b></h6>
 			</section>
 		</footer>
+		<script type="text/javascript" src="./js/jquery-1.9.1.min.js"></script>
+		<script type="text/javascript" src="./js/jquery-migrate-1.1.1.min.js"></script>
+		<script type="text/javascript" src="./js/modernizr.custom.77422.js"></script>
+		<script type="text/javascript" src="./js/text-shadow.min.js"></script>
+		<script type="text/javascript" src="./js/default.js"></script>
 	</body>
 </html>

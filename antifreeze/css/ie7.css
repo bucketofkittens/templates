@@ -11,3 +11,33 @@ header section {
 header ul:first-child {
 	float: left;
 }
+footer .menu {
+	zoom: 1;
+}
+footer .menu_sub {
+	zoom: 1;
+}
+footer ul, footer input, footer section img, footer section p, footer section span, footer section h6 {
+	zoom: 1;
+	display: inline;
+}
+body footer {
+	zoom: 1;
+	padding-top: 1px;
+}
+footer section {
+	padding-top: 125px;
+	margin-top: 0px;
+}
+footer nav {
+	zoom: 1;
+}
+footer .menu {
+	left: 0px;
+}
+footer ul {
+	float: left;
+}
+footer nav input.text {
+	float: right;
+}

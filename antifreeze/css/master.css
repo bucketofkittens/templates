@@ -8,15 +8,16 @@ body {
 	font-family: Arial;
 	font-size: 13px;
 }
+body a:hover {
+	text-decoration: none;
+}
 body #page {
 	background: url("../images/bg.jpg") center top repeat-y;
-	max-width: 1300px;
 	margin: 0px auto;
 	min-width: 1000px;
 	min-height: 100%;
 }
 body header {
-	background: url("../images/hbg.png") center top repeat;
 	height: 285px;
 	width: 100%;
 	overflow: hidden;
@@ -26,6 +27,8 @@ body footer {
 	height: 250px;
 	width: 100%;
 	margin-top: -255px;
+	position: relative;
+	z-index: 10;
 }
 input, textarea {
 	font-family: Arial;
@@ -52,12 +55,11 @@ header span a {
 	font-family: 'Arial';
 	font-size: 12px;
 	color: #209add;
-	text-decoration: none;
 }
 header section {
 	position: absolute;
 	top: 100px;
-	background: url("../images/header.png") center top no-repeat;
+	background: url("../images/f3.png") center 16px repeat-x;
 	width: 100%;
 	height: 71px;
 	overflow: hidden;
@@ -67,12 +69,30 @@ header ul {
 	display: inline-block;
 	margin: 4px 0px 0px 160px;
 }
-header section ul:last-child {
+header section nav {
+	background: url("../images/header.png") center top no-repeat;
+	max-width: 1300px;
+	min-width: 1000px;
+	margin: 0px auto;
+	height: 71px;
+	position: relative;
+	z-index: 10;
+}
+header section ul.last {
 	float: right;
 	margin: 4px 160px 0px 0px;
 }
-header section ul:last-child li:last-child {
+header section ul.last li.last {
 	margin-right: 0px;
+}
+header section .right_bg {
+	display: inline-block;
+	position: absolute;
+	background: url("../images/f5.png") center center repeat-x;
+	height: 54px;
+	width: 50%;
+	top: 16px;
+	right: 0px;
 }
 header ul li {
 	display: inline-block;
@@ -82,6 +102,7 @@ header ul li {
 header ul li.current {
 	background: url("../images/bc.png") center center repeat-x;
 	position: relative;
+	white-space: nowrap;
 	height: 33px;
 	top: -9px;
 }
@@ -116,18 +137,18 @@ header ul li a {
 	font-size: 14px;
 	color: #ffffff;
 	text-decoration: none;
-	position: relative;
 	z-index: 4;
 	text-transform: uppercase;
 	text-shadow: 1px 1px 2px #666666;
-    filter: dropshadow(color=#666666, offx=1, offy=1);
+}
+header ul li a:hover {
+	color: #b0e1ff;
 }
 header ul li.current a {
 	color: #000000;
 	position: relative;
 	top: 9px;
 	text-shadow: 1px 1px 2px #ffffff;
-    filter: dropshadow(color=#ffffff, offx=1, offy=1);
 }
 header i {
 	background: url("../images/logo.png") center top no-repeat;
@@ -192,11 +213,12 @@ header i {
 	height: 410px;
 	background: url("../images/a2.png") center top no-repeat;
 	text-decoration: none;
+	vertical-align: top;
 }
 #content .adv section a:first-child {
 	background: url("../images/a1.png") center top no-repeat;
 }
-#content .adv section a:last-child {
+#content .adv section a.last {
 	background: url("../images/a3.png") center top no-repeat;
 }
 #content .adv section a p, #content .adv section a img, #content .adv section a i, #content .adv section a b {
@@ -209,10 +231,9 @@ header i {
 	max-width: 310px;
 }
 #content .adv section a p {
-	padding: 10px 0px 25px 0px;
+	padding: 10px 40px 25px 40px;
 	text-transform: uppercase;
 	text-shadow: 1px 1px 2px #666666;
-    filter: dropshadow(color=#666666, offx=1, offy=1);
 }
 #content .adv section a img {
 	width: 177px;
@@ -223,7 +244,6 @@ header i {
 	font-family: 'PT Sans Narrow';
 	padding-left: 11px;
 	text-shadow: 1px 1px 2px #666666;
-    filter: dropshadow(color=#666666, offx=1, offy=1);
 }
 #content .adv section a b {
 	font-size: 32px;
@@ -244,6 +264,8 @@ header i {
 	text-align: center;
 	padding-top: 70px;
 	line-height: 150%;
+	padding-right: 60px;
+	padding-left: 60px;
 }
 #content .com i, #content .com_1 {	
 	background: url("../images/comt.jpg") center top no-repeat;
@@ -262,6 +284,17 @@ header i {
 	height: 63px;
 	width: 100%;
 	bottom: -33px;
+	display: block;
+	text-align: center;
+	vertical-align: middle;
+}
+#content .com span.w2 {
+	background: url("../images/w2.png") center top no-repeat;
+	position: absolute;
+	height: 6px;
+	width: 100%;
+	bottom: -6px;
+	left: 0px;
 	display: block;
 	text-align: center;
 	vertical-align: middle;
@@ -285,13 +318,14 @@ header i {
 	display: block;	
 	margin: 0px 0px 40px 30px;
 }
-#content .com .plu .sort img, #content .com .plu .sort .srt {
+#content .com .plu .sort .image, #content .com .plu .sort .srt {
 	display: inline-block;
 	vertical-align: middle;
 }
-#content .com .plu .sort img {
+#content .com .plu .sort .image {
 	width: 108px;
 	margin-right: 10px;
+	text-align: center;
 }
 #content .com .plu .sort h3, #content .com .plu .sort p {
 	display: block;
@@ -309,15 +343,14 @@ header i {
 	padding-top: 10px;
 	text-transform: uppercase;
 	text-shadow: 1px 1px 2px #666666;
-    filter: dropshadow(color=#666666, offx=1, offy=1);
 }
-#content .com .plu .sort:first-child h3 {
+#content .com .plu .sort.item2 h3 {
 	background: url("../images/sr1.png") center center no-repeat;
 }
-#content .com .plu .sort:nth-child(3) h3 {
+#content .com .plu .sort.item3 h3 {
 	background: url("../images/sr3.png") center center no-repeat;
 }
-#content .com .plu .sort:last-child h3 {
+#content .com .plu .sort.item4 h3 {
 	background: url("../images/sr4.png") center center no-repeat;
 }
 #content .com .plu .sort p {
@@ -325,9 +358,15 @@ header i {
 	font-weight: bold;
 	font-size: 14px;
 	color: #444444;
+	padding: 0px 30px 0px 30px;
+	width: 160px;
+	text-align: center;
 }
 #content .com .plu .sort:nth-child(2n) p {
 	color: #ffffff;
+}
+#content .com .tos {
+	width: 510px;
 }
 #content .com .tos h2 {
 	color: #272525;
@@ -383,10 +422,16 @@ footer {
 	padding-top: 1px;
 }
 footer .menu {
-	background: url("../images/foot.png") center 75px no-repeat;
+	background: url("../images/f2.png") center 75px repeat-x;
 	width: 100%;
 	height: 250px;
 	position: absolute;
+	overflow: hidden;
+}
+footer .menu_sub {
+	background: url("../images/foot.png") top 75px no-repeat;
+	width: 100%;
+	height: 250px;
 }
 footer nav {
 	display: block;
@@ -403,11 +448,13 @@ footer ul a {
 	text-decoration: none;
 	text-transform: uppercase;
 	text-shadow: 1px 1px 2px #666666;
-    filter: dropshadow(color=#666666, offx=1, offy=1);
+}
+footer ul a:hover {
+	color: #b0e1ff;
 }
 footer ul li {
 	display: inline-block;
-	padding: 10px 9px;
+	padding: 11px 9px;
 	margin: 5px;
 }
 footer ul, footer input {
@@ -424,7 +471,7 @@ footer input {
 	right: 180px;
 	margin-top: 9px;
 }
-footer nav input:last-child {
+footer nav input.text {
 	background: url("../images/srch.png") left center no-repeat;
 	border: none;
 	width: 192px;
@@ -533,6 +580,9 @@ footer section h6 b {
 	line-height: 37px;
 	padding: 0px 0px 0px 15px;
 }
+.left_nav ul li:hover, .left_nav ul li.current {
+	background: url("../images/i1_hover.png") left top no-repeat;
+}
 .left_nav ul li a {
 	color: #ffffff;
 	font-size: 16px;
@@ -540,7 +590,7 @@ footer section h6 b {
 	font-family: 'PT Sans';
 	font-weight: bold;
 	text-shadow: 1px 1px 2px #666666;
-    filter: dropshadow(color=#666666, offx=1, offy=1);
+	display: block;
 }
 .left_nav ul li:first-child {
 	margin-top: 0px;
@@ -570,7 +620,8 @@ footer section h6 b {
 	font-family: 'PT Sans';
 	font-weight: bold;
 	text-shadow: 1px 1px 2px #666666;
-    filter: dropshadow(color=#666666, offx=1, offy=1);
+	display: block;
+	line-height: 54px;
 }
 
 .article {
@@ -693,7 +744,6 @@ footer section h6 b {
 	padding: 0px 0px 0px 20px;
 	text-align: left;
 	text-shadow: 1px 1px 2px #666666;
-    filter: dropshadow(color=#666666, offx=1, offy=1);
 }
 .two-cell .right table td {
 	padding: 20px 20px 10px 20px;
@@ -746,6 +796,9 @@ footer section h6 b {
 	height: 24px;
 	display: inline-block;
 }
+.social li a:hover {
+	background: url("../images/sex2.png") left top no-repeat;
+}
 .social li.vk a {
 	background-position: -31px 0px;
 }
@@ -754,4 +807,10 @@ footer section h6 b {
 }
 .social li.od a {
 	background-position: -93px 0px;
+}
+
+.center {
+	max-width: 1300px;
+	min-width: 1000px;
+	margin: 0px auto;
 }

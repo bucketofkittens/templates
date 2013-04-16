@@ -6,6 +6,8 @@
 		<title>TITLE</title>
 		<!--[if lt IE 9]>
 			<script src="./js/html5.js"></script>
+			<script src="./js/PIE.js"></script>
+			<link rel="stylesheet" href="./css/ie8.css" />
 		<![endif]-->
 		<!--[if lt IE 8]>
 			<link rel="stylesheet" href="./css/ie7.css" />
@@ -14,29 +16,34 @@
 	<body>
 		<div id="page">
 			<header>
-				<ul class="social">
-					<li class="fb"><a href=""></a></li>
-					<li class="vk"><a href=""></a></li>
-					<li class="tw"><a href=""></a></li>
-					<li class="od"><a href=""></a></li>
-				</ul>
-				<span>
-					<p>(495) 966-08-09</p>
-					<a href="#">info@spektrogen.ru</a>
-				</span>
+				<div class="center">
+					<ul class="social">
+						<li class="fb"><a href=""></a></li>
+						<li class="vk"><a href=""></a></li>
+						<li class="tw"><a href=""></a></li>
+						<li class="od"><a href=""></a></li>
+					</ul>
+					<span>
+						<p>(495) <b>966-08-09</b></p>
+						<a href="#">info@spektrogen.ru</a>
+					</span>
+				</div>
 				<a href="#"><i></i></a>
 				<section>
-					<ul>
-						<li class="current"><a href="#">Главная</a></li>
-						<li><a href="#">Каталог Антифризов</a></li>
-						<li><a href="#">Техподдержка</a></li>
-					</ul>
-					<ul>
-						<li><a href="#">Статьи</a></li>
-						<li><a href="#">Где купить</a></li>
-						<li><a href="#">О компании</a></li>
-						<li><a href="#">Контакты</a></li>
-					</ul>
+					<nav>
+						<ul>
+							<li class="current"><a href="#">Главная</a></li>
+							<li><a href="#">Каталог Антифризов</a></li>
+							<li><a href="#">Техподдержка</a></li>
+						</ul>
+						<ul  class="last">
+							<li><a href="#">Статьи</a></li>
+							<li><a href="#">Где купить</a></li>
+							<li><a href="#">О компании</a></li>
+							<li class="last"><a href="#">Контакты</a></li>
+						</ul>
+					</nav>
+					<sapan class="right_bg"></sapan>
 				</section>
 			</header>
 			<div id="content" class="content-inner">
@@ -48,7 +55,7 @@
 									<nav class="left_nav">
 										<span class="top"></span>
 										<ul>
-											<li><a href="">Антифриз Spektrogen GR-LV </a></li>
+											<li class="current"><a href="">Антифриз Spektrogen GR-LV </a></li>
 											<li><a href="">Антифриз Spektrogen OG</a></li>
 											<li><a href="">Антифриз Spektrogen S-LV</a></li>
 											<li><a href="">Антифриз Spektrogen S</a></li>
@@ -198,6 +205,7 @@
 									<p class="small">При заказе от 15 тонн доставка по Московской области бесплатно.</p>
 									<p class="small">Для региональных дилеров предоставляются специальные финансовые условия.</p>
 								</section>
+								<span class="w2"></span>
 							</div>
 						</div>
 					</div>
@@ -218,7 +226,7 @@
 						<li><a href="#">Контакты</a></li>
 					</ul>
 					<input  class="sr" type="image" src="./images/search.png" />
-					<input type="text" placeholder="Поиск по сайту" value="" />
+					<input type="text" class="text" placeholder="Поиск по сайту" value="" />
 				</nav>
 			</div>
 			<section>
@@ -232,5 +240,10 @@
 				<h6>(495) <b>966-08-09</b></h6>
 			</section>
 		</footer>
+		<script type="text/javascript" src="./js/jquery-1.9.1.min.js"></script>
+		<script type="text/javascript" src="./js/jquery-migrate-1.1.1.min.js"></script>
+		<script type="text/javascript" src="./js/modernizr.custom.77422.js"></script>
+		<script type="text/javascript" src="./js/text-shadow.min.js"></script>
+		<script type="text/javascript" src="./js/default.js"></script>
 	</body>
 </html>
