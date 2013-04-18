@@ -7,10 +7,16 @@
   max-width: @max-width;
 }
 
-body {
+body, html {
 	height: 100%;
+}
+
+body {
 	background: #ffffff;
-	z-index: 1;
+	#main_wrap {
+		min-height: 100%;
+		position: relative;
+	}
 	header {		
 		height: 670px;
 		.wave {
@@ -109,6 +115,7 @@ body {
 	footer {
 		background: url("../images/footer.jpg") left top repeat-x;
 		height: 220px;
+		margin-top: -220px;
 		.foot {
 			.size();
 			padding-top: 33px;
@@ -213,7 +220,7 @@ body {
 		}
 	}
 	#content {
-		min-height: 100%;
+		padding-bottom: 300px;
 		.sel {
 			display: block;
 			margin: 0px auto;
@@ -271,6 +278,133 @@ body {
 					}
 				}
 			}	
+		}
+		.main-page-box {
+			h2 {
+				font-family: 'PT Serif'; 
+				font-size: 30px;
+				padding-bottom: 15px;
+			}
+			a.d-link {
+				font-style: 16px;
+				font-family: 'PT Serif';
+				color: #3c2613;
+				padding: 0px 20px 0px 20px;
+				line-height: 30px;
+				display: inline-block;
+				background: #f4ead6;
+			}
+		}
+		.info1 {
+			.size();
+			width: 1140px;
+			margin: 0px auto;
+			padding: 60px 0px 80px 0px;
+			overflow: hidden;
+			.tour {
+				float: left;
+				width: 65%;
+				position: relative;
+				.inner {
+					padding-right: 110px;
+				}
+				img {
+					position: absolute;
+					left: 0px;
+					top: 0px;
+				}
+				h2 {
+					text-align: right;
+					line-height: 55px;
+					padding-right: 60px;
+				}
+				p {
+					float: right;
+					width: 250px;
+					color: #000000;
+					font-size: 13px;
+					font-family: 'PT Serif';
+					line-height: 22px;
+					min-height: 170px;
+				}
+				a.d-link {
+					float: right;
+					clear: both;
+					margin-right: 30px;
+				}
+			}
+			.video {
+				float: left;
+				width: 35%;
+				max-width: 350px;
+				.video_inner {
+					background: url("../images/video_bg.jpg") 55% bottom no-repeat;
+					padding-bottom: 50px;
+				}
+				a {
+					font-size: 16px;
+					text-decoration: none;
+					font-family: 'PT Serif';
+					text-align: center;
+					line-height: 20px;
+					display: block;
+					color: #3c2613;
+				}
+			}
+		}
+		.info2 {
+			.size();
+			width: 1140px;
+			margin: 0px auto;
+			overflow: hidden;
+			background: url("../images/info2_bg.png") center top no-repeat;
+			padding: 60px 0px 0px 0px;
+			.quiz {
+				float: left;
+				width: 55%;
+				position: relative;
+				img {
+					position: absolute;
+					right: 60px;
+					top: 10px;
+				}
+				p {
+					font-size: 13px;
+					i {
+						font-style: italic;
+						color: #646464;
+					}
+				}
+				h3 {
+					font-size: 18px;
+					font-weight: bold;
+					padding-bottom: 5px;
+					padding-top: 10px;
+				}
+			}
+			.tenders {
+				float: left;
+				width: 45%;
+				position: relative;
+				img {
+					position: absolute;
+					right: 60px;
+					top: 10px;
+				}
+				.text-inner {
+					padding-right: 280px;
+					color: #000000;
+					font-size: 13px;
+					font-family: 'PT Serif';
+					line-height: 22px;
+					p {
+						padding-bottom: 10px;
+					}
+					a {
+						float: right;
+					}
+				}
+			}
 		}
 		.new {
 			display: block;

@@ -34,9 +34,9 @@ input, textarea {
 	font-family: Arial;
 }
 
-header span {
+header .center-top  span {
 	float: right;
-	margin-right: 220px;
+	margin-right: 60px;
 	margin-top: 25px;
 }
 header span p, header span a {
@@ -67,7 +67,7 @@ header section {
 }
 header ul {
 	display: inline-block;
-	margin: 4px 0px 0px 160px;
+	margin: 4px 0px 0px 0px;
 }
 header section nav {
 	background: url("../images/header.png") center top no-repeat;
@@ -78,9 +78,13 @@ header section nav {
 	position: relative;
 	z-index: 10;
 }
+header section nav div {
+	width: 980px;
+	margin: 0px auto;
+}
 header section ul.last {
 	float: right;
-	margin: 4px 160px 0px 0px;
+	margin: 4px 0px 0px 0px;
 }
 header section ul.last li.last {
 	margin-right: 0px;
@@ -183,7 +187,7 @@ header i {
 	text-transform: uppercase;
 	padding: 40px 0px 45px 0px;
 }
-#content .adv span {
+#content .adv > span {
 	background: url("../images/advrt.png") center top no-repeat;
 	position: absolute;
 	height: 58px;
@@ -201,7 +205,6 @@ header i {
 	text-decoration: none;
 	line-height: 58px;
 	text-shadow: 1px 1px 2px #666666;
-    filter: dropshadow(color=#666666, offx=1, offy=1);
 }
 #content .adv section {
 	display: block;
@@ -231,7 +234,7 @@ header i {
 	max-width: 310px;
 }
 #content .adv section a p {
-	padding: 10px 40px 25px 40px;
+	padding: 10px 45px 25px 45px;
 	text-transform: uppercase;
 	text-shadow: 1px 1px 2px #666666;
 }
@@ -267,6 +270,10 @@ header i {
 	padding-right: 60px;
 	padding-left: 60px;
 }
+#content.content-inner .com h1 {
+	padding-left: 0px;
+	font-size: 36px;
+}
 #content .com i, #content .com_1 {	
 	background: url("../images/comt.jpg") center top no-repeat;
 	width: 100%;
@@ -294,6 +301,17 @@ header i {
 	height: 6px;
 	width: 100%;
 	bottom: -6px;
+	left: 0px;
+	display: block;
+	text-align: center;
+	vertical-align: middle;
+}
+#content .com span.w3 {
+	background: url("../images/w2.png") center top no-repeat;
+	position: absolute;
+	height: 6px;
+	width: 100%;
+	top: -4px;
 	left: 0px;
 	display: block;
 	text-align: center;
@@ -362,7 +380,7 @@ header i {
 	width: 160px;
 	text-align: center;
 }
-#content .com .plu .sort:nth-child(2n) p {
+#content .com .plu .sort p.white {
 	color: #ffffff;
 }
 #content .com .tos {
@@ -404,10 +422,10 @@ header i {
 #content .com .tos li:first-child {
 	background: url("../images/p1.png") left center no-repeat;
 }
-#content .com .tos li:nth-child(3) {
+#content .com .tos li.item3 {
 	background: url("../images/p3.png") left center no-repeat;
 }
-#content .com .tos li:last-child {
+#content .com .tos li.item4 {
 	background: url("../images/p4.png") left center no-repeat;
 }
 #content .com .tos img {
@@ -782,7 +800,7 @@ footer section h6 b {
 .social {
 	display: inline-block;
 	vertical-align: middle;
-	margin: 30px 0px 0px 175px;
+	margin: 30px 0px 0px 15px;
 }
 .social li {
 	display: inline-block;
@@ -812,5 +830,10 @@ footer section h6 b {
 .center {
 	max-width: 1300px;
 	min-width: 1000px;
+	margin: 0px auto;
+}
+
+.center-top {
+	width: 980px;
 	margin: 0px auto;
 }
