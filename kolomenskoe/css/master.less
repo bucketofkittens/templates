@@ -12,7 +12,7 @@ body {
 	background: #ffffff;
 	z-index: 1;
 	header {		
-		height: 590px;
+		height: 670px;
 		.wave {
 			background: url("../images/hnav.png") left top repeat-x;
 			width: 100%;
@@ -81,7 +81,7 @@ body {
 					width: 13px;
 					height: 12px;
 					&.current {
-						background: url("../images/bb.png") center center no-repeat
+						background: url("../images/bb.png") center center no-repeat;
 					}
 				}
 				a {
@@ -214,5 +214,173 @@ body {
 	}
 	#content {
 		min-height: 100%;
+		.sel {
+			display: block;
+			margin: 0px auto;
+			.size();	
+			text-align: center;
+			.slct {
+				background: url("../images/strsh.png") center 35px no-repeat;
+				height: 75px;
+				a {
+					font-family: 'PT Serif';
+					color: #3d2613;
+					font-size: 25px;	
+					padding: 35px 22px 0px 22px;
+					margin: 0px 20px;
+					text-decoration: none;
+					display: inline-block;
+					&.current {
+						color: #6b3305;
+						background: url("../images/assh.png") center -10px no-repeat;
+						height: 103px;
+						width: 277px;
+					}
+				}
+			}
+			.asrt {
+				height: 270px;
+				overflow: hidden;
+				position: relative;
+				top: 55px;
+				margin: 0px auto;
+				.srt {
+					float: left;
+					width: 620px;
+					article {
+						width: 175px;
+						height: 150px;
+						margin: 0px 14px;
+						display: inline-block;
+						text-align: center;	
+						img {
+							display: block;
+							vertical-align: top;
+							margin: 0px auto 10px auto;
+						}
+						a {
+							font-family: 'PT Serif';
+							color: #3d2714;
+							font-size: 16px;	
+							text-decoration: none;	
+							background: url("../images/par2.png") center 25px no-repeat;		
+							padding-bottom: 15px;
+							display: inline-block;
+							min-width: 81px;
+						}
+					}
+				}
+			}	
+		}
+		.new {
+			display: block;
+			background: url("../images/new.png") left top repeat-x;
+			height: 508px;
+			.nw {
+				background: url("../images/nw.png") center 58px no-repeat;
+				height: 390px;
+				position: relative;
+				.size();
+				margin: 0px auto;
+				width: 1140px;
+				h2 {
+					font-family: 'PT Serif';
+					color: #000000;
+					font-size: 40px;
+					margin: 0px 0px 20px 95px;
+					padding-top: 100px;
+					background: url("../images/par3.png") 15px 160px no-repeat;
+					width: 150px;
+					height: 70px;
+				}
+				p{
+					font-family: 'PT Serif';
+					color: #656565;
+					font-size: 20px;
+					display: block;
+					line-height: 27px;
+					margin-left: 95px;
+					padding-bottom: 40px;
+				}
+				a{
+					font-family: 'PT Serif';
+					color: #000000;
+					font-size: 15px;
+					margin-left: 95px;
+				}
+				img {
+					position: absolute;
+					left: 370px;
+					top: 0px;
+				}
+				span a.lr {
+					background: url("../images/left.png") left top no-repeat;
+					width: 24px;
+					height: 44px;
+					position: absolute;
+					margin-left: 0px;
+					top: 185px;
+				}
+				span a.rl {
+					background: url("../images/right.png") left top no-repeat;
+					width: 24px;
+					height: 44px;
+					position: absolute;
+					margin-left: 933px;
+					top: 185px;
+				}
+				.change {
+					position: absolute;
+					right: 10px;
+					bottom: 40px;
+					b {
+						display: inline-block;
+						background: url("../images/b.png") center center no-repeat;
+						width: 13px;
+						height: 12px;
+						&.current {
+							background: url("../images/bb.png") center center no-repeat;
+						}
+					}
+				}				
+			}
+			.nws {
+				background: url("../images/nws.png") center 20px no-repeat;
+				height: 75px;
+				.size();
+				margin: 0px auto;
+				width: 1140px;
+				padding-top: 23px;
+				position: relative;
+				h2 {
+					font-family: 'PT Serif';
+					color: #000000;
+					font-size: 25px;
+					display: inline-block;
+					vertical-align: middle;
+					padding-left: 20px;
+				}
+				img {
+					display: inline-block;
+					vertical-align: middle;
+					padding: 0px 10px;
+				}
+				p {
+					font-family: 'PT Serif';
+					color: #000000;
+					font-size: 14px;
+					display: inline-block;
+					vertical-align: middle;
+				}
+				span {
+					background: url("../images/right2.png") center center no-repeat;
+					width: 10px;
+					height: 20px;
+					position: absolute;
+					right: 20px;
+					top: 38px;
+				}
+			}
+		}
 	}
 }
