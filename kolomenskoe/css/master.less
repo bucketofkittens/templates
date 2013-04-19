@@ -16,9 +16,13 @@ body {
 	#main_wrap {
 		min-height: 100%;
 		position: relative;
+		width: 100%;
+		overflow: hidden;
 	}
 	header {		
 		height: 670px;
+		width: 100%;
+		overflow: hidden;
 		.wave {
 			background: url("../images/hnav.png") left top repeat-x;
 			width: 100%;
@@ -44,14 +48,16 @@ body {
 				height: 140px;
 				ul {
 					float: left;
-					white-space: nowrap;
-					margin: 0px 30px;
+					width: 50%;					
 					&:last-child {
 						float: right;
+						li {
+							float: right;
+						}
 					}
 					li {
-						display: inline-block;
-						margin: 0 40px;		
+						float: left;
+						margin: 0 6%;		
 						a {
 							color: #3d2714;
 							font-size: 15px;
@@ -246,14 +252,14 @@ body {
 				}
 			}
 			.asrt {
-				height: 270px;
 				overflow: hidden;
 				position: relative;
 				top: 55px;
 				margin: 0px auto;
+				padding-bottom: 90px;
 				.srt {
 					float: left;
-					width: 620px;
+					width: 50%;
 					article {
 						width: 175px;
 						height: 150px;
@@ -297,7 +303,8 @@ body {
 		}
 		.info1 {
 			.size();
-			width: 1140px;
+			max-width: 1140px;
+			min-width: 940px;
 			margin: 0px auto;
 			padding: 60px 0px 80px 0px;
 			overflow: hidden;
@@ -306,7 +313,7 @@ body {
 				width: 65%;
 				position: relative;
 				.inner {
-					padding-right: 110px;
+					padding-right: 15%;
 				}
 				img {
 					position: absolute;
@@ -354,7 +361,8 @@ body {
 		}
 		.info2 {
 			.size();
-			width: 1140px;
+			max-width: 1140px;
+			min-width: 940px;
 			margin: 0px auto;
 			overflow: hidden;
 			background: url("../images/info2_bg.png") center top no-repeat;
@@ -381,6 +389,9 @@ body {
 					padding-bottom: 5px;
 					padding-top: 10px;
 				}
+				.text-inner {
+					padding-right: 200px;
+				}
 			}
 			.tenders {
 				float: left;
@@ -402,6 +413,7 @@ body {
 					}
 					a {
 						float: right;
+						white-space: nowrap;
 					}
 				}
 			}
@@ -416,7 +428,7 @@ body {
 				position: relative;
 				.size();
 				margin: 0px auto;
-				width: 1140px;
+				max-width: 1140px;
 				h2 {
 					font-family: 'PT Serif';
 					color: #000000;
@@ -427,7 +439,7 @@ body {
 					width: 150px;
 					height: 70px;
 				}
-				p{
+				p {
 					font-family: 'PT Serif';
 					color: #656565;
 					font-size: 20px;
@@ -436,7 +448,7 @@ body {
 					margin-left: 95px;
 					padding-bottom: 40px;
 				}
-				a{
+				a {
 					font-family: 'PT Serif';
 					color: #000000;
 					font-size: 15px;
@@ -479,13 +491,14 @@ body {
 				}				
 			}
 			.nws {
-				background: url("../images/nws.png") center 20px no-repeat;
-				height: 75px;
 				.size();
 				margin: 0px auto;
-				width: 1140px;
-				padding-top: 23px;
+				max-width: 1140px;
+				min-width: 940px;
 				position: relative;
+				background: #f4ead6;
+				border: 3px solid #ded2bb;
+				border-radius: 10px;
 				h2 {
 					font-family: 'PT Serif';
 					color: #000000;
@@ -505,6 +518,10 @@ body {
 					font-size: 14px;
 					display: inline-block;
 					vertical-align: middle;
+					width: 72%;
+					white-space: nowrap;
+					text-overflow: ellipsis;
+					overflow: hidden;
 				}
 				span {
 					background: url("../images/right2.png") center center no-repeat;
@@ -512,9 +529,25 @@ body {
 					height: 20px;
 					position: absolute;
 					right: 20px;
-					top: 38px;
+					top: 50%;
+					margin-top: -10px;
 				}
 			}
 		}
+	}
+}
+
+@media screen and (max-width: 1100px) {
+	body #content .info1 .tour .inner {
+		padding-right: 5%;
+	}
+}
+
+@media screen and (max-width: 1030px) {
+	body header section h2 {
+		font-size: 30px;
+	}
+	body #content .main-page-box a.d-link {
+		margin-top: 10px;
 	}
 }
