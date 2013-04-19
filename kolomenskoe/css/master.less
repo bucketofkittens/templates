@@ -422,19 +422,24 @@ body {
 			display: block;
 			background: url("../images/new.png") left top repeat-x;
 			height: 508px;
+			padding-top: 1px;
 			.nw {
-				background: url("../images/nw.png") center 58px no-repeat;
-				height: 390px;
+				background: url("../images/nw.png") center top no-repeat;
 				position: relative;
 				.size();
 				margin: 0px auto;
 				max-width: 1140px;
+				min-width: 940px;
+				background-size: 100% 100%;
+				padding-bottom: 65px;
+				margin-bottom: 40px;
+				margin-top: 58px;
 				h2 {
 					font-family: 'PT Serif';
 					color: #000000;
 					font-size: 40px;
 					margin: 0px 0px 20px 95px;
-					padding-top: 100px;
+					padding-top: 26px;
 					background: url("../images/par3.png") 15px 160px no-repeat;
 					width: 150px;
 					height: 70px;
@@ -457,7 +462,7 @@ body {
 				img {
 					position: absolute;
 					left: 370px;
-					top: 0px;
+					top: -70px;
 				}
 				span a.lr {
 					background: url("../images/left.png") left top no-repeat;
@@ -465,7 +470,8 @@ body {
 					height: 44px;
 					position: absolute;
 					margin-left: 0px;
-					top: 185px;
+					top: 50%;
+					margin-top: -32px;
 				}
 				span a.rl {
 					background: url("../images/right.png") left top no-repeat;
@@ -473,7 +479,8 @@ body {
 					height: 44px;
 					position: absolute;
 					margin-left: 933px;
-					top: 185px;
+					top: 50%;
+					margin-top: -32px;
 				}
 				.change {
 					position: absolute;
@@ -540,6 +547,12 @@ body {
 @media screen and (max-width: 1100px) {
 	body #content .info1 .tour .inner {
 		padding-right: 5%;
+	}
+	body #content .new .nw span a.lr, body #content .new .nw span a.rl {
+		display: none;
+	}
+	body #content .new .nw h2, body #content .new .nw p, body #content .new .nw a {
+		margin-left: 20px;
 	}
 }
 
