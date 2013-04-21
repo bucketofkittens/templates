@@ -54,6 +54,35 @@ body {
 		height: 670px;
 		width: 100%;
 		overflow: hidden;
+		&#catalog {
+			height: 270px;
+			section {
+				h2 {
+					margin-top: 15px;
+				}
+				.breadcrumbs {
+					position: absolute;
+					top: 135px;
+					width: 100%;
+					text-align: center;
+					margin-left: -15px;
+					z-index: 10;
+					a {
+					font-family: 'PT Serif';
+					font-style: 12px;
+					color: #7d6e61;
+					padding: 0px 15px 0px 0px;
+					background: url("../images/navs/1.png") right center no-repeat;
+						&.last {
+						background: url("../images/navs/2.png") right center no-repeat; 
+						}
+					}
+				}
+				nav {
+					background: url("../images/logo2.png") center 5px no-repeat;
+				}
+			}
+		}
 		.wave {
 			background: url("../images/hnav.png") left top repeat-x;
 			width: 100%;
@@ -286,6 +315,24 @@ body {
 						background: url("../images/assh.png") center -10px no-repeat;
 						height: 103px;
 						width: 277px;
+					}
+				}
+				&.content {
+					background: url("../images/strsh1.png") center 90px no-repeat;
+					height: 125px;
+					a {
+						font-size: 17px;
+						border-bottom: 1px dotted #3d2613;
+						margin: 20px;
+						padding: 0px;
+						&.current {
+							background: none;
+							border: 1px solid #ede3cc;
+							padding: 20px;
+							margin: 0px;
+							height: 17px;
+							width: auto;
+						}
 					}
 				}
 			}
