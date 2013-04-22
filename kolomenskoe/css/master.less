@@ -119,6 +119,13 @@ body {
 		overflow: hidden;
 		&#catalog {
 			height: 270px;
+			.wave {
+				background: url("../images/line2.png") left bottom repeat-x;
+				height: 115px;
+			}
+			&.prov {
+				height: 150px;
+			}
 			section {
 				h2 {
 					margin-top: 15px;
@@ -128,7 +135,7 @@ body {
 					top: 135px;
 					width: 100%;
 					text-align: center;
-					margin-left: -15px;
+					margin-left: -40px;
 					z-index: 10;
 					a {
 					font-family: 'PT Serif';
@@ -358,12 +365,65 @@ body {
 	}
 	#content {
 		padding-bottom: 300px;
-		h1 {
+		.providers {
+			position: relative;
 			text-align: center;
-			text-transform: uppercase;
-			font-size: 18px;
-			color: #6b3305;
-			padding-bottom: 50px;
+			height: 500px;
+			.size();
+			margin: 0px auto;
+			h1 {
+				font-family: 'PT Serif';
+				color: #000000;
+				font-size: 44px;
+				background: url("../images/par.png") center 55px no-repeat;
+				height: 65px;
+				margin-bottom: 50px;
+			}
+			span {
+				display: inline-block;
+				width: 400px;
+				text-align: left;
+				a {
+					font-family: 'PT Serif';
+					color: #3c2613;
+					font-size: 16px;
+					text-decoration: none;
+					background: url("../images/doc.jpg") center center no-repeat;
+					padding: 7px 40px 10px 15px;
+					display: inline-block;
+					position: relative;
+					top: -10px;
+					em {						
+						border-bottom: 1px dotted #3c2613;
+					}
+				}
+				img {
+					position: absolute;
+					left: 50px;
+					top: 10px;
+				}
+				p {
+					font-family: 'PT Serif';
+					color: #656565;
+					font-size: 13px;
+					line-height: 22px;
+					padding: 5px 0px;
+				}
+				b {
+					background: url("../images/par3.png") center center no-repeat;
+					height: 70px;
+					display: block;
+				}
+				i {
+					font-family: 'PT Serif';
+					font-size: 19px;
+					line-height: 27px;
+					font-style: italic;
+					color: #846f5e;
+					text-align: center;
+					display: block;
+				}
+			}
 		}
 		.sel {
 			display: block;
@@ -627,6 +687,85 @@ body {
 			background: url("../images/new.png") left top repeat-x;
 			height: 508px;
 			padding-top: 1px;
+			&.provider {
+				background: url("../images/new1.png") left top repeat-x;
+				height: 371px;
+				padding-top: 1px;
+				.provide {
+					.size();
+					margin: 0px auto;
+					text-align: center;
+					h2 {
+						font-family: 'PT Serif';
+						color: #000000;
+						font-size: 40px;
+						margin: 45px auto 55px auto;
+					}
+					span {
+						width: 240px;
+						height: 170px;
+						display: inline-block;
+						text-align: left;
+						vertical-align: top;
+						margin: 0px 10px;
+						padding-left: 60px;
+						background: url("../images/v.png") left top no-repeat;
+						p {
+							font-family: 'PT Serif';
+							color: #000000;
+							font-size: 13px;
+							display: block;
+							line-height: 23px;
+							padding-bottom: 20px;
+							max-width: 200px;
+						}
+						h6 {
+							font-family: 'PT Serif';
+							color: #000000;
+							font-size: 27px;
+							padding-bottom: 22px;
+						}
+						img {
+							display: inline-block;
+							vertical-align: top;
+						}
+						em {
+							display: inline-block;
+							max-width: 150px;
+							padding: 3px 0px 0px 15px;
+							b {
+								font-family: 'PT Serif';
+								color: #000000;
+								font-size: 13px;
+								font-weight: bold;
+								display: block;
+								padding-bottom: 5px;
+							}
+						}
+						i {
+							font-family: 'PT Serif';
+							color: #646464;
+							font-size: 13px;
+							line-height: 17px;
+							font-style: italic;
+							display: block;
+						}
+						a {
+							font-family: 'PT Serif';
+							color: #3c2613;
+							font-size: 16px;
+							text-decoration: none;
+							background: #f4ead6;
+							padding: 7px 30px 10px 20px;
+							display: inline-block;
+							margin-bottom: 20px;
+							h5 {						
+								border-bottom: 1px solid #3c2613;
+							}
+						}
+					}
+				}
+			}
 			.nw {
 				background: url("../images/nw.png") center top no-repeat;
 				position: relative;
@@ -742,6 +881,48 @@ body {
 					right: 20px;
 					top: 50%;
 					margin-top: -10px;
+				}
+			}
+		}
+		.provid {
+			.size();
+			margin: 0px auto;
+			h2 {
+				margin-top: 40px;
+				font-family: 'PT Serif';
+				color: #000000;
+				font-size: 30px;
+				text-align: center;
+			}
+			img {
+				margin: 30px auto;
+				display: block;
+			}
+			ul {
+				display: block;
+				margin: 0px auto;
+				width: 940px;
+				li {
+					display: inline-block;
+					width: 240px;
+					margin: 0px 60px 0px 10px;
+					p {
+						font-family: 'PT Serif';
+						color: #000000;
+						font-size: 13px;
+						vertical-align: top;	
+						display: inline-block;	
+						line-height: 22px;				
+					}
+					span {
+						font-family: 'PT Serif';
+						color: #846f5e;
+						font-size: 48px;
+						font-style: italic;
+						vertical-align: top;
+						line-height: 35px;
+						padding-right: 30px;
+					}
 				}
 			}
 		}
