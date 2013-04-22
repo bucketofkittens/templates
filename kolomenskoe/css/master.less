@@ -879,6 +879,101 @@ body {
 		line-height: 27px;
 	}
 }
+.info_text2 {
+	background: url("../images/bg3.jpg") left top repeat;
+	.inner1 {
+		background: url("../images/l2.png") left top repeat-x;	
+	}
+	.inner2 {
+		background: url("../images/l2.png") left bottom repeat-x;
+		padding: 40px 50px;
+	}
+	.wr {
+		width: 100%;
+		overflow: hidden;
+	}
+	.call {
+		float: left;
+		margin-right: 130px;
+		h4 {
+			font-size: 13px;
+			color: #000000;
+			margin-bottom: 14px;
+		}
+		.phone {
+			font-size: 27px;
+			color: #000000;
+			line-height: 31px;
+			padding-bottom: 18px;
+		}
+		.manager {
+			img {
+				display: inline-block;
+				vertical-align: middle;
+			}
+			.text {
+				display: inline-block;
+				vertical-align: middle;
+				width: 127px;
+				padding-left: 15px;
+				h5 {
+					color: #000000;
+					font-weight: bold;
+					font-size: 13px;
+					padding-bottom: 8px;
+				}
+				p {
+					font-size: 13px;
+					color: #646464;
+					font-style: italic;
+					line-height: 17px;
+				}
+			}
+		}
+	}
+	.textin, .resume {
+		float: right;
+	}
+	.textin {
+		width: 280px;
+		padding-left: 90px;
+		font-size: 13px;
+		color: #000000;
+		line-height: 25px;
+		padding-top: 23px;
+		a {
+			color: #000000;
+		}
+	}
+	.resume {
+		h4 {
+			font-size: 13px;
+			color: #000000;
+			margin-bottom: 14px;
+		}
+		.mail {
+			font-size: 27px;
+			color: #000000;
+			display: block;
+			margin-bottom: 18px;
+		}
+		p {
+			padding-bottom: 20px;
+			font-size: 13px;
+			color: #000000;
+		}
+		a.form {
+			font-size: 16px;
+			color: #3c2613;
+			font-family: 'PT Serif';
+			text-decoration: underline;
+			background: #f4ead6;
+			cursor: pointer;
+			border: 0;
+			padding: 5px 12px;
+		}
+	}
+}
 
 .about {
 	width: 95%;
@@ -1256,6 +1351,88 @@ body {
 		&.right {
 			.text {
 				padding: 0px 3% 0px 3%;
+			}
+		}
+	}
+}
+
+.work {
+	margin-top: -30px;
+	.cell1, .cell2 {
+		display: inline-block;
+		vertical-align: middle;
+	}
+	.cell1 {
+		text-align: center;
+		width: 57%;
+	}
+	.cell2 {
+		width: 35%;
+		padding-left: 3%;
+		.text {
+			font-size: 20px;
+			color: #000000;
+			line-height: 29px;
+			padding-bottom: 42px;
+			strong {
+				font-weight: bold;
+			}
+		}
+		ul {
+			background: url("../images/work/bg.png") center bottom no-repeat;
+			padding-bottom: 40px;
+			li {
+				position: relative;
+				margin: 0px 0px 0px 52px;
+				padding-left: 55px;
+				padding-bottom: 22px;
+				span {
+					position: absolute;
+					left: 0px;
+					top: 0px;
+					font-size: 48px;
+					font-style: italic;
+					color: #846f5e;
+				}
+				p {
+					font-size: 13px;
+					line-height: 23px;
+					color: #444444;
+				}
+			}
+		}
+	}
+}
+
+.welcom {
+	padding: 32px 0px 60px 0px;
+	h2 {
+		text-align: center;
+		font-size: 30px;
+		color: #000000;
+		padding-bottom: 50px;
+	}
+	ul {
+		li {
+			width: 32%;
+			display: inline-block;
+			vertical-align: middle;
+			text-align: center;
+		}
+		&.title {
+			li {
+				font-size: 16px;
+				color: #7d6e61;
+				padding-bottom: 26px;
+			}
+		}
+		&.value {
+			li {
+				font-size: 13px;
+				color: #444444;
+				padding-bottom: 74px;
+				line-height: 20px;
+				font-style: italic;
 			}
 		}
 	}
