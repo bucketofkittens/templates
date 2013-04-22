@@ -939,6 +939,32 @@ body {
 			display: block;
 			height: 585px;
 			margin: 0px auto;
+			width: 1000px;
+			form {
+				clear: both;
+				.fl {
+					float: left;
+				}
+				textarea {
+					width: 99%;
+					height: 100px;
+				}
+				.notice {
+					float: left;
+					margin-left: 5px;
+				}
+			}
+			fieldset {
+				width: 47%;
+				display: inline-block;
+				vertical-align: top;
+				span {
+					float: none !important;
+				}
+				&:first-child {
+					padding-right: 20px;
+				}
+			}
 			h2 {
 				font-family: 'PT Serif';
 				color: #000000;
@@ -948,13 +974,13 @@ body {
 			}
 			.lll {
 				display: inline-block;
-				width: 480px;
+				width: 450px;
 				overflow: hidden;
 				margin-left: 30px;
 				vertical-align: top;
 				span {
 					float: left;
-					width: 230px;
+					width: 210px;
 					height: 60px;
 					margin-bottom: 25px;
 					h4 {
@@ -995,8 +1021,8 @@ body {
 					width: 940px;
 					margin-left: 55px;
 					li {
-						display: block;
-						margin: 10px 0px;
+						display: block;  
+						margin: 10px 0px 10px 7px;
 						p {
 							font-family: 'PT Serif';
 							color: #000000;
@@ -1011,7 +1037,7 @@ body {
 							font-style: italic;
 							vertical-align: top;
 							line-height: 15px;
-							padding-right: 15px;
+							padding-right: 10px;
 						}
 					}
 				}
