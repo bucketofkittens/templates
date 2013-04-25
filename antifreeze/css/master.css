@@ -274,12 +274,12 @@ header i {
 	padding-left: 0px;
 	font-size: 36px;
 }
-#content .com i, #content .com_1 {	
+#content .com .not-i, #content .com_1 {	
 	background: url("../images/comt.jpg") center top no-repeat;
 	width: 100%;
 	display: block;
 }
-#content .com b, #content .com_2 {	
+#content .com .not-b, #content .com_2 {	
 	background: url("../images/comb.jpg") center bottom no-repeat;
 	min-height: 860px;
 	width: 100%;
