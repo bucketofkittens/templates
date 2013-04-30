@@ -6,7 +6,7 @@ var ImagesList = {
 		"MAP": "./images/map/zoom1.png",
 		"SVG": "svg/zoom1.svg",
 		"VIDEO": {
-			"5": "video/zoom1-in.mp4"
+			"5": "video/zoom1-in.webmhd.webm"
 		}
 	},
 	"ZOOM2": {

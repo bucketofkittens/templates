@@ -20,11 +20,11 @@ var ParametrsWidgets = function(app) {
 
 	this.animateStep = "-400px";
 	this.animateSpeed = 1000;
+	this.legendWidget = new LegendWidget(this.app);
 
 	this.bindEvents_ = function() {
 		this.elements["SHOW"].on("click", $.proxy(this.onShow_, this));
 		this.elements["HIDDEN"].on("click", $.proxy(this.onHidden_, this));
-		//this.elements["SHOW"].on("keydown", $.proxy(this.onShow_, this));
 	}
 
 	this.onHidden_ = function() {
@@ -33,7 +33,8 @@ var ParametrsWidgets = function(app) {
 			},
 			this.animateSpeed,
 			$.proxy(this.onMainHiddened_, this) 
-		);;
+		);
+		this.legendWidget.hide();
 		return false;
 	}
 
@@ -55,6 +56,8 @@ var ParametrsWidgets = function(app) {
 			this.animateSpeed,
 			$.proxy(this.onMainShowed_, this) 
 		);
+
+		this.legendWidget.show();
 		return false;
 	}
 
@@ -73,6 +76,44 @@ var ParametrsWidgets = function(app) {
 	}
 
 	this.bindEvents_();
+}
+
+/**
+ * [LegendWidget description]
+ * @param {[type]} app [description]
+ */
+var LegendWidget = function(app) {
+	this.app =  app;
+	this.animateStep = "-400px";
+	this.animateSpeed = 1000;
+
+	this.CSS = {
+		"MAIN": "#legend-widget"
+	}
+
+	this.elements = {
+		"MAIN": $(this.CSS["MAIN"])
+	}
+
+	this.show = function() {
+		this.elements["MAIN"].css({
+			right: this.animateStep,
+			display: "block"
+		});
+		this.elements["MAIN"].animate( {
+				right: "0px"
+			},
+			this.animateSpeed
+		);
+	}
+
+	this.hide = function() {
+		this.elements["MAIN"].animate( {
+				right: this.animateStep
+			},
+			this.animateSpeed 
+		);
+	}
 }
 
 /**
