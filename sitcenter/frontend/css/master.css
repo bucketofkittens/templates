@@ -4,7 +4,7 @@
 @import "jquery.jscrollpane.css";
 
 header {
-	background: url("../images/name.png") left top no-repeat;
+	background: url("/static/images/name.png") left top no-repeat;
 	height: 150px;
 	width: 1244px;
 	position: absolute;
@@ -12,7 +12,7 @@ header {
 }
 header a {
 	position: absolute;
-	background: url("../images/logo.png") 30px 14px no-repeat;
+	background: url("/static/images/logo.png") 30px 14px no-repeat;
 	height: 145px;
 	width: 145px;
 }
@@ -26,7 +26,7 @@ header p {
 
 header h1 {
 	position: absolute;
-	background: url("../images/region.png") center center no-repeat;
+	background: url("/static/images/region.png") center center no-repeat;
 	height: 70px;
 	width: 590px;
 	font-family: 'NeoSansPro-Light';
@@ -43,7 +43,7 @@ header h1 {
 }
 #miniMap {
 	position: absolute;
-	background: url("../images/mbg.png") center center no-repeat;
+	background: url("/static/images/mbg.png") center center no-repeat;
 	height: 170px;
 	width: 280px;
 	left: 0px;
@@ -57,7 +57,6 @@ header h1 {
 	font-size: 21px;
 	color: #ffffff;
 	text-align: center;
-	background: url("../images/mmap.png") center top no-repeat;
 	height: 50px;
 	width: 260px;
 	left: 17px;
@@ -68,7 +67,7 @@ header h1 {
 }
 
 #content .time {
-	background: url("../images/time.png") right top no-repeat;
+	background: url("/static/images/time.png") right top no-repeat;
 	height: 174px;
 	width: 564px;
 	position: absolute;
@@ -96,7 +95,7 @@ header h1 {
 }
 
 #content .nav {
-	background: url("../images/nav.png") center bottom no-repeat;
+	background: url("/static/images/nav.png") center bottom no-repeat;
 	height: 60px;
 	width: 1428px;
 	display: block;
@@ -119,7 +118,7 @@ header h1 {
 
 #content .legend {
 	position: absolute;
-	background: url("../images/legend.png") right bottom no-repeat;
+	background: url("/static/images/legend.png") right bottom no-repeat;
 	height: 490px;
 	width: 303px;
 	display: none;
@@ -149,7 +148,7 @@ header h1 {
 
 #content > a {
 	position: absolute;
-	background: url("../images/show.png") right center no-repeat;
+	background: url("/static/images/show.png") right center no-repeat;
 	height: 443px;
 	width: 60px;
 	display: block;
@@ -163,7 +162,7 @@ header h1 {
 	width: 1019px;
 	height: 1000px;
 	position: absolute;
-	background: url("../images/loading.png") center center no-repeat;
+	background: url("/static/images/loading.png") center center no-repeat;
 	left: 50%;
 	margin-left: -510px;
 	top: 40px;
@@ -235,7 +234,7 @@ header h1 {
 
 #content .data {
 	position: absolute;
-	background: url("../images/data.png") right center no-repeat;
+	background: url("/static/images/data.png") right center no-repeat;
 	height: 451px;
 	width: 360px;
 	right: 0px;
@@ -246,7 +245,7 @@ header h1 {
 }
 #content .data .hidden {
 	position: absolute;
-	background: url("../images/hide.png") center center no-repeat;
+	background: url("/static/images/hide.png") center center no-repeat;
 	height: 48px;
 	width: 28px;
 	left: 26px;
@@ -308,7 +307,7 @@ header h1 {
 
 #content .show {
 	position: absolute;
-	background: url("../images/show.png") right center no-repeat;
+	background: url("/static/images/show.png") right center no-repeat;
 	height: 443px;
 	width: 60px;
 	display: none;

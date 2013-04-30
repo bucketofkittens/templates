@@ -20,7 +20,7 @@
 {
 	position: absolute;
 	right: 0px;
-	background: url("../images/scroll.png") right top no-repeat;	
+	background: url("/static/images/scroll.png") right top no-repeat;	
 	width: 35px;
 	margin-top: -3px;
 }
@@ -39,7 +39,7 @@
 {
 	position: relative;
 	cursor: pointer;
-	background: url("../images/scroller.png") center center no-repeat;	
+	background: url("/static/images/scroller.png") center center no-repeat;	
 	width: 30px;
 	height: 60px;
 	right: -6px;
@@ -47,7 +47,7 @@
 }
 
 .jspArrowUp {
-	background: url("../images/top.png") right center no-repeat;
+	background: url("/static/images/top.png") right center no-repeat;
 	width: 20px;
 	height: 18px;
 	top: 10px;
@@ -55,7 +55,7 @@
 	position: relative;
 }
 .jspArrowDown {
-	background: url("../images/bottom.png") right top no-repeat;
+	background: url("/static/images/bottom.png") right top no-repeat;
 	width: 20px;
 	height: 18px;
 	left: 10px;
@@ -84,10 +84,4 @@
 	background: none;
 	float: left;
 	height: 100%;
-}
-
-/* Yuk! CSS Hack for IE6 3 pixel bug :( */
-* html .jspCorner
-{
-	margin: 0 -3px 0 0;
 }

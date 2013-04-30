@@ -18,6 +18,7 @@ var SVGLoader = function(app, clickCallback) {
 	}
 
 	this.load = function(path, videoPath) {
+		this.elements["BG"].hide();
 		this.elements["BG"].html('<object id="svg" type="image/svg+xml" data="'+path+'" width="100%" height="100%" ></object>');
 		this.elements["SVG"] = $(this.CSS["SVG"]);
 		this.prepareSvg_();
@@ -25,13 +26,12 @@ var SVGLoader = function(app, clickCallback) {
 
 	this.prepareSvg_ = function() {
 		this.elements["SVG"].on("load", $.proxy(this.onLoadSvg_, this));
+		this.elements["BG"].show();
 	}
 
 	this.onPathClick_ = function() {
 
 	}
-
-	
 
 	this.onLoadSvg_ = function() {
 		var svg = this.elements["SVG"][0].getSVGDocument();
@@ -75,9 +75,10 @@ var VideoPlayer = function() {
 		"VIDEO": document.getElementById(this.CSS["VIDEO"])
 	}
 
-	this.player = _V_(this.CSS["VIDEO"], {
-		techOrder: ["html5", "flash"]
-	});
+	this.player = _V_(this.CSS["VIDEO"], 
+		 { "preload": "auto" }
+	);
+	this.player.size(1920, 1080);
 	this.endedCallback = {}
 
 	this.play = function(videoPath, endedCallback) {
@@ -89,7 +90,10 @@ var VideoPlayer = function() {
 	}
 
 	this.hide = function() {
-		this.elements["BG"].style.display = "none";
+		var self = this;
+		setTimeout(function() {
+			$(self.elements["BG"]).fadeOut();
+		}, 0); 
         this.player.removeEvent("ended", this.endedCallback);
 	}
 
@@ -173,7 +177,6 @@ var LoadingState = function(app) {
  * @param {[type]} app [description]
  */
 var MapStateZoom1 = function(app) {
-
 	this.stateCSS = {
 		"BG-IMAGE": "#bg-image"
 	}
@@ -434,7 +437,7 @@ var ImagePreloaderIteration = function(item, array) {
 	} else {
 		var postfixArr = item.split(".");
 		var postfix = postfixArr[postfixArr.length-1];
-		if(postfix == "png" || postfix == "jpg" || postfix == "gif") {
+		if(postfix == "png" || postfix == "jpg" || postfix == "gif"|| postfix == "mp4") {
 			array.push(item);	
 		}	
 	}

@@ -31,7 +31,7 @@
 	text-decoration: none;
 }
 .sbToggle{
-	background: url("../images/selector.png") center center no-repeat;
+	background: url("/static/images/selector.png") center center no-repeat;
 	display: block;
 	height: 18px;
 	outline: none;
@@ -43,7 +43,7 @@
 
 
 .sbOptions{
-	background: url("../images/years.png") center top no-repeat;
+	background: url("/static/images/years.png") center top no-repeat;
 	list-style: none;
 	left: -5px;
 	margin: 0;
