@@ -1,0 +1,75 @@
+@CHARSET "UTF-8";
+.sbHolder{
+	background: none;
+	border: none;
+	font-family: 'NeoSansPro-Light';
+	font-size: 21px;
+	color: #ffffff;
+	height: 30px;
+	position: relative;
+	width: 90px;
+	display: block;
+	float: right;
+}
+.sbSelector{
+	display: block;
+	height: 30px;
+	left: 0;
+	line-height: 30px;
+	outline: none;
+	overflow: hidden;
+	position: absolute;
+	text-indent: 10px;
+	top: 0;
+	width: 90px;
+}
+.sbSelector:link, .sbSelector:visited, .sbSelector:hover{
+	font-family: 'NeoSansPro-Light';
+	color: #ffffff;
+	font-size: 16px;
+	outline: none;
+	text-decoration: none;
+}
+.sbToggle{
+	background: url("../images/selector.png") center center no-repeat;
+	display: block;
+	height: 18px;
+	outline: none;
+	position: absolute;
+	right: 5px;
+	top: 5px;
+	width: 20px;
+}
+
+
+.sbOptions{
+	background: url("../images/years.png") center top no-repeat;
+	list-style: none;
+	left: -5px;
+	margin: 0;
+	padding-top: 10px;
+	position: absolute;
+	top: -8px !important;
+	width: 95px;
+	z-index: 1;
+	overflow: hidden;
+	height: 190px;
+}
+.sbOptions li{
+	
+	margin-top: 3px !important;
+	margin-left: 6px;
+}
+.sbOptions a {
+	display: block;
+	outline: none;
+	font-family: 'NeoSansPro-Light';
+	color: #ffffff;
+	font-size: 16px;
+	text-decoration: none;
+	line-height: 32px;
+	padding: 0 20px;
+}
+.sbOptions li:hover {
+	background: rgba(127, 191, 255, 0.5);
+}

@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html ng-app>
+<html>
     <head>
         <title>Автоматизированная подсистема мониторинга. Национальная система химической и биологической безопасности Российской Федерации</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -37,33 +37,39 @@
                     </div>
                     <div class="show nav-elements" id="paramers-show"></div>
                     <div class="data" id="parametrs-widget">
-                        <h3>Охват диспансеризацией детей </h3>
-                        <input type="text" class="search" placeholder="Поиск"  />
+                        <a href="#" class="hidden"></a>
+                        <h3>Охват диспансеризацией детей</h3>
+                        <input type="text" class="search" placeholder="Поиск" />
                         <select class="year">
-                            <option value="1">2012</option>
+                            <option value="1">2009</option>
+                            <option value="2">2010</option>
+                            <option value="3">2011</option>
+                            <option value="4">2012</option>
+                            <option value="5" selected="selected">2013</option>
                         </select>
-                        <!--
-                        <ul>
-                            <li>Общая заболеваемость</li>
-                            <ul class="parametr s">
-                                <li>- Заболеваемость всего</li>
-                                <li>- Заболеваемость взрослых</li>
-                                <li>- Заболеваемость детей</li>
+                        <section class="scroll">
+                            <ul>
+                                <li class="current">Общая заболеваемость
+                                    <ul>
+                                        <li><span>- Заболеваемость всего</span><i>12.1</i></li>
+                                        <li><span>- Заболеваемость взрослых</span><i>12.1</i></li>
+                                        <li><span>- Заболеваемость детей</span><i>12.1</i></li>
+                                    </ul>
+                                </li>
                             </ul>
-                            <ul class="parametr">
-                                <li>12.1</li>
-                                <li>12.1</li>
-                                <li>12.1</li>
+                            <ul>
+                                <li>Первичная заболеваемость</li>
                             </ul>
-                        </ul>
-
-                        <ul>
-                            <li>Первичная заболеваемость</li>
-                        </ul>
-                        <ul>
-                            <li>Состояние здоровья матерей</li>
-                        </ul>
-                        -->
+                            <ul>
+                                <li>Состояние здоровья матерей</li>
+                            </ul>
+                            <ul>
+                                <li>Первичная заболеваемость</li>
+                            </ul>
+                            <ul>
+                                <li>Состояние здоровья матерей</li>
+                            </ul>
+                        </section>
                     </div>
                     <div id="load">
                         <img src="./images/load.png" id="load-image" alt="" />
@@ -82,7 +88,10 @@
         </div>
         <script src="./js/jquery-2.0.0.min.js"></script>
         <script src="./js/jquery-migrate-1.1.1.min.js"></script>
-        <script src="./js/angular.min.js"></script>
+        <script type="text/javascript" src="./js/jquery.selectbox-0.2.min.js"></script>
+        <script type="text/javascript" src="./js/jquery.mousewheel.js"></script>
+        <script type="text/javascript" src="./js/mwheelIntent.js"></script>
+        <script type="text/javascript" src="./js/jquery.jscrollpane.min.js"></script>
         <script src="./js/video.min.js"></script>
         <script src="./js/api.js"></script>
         <script src="./js/PxLoader.js"></script>

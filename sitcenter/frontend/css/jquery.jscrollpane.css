@@ -1,0 +1,93 @@
+/*
+ * CSS Styles that are needed by jScrollPane for it to operate correctly.
+ *
+ * Include this stylesheet in your site or copy and paste the styles below into your stylesheet - jScrollPane
+ * may not operate correctly without them.
+ */
+
+.jspContainer
+{
+	overflow: hidden;
+	position: relative;
+}
+
+.jspPane
+{
+	position: absolute;
+}
+
+.jspVerticalBar
+{
+	position: absolute;
+	right: 0px;
+	background: url("../images/scroll.png") right top no-repeat;	
+	width: 35px;
+	margin-top: -3px;
+}
+
+.jspCap
+{
+	display: none;
+}
+
+.jspTrack
+{
+	position: relative;
+}
+
+.jspDrag
+{
+	position: relative;
+	cursor: pointer;
+	background: url("../images/scroller.png") center center no-repeat;	
+	width: 30px;
+	height: 60px;
+	right: -6px;
+	margin: 10px 0px;
+}
+
+.jspArrowUp {
+	background: url("../images/top.png") right center no-repeat;
+	width: 20px;
+	height: 18px;
+	top: 10px;
+	left: 10px;
+	position: relative;
+}
+.jspArrowDown {
+	background: url("../images/bottom.png") right top no-repeat;
+	width: 20px;
+	height: 18px;
+	left: 10px;
+	position: relative;
+	padding-bottom: 20px;
+}
+
+.jspArrow
+{
+	display: block;
+	cursor: pointer;
+}
+
+.jspArrow.jspDisabled
+{
+	cursor: default;
+}
+
+.jspVerticalBar .jspArrow:focus
+{
+	outline: none;
+}
+
+.jspCorner
+{
+	background: none;
+	float: left;
+	height: 100%;
+}
+
+/* Yuk! CSS Hack for IE6 3 pixel bug :( */
+* html .jspCorner
+{
+	margin: 0 -3px 0 0;
+}

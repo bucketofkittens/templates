@@ -1,5 +1,7 @@
 @import "reset.css";
 @import "fonts.css";
+@import "jquery.selectbox.css";
+@import "jquery.jscrollpane.css";
 
 header {
 	background: url("../images/name.png") left top no-repeat;
@@ -242,6 +244,16 @@ header h1 {
 	display: none;
 	z-index: 130;
 }
+#content .data .hidden {
+	position: absolute;
+	background: url("../images/hide.png") center center no-repeat;
+	height: 48px;
+	width: 28px;
+	left: 26px;
+	top: 240px;
+	display: block;
+	z-index: 130;
+}
 #content .data h3 {
 	font-family: 'NeoSansPro';
 	font-size: 16px;
@@ -257,30 +269,41 @@ header h1 {
 	font-family: 'NeoSansPro-Light';
 	color: #ffffff;
 	font-size: 16px;
-	line-height: 25px;
-	margin-bottom: 8px;
+	margin-bottom: 20px;
 }
 #content .data .year {
 	width: 90px;
 	float: right;
 	background: #7696b8;
+	padding-left: 15px;
 }
-#content .data > ul {
+#content .data .jspPane > ul {
 	display: block;
 	margin-left: 70px;
 }
-#content .data ul.parametr {
-	display: inline-block;
-}
-#content .data ul.s {
+#content .data ul span {
 	width: 210px;
+	float: left;
 }
-#content .data li {
+#content .data ul i {
+	width: 40px;
+	float: right;
+}
+#content .data .scroll li {
 	display: block;
 	font-family: 'NeoSansPro-Light';
 	font-size: 16px;
 	color: #ffffff;
-	margin-top: 24px;
+	overflow: hidden;
+	height: 40px;
+	line-height: 40px;
+}
+#content .data li.current {
+	height: auto;
+}
+#content .data .scroll {
+	overflow: auto;
+	max-height: 250px;
 }
 
 #content .show {

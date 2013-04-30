@@ -541,6 +541,9 @@ var Application = function() {
 	}
 
 	this.onPanelsShow = function() {
+		$(".year").selectbox({
+			effect: "fade"
+		});
 		var stateModel = this.zoomStateManager.getStateModel();
 		stateModel.show();
 	}
