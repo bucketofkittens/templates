@@ -120,8 +120,8 @@ header h1 {
 #content .legend {
 	position: absolute;
 	background: url("../images/legend.png") right bottom no-repeat;
-	height: 490px;
-	width: 303px;
+	height: 523px;
+	width: 287px;
 	display: none;
 	bottom: 0px;
 	right: 0px;
@@ -135,7 +135,7 @@ header h1 {
 	padding: 12px 0px 11px 210px;
 }
 #content .legend p:first-child {
-	margin-top: 240px;
+	margin-top: 270px;
 }
 #content .legend a {
 	font-family: 'NeoSansPro-Light';
