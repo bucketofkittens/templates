@@ -1,0 +1,95 @@
+<!DOCTYPE HTML>
+<html ng-app>
+    <head>
+        <title>Автоматизированная подсистема мониторинга. Национальная система химической и биологической безопасности Российской Федерации</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link href="./css/master.css" rel="stylesheet" type="text/css" />
+    </head>
+    <body>
+        <div id="app">
+            <!-- Панель управления начало -->
+            <div id="miniMap">
+                <a>Центральный <br />федеральный округ</a>
+            </div>
+            <div id="panels">
+                <header class="nav-elements">
+                    <a href="#"></a>
+                    <p>Автоматизированная подсистема мониторинга <br />Национальная система химической и биологической безопасности Российской Федерации</p>
+                    <h1>Центральный федеральный округ</h1>
+                </header>
+                <div id="content">
+                    <div class="time nav-elements">
+                        <b><span id="hour">16</span>:<span id="minute">40</span></b>
+                        <p><span id="day">04</span> <span id="month">апреля</span> <span id="age">2013</span></p>
+                    </div>
+                    <div class="nav nav-elements">
+                        <a href="#">Карта</a>
+                        <a href="#">Формат</a>
+                        <a href="#">График</a>
+                        <a href="#">События</a>
+                    </div>
+                    <div class="legend">
+                        <p>н/д</p>
+                        <p>0-7</p>
+                        <p>8-15</p>
+                        <p>16-20</p>
+                        <a href="#">показать <br />значения</a>
+                    </div>
+                    <div class="show nav-elements" id="paramers-show"></div>
+                    <div class="data" id="parametrs-widget">
+                        <h3>Охват диспансеризацией детей </h3>
+                        <input type="text" class="search" placeholder="Поиск"  />
+                        <select class="year">
+                            <option value="1">2012</option>
+                        </select>
+                        <!--
+                        <ul>
+                            <li>Общая заболеваемость</li>
+                            <ul class="parametr s">
+                                <li>- Заболеваемость всего</li>
+                                <li>- Заболеваемость взрослых</li>
+                                <li>- Заболеваемость детей</li>
+                            </ul>
+                            <ul class="parametr">
+                                <li>12.1</li>
+                                <li>12.1</li>
+                                <li>12.1</li>
+                            </ul>
+                        </ul>
+
+                        <ul>
+                            <li>Первичная заболеваемость</li>
+                        </ul>
+                        <ul>
+                            <li>Состояние здоровья матерей</li>
+                        </ul>
+                        -->
+                    </div>
+                    <div id="load">
+                        <img src="./images/load.png" id="load-image" alt="" />
+                    </div>
+                </div>
+            </div>
+            <!-- Панель управления конец -->
+            
+            <div id="bg-image"></div>
+            <div id="bg-svg">
+                <object id="svg" type="image/svg+xml" data="" width="100%" height="100%"></object>
+            </div>
+            <div id="bg-video">
+                <video class="video-js vjs-default-skin" id="video"  preload="auto" width="1920" height="1080" ></video>
+            </div>
+        </div>
+        <script src="./js/jquery-2.0.0.min.js"></script>
+        <script src="./js/jquery-migrate-1.1.1.min.js"></script>
+        <script src="./js/angular.min.js"></script>
+        <script src="./js/video.min.js"></script>
+        <script src="./js/api.js"></script>
+        <script src="./js/PxLoader.js"></script>
+        <script src="./js/PxLoaderVideo.js"></script>
+        <script src="./js/PxLoaderImage.js"></script>
+        <script src="./js/jQueryRotateCompressed.2.2.js"></script>
+        <script src="./js/config.js"></script>
+        <script src="./js/main.js"></script>
+    </body>
+</html>

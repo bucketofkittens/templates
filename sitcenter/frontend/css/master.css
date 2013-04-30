@@ -1,0 +1,296 @@
+@import "reset.css";
+@import "fonts.css";
+
+header {
+	background: url("../images/name.png") left top no-repeat;
+	height: 150px;
+	width: 1244px;
+	position: absolute;
+	z-index: 130;
+}
+header a {
+	position: absolute;
+	background: url("../images/logo.png") 30px 14px no-repeat;
+	height: 145px;
+	width: 145px;
+}
+header p {
+	font-family: 'NeoSansPro-Light';
+	font-size: 21px;
+	color: #ffffff;
+	line-height: 25px;
+	padding: 28px 0px 0px 160px;
+}
+
+header h1 {
+	position: absolute;
+	background: url("../images/region.png") center center no-repeat;
+	height: 70px;
+	width: 590px;
+	font-family: 'NeoSansPro-Light';
+	font-size: 21px;
+	color: #ffffff;
+	line-height: 67px;
+	left: 660px;
+	top: 94px;
+	text-align: center;
+}
+
+#content {
+	width: 100%;
+}
+#miniMap {
+	position: absolute;
+	background: url("../images/mbg.png") center center no-repeat;
+	height: 170px;
+	width: 280px;
+	left: 0px;
+	top: 168px;
+	z-index: 160;
+	display: none;
+	cursor: pointer;
+}
+#miniMap a {
+	font-family: 'NeoSansPro-Light';
+	font-size: 21px;
+	color: #ffffff;
+	text-align: center;
+	background: url("../images/mmap.png") center top no-repeat;
+	height: 50px;
+	width: 260px;
+	left: 17px;
+	top: 5px;
+	display: block;
+	position: relative;
+	padding-top: 113px;
+}
+
+#content .time {
+	background: url("../images/time.png") right top no-repeat;
+	height: 174px;
+	width: 564px;
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	z-index: 130;
+}
+#content .time b {
+	font-family: 'NeoSansPro-Light';
+	font-size: 30px;
+	color: #ffffff;
+	text-align: center;
+	max-width: 100px;
+	display: block;
+	padding: 12px 0px 0px 437px;
+}
+#content .time p {
+	font-family: 'NeoSansPro-Light';
+	font-size: 13px;
+	color: #ffffff;
+	text-align: center;
+	max-width: 100px;
+	display: block;
+	padding-left: 437px;
+}
+
+#content .nav {
+	background: url("../images/nav.png") center bottom no-repeat;
+	height: 60px;
+	width: 1428px;
+	display: block;
+	bottom: 0px;
+	left: 260px;
+	text-align: center;
+	position: absolute;
+	z-index: 130;
+}
+#content .nav a {
+	width: 100px;
+	height: 30px;
+	margin: 23px 35px 0px 20px;
+	font-family: 'NeoSansPro-Light';
+	font-size: 20px;
+	color: #ffffff;
+	text-decoration: none;
+	display: inline-block;
+}
+
+#content .legend {
+	position: absolute;
+	background: url("../images/legend.png") right bottom no-repeat;
+	height: 490px;
+	width: 303px;
+	display: none;
+	bottom: 0px;
+	right: 0px;
+	z-index: 130;
+}
+#content .legend p {
+	font-family: 'NeoSansPro-Light';
+	font-size: 18px;
+	color: #ffffff;
+	display: block;
+	padding: 12px 0px 11px 210px;
+}
+#content .legend p:first-child {
+	margin-top: 240px;
+}
+#content .legend a {
+	font-family: 'NeoSansPro-Light';
+	font-size: 18px;
+	color: #ffffff;
+	padding: 10px 0px 0px 160px;
+	display: block;
+	line-height: 15px;
+	text-decoration: none;
+}
+
+#content > a {
+	position: absolute;
+	background: url("../images/show.png") right center no-repeat;
+	height: 443px;
+	width: 60px;
+	display: block;
+	top: 174px;
+	right: 0px;
+	z-index: 130;
+}
+
+#load {
+	display: none;
+	width: 1019px;
+	height: 1000px;
+	position: absolute;
+	background: url("../images/loading.png") center center no-repeat;
+	left: 50%;
+	margin-left: -510px;
+	top: 40px;
+	z-index: 200;
+}
+
+#load img {
+	display: block;
+	left: 50%;
+	top: 50%;
+	margin: -90px 0px 0px -78px;
+	width: 154px;
+	height: 153px;
+	position: absolute;
+}
+
+
+#bg-image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    z-index: 10;
+    background-position: left top;
+    background-repeat: no-repeat;
+}
+
+#app {
+    position: relative;
+    overflow: hidden;
+}
+#bg-svg {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    z-index: 110;
+}
+#bg-svg object {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    z-index: 136;
+}
+#bg-video {
+    display: none;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    z-index: 120;
+}
+
+#panels {
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;	
+}
+
+#content .nav-elements, .nav-elements {
+	display: none;
+}
+
+#content .data {
+	position: absolute;
+	background: url("../images/data.png") right center no-repeat;
+	height: 451px;
+	width: 360px;
+	right: 0px;
+	top: 150px;
+	overflow: hidden;
+	display: none;
+	z-index: 130;
+}
+#content .data h3 {
+	font-family: 'NeoSansPro';
+	font-size: 16px;
+	color: #ffffff;
+	margin: 40px 0px 50px 75px;
+}
+#content .data .search, #content .data .year {
+	background: none;
+	border: none;
+	width: 160px;
+	height: 25px;
+	padding-left: 90px;
+	font-family: 'NeoSansPro-Light';
+	color: #ffffff;
+	font-size: 16px;
+	line-height: 25px;
+	margin-bottom: 8px;
+}
+#content .data .year {
+	width: 90px;
+	float: right;
+	background: #7696b8;
+}
+#content .data > ul {
+	display: block;
+	margin-left: 70px;
+}
+#content .data ul.parametr {
+	display: inline-block;
+}
+#content .data ul.s {
+	width: 210px;
+}
+#content .data li {
+	display: block;
+	font-family: 'NeoSansPro-Light';
+	font-size: 16px;
+	color: #ffffff;
+	margin-top: 24px;
+}
+
+#content .show {
+	position: absolute;
+	background: url("../images/show.png") right center no-repeat;
+	height: 443px;
+	width: 60px;
+	display: none;
+	top: 174px;
+	right: 0px;
+	cursor: pointer;
+	z-index: 130;
+}

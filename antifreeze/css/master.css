@@ -837,3 +837,17 @@ footer section h6 b {
 	width: 980px;
 	margin: 0px auto;
 }
+
+.two-cell .right b, .two-cell .right strong {
+	font-weight: bold;
+}
+.two-cell .right i, .two-cell .right em {
+	font-style: italic;
+}
+
+#content .com b, #content .com strong {
+	font-weight: bold;
+}
+#content .com i, #content .com em {
+	font-style: italic;
+}
