@@ -10,7 +10,7 @@ function PxLoaderVideo(url, tags, priority) {
     } catch(e) {
         this.vid = document.createElement('video');
     }
-
+    
     this.tags = tags;
     this.priority = priority;
 

@@ -34,6 +34,11 @@ var ParametrsWidgets = function(app) {
 			this.animateSpeed,
 			$.proxy(this.onMainHiddened_, this) 
 		);
+		this.elements["SHOW"].animate({
+				right: "0px"
+			},
+			this.animateSpeed 
+		);
 		this.legendWidget.hide();
 		return false;
 	}
@@ -50,11 +55,17 @@ var ParametrsWidgets = function(app) {
 	    		verticalDragMaxHeight: 60
 			}
 		);
-		this.elements["MAIN"].animate( {
+		this.elements["MAIN"].animate({
 				right: "0px"
 			},
 			this.animateSpeed,
 			$.proxy(this.onMainShowed_, this) 
+		);
+
+		this.elements["SHOW"].animate({
+				right: this.animateStep
+			},
+			this.animateSpeed 
 		);
 
 		this.legendWidget.show();
@@ -122,11 +133,21 @@ var LegendWidget = function(app) {
  */
 var RegionManager = function(app) {
 	this.app = app;
-	this.ajaxPath = "/subjects/";
+	this.ajaxPath = "/subjects.json";
 
-	this.getAll = function() {
-		$.get(this.app.apiHost + this.ajaxPath, function(data) {
-		  console.log(data);
-		});
+	this.getByParent = function(id_parent, callback) {
+		$.get(this.app.apiHost + "/subjects/"+id_parent+"/children.json", callback);
+	}
+
+	this.getParents = function(id_parent, callback) {
+		$.get(this.app.apiHost + "/subjects/"+id_parent+"/parent.json", callback);
+	}
+
+	this.getById = function(id, callback) {
+		$.get(this.app.apiHost + "/subjects/"+id+".json", callback);
+	}
+
+	this.getDistricts = function(callback) {
+		$.get(this.app.apiHost + "/districts.json", callback);
 	}
 }

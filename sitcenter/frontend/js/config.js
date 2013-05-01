@@ -7,6 +7,9 @@ var ImagesList = {
 		"SVG": "/static/svg/zoom1.svg",
 		"VIDEO": {
 			"5": "/static/video/zoom1-in.mp4"
+		},
+		"BACK_IDS": {
+			"5": "101"
 		}
 	},
 	"ZOOM2": {
@@ -22,6 +25,9 @@ var ImagesList = {
 			"4": {
 				"VIDEO": "/static/video/zoom2-in.mp4"
 			}
+		},
+		"BACK_IDS": {
+			"4": "52"
 		}
 	},
 	"ZOOM3": {

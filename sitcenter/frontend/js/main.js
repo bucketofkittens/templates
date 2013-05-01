@@ -75,26 +75,45 @@ var VideoPlayer = function() {
 		"VIDEO": document.getElementById(this.CSS["VIDEO"])
 	}
 
-	this.player = _V_(this.CSS["VIDEO"], 
-		 { "preload": "auto" }
-	);
-	this.player.size(1920, 1080);
+	this.video = null
+	this.videos = []
 	this.endedCallback = {}
+
+	this.addVideo = function(path) {
+		this.videos.push(path);
+		$(this.elements["BG"]).append('<video id="video_'+(this.videos.length-1)+'" type="video/mp4" src="'+path+'"class="video"  preload="auto" width="1920" height="1080" ></video>' );
+	}
+
+	this.getVideoKey_ = function(path) {
+		var ret = null;
+		$.each(this.videos, function(key, value) {
+			if(value == path) {
+				ret = key;
+			}
+		});
+
+		return ret;
+	}
 
 	this.play = function(videoPath, endedCallback) {
 		this.endedCallback = endedCallback;
 		this.elements["BG"].style.display = "block";
-		this.player.addEvent('ended', this.endedCallback);
-        this.player.src({ type: "video/mp4", src: videoPath});
-        this.player.play();
+		this.video = $("#video_"+this.getVideoKey_(videoPath));
+		this.video.on('ended', this.endedCallback);
+		this.video[0].style.display = "block";
+		this.video[0].load();
+        this.video[0].play();
 	}
 
 	this.hide = function() {
 		var self = this;
 		setTimeout(function() {
+			if(self.video) {
+				self.video[0].style.display = "none";	
+			}
 			$(self.elements["BG"]).fadeOut();
 		}, 0); 
-        this.player.removeEvent("ended", this.endedCallback);
+		$(this.elements["VIDEO"]).off('ended', this.endedCallback);
 	}
 
 	this.setPoster = function(src) {
@@ -107,10 +126,12 @@ var VideoPlayer = function() {
  */
 var MiniMapWriter = function() {
 	this.CSS = {
-		"CONTAINER": "#miniMap"
+		"CONTAINER": "#miniMap",
+		"TEXT": " a"
 	}
 	this.elements = {
-		"CONTAINER": $(this.CSS["CONTAINER"])
+		"CONTAINER": $(this.CSS["CONTAINER"]),
+		"TEXT": $(this.CSS["CONTAINER"]+this.CSS["TEXT"])
 	}
 	this.callback = {}
 
@@ -127,6 +148,10 @@ var MiniMapWriter = function() {
 		this.elements["CONTAINER"].css("backgroundImage", "none");
 		this.elements["CONTAINER"].off("click", this.callback);
 	}
+
+	this.setText = function(text) {
+		this.elements["TEXT"].html(text);
+	}
 }
 
 /**
@@ -140,7 +165,7 @@ var LoadingState = function(app) {
 		"LOADER": "#load",
 		"LOAD-IMAGE": "#load-image"
 	}
-	this.animateSpeed = 5000;
+	this.animateSpeed = 2000;
 	this.rotateTick_ = 50;
 	this.angle = 0;
 	this.rotateEvent_ = {};
@@ -185,9 +210,15 @@ var MapStateZoom1 = function(app) {
 		"BG-IMAGE": {}
 	}
 
+	this.regions = {};
 	this.bgImage = new Image;
+	this.titleText = "Российская Федерация";
 
 	this.stateElements["BG-IMAGE"] = $(this.stateCSS["BG-IMAGE"]);
+
+	this.setRootRegions = function(data) {
+		this.regions = data;
+	}
 
 	this.backgroundImageLoaded_ = function() {
 		this.stateElements["BG-IMAGE"].css("backgroundImage", "url('"+this.bgImage.src+"')");
@@ -195,7 +226,9 @@ var MapStateZoom1 = function(app) {
 	}
 
 	this.show = function() {
+		this.app.regionManager.getDistricts($.proxy(this.setRootRegions, this));
 		this.setBgImage();
+		this.app.setAppTitle(this.titleText);
 		this.SVGWriter.load(ImagesList["ZOOM1"]["SVG"]);
 	}
 
@@ -231,8 +264,11 @@ var MapStateZoom1 = function(app) {
  * @param {[type]} app [description]
  */
 var MapStateZoom2 = function(app) {
-	this.miniMapWriter = new MiniMapWriter();
+	this.backTitleText = "Российская Федерация";
 
+	this.miniMapWriter = new MiniMapWriter();
+	this.miniMapWriter.setText(this.backTitleText);
+	
 	this.stateCSS = {
 		"BG-IMAGE": "#bg-image"
 	}
@@ -242,12 +278,24 @@ var MapStateZoom2 = function(app) {
 	}
 
 	this.bgImage = new Image;
-
+	this.regions = {};
+	this.currentRegionData = {};
 	this.stateElements["BG-IMAGE"] = $(this.stateCSS["BG-IMAGE"]);
 
+	this.setCurrentRegion = function(data) {
+		this.currentRegionData = data;
+		this.app.setAppTitle(this.currentRegionData.name);
+	}
+
+	this.setRootRegions = function(data) {
+		this.regions = data;
+	}
+
 	this.show = function() {
-		this.setBgImage();
+		this.app.regionManager.getByParent(ImagesList["ZOOM1"]["BACK_IDS"][this.app.currentRegion], $.proxy(this.setRootRegions, this));
+		this.app.regionManager.getById(ImagesList["ZOOM1"]["BACK_IDS"][this.app.currentRegion], $.proxy(this.setCurrentRegion, this));
 		
+		this.setBgImage();
 		setTimeout($.proxy(this.addMiniMap, this), 0);
 
 		this.SVGWriter.load(ImagesList["ZOOM2"][this.app.currentRegion]["SVG"]);
@@ -277,7 +325,6 @@ var MapStateZoom2 = function(app) {
 		this.app.zoomStateManager.prevState();
 		this.app.zoomStateManager.getStateModel().show();
 		this.app.currentRegion = "";
-		
 	}
 
 	this.clear = function() {
@@ -320,11 +367,32 @@ var MapStateZoom3 = function(app) {
 	}
 
 	this.stateElements["BG-IMAGE"] = $(this.stateCSS["BG-IMAGE"]);
+	this.regions = {};
+	this.currentRegionData = {};
+	this.prevRegion = {}
+
+	this.setCurrentRegion = function(data) {
+		this.currentRegionData = data;
+		this.app.setAppTitle(this.currentRegionData.name);
+
+		this.app.regionManager.getById(this.currentRegionData.district_id, $.proxy(this.setPrevRegion, this));
+	}
+
+	this.setPrevRegion = function(data) {
+		this.prevRegion = data;
+		this.miniMapWriter.setText(this.prevRegion.name);
+		this.miniMapWriter.show(ImagesList["ZOOM3"][this.app.currentRegion]["BACK"]["IMAGE"], $.proxy(this.onBack, this));
+	}
+
+	this.setRootRegions = function(data) {
+		this.regions = data;
+	}
 
 	this.show = function() {
+		this.app.regionManager.getByParent(ImagesList["ZOOM2"]["BACK_IDS"][this.app.currentRegion], $.proxy(this.setRootRegions, this));
+		this.app.regionManager.getById(ImagesList["ZOOM2"]["BACK_IDS"][this.app.currentRegion], $.proxy(this.setCurrentRegion, this));
+
 		this.setBgImage();
-		
-		setTimeout($.proxy(this.addMiniMap, this), 0);
 
 		this.SVGWriter.load(ImagesList["ZOOM3"][this.app.currentRegion]["SVG"]);
 	}
@@ -338,10 +406,6 @@ var MapStateZoom3 = function(app) {
 		this.bgImage = new Image;
     	this.bgImage.onload = $.proxy(this.backgroundImageLoaded_, this);
     	this.bgImage.src = ImagesList["ZOOM3"][this.app.currentRegion]["MAP"];
-	}
-
-	this.addMiniMap = function() {
-		this.miniMapWriter.show(ImagesList["ZOOM3"][this.app.currentRegion]["BACK"]["IMAGE"], $.proxy(this.onBack, this));
 	}
 
 	this.onBack = function() {
@@ -437,7 +501,7 @@ var ImagePreloaderIteration = function(item, array) {
 	} else {
 		var postfixArr = item.split(".");
 		var postfix = postfixArr[postfixArr.length-1];
-		if(postfix == "png" || postfix == "jpg" || postfix == "gif"|| postfix == "mp4") {
+		if(postfix == "png" || postfix == "jpg" || postfix == "gif" || postfix == "mp4") {
 			array.push(item);	
 		}	
 	}
@@ -512,7 +576,6 @@ var Application = function() {
 	this.appTimer = new AppTimer(this);
 	this.parametrsWidgets = new ParametrsWidgets(this);
 	this.regionManager = new RegionManager(this);
-	this.regions = this.regionManager.getAll();
 
 	this.run = function() {
 		this.loadingState.run();
@@ -531,8 +594,7 @@ var Application = function() {
 				self.loader.add(pxImage);	
 			}	
 			if(postfix == "mp4") {
-				var pxImage = new PxLoaderVideo(value); 
-				self.loader.add(pxImage);	
+				self.videoPlayer.addVideo(value);	
 			}	
 		});
 		this.loader.start();
