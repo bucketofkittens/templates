@@ -1,9 +1,9 @@
 var ImagesList = {
 	"PRELOAD": {
-		"IMAGE": "/static/images/map/zoom1.png"
+		"IMAGE": "/static/images/map/zoom1.jpg"
 	},
 	"ZOOM1": {
-		"MAP": "/static/images/map/zoom1.png",
+		"MAP": "/static/images/map/zoom1.jpg",
 		"SVG": "/static/svg/zoom1.svg",
 		"VIDEO": {
 			"5": "/static/video/zoom1-in.mp4"
@@ -18,7 +18,7 @@ var ImagesList = {
 			"VIDEO": "/static/video/zoom1-out.mp4"
 		},
 		"5": {
-			"MAP": "/static/images/map/zoom2.png",
+			"MAP": "/static/images/map/zoom2.jpg",
 			"SVG": "/static/svg/zoom2.svg"
 		},
 		"ITEMS": {
@@ -33,7 +33,7 @@ var ImagesList = {
 	"ZOOM3": {
 		"4": {
 			"SVG": "/static/svg/zoom3.svg",
-			"MAP": "/static/images/map/zoom3.png",
+			"MAP": "/static/images/map/zoom3.jpg",
 			"BACK": {
 				"IMAGE": "/static/images/mini/small-map-2.gif",
 				"VIDEO": "/static/video/zoom2-out.mp4",

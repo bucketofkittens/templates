@@ -559,7 +559,7 @@ var Application = function() {
 	this.zoomStateManager = new ZoomStateManager(this);
 	this.appSize = [1920, 1080];
 	this.currentRegion = "";
-	this.apiHost = "http://192.168.0.34:3000";
+	this.apiHost = "http://174.129.130.28:3000";
 
 	this.CSS = {
 		"APP": "#app",
