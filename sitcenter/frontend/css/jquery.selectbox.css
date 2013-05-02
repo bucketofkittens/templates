@@ -54,6 +54,7 @@
 	z-index: 1;
 	overflow: hidden;
 	height: 190px;
+	max-height: 900px !important;
 }
 .sbOptions li{
 	

@@ -283,7 +283,7 @@ header h1 {
 	background: #7696b8;
 	padding-left: 15px;
 }
-#content .data .jspPane > ul {
+#content .data  ul.first {
 	display: block;
 	margin-left: 70px;
 }
@@ -326,9 +326,12 @@ header h1 {
 #content .data .scroll li ul li .name {
 	cursor: pointer;
 }
+#content .data .scroll li ul li .name.active {
+	text-decoration: underline;
+}
 #content .data .scroll .group {
-	padding-bottom: 7px;
-	padding-top: 7px;
+	padding-bottom: 16px;
+	padding-top: 4px;
 	display: block;
 }
 #content .data li.current {

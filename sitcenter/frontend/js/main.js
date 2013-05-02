@@ -33,6 +33,27 @@ var SVGLoader = function(app, clickCallback) {
 
 	}
 
+	this.coloredPath = function(index, color) {
+		var currentGroup = null;
+		var svg = this.elements["SVG"][0].getSVGDocument();
+
+		$.each($(svg).find("g"), function(key, value) {
+
+			if($(value).index() == index) {
+				console.log("SVG index:"+ $(value).index()+"-"+index+ "color:"+color+$(value));
+				currentGroup = $(value);
+			}
+		});
+
+		if(currentGroup) {
+
+			path = currentGroup.find("path");
+			console.log(path);
+			path.attr("fill", color);
+			path.attr("fill-opacity", 0.4);	
+		}
+	}
+
 	this.onLoadSvg_ = function() {
 		var svg = this.elements["SVG"][0].getSVGDocument();
 		var self = this;
@@ -47,13 +68,24 @@ var SVGLoader = function(app, clickCallback) {
 		groups.off();
 
 		groups.on("mouseover", function() {
+			var paths = $(this).stop().find("path");
+			var newOpaity = 0.3;
+			if(paths.attr("fill-opacity") == 0.4) {
+				newOpaity = 0.6;
+			}
 			$(this).stop().find("path").animate({
-				"fill-opacity": "0.3"
+				"fill-opacity": newOpaity
 			}, 100);
 		});
 		groups.on("mouseout", function() {
+			var paths = $(this).stop().find("path");
+			var newOpaity = 0.001;
+			console.log(paths.attr("fill-opacity"));
+			if(paths.attr("fill-opacity") == 0.4) {
+				newOpaity = 0.4;
+			}
 			$(this).stop().find("path").animate({
-				"fill-opacity": "0.001"
+				"fill-opacity": newOpaity
 			}, 100);
 		});
 
@@ -232,6 +264,9 @@ var MapStateZoom1 = function(app) {
 		this.setBgImage();
 		this.app.setAppTitle(this.titleText);
 		this.SVGWriter.load(ImagesList["ZOOM1"]["SVG"]);
+
+		this.app.parametrsWidgets.getParamsByRegionAndYeage(this.app.currentRegion);
+		this.app.mapColorel.setRegionCompare(ImagesList["ZOOM1"]["BACK_IDS"]);
 	}
 
 	this.clear = function() {
@@ -301,6 +336,8 @@ var MapStateZoom2 = function(app) {
 		setTimeout($.proxy(this.addMiniMap, this), 0);
 
 		this.SVGWriter.load(ImagesList["ZOOM2"][this.app.currentRegion]["SVG"]);
+
+		this.app.parametrsWidgets.getParamsByRegionAndYeage(ImagesList["ZOOM1"]["BACK_IDS"][this.app.currentRegion]);
 	}
 
 	this.backgroundImageLoaded_ = function() {
@@ -397,6 +434,7 @@ var MapStateZoom3 = function(app) {
 		this.setBgImage();
 
 		this.SVGWriter.load(ImagesList["ZOOM3"][this.app.currentRegion]["SVG"]);
+		this.app.parametrsWidgets.getParamsByRegionAndYeage(ImagesList["ZOOM2"]["BACK_IDS"][this.app.currentRegion]);
 	}
 
 	this.backgroundImageLoaded_ = function() {
@@ -560,7 +598,7 @@ var AppTimer = function(app) {
 var Application = function() {
 	this.zoomStateManager = new ZoomStateManager(this);
 	this.appSize = [1920, 1080];
-	this.currentRegion = "";
+	this.currentRegion = 100;
 	this.apiHost = "http://174.129.130.28:3000";
 
 	this.CSS = {
@@ -573,15 +611,17 @@ var Application = function() {
 	}
 
 	this.regionManager = new RegionManager(this);
-	this.groupsManager = new GroupsManager(this);
+	this.paramsManager = new ParamsManager(this);
 
 	this.loader = new PxLoader();
 	this.resources = ImagePreloaderPrepare(ImagesList);
 	this.videoPlayer = new VideoPlayer();
 	this.loadingState = new LoadingState(this);
 	this.appTimer = new AppTimer(this);
+
 	this.parametrsWidgets = new ParametrsWidgets(this);
-	
+	this.mapColorWidget = new MapColorWidget(this);
+	this.mapColorel = new MapColorel(this);
 
 	this.run = function() {
 		this.loadingState.run();
