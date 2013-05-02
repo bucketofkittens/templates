@@ -478,3 +478,56 @@ header form.reg img {
 	display: block;
 	margin: 25px auto;
 }
+
+#content p > a {
+	font-family: 'geisha';
+	font-size: 18px;
+	color: #631e1e;
+}
+#content table.order {
+	margin: 20px auto;
+	width: 510px;
+}
+#content table.order thead th {
+	background: url("../img/hat.png") center center no-repeat;
+	width: 170px;
+	height: 30px;
+	color: #ebe4c7;
+	font-family: 'Century Gothic';
+	font-size: 14px;
+	vertical-align: middle;
+}
+#content table.order td {
+	text-align: center;
+	background: url("../img/bones.png") center top no-repeat;	
+	width: 170px;
+	height: 140px;
+	color: #554c3e;
+	font-family: 'Century Gothic';
+	font-size: 14px;
+	vertical-align: middle;
+}
+#content table.order td img {
+	display: block;
+	height: 84px;
+	width: 55px;
+	margin: 0px auto;
+	padding-bottom: 5px;
+}
+#content table.order td span {
+	background: url("../img/del.png") center center no-repeat;
+	width: 18px;
+	height: 18px;
+	display: block;
+	margin: 0px auto;
+}
+#content table.order .count td {
+	color: #ebe4c7;
+	height: 30px;
+	background: #641e1e;
+}
+#content table.order .count td:last-child {
+	font-weight: bold;
+	text-align: left;
+	padding-left: 40px;
+}
