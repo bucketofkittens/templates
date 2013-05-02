@@ -84,11 +84,11 @@ header b {
 	position: absolute;
 	left: 50%;
 	margin-left: -18px;
-	bottom: 7px;
+	bottom: 12px;
 }
 header i {
 	background: url("../img/header.jpg") center -155px no-repeat;
-	height: 690px;
+	height: 695px;
 	width: 100%;
 	display: block;
 	position: absolute;
