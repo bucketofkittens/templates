@@ -253,11 +253,18 @@ header h1 {
 	display: block;
 	z-index: 130;
 }
+#content .data .group {
+	cursor: pointer;
+}
 #content .data h3 {
 	font-family: 'NeoSansPro';
 	font-size: 16px;
 	color: #ffffff;
 	margin: 40px 0px 50px 75px;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	padding-right: 15px;
 }
 #content .data .search, #content .data .year {
 	background: none;
@@ -280,6 +287,9 @@ header h1 {
 	display: block;
 	margin-left: 70px;
 }
+#content .data .jspPane > ul.hidde {
+	display: none;
+}
 #content .data ul span {
 	width: 210px;
 	float: left;
@@ -294,8 +304,32 @@ header h1 {
 	font-size: 16px;
 	color: #ffffff;
 	overflow: hidden;
-	height: 40px;
-	line-height: 40px;
+	line-height: 120%;
+}
+#content .data .scroll li ul {
+	display: none;
+}
+#content .data .scroll li ul li {
+	padding-top: 4px;
+	padding-bottom: 4px;
+	position: relative;
+	padding-left: 10px;
+}
+#content .data .scroll li ul li.hidde {
+	display: none;
+}
+#content .data .scroll li ul li .spr {
+	position: absolute;
+	left: 0px;
+	top: 4px;
+}
+#content .data .scroll li ul li .name {
+	cursor: pointer;
+}
+#content .data .scroll .group {
+	padding-bottom: 7px;
+	padding-top: 7px;
+	display: block;
 }
 #content .data li.current {
 	height: auto;

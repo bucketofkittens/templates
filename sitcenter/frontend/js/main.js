@@ -100,9 +100,11 @@ var VideoPlayer = function() {
 		this.elements["BG"].style.display = "block";
 		this.video = $("#video_"+this.getVideoKey_(videoPath));
 		this.video.on('ended', this.endedCallback);
-		this.video[0].style.display = "block";
-		this.video[0].load();
-        this.video[0].play();
+		if(this.video[0]) {
+			this.video[0].style.display = "block";
+			this.video[0].load();
+	        this.video[0].play();	
+		}
 	}
 
 	this.hide = function() {
@@ -569,13 +571,17 @@ var Application = function() {
 		"APP": $(this.CSS["APP"]),
 		"TITLE": $(this.CSS["TITLE"])
 	}
+
+	this.regionManager = new RegionManager(this);
+	this.groupsManager = new GroupsManager(this);
+
 	this.loader = new PxLoader();
 	this.resources = ImagePreloaderPrepare(ImagesList);
 	this.videoPlayer = new VideoPlayer();
 	this.loadingState = new LoadingState(this);
 	this.appTimer = new AppTimer(this);
 	this.parametrsWidgets = new ParametrsWidgets(this);
-	this.regionManager = new RegionManager(this);
+	
 
 	this.run = function() {
 		this.loadingState.run();
