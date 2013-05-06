@@ -48,23 +48,14 @@ var SVGLoader = function(app, clickCallback) {
 
 		groups.on("mouseover", function() {
 			var paths = $(this).stop().find("path");
-			var newOpaity = 0.3;
-			if(paths.attr("fill-opacity") == 0.4) {
-				newOpaity = 0.6;
-			}
 			$(this).stop().find("path").animate({
-				"fill-opacity": newOpaity
+				"fill-opacity": self.maxOpacity
 			}, 100);
 		});
 		groups.on("mouseout", function() {
 			var paths = $(this).stop().find("path");
-			var newOpaity = 0.001;
-			console.log(paths.attr("fill-opacity"));
-			if(paths.attr("fill-opacity") == 0.4) {
-				newOpaity = 0.4;
-			}
 			$(this).stop().find("path").animate({
-				"fill-opacity": newOpaity
+				"fill-opacity": self.minOpacity
 			}, 100);
 		});
 
@@ -214,79 +205,10 @@ var LoadingState = function(app) {
 }
 
 /**
- * [MapStateZoom1 description]
+ * [MapStateManager description]
  * @param {[type]} app [description]
  */
-var MapStateZoom1 = function(app) {
-	this.stateCSS = {
-		"BG-IMAGE": "#bg-image"
-	}
-
-	this.stateElements  = {
-		"BG-IMAGE": {}
-	}
-
-	this.regions = {};
-	this.bgImage = new Image;
-	this.titleText = "Российская Федерация";
-	this.regionId = 100;
-
-	this.stateElements["BG-IMAGE"] = $(this.stateCSS["BG-IMAGE"]);
-
-	this.setRootRegions = function(data) {
-		this.regions = data;
-	}
-
-	this.backgroundImageLoaded_ = function() {
-		this.stateElements["BG-IMAGE"].css("backgroundImage", "url('"+this.bgImage.src+"')");
-		this.app.videoPlayer.hide();
-	}
-
-	this.show = function() {
-		this.app.regionManager.getDistricts($.proxy(this.setRootRegions, this));
-		this.setBgImage();
-		this.app.setAppTitle(this.titleText);
-		this.SVGWriter.load(this.app.configManager.getSvgById(this.app.currentRegion));
-
-		this.app.parametrsWidgets.getParamsByRegionAndYeage(this.regionId);
-	}
-
-	this.clear = function() {
-
-	}
-
-	this.setBgImage = function(bgImageLoaded) {
-		this.bgImage = new Image;
-    	this.bgImage.onload = $.proxy(this.backgroundImageLoaded_, this);
-    	this.bgImage.src = this.app.configManager.getMapById(this.app.currentRegion);
-	}
-
-	this.onSvgClick_ = function(evt) {
-		this.app.currentRegion = $(evt.target).parent().attr("target");
-		this.app.mapColorel.colored(
-			this.app.parametrsWidgets.currentParametr.id, 
-			this.app.currentRegion, 
-			this.app.ageSelectorWidget.selectedAge
-		);
-		this.app.videoPlayer.play(this.app.configManager.getInVideoById(this.app.currentRegion), $.proxy(this.onVideoPlayStop_, this));
-	}
-
-	this.onVideoPlayStop_ = function(e) {
-		this.app.zoomStateManager.nextState();
-		this.app.zoomStateManager.getStateModel().show();
-	}
-
-	this.app = app;
-	this.SVGWriter = new SVGLoader(app, $.proxy(this.onSvgClick_, this));
-}
-
-/**
- * [MapStateZoom2 description]
- * @param {[type]} app [description]
- */
-var MapStateZoom2 = function(app) {
-	this.backTitleText = "Российская Федерация";
-
+var MapStateManager = function(app) {
 	this.miniMapWriter = new MiniMapWriter();
 	this.miniMapWriter.setText(this.backTitleText);
 	
@@ -306,6 +228,14 @@ var MapStateZoom2 = function(app) {
 	this.setCurrentRegion = function(data) {
 		this.currentRegionData = data;
 		this.app.setAppTitle(this.currentRegionData.name);
+		console.log(this.currentRegionData);
+		if(this.app.currentZoom != 1) {
+			var backId = this.currentRegionData.district_id;
+			if(backId == null) {
+				backId = this.currentRegionData.country_id;
+			}
+			this.app.regionManager.getById(backId, $.proxy(this.setPrevRegion, this));
+		}
 	}
 
 	this.setRootRegions = function(data) {
@@ -317,7 +247,10 @@ var MapStateZoom2 = function(app) {
 		this.app.regionManager.getById(this.app.currentRegion, $.proxy(this.setCurrentRegion, this));
 		
 		this.setBgImage();
-		setTimeout($.proxy(this.addMiniMap, this), 0);
+
+		if(this.app.currentZoom != 1) {
+			setTimeout($.proxy(this.addMiniMap, this), 0);
+		}
 
 		this.SVGWriter.load(this.app.configManager.getSvgById(this.app.currentRegion));
 
@@ -336,23 +269,24 @@ var MapStateZoom2 = function(app) {
 	}
 
 	this.addMiniMap = function() {
+		this.miniMapWriter.setText();
 		this.miniMapWriter.show(this.app.configManager.getMiniMapById(this.app.currentRegion), $.proxy(this.onBack, this));
 	}
 
 	this.onBack = function() {
 		this.miniMapWriter.hiden();
-		this.app.videoPlayer.play(this.app.configManager.getOutVideoById(this.app.currentRegion), $.proxy(this.onVideoPlayStop, this));
+		this.app.videoPlayer.play(this.app.configManager.getOutVideoById(this.app.currentRegion), $.proxy(this.onOutVideoPlayStop_, this));
 	}
 
-	this.onVideoPlayStop = function() {
-		this.app.currentRegion = 100;
+	this.onOutVideoPlayStop_ = function() {
+		this.app.currentRegion = this.prevRegion.id;
 		this.app.mapColorel.colored(
 			this.app.parametrsWidgets.currentParametr.id, 
 			this.app.currentRegion, 
 			this.app.ageSelectorWidget.selectedAge
 		);
-		this.app.zoomStateManager.prevState();
-		this.app.zoomStateManager.getStateModel().show();
+		this.app.prevState();
+		this.app.mapStateManager.show();
 	}
 
 	this.clear = function() {
@@ -366,46 +300,12 @@ var MapStateZoom2 = function(app) {
 			this.app.currentRegion, 
 			this.app.ageSelectorWidget.selectedAge
 		);
-		this.app.videoPlayer.play(this.app.configManager.getInVideoById(this.app.currentRegion), $.proxy(this.onVideoPlayStop_, this));
+		this.app.videoPlayer.play(this.app.configManager.getInVideoById(this.app.currentRegion), $.proxy(this.onInVideoPlayStop_, this));
 	}
 
-	this.onVideoPlayStop_ = function(e) {
-		this.app.zoomStateManager.nextState();
-		this.app.zoomStateManager.getStateModel().show();
-	}
-
-	this.app = app;
-	this.SVGWriter = new SVGLoader(app, $.proxy(this.onSvgClick_, this));
-}
-
-/**
- * [MapStateZoom3 description]
- * @param {[type]} app [description]
- */
-var MapStateZoom3 = function(app) {
-	this.app = app;
-	this.SVGWriter = new SVGLoader(app);
-	this.miniMapWriter = new MiniMapWriter();
-	this.bgImage = new Image;
-
-	this.stateCSS = {
-		"BG-IMAGE": "#bg-image"
-	}
-
-	this.stateElements = {
-		"BG-IMAGE": {}
-	}
-
-	this.stateElements["BG-IMAGE"] = $(this.stateCSS["BG-IMAGE"]);
-	this.regions = {};
-	this.currentRegionData = {};
-	this.prevRegion = {}
-
-	this.setCurrentRegion = function(data) {
-		this.currentRegionData = data;
-		this.app.setAppTitle(this.currentRegionData.name);
-
-		this.app.regionManager.getById(this.currentRegionData.district_id, $.proxy(this.setPrevRegion, this));
+	this.onInVideoPlayStop_ = function(e) {
+		this.app.nextState();
+		this.app.mapStateManager.show();
 	}
 
 	this.setPrevRegion = function(data) {
@@ -414,89 +314,9 @@ var MapStateZoom3 = function(app) {
 		this.miniMapWriter.show(this.app.configManager.getMiniMapById(this.app.currentRegion), $.proxy(this.onBack, this));
 	}
 
-	this.setRootRegions = function(data) {
-		this.regions = data;
-	}
-
-	this.show = function() {
-		this.app.regionManager.getByParent(this.app.currentRegion, $.proxy(this.setRootRegions, this));
-		this.app.regionManager.getById(this.app.currentRegion, $.proxy(this.setCurrentRegion, this));
-		
-		this.setBgImage();
-		setTimeout($.proxy(this.addMiniMap, this), 0);
-
-		this.SVGWriter.load(this.app.configManager.getSvgById(this.app.currentRegion));
-
-		this.app.parametrsWidgets.getParamsByRegionAndYeage(this.app.currentRegion);
-	}
-
-	this.backgroundImageLoaded_ = function() {
-		this.stateElements["BG-IMAGE"].css("backgroundImage", "url('"+this.bgImage.src+"')");
-		this.app.videoPlayer.hide();
-	}
-
-	this.setBgImage = function(bgImageLoaded) {
-		this.bgImage = new Image;
-    	this.bgImage.onload = $.proxy(this.backgroundImageLoaded_, this);
-    	this.bgImage.src = this.app.configManager.getMapById(this.app.currentRegion);
-	}
-
-	this.onBack = function() {
-		this.miniMapWriter.hiden();
-		this.app.videoPlayer.play(this.app.configManager.getOutVideoById(this.app.currentRegion), $.proxy(this.onVideoPlayStop, this));
-	}
-
-	this.onVideoPlayStop = function() {
-		this.app.currentRegion = $(evt.target).parent().attr("target");
-		this.app.videoPlayer.play(this.app.configManager.getInVideoById(this.app.currentRegion), $.proxy(this.onVideoPlayStop_, this));
-	}
-
-	this.clear = function() {
-		this.miniMapWriter.hiden();
-	}
+	this.app = app;
+	this.SVGWriter = new SVGLoader(app, $.proxy(this.onSvgClick_, this));
 }
-
-
-/**
- * [ZoomStateManager description]
- */
-var ZoomStateManager = function(application) {
-	this.currentState = 1;
-	this.maxState = 3;
-	this.stateModel = {};
-	this.application = application;
-	this.models = [];
-
-	this.prevState = function() {
-		this.currentState--;
-		this.stateModel.clear();
-		return this.currentState; 
-	}
-
-	this.nextState = function() {
-		this.currentState++;
-		if(this.currentState > this.maxState) {
-			this.currentState = this.maxState;
-		} 
-		this.stateModel.clear();
-		return this.currentState;
-	}
-
-	this.getStateModel = function() {
-		if(this.currentState == 1) {
-			this.stateModel = new MapStateZoom1(this.application);
-		}
-		if(this.currentState == 2) {
-			this.stateModel = new MapStateZoom2(this.application);
-		}
-		if(this.currentState == 3) {
-			this.stateModel = new MapStateZoom3(this.application);
-		}
-		return this.stateModel;
-	}
-}
-
-
 
 /**
  * [ImagePreloader description]
@@ -587,9 +407,11 @@ var AppTimer = function(app) {
  * [Application description]
  */
 var Application = function() {
-	this.zoomStateManager = new ZoomStateManager(this);
 	this.appSize = [1920, 1080];
 	this.currentRegion = 100;
+	this.maxZoom = 3;
+	this.currentZoom = 1;
+
 	this.apiHost = "http://174.129.130.28:3000";
 
 	this.CSS = {
@@ -604,6 +426,7 @@ var Application = function() {
 	this.regionManager = new RegionManager(this);
 	this.paramsManager = new ParamsManager(this);
 	this.configManager = new ConfigManager(this, ConfigApp);
+	this.mapStateManager = new MapStateManager(this);
 
 	this.loader = new PxLoader();
 	this.resources = ImagePreloaderPrepare(ConfigApp["PRELOAD"]);
@@ -615,6 +438,14 @@ var Application = function() {
 	this.parametrsWidgets = new ParametrsWidgets(this);
 	this.mapColorWidget = new MapColorWidget(this);
 	this.mapColorel = new MapColorel(this);
+
+	this.prevState = function() {
+		this.currentZoom--;
+	}
+
+	this.nextState = function() {
+		this.currentZoom++;
+	}
 
 	this.run = function() {
 		this.loadingState.run();
@@ -645,8 +476,7 @@ var Application = function() {
 	}
 
 	this.onPanelsShow = function() {
-		var stateModel = this.zoomStateManager.getStateModel();
-		stateModel.show();
+		this.mapStateManager.show();
 	}
 
 	this.onResouceLoader = function() {

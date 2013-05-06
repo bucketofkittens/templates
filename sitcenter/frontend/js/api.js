@@ -377,15 +377,7 @@ var MapColorel = function(app) {
 
 	this.onGetMapLink_ = function(data) {
 		var link = data.responseText;
-		var isShow = false;
-		if(this.elements["CONTAINER"].css("display") == "block"){
-			this.hidden();
-			isShow = true;
-		}
 		this.elements["IMAGE"].attr("src",  this.app.apiHost+link);
-		if(isShow) {
-			this.show();	
-		}
 		
 	}
 
