@@ -162,7 +162,7 @@ header section {
 	display: inline-block;
 	z-index: 4;
 }
-header section:last-child {
+header section.last-child {
 	text-align: left;
 	margin-left: 480px;
 }
@@ -379,7 +379,7 @@ footer b {
 #content .else span.lr:first-child {
 	background: url("../img/left.png") center center no-repeat;
 }
-#content .else span.lr:last-child {
+#content .else span.rl {
 	background: url("../img/right.png") center center no-repeat;
 }
 
@@ -526,7 +526,7 @@ header form.reg img {
 	height: 30px;
 	background: #641e1e;
 }
-#content table.order .count td:last-child {
+#content table.order .count td.last-child {
 	font-weight: bold;
 	text-align: left;
 	padding-left: 40px;
