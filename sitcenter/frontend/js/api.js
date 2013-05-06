@@ -6,6 +6,7 @@ var ParametrsWidgets = function(app) {
 	this.app =  app;
 	this.parametrs = {};
 	this.filteredParametrs = {};
+	this.currentParametr = {};
 	this.CSS = {
 		"SHOW": "#paramers-show",
 		"MAIN": "#parametrs-widget",
@@ -32,11 +33,9 @@ var ParametrsWidgets = function(app) {
 	this.animateSpeed = 1000;
 	this.legendWidget = new LegendWidget(this.app);
 	this.scrollApi = null;
-	this.currentParametr = null;
-	this.currentAge = 2012;
 
 	this.parametrsClick_ = function(evt) {
-		$(evt.target).next().slideToggle("slow");
+		$(evt.target).parent().find("ul").slideToggle("slow");
 	}
 
 	this.getParametrById = function(id) {
@@ -59,7 +58,11 @@ var ParametrsWidgets = function(app) {
 		this.setTitle($(evt.target).html());
 		this.currentParametr = this.getParametrById($(evt.target).parent().parent().attr("data-id"));
 		if(this.app.mapColorWidget.state) {
-			this.app.mapColorel.colored();
+			this.app.mapColorel.colored(
+				this.currentParametr.id, 
+				this.app.currentRegion, 
+				this.app.ageSelectorWidget.selectedAge
+			);
 		}
 	}
 
@@ -91,13 +94,11 @@ var ParametrsWidgets = function(app) {
 
 	this.getParametrs_ = function(data) {
 		this.parametrs = this.prepareParamerts_(data);
-
-		this.clearParametrs_();
 		this.drawParamets_(this.parametrs);
 	}
 
 	this.initScroll_ = function() {
-		/*$(this.CSS["PARAMETRS-LIST"]).jScrollPane(
+		$(this.CSS["PARAMETRS-LIST"]).jScrollPane(
 			{
 				showArrows: true,
 				verticalDragMinHeight: 60,
@@ -106,33 +107,38 @@ var ParametrsWidgets = function(app) {
 			}
 		);
 		this.scrollApi = this.elements["SCROLL"].data('jsp');
-		*/
-	}
-
-	this.clearParametrs_ = function() {
 	}
 
 	this.drawParamets_ = function(params) {
 		var html = "";
+		var self = this;
+		var contentPane = this.scrollApi.getContentPane();
 
 		$.each(params, function(key, value) {
-			html += "<ul class='first'><li>";
-			html += "<a class='group'>"+value.name+"</a>";
-			if(value.parameters.length > 0) {
-				html += "<ul>";
-				$.each(value.parameters, function(key2, value2) {
-					if(value2) {
-						html += "<li data-name='"+value2.name+"' data-id='"+value2.id+"'><span  class='param'><em class='spr'>-</em> <em class='name'>"+value2.name+"</em></span><i>"+value2.value+"</i></li>";
-					}
-				});
-				html += "</ul>";	
+			var elementCurrentGroup = $("ul[data-id='"+value.id+"']", self.CSS["SCROLL"]);
+			if(elementCurrentGroup.size() == 0) {
+				var html =  "<ul data-id='"+value.id+"' class='first'><li class='first-li'>";
+					html += "<a class='group'>"+value.name+"</a>";
+					html += "<ul></ul></li></ul>";
+
+				contentPane.append(html);
 			}
-			html += "</li></ul>";
+
+			var elementCurrentGroup = $("ul[data-id='"+value.id+"']", self.CSS["SCROLL"]);
+			if(value.parameters.length > 0) {
+				$.each(value.parameters, function(key2, value2) {
+					var paramCurrent = $("li[data-id='"+value2.id+"']", self.CSS["SCROLL"]);
+					if(paramCurrent.size() == 0) {
+						var html = "<li data-name='"+value2.name+"' data-id='"+value2.id+"'><span  class='param'><em class='spr'>-</em> <em class='name'>"+value2.name+"</em></span><i>"+value2.value+"</i></li>";
+
+						elementCurrentGroup.find("ul").append(html);
+					} else {
+						paramCurrent.find("i").html(value2.value);
+					}
+				});	
+			}
 		});
-		if(this.scrollApi) {
-			this.scrollApi.destroy();
-		}
-		$(this.CSS["SCROLL"]).html(html);
+		this.scrollApi.reinitialise();
 	}
 
 	this.onHidden_ = function() {
@@ -156,11 +162,7 @@ var ParametrsWidgets = function(app) {
 			right: this.animateStep,
 			display: "block"
 		});
-		/*if(!this.scrollApi) {
-			this.initScroll_();
-		}
-		this.scrollApi.reinitialise();
-		*/
+		
 		this.elements["MAIN"].animate({
 				right: "0px"
 			},
@@ -175,6 +177,7 @@ var ParametrsWidgets = function(app) {
 		);
 
 		this.legendWidget.show();
+		this.initScroll_();
 		return false;
 	}
 
@@ -221,12 +224,7 @@ var ParametrsWidgets = function(app) {
 	}
 
 	this.getParamsByRegionAndYeage = function(region_id) {
-		this.app.paramsManager.getParamsByRegionAndYeage(region_id, $(this.CSS["AGE-SELECT"]+" :selected").html(), $.proxy(this.getParametrs_, this));
-	}
-
-	this.ageSelected_ = function(val, inst) {
-		this.currentAge = val;
-		this.app.paramsManager.getParamsByRegionAndYeage(this.app.currentRegion, val, $.proxy(this.getParametrs_, this));
+		this.app.paramsManager.getParamsByRegionAndYeage(region_id, this.app.ageSelectorWidget.selectedAge, $.proxy(this.getParametrs_, this));
 	}
 
 	this.bindEvents_ = function() {
@@ -234,16 +232,13 @@ var ParametrsWidgets = function(app) {
 		this.elements["HIDDEN"].on("click", $.proxy(this.onHidden_, this));
 		this.elements["FILTER"].on("keyup", $.proxy(this.onFilterClick_, this));
 
-		this.elements["AGE-SELECT"].selectbox({
-			effect: "slide",
-			onChange: $.proxy(this.ageSelected_, this)
-		});
-
-		$("body").on("click", this.CSS["PARAMETRS-LIST"]+" li", $.proxy(this.parametrsClick_, this));
+		$("body").on("click", this.CSS["PARAMETRS-LIST"]+" li.first-li", $.proxy(this.parametrsClick_, this));
 		$("body").on("click", this.CSS["PARAMETRS-LIST"]+" .name", $.proxy(this.parametrsNameClick_, this));
 	}
 
+	this.initScroll_();
 	this.bindEvents_();
+	this.app.ageSelectorWidget.draw();
 }
 
 /**
@@ -346,10 +341,11 @@ var MapColorWidget = function(app) {
 		if(this.state == false) {
 			this.elements["TOGGLE"].html("скрыть значения");
 			this.state = true;
-			this.app.mapColorel.colored();
+			this.app.mapColorel.show();
 		} else {
 			this.elements["TOGGLE"].html("показать значения");
 			this.state = false;
+			this.app.mapColorel.hidden();
 		}
 
 		return false;
@@ -364,54 +360,34 @@ var MapColorWidget = function(app) {
  */
 var MapColorel = function(app) {
 	this.app = app;
-	this.mapData = {};
-	this.regionCompare = {};
-	this.colors = [
-		"#c70000",
-		"#b98100",
-		"#009a33"
-	];
+	this.ajaxPath = "/subjects/";
+	this.CSS = {
+		"CONTAINER": "#bg-colored-image"
+	};
 
-	this.setRegionCompare = function(data) {
-		this.regionCompare = data;
+	this.elements = {
+		"CONTAINER": $(this.CSS["CONTAINER"]),
+		"IMAGE": $(this.CSS["CONTAINER"]).find("img")
 	}
 
-	this.colored = function() {
-		this.app.paramsManager.getRegionStateByParamsAndYeage(
-			this.app.parametrsWidgets.currentParametr.id, 
-			this.app.parametrsWidgets.currentAge,
-			$.proxy(this.onColoredDataRead_, this)
-		);
+
+	this.colored = function(params_id, region_id, year) {
+		var mapPath = this.app.apiHost+this.ajaxPath+params_id+"/"+region_id+"/"+year+"/map";
+
+		$.ajax({ url: mapPath, }).always($.proxy(this.onGetMapLink_, this));
 	}
 
-	this.onColoredDataRead_ = function(data) {
-		this.mapData = data;
+	this.onGetMapLink_ = function(data) {
+		var link = data.responseText;
+		this.elements["IMAGE"].attr("src",  this.app.apiHost+link);
+	}
 
-		var self = this;
-		var svgWriter = this.app.zoomStateManager.getStateModel().SVGWriter;
+	this.show = function() {
+		this.elements["CONTAINER"].fadeIn(); 
+	}
 
-		$.each(this.mapData, function(key, value) {
-			console.log(value.subject_id);
-			var inSvgIndex = self.findInCompare_(value.subject_id);
-			console.log(inSvgIndex);
-			if(value.subject_id == 102) {
-				console.log("WOW: "+value.subject_id+" "+inSvgIndex);
-			}
-			if(inSvgIndex) {
-				var color = "";
-				if(value.val_numeric < 8) {
-					color = self.colors[0];
-				}
-				if(value.val_numeric > 8 && value.val_numeric < 15) {
-					color = self.colors[1];
-				}
-				if(value.val_numeric > 15) {
-					color = self.colors[2];
-				}
-				console.log(value.val_numeric);
-				svgWriter.coloredPath(inSvgIndex, color);	
-			}
-		})
+	this.hidden = function() {
+		this.elements["CONTAINER"].fadeOut(); 
 	}
 
 	this.findInCompare_ = function(region_id) {
@@ -423,5 +399,49 @@ var MapColorel = function(app) {
 			}
 		});
 		return ret;
+	}
+}
+
+/**
+ * [AgeSelectorWidget description]
+ * @param {[type]} app [description]
+ */
+var AgeSelectorWidget = function(app) {
+	this.app = app;
+	this.ages = [2012, 2011, 2010, 2009, 2008]
+	this.selectedAge = 2012;
+	this.CSS = {
+		"SELECTOR": "#age_select"
+	}
+
+	this.elements = {
+		"SELECTOR": $(this.CSS["SELECTOR"])
+	}
+
+	this.draw = function() {
+		var self = this;
+		self.elements["SELECTOR"].html("");
+		$.each(this.ages, function(key, value) {
+			var selected = "";
+			if(value == self.currentAge) {
+				selected = 'selected="selected"';
+			}
+			var html = '<option '+selected+' value="'+value+'">'+value+'</option>';
+			self.elements["SELECTOR"].append(html);
+		});
+		this.elements["SELECTOR"].selectbox({
+			effect: "slide",
+			onChange: $.proxy(this.ageSelected_, this)
+		});
+	}
+
+	this.ageSelected_ = function(val, inst) {
+		this.selectedAge = val;
+		this.app.paramsManager.getParamsByRegionAndYeage(this.app.currentRegion, val, $.proxy(this.app.parametrsWidgets.getParametrs_, this.app.parametrsWidgets));
+		this.app.mapColorel.colored(
+			this.app.parametrsWidgets.currentParametr.id, 
+			this.app.currentRegion, 
+			this.app.ageSelectorWidget.selectedAge
+		);
 	}
 }

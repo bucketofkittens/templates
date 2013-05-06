@@ -1,51 +1,51 @@
-var ImagesList = {
+var ConfigApp = {
+	"PATHES": {
+		"VIDEO": "/static/video/",
+		"SVG": "/static/svg/",
+		"MAP": "/static/images/map/",
+		"MINI-MAP": "/static/images/mini/"
+	},
 	"PRELOAD": {
-		"IMAGE": "/static/images/map/zoom1.jpg"
-	},
-	"ZOOM1": {
-		"MAP": "/static/images/map/zoom1.jpg",
-		"SVG": "/static/svg/zoom1.svg",
-		"VIDEO": {
-			"5": "/static/video/zoom1-in.mp4"
-		},
-		"BACK_IDS": {
-			"0": "108",
-			"1": "102",
-			"2": "107",
-			"3": "106",
-			"4": "105",
-			"5": "101",
-			"6": "103",
-			"7": "104"
-		}
-	},
-	"ZOOM2": {
-		"BACK": {
-			"IMAGE": "/static/images/mini/small-map-1.gif",
-			"VIDEO": "/static/video/zoom1-out.mp4"
-		},
-		"5": {
-			"MAP": "/static/images/map/zoom2.jpg",
-			"SVG": "/static/svg/zoom2.svg"
-		},
-		"ITEMS": {
-			"4": {
-				"VIDEO": "/static/video/zoom2-in.mp4"
-			}
-		},
-		"BACK_IDS": {
-			"4": "52"
-		}
-	},
-	"ZOOM3": {
-		"4": {
-			"SVG": "/static/svg/zoom3.svg",
-			"MAP": "/static/images/map/zoom3.jpg",
-			"BACK": {
-				"IMAGE": "/static/images/mini/small-map-2.gif",
-				"VIDEO": "/static/video/zoom2-out.mp4",
-				"LINK": "5"
-			}
-		}
+		"IMAGES": [
+			"/static/images/map/100.jpg",
+			"/static/images/map/101.jpg",
+			"/static/images/map/52.jpg"
+		],
+		"VIDEO": [
+			"/static/video/101-in.mp4",
+			"/static/video/101-out.mp4",
+			"/static/video/52-in.mp4",
+			"/static/video/52-out.mp4"
+		]
+	}
+}
+
+/**
+ * [ConfigManager description]
+ * @param {[type]} app    [description]
+ * @param {[type]} config [description]
+ */
+var ConfigManager = function(app, config) {
+	this.app = app;
+	this.config = config;
+
+	this.getMapById = function(id_region) {
+		return this.config["PATHES"]["MAP"]+id_region+".jpg";
+	}
+
+	this.getMiniMapById = function(id_region) {
+		return this.config["PATHES"]["MINI-MAP"]+id_region+".gif";
+	}
+
+	this.getSvgById = function(id_region) {
+		return this.config["PATHES"]["SVG"]+id_region+".svg";
+	}
+
+	this.getInVideoById = function(id_region) {
+		return this.config["PATHES"]["VIDEO"]+id_region+"-in.mp4";
+	}
+
+	this.getOutVideoById = function(id_region) {
+		return this.config["PATHES"]["VIDEO"]+id_region+"-out.mp4";
 	}
 }
