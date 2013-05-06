@@ -263,6 +263,11 @@ var MapStateZoom1 = function(app) {
 
 	this.onSvgClick_ = function(evt) {
 		this.app.currentRegion = $(evt.target).parent().attr("target");
+		this.app.mapColorel.colored(
+			this.app.parametrsWidgets.currentParametr.id, 
+			this.app.currentRegion, 
+			this.app.ageSelectorWidget.selectedAge
+		);
 		this.app.videoPlayer.play(this.app.configManager.getInVideoById(this.app.currentRegion), $.proxy(this.onVideoPlayStop_, this));
 	}
 
@@ -341,6 +346,11 @@ var MapStateZoom2 = function(app) {
 
 	this.onVideoPlayStop = function() {
 		this.app.currentRegion = 100;
+		this.app.mapColorel.colored(
+			this.app.parametrsWidgets.currentParametr.id, 
+			this.app.currentRegion, 
+			this.app.ageSelectorWidget.selectedAge
+		);
 		this.app.zoomStateManager.prevState();
 		this.app.zoomStateManager.getStateModel().show();
 	}
@@ -351,7 +361,11 @@ var MapStateZoom2 = function(app) {
 
 	this.onSvgClick_ = function(evt) {
 		this.app.currentRegion = $(evt.target).parent().attr("target");
-		console.log(this.app.currentRegion);
+		this.app.mapColorel.colored(
+			this.app.parametrsWidgets.currentParametr.id, 
+			this.app.currentRegion, 
+			this.app.ageSelectorWidget.selectedAge
+		);
 		this.app.videoPlayer.play(this.app.configManager.getInVideoById(this.app.currentRegion), $.proxy(this.onVideoPlayStop_, this));
 	}
 
@@ -397,7 +411,7 @@ var MapStateZoom3 = function(app) {
 	this.setPrevRegion = function(data) {
 		this.prevRegion = data;
 		this.miniMapWriter.setText(this.prevRegion.name);
-		this.miniMapWriter.show(ConfigApp["PATHES"]["MINI-MAP"]+this.app.currentRegion+".jpg", $.proxy(this.onBack, this));
+		this.miniMapWriter.show(this.app.configManager.getMiniMapById(this.app.currentRegion), $.proxy(this.onBack, this));
 	}
 
 	this.setRootRegions = function(data) {
@@ -405,14 +419,15 @@ var MapStateZoom3 = function(app) {
 	}
 
 	this.show = function() {
-		console.log("zoom3");
-		this.app.regionManager.getByParent(ImagesList["ZOOM2"]["BACK_IDS"][this.app.currentRegion], $.proxy(this.setRootRegions, this));
-		this.app.regionManager.getById(ImagesList["ZOOM2"]["BACK_IDS"][this.app.currentRegion], $.proxy(this.setCurrentRegion, this));
-
+		this.app.regionManager.getByParent(this.app.currentRegion, $.proxy(this.setRootRegions, this));
+		this.app.regionManager.getById(this.app.currentRegion, $.proxy(this.setCurrentRegion, this));
+		
 		this.setBgImage();
+		setTimeout($.proxy(this.addMiniMap, this), 0);
 
-		this.SVGWriter.load(ImagesList["ZOOM3"][this.app.currentRegion]["SVG"]);
-		this.app.parametrsWidgets.getParamsByRegionAndYeage(ImagesList["ZOOM2"]["BACK_IDS"][this.app.currentRegion]);
+		this.SVGWriter.load(this.app.configManager.getSvgById(this.app.currentRegion));
+
+		this.app.parametrsWidgets.getParamsByRegionAndYeage(this.app.currentRegion);
 	}
 
 	this.backgroundImageLoaded_ = function() {
@@ -423,19 +438,17 @@ var MapStateZoom3 = function(app) {
 	this.setBgImage = function(bgImageLoaded) {
 		this.bgImage = new Image;
     	this.bgImage.onload = $.proxy(this.backgroundImageLoaded_, this);
-    	this.bgImage.src = ImagesList["ZOOM3"][this.app.currentRegion]["MAP"];
+    	this.bgImage.src = this.app.configManager.getMapById(this.app.currentRegion);
 	}
 
 	this.onBack = function() {
 		this.miniMapWriter.hiden();
-		this.app.videoPlayer.play(ImagesList["ZOOM3"][this.app.currentRegion]["BACK"]["VIDEO"], $.proxy(this.onVideoPlayStop, this));
+		this.app.videoPlayer.play(this.app.configManager.getOutVideoById(this.app.currentRegion), $.proxy(this.onVideoPlayStop, this));
 	}
 
 	this.onVideoPlayStop = function() {
-		this.app.currentRegion = ImagesList["ZOOM3"][this.app.currentRegion]["BACK"]["LINK"];
-
-		this.app.zoomStateManager.prevState();
-		this.app.zoomStateManager.getStateModel().show();
+		this.app.currentRegion = $(evt.target).parent().attr("target");
+		this.app.videoPlayer.play(this.app.configManager.getInVideoById(this.app.currentRegion), $.proxy(this.onVideoPlayStop_, this));
 	}
 
 	this.clear = function() {
@@ -457,7 +470,7 @@ var ZoomStateManager = function(application) {
 	this.prevState = function() {
 		this.currentState--;
 		this.stateModel.clear();
-		return this.currentState;
+		return this.currentState; 
 	}
 
 	this.nextState = function() {

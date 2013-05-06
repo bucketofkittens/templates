@@ -57,13 +57,11 @@ var ParametrsWidgets = function(app) {
 		$(evt.target).toggleClass("active");
 		this.setTitle($(evt.target).html());
 		this.currentParametr = this.getParametrById($(evt.target).parent().parent().attr("data-id"));
-		if(this.app.mapColorWidget.state) {
-			this.app.mapColorel.colored(
-				this.currentParametr.id, 
-				this.app.currentRegion, 
-				this.app.ageSelectorWidget.selectedAge
-			);
-		}
+		this.app.mapColorel.colored(
+			this.currentParametr.id, 
+			this.app.currentRegion, 
+			this.app.ageSelectorWidget.selectedAge
+		);
 	}
 
 	this.setTitle = function(title) {
@@ -379,15 +377,24 @@ var MapColorel = function(app) {
 
 	this.onGetMapLink_ = function(data) {
 		var link = data.responseText;
+		var isShow = false;
+		if(this.elements["CONTAINER"].css("display") == "block"){
+			this.hidden();
+			isShow = true;
+		}
 		this.elements["IMAGE"].attr("src",  this.app.apiHost+link);
+		if(isShow) {
+			this.show();	
+		}
+		
 	}
 
 	this.show = function() {
-		this.elements["CONTAINER"].fadeIn(); 
+		this.elements["CONTAINER"].fadeIn("slow"); 
 	}
 
 	this.hidden = function() {
-		this.elements["CONTAINER"].fadeOut(); 
+		this.elements["CONTAINER"].fadeOut("slow"); 
 	}
 
 	this.findInCompare_ = function(region_id) {
