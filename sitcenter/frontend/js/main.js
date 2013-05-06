@@ -137,20 +137,17 @@ var MiniMapWriter = function() {
 		"CONTAINER": $(this.CSS["CONTAINER"]),
 		"TEXT": $(this.CSS["CONTAINER"]+this.CSS["TEXT"])
 	}
-	this.callback = {}
 
 	this.show = function(imagePath, callback) {
-		this.callback = callback;
 		this.elements["CONTAINER"].fadeIn();
 		this.elements["TEXT"].css("backgroundImage", "url('"+imagePath+"')");
-		this.elements["CONTAINER"].on("click", this.callback);
+		this.elements["CONTAINER"].on("click", callback);
 	}
 
 	this.hiden = function() {
-		var self = this;
 		this.elements["CONTAINER"].fadeOut();
 		this.elements["TEXT"].css("backgroundImage", "none");
-		this.elements["CONTAINER"].off("click", this.callback);
+		this.elements["CONTAINER"].off();
 	}
 
 	this.setText = function(text) {
@@ -228,7 +225,6 @@ var MapStateManager = function(app) {
 	this.setCurrentRegion = function(data) {
 		this.currentRegionData = data;
 		this.app.setAppTitle(this.currentRegionData.name);
-		console.log(this.currentRegionData);
 		if(this.app.currentZoom != 1) {
 			var backId = this.currentRegionData.district_id;
 			if(backId == null) {
@@ -248,12 +244,7 @@ var MapStateManager = function(app) {
 		
 		this.setBgImage();
 
-		if(this.app.currentZoom != 1) {
-			setTimeout($.proxy(this.addMiniMap, this), 0);
-		}
-
 		this.SVGWriter.load(this.app.configManager.getSvgById(this.app.currentRegion));
-
 		this.app.parametrsWidgets.getParamsByRegionAndYeage(this.app.currentRegion);
 	}
 
@@ -274,6 +265,7 @@ var MapStateManager = function(app) {
 	}
 
 	this.onBack = function() {
+		console.log("onBack");
 		this.miniMapWriter.hiden();
 		this.app.videoPlayer.play(this.app.configManager.getOutVideoById(this.app.currentRegion), $.proxy(this.onOutVideoPlayStop_, this));
 	}
@@ -295,21 +287,22 @@ var MapStateManager = function(app) {
 
 	this.onSvgClick_ = function(evt) {
 		this.app.currentRegion = $(evt.target).parent().attr("target");
+		this.app.videoPlayer.play(this.app.configManager.getInVideoById(this.app.currentRegion), $.proxy(this.onInVideoPlayStop_, this));
+	}
+
+	this.onInVideoPlayStop_ = function(e) {
 		this.app.mapColorel.colored(
 			this.app.parametrsWidgets.currentParametr.id, 
 			this.app.currentRegion, 
 			this.app.ageSelectorWidget.selectedAge
 		);
-		this.app.videoPlayer.play(this.app.configManager.getInVideoById(this.app.currentRegion), $.proxy(this.onInVideoPlayStop_, this));
-	}
-
-	this.onInVideoPlayStop_ = function(e) {
 		this.app.nextState();
 		this.app.mapStateManager.show();
 	}
 
 	this.setPrevRegion = function(data) {
 		this.prevRegion = data;
+		this.miniMapWriter.hiden();
 		this.miniMapWriter.setText(this.prevRegion.name);
 		this.miniMapWriter.show(this.app.configManager.getMiniMapById(this.app.currentRegion), $.proxy(this.onBack, this));
 	}
@@ -482,7 +475,8 @@ var Application = function() {
 	this.onResouceLoader = function() {
 		var self = this;
 		setTimeout(function() {
-			self.loadingState.stop($.proxy(self.onPanelsShow, self));
+			self.loadingState.stop(function() {});
+			self.onPanelsShow();
 		}, 0);
 	}
 

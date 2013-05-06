@@ -362,6 +362,7 @@ var MapColorel = function(app) {
 	this.CSS = {
 		"CONTAINER": "#bg-colored-image"
 	};
+	this.isShowed = false;
 
 	this.elements = {
 		"CONTAINER": $(this.CSS["CONTAINER"]),
@@ -372,21 +373,37 @@ var MapColorel = function(app) {
 	this.colored = function(params_id, region_id, year) {
 		var mapPath = this.app.apiHost+this.ajaxPath+params_id+"/"+region_id+"/"+year+"/map";
 
+		if(this.isShowed) {
+			this.elements["CONTAINER"].css("display", "none");
+		}
 		$.ajax({ url: mapPath, }).always($.proxy(this.onGetMapLink_, this));
 	}
 
 	this.onGetMapLink_ = function(data) {
 		var link = data.responseText;
-		this.elements["IMAGE"].attr("src",  this.app.apiHost+link);
-		
+		var self = this;
+		var image = new Image();
+        image.src=self.app.apiHost+link;
+        image.onload=function(){
+           self.elements["IMAGE"].attr("src",  self.app.apiHost+link);
+           if(self.isShowed) {
+				self.elements["CONTAINER"].css("display", "block");
+			}
+        }
 	}
 
 	this.show = function() {
-		this.elements["CONTAINER"].fadeIn("slow"); 
+		var self = this;
+		this.elements["CONTAINER"].fadeIn("slow", function() {
+			self.isShowed = true;
+		}); 
 	}
 
 	this.hidden = function() {
-		this.elements["CONTAINER"].fadeOut("slow"); 
+		var self = this;
+		this.elements["CONTAINER"].fadeOut("slow", function() {
+			self.isShowed = false;
+		}); 
 	}
 
 	this.findInCompare_ = function(region_id) {
