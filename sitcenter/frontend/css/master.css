@@ -145,9 +145,13 @@ header h1 {
 	display: block;
 	line-height: 15px;
 	text-decoration: none;
+<<<<<<< HEAD
 }
 #content .legend a.onShow {
 	background: url("/static/images/ya.png") 105px 23px no-repeat;
+=======
+	background: url("/static/images/ya1.png") 105px 15px no-repeat;
+>>>>>>> 552aa11e8cc0bf6570d7a10beb1fa11c4d1cfd2f
 }
 #content > a {
 	position: absolute;
