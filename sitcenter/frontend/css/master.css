@@ -125,7 +125,7 @@ header h1 {
 	bottom: 0px;
 	right: 0px;
 	z-index: 130;
-	-webkit-transition: all 0.3s linear;
+	-webkit-transition: opacity 0.3s linear;
 }
 #content .legend p {
 	font-family: 'NeoSansPro-Light';

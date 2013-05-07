@@ -159,7 +159,7 @@ var ParametrsWidgets = function(app) {
 		this.elements["SHOW"].animate({
 				right: "0px"
 			},
-			this.animateSpeed 
+			this.animateSpeed/4
 		);
 		this.legendWidget.hide();
 		return false;
