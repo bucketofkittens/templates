@@ -259,6 +259,7 @@ var LegendWidget = function(app) {
 	this.app =  app;
 	this.animateStep = "-400px";
 	this.animateSpeed = 1000;
+	this.isShow = false;
 
 	this.CSS = {
 		"MAIN": "#legend-widget"
@@ -269,15 +270,20 @@ var LegendWidget = function(app) {
 	}
 
 	this.show = function() {
-		this.elements["MAIN"].css({
-			right: this.animateStep,
-			display: "block"
-		});
-		this.elements["MAIN"].animate( {
-				right: "0px"
-			},
-			this.animateSpeed
-		);
+		if(!this.isShow) {
+			this.elements["MAIN"].css({
+				right: this.animateStep,
+				display: "block"
+			});
+			this.elements["MAIN"].animate({
+					right: "0px"
+				},
+				this.animateSpeed
+			);
+
+			this.isShow = true;
+		}
+		
 	}
 
 	this.setLevelText = function(data) {
@@ -301,6 +307,8 @@ var LegendWidget = function(app) {
 			},
 			this.animateSpeed 
 		);
+
+		this.isShow = false;
 	}
 }
 
