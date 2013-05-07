@@ -270,11 +270,15 @@ var MapStateManager = function(app) {
 
 	this.onOutVideoPlayStop_ = function() {
 		this.app.currentRegion = this.prevRegion.id;
-		this.app.mapColorel.colored(
-			this.app.parametrsWidgets.currentParametr.id, 
-			this.app.currentRegion, 
-			this.app.ageSelectorWidget.selectedAge
-		);
+
+		if(this.app.parametrsWidgets.currentParametr != null) {
+			this.app.mapColorel.colored(
+				this.app.parametrsWidgets.currentParametr.id, 
+				this.app.currentRegion, 
+				this.app.ageSelectorWidget.selectedAge
+			);	
+		}
+		
 		this.app.prevState();
 		this.app.mapStateManager.show();
 	}
