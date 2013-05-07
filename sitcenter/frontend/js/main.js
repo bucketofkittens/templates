@@ -62,6 +62,40 @@ var SVGLoader = function(app, clickCallback) {
 		groups.on("click", this.groupClick);
 	}
 
+	this.drawParamValues = function(data) {
+		this.removeParamValues();
+
+		var svg = this.elements["SVG"][0].getSVGDocument();
+		var self = this;
+		
+		$.each($(svg).find("g"), function(key, value) {
+			var id = $(value).attr("target");
+			if(id) {
+				var newElement = document.createElementNS("http://www.w3.org/2000/svg", "text");
+				var path = $(value).find("path")[0];
+
+				$(newElement).html(data[id]);
+				$(newElement).attr({
+					x: parseInt(($(path).offset().left + path.getBoundingClientRect().width/2)/2)-30,
+					y: parseInt(($(path).offset().top + path.getBoundingClientRect().height/2)/2),
+					"font-size": "18px",
+					"fill": "#406080",
+					"stroke": "white",
+					"font-weight": "bold",
+					"stroke-width": "0.7",
+					"font-family": "Arial"
+				});
+
+				$(svg).find("svg")[0].appendChild(newElement);	
+			}
+		});
+	}
+
+	this.removeParamValues = function() {
+		var svg = this.elements["SVG"][0].getSVGDocument();
+		$(svg).find("text").remove();
+	}
+
 }
 
 /**
@@ -437,6 +471,7 @@ var Application = function() {
 	this.parametrsWidgets = new ParametrsWidgets(this);
 	this.mapColorWidget = new MapColorWidget(this);
 	this.mapColorel = new MapColorel(this);
+	this.legendWidget = new LegendWidget(this);
 
 	this.prevState = function() {
 		this.currentZoom--;

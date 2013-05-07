@@ -63,6 +63,7 @@ var ParametrsWidgets = function(app) {
 				this.app.currentRegion, 
 				this.app.ageSelectorWidget.selectedAge
 			);
+			this.app.mapColorWidget.updateParams();
 			this.app.legendManager.getLegendByParamAndSubject(
 				this.currentParametr.id, 
 				this.app.currentRegion,
@@ -366,6 +367,10 @@ var ParamsManager = function(app) {
 	this.getRegionStateByParamsAndYeage = function(region_id, yeage, callback) {
 		$.get(this.app.apiHost + "/parameters/" + region_id + "/" + yeage , callback);
 	}
+
+	this.getParamValues = function(param_id, subject_id, year, callback) {
+		$.get(this.app.apiHost + "/param_vals/" + param_id + "/" + subject_id + "/" + year, callback);
+	}
 }
 
 var MapColorWidget = function(app) {
@@ -384,15 +389,31 @@ var MapColorWidget = function(app) {
 		this.elements["TOGGLE"].on("click", $.proxy(this.onToggle_, this));
 	}
 
+	this.paramsLoaded_ = function(data) {
+		this.app.mapStateManager.SVGWriter.drawParamValues(data);
+	}
+
+	this.updateParams = function() {
+		if(this.state) {
+			this.app.paramsManager.getParamValues(
+				this.app.parametrsWidgets.currentParametr.id,
+				this.app.currentRegion,
+				this.app.ageSelectorWidget.selectedAge,
+				$.proxy(this.paramsLoaded_, this)
+			);
+		}
+ 	}
+
 	this.onToggle_ = function() {
 		if(this.state == false) {
 			this.elements["TOGGLE"].addClass("onShow");
 			this.state = true;
-			//this.app.mapColorel.show();
+
+			this.updateParams();
 		} else {
 			this.elements["TOGGLE"].removeClass("onShow");
 			this.state = false;
-			//this.app.mapColorel.hidden();
+			this.app.mapStateManager.SVGWriter.removeParamValues();
 		}
 
 		return false;
@@ -506,11 +527,23 @@ var AgeSelectorWidget = function(app) {
 
 	this.ageSelected_ = function(val, inst) {
 		this.selectedAge = val;
+		var self = this;
 		this.app.paramsManager.getParamsByRegionAndYeage(this.app.currentRegion, val, $.proxy(this.app.parametrsWidgets.getParametrs_, this.app.parametrsWidgets));
-		this.app.mapColorel.colored(
-			this.app.parametrsWidgets.currentParametr.id, 
-			this.app.currentRegion, 
-			this.app.ageSelectorWidget.selectedAge
-		);
+		if(this.app.parametrsWidgets.currentParametr) {
+			this.app.mapColorel.colored(
+				this.app.parametrsWidgets.currentParametr.id, 
+				this.app.currentRegion, 
+				this.app.ageSelectorWidget.selectedAge
+			);
+			this.app.mapColorWidget.updateParams();
+			this.app.legendManager.getLegendByParamAndSubject(
+				this.app.parametrsWidgets.currentParametr.id, 
+				this.app.currentRegion,
+				function(data) {
+					self.app.legendWidget.setLevelText(data);
+					self.app.legendWidget.show();
+				}
+			);
+		}
 	}
 }
