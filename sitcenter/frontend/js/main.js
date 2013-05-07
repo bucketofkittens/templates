@@ -183,7 +183,7 @@ var LoadingState = function(app) {
 	this.run = function() {
 		this.elements["BG-IMAGE"].addClass("blur");
 		this.elements["BG-IMAGE"].css("backgroundImage", "url('"+this.app.configManager.getMapById(100)+"')");
-		this.elements["LOADER"].show();
+		this.elements["LOADER"].addClass("onShow");
 
 		this.rotateEvent_ = setInterval($.proxy(this.rotate_, this), this.rotateTick_);
 	}
@@ -195,8 +195,10 @@ var LoadingState = function(app) {
 
 	this.stop = function(callback) {
 		this.elements["BG-IMAGE"].removeClass("blur");
-		this.elements["NAV-ELEMENTS"].fadeIn(this.animateSpeed, callback);
-		this.elements["LOADER"].fadeOut(this.animateSpeed);
+		this.elements["NAV-ELEMENTS"].addClass("onShow");
+		this.elements["LOADER"].removeClass("onShow");
+
+		callback();
 
 		clearInterval(this.rotateEvent_);
 	}

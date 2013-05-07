@@ -337,13 +337,13 @@ var MapColorWidget = function(app) {
 
 	this.onToggle_ = function() {
 		if(this.state == false) {
-			this.elements["TOGGLE"].html("скрыть значения");
+			this.elements["TOGGLE"].addClass("onShow");
 			this.state = true;
-			this.app.mapColorel.show();
+			//this.app.mapColorel.show();
 		} else {
-			this.elements["TOGGLE"].html("показать значения");
+			this.elements["TOGGLE"].removeClass("onShow");
 			this.state = false;
-			this.app.mapColorel.hidden();
+			//this.app.mapColorel.hidden();
 		}
 
 		return false;
@@ -373,11 +373,11 @@ var MapColorel = function(app) {
 
 	this.colored = function(params_id, region_id, year) {
 		var mapPath = this.app.apiHost+this.ajaxPath+params_id+"/"+region_id+"/"+year+"/map";
-		$(this.CSS["LOAD"]).fadeIn("slow");
+		//$(this.CSS["LOAD"]).fadeIn("slow");
 		if(this.isShowed) {
 			this.elements["CONTAINER"].fadeOut("slow");
 		}
-		$.ajax({ url: mapPath, }).always($.proxy(this.onGetMapLink_, this));
+		$.ajax({ url: mapPath }).always($.proxy(this.onGetMapLink_, this));
 	}
 
 	this.onGetMapLink_ = function(data) {
@@ -389,7 +389,7 @@ var MapColorel = function(app) {
 
         image.onload=function(){
            self.elements["IMAGE"].attr("src",  self.app.apiHost+link);
-           $(self.CSS["LOAD"]).fadeOut("slow");
+           //$(self.CSS["LOAD"]).fadeOut("slow");
            if(self.isShowed) {
 				self.elements["CONTAINER"].fadeIn("slow");
 			}

@@ -125,6 +125,7 @@ header h1 {
 	bottom: 0px;
 	right: 0px;
 	z-index: 130;
+	-webkit-transition: all 0.3s linear;
 }
 #content .legend p {
 	font-family: 'NeoSansPro-Light';
@@ -144,9 +145,10 @@ header h1 {
 	display: block;
 	line-height: 15px;
 	text-decoration: none;
+}
+#content .legend a.onShow {
 	background: url("/static/images/ya.png") 105px 23px no-repeat;
 }
-
 #content > a {
 	position: absolute;
 	background: url("/static/images/show.png") right center no-repeat;
@@ -159,6 +161,7 @@ header h1 {
 }
 
 #load {
+	opacity: 0;
 	display: none;
 	width: 1019px;
 	height: 1000px;
@@ -168,6 +171,8 @@ header h1 {
 	margin-left: -510px;
 	top: 40px;
 	z-index: 200;
+
+	-webkit-transition: all 0.3s linear;
 }
 
 #load img {
@@ -236,9 +241,13 @@ header h1 {
 }
 
 #content .nav-elements, .nav-elements {
-	display: none;
+	opacity: 0;
+	-webkit-transition: all 1.3s ease;
 }
-
+#content .nav-elements.onShow, .nav-elements.onShow {
+	opacity: 1;
+	
+}
 #content .data {
 	position: absolute;
 	background: url("/static/images/data.png") right center no-repeat;
@@ -357,7 +366,6 @@ header h1 {
 	background: url("/static/images/show.png") right center no-repeat;
 	height: 443px;
 	width: 60px;
-	display: none;
 	top: 174px;
 	right: 0px;
 	cursor: pointer;
@@ -373,11 +381,15 @@ header h1 {
 }
 
 #bg-colored-image {
-	display: none;
     width: 100%;
     height: 100%;
     position: absolute;
     left: 0px;
     top: 0px;
     z-index: 65;
+}
+
+.onShow {
+	opacity: 1 !important;
+	display: block !important;
 }
