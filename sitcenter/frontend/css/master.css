@@ -131,7 +131,7 @@ header h1 {
 	font-size: 18px;
 	color: #ffffff;
 	display: block;
-	padding: 12px 0px 11px 210px;
+	padding: 12px 0px 11px 190px;
 }
 #content .legend p:first-child {
 	margin-top: 270px;
@@ -144,6 +144,7 @@ header h1 {
 	display: block;
 	line-height: 15px;
 	text-decoration: none;
+	background: url("/static/images/ya.png") 105px 23px no-repeat;
 }
 
 #content > a {
