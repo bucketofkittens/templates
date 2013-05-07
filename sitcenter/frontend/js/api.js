@@ -390,12 +390,11 @@ var MapColorel = function(app) {
 
         image.src = self.app.apiHost+link;
 
-        image.onload=function(){
-           self.elements["IMAGE"].attr("src",  self.app.apiHost+link);
-           //$(self.CSS["LOAD"]).fadeOut("slow");
-           if(self.isShowed) {
-				self.elements["CONTAINER"].fadeIn("slow");
-			}
+        image.onload = function() {
+        	self.elements["CONTAINER"].fadeOut("slow",function() {
+        		self.elements["IMAGE"].attr("src",  self.app.apiHost+link);
+				self.elements["CONTAINER"].fadeIn("slow");	
+        	});
         }
 	}
 

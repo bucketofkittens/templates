@@ -242,6 +242,7 @@ var MapStateManager = function(app) {
 	}
 
 	this.show = function() {
+		this.app.mapColorel.hidden();
 		this.app.regionManager.getByParent(this.app.currentRegion, $.proxy(this.setRootRegions, this));
 		this.app.regionManager.getById(this.app.currentRegion, $.proxy(this.setCurrentRegion, this));
 		
@@ -288,11 +289,14 @@ var MapStateManager = function(app) {
 	}
 
 	this.onInVideoPlayStop_ = function(e) {
-		this.app.mapColorel.colored(
-			this.app.parametrsWidgets.currentParametr.id, 
-			this.app.currentRegion, 
-			this.app.ageSelectorWidget.selectedAge
-		);
+		if(this.app.parametrsWidgets.currentParametr != null) {
+			this.app.mapColorel.colored(
+				this.app.parametrsWidgets.currentParametr.id, 
+				this.app.currentRegion, 
+				this.app.ageSelectorWidget.selectedAge
+			);	
+		}
+		
 		this.app.nextState();
 		this.app.mapStateManager.show();
 	}

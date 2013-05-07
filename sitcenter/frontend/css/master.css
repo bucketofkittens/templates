@@ -388,7 +388,9 @@ header h1 {
     top: 0px;
     z-index: 65;
 }
-
+#bg-colored-image img {
+	-webkit-transition: all 1.3s ease;
+}
 .onShow {
 	opacity: 1 !important;
 	display: block !important;
