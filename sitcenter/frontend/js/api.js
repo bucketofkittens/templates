@@ -360,7 +360,8 @@ var MapColorel = function(app) {
 	this.app = app;
 	this.ajaxPath = "/subjects/";
 	this.CSS = {
-		"CONTAINER": "#bg-colored-image"
+		"CONTAINER": "#bg-colored-image",
+		"LOAD": "#load"
 	};
 	this.isShowed = false;
 
@@ -372,9 +373,9 @@ var MapColorel = function(app) {
 
 	this.colored = function(params_id, region_id, year) {
 		var mapPath = this.app.apiHost+this.ajaxPath+params_id+"/"+region_id+"/"+year+"/map";
-
+		$(this.CSS["LOAD"]).fadeIn("slow");
 		if(this.isShowed) {
-			this.elements["CONTAINER"].css("display", "none");
+			this.elements["CONTAINER"].fadeOut("slow");
 		}
 		$.ajax({ url: mapPath, }).always($.proxy(this.onGetMapLink_, this));
 	}
@@ -383,11 +384,14 @@ var MapColorel = function(app) {
 		var link = data.responseText;
 		var self = this;
 		var image = new Image();
-        image.src=self.app.apiHost+link;
+
+        image.src = self.app.apiHost+link;
+
         image.onload=function(){
            self.elements["IMAGE"].attr("src",  self.app.apiHost+link);
+           $(self.CSS["LOAD"]).fadeOut("slow");
            if(self.isShowed) {
-				self.elements["CONTAINER"].css("display", "block");
+				self.elements["CONTAINER"].fadeIn("slow");
 			}
         }
 	}

@@ -141,13 +141,14 @@ var MiniMapWriter = function() {
 	this.show = function(imagePath, callback) {
 		this.elements["CONTAINER"].fadeIn();
 		this.elements["TEXT"].css("backgroundImage", "url('"+imagePath+"')");
+		this.elements["CONTAINER"].off("click");
 		this.elements["CONTAINER"].on("click", callback);
 	}
 
 	this.hiden = function() {
 		this.elements["CONTAINER"].fadeOut();
 		this.elements["TEXT"].css("backgroundImage", "none");
-		this.elements["CONTAINER"].off();
+		this.elements["CONTAINER"].off("click");
 	}
 
 	this.setText = function(text) {
@@ -259,13 +260,7 @@ var MapStateManager = function(app) {
     	this.bgImage.src = this.app.configManager.getMapById(this.app.currentRegion);
 	}
 
-	this.addMiniMap = function() {
-		this.miniMapWriter.setText();
-		this.miniMapWriter.show(this.app.configManager.getMiniMapById(this.app.currentRegion), $.proxy(this.onBack, this));
-	}
-
 	this.onBack = function() {
-		console.log("onBack");
 		this.miniMapWriter.hiden();
 		this.app.videoPlayer.play(this.app.configManager.getOutVideoById(this.app.currentRegion), $.proxy(this.onOutVideoPlayStop_, this));
 	}
@@ -301,8 +296,8 @@ var MapStateManager = function(app) {
 	}
 
 	this.setPrevRegion = function(data) {
+		console.log(data);
 		this.prevRegion = data;
-		this.miniMapWriter.hiden();
 		this.miniMapWriter.setText(this.prevRegion.name);
 		this.miniMapWriter.show(this.app.configManager.getMiniMapById(this.app.currentRegion), $.proxy(this.onBack, this));
 	}
