@@ -52,17 +52,26 @@ var ParametrsWidgets = function(app) {
 	}
 
 	this.parametrsNameClick_ = function(evt) {
-		$(this.CSS["SCROLL"]).find(".active").removeClass("active");
-		$(evt.target).toggleClass("active");
-		this.setTitle($(evt.target).html());
-		this.currentParametr = this.getParametrById($(evt.target).parent().parent().attr("data-id"));
-		this.app.mapColorel.colored(
-			this.currentParametr.id, 
-			this.app.currentRegion, 
-			this.app.ageSelectorWidget.selectedAge
-		);
-
-		this.legendWidget.show();
+		if(!$(evt.target).hasClass("active")) {
+			var self = this;
+			$(this.CSS["SCROLL"]).find(".active").removeClass("active");
+			$(evt.target).toggleClass("active");
+			this.setTitle($(evt.target).html());
+			this.currentParametr = this.getParametrById($(evt.target).parent().parent().attr("data-id"));
+			this.app.mapColorel.colored(
+				this.currentParametr.id, 
+				this.app.currentRegion, 
+				this.app.ageSelectorWidget.selectedAge
+			);
+			this.app.legendManager.getLegendByParamAndSubject(
+				this.currentParametr.id, 
+				this.app.currentRegion,
+				function(data) {
+					self.legendWidget.setLevelText(data);
+					self.legendWidget.show();
+				}
+			);
+		}
 	}
 
 	this.setTitle = function(title) {
@@ -271,6 +280,21 @@ var LegendWidget = function(app) {
 		);
 	}
 
+	this.setLevelText = function(data) {
+		var $p = $(this.CSS["MAIN"]).find("p");
+		$.each($p, function(key, value) {
+			if(key == 1) {
+				$(value).html(parseInt(data["red"][0])+"-"+parseInt(data["red"][1]));
+			}
+			if(key == 2) {
+				$(value).html(parseInt(data["yellow"][0])+"-"+parseInt(data["yellow"][1]));
+			}
+			if(key == 3) {
+				$(value).html(parseInt(data["green"][0])+"-"+parseInt(data["green"][1]));
+			}
+		});
+	}
+
 	this.hide = function() {
 		this.elements["MAIN"].animate( {
 				right: this.animateStep
@@ -304,6 +328,20 @@ var RegionManager = function(app) {
 		$.get(this.app.apiHost + "/districts.json", callback);
 	}
 }
+
+/**
+ * [LegendManager description]
+ * @param {[type]} app [description]
+ */
+var LegendManager = function(app) {
+	this.app = app;
+	this.ajaxPath = "/param_levels/";
+
+	this.getLegendByParamAndSubject = function(param_id, subject_id, callback) {
+		$.get(this.app.apiHost + this.ajaxPath + param_id + "/" + subject_id, callback);
+	}
+}
+
 
 /**
  * [ParamsManager description]

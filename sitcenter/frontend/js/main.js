@@ -425,6 +425,7 @@ var Application = function() {
 	this.paramsManager = new ParamsManager(this);
 	this.configManager = new ConfigManager(this, ConfigApp);
 	this.mapStateManager = new MapStateManager(this);
+	this.legendManager = new LegendManager(this);
 
 	this.loader = new PxLoader();
 	this.resources = ImagePreloaderPrepare(ConfigApp["PRELOAD"]);
