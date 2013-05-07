@@ -395,6 +395,7 @@ var MapColorel = function(app) {
         		self.elements["IMAGE"].attr("src",  self.app.apiHost+link);
 				self.elements["CONTAINER"].fadeIn("slow");	
         	});
+        	
         }
 	}
 
