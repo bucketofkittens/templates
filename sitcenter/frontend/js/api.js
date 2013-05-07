@@ -5,8 +5,7 @@
 var ParametrsWidgets = function(app) {
 	this.app =  app;
 	this.parametrs = {};
-	this.filteredParametrs = {};
-	this.currentParametr = {};
+	this.currentParametr = null;
 	this.CSS = {
 		"SHOW": "#paramers-show",
 		"MAIN": "#parametrs-widget",
@@ -62,6 +61,8 @@ var ParametrsWidgets = function(app) {
 			this.app.currentRegion, 
 			this.app.ageSelectorWidget.selectedAge
 		);
+
+		this.legendWidget.show();
 	}
 
 	this.setTitle = function(title) {
@@ -168,13 +169,15 @@ var ParametrsWidgets = function(app) {
 			$.proxy(this.onMainShowed_, this) 
 		);
 
+		if(this.currentParametr != null) {
+			this.legendWidget.show();
+		}
+
 		this.elements["SHOW"].animate({
 				right: this.animateStep
 			},
 			this.animateSpeed 
 		);
-
-		this.legendWidget.show();
 		this.initScroll_();
 		return false;
 	}
