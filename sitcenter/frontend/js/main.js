@@ -152,6 +152,7 @@ var VideoPlayer = function() {
 	}
 
 	this.play = function(videoPath, endedCallback) {
+		var self = this;
 		this.video = $("#video_"+this.getVideoKey_(videoPath));
 		if(this.video[0]) {
 			this.endedCallback = endedCallback;
@@ -161,7 +162,9 @@ var VideoPlayer = function() {
 			this.video.on('ended', this.endedCallback);
 			this.video[0].style.display = "block";
 			this.video[0].load();
-	        this.video[0].play();
+			setTimeout(function() {
+				self.video[0].play();
+			}, 0);
 		}
 	}
 

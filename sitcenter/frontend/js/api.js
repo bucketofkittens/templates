@@ -446,7 +446,7 @@ var MapColorel = function(app) {
 		var mapPath = this.app.apiHost+this.ajaxPath+params_id+"/"+region_id+"/"+year+"/map";
 		//$(this.CSS["LOAD"]).fadeIn("slow");
 		if(this.isShowed) {
-			this.elements["CONTAINER"].fadeOut("slow");
+			this.elements["CONTAINER"].removeClass("onShow");
 		}
 		$.ajax({ url: mapPath }).always($.proxy(this.onGetMapLink_, this));
 	}
@@ -461,24 +461,20 @@ var MapColorel = function(app) {
         image.onload = function() {
         	self.elements["CONTAINER"].fadeOut("slow",function() {
         		self.elements["IMAGE"].attr("src",  self.app.apiHost+link);
-				self.elements["CONTAINER"].fadeIn("slow");	
+				self.elements["CONTAINER"].addClass("onShow");
         	});
         	
         }
 	}
 
 	this.show = function() {
-		var self = this;
-		this.elements["CONTAINER"].fadeIn("slow", function() {
-			self.isShowed = true;
-		}); 
+		this.elements["CONTAINER"].addClass("onShow");
+		this.isShowed = true;
 	}
 
 	this.hidden = function() {
-		var self = this;
-		this.elements["CONTAINER"].fadeOut("slow", function() {
-			self.isShowed = false;
-		}); 
+		this.elements["CONTAINER"].removeClass("onShow");
+		this.isShowed = false;
 	}
 
 	this.findInCompare_ = function(region_id) {
