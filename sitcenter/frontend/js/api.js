@@ -28,7 +28,7 @@ var ParametrsWidgets = function(app) {
 		"AGE-SELECT": $(this.CSS["AGE-SELECT"])
 	}
 
-	this.animateStep = "-400px";
+	this.animateStep = "-350px";
 	this.animateSpeed = 1000;
 	this.legendWidget = new LegendWidget(this.app);
 	this.scrollApi = null;
@@ -160,13 +160,25 @@ var ParametrsWidgets = function(app) {
 		this.elements["SHOW"].animate({
 				right: "0px"
 			},
-			this.animateSpeed/4
+			this.animateSpeed/4,
+			$.proxy(this.onMainHiddened_, this) 
 		);
 		this.legendWidget.hide();
 		return false;
 	}
 
 	this.onShow_ = function() {
+		this.elements["SHOW"].animate({
+				right: this.animateStep
+			},
+			this.animateSpeed/4,
+			$.proxy(this.onMainShowed_, this) 
+		);
+		
+		return false;
+	}
+
+	this.onMainShowed_ = function() {
 		this.elements["MAIN"].css({
 			right: this.animateStep,
 			display: "block"
@@ -175,25 +187,13 @@ var ParametrsWidgets = function(app) {
 		this.elements["MAIN"].animate({
 				right: "0px"
 			},
-			this.animateSpeed,
-			$.proxy(this.onMainShowed_, this) 
+			this.animateSpeed
 		);
 
 		if(this.currentParametr != null) {
 			this.legendWidget.show();
 		}
-
-		this.elements["SHOW"].animate({
-				right: this.animateStep
-			},
-			this.animateSpeed 
-		);
 		this.initScroll_();
-		return false;
-	}
-
-	this.onMainShowed_ = function() {
-		
 	}
 
 	this.onMainHiddened_ = function() {
