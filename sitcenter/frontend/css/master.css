@@ -114,6 +114,7 @@ header h1 {
 	color: #ffffff;
 	text-decoration: none;
 	display: inline-block;
+	text-transform: lowercase;
 }
 
 #content .legend {

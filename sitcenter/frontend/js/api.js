@@ -290,13 +290,13 @@ var LegendWidget = function(app) {
 	this.setLevelText = function(data) {
 		var $p = $(this.CSS["MAIN"]).find("p");
 		$.each($p, function(key, value) {
-			if(key == 1) {
+			if(key == 1 && data["red"]) {
 				$(value).html(parseInt(data["red"][0])+"-"+parseInt(data["red"][1]));
 			}
-			if(key == 2) {
+			if(key == 2 && data["yellow"]) {
 				$(value).html(parseInt(data["yellow"][0])+"-"+parseInt(data["yellow"][1]));
 			}
-			if(key == 3) {
+			if(key == 3 && data["green"]) {
 				$(value).html(parseInt(data["green"][0])+"-"+parseInt(data["green"][1]));
 			}
 		});

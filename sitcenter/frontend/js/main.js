@@ -33,14 +33,24 @@ var SVGLoader = function(app, clickCallback) {
 
 	}
 
+	this.appendCSS_ = function(svg) {
+		var styleElement = svg.createElementNS("http://www.w3.org/2000/svg", "style");
+		styleElement.textContent = '@font-face { font-family: "NeoSansPro-Bold"; src: url("/static/fonts/NeoSansPro-Bold.ttf"); } text { font-family: "NeoSansPro-Bold", Times, serif; font-weight: normal; font-size: 18px; } .zoom2 { font-size: 32px; } .zoom3 { font-size: 14px;}';
+		$(svg).find("svg")[0].appendChild(styleElement);
+	}
+
 	this.onLoadSvg_ = function() {
 		var svg = this.elements["SVG"][0].getSVGDocument();
 		var self = this;
+
+		this.appendCSS_(svg);
 		
 		$.each($(svg).find("path"), function(key, value) {
 			$(value).attr("fill", "#ffffff");
 			$(value).attr("fill-opacity", "0");
-			$(value).css("cursor", "pointer");
+			if(self.app.currentZoom != 3) {
+				$(value).css("cursor", "pointer");	
+			}
 		});
 
 		var groups = $(svg).find("g");
@@ -73,17 +83,24 @@ var SVGLoader = function(app, clickCallback) {
 			if(id) {
 				var newElement = document.createElementNS("http://www.w3.org/2000/svg", "text");
 				var path = $(value).find("path")[0];
-
-				$(newElement).html(data[id]);
+				var x = parseInt(($(path).offset().left + path.getBoundingClientRect().width/2));
+				var y = parseInt(($(path).offset().top + path.getBoundingClientRect().height/2));
+				if(self.app.currentZoom == 1) {
+					x = (x/2)-30;
+					y = y/2;
+				}
+				if(id == 77) {
+					x = x - 20;
+					y = y + 20;
+				}
+				$(newElement).html(parseInt(data[id]));
 				$(newElement).attr({
-					x: parseInt(($(path).offset().left + path.getBoundingClientRect().width/2)/2)-30,
-					y: parseInt(($(path).offset().top + path.getBoundingClientRect().height/2)/2),
-					"font-size": "18px",
+					x: x,
+					y: y,
 					"fill": "#406080",
 					"stroke": "white",
-					"font-weight": "bold",
-					"stroke-width": "0.7",
-					"font-family": "Arial"
+					"stroke-width": "1",
+					"class": "zoom"+self.app.currentZoom
 				});
 
 				$(svg).find("svg")[0].appendChild(newElement);	
@@ -134,15 +151,15 @@ var VideoPlayer = function() {
 	}
 
 	this.play = function(videoPath, endedCallback) {
-		this.endedCallback = endedCallback;
-		this.elements["BG"].style.display = "block";
 		this.video = $("#video_"+this.getVideoKey_(videoPath));
-		this.video.on('ended', this.endedCallback);
-		this.elements["HEADER"].css("z-index", "130");
 		if(this.video[0]) {
+			this.endedCallback = endedCallback;
+			this.elements["HEADER"].css("z-index", "130");
+			this.elements["BG"].style.display = "block";
+			this.video.on('ended', this.endedCallback);
 			this.video[0].style.display = "block";
 			this.video[0].load();
-	        this.video[0].play();	
+	        this.video[0].play();
 		}
 	}
 
@@ -279,8 +296,10 @@ var MapStateManager = function(app) {
 		this.app.mapColorel.hidden();
 		this.app.regionManager.getByParent(this.app.currentRegion, $.proxy(this.setRootRegions, this));
 		this.app.regionManager.getById(this.app.currentRegion, $.proxy(this.setCurrentRegion, this));
+		this.app.mapColorWidget.updateParams();
 		
 		this.setBgImage();
+
 
 		this.SVGWriter.load(this.app.configManager.getSvgById(this.app.currentRegion));
 		this.app.parametrsWidgets.getParamsByRegionAndYeage(this.app.currentRegion);
@@ -322,9 +341,12 @@ var MapStateManager = function(app) {
 	}
 
 	this.onSvgClick_ = function(evt) {
-		this.app.currentRegion = $(evt.target).parent().attr("target");
-		this.app.videoPlayer.play(this.app.configManager.getInVideoById(this.app.currentRegion), $.proxy(this.onInVideoPlayStop_, this));
-	}
+		var newIdRegion = $(evt.target).parent().attr("target");
+		if(newIdRegion) {
+			this.app.currentRegion = $(evt.target).parent().attr("target");
+			this.app.videoPlayer.play(this.app.configManager.getInVideoById(this.app.currentRegion), $.proxy(this.onInVideoPlayStop_, this));
+		}
+	} 
 
 	this.onInVideoPlayStop_ = function(e) {
 		if(this.app.parametrsWidgets.currentParametr != null) {
