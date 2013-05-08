@@ -168,10 +168,11 @@ var ParametrsWidgets = function(app) {
 	}
 
 	this.onShow_ = function() {
+		//this.elements["SHOW"].addClass("onRight");
 		this.elements["SHOW"].animate({
 				right: this.animateStep
 			},
-			this.animateSpeed/4,
+			this.animateSpeed/2,
 			$.proxy(this.onMainShowed_, this) 
 		);
 		
