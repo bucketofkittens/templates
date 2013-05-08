@@ -35,7 +35,7 @@ var SVGLoader = function(app, clickCallback) {
 
 	this.appendCSS_ = function(svg) {
 		var styleElement = svg.createElementNS("http://www.w3.org/2000/svg", "style");
-		styleElement.textContent = '@font-face { font-family: "NeoSansPro-Bold"; src: url("/static/fonts/NeoSansPro-Bold.ttf"); } text { font-family: "NeoSansPro-Bold", Times, serif; font-weight: bold; font-size: 18px; } .zoom2 { font-size: 32px; } .zoom3 { font-size: 14px;}';
+		styleElement.textContent = '@font-face { font-family: "NeoSansPro-Bold"; src: url("/static/fonts/NeoSansPro-Bold.ttf"); } text { font-family: "NeoSansPro-Bold", Times, serif; font-weight: bold; font-size: 18px; } .zoom2 { font-size: 32px; } .zoom3 { font-size: 25px;}';
 		$(svg).find("svg")[0].appendChild(styleElement);
 	}
 
@@ -81,7 +81,6 @@ var SVGLoader = function(app, clickCallback) {
 		$.each($(svg).find("g"), function(key, value) {
 			var id = $(value).attr("target");
 			if(id) {
-				console.log(self.app.currentZoom);
 				var newElement = document.createElementNS("http://www.w3.org/2000/svg", "text");
 				var path = $(value).find("path")[0];
 				var x = parseInt(($(path).offset().left + path.getBoundingClientRect().width/2));
