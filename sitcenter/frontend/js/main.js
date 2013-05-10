@@ -35,7 +35,7 @@ var SVGLoader = function(app, clickCallback) {
 
 	this.appendCSS_ = function(svg) {
 		var styleElement = svg.createElementNS("http://www.w3.org/2000/svg", "style");
-		styleElement.textContent = '@font-face { font-family: "NeoSansPro-Bold"; src: url("/static/fonts/NeoSansPro-Bold.ttf"); } text { font-family: "NeoSansPro-Bold", Times, serif; font-weight: bold; font-size: 18px; } .zoom2 { font-size: 32px; } .zoom3 { font-size: 25px;}';
+		styleElement.textContent = '@font-face { font-family: "NeoSansPro-Bold"; src: url("/static/fonts/NeoSansPro-Bold.ttf"); } path { -webkit-transition: all 0.3s linear; } text { -webkit-transition: all 1.3s linear; font-family: "NeoSansPro-Bold", Times, serif; font-weight: bold; font-size: 18px; } .zoom2 { font-size: 32px; } .zoom3 { font-size: 25px;}';
 		$(svg).find("svg")[0].appendChild(styleElement);
 	}
 
@@ -57,16 +57,16 @@ var SVGLoader = function(app, clickCallback) {
 		groups.off();
 
 		groups.on("mouseover", function() {
-			var paths = $(this).stop().find("path");
-			$(this).stop().find("path").animate({
+			var paths = $(this).find("path");
+			paths.attr({
 				"fill-opacity": self.maxOpacity
-			}, 100);
+			});
 		});
 		groups.on("mouseout", function() {
 			var paths = $(this).stop().find("path");
-			$(this).stop().find("path").animate({
+			paths.attr({
 				"fill-opacity": self.minOpacity
-			}, 100);
+			});
 		});
 
 		groups.on("click", this.groupClick);
@@ -100,11 +100,16 @@ var SVGLoader = function(app, clickCallback) {
 					"fill": "#406080",
 					"stroke": "white",
 					"stroke-width": "1",
-					"class": "zoom"+self.app.currentZoom
+					"class": "zoom"+self.app.currentZoom,
+					"fill-opacity": "0"
 				});
 
 				$(svg).find("svg")[0].appendChild(newElement);	
 			}
+
+			$(svg).find("text").attr({
+				"fill-opacity": "1"
+			});
 		});
 	}
 
@@ -122,12 +127,14 @@ var VideoPlayer = function() {
 	this.CSS = {
 		"BG": "bg-video",
 		"VIDEO": "video",
-		"HEADER": "header"
+		"HEADER": "header",
+		"SVG": "#bg-svg"
 	}
 	this.elements = {
 		"BG": document.getElementById(this.CSS["BG"]),
 		"VIDEO": document.getElementById(this.CSS["VIDEO"]),
-		"HEADER": $(this.CSS["HEADER"])
+		"HEADER": $(this.CSS["HEADER"]),
+		"SVG": $(this.CSS["SVG"])
 	}
 
 	this.video = null
@@ -155,7 +162,6 @@ var VideoPlayer = function() {
 		this.video = $("#video_"+this.getVideoKey_(videoPath));
 		if(this.video[0]) {
 			this.endedCallback = endedCallback;
-			this.elements["HEADER"].css("z-index", "130");
 			this.elements["BG"].style.display = "block";
 			this.video.off("ended");
 			this.video.on('ended', this.endedCallback);
@@ -168,7 +174,6 @@ var VideoPlayer = function() {
 	}
 
 	this.hide = function() {
-		this.elements["HEADER"].css("z-index", "70");
 		var self = this;
 		setTimeout(function() {
 			if(self.video) {

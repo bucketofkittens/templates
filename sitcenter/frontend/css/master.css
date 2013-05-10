@@ -5,10 +5,22 @@
 
 header {
 	background: url("/static/images/name.png") left top no-repeat;
-	height: 290px;
+	height: 150px;
 	width: 1244px;
 	position: absolute;
-	z-index: 70;
+	z-index: 170;
+}
+header:after {
+	background: url("/static/images/name.png") left top no-repeat;
+	content: ".";
+	display: block;
+	top: 0px;
+	left: 0px;
+	position: absolute;
+	text-indent: -999px;
+	overflow: hidden;
+	width: 20px;
+	height: 350px;
 }
 header a {
 	position: absolute;
