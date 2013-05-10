@@ -445,6 +445,8 @@ var MapColorel = function(app) {
 	this.colored = function(params_id, region_id, year) {
 		var mapPath = this.app.apiHost+this.ajaxPath+params_id+"/"+region_id+"/"+year+"/map";
 
+		$(this.CSS["LOAD"]).addClass("onShow");
+
 		if(this.isShowed) {
 			this.elements["CONTAINER"].removeClass("onShow");
 		}
@@ -461,6 +463,7 @@ var MapColorel = function(app) {
         image.onload = function() {
         	self.elements["CONTAINER"].css("backgroundImage", "url('"+self.app.apiHost+link+"')");
 			self.elements["CONTAINER"].addClass("onShow");
+			$(self.CSS["LOAD"]).removeClass("onShow");
         }
 	}
 

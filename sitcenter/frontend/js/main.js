@@ -229,9 +229,6 @@ var LoadingState = function(app) {
 		"LOAD-IMAGE": "#load-image"
 	}
 	this.animateSpeed = 2000;
-	this.rotateTick_ = 50;
-	this.angle = 0;
-	this.rotateEvent_ = {};
 
 	this.elements = {
 		"BG-IMAGE": $(this.stateCSS["BG-IMAGE"]),
@@ -244,13 +241,6 @@ var LoadingState = function(app) {
 		this.elements["BG-IMAGE"].addClass("blur");
 		this.elements["BG-IMAGE"].css("backgroundImage", "url('"+this.app.configManager.getMapById(100)+"')");
 		this.elements["LOADER"].addClass("onShow");
-
-		this.rotateEvent_ = setInterval($.proxy(this.rotate_, this), this.rotateTick_);
-	}
-
-	this.rotate_ = function() {
-		this.angle += 3;
-		this.elements["LOAD-IMAGE"].rotate(this.angle);
 	}
 
 	this.stop = function(callback) {
@@ -259,8 +249,6 @@ var LoadingState = function(app) {
 		this.elements["LOADER"].removeClass("onShow");
 
 		callback();
-
-		clearInterval(this.rotateEvent_);
 	}
 }
 
