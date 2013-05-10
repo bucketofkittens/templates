@@ -325,6 +325,7 @@ var MapStateManager = function(app) {
 	}
 
 	this.onBack = function() {
+		this.app.mapColorel.hidden();
 		this.miniMapWriter.hiden();
 		this.app.videoPlayer.play(this.app.configManager.getOutVideoById(this.app.currentRegion), $.proxy(this.onOutVideoPlayStop_, this));
 	}
@@ -351,6 +352,7 @@ var MapStateManager = function(app) {
 	this.onSvgClick_ = function(evt) {
 		var newIdRegion = $(evt.target).parent().attr("target");
 		if(newIdRegion) {
+			this.app.mapColorel.hidden();
 			this.app.currentRegion = $(evt.target).parent().attr("target");
 			this.app.videoPlayer.play(this.app.configManager.getInVideoById(this.app.currentRegion), $.proxy(this.onInVideoPlayStop_, this));
 			this.miniMapWriter.hiden();
@@ -370,7 +372,6 @@ var MapStateManager = function(app) {
 	}
 
 	this.setPrevRegion = function(data) {
-		console.log(data);
 		this.prevRegion = data;
 		this.miniMapWriter.setText(this.prevRegion.name);
 		this.miniMapWriter.show(this.app.configManager.getMiniMapById(this.app.currentRegion), $.proxy(this.onBack, this));
