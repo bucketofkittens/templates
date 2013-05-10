@@ -415,12 +415,8 @@ header h1 {
     left: 0px;
     top: 0px;
     z-index: 65;
-    -webkit-transition: all 1s ease-out;
-	-moz-transition: all 1s ease-out;
-	-o-transition: all 1s ease-out;
-	-ms-transition: all 1s ease-out;
-	transition: all 1s ease-out;
 	opacity: 0;
+	-webkit-transition: opacity 0.5s linear;
 }
 .onShow {
 	opacity: 1 !important;
