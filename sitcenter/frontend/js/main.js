@@ -199,14 +199,14 @@ var MiniMapWriter = function() {
 	}
 
 	this.show = function(imagePath, callback) {
-		this.elements["CONTAINER"].fadeIn();
+		this.elements["CONTAINER"].addClass("onShow");
 		this.elements["TEXT"].css("backgroundImage", "url('"+imagePath+"')");
 		this.elements["CONTAINER"].off("click");
 		this.elements["CONTAINER"].on("click", callback);
 	}
 
 	this.hiden = function() {
-		this.elements["CONTAINER"].fadeOut();
+		this.elements["CONTAINER"].removeClass("onShow");
 		this.elements["TEXT"].css("backgroundImage", "none");
 		this.elements["CONTAINER"].off("click");
 	}
@@ -353,6 +353,7 @@ var MapStateManager = function(app) {
 		if(newIdRegion) {
 			this.app.currentRegion = $(evt.target).parent().attr("target");
 			this.app.videoPlayer.play(this.app.configManager.getInVideoById(this.app.currentRegion), $.proxy(this.onInVideoPlayStop_, this));
+			this.miniMapWriter.hiden();
 		}
 	} 
 
