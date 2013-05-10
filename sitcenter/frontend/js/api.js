@@ -544,3 +544,58 @@ var AgeSelectorWidget = function(app) {
 		}
 	}
 }
+
+/**
+ * [FooterNavWidget description]
+ * @param {[type]} app [description]
+ */
+var FooterNavWidget = function(app) {
+	this.app = app;
+	this.CSS = {
+		"MAIN": "#footer-nav-widget"
+	};
+	this.elements = {
+		"MAIN": $(this.CSS["MAIN"])
+	};
+	this.items = {
+		"MAP": {
+			"title": "Карта"
+		},
+		"FORMAT": {
+			"title": "Формат"
+		},
+		"GRAPH": {
+			"title": "График",
+			"cooming": true
+		},
+		"EVENTS": {
+			"title": "События",
+			"cooming": true
+		}
+	}
+
+	this.draw_ = function() {
+		$.each(this.items, $.proxy(this.drawItem_, this));
+	}
+	this.drawItem_ = function(index, element) {
+		var newElement = $('<a>'+element["title"]+'</a>');
+		$.data(newElement, 'id', index);
+		if(element["cooming"]) {
+			newElement.addClass("cooming");
+		}
+		if(index == "MAP") {
+			newElement.addClass("active");
+		}
+		this.elements["MAIN"].append(newElement);
+	}
+	this.addEvents_ = function() {
+		$(this.CSS["MAIN"]).find("a").on("click", $.proxy(this.onItemClick_, this));
+	}
+	this.onItemClick_ = function(evt) {
+		$(this.CSS["MAIN"]).find("a").removeClass("active");
+		$(evt.target).toggleClass("active");
+	}
+
+	this.draw_();
+	this.addEvents_();
+}

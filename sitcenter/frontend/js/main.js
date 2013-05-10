@@ -496,6 +496,7 @@ var Application = function() {
 	this.mapColorWidget = new MapColorWidget(this);
 	this.mapColorel = new MapColorel(this);
 	this.legendWidget = new LegendWidget(this);
+	this.footerNavWidget = new FooterNavWidget(this);
 
 	this.prevState = function() {
 		this.currentZoom--;
