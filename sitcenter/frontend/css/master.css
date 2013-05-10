@@ -186,7 +186,7 @@ header h1 {
 	text-decoration: none;
 }
 #content .legend a.onShow {
-	background: url("/static/images/ya1.png") 105px 15px no-repeat;
+	background: url("/static/images/ya1.png") 102px 19px no-repeat;
 }
 #content > a {
 	position: absolute;
@@ -408,6 +408,7 @@ header h1 {
 	right: 0px;
 	cursor: pointer;
 	z-index: 130;
+	display: none !important;
 }
 
 .video {
@@ -432,4 +433,156 @@ header h1 {
 	opacity: 1 !important;
 	display: block !important;
 	visibility: visible !important;
+}
+
+
+/* Форматы */
+#formats {
+	position: absolute;
+	width: 100%;
+}
+#formats .show-f {
+	position: absolute;
+	background: url("/static/images/formats/show-right.png") right center no-repeat;
+	height: 619px;
+	width: 60px;
+	top: 153px;
+	right: 0px;
+	display: none;
+}
+#formats .reg {
+	background: url("/static/images/formats/show-left.png") left center no-repeat;
+	top: 160px;
+	left: 0px;
+	display: none;
+}
+#formats .region {
+	position: absolute;
+	background: url("/static/images/formats/left-f.png") left center no-repeat;
+	height: 630px;
+	width: 375px;
+	top: 158px;
+	left: 0px;
+	display: block;
+}
+#formats .data.f {
+	position: absolute;
+	background: url("/static/images/formats/right-f.png") right center no-repeat;
+	height: 635px;
+	width: 335px;
+	top: 153px;
+	right: 0px;
+	display: block;
+}
+#content .data.region .hidden {
+	position: absolute;
+	background: url("/static/images/formats/h-left.png") center center no-repeat;
+	height: 48px;
+	width: 28px;
+	left: 341px;
+	top: 324px;
+	display: block;
+	z-index: 130;
+}
+#content .data.f .hidden {
+	position: absolute;
+	background: url("/static/images/formats/h-right.png") center center no-repeat;
+	height: 20px;
+	width: 18px;
+	left: 10px;
+	top: 345px;
+	display: block;
+	z-index: 130;
+}
+#content .data.f h3 {
+	margin: 40px 25px 20px 55px;
+	padding-right: 0px;
+}
+#content .data.region .search {
+	width: 230px;
+	height: 25px;
+	padding-left: 20px;
+	margin: 72px 0px 35px 40px;
+}
+#content .data.f .search {
+	width: 160px;
+	height: 25px;
+	padding-left: 90px;
+	margin: 0px 0px 35px -30px;
+}
+#content .data.f ul a, #content .data.region ul a {
+	background: url("/static/images/formats/yah.png") center center no-repeat;
+	height: 30px;
+	width: 40px;
+	float: right;
+}
+#content .data.f ul a.current, #content .data.region ul a.current {
+	background: url("/static/images/formats/ya.png") center center no-repeat;
+}
+#content .data.region ul span {
+	width: 250px;
+	float: left;
+}
+#content .data.f ul span {
+	width: 205px !important;
+}
+#content .data.region li ul li span {
+	width: 240px !important;
+}
+#content .data.f li ul li span {
+	width: 195px !important;
+}
+#content .data.f .scroll {
+	overflow: auto;
+	max-height: 450px;
+	width: 290px;
+	padding-left: 45px;
+}
+#content .data.region .scroll {
+	overflow: auto;
+	max-height: 455px;
+	width: 335px;
+	padding-left: 50px;
+}
+#content .data.f .scroll li {
+	width: 250px !important;
+}
+#content .data.region .scroll li {
+	width: 290px !important;
+}
+#content .data.region .scroll li ul li {
+	width: 280px !important;
+}
+#content .data.f .scroll li ul li {
+	width: 240px !important;
+}
+
+#content #formats .table {
+	position: absolute;
+	background: url("/static/images/formats/table.png") center center no-repeat;
+	height: 830px;
+	width: 1130px;
+	left: 420px;
+	top: 155px;
+	z-index: 100;
+}
+#content #formats .table table {
+	width: 1020px;
+	height: 720px;
+	border: 1px solid rgba(180, 218, 255, 0.33);
+	margin: 50px 40px;
+	border-collapse: separate;
+	overflow: auto;
+	table-layout: fixed;
+}
+#content #formats .table table td {
+	border: 1px solid rgba(180, 218, 255, 0.33);
+	height: 18px;
+	font-family: 'NeoSansPro-Light';
+	font-size: 16px;
+	color: #ffffff;
+	padding: 10px;
+}
+#content #formats .table table tr:nth-child(2n) {
+	background: rgba(128, 191, 255, 0.1);
 }
