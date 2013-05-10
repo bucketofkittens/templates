@@ -592,8 +592,11 @@ var FooterNavWidget = function(app) {
 		$(this.CSS["MAIN"]).find("a").on("click", $.proxy(this.onItemClick_, this));
 	}
 	this.onItemClick_ = function(evt) {
-		$(this.CSS["MAIN"]).find("a").removeClass("active");
-		$(evt.target).toggleClass("active");
+		var curElement = $(evt.target);
+		if(!curElement.hasClass("cooming")) {
+			$(this.CSS["MAIN"]).find("a").removeClass("active");
+			$(evt.target).toggleClass("active");	
+		}
 	}
 
 	this.draw_();
