@@ -24,6 +24,14 @@ var SVGLoader = function(app, clickCallback) {
 		this.prepareSvg_();
 	}
 
+	this.hide = function() {
+		this.elements["BG"].addClass("onHidden");
+	}
+
+	this.show = function() {
+		this.elements["BG"].removeClass("onHidden");
+	}
+
 	this.prepareSvg_ = function() {
 		this.elements["SVG"].on("load", $.proxy(this.onLoadSvg_, this));
 		this.elements["BG"].show();
@@ -146,8 +154,8 @@ var VideoPlayer = function() {
 	this.endedCallback = {}
 
 	this.addVideo = function(path) {
-		this.videos.push(path);
-		$(this.elements["BG"]).append('<video id="video_'+(this.videos.length-1)+'" type="video/mp4" src="'+path+'"class="video"  preload="auto" width="1920" height="1080" ></video>' );
+		//this.videos.push(path);
+		//$(this.elements["BG"]).append('<video id="video_'+(this.videos.length-1)+'" type="video/mp4" src="'+path+'"class="video"  preload="auto" width="1920" height="1080" ></video>' );
 	}
 
 	this.getVideoKey_ = function(path) {
@@ -163,7 +171,9 @@ var VideoPlayer = function() {
 
 	this.play = function(videoPath, endedCallback) {
 		var self = this;
-		this.video = $("#video_"+this.getVideoKey_(videoPath));
+		$(this.elements["BG"]).html("");
+		$(this.elements["BG"]).append('<video id="video" type="video/mp4" src="'+videoPath+'"class="video"  preload="auto" width="1920" height="1080" ></video>' );
+		this.video = $("#video");
 		if(this.video[0]) {
 			this.endedCallback = endedCallback;
 			this.elements["BG"].style.display = "block";
@@ -215,6 +225,14 @@ var MiniMapWriter = function() {
 		this.elements["CONTAINER"].off("click");
 	}
 
+	this.opacityHidden = function() {
+		this.elements["CONTAINER"].removeClass("onShow");
+	}
+
+	this.opacityShow = function() {
+		this.elements["CONTAINER"].addClass("onShow");
+	}
+
 	this.setText = function(text) {
 		this.elements["TEXT"].html(text);
 	}
@@ -263,7 +281,7 @@ var LoadingState = function(app) {
 var MapStateManager = function(app) {
 	this.miniMapWriter = new MiniMapWriter();
 	this.miniMapWriter.setText(this.backTitleText);
-	
+
 	this.stateCSS = {
 		"BG-IMAGE": "#bg-image"
 	}
@@ -276,6 +294,14 @@ var MapStateManager = function(app) {
 	this.regions = {};
 	this.currentRegionData = {};
 	this.stateElements["BG-IMAGE"] = $(this.stateCSS["BG-IMAGE"]);
+
+	this.addBlur = function() {
+		this.stateElements["BG-IMAGE"].addClass("blur");
+	}
+
+	this.removeBlur = function() {
+		this.stateElements["BG-IMAGE"].removeClass("blur");
+	}
 
 	this.setCurrentRegion = function(data) {
 		this.currentRegionData = data;
@@ -466,6 +492,7 @@ var Application = function() {
 	this.currentRegion = 100;
 	this.maxZoom = 3;
 	this.currentZoom = 1;
+	this.russianId = 100;
 
 	this.apiHost = "http://174.129.130.28:3000";
 
@@ -491,11 +518,14 @@ var Application = function() {
 	this.appTimer = new AppTimer(this);
 
 	this.ageSelectorWidget = new AgeSelectorWidget(this);
+	this.ageSelectorFormatWidget = new AgeSelectorFormatWidget(this);
 	this.parametrsWidgets = new ParametrsWidgets(this);
 	this.mapColorWidget = new MapColorWidget(this);
 	this.mapColorel = new MapColorel(this);
 	this.legendWidget = new LegendWidget(this);
 	this.footerNavWidget = new FooterNavWidget(this);
+	this.regionsSelectorWidget = new RegionsSelectorWidget(this);
+	this.paramsSelectorWidget = new ParamsSelectorWidget(this);
 
 	this.prevState = function() {
 		this.currentZoom--;

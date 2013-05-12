@@ -71,7 +71,7 @@ header h1 {
 	top: 168px;
 	z-index: 160;
 	cursor: pointer;
-	-webkit-transition: all 0.5s linear;
+	-webkit-transition: all 0.3s linear;
 	opacity: 0;
 	visibility: hidden;
 }
@@ -189,7 +189,7 @@ header h1 {
 	text-decoration: none;
 }
 #content .legend a.onShow {
-	background: url("/static/images/ya1.png") 102px 19px no-repeat;
+	background: url("/static/images/ya1.png") 100px 15px no-repeat;
 }
 #content > a {
 	position: absolute;
@@ -239,10 +239,11 @@ header h1 {
     z-index: 10;
     background-position: left top;
     background-repeat: no-repeat;
+    -webkit-transition: 0.5s -webkit-filter ease-in;
 }
 
 .blur {
-	-webkit-filter: blur(5px);
+	-webkit-filter: blur(10px);
 }
 
 #app {
@@ -317,11 +318,23 @@ header h1 {
 	font-family: 'NeoSansPro';
 	font-size: 16px;
 	color: #ffffff;
-	margin: 40px 0px 50px 75px;
+	margin: 40px 0px 12px 75px;
 	overflow: hidden;
 	white-space: nowrap;
 	text-overflow: ellipsis;
 	padding-right: 15px;
+}
+#param-info {
+	height: 36px;
+	color: #ffffff;
+	font-family: 'NeoSansPro-Light';
+	padding-left: 85px;
+	padding-right: 30px;
+	line-height: 100%;
+	position: relative;
+	top: -2px;
+	display: table-cell;
+	vertical-align: middle;
 }
 #content .data .search, #content .data .year {
 	background: none;
@@ -411,7 +424,7 @@ header h1 {
 	right: 0px;
 	cursor: pointer;
 	z-index: 130;
-	display: none !important;
+	display: none;
 }
 
 .video {
@@ -440,26 +453,23 @@ header h1 {
 
 
 /* Форматы */
-#formats {
-	position: absolute;
-	width: 100%;
-}
-#formats .show-f {
+.show-f {
 	position: absolute;
 	background: url("/static/images/formats/show-right.png") right center no-repeat;
 	height: 619px;
 	width: 60px;
 	top: 153px;
 	right: 0px;
-	display: none;
+	z-index: 200;
+	left: auto;
 }
-#formats .reg {
+.reg {
 	background: url("/static/images/formats/show-left.png") left center no-repeat;
 	top: 160px;
 	left: 0px;
-	display: none;
+	z-index: 200;
 }
-#formats .region {
+#content .region {
 	position: absolute;
 	background: url("/static/images/formats/left-f.png") left center no-repeat;
 	height: 630px;
@@ -468,7 +478,7 @@ header h1 {
 	left: 0px;
 	display: block;
 }
-#formats .data.f {
+#content .data.f {
 	position: absolute;
 	background: url("/static/images/formats/right-f.png") right center no-repeat;
 	height: 635px;
@@ -525,9 +535,11 @@ header h1 {
 #content .data.region ul span {
 	width: 250px;
 	float: left;
+	cursor: pointer;
 }
 #content .data.f ul span {
 	width: 205px !important;
+	cursor: pointer;
 }
 #content .data.region li ul li span {
 	width: 240px !important;
@@ -560,7 +572,7 @@ header h1 {
 	width: 240px !important;
 }
 
-#content #formats .table {
+#content .table {
 	position: absolute;
 	background: url("/static/images/formats/table.png") center center no-repeat;
 	height: 830px;
@@ -569,7 +581,7 @@ header h1 {
 	top: 155px;
 	z-index: 100;
 }
-#content #formats .table table {
+#content .table table {
 	width: 1020px;
 	height: 720px;
 	border: 1px solid rgba(180, 218, 255, 0.33);
@@ -578,7 +590,7 @@ header h1 {
 	overflow: auto;
 	table-layout: fixed;
 }
-#content #formats .table table td {
+#content .table table td {
 	border: 1px solid rgba(180, 218, 255, 0.33);
 	height: 18px;
 	font-family: 'NeoSansPro-Light';
@@ -586,6 +598,73 @@ header h1 {
 	color: #ffffff;
 	padding: 10px;
 }
-#content #formats .table table tr:nth-child(2n) {
+#content .table table tr:nth-child(2n) {
 	background: rgba(128, 191, 255, 0.1);
+}
+#format-data {
+	display: none;
+}
+
+.onHidden {
+	opacity: 0;
+	visibility: hidden;
+}
+
+#map-params {
+	position: relative;
+	right: 0px;
+	-webkit-transition: all 1s linear;
+}
+#map-params.hidden {
+	right: -370px;
+}
+#regions-selector {
+	position: relative;
+	left: 0px;
+	-webkit-transition: all 1s linear;
+}
+#regions-selector.hidden {
+	left: -370px;
+}
+
+#region-data {
+	-webkit-transition: all 1s linear;
+	display: block !important;
+}
+#region-data.hidden, #regions-nav-show.hidden {
+	left: -370px;
+}
+#regions-nav-show {
+	-webkit-transition: all 1s linear;
+}
+
+#params-selector {
+	position: relative;
+	right: 0px;
+	-webkit-transition: all 1s linear;
+}
+#params-selector.hidden {
+	right: -370px !important;
+}
+
+#params-data {
+	-webkit-transition: all 1s linear;
+	display: block !important;
+}
+#params-data.hidden, #params-nav-show.hidden {
+	right: -370px !important;
+}
+#params-nav-show {
+	-webkit-transition: all 1s linear;
+}
+
+#region-data .jspVerticalBar {
+	left: 0px;
+	right: auto;
+}
+#panels #region-data .jspContainer {
+	height: 440px !important;
+}
+#content #region-data .jspPane {
+	margin-left: 0px !important;
 }

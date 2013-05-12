@@ -7,13 +7,27 @@ var ConfigApp = {
 	},
 	"PRELOAD": {
 		"IMAGES": [
-			"/static/images/map/100.jpg",
-			"/static/images/map/101.jpg",
-			"/static/images/map/52.jpg"
+			"/static/images/map/100.png",
+			"/static/images/map/101.png",
+			"/static/images/map/52.png"
 		],
 		"VIDEO": [
 			"/static/video/101-in.mp4",
 			"/static/video/101-out.mp4",
+			"/static/video/102-in.mp4",
+			"/static/video/102-out.mp4",
+			"/static/video/103-in.mp4",
+			"/static/video/103-out.mp4",
+			"/static/video/104-in.mp4",
+			"/static/video/104-out.mp4",
+			"/static/video/105-in.mp4",
+			"/static/video/105-out.mp4",
+			"/static/video/106-in.mp4",
+			"/static/video/106-out.mp4",
+			"/static/video/107-in.mp4",
+			"/static/video/107-out.mp4",
+			"/static/video/108-in.mp4",
+			"/static/video/108-out.mp4",
 			"/static/video/52-in.mp4",
 			"/static/video/52-out.mp4"
 		]
@@ -30,7 +44,7 @@ var ConfigManager = function(app, config) {
 	this.config = config;
 
 	this.getMapById = function(id_region) {
-		return this.config["PATHES"]["MAP"]+id_region+".jpg";
+		return this.config["PATHES"]["MAP"]+id_region+".png";
 	}
 
 	this.getMiniMapById = function(id_region) {
