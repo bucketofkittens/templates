@@ -76,7 +76,7 @@ header h1 {
 	visibility: hidden;
 }
 #miniMap a {
-	font-family: 'NeoSansPro-Light';
+	font-family: 'NeoSansPro-Medium';
 	font-size: 21px;
 	color: #ffffff;
 	text-align: center;
@@ -87,6 +87,7 @@ header h1 {
 	display: block;
 	position: relative;
 	padding-top: 113px;
+	text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
 }
 
 #content .time {
@@ -174,7 +175,9 @@ header h1 {
 	padding: 12px 0px 11px 190px;
 }
 #content .legend p:first-child {
-	margin-top: 270px;
+	margin-top: 255px;
+	position: relative;
+	top: 10px;
 }
 #content .legend a {
 	font-family: 'NeoSansPro-Light';
@@ -355,7 +358,7 @@ header h1 {
 #content .data .scroll li {
 	display: block;
 	font-family: 'NeoSansPro-Light';
-	font-size: 16px;
+	font-size: 17px;
 	color: #ffffff;
 	overflow: hidden;
 	line-height: 120%;

@@ -219,7 +219,7 @@ var ParametrsWidgets = function(app) {
 
 		$.each(elements, function(key, value) {
 			var elem = $(value).attr("data-name");
-			if(elem.indexOf(filterValue) == -1) {
+			if(elem.toLowerCase().indexOf(filterValue.toLowerCase()) == -1) {
 				$(value).addClass("hidde");
 			} else {
 				$(value).removeClass("hidde");
@@ -291,6 +291,9 @@ var LegendWidget = function(app) {
 	this.setLevelText = function(data) {
 		var $p = $(this.CSS["MAIN"]).find("p");
 		$.each($p, function(key, value) {
+			if(key == 0 && data["red"]) {
+				$(value).html("нет данных");
+			}
 			if(key == 1 && data["red"]) {
 				$(value).html(parseInt(data["red"][0])+"-"+parseInt(data["red"][1]));
 			}

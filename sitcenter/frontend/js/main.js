@@ -93,6 +93,10 @@ var SVGLoader = function(app, clickCallback) {
 					x = x - 20;
 					y = y + 20;
 				}
+				if(id == 76) {
+					x = x - 20;
+					y = y + 30;
+				}
 				$(newElement).html(parseInt(data[id]));
 				$(newElement).attr({
 					x: x,

@@ -4,6 +4,11 @@ src: url("../fonts/NeoSansPro-Regular.ttf");
 }
 
 @font-face {
+font-family: "NeoSansPro-Medium";
+src: url("../fonts/NeoSansPro-Medium.ttf");
+}
+
+@font-face {
 font-family: "NeoSansPro-Light";
 src: url("../fonts/NeoSansPro-Light.ttf");
 }
