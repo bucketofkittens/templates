@@ -661,10 +661,30 @@ header h1 {
 #region-data .jspVerticalBar {
 	left: 0px;
 	right: auto;
+	background: url("/static/images/formats/s1.png") center center no-repeat;
 }
 #panels #region-data .jspContainer {
-	height: 440px !important;
+	height: 447px !important;
+}
+#panels #region-data .jspContainer .jspArrowUp, #panels #region-data .jspContainer .jspArrowDown {
+	left: 2px !important;
+}
+#panels #region-data .jspContainer .jspDrag {
+	right: 3px !important;
 }
 #content #region-data .jspPane {
 	margin-left: 0px !important;
 }
+
+#content .data.f ul.first {
+	margin-left: 0px !important;
+}
+
+#panels #content .data.f .jspContainer {
+	height: 447px !important;
+}
+
+#panels #content .data.f .jspVerticalBar {
+	background: url("/static/images/formats/s2.png") center center no-repeat;
+}
+

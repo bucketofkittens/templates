@@ -56,6 +56,7 @@ var SVGLoader = function(app, clickCallback) {
 		$.each($(svg).find("path"), function(key, value) {
 			$(value).attr("fill", "#ffffff");
 			$(value).attr("fill-opacity", "0");
+			$(value).removeAttr("opacity");
 			if(self.app.currentZoom != 3) {
 				$(value).css("cursor", "pointer");	
 			}
@@ -104,6 +105,20 @@ var SVGLoader = function(app, clickCallback) {
 				if(id == 76) {
 					x = x - 20;
 					y = y + 30;
+				}
+				if(id == 102) {
+					x = x - 20;
+					y = y + 30;
+				}
+				if(id == 103) {
+					x = x + 30;
+				}
+				if(id == 104) {
+					x = x + 15;
+				}
+				if(id == 108) {
+					x = x - 15;
+					y = y - 50;
 				}
 				$(newElement).html(parseInt(data[id]));
 				$(newElement).attr({

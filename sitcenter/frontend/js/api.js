@@ -79,7 +79,6 @@ var ParametrsWidgets = function(app) {
 			this.app.mapColorWidget.updateParams();
 
 			this.app.paramsManager.getParamUom(this.currentParametr.id, function(data) {
-				console.log(data);
 				self.elements["UOM"].html(data.responseText);
 			});
 			this.app.legendManager.getLegendByParamAndSubject(
@@ -169,7 +168,6 @@ var ParametrsWidgets = function(app) {
 			if(value.parameters.length > 0) {
 				$.each(value.parameters, function(key2, value2) {
 					var paramCurrent = $("li[data-id='"+value2.id+"']", self.CSS["PARAMETRS-LIST"]);
-					console.log(paramCurrent);
 					if(paramCurrent.size() == 0) {
 						var html = "<li data-name='"+value2.name+"' data-id='"+value2.id+"'><span  class='param'><em class='spr'>-</em> <em class='name'>"+value2.name+"</em></span><i>"+value2.value+"</i></li>";
 
@@ -418,8 +416,7 @@ var ParamsManager = function(app) {
 	}
 
 	this.getParamsByRegionAndAge = function(regions, age, callback) {
-		console.log(this.app.apiHost + "/parameter_names/");
-		/*$.ajax(
+		$.ajax(
 			{
 				url: this.app.apiHost + "/parameter_names/",
 				type: "POST",
@@ -429,7 +426,8 @@ var ParamsManager = function(app) {
 					"year": age
 				},
 				success: callback
-			});*/
+			}
+		);
 	}
 }
 
@@ -802,8 +800,22 @@ var RegionsSelectorWidget = function(app) {
 	}
 
 	this.onRegionClick_ = function(evt) {
+		var current = $(evt.target);
+		var parent = $(evt.target).parent();
+
 		$(evt.target).toggleClass("current");
+
+		if(current.hasClass("current")) {
+			parent.find("ul a").addClass("current");
+		} else {
+			parent.find("ul a").removeClass("current");
+		}
 	}
+
+	this.onRegionNameClick_ = function(evt) {
+		$(evt.target).parent().find("ul").slideToggle("slow");
+	}
+
 	this.onShowClick_ = function(evt) {
 		this.isDataShow = true;
 		this.elements["DATA"].removeClass(this.CSS["HIDDEN"]);
@@ -818,18 +830,30 @@ var RegionsSelectorWidget = function(app) {
 
 	this.onResponseRegions_ = function(data) {
 		this.regions = data;
-		this.elements["DATA-PLACE"].html(this.findRegionsByParent_(data, this.app.russianId, ""));
+		this.elements["DATA-PLACE"].html(this.findRegionsByParent_(data, this.app.russianId, "", ""));
 		this.addChilds(data);
 
+		this.app.paramsManager.getParamsByRegionAndAge(
+			this.getCurrentIds(),
+			this.app.ageSelectorFormatWidget.selectedAge,
+			function() {
+				
+			}
+		);
+
+		this.app.paramsSelectorWidget.updateParams(this.getCurrentIds(), this.app.ageSelectorFormatWidget.selectedAge);
+			
 		$(this.CSS["DATA-PLACE"]+ " li a").on("click", $.proxy(this.onRegionClick_, this));
+		$(this.CSS["DATA-PLACE"]+ " li span").on("click", $.proxy(this.onRegionNameClick_, this));
+		
 	}
 
-	this.findRegionsByParent_ = function(data, parent, html) {
+	this.findRegionsByParent_ = function(data, parent, html, sep) {
 		html += "<ul>";
 		var self = this;
 		$.each(data, function(key, value) {
 			if(parent == value.parent_id) {
-				html += '<li data-id="'+value.id+'"><span class="group">'+value.name+'</span><a href="#"></a></li>';
+				html += '<li data-name='+value.name+' data-id="'+value.id+'"><span class="group"> '+sep+value.name+'</span><a class="current" href="#"></a></li>';
 				delete data[value];
 			}
 		});
@@ -837,11 +861,21 @@ var RegionsSelectorWidget = function(app) {
 		return html;
 	}
 
+	this.getCurrentIds = function() {
+		var currentsA = $(this.elements["DATA-PLACE"]).find("li a.current");
+		var ids = [];
+
+		$.each(currentsA, function(key, value) {
+			ids.push($(value).parent().attr("data-id"));
+		});
+
+		return ids;
+	}
+
 	this.addChilds = function(data) {
 		var self = this;
 		$.each($(this.elements["DATA-PLACE"]).find("li"), function(key, value) {
-			console.log();
-			var html = self.findRegionsByParent_(data, $(value).attr("data-id"), "");
+			var html = self.findRegionsByParent_(data, $(value).attr("data-id"), "", " - ");
 			$(value).append(html);
 		});
 	}
@@ -861,21 +895,36 @@ var ParamsSelectorWidget = function(app) {
 		"HIDDEN": "hidden",
 		"SHOW": "#params-nav-show",
 		"DATA": "#params-data",
-		"DATA-HIDDEN": "#params-data-hidden"
+		"DATA-HIDDEN": "#params-data-hidden",
+		"DATA-PLACE": "#params-data-place"
 	};
 
 	this.elements = {
 		"MAIN": $(this.CSS["MAIN"]),
 		"SHOW": $(this.CSS["SHOW"]),
 		"DATA": $(this.CSS["DATA"]),
-		"DATA-HIDDEN": $(this.CSS["DATA-HIDDEN"])
+		"DATA-HIDDEN": $(this.CSS["DATA-HIDDEN"]),
+		"DATA-PLACE": $(this.CSS["DATA-PLACE"])
 	}
 
 	this.isDataShow = false;
+	this.parametrs = {};
+	this.scrollApi = null;
+
+	this.initScroll_ = function() {
+		$(this.CSS["DATA-PLACE"]).jScrollPane(
+			{
+				showArrows: true,
+				verticalDragMinHeight: 60,
+	    		verticalDragMaxHeight: 60,
+	    		autoReinitialise: true
+			}
+		);
+		this.scrollApi = this.elements["DATA-PLACE"].data('jsp');
+	}
 
 	this.show = function() {
 		this.elements["MAIN"].removeClass(this.CSS["HIDDEN"]);
-
 	}
 
 	this.hidden = function() {
@@ -885,6 +934,9 @@ var ParamsSelectorWidget = function(app) {
 	this.bindEvents_ = function() {
 		this.elements["SHOW"].on("click", $.proxy(this.onShowClick_, this));
 		this.elements["DATA-HIDDEN"].on("click", $.proxy(this.onHiddenClick_, this));
+
+		$(this.CSS["DATA-PLACE"]).on("click", ".params-checkbox" , $.proxy(this.onParamClick_, this));
+		$(this.CSS["DATA-PLACE"]).on("click", ".params-name", $.proxy(this.onParamNameClick_, this));
 	}
 
 	this.onShowClick_ = function(evt) {
@@ -899,17 +951,95 @@ var ParamsSelectorWidget = function(app) {
 		this.elements["SHOW"].removeClass(this.CSS["HIDDEN"]);
 	}
 
-	this.onResponseRegions_ = function(data) {
-		console.log(data);
+	this.onParamsGet_ = function(data) {
+		this.parametrs = this.prepareParamerts_(data);
+		this.drawParamets_(this.parametrs);
 	}
 
+	this.updateParams = function(ids, age) {
+		this.app.paramsManager.getParamsByRegionAndAge(
+			ids,
+			age,
+			$.proxy(this.onParamsGet_, this)
+		);
+	}
 
+	this.drawParamets_ = function(params) {
+		if(!this.scrollApi) {
+			this.initScroll_();
+		}
+		var html = "";
+		var self = this;
+		var contentPane = this.scrollApi.getContentPane();
 
+		$.each(params, function(key, value) {
+			var elementCurrentGroup = $("ul[data-id='"+value.id+"']", self.CSS["DATA-PLACE"]);
+			if(elementCurrentGroup.size() == 0) {
+				var html =  "<ul data-id='"+value.id+"' class='first'><li class='first-li'>";
+					html += "<span class='group params-name params-checkbox'>"+value.name+"</span><a href='#' class='params-checkbox current'></a>";
+					html += "<ul></ul></li></ul>";
+
+				contentPane.append(html);
+			}
+
+			var elementCurrentGroup = $("ul[data-id='"+value.id+"']", self.CSS["DATA-PLACE"]);
+
+			if(value.parameters.length > 0) {
+				$.each(value.parameters, function(key2, value2) {
+					var paramCurrent = $("li[data-id='"+value2.id+"']", self.CSS["DATA-PLACE"]);
+					if(paramCurrent.size() == 0) {
+						var html = "<li data-name='"+value2.name+"' data-id='"+value2.id+"'><span  class='param params-name '><em class='spr'>-</em> <em class='name'>"+value2.name+"</em></span><a class='params-checkbox current' href='#'></a></li>";
+
+						elementCurrentGroup.find("ul").append(html);
+					} else {
+						paramCurrent.find("i").html(value2.value);
+					}
+				});	
+			}
+		});
+		this.scrollApi.reinitialise();
+	}
+
+	this.prepareParamerts_ = function(data) {
+		var ret = {};
+
+		$.each(data, function(key, value) {
+			if(!ret[value.group_id]) {
+				ret[value.group_id] = {
+					id: value.group_id,
+					name: value.group_name,
+					parameters: []
+				}
+			}
+			ret[value.group_id].parameters.push({
+				id: value.id,
+				name: value.name,
+				value: value.param_val
+			});
+		});
+
+		return ret;
+	}
+
+	this.onParamClick_ = function(evt) {
+		var current = $(evt.target);
+		var parent = $(evt.target).parent();
+
+		$(evt.target).toggleClass("current");
+
+		if(current.hasClass("current")) {
+			parent.find("ul a").addClass("current");
+		} else {
+			parent.find("ul a").removeClass("current");
+		}
+	}
+
+	this.onParamNameClick_ = function(evt) {
+		$(evt.target).parent().find("ul").slideToggle("slow");
+	}
+
+	this.initScroll_();
 	this.bindEvents_();
 	this.app.ageSelectorFormatWidget.draw();
-	this.app.paramsManager.getParamsByRegionAndAge(
-		{},
-		this.app.ageSelectorFormatWidget.currentAge,
-		$.proxy(this.onResponseRegions_, this)
-	);
+	
 }
