@@ -193,7 +193,6 @@ var VideoPlayer = function() {
 		this.elements["BG"].style.display = "block";
 		this.video.off("ended");
 		this.video.on('ended', this.endedCallback);
-		this.video[0].style.display = "block";
 		this.video[0].load();
 		setTimeout(function() {
 			self.video[0].play();
@@ -203,9 +202,6 @@ var VideoPlayer = function() {
 	this.hide = function() {
 		var self = this;
 		setTimeout(function() {
-			if(self.video) {
-				self.video[0].style.display = "none";	
-			}
 			$(self.elements["BG"]).fadeOut();
 		}, 0); 
 		$(this.elements["VIDEO"]).off('ended', this.endedCallback);
