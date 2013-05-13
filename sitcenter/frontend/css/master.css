@@ -519,28 +519,28 @@ header h1 {
 	padding-left: 90px;
 	margin: 0px 0px 35px -30px;
 }
-#content .data.f ul a, #content .data.region ul a {
+#content .data.f section ul a, #content .data.region section ul a {
 	background: url("/static/images/formats/yah.png") center center no-repeat;
 	height: 30px;
 	width: 40px;
 	float: right;
 }
-#content .data.f ul a.current, #content .data.region ul a.current {
+#content .data.f section ul a.current, #content .data.region section ul a.current {
 	background: url("/static/images/formats/ya.png") center center no-repeat;
 }
-#content .data.region ul span {
+#content .data.region section ul span {
 	width: 250px;
 	float: left;
 	cursor: pointer;
 }
-#content .data.f ul span {
+#content .data.f section ul span {
 	width: 205px !important;
 	cursor: pointer;
 }
-#content .data.region li ul li span {
+#content .data.region section li ul li span {
 	width: 240px !important;
 }
-#content .data.f li ul li span {
+#content .data.f section li ul li span {
 	width: 195px !important;
 }
 #content .data.f .scroll {
@@ -581,7 +581,7 @@ header h1 {
 	width: 1020px;
 	height: 720px;
 	border: 1px solid rgba(180, 218, 255, 0.33);
-	margin: 50px 40px;
+	
 	border-collapse: separate;
 	overflow: auto;
 	table-layout: fixed;
@@ -689,4 +689,18 @@ header h1 {
 
 #format-data.hidden {
 	top: 1200px !important;
+}
+
+#table-format {
+	overflow: auto;
+	height: 670px;
+	margin: 85px 13px 75px 35px;
+}
+
+#table-format .jspContainer {
+	
+}
+
+#table-format .jspVerticalBar {
+	background: url("/static/images/formats/s3.png") left top no-repeat;
 }

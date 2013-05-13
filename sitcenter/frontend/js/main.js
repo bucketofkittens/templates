@@ -168,31 +168,14 @@ var VideoPlayer = function() {
 	this.videos = []
 	this.endedCallback = {}
 
-	this.addVideo = function(path) {
-		//this.videos.push(path);
-		//$(this.elements["BG"]).append('<video id="video_'+(this.videos.length-1)+'" type="video/mp4" src="'+path+'"class="video"  preload="auto" width="1920" height="1080" ></video>' );
-	}
-
-	this.getVideoKey_ = function(path) {
-		var ret = null;
-		$.each(this.videos, function(key, value) {
-			if(value == path) {
-				ret = key;
-			}
-		});
-
-		return ret;
-	}
-
 	this.play = function(videoPath, endedCallback) {
 		var self = this;
 		this.video = $("#video");
-		console.log(this.video);
 		this.video.attr("src", videoPath)
 		this.endedCallback = endedCallback;
 		this.elements["BG"].style.display = "block";
 		this.video.off("ended");
-		this.video.on('ended', this.endedCallback);
+		this.video.bind('ended', this.endedCallback);
 		this.video[0].load();
 		setTimeout(function() {
 			self.video[0].play();
@@ -536,6 +519,7 @@ var Application = function() {
 	this.regionsSelectorWidget = new RegionsSelectorWidget(this);
 	this.paramsSelectorWidget = new ParamsSelectorWidget(this);
 	this.formatWidget = new FormatWidget(this);
+	this.formatManager = new FormatManager(this);
 
 	this.prevState = function() {
 		this.currentZoom--;
@@ -561,9 +545,6 @@ var Application = function() {
 				var pxImage = new PxLoaderImage(value); 
 				self.loader.add(pxImage);	
 			}	
-			if(postfix == "mp4") {
-				self.videoPlayer.addVideo(value);	
-			}	
 		});
 		this.loader.start();
 		this.loader.addCompletionListener($.proxy(this.onResouceLoader, this));
@@ -578,6 +559,15 @@ var Application = function() {
 	}
 
 	this.onResouceLoader = function() {
+		var appCache = window.applicationCache;
+	   appCache.addEventListener('noupdate', $.proxy(this.onCacheLoaded_, this), false);
+	   appCache.addEventListener('cached', $.proxy(this.onCacheLoaded_, this), false);
+		
+	}
+
+
+	this.onCacheLoaded_ = function() {
+		console.log("cache");
 		var self = this;
 		setTimeout(function() {
 			self.loadingState.stop(function() {});

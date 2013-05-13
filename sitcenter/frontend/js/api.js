@@ -431,6 +431,35 @@ var ParamsManager = function(app) {
 	}
 }
 
+/**
+ * [FormatManager description]
+ * @param {[type]} app [description]
+ */
+var FormatManager = function(app) {
+	this.app = app;
+
+	this.getFormat = function(regions_id, params_id, age, callback) {
+		console.log(this.app.apiHost + " /formats/");
+		$.ajax(
+			{
+				url: this.app.apiHost + "/formats/",
+				type: "POST",
+				dataType: 'JSON',
+				data: {
+					"subject_ids": regions_id,
+					"parameter_ids": params_id,
+					"year": age
+				},
+				success: callback
+			}
+		);
+	}
+}
+
+/**
+ * [MapColorWidget description]
+ * @param {[type]} app [description]
+ */
 var MapColorWidget = function(app) {
 	this.app = app;
 	this.state = false;
@@ -611,7 +640,8 @@ var AgeSelectorFormatWidget = function(app) {
 	this.ages = [2012, 2011, 2010, 2009, 2008]
 	this.selectedAge = 2012;
 	this.CSS = {
-		"SELECTOR": "#params-age-selected"
+		"SELECTOR": "#params-age-selected",
+		"LOAD": "#load"
 	}
 
 	this.elements = {
@@ -637,24 +667,9 @@ var AgeSelectorFormatWidget = function(app) {
 
 	this.ageSelected_ = function(val, inst) {
 		this.selectedAge = val;
-		var self = this;
-		this.app.paramsManager.getParamsByRegionAndYeage(this.app.currentRegion, val, $.proxy(this.app.parametrsWidgets.getParametrs_, this.app.parametrsWidgets));
-		if(this.app.parametrsWidgets.currentParametr) {
-			this.app.mapColorel.colored(
-				this.app.parametrsWidgets.currentParametr.id, 
-				this.app.currentRegion, 
-				this.app.ageSelectorWidget.selectedAge
-			);
-			this.app.mapColorWidget.updateParams();
-			this.app.legendManager.getLegendByParamAndSubject(
-				this.app.parametrsWidgets.currentParametr.id, 
-				this.app.currentRegion,
-				function(data) {
-					self.app.legendWidget.setLevelText(data);
-					self.app.legendWidget.show();
-				}
-			);
-		}
+
+		$(this.CSS["LOAD"]).addClass("onShow");
+		this.app.formatWidget.updateContent();
 	}
 }
 
@@ -759,7 +774,9 @@ var RegionsSelectorWidget = function(app) {
 		"SHOW": "#regions-nav-show",
 		"DATA": "#region-data",
 		"DATA-HIDDEN": "#region-data-hidden",
-		"DATA-PLACE": "#region-data-place"
+		"DATA-PLACE": "#region-data-place",
+		"FILTER": "#region-selector-filter",
+		"LOAD": "#load"
 	};
 
 	this.elements = {
@@ -767,7 +784,8 @@ var RegionsSelectorWidget = function(app) {
 		"SHOW": $(this.CSS["SHOW"]),
 		"DATA": $(this.CSS["DATA"]),
 		"DATA-HIDDEN": $(this.CSS["DATA-HIDDEN"]),
-		"DATA-PLACE": $(this.CSS["DATA-PLACE"])
+		"DATA-PLACE": $(this.CSS["DATA-PLACE"]),
+		"FILTER": $(this.CSS["FILTER"])
 	}
 
 	this.regions = {};
@@ -812,6 +830,9 @@ var RegionsSelectorWidget = function(app) {
 		} else {
 			parent.find("ul a").removeClass("current");
 		}
+
+		$(this.CSS["LOAD"]).addClass("onShow");
+		this.app.formatWidget.updateContent();
 	}
 
 	this.onRegionNameClick_ = function(evt) {
@@ -847,6 +868,8 @@ var RegionsSelectorWidget = function(app) {
 			
 		$(this.CSS["DATA-PLACE"]+ " li a").on("click", $.proxy(this.onRegionClick_, this));
 		$(this.CSS["DATA-PLACE"]+ " li span").on("click", $.proxy(this.onRegionNameClick_, this));
+
+		this.elements["FILTER"].on("keyup", $.proxy(this.onFilterClick_, this));
 		
 	}
 
@@ -882,6 +905,42 @@ var RegionsSelectorWidget = function(app) {
 		});
 	}
 
+	this.onFilterClick_ = function(evt) {
+		var filterValue = $(evt.target).val();
+
+		if(filterValue.length > 0) {
+			this.filteringParametrs(filterValue);	
+		} else {
+			this.clearFilter_();
+		}
+	}
+
+	this.clearFilter_ = function() {
+		$(this.CSS["DATA-PLACE"]).find(".hidde").removeClass("hidde");
+	}
+
+	this.filteringParametrs = function(filterValue) {
+		var elements = $(this.CSS["DATA-PLACE"]).find("ul li ul li");
+
+		$.each(elements, function(key, value) {
+			var elem = $(value).attr("data-name");
+			if(elem.toLowerCase().indexOf(filterValue.toLowerCase()) == -1) {
+				$(value).addClass("hidde");
+			} else {
+				$(value).removeClass("hidde");
+			}
+		});
+
+		/*
+		var elems = $(this.CSS["DATA-PLACE"]).find("li");
+		$.each(elems, function(key, value) {
+			if($(value).find("li:not(.hidde)").size() == 0) {
+				$(value).addClass("hidde");
+			}
+		})
+		*/
+	}
+
 	this.bindEvents_();
 	this.app.regionManager.getAll($.proxy(this.onResponseRegions_, this));
 }
@@ -898,7 +957,8 @@ var ParamsSelectorWidget = function(app) {
 		"SHOW": "#params-nav-show",
 		"DATA": "#params-data",
 		"DATA-HIDDEN": "#params-data-hidden",
-		"DATA-PLACE": "#params-data-place"
+		"DATA-PLACE": "#params-data-place",
+		"LOAD": "#load"
 	};
 
 	this.elements = {
@@ -906,7 +966,8 @@ var ParamsSelectorWidget = function(app) {
 		"SHOW": $(this.CSS["SHOW"]),
 		"DATA": $(this.CSS["DATA"]),
 		"DATA-HIDDEN": $(this.CSS["DATA-HIDDEN"]),
-		"DATA-PLACE": $(this.CSS["DATA-PLACE"])
+		"DATA-PLACE": $(this.CSS["DATA-PLACE"]),
+		"FILTER":  $(this.CSS["DATA"]).find("input")
 	}
 
 	this.isDataShow = false;
@@ -939,6 +1000,9 @@ var ParamsSelectorWidget = function(app) {
 
 		$(this.CSS["DATA-PLACE"]).on("click", ".params-checkbox" , $.proxy(this.onParamClick_, this));
 		$(this.CSS["DATA-PLACE"]).on("click", ".params-name", $.proxy(this.onParamNameClick_, this));
+
+		console.log(this.elements["FILTER"]);
+		this.elements["FILTER"].on("keyup", $.proxy(this.onFilterClick_, this));
 	}
 
 	this.onShowClick_ = function(evt) {
@@ -956,6 +1020,8 @@ var ParamsSelectorWidget = function(app) {
 	this.onParamsGet_ = function(data) {
 		this.parametrs = this.prepareParamerts_(data);
 		this.drawParamets_(this.parametrs);
+
+		this.app.formatWidget.updateContent();
 	}
 
 	this.updateParams = function(ids, age) {
@@ -1034,10 +1100,60 @@ var ParamsSelectorWidget = function(app) {
 		} else {
 			parent.find("ul a").removeClass("current");
 		}
+
+		$(this.CSS["LOAD"]).addClass("onShow");
+		this.app.formatWidget.updateContent();
 	}
 
 	this.onParamNameClick_ = function(evt) {
 		$(evt.target).parent().find("ul").slideToggle("slow");
+	}
+
+	this.getCurrentIds = function() {
+		var currentsA = $(this.elements["DATA-PLACE"]).find("li a.current");
+		var ids = [];
+
+		$.each(currentsA, function(key, value) {
+			ids.push($(value).parent().attr("data-id"));
+		});
+
+		return ids;
+	}
+
+	this.onFilterClick_ = function(evt) {
+		var filterValue = $(evt.target).val();
+
+		if(filterValue.length > 0) {
+			this.filteringParametrs(filterValue);	
+		} else {
+			this.clearFilter_();
+		}
+	}
+
+	this.clearFilter_ = function() {
+		$(this.CSS["DATA-PLACE"]).find(".hidde").removeClass("hidde");
+	}
+
+	this.filteringParametrs = function(filterValue) {
+		var elements = $(this.CSS["DATA-PLACE"]).find("ul li ul li");
+
+		$.each(elements, function(key, value) {
+			var elem = $(value).attr("data-name");
+			if(elem.toLowerCase().indexOf(filterValue.toLowerCase()) == -1) {
+				$(value).addClass("hidde");
+			} else {
+				$(value).removeClass("hidde");
+			}
+		});
+
+		/*
+		var elems = $(this.CSS["DATA-PLACE"]).find("li");
+		$.each(elems, function(key, value) {
+			if($(value).find("li:not(.hidde)").size() == 0) {
+				$(value).addClass("hidde");
+			}
+		})
+		*/
 	}
 
 	this.initScroll_();
@@ -1051,13 +1167,18 @@ var ParamsSelectorWidget = function(app) {
  * @param {[type]} app [description]
  */
 var FormatWidget = function(app) {
+	this.app = app;
+	this.scrollApi = null;
 	this.CSS = {
 		"MAIN": "#format-data",
-		"HIDDEN": "hidden"
+		"HIDDEN": "hidden",
+		"DATA-PLACE": "#table-format",
+		"LOAD": "#load"
 	}
 
 	this.elements = {
-		"MAIN": $(this.CSS["MAIN"])
+		"MAIN": $(this.CSS["MAIN"]),
+		"DATA-PLACE": $(this.CSS["DATA-PLACE"])
 	}
 
 	this.show = function() {
@@ -1069,6 +1190,42 @@ var FormatWidget = function(app) {
 	}
 
 	this.updateContent = function() {
-		
+		this.app.formatManager.getFormat(
+			this.app.regionsSelectorWidget.getCurrentIds(),
+			this.app.paramsSelectorWidget.getCurrentIds(),
+			this.app.ageSelectorFormatWidget.selectedAge,
+			$.proxy(this.draw_, this)
+		);
 	}
+
+	this.draw_ = function(data) {
+		$(this.CSS["LOAD"]).removeClass("onShow");
+
+		var contentPane = this.scrollApi.getContentPane();
+		var self = this;
+		var main = this.elements["MAIN"].find("tbody");
+
+		main.html("");
+		$.each(data, function(key, value) {
+			var html = "<tr>";
+			html += '<td>'+value.parameter_name+'</td><td>'+value.subject_name+'</td><td>'+value.val_numeric+'</td><td>'+value.year+'</td>';
+			html += "</tr>";
+			main.append(html);
+		});
+		self.scrollApi.reinitialise();
+	}
+
+	this.initScroll_ = function() {
+		$(this.CSS["DATA-PLACE"]).jScrollPane(
+			{
+				showArrows: true,
+				verticalDragMinHeight: 60,
+	    		verticalDragMaxHeight: 60,
+	    		autoReinitialise: true
+			}
+		);
+		this.scrollApi = this.elements["DATA-PLACE"].data('jsp');
+	}
+
+	this.initScroll_();
 }

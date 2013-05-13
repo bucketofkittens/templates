@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html manifest="cache.appcache">
+<html manifest="/static/cache.appcache">
     <head>
         <title>Автоматизированная подсистема мониторинга. Национальная система химической и биологической безопасности Российской Федерации</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -49,18 +49,20 @@
                         <a href="#" class="show-f reg" id="regions-nav-show"></a>
                         <div class="data region hidden" id="region-data">
                             <a href="#" class="hidden" id="region-data-hidden"></a>
-                            <input type="text" class="search" placeholder="Поиск" />
+                            <input type="text" class="search" placeholder="Поиск" id="region-selector-filter" />
                             <section class="scroll" id="region-data-place"></section>
                         </div>
                     </div>
                     <div class="table hidden" id="format-data">
-                        <table>
-                            <col width="320px" />
-                            <col width="550px" />
-                            <col width="70px" />
-                            <col width="100px" />
-                            <tbody></tbody>
-                        </table>
+                        <div id="table-format">
+                            <table>
+                                <col width="320px" />
+                                <col width="550px" />
+                                <col width="70px" />
+                                <col width="100px" />
+                                <tbody></tbody>
+                            </table>
+                        </div>
                     </div>
                     <div id="params-selector" class="hidden">
                         <a href="#" class="show-f" id="params-nav-show"></a>
