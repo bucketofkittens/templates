@@ -239,7 +239,7 @@ header h1 {
     z-index: 10;
     background-position: left top;
     background-repeat: no-repeat;
-    -webkit-transition: 0.5s -webkit-filter ease-in;
+    -webkit-transform:translateZ(0);
 }
 
 .blur {

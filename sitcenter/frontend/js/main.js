@@ -186,20 +186,18 @@ var VideoPlayer = function() {
 
 	this.play = function(videoPath, endedCallback) {
 		var self = this;
-		$(this.elements["BG"]).html("");
-		$(this.elements["BG"]).append('<video id="video" type="video/mp4" src="'+videoPath+'"class="video"  preload="auto" width="1920" height="1080" ></video>' );
 		this.video = $("#video");
-		if(this.video[0]) {
-			this.endedCallback = endedCallback;
-			this.elements["BG"].style.display = "block";
-			this.video.off("ended");
-			this.video.on('ended', this.endedCallback);
-			this.video[0].style.display = "block";
-			this.video[0].load();
-			setTimeout(function() {
-				self.video[0].play();
-			}, 0);
-		}
+		console.log(this.video);
+		this.video.attr("src", videoPath)
+		this.endedCallback = endedCallback;
+		this.elements["BG"].style.display = "block";
+		this.video.off("ended");
+		this.video.on('ended', this.endedCallback);
+		this.video[0].style.display = "block";
+		this.video[0].load();
+		setTimeout(function() {
+			self.video[0].play();
+		}, 0);
 	}
 
 	this.hide = function() {
@@ -541,6 +539,7 @@ var Application = function() {
 	this.footerNavWidget = new FooterNavWidget(this);
 	this.regionsSelectorWidget = new RegionsSelectorWidget(this);
 	this.paramsSelectorWidget = new ParamsSelectorWidget(this);
+	this.formatWidget = new FormatWidget(this);
 
 	this.prevState = function() {
 		this.currentZoom--;

@@ -717,6 +717,7 @@ var FooterNavWidget = function(app) {
 			this.app.legendWidget.hide();
 			this.app.regionsSelectorWidget.show();
 			this.app.paramsSelectorWidget.show();
+			this.app.formatWidget.show();
 		}
 
 		if(itemId == "MAP") {
@@ -729,6 +730,7 @@ var FooterNavWidget = function(app) {
 			this.app.parametrsWidgets.fullShow();
 			this.app.regionsSelectorWidget.hidden();
 			this.app.paramsSelectorWidget.hidden();
+			this.app.formatWidget.hidden();
 
 			if(this.app.parametrsWidgets.currentParametr) {
 				this.app.legendWidget.show();	
@@ -1050,10 +1052,23 @@ var ParamsSelectorWidget = function(app) {
  */
 var FormatWidget = function(app) {
 	this.CSS = {
-		"MAIN": "#format-data"
+		"MAIN": "#format-data",
+		"HIDDEN": "hidden"
 	}
 
 	this.elements = {
 		"MAIN": $(this.CSS["MAIN"])
+	}
+
+	this.show = function() {
+		this.elements["MAIN"].removeClass(this.CSS["HIDDEN"]);
+	}
+
+	this.hidden = function() {
+		this.elements["MAIN"].addClass(this.CSS["HIDDEN"]);
+	}
+
+	this.updateContent = function() {
+		
 	}
 }
