@@ -1043,3 +1043,17 @@ var ParamsSelectorWidget = function(app) {
 	this.app.ageSelectorFormatWidget.draw();
 	
 }
+
+/**
+ * [FormatWidget description]
+ * @param {[type]} app [description]
+ */
+var FormatWidget = function(app) {
+	this.CSS = {
+		"MAIN": "#format-data"
+	}
+
+	this.elements = {
+		"MAIN": $(this.CSS["MAIN"])
+	}
+}

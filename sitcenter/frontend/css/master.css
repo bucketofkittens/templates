@@ -601,9 +601,7 @@ header h1 {
 #content .table table tr:nth-child(2n) {
 	background: rgba(128, 191, 255, 0.1);
 }
-#format-data {
-	display: none;
-}
+
 
 .onHidden {
 	opacity: 0;
@@ -688,3 +686,11 @@ header h1 {
 	background: url("/static/images/formats/s2.png") center center no-repeat;
 }
 
+
+#format-data {
+	-webkit-transition: all 1s linear;
+}
+
+#format-data.hidden {
+	top: 1200px !important;
+}
