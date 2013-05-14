@@ -486,7 +486,7 @@ var Application = function() {
 	this.currentZoom = 1;
 	this.russianId = 100;
 
-	this.apiHost = "http://174.129.130.28:3000";
+	this.apiHost = "http://54.224.205.171:3000";
 
 	this.CSS = {
 		"APP": "#app",
@@ -503,7 +503,6 @@ var Application = function() {
 	this.mapStateManager = new MapStateManager(this);
 	this.legendManager = new LegendManager(this);
 
-	this.loader = new PxLoader();
 	this.resources = ImagePreloaderPrepare(ConfigApp["PRELOAD"]);
 	this.videoPlayer = new VideoPlayer();
 	this.loadingState = new LoadingState(this);
@@ -537,17 +536,13 @@ var Application = function() {
 
 	// загружаем ресурсы
 	this.initResource_ = function() {
-		var self = this;
-		$.each(this.resources, function(key, value) {
-			var postfixArr = value.split(".");
-			var postfix = postfixArr[postfixArr.length-1];
-			if(postfix == "png" || postfix == "jpg") {
-				var pxImage = new PxLoaderImage(value); 
-				self.loader.add(pxImage);	
-			}	
-		});
-		this.loader.start();
-		this.loader.addCompletionListener($.proxy(this.onResouceLoader, this));
+		var appCache = window.applicationCache;
+	   	appCache.addEventListener('noupdate', $.proxy(this.onCacheLoaded_, this), false);
+	   	appCache.addEventListener('cached', $.proxy(this.onCacheLoaded_, this), false);
+	   	appCache.addEventListener('updateready', function(e) {
+	   		window.applicationCache.swapCache(); 
+	   		location.reload();
+	   	}, false);
 	}
 
 	this.init = function() {
@@ -558,16 +553,7 @@ var Application = function() {
 		this.mapStateManager.show();
 	}
 
-	this.onResouceLoader = function() {
-		var appCache = window.applicationCache;
-	   appCache.addEventListener('noupdate', $.proxy(this.onCacheLoaded_, this), false);
-	   appCache.addEventListener('cached', $.proxy(this.onCacheLoaded_, this), false);
-		
-	}
-
-
 	this.onCacheLoaded_ = function() {
-		console.log("cache");
 		var self = this;
 		setTimeout(function() {
 			self.loadingState.stop(function() {});
