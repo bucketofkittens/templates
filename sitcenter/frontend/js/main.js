@@ -171,7 +171,8 @@ var VideoPlayer = function() {
 	this.play = function(videoPath, endedCallback) {
 		var self = this;
 		this.video = $("#video");
-		this.video.attr("src", "http://54.224.205.171:3000"+videoPath)
+		this.video.attr("src", videoPath);
+		this.video.attr("poster", $("#bg-image").css("backgroundImage").replace(")","").replace("url(",""));
 		this.endedCallback = endedCallback;
 		this.video.off("ended");
 		this.video.bind('ended', this.endedCallback);
@@ -180,15 +181,13 @@ var VideoPlayer = function() {
 		});
 		
 		this.video[0].load();
-		setTimeout(function() {
-			self.video[0].play();
-		}, 0);
+		self.video[0].play();
 	}
 
 	this.hide = function() {
 		var self = this;
 		setTimeout(function() {
-			$(self.elements["BG"]).fadeOut();
+			$(self.elements["BG"]).hide();
 		}, 0); 
 		$(this.elements["VIDEO"]).off('ended', this.endedCallback);
 		$(this.elements["VIDEO"]).removeAttr("src");
@@ -339,7 +338,6 @@ var MapStateManager = function(app) {
 	}
 
 	this.onBack = function() {
-		console.log("back"); 
 		this.app.mapColorel.hidden();
 		this.miniMapWriter.hiden();
 		this.app.videoPlayer.play(this.app.configManager.getOutVideoById(this.app.currentRegion), $.proxy(this.onOutVideoPlayStop_, this));
@@ -347,7 +345,7 @@ var MapStateManager = function(app) {
 
 	this.onOutVideoPlayStop_ = function() {
 		this.app.currentRegion = this.prevRegion.id;
-
+		console.log(this.prevRegion.id);
 		if(this.app.parametrsWidgets.currentParametr != null) {
 			this.app.mapColorel.colored(
 				this.app.parametrsWidgets.currentParametr.id, 
@@ -550,7 +548,7 @@ var Application = function() {
 	   	appCache.addEventListener('progress', function(e) {
 	   		$("#load").addClass("onShow");
 	   		$("#load").find(".text").remove();
-	   		$("#load").append('<p class="text" style="font-family: NeoSansPro-Light; position: absolute; left: 41%; top: 60%; color: #ffffff; font-size: 22px;">Загрузено '+e.loaded+' из '+e.total+'</p>');
+	   		$("#load").append('<p class="text" style="font-family: NeoSansPro-Light; position: absolute; left: 41%; top: 60%; color: #ffffff; font-size: 22px;">Загружено: '+e.loaded+' из '+e.total+'</p>');
 	   	}, false);
 	   	appCache.addEventListener('updateready', function(e) {
 	   		window.applicationCache.swapCache(); 
@@ -569,6 +567,7 @@ var Application = function() {
 	}
 
 	this.onCacheLoaded_ = function() {
+		$("#load").find(".text").remove();
 		var self = this;
 		setTimeout(function() {
 			self.loadingState.stop(function() {});
