@@ -173,9 +173,12 @@ var VideoPlayer = function() {
 		this.video = $("#video");
 		this.video.attr("src", videoPath)
 		this.endedCallback = endedCallback;
-		this.elements["BG"].style.display = "block";
 		this.video.off("ended");
 		this.video.bind('ended', this.endedCallback);
+		this.video.bind('play', function() {
+			$(self.elements["BG"]).show();
+		});
+		
 		this.video[0].load();
 		setTimeout(function() {
 			self.video[0].play();
@@ -188,6 +191,7 @@ var VideoPlayer = function() {
 			$(self.elements["BG"]).fadeOut();
 		}, 0); 
 		$(this.elements["VIDEO"]).off('ended', this.endedCallback);
+		$(this.elements["VIDEO"]).removeAttr("src");
 	}
 }
 
@@ -335,6 +339,7 @@ var MapStateManager = function(app) {
 	}
 
 	this.onBack = function() {
+		console.log("back"); 
 		this.app.mapColorel.hidden();
 		this.miniMapWriter.hiden();
 		this.app.videoPlayer.play(this.app.configManager.getOutVideoById(this.app.currentRegion), $.proxy(this.onOutVideoPlayStop_, this));

@@ -2,7 +2,7 @@ var walk    = require('walk');
 var files   = [];
 
 // Walker options
-var walker  = walk.walk('./video', { followLinks: false });
+var walker  = walk.walk('./', { followLinks: false });
 
 walker.on('file', function(root, stat, next) {
 	var path = root + '/' + stat.name;
