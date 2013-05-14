@@ -544,10 +544,20 @@ var Application = function() {
 		var appCache = window.applicationCache;
 	   	appCache.addEventListener('noupdate', $.proxy(this.onCacheLoaded_, this), false);
 	   	appCache.addEventListener('cached', $.proxy(this.onCacheLoaded_, this), false);
+	   	appCache.addEventListener('downloading', function(e) {
+	   		$("#load").addClass("onShow");
+	   	}, false);
+	   	appCache.addEventListener('progress', function(e) {
+	   		$("#load").addClass("onShow");
+	   		$("#load").find(".text").remove();
+	   		$("#load").append('<p class="text" style="font-family: NeoSansPro-Light; position: absolute; left: 41%; top: 60%; color: #ffffff; font-size: 22px;">Загрузено '+e.loaded+' из '+e.total+'</p>');
+	   	}, false);
 	   	appCache.addEventListener('updateready', function(e) {
 	   		window.applicationCache.swapCache(); 
 	   		location.reload();
 	   	}, false);
+
+	   	
 	}
 
 	this.init = function() {
