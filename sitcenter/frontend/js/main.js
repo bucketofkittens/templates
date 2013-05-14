@@ -171,7 +171,7 @@ var VideoPlayer = function() {
 	this.play = function(videoPath, endedCallback) {
 		var self = this;
 		this.video = $("#video");
-		this.video.attr("src", videoPath)
+		this.video.attr("src", "http://54.224.205.171:3000"+videoPath)
 		this.endedCallback = endedCallback;
 		this.video.off("ended");
 		this.video.bind('ended', this.endedCallback);
