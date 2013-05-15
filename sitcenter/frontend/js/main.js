@@ -176,6 +176,11 @@ var VideoPlayer = function() {
 		this.endedCallback = endedCallback;
 		this.video.off("ended");
 		this.video.bind('ended', this.endedCallback);
+		this.video.on('timeupdate',function(e) {
+		if(this.duration - this.currentTime < 0.2) {
+			$(this).trigger('ended')
+		}
+	    })
 
 		this.video[0].load();
 		this.video[0].play();
