@@ -57,6 +57,7 @@ var SVGLoader = function(app, clickCallback) {
 			$(value).attr("fill", "#ffffff");
 			$(value).attr("fill-opacity", "0");
 			$(value).removeAttr("opacity");
+			console.log(self.app.currentZoom);
 			if(self.app.currentZoom != 3) {
 				$(value).css("cursor", "pointer");	
 			}
@@ -170,6 +171,7 @@ var VideoPlayer = function() {
 
 	this.video.on('timeupdate',function(e) {
 		if(this.duration - this.currentTime < 0.2) {
+			self.video[0].pause();
 			self.endedCallback();
 		}
     });
@@ -180,7 +182,7 @@ var VideoPlayer = function() {
 		this.video.attr("src", videoPath);
 		this.video.attr("poster", $("#bg-image").css("backgroundImage").replace(")","").replace("url(",""));
 		this.endedCallback = endedCallback;
-		
+
 		this.video[0].load();
 		this.video[0].play();
 		$(self.elements["BG"]).show();
