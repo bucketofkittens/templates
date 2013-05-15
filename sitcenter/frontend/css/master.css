@@ -708,7 +708,8 @@ header h1 {
 #loading {
 	font-family: NeoSansPro-Light; 
 	position: absolute; 
-	left: 41%; top: 60%; 
+	left: 42%; 
+	top: 60%; 
 	color: #ffffff; 
 	font-size: 22px;
 }
