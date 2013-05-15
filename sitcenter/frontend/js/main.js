@@ -149,7 +149,8 @@ var SVGLoader = function(app, clickCallback) {
 }
 
 /**
- * [VideoPlayer description]
+ * [ description]
+ * @return {[type]} [description]
  */
 var VideoPlayer = function() {
 	this.CSS = {
@@ -175,7 +176,6 @@ var VideoPlayer = function() {
 			self.endedCallback();
 		}
     });
-	
 
 	this.play = function(videoPath, endedCallback) {
 		var self = this;
@@ -192,7 +192,6 @@ var VideoPlayer = function() {
 		var self = this;
 
 		$(self.elements["BG"]).hide();
-		$(this.elements["VIDEO"]).off('ended', this.endedCallback);
 		$(this.elements["VIDEO"]).removeAttr("src");
 	}
 }
