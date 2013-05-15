@@ -57,6 +57,33 @@ CACHE:
 /static/video/77-in.mp4
 /static/video/77-out.mp4
 
+/static/images/map/101.png
+/static/images/map/102.png
+/static/images/map/103.png
+/static/images/map/104.png
+/static/images/map/105.png
+/static/images/map/106.png
+/static/images/map/107.png
+/static/images/map/108.png
+/static/images/map/34.png
+/static/images/map/35.png
+/static/images/map/36.png
+/static/images/map/40.png
+/static/images/map/39.png
+/static/images/map/43.png
+/static/images/map/46.png
+/static/images/map/48.png
+/static/images/map/50.png
+/static/images/map/52.png
+/static/images/map/59.png
+/static/images/map/63.png
+/static/images/map/68.png
+/static/images/map/69.png
+/static/images/map/70.png
+/static/images/map/72.png
+/static/images/map/76.png
+/static/images/map/77.png
+
 FALLBACK:
 
 NETWORK:

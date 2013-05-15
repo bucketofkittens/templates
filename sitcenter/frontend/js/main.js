@@ -176,19 +176,16 @@ var VideoPlayer = function() {
 		this.endedCallback = endedCallback;
 		this.video.off("ended");
 		this.video.bind('ended', this.endedCallback);
-		this.video.bind('play', function() {
-			$(self.elements["BG"]).show();
-		});
-		
+
 		this.video[0].load();
-		self.video[0].play();
+		this.video[0].play();
+		$(self.elements["BG"]).show();
 	}
 
 	this.hide = function() {
 		var self = this;
-		setTimeout(function() {
-			$(self.elements["BG"]).hide();
-		}, 0); 
+
+		$(self.elements["BG"]).hide();
 		$(this.elements["VIDEO"]).off('ended', this.endedCallback);
 		$(this.elements["VIDEO"]).removeAttr("src");
 	}
@@ -545,13 +542,14 @@ var Application = function() {
 	   		$("#load").addClass("onShow");
 	   	}, false);
 	   	appCache.addEventListener('progress', function(e) {
+	   		var percent = e.total / 100;
 	   		$("#load").addClass("onShow");
 	   		$("#load").find(".text").remove();
-	   		$("#load").append('<p class="text" id="loading">Загружено: '+e.loaded+' из '+e.total+'</p>');
+	   		$("#load").append('<p class="text" id="loading">Загружено: '+parseInt(e.loaded * percent)+'% </p>');
 	   	}, false);
 	   	appCache.addEventListener('updateready', function(e) {
 	   		//window.applicationCache.swapCache(); 
-	   		//location.reload();
+	   		location.reload();
 	   	}, false);
 
 	   	
@@ -583,5 +581,5 @@ var Application = function() {
 
 $(document).ready(function() {
 	var application = new Application();
-	application.run();	
+	application.run();
 })
