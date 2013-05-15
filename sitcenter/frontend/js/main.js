@@ -104,7 +104,7 @@ var SVGLoader = function(app, clickCallback) {
 				}
 				if(id == 76) {
 					x = x - 20;
-					y = y + 30;
+					y = y + 10;
 				}
 				if(id == 102) {
 					x = x - 20;
@@ -164,24 +164,23 @@ var VideoPlayer = function() {
 		"SVG": $(this.CSS["SVG"])
 	}
 
-	this.video = null
-	this.videos = []
-	this.endedCallback = {}
+	var self = this;
+	this.video = $("#video");
+	this.endedCallback = {};
+
+	this.video.on('timeupdate',function(e) {
+		if(this.duration - this.currentTime < 0.2) {
+			self.endedCallback();
+		}
+    });
+	
 
 	this.play = function(videoPath, endedCallback) {
 		var self = this;
-		this.video = $("#video");
 		this.video.attr("src", videoPath);
 		this.video.attr("poster", $("#bg-image").css("backgroundImage").replace(")","").replace("url(",""));
 		this.endedCallback = endedCallback;
-		this.video.off("ended");
-		this.video.bind('ended', this.endedCallback);
-		this.video.on('timeupdate',function(e) {
-		if(this.duration - this.currentTime < 0.2) {
-			$(this).trigger('ended')
-		}
-	    })
-
+		
 		this.video[0].load();
 		this.video[0].play();
 		$(self.elements["BG"]).show();

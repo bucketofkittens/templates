@@ -326,13 +326,42 @@ var LegendWidget = function(app) {
 				$(value).html("нет<br /> данных");
 			}
 			if(key == 1 && data["red"]) {
-				$(value).html(parseInt(data["red"][0])+"-"+parseInt(data["red"][1]));
+				var string = "";
+				if(data["red"][0]) {
+					string += parseInt(data["red"][0]);
+				}
+				if(data["red"][1]) {
+					if(data["red"][0]) {
+						string += "-";
+					}
+					string += parseInt(data["red"][1]);
+				}
 			}
 			if(key == 2 && data["yellow"]) {
-				$(value).html(parseInt(data["yellow"][0])+"-"+parseInt(data["yellow"][1]));
+				var string = "";
+				if(data["yellow"][0]) {
+					string += parseInt(data["yellow"][0]);
+				}
+				if(data["yellow"][1]) {
+					if(data["yellow"][0]) {
+						string += "-";
+					}
+					string += parseInt(data["yellow"][1]);
+				}
+				$(value).html(string);
 			}
 			if(key == 3 && data["green"]) {
-				$(value).html(parseInt(data["green"][0])+"-"+parseInt(data["green"][1]));
+				var string = "";
+				if(data["green"][0]) {
+					string += parseInt(data["green"][0]);
+				}
+				if(data["green"][1]) {
+					if(data["green"][0]) {
+						string += "-";
+					}
+					string += parseInt(data["green"][1]);
+				}
+				$(value).html(string);
 			}
 		});
 	}
