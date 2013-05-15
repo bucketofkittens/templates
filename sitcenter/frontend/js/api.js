@@ -439,7 +439,6 @@ var FormatManager = function(app) {
 	this.app = app;
 
 	this.getFormat = function(regions_id, params_id, age, callback) {
-		console.log(this.app.apiHost + " /formats/");
 		$.ajax(
 			{
 				url: this.app.apiHost + "/formats/",
@@ -1001,7 +1000,6 @@ var ParamsSelectorWidget = function(app) {
 		$(this.CSS["DATA-PLACE"]).on("click", ".params-checkbox" , $.proxy(this.onParamClick_, this));
 		$(this.CSS["DATA-PLACE"]).on("click", ".params-name", $.proxy(this.onParamNameClick_, this));
 
-		console.log(this.elements["FILTER"]);
 		this.elements["FILTER"].on("keyup", $.proxy(this.onFilterClick_, this));
 	}
 

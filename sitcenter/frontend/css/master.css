@@ -704,3 +704,11 @@ header h1 {
 #table-format .jspVerticalBar {
 	background: url("/static/images/formats/s3.png") left top no-repeat;
 }
+
+#loading {
+	font-family: NeoSansPro-Light; 
+	position: absolute; 
+	left: 41%; top: 60%; 
+	color: #ffffff; 
+	font-size: 22px;
+}

@@ -1,4 +1,9 @@
-CACHE MANIFEST 
+CACHE MANIFEST
+      
+# This is a comment
+
+CACHE:
+
 /static/video/101-in.mp4
 /static/video/101-out.mp4
 /static/video/102-in.mp4
@@ -52,9 +57,8 @@ CACHE MANIFEST
 /static/video/77-in.mp4
 /static/video/77-out.mp4
 
-NETWORK: 
+FALLBACK:
+
+NETWORK:
+index.html
 *
-
-FALLBACK: 
-
- 
