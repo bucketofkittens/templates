@@ -426,7 +426,7 @@ header h1 {
 	display: none;
 }
 
-#map-color-toggler {
+#map-color-toggler, #regions-map-color-toggler {
 	cursor: pointer;
 }
 
@@ -720,4 +720,8 @@ header h1 {
 }
 #content .data ul.regions-params span .name.active {
 	text-decoration: underline;
+}
+
+#regions-legend-widget p {
+	min-height: 22px;
 }

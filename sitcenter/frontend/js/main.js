@@ -291,13 +291,13 @@ var RegionPanel = function(app) {
 
 
 	this.show = function() {
-		this.elements["BG-IMAGE"].show();
+		this.elements["BG-IMAGE"].addClass("onShow");
 		this.elements["BG-IMAGE"].css("backgroundImage", "url('"+this.bgImage+"')");
 		this.svgWriter.load(this.bgSvg);
 	}
 
 	this.hide = function() {
-		this.elements["BG-IMAGE"].hide();
+		this.elements["BG-IMAGE"].removeClass("onShow");
 	}
 
 	this.addBlur = function() {
@@ -517,13 +517,17 @@ var Application = function() {
 	this.mapColorel = new MapColorel(this);
 	this.regionsMapColorel = new RegionsMapColorel(this);
 	this.legendWidget = new LegendWidget(this);
+	this.regionsLegendWidget = new RegionsLegendWidget(this);
 	this.footerNavWidget = new FooterNavWidget(this);
 	this.regionsSelectorWidget = new RegionsSelectorWidget(this);
 	this.paramsSelectorWidget = new ParamsSelectorWidget(this);
 	this.formatWidget = new FormatWidget(this);
 	this.formatManager = new FormatManager(this);
+
+	this.regionsMapColorWidget = new RegionsMapColorWidget(this);
 	
 	this.regionsParametrsWidgets = new RegionsParametrsWidgets(this);
+	this.regionsLegendWidget = new RegionsLegendWidget(this);
 
 	this.regionPanel = new RegionPanel(this);
 
