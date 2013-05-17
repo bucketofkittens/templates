@@ -1,9 +1,8 @@
 CACHE MANIFEST
       
-# v6
+# v7
 
 CACHE:
-
 /static/video/101-in.mp4
 /static/video/101-out.mp4
 /static/video/102-in.mp4
@@ -21,7 +20,7 @@ CACHE:
 /static/video/108-in.mp4
 /static/video/108-out.mp4
 /static/video/34-in.mp4
-/static/video/34-out.mp4
+/static/video/34-out.mp4 
 /static/video/35-in.mp4
 /static/video/35-out.mp4
 /static/video/36-in.mp4
@@ -56,7 +55,6 @@ CACHE:
 /static/video/76-out.mp4
 /static/video/77-in.mp4
 /static/video/77-out.mp4
-
 /static/images/map/101.png
 /static/images/map/102.png
 /static/images/map/103.png
@@ -83,9 +81,7 @@ CACHE:
 /static/images/map/72.png
 /static/images/map/76.png
 /static/images/map/77.png
-
 /static/images/map/all_regions.png
-
 /static/svg/101.svg
 /static/svg/102.svg
 /static/svg/103.svg
@@ -112,9 +108,7 @@ CACHE:
 /static/svg/72.svg
 /static/svg/76.svg
 /static/svg/77.svg
-
 /static/svg/100.svg
-
 /static/images/mini/101.gif
 /static/images/mini/102.gif
 /static/images/mini/103.gif
@@ -145,5 +139,4 @@ CACHE:
 FALLBACK:
 
 NETWORK:
-index.html
 *

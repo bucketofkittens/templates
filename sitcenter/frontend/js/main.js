@@ -576,39 +576,32 @@ var Application = function() {
 
 	// загружаем ресурсы
 	this.initResource_ = function() {
-		
+		var self = this; 
 		var appCache = window.applicationCache;
 
 	   	appCache.addEventListener('noupdate', $.proxy(this.onCacheLoaded_, this), false);
-	   	appCache.addEventListener('cached', function() {
-	   		
-	   		location.reload();
-	   	}, false);
-	   	appCache.addEventListener('checking', function() {
-	   		console.log(appCache);
-	   	}, false);
-	   	appCache.addEventListener('error', function() {
-	   		console.log(appCache);
-	   	}, false);
+	   	appCache.addEventListener('cached', $.proxy(this.onCacheLoaded_, this), false);
+	   	
 	   	appCache.addEventListener('downloading', function(e) {
 	   		$("#load").addClass("onShow");
 	   	}, false);
 	   	appCache.addEventListener('progress', function(e) {
-	   		console.log(e.total);
 	   		var percent = e.total / 100;
 	   		$("#load").addClass("onShow");
 	   		$("#load").find(".text").remove();
 	   		$("#load").append('<p class="text" id="loading">Загружено: '+parseInt(e.loaded)+" из "+ e.total +' </p>');
 	   	}, false);
-	   	appCache.addEventListener('updateready', function(e) {
-	   		window.applicationCache.swapCache();
-	   		location.reload();
-	   	}, false);
 
-	   	if(appCache.status == 2) {
-	   		window.applicationCache.update();
-	   		location.reload();
-	   	}
+	   	window.addEventListener('load', function(e) {
+			window.applicationCache.addEventListener('updateready', function(e) {
+			    if (window.applicationCache.status == window.applicationCache.UPDATEREADY) {
+			      //window.applicationCache.swapCache();
+			      window.location.reload();
+			    } else {
+			    }
+			  }, false);
+
+		}, false);
 	}
 
 	this.init = function() {
@@ -636,6 +629,7 @@ var Application = function() {
 }
 
 $(document).ready(function() {
+
 	var application = new Application();
 	application.run();
 })
