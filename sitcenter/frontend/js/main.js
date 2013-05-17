@@ -43,7 +43,7 @@ var SVGLoader = function(app, clickCallback) {
 
 	this.appendCSS_ = function(svg) {
 		var styleElement = svg.createElementNS("http://www.w3.org/2000/svg", "style");
-		styleElement.textContent = '@font-face { font-family: "NeoSansPro-Bold"; src: url("/static/fonts/NeoSansPro-Bold.ttf"); } path { -webkit-transition: all 0.3s linear; } text { -webkit-transition: all 1.3s linear; font-family: "NeoSansPro-Bold", Times, serif; font-weight: bold; font-size: 36px; } .zoom2 { font-size: 32px; } .zoom3 { font-size: 25px;}';
+		styleElement.textContent = '@font-face { font-family: "NeoSansPro-Bold"; src: url("/static/fonts/NeoSansPro-Bold.ttf"); } path { -webkit-transition: all 0.3s linear; } text { -webkit-transition: all 1.3s linear; font-family: "NeoSansPro-Bold", Times, serif; font-weight: bold; font-size: 36px; } .zoom2 { font-size: 32px; } .zoom3 { font-size: 25px;} .regions { font-size: 25px !important; }';
 		$(svg).find("svg")[0].appendChild(styleElement);
 	}
 
@@ -82,19 +82,21 @@ var SVGLoader = function(app, clickCallback) {
 		groups.on("click", this.groupClick);
 	}
 
-	this.drawParamValues = function(data) {
+	this.drawParamValues = function(data, CSSclasses) {
 		this.removeParamValues();
 
-		var svg = this.elements["SVG"][0].getSVGDocument();
+		var svg = $(this.CSS["SVG"])[0].getSVGDocument();
 		var self = this;
-		
+		console.log(svg);
 		$.each($(svg).find("g"), function(key, value) {
 			var id = $(value).attr("target");
+			console.log(id);
 			if(id) {
 				var newElement = document.createElementNS("http://www.w3.org/2000/svg", "text");
 				var path = $(value).find("path")[0];
 				var x = parseInt(($(path).offset().left + path.getBoundingClientRect().width/2));
 				var y = parseInt(($(path).offset().top + path.getBoundingClientRect().height/2));
+
 				if(id == 77) {
 					x = x - 20;
 					y = y + 20;
@@ -120,6 +122,23 @@ var SVGLoader = function(app, clickCallback) {
 				if(id == 70) {
 					x = x - 15;
 				}
+				if(CSSclasses == "regions") {
+					if(id == 11) {
+						x = x - 30;
+					}
+					if(id == 38) {
+						x = x - 20;
+						y = y + 15;
+					}
+					if(id == 73) {
+						x = x - 45;
+					}
+					if(id == 37) {
+						x = x - 20;
+					}
+				}
+
+				var classes = "zoom"+self.app.currentZoom+" "+CSSclasses;
 				$(newElement).html(parseInt(data[id]));
 				$(newElement).attr({
 					x: x,
@@ -127,7 +146,7 @@ var SVGLoader = function(app, clickCallback) {
 					"fill": "#406080",
 					"stroke": "white",
 					"stroke-width": "1",
-					"class": "zoom"+self.app.currentZoom,
+					"class": classes,
 					"fill-opacity": "0"
 				});
 
@@ -141,7 +160,7 @@ var SVGLoader = function(app, clickCallback) {
 	}
 
 	this.removeParamValues = function() {
-		var svg = this.elements["SVG"][0].getSVGDocument();
+		var svg = $(this.CSS["SVG"])[0].getSVGDocument();
 		$(svg).find("text").remove();
 	}
 
@@ -278,7 +297,7 @@ var LoadingState = function(app) {
 var RegionPanel = function(app) {
 	this.app = app;
 	this.bgImage = "/static/images/map/all_regions.png";
-	this.bgSvg = "/static/svg/all_regions.svg";
+	this.bgSvg = "/static/svg/1000.svg";
 	this.CSS = {
 		"BG-IMAGE": "#bg-regions-image"
 	}
