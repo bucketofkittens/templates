@@ -725,3 +725,11 @@ header h1 {
 #regions-legend-widget p {
 	min-height: 22px;
 }
+
+#content .data .scroll li.hidde {
+	display: none;
+}
+
+#bg-regions-image {
+	display: none;
+}

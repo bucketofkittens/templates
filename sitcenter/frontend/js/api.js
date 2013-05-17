@@ -76,7 +76,7 @@ var RegionsParametrsWidgets = function(app) {
 				this.app.currentRegion, 
 				this.app.ageSelectorRegionsWidget.selectedAge
 			);
-			this.app.mapColorWidget.updateParams();
+			this.app.regionsMapColorWidget.updateParams();
 			this.elements["UOM"].html(parentLi.attr("data-uom"));
 			self.legendWidget.show();
 		}
@@ -147,7 +147,7 @@ var RegionsParametrsWidgets = function(app) {
 		var html =  "<ul class='first regions-params'>"
 		$.each(params, function(key, value) {
 			var uom = value.uom_name == null ? "" : value.uom_name;
-			html += "<li data-uom='"+uom+"' data-name='"+uom+"' data-id='"+value.id+"'><span  class='param'><em class='spr'>-</em> <em class='name'>"+value.name+"</em></span></li>";
+			html += "<li data-uom='"+uom+"' data-name='"+value.name+"' data-id='"+value.id+"'><span  class='param'><em class='spr'>-</em> <em class='name'>"+value.name+"</em></span></li>";
 		});
 		html += "</ul>";
 		contentPane.append(html);
@@ -216,11 +216,11 @@ var RegionsParametrsWidgets = function(app) {
 	}
 
 	this.clearFilter_ = function() {
-		$(this.CSS["SCROLL"]).find(".hidde").removeClass("hidde");
+		$(this.CSS["PARAMETRS-LIST"]).find(".hidde").removeClass("hidde");
 	}
 
 	this.filteringParametrs = function(filterValue) {
-		var elements = $(this.CSS["SCROLL"]).find("ul li ul li");
+		var elements = $(this.CSS["PARAMETRS-LIST"]).find("ul li");
 
 		$.each(elements, function(key, value) {
 			var elem = $(value).attr("data-name");
@@ -230,13 +230,6 @@ var RegionsParametrsWidgets = function(app) {
 				$(value).removeClass("hidde");
 			}
 		});
-
-		var elems = $(this.CSS["SCROLL"]).find("ul");
-		$.each(elems, function(key, value) {
-			if($(value).find("li ul li:not(.hidde)").size() == 0) {
-				$(value).addClass("hidde");
-			}
-		})
 		
 	}
 
@@ -332,7 +325,7 @@ var ParametrsWidgets = function(app) {
 		if(!$(evt.target).hasClass("active")) {
 			var self = this;
 			var parentLi = $(evt.target).parent().parent();
-			$(this.CSS["SCROLL"]).find(".active").removeClass("active");
+			$(this.CSS["PARAMETRS-LIST"]).find(".active").removeClass("active");
 			$(evt.target).toggleClass("active");
 
 			this.setTitle($(evt.target).html());
@@ -507,11 +500,11 @@ var ParametrsWidgets = function(app) {
 	}
 
 	this.clearFilter_ = function() {
-		$(this.CSS["SCROLL"]).find(".hidde").removeClass("hidde");
+		$(this.CSS["PARAMETRS-LIST"]).find(".hidde").removeClass("hidde");
 	}
 
 	this.filteringParametrs = function(filterValue) {
-		var elements = $(this.CSS["SCROLL"]).find("ul li ul li");
+		var elements = $(this.CSS["PARAMETRS-LIST"]).find("ul li ul li");
 
 		$.each(elements, function(key, value) {
 			var elem = $(value).attr("data-name");
@@ -522,7 +515,7 @@ var ParametrsWidgets = function(app) {
 			}
 		});
 
-		var elems = $(this.CSS["SCROLL"]).find("ul");
+		var elems = $(this.CSS["PARAMETRS-LIST"]).find("ul");
 		$.each(elems, function(key, value) {
 			if($(value).find("li ul li:not(.hidde)").size() == 0) {
 				$(value).addClass("hidde");
@@ -942,7 +935,11 @@ var RegionsMapColorWidget = function(app) {
 	}
 
 	this.paramsLoaded_ = function(data) {
-		this.app.mapStateManager.SVGWriter.drawParamValues(data);
+		var ret = {};
+		$.each(data, function(key, value) {
+			ret[value.subject_id] = value.val_numeric;
+		});
+		this.app.mapStateManager.SVGWriter.drawParamValues(ret, "regions");
 	}
 
 	this.updateParams = function() {
@@ -1066,7 +1063,7 @@ var RegionsMapColorel = function(app) {
         image.src = self.app.apiHost+link;
 
         image.onload = function() {
-        	self.elements["CONTAINER"].css("backgroundImage", "url('"+self.app.apiHost+link+"')");
+        	self.app.regionPanel.setBg(self.app.apiHost+link);
 			self.elements["CONTAINER"].addClass("onShow");
 			$(self.CSS["LOAD"]).removeClass("onShow");
         }
@@ -1299,11 +1296,13 @@ var FooterNavWidget = function(app) {
 			this.app.regionsSelectorWidget.hidden();
 			this.app.paramsSelectorWidget.hidden();
 			this.app.formatWidget.hidden();
+			this.app.regionPanel.setBg();
 			this.app.regionPanel.show();
 			this.app.regionPanel.removeBlur();
 			this.app.regionsParametrsWidgets.fullShow();
 			this.app.mapColorel.hidden();
 			this.app.legendWidget.hide();
+			this.app.regionsMapColorWidget.updateParams();
 
 			if(this.app.regionsParametrsWidgets.currentParametr) {
 				this.app.regionsLegendWidget.show();	
@@ -1324,6 +1323,7 @@ var FooterNavWidget = function(app) {
 			this.app.paramsSelectorWidget.hidden();
 			this.app.formatWidget.hidden();
 			this.app.regionPanel.hide();
+			this.app.mapColorWidget.updateParams();
 
 			if(this.app.parametrsWidgets.currentParametr) {
 				this.app.legendWidget.show();	
@@ -1514,15 +1514,6 @@ var RegionsSelectorWidget = function(app) {
 				$(value).removeClass("hidde");
 			}
 		});
-
-		/*
-		var elems = $(this.CSS["DATA-PLACE"]).find("li");
-		$.each(elems, function(key, value) {
-			if($(value).find("li:not(.hidde)").size() == 0) {
-				$(value).addClass("hidde");
-			}
-		})
-		*/
 	}
 
 	this.bindEvents_();

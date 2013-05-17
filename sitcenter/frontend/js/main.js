@@ -308,10 +308,15 @@ var RegionPanel = function(app) {
 
 	this.svgWriter = new SVGLoader(this);
 
+	this.setBg = function(bg) {
+		if(bg) {
+			this.bgImage = bg;	
+		}
+		this.elements["BG-IMAGE"].css("backgroundImage", "url('"+this.bgImage+"')");
+	}
 
 	this.show = function() {
 		this.elements["BG-IMAGE"].addClass("onShow");
-		this.elements["BG-IMAGE"].css("backgroundImage", "url('"+this.bgImage+"')");
 		this.svgWriter.load(this.bgSvg);
 	}
 
@@ -600,7 +605,10 @@ var Application = function() {
 	   		location.reload();
 	   	}, false);
 
-	   	console.log(window.applicationCache);
+	   	if(appCache.status == 2) {
+	   		window.applicationCache.update();
+	   		location.reload();
+	   	}
 	}
 
 	this.init = function() {
