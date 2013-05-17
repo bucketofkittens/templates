@@ -721,7 +721,3 @@ header h1 {
 #content .data ul.regions-params span .name.active {
 	text-decoration: underline;
 }
-
-#map-color-toggler {
-	display: none !important;
-}

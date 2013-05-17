@@ -17,7 +17,7 @@ var SVGLoader = function(app, clickCallback) {
 		"SVG": $(this.CSS["SVG"])
 	}
 
-	this.load = function(path, videoPath) {
+	this.load = function(path) {
 		this.elements["BG"].hide();
 		this.elements["BG"].html('<object id="svg" type="image/svg+xml" data="'+path+'" width="100%" height="100%" ></object>');
 		this.elements["SVG"] = $(this.CSS["SVG"]);
@@ -282,16 +282,21 @@ var LoadingState = function(app) {
 var RegionPanel = function(app) {
 	this.app = app;
 	this.bgImage = "/static/images/map/all_regions.png";
+	this.bgSvg = "/static/svg/all_regions.svg";
 	this.CSS = {
 		"BG-IMAGE": "#bg-image"
 	}
+
 	this.elements = {
 		"BG-IMAGE": $(this.CSS["BG-IMAGE"])
 	}
 
+	this.svgWriter = new SVGLoader(this);
+
 
 	this.show = function() {
 		this.elements["BG-IMAGE"].css("backgroundImage", "url('"+this.bgImage+"')");
+		this.svgWriter.load(this.bgSvg);
 	}
 
 	this.app.parametrsWidgets.getRegionsParams();
