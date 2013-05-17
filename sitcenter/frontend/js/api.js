@@ -755,6 +755,9 @@ var FooterNavWidget = function(app) {
 		"MAP": {
 			"title": "Карта"
 		},
+		"REGIONS": {
+			"title": "Регионы"
+		},
 		"FORMAT": {
 			"title": "Формат"
 		},
