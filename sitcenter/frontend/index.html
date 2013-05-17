@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html>
+<html manifest="/static/cache.manifest">
     <head>
         <title>Автоматизированная подсистема мониторинга. Национальная система химической и биологической безопасности Российской Федерации</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -41,6 +41,17 @@
                             <select class="year" id="age_select"></select>
                             <section class="scroll" id="parametrs-list"></section>
                         </div>
+                    </div> 
+                    <div id="regions-params"  class="hidden">
+                        <div class="show nav-elements" id="regions-paramers-show"></div>
+                        <div class="data" id="regions-parametrs-widget">
+                            <a href="#" class="hidden"></a>
+                            <h3>&nbsp;</h3>
+                            <p id="regions-param-info">&nbsp;</p>
+                            <input type="text" class="search" id="regions-params-filter" placeholder="Поиск" />
+                            <select class="year" id="regions_age_select"></select>
+                            <section class="scroll" id="regions-parametrs-list"></section>
+                        </div>
                     </div>
                     <div id="load">
                         <img src="/static/images/load.png" id="load-image" alt="" />
@@ -80,6 +91,7 @@
             
             <div id="bg-colored-image"></div>
             <div id="bg-image"></div>
+            <div id="bg-regions-image"></div>
             <div id="bg-svg">
                 <object id="svg" type="image/svg+xml" data="" width="100%" height="100%"></object>
             </div>

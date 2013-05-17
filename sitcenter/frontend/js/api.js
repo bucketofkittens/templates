@@ -2,21 +2,21 @@
  * [ParametrsWidgets description]
  * @param {[type]} app [description]
  */
-var ParametrsWidgets = function(app) {
+var RegionsParametrsWidgets = function(app) {
 	this.app =  app;
 	this.parametrs = {};
 	this.currentParametr = null;
 	this.CSS = {
-		"SHOW": "#paramers-show",
-		"MAIN": "#parametrs-widget",
+		"SHOW": "#regions-paramers-show",
+		"MAIN": "#regions-parametrs-widget",
 		"SCROLL": ".scroll",
-		"HIDDEN": ".hidden",
-		"PARAMETRS-LIST": "#parametrs-list",
-		"TITLE": "#parametrs-widget h3",
-		"FILTER": "#params-filter",
-		"AGE-SELECT": "#age_select",
-		"UOM": "#param-info",
-		"MAP-PARAMS": "#map-params"
+		"HIDDEN": "#regions-parametrs-widget > .hidden",
+		"PARAMETRS-LIST": "#regions-parametrs-list",
+		"TITLE": "#regions-parametrs-widget h3",
+		"FILTER": "#regions-params-filter",
+		"AGE-SELECT": "#regions_age_select",
+		"UOM": "#regions-param-info",
+		"MAP-PARAMS": "#regions-params"
 	}
 
 	this.elements = {
@@ -52,14 +52,6 @@ var ParametrsWidgets = function(app) {
 	this.getParametrById = function(id) {
 		var par = null;
 
-		/*$.each(this.parametrs, function(key, value) {
-			$.each(value.parameters, function(key2, value2) {
-				if(value2 && value2.id == id) {
-					par = value2;
-				}
-			});
-		});*/
-
 		$.each(this.parametrs, function(key, value) {
 			if(value && value.id == id) {
 				par = value;
@@ -70,24 +62,22 @@ var ParametrsWidgets = function(app) {
 	}
 
 	this.parametrsNameClick_ = function(evt) {
+		console.log(evt);
 		if(!$(evt.target).hasClass("active")) {
 			var self = this;
 			var parentLi = $(evt.target).parent().parent();
 			$(this.CSS["SCROLL"]).find(".active").removeClass("active");
 			$(evt.target).toggleClass("active");
-
+			
 			this.setTitle($(evt.target).html());
 			this.currentParametr = this.getParametrById(parentLi.attr("data-id"));
-			this.app.mapColorel.colored(
+			this.app.regionsMapColorel.colored(
 				this.currentParametr.id, 
 				this.app.currentRegion, 
-				this.app.ageSelectorWidget.selectedAge
+				this.app.ageSelectorRegionsWidget.selectedAge
 			);
 			this.app.mapColorWidget.updateParams();
 			this.elements["UOM"].html(parentLi.attr("data-uom"));
-			/*this.app.paramsManager.getParamUom(this.currentParametr.id, function(data) {
-				self.elements["UOM"].html(data.responseText);
-			});*/
 			this.app.legendManager.getLegendByParamAndSubject(
 				this.currentParametr.id, 
 				this.app.currentRegion,
@@ -130,6 +120,8 @@ var ParametrsWidgets = function(app) {
 		this.parametrs = data;
 		this.drawRegionsParamets_(this.parametrs);
 
+		$(this.CSS["PARAMETRS-LIST"]+" .name").on("click", $.proxy(this.parametrsNameClick_, this));
+
 		if(this.currentParametr) {
 			this.app.legendManager.getLegendByParamAndSubject(
 				this.currentParametr.id, 
@@ -152,40 +144,7 @@ var ParametrsWidgets = function(app) {
 	    		autoReinitialise: true
 			}
 		);
-		this.scrollApi = this.elements["SCROLL"].data('jsp');
-	}
-
-	this.drawParamets_ = function(params) {
-		var html = "";
-		var self = this;
-		var contentPane = this.scrollApi.getContentPane();
-
-		$.each(params, function(key, value) {
-			var elementCurrentGroup = $("ul[data-id='"+value.id+"']", self.CSS["PARAMETRS-LIST"]);
-			if(elementCurrentGroup.size() == 0) {
-				var html =  "<ul data-id='"+value.id+"' class='first'><li class='first-li'>";
-					html += "<a class='group'>"+value.name+"</a>";
-					html += "<ul></ul></li></ul>";
-
-				contentPane.append(html);
-			}
-
-			var elementCurrentGroup = $("ul[data-id='"+value.id+"']", self.CSS["PARAMETRS-LIST"]);
-
-			if(value.parameters.length > 0) {
-				$.each(value.parameters, function(key2, value2) {
-					var paramCurrent = $("li[data-id='"+value2.id+"']", self.CSS["PARAMETRS-LIST"]);
-					if(paramCurrent.size() == 0) {
-						var html = "<li data-name='"+value2.name+"' data-id='"+value2.id+"'><span  class='param'><em class='spr'>-</em> <em class='name'>"+value2.name+"</em></span><i>"+value2.value+"</i></li>";
-
-						elementCurrentGroup.find("ul").append(html);
-					} else {
-						paramCurrent.find("i").html(value2.value);
-					}
-				});	
-			}
-		});
-		this.scrollApi.reinitialise();
+		this.scrollApi = this.elements["PARAMETRS-LIST"].data('jsp');
 	}
 
 	this.drawRegionsParamets_ = function(params) {
@@ -291,6 +250,297 @@ var ParametrsWidgets = function(app) {
 	this.getParamsByRegionAndYeage = function(region_id) {
 		this.app.paramsManager.getParamsByRegionAndYeage(
 			region_id, 
+			this.app.ageSelectorRegionsWidget.selectedAge, 
+			$.proxy(this.getParametrs_, this)
+		);
+	}
+
+	this.getRegionsParams = function() {
+		this.app.paramsManager.getRegionsParams($.proxy(this.getParametrs_, this));
+	}
+
+	this.bindEvents_ = function() {
+		this.elements["SHOW"].on("click", $.proxy(this.onShow_, this));
+		this.elements["HIDDEN"].on("click", $.proxy(this.onHidden_, this));
+		this.elements["FILTER"].on("keyup", $.proxy(this.onFilterClick_, this));
+	}
+
+	this.initScroll_();
+	this.bindEvents_();
+	this.app.ageSelectorRegionsWidget.draw();
+}
+
+/**
+ * [ParametrsWidgets description]
+ * @param {[type]} app [description]
+ */
+var ParametrsWidgets = function(app) {
+	this.app =  app;
+	this.parametrs = {};
+	this.currentParametr = null;
+	this.CSS = {
+		"SHOW": "#paramers-show",
+		"MAIN": "#parametrs-widget",
+		"SCROLL": ".scroll",
+		"HIDDEN": ".hidden",
+		"PARAMETRS-LIST": "#parametrs-list",
+		"TITLE": "#parametrs-widget h3",
+		"FILTER": "#params-filter",
+		"AGE-SELECT": "#age_select",
+		"UOM": "#param-info",
+		"MAP-PARAMS": "#map-params"
+	}
+
+	this.elements = {
+		"SHOW": $(this.CSS["SHOW"]),
+		"MAIN": $(this.CSS["MAIN"]),
+		"SCROLL": $(this.CSS["SCROLL"]),
+		"HIDDEN": $(this.CSS["HIDDEN"]),
+		"PARAMETRS-LIST": $(this.CSS["PARAMETRS-LIST"]),
+		"TITLE": $(this.CSS["TITLE"]),
+		"FILTER": $(this.CSS["FILTER"]),
+		"AGE-SELECT": $(this.CSS["AGE-SELECT"]),
+		"UOM": $(this.CSS["UOM"]),
+		"MAP-PARAMS": $(this.CSS["MAP-PARAMS"])
+	}
+
+	this.animateStep = "-350px";
+	this.animateSpeed = 1000;
+	this.legendWidget = new LegendWidget(this.app);
+	this.scrollApi = null;
+
+	this.fullHidden = function() {
+		this.elements["MAP-PARAMS"].addClass("hidden");
+	}
+
+	this.fullShow = function() {
+		this.elements["MAP-PARAMS"].removeClass("hidden");
+	}
+
+	this.parametrsClick_ = function(evt) {
+		$(evt.target).parent().find("ul").slideToggle("slow");
+	}
+
+	this.getParametrById = function(id) {
+		var par = null;
+
+		$.each(this.parametrs, function(key, value) {
+			$.each(value.parameters, function(key2, value2) {
+				if(value2 && value2.id == id) {
+					par = value2;
+				}
+			});
+		});
+
+		return par;
+	}
+
+	this.parametrsNameClick_ = function(evt) {
+		if(!$(evt.target).hasClass("active")) {
+			var self = this;
+			var parentLi = $(evt.target).parent().parent();
+			$(this.CSS["SCROLL"]).find(".active").removeClass("active");
+			$(evt.target).toggleClass("active");
+
+			this.setTitle($(evt.target).html());
+			this.currentParametr = this.getParametrById(parentLi.attr("data-id"));
+			this.app.mapColorel.colored(
+				this.currentParametr.id, 
+				this.app.currentRegion, 
+				this.app.ageSelectorWidget.selectedAge
+			);
+			this.app.mapColorWidget.updateParams();
+			this.app.paramsManager.getParamUom(this.currentParametr.id, function(data) {
+				self.elements["UOM"].html(data.responseText);
+			});
+			this.app.legendManager.getLegendByParamAndSubject(
+				this.currentParametr.id, 
+				this.app.currentRegion,
+				function(data) {
+					self.legendWidget.setLevelText(data);
+					self.legendWidget.show();
+				}
+			);
+		}
+	}
+
+	this.setTitle = function(title) {
+		this.elements["TITLE"].html(title);
+	}
+
+	this.prepareParamerts_ = function(data) {
+		var ret = {};
+
+		$.each(data, function(key, value) {
+			if(!ret[value.group_id]) {
+				ret[value.group_id] = {
+					id: value.group_id,
+					name: value.group_name,
+					parameters: []
+				}
+			}
+			
+			ret[value.group_id].parameters.push({
+				id: value.param_id,
+				name: value.param_name,
+				value: value.param_val
+			});
+		});
+
+		return ret;
+	}
+
+	this.getParametrs_ = function(data) {
+		var self = this;
+		this.parametrs = this.prepareParamerts_(data);
+		this.drawParamets_(this.parametrs);
+
+		if(this.currentParametr) {
+			this.app.legendManager.getLegendByParamAndSubject(
+				this.currentParametr.id, 
+				this.app.currentRegion,
+				function(data) {
+					self.legendWidget.setLevelText(data);
+					self.legendWidget.show();
+				}
+			);	
+		}
+		
+	}
+
+	this.initScroll_ = function() {
+		$(this.CSS["PARAMETRS-LIST"]).jScrollPane(
+			{
+				showArrows: true,
+				verticalDragMinHeight: 60,
+	    		verticalDragMaxHeight: 60,
+	    		autoReinitialise: true
+			}
+		);
+		this.scrollApi = this.elements["PARAMETRS-LIST"].data('jsp');
+	}
+
+	this.drawParamets_ = function(params) {
+		var html = "";
+		var self = this;
+		var contentPane = this.scrollApi.getContentPane();
+
+		$.each(params, function(key, value) {
+			var elementCurrentGroup = $("ul[data-id='"+value.id+"']", self.CSS["PARAMETRS-LIST"]);
+			if(elementCurrentGroup.size() == 0) {
+				var html =  "<ul data-id='"+value.id+"' class='first'><li class='first-li'>";
+					html += "<a class='group'>"+value.name+"</a>";
+					html += "<ul></ul></li></ul>";
+
+				contentPane.append(html);
+			}
+
+			var elementCurrentGroup = $("ul[data-id='"+value.id+"']", self.CSS["PARAMETRS-LIST"]);
+
+			if(value.parameters.length > 0) {
+				$.each(value.parameters, function(key2, value2) {
+					var paramCurrent = $("li[data-id='"+value2.id+"']", self.CSS["PARAMETRS-LIST"]);
+					if(paramCurrent.size() == 0) {
+						var html = "<li data-name='"+value2.name+"' data-id='"+value2.id+"'><span  class='param'><em class='spr'>-</em> <em class='name'>"+value2.name+"</em></span><i>"+value2.value+"</i></li>";
+
+						elementCurrentGroup.find("ul").append(html);
+					} else {
+						paramCurrent.find("i").html(value2.value);
+					}
+				});	
+			}
+		});
+		this.scrollApi.reinitialise();
+	}
+
+	this.onHidden_ = function() {
+		this.elements["MAIN"].animate( {
+				right: this.animateStep
+			},
+			this.animateSpeed,
+			$.proxy(this.onMainHiddened_, this) 
+		);
+		this.elements["SHOW"].animate({
+				right: "0px"
+			},
+			this.animateSpeed/4,
+			$.proxy(this.onMainHiddened_, this) 
+		);
+		this.legendWidget.hide();
+		return false;
+	}
+
+	this.onShow_ = function() {
+		//this.elements["SHOW"].addClass("onRight");
+		this.elements["SHOW"].animate({
+				right: this.animateStep
+			},
+			this.animateSpeed/2,
+			$.proxy(this.onMainShowed_, this) 
+		);
+		
+		return false;
+	}
+
+	this.onMainShowed_ = function() {
+		this.elements["MAIN"].css({
+			right: this.animateStep,
+			display: "block"
+		});
+		
+		this.elements["MAIN"].animate({
+				right: "0px"
+			},
+			this.animateSpeed
+		);
+
+		if(this.currentParametr != null) {
+			this.legendWidget.show();
+		}
+		this.initScroll_();
+	}
+
+	this.onMainHiddened_ = function() {
+		
+	}
+
+	this.onFilterClick_ = function(evt) {
+		var filterValue = $(evt.target).val();
+		if(filterValue.length > 0) {
+			this.filteringParametrs(filterValue);	
+		} else {
+			this.clearFilter_();
+		}
+	}
+
+	this.clearFilter_ = function() {
+		$(this.CSS["SCROLL"]).find(".hidde").removeClass("hidde");
+	}
+
+	this.filteringParametrs = function(filterValue) {
+		var elements = $(this.CSS["SCROLL"]).find("ul li ul li");
+
+		$.each(elements, function(key, value) {
+			var elem = $(value).attr("data-name");
+			if(elem.toLowerCase().indexOf(filterValue.toLowerCase()) == -1) {
+				$(value).addClass("hidde");
+			} else {
+				$(value).removeClass("hidde");
+			}
+		});
+
+		var elems = $(this.CSS["SCROLL"]).find("ul");
+		$.each(elems, function(key, value) {
+			if($(value).find("li ul li:not(.hidde)").size() == 0) {
+				$(value).addClass("hidde");
+			}
+		})
+		
+	}
+
+	this.getParamsByRegionAndYeage = function(region_id) {
+		this.app.paramsManager.getParamsByRegionAndYeage(
+			region_id, 
 			this.app.ageSelectorWidget.selectedAge, 
 			$.proxy(this.getParametrs_, this)
 		);
@@ -305,7 +555,7 @@ var ParametrsWidgets = function(app) {
 		this.elements["HIDDEN"].on("click", $.proxy(this.onHidden_, this));
 		this.elements["FILTER"].on("keyup", $.proxy(this.onFilterClick_, this));
 
-		//$("body").on("click", this.CSS["PARAMETRS-LIST"]+" li.first-li", $.proxy(this.parametrsClick_, this));
+		$("body").on("click", this.CSS["PARAMETRS-LIST"]+" li.first-li", $.proxy(this.parametrsClick_, this));
 		$("body").on("click", this.CSS["PARAMETRS-LIST"]+" .name", $.proxy(this.parametrsNameClick_, this));
 	}
 
@@ -581,7 +831,7 @@ var MapColorWidget = function(app) {
  */
 var MapColorel = function(app) {
 	this.app = app;
-	this.ajaxPath = "/param_values/";
+	this.ajaxPath = "/subjects/";
 	this.CSS = {
 		"CONTAINER": "#bg-colored-image",
 		"LOAD": "#load"
@@ -595,9 +845,9 @@ var MapColorel = function(app) {
 
 
 	this.colored = function(params_id, region_id, year) {
-		var mapPath = this.app.apiHost+this.ajaxPath+params_id+"/"+year+"/map";
+		var mapPath = this.app.apiHost+this.ajaxPath+params_id+"/"+region_id+"/"+year+"/map";
 
-		//$(this.CSS["LOAD"]).addClass("onShow");
+		$(this.CSS["LOAD"]).addClass("onShow");
 
 		if(this.isShowed) {
 			this.elements["CONTAINER"].removeClass("onShow");
@@ -615,7 +865,7 @@ var MapColorel = function(app) {
         image.onload = function() {
         	self.elements["CONTAINER"].css("backgroundImage", "url('"+self.app.apiHost+link+"')");
 			self.elements["CONTAINER"].addClass("onShow");
-			//$(self.CSS["LOAD"]).removeClass("onShow");
+			$(self.CSS["LOAD"]).removeClass("onShow");
         }
 	}
 
@@ -628,16 +878,60 @@ var MapColorel = function(app) {
 		this.elements["CONTAINER"].removeClass("onShow");
 		this.isShowed = false;
 	}
+}
 
-	this.findInCompare_ = function(region_id) {
-		var ret = null;
+/**
+ * [MapColorel description]
+ * @param {[type]} app [description]
+ */
+var RegionsMapColorel = function(app) {
+	this.app = app;
+	this.ajaxPath = "/param_values/";
+	this.CSS = {
+		"CONTAINER": "#bg-regions-image",
+		"LOAD": "#load"
+	};
+	this.isShowed = false;
 
-		$.each(this.regionCompare, function(key, value) {
-			if(value == region_id) {
-				ret = key;
-			}
-		});
-		return ret;
+	this.elements = {
+		"CONTAINER": $(this.CSS["CONTAINER"]),
+		"IMAGE": $(this.CSS["CONTAINER"]).find("img")
+	}
+
+
+	this.colored = function(params_id, region_id, year) {
+		var mapPath = this.app.apiHost+this.ajaxPath+params_id+"/"+year+"/map";
+
+		$(this.CSS["LOAD"]).addClass("onShow");
+
+		if(this.isShowed) {
+			this.elements["CONTAINER"].removeClass("onShow");
+		}
+		$.ajax({ url: mapPath }).always($.proxy(this.onGetMapLink_, this));
+	}
+
+	this.onGetMapLink_ = function(data) {
+		var link = data.responseText;
+		var self = this;
+		var image = new Image();
+
+        image.src = self.app.apiHost+link;
+
+        image.onload = function() {
+        	self.elements["CONTAINER"].css("backgroundImage", "url('"+self.app.apiHost+link+"')");
+			self.elements["CONTAINER"].addClass("onShow");
+			$(self.CSS["LOAD"]).removeClass("onShow");
+        }
+	}
+
+	this.show = function() {
+		this.elements["CONTAINER"].addClass("onShow");
+		this.isShowed = true;
+	}
+
+	this.hidden = function() {
+		this.elements["CONTAINER"].removeClass("onShow");
+		this.isShowed = false;
 	}
 }
 
@@ -740,6 +1034,48 @@ var AgeSelectorFormatWidget = function(app) {
 }
 
 /**
+ * [AgeSelectorWidget description]
+ * @param {[type]} app [description]
+ */
+var AgeSelectorRegionsWidget = function(app) {
+	this.app = app;
+	this.ages = [2012, 2011, 2010, 2009, 2008]
+	this.selectedAge = 2012;
+	this.CSS = {
+		"SELECTOR": "#regions_age_select",
+		"LOAD": "#load"
+	}
+
+	this.elements = {
+		"SELECTOR": $(this.CSS["SELECTOR"])
+	}
+
+	this.draw = function() {
+		var self = this;
+		self.elements["SELECTOR"].html("");
+		$.each(this.ages, function(key, value) {
+			var selected = "";
+			if(value == self.currentAge) {
+				selected = 'selected="selected"';
+			}
+			var html = '<option '+selected+' value="'+value+'">'+value+'</option>';
+			self.elements["SELECTOR"].append(html);
+		});
+		this.elements["SELECTOR"].selectbox({
+			effect: "slide",
+			onChange: $.proxy(this.ageSelected_, this)
+		});
+	}
+
+	this.ageSelected_ = function(val, inst) {
+		this.selectedAge = val;
+
+		$(this.CSS["LOAD"]).addClass("onShow");
+		this.app.formatWidget.updateContent();
+	}
+}
+
+/**
  * [FooterNavWidget description]
  * @param {[type]} app [description]
  */
@@ -753,7 +1089,7 @@ var FooterNavWidget = function(app) {
 	};
 	this.items = {
 		"MAP": {
-			"title": "Карта"
+			"title": "округа"
 		},
 		"REGIONS": {
 			"title": "Регионы"
@@ -798,12 +1134,31 @@ var FooterNavWidget = function(app) {
 			this.app.mapColorel.hidden();
 			this.app.mapStateManager.SVGWriter.hide();
 			this.app.parametrsWidgets.fullHidden();
+			this.app.regionsParametrsWidgets.fullHidden();
 			this.app.legendWidget.hide();
 			this.app.regionsSelectorWidget.show();
 			this.app.paramsSelectorWidget.show();
 			this.app.formatWidget.show();
+			this.app.regionPanel.addBlur();
 		}
 
+		if(itemId == "REGIONS") {
+			this.app.mapStateManager.miniMapWriter.opacityHidden();
+			this.app.mapColorel.show();
+			this.app.mapStateManager.SVGWriter.show();
+			this.app.parametrsWidgets.fullHidden();
+			this.app.regionsSelectorWidget.hidden();
+			this.app.paramsSelectorWidget.hidden();
+			this.app.formatWidget.hidden();
+			this.app.regionPanel.show();
+			this.app.regionPanel.removeBlur();
+			this.app.regionsParametrsWidgets.fullShow();
+			this.app.mapColorel.hidden();
+
+			if(this.app.parametrsWidgets.currentParametr) {
+				this.app.legendWidget.show();	
+			}
+		}
 		if(itemId == "MAP") {
 			this.app.mapStateManager.removeBlur();
 			if(this.app.currentZoom != 1) {
@@ -811,10 +1166,13 @@ var FooterNavWidget = function(app) {
 			}
 			this.app.mapColorel.show();
 			this.app.mapStateManager.SVGWriter.show();
+			this.app.mapStateManager.SVGWriter.load(this.app.configManager.getSvgById(this.app.currentRegion));
 			this.app.parametrsWidgets.fullShow();
+			this.app.regionsParametrsWidgets.fullHidden();
 			this.app.regionsSelectorWidget.hidden();
 			this.app.paramsSelectorWidget.hidden();
 			this.app.formatWidget.hidden();
+			this.app.regionPanel.hide();
 
 			if(this.app.parametrsWidgets.currentParametr) {
 				this.app.legendWidget.show();	

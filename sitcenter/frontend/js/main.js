@@ -43,7 +43,7 @@ var SVGLoader = function(app, clickCallback) {
 
 	this.appendCSS_ = function(svg) {
 		var styleElement = svg.createElementNS("http://www.w3.org/2000/svg", "style");
-		styleElement.textContent = '@font-face { font-family: "NeoSansPro-Bold"; src: url("/static/fonts/NeoSansPro-Bold.ttf"); } path { -webkit-transition: all 0.3s linear; } text { -webkit-transition: all 1.3s linear; font-family: "NeoSansPro-Bold", Times, serif; font-weight: bold; font-size: 18px; } .zoom2 { font-size: 32px; } .zoom3 { font-size: 25px;}';
+		styleElement.textContent = '@font-face { font-family: "NeoSansPro-Bold"; src: url("/static/fonts/NeoSansPro-Bold.ttf"); } path { -webkit-transition: all 0.3s linear; } text { -webkit-transition: all 1.3s linear; font-family: "NeoSansPro-Bold", Times, serif; font-weight: bold; font-size: 36px; } .zoom2 { font-size: 32px; } .zoom3 { font-size: 25px;}';
 		$(svg).find("svg")[0].appendChild(styleElement);
 	}
 
@@ -95,10 +95,6 @@ var SVGLoader = function(app, clickCallback) {
 				var path = $(value).find("path")[0];
 				var x = parseInt(($(path).offset().left + path.getBoundingClientRect().width/2));
 				var y = parseInt(($(path).offset().top + path.getBoundingClientRect().height/2));
-				if(self.app.currentZoom == 1) {
-					x = (x/2)-30;
-					y = y/2;
-				}
 				if(id == 77) {
 					x = x - 20;
 					y = y + 20;
@@ -284,7 +280,7 @@ var RegionPanel = function(app) {
 	this.bgImage = "/static/images/map/all_regions.png";
 	this.bgSvg = "/static/svg/all_regions.svg";
 	this.CSS = {
-		"BG-IMAGE": "#bg-image"
+		"BG-IMAGE": "#bg-regions-image"
 	}
 
 	this.elements = {
@@ -295,11 +291,24 @@ var RegionPanel = function(app) {
 
 
 	this.show = function() {
+		this.elements["BG-IMAGE"].show();
 		this.elements["BG-IMAGE"].css("backgroundImage", "url('"+this.bgImage+"')");
 		this.svgWriter.load(this.bgSvg);
 	}
 
-	this.app.parametrsWidgets.getRegionsParams();
+	this.hide = function() {
+		this.elements["BG-IMAGE"].hide();
+	}
+
+	this.addBlur = function() {
+		this.elements["BG-IMAGE"].addClass("blur");
+	}
+
+	this.removeBlur = function() {
+		this.elements["BG-IMAGE"].removeClass("blur");
+	}
+
+	this.app.regionsParametrsWidgets.getRegionsParams();
 }
 
 /**
@@ -502,15 +511,20 @@ var Application = function() {
 
 	this.ageSelectorWidget = new AgeSelectorWidget(this);
 	this.ageSelectorFormatWidget = new AgeSelectorFormatWidget(this);
+	this.ageSelectorRegionsWidget = new AgeSelectorRegionsWidget(this);
 	this.parametrsWidgets = new ParametrsWidgets(this);
 	this.mapColorWidget = new MapColorWidget(this);
 	this.mapColorel = new MapColorel(this);
+	this.regionsMapColorel = new RegionsMapColorel(this);
 	this.legendWidget = new LegendWidget(this);
 	this.footerNavWidget = new FooterNavWidget(this);
-	//this.regionsSelectorWidget = new RegionsSelectorWidget(this);
-	//this.paramsSelectorWidget = new ParamsSelectorWidget(this);
-	//this.formatWidget = new FormatWidget(this);
-	//this.formatManager = new FormatManager(this);
+	this.regionsSelectorWidget = new RegionsSelectorWidget(this);
+	this.paramsSelectorWidget = new ParamsSelectorWidget(this);
+	this.formatWidget = new FormatWidget(this);
+	this.formatManager = new FormatManager(this);
+	
+	this.regionsParametrsWidgets = new RegionsParametrsWidgets(this);
+
 	this.regionPanel = new RegionPanel(this);
 
 	this.prevState = function() {
@@ -522,13 +536,14 @@ var Application = function() {
 	}
 
 	this.run = function() {
-		//this.loadingState.run();
+		this.loadingState.run();
 		this.appTimer.run();
+		this.initResource_();
+		this.footerNavWidget.draw();
 		//this.onCacheLoaded_();
-		//this.initResource_();
-		this.loadingState.stop(function() {});
-		this.footerNavWidget.hidden();
-		this.regionPanel.show();
+		//this.loadingState.stop(function() {});
+		//this.footerNavWidget.hidden();
+		//this.regionPanel.show();
 	}
 
 	// загружаем ресурсы

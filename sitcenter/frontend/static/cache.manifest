@@ -1,6 +1,6 @@
 CACHE MANIFEST
       
-# v5
+# v6
 
 CACHE:
 
@@ -84,6 +84,8 @@ CACHE:
 /static/images/map/76.png
 /static/images/map/77.png
 
+/static/images/map/all_regions.png
+
 /static/svg/101.svg
 /static/svg/102.svg
 /static/svg/103.svg
@@ -110,6 +112,8 @@ CACHE:
 /static/svg/72.svg
 /static/svg/76.svg
 /static/svg/77.svg
+
+/static/svg/all_regions.svg
 
 /static/images/mini/101.gif
 /static/images/mini/102.gif
