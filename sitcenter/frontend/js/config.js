@@ -5,33 +5,7 @@ var ConfigApp = {
 		"MAP": "/static/images/map/",
 		"MINI-MAP": "/static/images/mini/"
 	},
-	"PRELOAD": {
-		"IMAGES": [
-			"/static/images/map/100.png",
-			"/static/images/map/101.png",
-			"/static/images/map/52.png"
-		],
-		"VIDEO": [
-			"/static/video/101-in.mp4",
-			"/static/video/101-out.mp4",
-			"/static/video/102-in.mp4",
-			"/static/video/102-out.mp4",
-			"/static/video/103-in.mp4",
-			"/static/video/103-out.mp4",
-			"/static/video/104-in.mp4",
-			"/static/video/104-out.mp4",
-			"/static/video/105-in.mp4",
-			"/static/video/105-out.mp4",
-			"/static/video/106-in.mp4",
-			"/static/video/106-out.mp4",
-			"/static/video/107-in.mp4",
-			"/static/video/107-out.mp4",
-			"/static/video/108-in.mp4",
-			"/static/video/108-out.mp4",
-			"/static/video/52-in.mp4",
-			"/static/video/52-out.mp4"
-		]
-	}
+	"API-HOST": "http://54.224.205.171:3000"
 }
 
 /**

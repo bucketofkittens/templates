@@ -52,12 +52,18 @@ var ParametrsWidgets = function(app) {
 	this.getParametrById = function(id) {
 		var par = null;
 
-		$.each(this.parametrs, function(key, value) {
+		/*$.each(this.parametrs, function(key, value) {
 			$.each(value.parameters, function(key2, value2) {
 				if(value2 && value2.id == id) {
 					par = value2;
 				}
 			});
+		});*/
+
+		$.each(this.parametrs, function(key, value) {
+			if(value && value.id == id) {
+				par = value;
+			}
 		});
 
 		return par;
@@ -66,21 +72,22 @@ var ParametrsWidgets = function(app) {
 	this.parametrsNameClick_ = function(evt) {
 		if(!$(evt.target).hasClass("active")) {
 			var self = this;
+			var parentLi = $(evt.target).parent().parent();
 			$(this.CSS["SCROLL"]).find(".active").removeClass("active");
 			$(evt.target).toggleClass("active");
 
 			this.setTitle($(evt.target).html());
-			this.currentParametr = this.getParametrById($(evt.target).parent().parent().attr("data-id"));
+			this.currentParametr = this.getParametrById(parentLi.attr("data-id"));
 			this.app.mapColorel.colored(
 				this.currentParametr.id, 
 				this.app.currentRegion, 
 				this.app.ageSelectorWidget.selectedAge
 			);
 			this.app.mapColorWidget.updateParams();
-
-			this.app.paramsManager.getParamUom(this.currentParametr.id, function(data) {
+			this.elements["UOM"].html(parentLi.attr("data-uom"));
+			/*this.app.paramsManager.getParamUom(this.currentParametr.id, function(data) {
 				self.elements["UOM"].html(data.responseText);
-			});
+			});*/
 			this.app.legendManager.getLegendByParamAndSubject(
 				this.currentParametr.id, 
 				this.app.currentRegion,
@@ -120,8 +127,8 @@ var ParametrsWidgets = function(app) {
 
 	this.getParametrs_ = function(data) {
 		var self = this;
-		this.parametrs = this.prepareParamerts_(data);
-		this.drawParamets_(this.parametrs);
+		this.parametrs = data;
+		this.drawRegionsParamets_(this.parametrs);
 
 		if(this.currentParametr) {
 			this.app.legendManager.getLegendByParamAndSubject(
@@ -178,6 +185,21 @@ var ParametrsWidgets = function(app) {
 				});	
 			}
 		});
+		this.scrollApi.reinitialise();
+	}
+
+	this.drawRegionsParamets_ = function(params) {
+		var html = "";
+		var self = this;
+		var contentPane = this.scrollApi.getContentPane();
+		var html =  "<ul class='first regions-params'>"
+		$.each(params, function(key, value) {
+			var uom = value.uom_name == null ? "" : value.uom_name;
+			html += "<li data-uom='"+uom+"' data-name='"+uom+"' data-id='"+value.id+"'><span  class='param'><em class='spr'>-</em> <em class='name'>"+value.name+"</em></span></li>";
+		});
+		html += "</ul>";
+		contentPane.append(html);
+
 		this.scrollApi.reinitialise();
 	}
 
@@ -267,7 +289,15 @@ var ParametrsWidgets = function(app) {
 	}
 
 	this.getParamsByRegionAndYeage = function(region_id) {
-		this.app.paramsManager.getParamsByRegionAndYeage(region_id, this.app.ageSelectorWidget.selectedAge, $.proxy(this.getParametrs_, this));
+		this.app.paramsManager.getParamsByRegionAndYeage(
+			region_id, 
+			this.app.ageSelectorWidget.selectedAge, 
+			$.proxy(this.getParametrs_, this)
+		);
+	}
+
+	this.getRegionsParams = function() {
+		this.app.paramsManager.getRegionsParams($.proxy(this.getParametrs_, this));
 	}
 
 	this.bindEvents_ = function() {
@@ -275,7 +305,7 @@ var ParametrsWidgets = function(app) {
 		this.elements["HIDDEN"].on("click", $.proxy(this.onHidden_, this));
 		this.elements["FILTER"].on("keyup", $.proxy(this.onFilterClick_, this));
 
-		$("body").on("click", this.CSS["PARAMETRS-LIST"]+" li.first-li", $.proxy(this.parametrsClick_, this));
+		//$("body").on("click", this.CSS["PARAMETRS-LIST"]+" li.first-li", $.proxy(this.parametrsClick_, this));
 		$("body").on("click", this.CSS["PARAMETRS-LIST"]+" .name", $.proxy(this.parametrsNameClick_, this));
 	}
 
@@ -432,6 +462,10 @@ var ParamsManager = function(app) {
 		$.get(this.app.apiHost + this.ajaxPath + region_id+ "/" + yeage , callback);
 	}
 
+	this.getRegionsParams = function(callback) {
+		$.get(this.app.apiHost + "/regions_params/", callback);
+	}
+
 	this.getRegionStateByParamsAndYeage = function(region_id, yeage, callback) {
 		$.get(this.app.apiHost + "/parameters/" + region_id + "/" + yeage , callback);
 	}
@@ -442,6 +476,10 @@ var ParamsManager = function(app) {
 
 	this.getParamUom = function(param_id, callback) {
 		$.ajax(this.app.apiHost + "/parameter_uom/" + param_id).always(callback);
+	}
+
+	this.getMapByParamAndYear = function(param_id, year, callback) {
+		$.get(this.app.apiHost + "/param_values/" + param_id + "/" + year, callback);
 	}
 
 	this.getParamsByRegionAndAge = function(regions, age, callback) {
@@ -543,7 +581,7 @@ var MapColorWidget = function(app) {
  */
 var MapColorel = function(app) {
 	this.app = app;
-	this.ajaxPath = "/subjects/";
+	this.ajaxPath = "/param_values/";
 	this.CSS = {
 		"CONTAINER": "#bg-colored-image",
 		"LOAD": "#load"
@@ -557,9 +595,9 @@ var MapColorel = function(app) {
 
 
 	this.colored = function(params_id, region_id, year) {
-		var mapPath = this.app.apiHost+this.ajaxPath+params_id+"/"+region_id+"/"+year+"/map";
+		var mapPath = this.app.apiHost+this.ajaxPath+params_id+"/"+year+"/map";
 
-		$(this.CSS["LOAD"]).addClass("onShow");
+		//$(this.CSS["LOAD"]).addClass("onShow");
 
 		if(this.isShowed) {
 			this.elements["CONTAINER"].removeClass("onShow");
@@ -577,7 +615,7 @@ var MapColorel = function(app) {
         image.onload = function() {
         	self.elements["CONTAINER"].css("backgroundImage", "url('"+self.app.apiHost+link+"')");
 			self.elements["CONTAINER"].addClass("onShow");
-			$(self.CSS["LOAD"]).removeClass("onShow");
+			//$(self.CSS["LOAD"]).removeClass("onShow");
         }
 	}
 
@@ -786,8 +824,14 @@ var FooterNavWidget = function(app) {
 		}
 	}
 
-	this.draw_();
-	this.addEvents_();
+	this.draw = function() {
+		this.draw_();
+		this.addEvents_();	
+	}
+
+	this.hidden = function() {
+		this.elements["MAIN"].removeClass("onShow");
+	}
 }
 
 /**

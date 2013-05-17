@@ -1,6 +1,6 @@
 CACHE MANIFEST
       
-# This is a comment
+# v5
 
 CACHE:
 
@@ -83,6 +83,60 @@ CACHE:
 /static/images/map/72.png
 /static/images/map/76.png
 /static/images/map/77.png
+
+/static/svg/101.svg
+/static/svg/102.svg
+/static/svg/103.svg
+/static/svg/104.svg
+/static/svg/105.svg
+/static/svg/106.svg
+/static/svg/107.svg
+/static/svg/108.svg
+/static/svg/34.svg
+/static/svg/35.svg
+/static/svg/36.svg
+/static/svg/40.svg
+/static/svg/39.svg
+/static/svg/43.svg
+/static/svg/46.svg
+/static/svg/48.svg
+/static/svg/50.svg
+/static/svg/52.svg
+/static/svg/59.svg
+/static/svg/63.svg
+/static/svg/68.svg
+/static/svg/69.svg
+/static/svg/70.svg
+/static/svg/72.svg
+/static/svg/76.svg
+/static/svg/77.svg
+
+/static/images/mini/101.gif
+/static/images/mini/102.gif
+/static/images/mini/103.gif
+/static/images/mini/104.gif
+/static/images/mini/105.gif
+/static/images/mini/106.gif
+/static/images/mini/107.gif
+/static/images/mini/108.gif
+/static/images/mini/34.gif
+/static/images/mini/35.gif
+/static/images/mini/36.gif
+/static/images/mini/40.gif
+/static/images/mini/39.gif
+/static/images/mini/43.gif
+/static/images/mini/46.gif
+/static/images/mini/48.gif
+/static/images/mini/50.gif
+/static/images/mini/52.gif
+/static/images/mini/59.gif
+/static/images/mini/63.gif
+/static/images/mini/68.gif
+/static/images/mini/69.gif
+/static/images/mini/70.gif
+/static/images/mini/72.gif
+/static/images/mini/76.gif
+/static/images/mini/77.gif
 
 FALLBACK:
 

@@ -160,7 +160,7 @@ header h1 {
 	position: absolute;
 	height: 523px;
 	width: 287px;
-	background: url("/static/images/legend.png") right bottom no-repeat;
+	background: url("/static/images/legenda.png") right bottom no-repeat;
 	display: none;
 	bottom: 0px;
 	right: 0px;
@@ -318,11 +318,11 @@ header h1 {
 	font-family: 'NeoSansPro';
 	font-size: 16px;
 	color: #ffffff;
-	margin: 40px 0px 12px 75px;
+	margin: 27px 0px 10px 75px;
 	overflow: hidden;
-	white-space: nowrap;
-	text-overflow: ellipsis;
 	padding-right: 15px;
+	height: 33px;
+	vertical-align: middle;
 }
 #param-info {
 	height: 36px;
@@ -712,4 +712,17 @@ header h1 {
 	top: 60%; 
 	color: #ffffff; 
 	font-size: 22px;
+}
+
+#content .data ul.regions-params span {
+	width: 100%;
+	cursor: pointer;
+	padding-bottom: 10px;
+}
+#content .data ul.regions-params span .name.active {
+	text-decoration: underline;
+}
+
+#map-color-toggler {
+	display: none !important;
 }

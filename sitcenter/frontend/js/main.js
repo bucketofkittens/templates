@@ -121,6 +121,9 @@ var SVGLoader = function(app, clickCallback) {
 					x = x - 15;
 					y = y - 50;
 				}
+				if(id == 70) {
+					x = x - 15;
+				}
 				$(newElement).html(parseInt(data[id]));
 				$(newElement).attr({
 					x: x,
@@ -272,6 +275,29 @@ var LoadingState = function(app) {
 }
 
 /**
+ * [ description]
+ * @param  {[type]} app [description]
+ * @return {[type]}     [description]
+ */
+var RegionPanel = function(app) {
+	this.app = app;
+	this.bgImage = "/static/images/map/all_regions.png";
+	this.CSS = {
+		"BG-IMAGE": "#bg-image"
+	}
+	this.elements = {
+		"BG-IMAGE": $(this.CSS["BG-IMAGE"])
+	}
+
+
+	this.show = function() {
+		this.elements["BG-IMAGE"].css("backgroundImage", "url('"+this.bgImage+"')");
+	}
+
+	this.app.parametrsWidgets.getRegionsParams();
+}
+
+/**
  * [MapStateManager description]
  * @param {[type]} app [description]
  */
@@ -396,48 +422,6 @@ var MapStateManager = function(app) {
 }
 
 /**
- * [ImagePreloader description]
- * @param {[type]} arrayOfImages [description]
- */
-var ImagePreloader = function preload(arrayOfImages) {
-    $(arrayOfImages).each(function(){
-        $('<img/>')[0].src = this;
-    });
-}
-
-/**
- * @todo Сделать потом через рекурсию! Пока что влом
- * [ImagePreloaderPrepare description]
- * @param {[type]} arr [description]
- */
-var ImagePreloaderPrepare = function(arr) {
-	var outArr = [];
-	ImagePreloaderIteration(arr, outArr);
-    return outArr;
-}
-
-/**
- * [ImagePreloaderIteration description]
- * @param {[type]} item  [description]
- * @param {[type]} array [description]
- */
-var ImagePreloaderIteration = function(item, array) {
-	if(typeof(item) == "object") {
-		$.each(item, function(key3, value3) {
-			ImagePreloaderIteration(value3, array);
-		});
-	} else {
-		var postfixArr = item.split(".");
-		var postfix = postfixArr[postfixArr.length-1];
-		if(postfix == "png" || postfix == "jpg" || postfix == "gif" || postfix == "mp4") {
-			array.push(item);	
-		}	
-	}
-
-	return array;
-}
-
-/**
  * [AppTimer description]
  * @param {[type]} app [description]
  */
@@ -490,7 +474,7 @@ var Application = function() {
 	this.currentZoom = 1;
 	this.russianId = 100;
 
-	this.apiHost = "http://54.224.205.171:3000";
+	this.apiHost = ConfigApp["API-HOST"];
 
 	this.CSS = {
 		"APP": "#app",
@@ -507,7 +491,6 @@ var Application = function() {
 	this.mapStateManager = new MapStateManager(this);
 	this.legendManager = new LegendManager(this);
 
-	this.resources = ImagePreloaderPrepare(ConfigApp["PRELOAD"]);
 	this.videoPlayer = new VideoPlayer();
 	this.loadingState = new LoadingState(this);
 	this.appTimer = new AppTimer(this);
@@ -519,10 +502,11 @@ var Application = function() {
 	this.mapColorel = new MapColorel(this);
 	this.legendWidget = new LegendWidget(this);
 	this.footerNavWidget = new FooterNavWidget(this);
-	this.regionsSelectorWidget = new RegionsSelectorWidget(this);
-	this.paramsSelectorWidget = new ParamsSelectorWidget(this);
-	this.formatWidget = new FormatWidget(this);
-	this.formatManager = new FormatManager(this);
+	//this.regionsSelectorWidget = new RegionsSelectorWidget(this);
+	//this.paramsSelectorWidget = new ParamsSelectorWidget(this);
+	//this.formatWidget = new FormatWidget(this);
+	//this.formatManager = new FormatManager(this);
+	this.regionPanel = new RegionPanel(this);
 
 	this.prevState = function() {
 		this.currentZoom--;
@@ -533,31 +517,47 @@ var Application = function() {
 	}
 
 	this.run = function() {
-		this.loadingState.run();
+		//this.loadingState.run();
 		this.appTimer.run();
-		this.initResource_();
+		//this.onCacheLoaded_();
+		//this.initResource_();
+		this.loadingState.stop(function() {});
+		this.footerNavWidget.hidden();
+		this.regionPanel.show();
 	}
 
 	// загружаем ресурсы
 	this.initResource_ = function() {
+		
 		var appCache = window.applicationCache;
+
 	   	appCache.addEventListener('noupdate', $.proxy(this.onCacheLoaded_, this), false);
-	   	appCache.addEventListener('cached', $.proxy(this.onCacheLoaded_, this), false);
+	   	appCache.addEventListener('cached', function() {
+	   		
+	   		location.reload();
+	   	}, false);
+	   	appCache.addEventListener('checking', function() {
+	   		console.log(appCache);
+	   	}, false);
+	   	appCache.addEventListener('error', function() {
+	   		console.log(appCache);
+	   	}, false);
 	   	appCache.addEventListener('downloading', function(e) {
 	   		$("#load").addClass("onShow");
 	   	}, false);
 	   	appCache.addEventListener('progress', function(e) {
+	   		console.log(e.total);
 	   		var percent = e.total / 100;
 	   		$("#load").addClass("onShow");
 	   		$("#load").find(".text").remove();
-	   		$("#load").append('<p class="text" id="loading">Загружено: '+parseInt(e.loaded * percent)+'% </p>');
+	   		$("#load").append('<p class="text" id="loading">Загружено: '+parseInt(e.loaded)+" из "+ e.total +' </p>');
 	   	}, false);
 	   	appCache.addEventListener('updateready', function(e) {
-	   		//window.applicationCache.swapCache(); 
+	   		window.applicationCache.swapCache();
 	   		location.reload();
 	   	}, false);
 
-	   	
+	   	console.log(window.applicationCache);
 	}
 
 	this.init = function() {
