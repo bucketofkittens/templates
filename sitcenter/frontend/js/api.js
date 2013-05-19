@@ -73,7 +73,6 @@ var RegionsParametrsWidgets = function(app) {
 			this.currentParametr = this.getParametrById(parentLi.attr("data-id"));
 			this.app.regionsMapColorel.colored(
 				this.currentParametr.id, 
-				this.app.currentRegion, 
 				this.app.ageSelectorRegionsWidget.selectedAge
 			);
 			this.app.regionsMapColorWidget.updateParams();
@@ -1043,16 +1042,31 @@ var RegionsMapColorel = function(app) {
 		"IMAGE": $(this.CSS["CONTAINER"]).find("img")
 	}
 
+	this.getColoredPath = function(params_id, year) {
+		var mapPath = "";
+		if(this.app.regionPanel.currentCamera == "CENTER") {
+			mapPath = this.app.apiHost+this.ajaxPath+params_id+"/"+year+"/map";
+		}
 
-	this.colored = function(params_id, region_id, year) {
-		var mapPath = this.app.apiHost+this.ajaxPath+params_id+"/"+year+"/map";
+		if(this.app.regionPanel.currentCamera == "LEFT") {
+			mapPath = this.app.apiHost+this.ajaxPath+params_id+"/"+year+"/map-west";
+		}
 
+		if(this.app.regionPanel.currentCamera == "RIGHT") {
+			mapPath = this.app.apiHost+this.ajaxPath+params_id+"/"+year+"/map-east";
+		}
+
+		return mapPath;
+	}
+
+
+	this.colored = function(params_id, year) {
 		$(this.CSS["LOAD"]).addClass("onShow");
 
 		if(this.isShowed) {
 			this.elements["CONTAINER"].removeClass("onShow");
 		}
-		$.ajax({ url: mapPath }).always($.proxy(this.onGetMapLink_, this));
+		$.ajax({ url: this.getColoredPath(params_id, year) }).always($.proxy(this.onGetMapLink_, this));
 	}
 
 	this.onGetMapLink_ = function(data) {

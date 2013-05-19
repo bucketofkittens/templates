@@ -1,6 +1,6 @@
 CACHE MANIFEST
-      
-# v7
+
+# v11
 
 CACHE:
 /static/video/101-in.mp4
@@ -20,7 +20,7 @@ CACHE:
 /static/video/108-in.mp4
 /static/video/108-out.mp4
 /static/video/34-in.mp4
-/static/video/34-out.mp4 
+/static/video/34-out.mp4
 /static/video/35-in.mp4
 /static/video/35-out.mp4
 /static/video/36-in.mp4
@@ -55,6 +55,10 @@ CACHE:
 /static/video/76-out.mp4
 /static/video/77-in.mp4
 /static/video/77-out.mp4
+/static/video/all-regions-left-forward.mp4
+/static/video/all-regions-left-rewind.mp4
+/static/video/all-regions-right-forward.mp4
+/static/video/all-regions-right-rewind.mp4
 /static/images/map/101.png
 /static/images/map/102.png
 /static/images/map/103.png
@@ -81,7 +85,9 @@ CACHE:
 /static/images/map/72.png
 /static/images/map/76.png
 /static/images/map/77.png
-/static/images/map/all_regions.png
+/static/images/map/all-regions-center.png
+/static/images/map/all-regions-left.png
+/static/images/map/all-regions-right.png
 /static/svg/101.svg
 /static/svg/102.svg
 /static/svg/103.svg
@@ -109,6 +115,9 @@ CACHE:
 /static/svg/76.svg
 /static/svg/77.svg
 /static/svg/100.svg
+/static/svg/all_regions_borders_center.svg
+/static/svg/all_regions_borders_left.svg
+/static/svg/all_regions_borders_right.svg
 /static/images/mini/101.gif
 /static/images/mini/102.gif
 /static/images/mini/103.gif
@@ -139,4 +148,7 @@ CACHE:
 FALLBACK:
 
 NETWORK:
+/index.html
 *
+http://*
+https://*

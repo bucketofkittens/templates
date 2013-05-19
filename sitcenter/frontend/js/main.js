@@ -190,6 +190,7 @@ var VideoPlayer = function() {
 
 	this.video.on('timeupdate',function(e) {
 		if(this.duration - this.currentTime < 0.2) {
+			console.log("end");
 			self.video[0].pause();
 			self.endedCallback();
 		}
@@ -198,7 +199,7 @@ var VideoPlayer = function() {
 	this.play = function(videoPath, endedCallback) {
 		var self = this;
 		this.video.attr("src", videoPath);
-		this.video.attr("poster", $("#bg-image").css("backgroundImage").replace(")","").replace("url(",""));
+		//this.video.attr("poster", $("#bg-image").css("backgroundImage").replace(")","").replace("url(",""));
 		this.endedCallback = endedCallback;
 
 		this.video[0].load();
@@ -296,32 +297,71 @@ var LoadingState = function(app) {
  */
 var RegionPanel = function(app) {
 	this.app = app;
-	this.bgImage = "/static/images/map/all_regions.png";
-	this.bgSvg = "/static/svg/1000.svg";
+	this.bgImage = null;
 	this.CSS = {
-		"BG-IMAGE": "#bg-regions-image"
+		"BG-IMAGE": "#bg-regions-image",
+		"CAMERA-LEFT": "#regions-left-camera",
+		"CAMERA-RIGHT": "#regions-right-camera"
 	}
+	this.currentCamera = "CENTER";
 
 	this.elements = {
-		"BG-IMAGE": $(this.CSS["BG-IMAGE"])
+		"BG-IMAGE": $(this.CSS["BG-IMAGE"]),
+		"CAMERA-LEFT": $(this.CSS["CAMERA-LEFT"]),
+		"CAMERA-RIGHT": $(this.CSS["CAMERA-RIGHT"])
 	}
 
 	this.svgWriter = new SVGLoader(this);
+
+	this.getBgCurrentCamera = function() {
+		return ConfigApp["REGIONS"][this.currentCamera]["MAP"];
+	}
+
+	this.getSVGCurrentCamera = function() {
+		return ConfigApp["REGIONS"][this.currentCamera]["SVG"];
+	}
+
+	this.getVideoName = function(start, end) {
+		if(start == "LEFT" && end == "CENTER") {
+			return ConfigApp["REGIONS"]["LEFT"]["VIDEO"]["OUT"];
+		}
+		if(start == "CENTER" && end == "RIGHT") {
+			return ConfigApp["REGIONS"]["RIGHT"]["VIDEO"]["IN"];
+		}
+		if(start == "RIGHT" && end == "CENTER") {
+			return ConfigApp["REGIONS"]["RIGHT"]["VIDEO"]["OUT"];
+		}
+		if(start == "CENTER" && end == "LEFT") {
+			return ConfigApp["REGIONS"]["LEFT"]["VIDEO"]["IN"];
+		}
+	}
 
 	this.setBg = function(bg) {
 		if(bg) {
 			this.bgImage = bg;	
 		}
-		this.elements["BG-IMAGE"].css("backgroundImage", "url('"+this.bgImage+"')");
+		if(this.bgImage) {
+			this.elements["BG-IMAGE"].css("backgroundImage", "url('"+this.bgImage+"')");
+		} else {
+			this.elements["BG-IMAGE"].css("backgroundImage", "url('"+this.getBgCurrentCamera()+"')");
+		}
 	}
 
 	this.show = function() {
 		this.elements["BG-IMAGE"].addClass("onShow");
-		this.svgWriter.load(this.bgSvg);
+		if(this.currentCamera != "LEFT") {
+			this.elements["CAMERA-LEFT"].addClass("onShow");
+		}
+		if(this.currentCamera != "RIGHT") {
+			this.elements["CAMERA-RIGHT"].addClass("onShow");
+		}
+		this.svgWriter.load(this.getSVGCurrentCamera());
 	}
 
 	this.hide = function() {
 		this.elements["BG-IMAGE"].removeClass("onShow");
+		this.elements["CAMERA-LEFT"].removeClass("onShow");
+		this.elements["CAMERA-RIGHT"].removeClass("onShow");
 	}
 
 	this.addBlur = function() {
@@ -332,7 +372,57 @@ var RegionPanel = function(app) {
 		this.elements["BG-IMAGE"].removeClass("blur");
 	}
 
+	this.onCameraLeftClick_ = function() {
+		if(this.currentCamera == "CENTER") {
+			this.currentCamera = "LEFT";
+			this.elements["CAMERA-LEFT"].removeClass("onShow");
+			this.app.videoPlayer.play(this.getVideoName("CENTER", "LEFT"), $.proxy(this.onVideoPlayEnd_, this));
+		}
+		if(this.currentCamera == "RIGHT") {
+			this.currentCamera = "CENTER";
+			this.elements["CAMERA-RIGHT"].addClass("onShow");
+			this.app.videoPlayer.play(this.getVideoName("RIGHT", "CENTER"), $.proxy(this.onVideoPlayEnd_, this));
+		}
+		
+	}
+
+	this.onVideoPlayEnd_ = function() {
+		var self = this;
+		this.setBg(this.getBgCurrentCamera());
+		this.svgWriter.load(this.getSVGCurrentCamera());
+		if(this.app.regionsParametrsWidgets.currentParametr) {
+			this.app.regionsMapColorel.colored(
+				this.app.regionsParametrsWidgets.currentParametr.id, 
+				this.app.ageSelectorRegionsWidget.selectedAge
+			);	
+		}
+		this.app.regionsMapColorWidget.updateParams();
+		setTimeout(function() {
+			self.app.videoPlayer.hide();
+		}, 0);
+		
+	}
+
+	this.onCameraRightClick_ = function() {
+		if(this.currentCamera == "CENTER") {
+			this.currentCamera = "RIGHT";
+			this.elements["CAMERA-RIGHT"].removeClass("onShow");
+			this.app.videoPlayer.play(this.getVideoName("CENTER", "RIGHT"), $.proxy(this.onVideoPlayEnd_, this));
+		}
+		if(this.currentCamera == "LEFT") {
+			this.currentCamera = "CENTER";
+			this.elements["CAMERA-LEFT"].addClass("onShow");
+			this.app.videoPlayer.play(this.getVideoName("LEFT", "CENTER"), $.proxy(this.onVideoPlayEnd_, this));
+		}
+	}
+
+	this.bindEvents_ = function() {
+		this.elements["CAMERA-LEFT"].on("click", $.proxy(this.onCameraLeftClick_, this));
+		this.elements["CAMERA-RIGHT"].on("click", $.proxy(this.onCameraRightClick_, this));
+	}
+
 	this.app.regionsParametrsWidgets.getRegionsParams();
+	this.bindEvents_();
 }
 
 /**
@@ -591,17 +681,6 @@ var Application = function() {
 	   		$("#load").find(".text").remove();
 	   		$("#load").append('<p class="text" id="loading">Загружено: '+parseInt(e.loaded)+" из "+ e.total +' </p>');
 	   	}, false);
-
-	   	window.addEventListener('load', function(e) {
-			window.applicationCache.addEventListener('updateready', function(e) {
-			    if (window.applicationCache.status == window.applicationCache.UPDATEREADY) {
-			      //window.applicationCache.swapCache();
-			      window.location.reload();
-			    } else {
-			    }
-			  }, false);
-
-		}, false);
 	}
 
 	this.init = function() {
@@ -628,8 +707,18 @@ var Application = function() {
 	this.init();
 }
 
-$(document).ready(function() {
 
+
+window.addEventListener('load', function(e) {
+	console.log(window.applicationCache);
+	console.log(window.applicationCache.status);
 	var application = new Application();
 	application.run();
-})
+	window.applicationCache.addEventListener('updateready', function(e) {
+	    if (window.applicationCache.status == window.applicationCache.UPDATEREADY) {
+	      window.location.reload();
+	    } else {
+	    }
+	  }, false);
+
+}, false);
