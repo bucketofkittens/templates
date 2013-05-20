@@ -204,7 +204,7 @@ var RegionsParametrsWidgets = function(app) {
 		);
 
 		if(this.currentParametr != null) {
-			this.legendWidget.show();
+			//this.legendWidget.show();
 		}
 		this.initScroll_();
 	}

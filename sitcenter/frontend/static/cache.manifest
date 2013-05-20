@@ -1,6 +1,6 @@
 CACHE MANIFEST
 
-# v18
+# v21 f
 
 CACHE:
 /static/video/101-in.mp4
@@ -114,7 +114,7 @@ CACHE:
 /static/svg/72.svg
 /static/svg/76.svg
 /static/svg/77.svg
-/static/svg/100.svg
+/static/svg/100.svg?v=1
 /static/svg/all_regions_borders_center.svg
 /static/svg/all_regions_borders_left.svg
 /static/svg/all_regions_borders_right.svg
