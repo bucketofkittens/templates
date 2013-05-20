@@ -30,7 +30,7 @@ header
 
 header:after
 {
-  background:url(/static/images/name.png) left top no-repeat;
+  /*background:url(/static/images/name.png) left top no-repeat;
   content:".";
   display:block;
   top:0;
@@ -40,6 +40,7 @@ header:after
   overflow:hidden;
   width:20px;
   height:350px;
+  */
 }
 
 header a
@@ -71,7 +72,7 @@ header h1
   color:#fff;
   line-height:67px;
   left:660px;
-  top:94px;
+  top:54px;
   text-align:center;
 }
 
@@ -226,6 +227,7 @@ header h1
   color:#fff;
   display:block;
   padding:12px 0 11px 190px;
+  min-height: 23px;
 }
 
 #content .legend p:first-child
@@ -233,6 +235,7 @@ header h1
   margin-top:255px;
   position:relative;
   top:10px;
+  min-height: 23px;
 }
 
 #content .legend a
@@ -475,7 +478,7 @@ header h1
 
 #content .data ul i
 {
-  width:60px;
+  width:85px;
   float:right;
 }
 
@@ -640,7 +643,7 @@ header h1
 #content .data.f h3
 {
   padding-right:0;
-  margin:40px 25px 20px 55px;
+  margin:23px 25px 20px 55px;
 }
 
 #content .data.region .search

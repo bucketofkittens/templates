@@ -1,3 +1,6 @@
+
+
+
 /**
  * [SVGLoader description]
  * @param {[type]} app [description]
@@ -183,7 +186,8 @@ var SVGLoader = function(app, clickCallback) {
 				}
 
 				var classes = "zoom"+self.app.currentZoom+" "+CSSclasses;
-				$(newElement).html(parseInt(data[id]));
+				var val = parseFloat(data[id]);
+				$(newElement).html(val);
 				$(newElement).attr({
 					x: x,
 					y: y,

@@ -380,7 +380,7 @@ var ParametrsWidgets = function(app) {
 					parameters: []
 				}
 			}
-			
+						
 			ret[value.group_id].parameters.push({
 				id: value.param_id,
 				name: value.param_name,
@@ -393,6 +393,7 @@ var ParametrsWidgets = function(app) {
 
 	this.getParametrs_ = function(data) {
 		var self = this;
+		console.log(data);
 		this.parametrs = this.prepareParamerts_(data);
 		this.drawParamets_(this.parametrs);
 
@@ -441,6 +442,7 @@ var ParametrsWidgets = function(app) {
 			if(value.parameters.length > 0) {
 				$.each(value.parameters, function(key2, value2) {
 					var paramCurrent = $("li[data-id='"+value2.id+"']", self.CSS["PARAMETRS-LIST"]);
+
 					if(paramCurrent.size() == 0) {
 						var html = "<li data-name='"+value2.name+"' data-id='"+value2.id+"'><span  class='param'><em class='spr'>-</em> <em class='name'>"+value2.name+"</em></span><i>"+value2.value+"</i></li>";
 
@@ -1025,7 +1027,7 @@ var MapColorel = function(app) {
 	this.colored = function(params_id, region_id, year) {
 		var mapPath = this.app.apiHost+this.ajaxPath+params_id+"/"+region_id+"/"+year+"/map";
 
-		$(this.CSS["LOAD"]).addClass("onShow");
+		//$(this.CSS["LOAD"]).addClass("onShow");
 
 		if(this.isShowed) {
 			this.elements["CONTAINER"].removeClass("onShow");
@@ -1043,7 +1045,7 @@ var MapColorel = function(app) {
         image.onload = function() {
         	self.elements["CONTAINER"].css("backgroundImage", "url('"+self.app.apiHost+link+"')");
 			self.elements["CONTAINER"].addClass("onShow");
-			$(self.CSS["LOAD"]).removeClass("onShow");
+			//$(self.CSS["LOAD"]).removeClass("onShow");
         }
 	}
 
@@ -1095,7 +1097,7 @@ var RegionsMapColorel = function(app) {
 
 
 	this.colored = function(params_id, year) {
-		$(this.CSS["LOAD"]).addClass("onShow");
+		//$(this.CSS["LOAD"]).addClass("onShow");
 
 		if(this.isShowed) {
 			this.elements["CONTAINER"].removeClass("onShow");
@@ -1113,7 +1115,7 @@ var RegionsMapColorel = function(app) {
         image.onload = function() {
         	self.app.regionPanel.setBg(self.app.apiHost+link);
 			self.elements["CONTAINER"].addClass("onShow");
-			$(self.CSS["LOAD"]).removeClass("onShow");
+			//$(self.CSS["LOAD"]).removeClass("onShow");
         }
 	}
 
@@ -1275,10 +1277,12 @@ var AgeSelectorRegionsWidget = function(app) {
 var FooterNavWidget = function(app) {
 	this.app = app;
 	this.CSS = {
-		"MAIN": "#footer-nav-widget"
+		"MAIN": "#footer-nav-widget",
+		"PAGE-TITLE": "header h1"
 	};
 	this.elements = {
-		"MAIN": $(this.CSS["MAIN"])
+		"MAIN": $(this.CSS["MAIN"]),
+		"PAGE-TITLE": $(this.CSS["PAGE-TITLE"])
 	};
 	this.items = {
 		"MAP": {
@@ -1352,6 +1356,7 @@ var FooterNavWidget = function(app) {
 			this.app.legendWidget.hide();
 			this.app.regionsMapColorWidget.updateParams();
 			this.app.mapColorel.hidden();
+			this.elements["PAGE-TITLE"].addClass("onHidden");
 
 			if(this.app.regionsParametrsWidgets.currentParametr) {
 				this.app.regionsLegendWidget.show();
@@ -1374,6 +1379,7 @@ var FooterNavWidget = function(app) {
 			this.app.regionPanel.hide();
 			this.app.mapColorWidget.updateParams();
 			this.app.mapColorel.show();
+			this.elements["PAGE-TITLE"].removeClass("onHidden");
 
 			if(this.app.parametrsWidgets.currentParametr) {
 				this.app.legendWidget.show();
