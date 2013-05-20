@@ -90,7 +90,7 @@ var SVGLoader = function(app, clickCallback) {
 
 		var svg = $(this.CSS["SVG"])[0].getSVGDocument();
 		var self = this;
-		console.log(svg);
+		
 		$.each($(svg).find("g"), function(key, value) {
 			var id = $(value).attr("target");
 			console.log(id);

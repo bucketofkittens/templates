@@ -18,6 +18,14 @@
         -moz-transform: rotate(360deg);
     }
 }
+@-ms-keyframes rotating {
+    from{
+        -ms-transform: rotate(0deg);
+    }
+    to{
+        -ms-transform: rotate(360deg);
+    }
+}
 header
 {
   /*background:url(/static/images/name.png) left top no-repeat;
@@ -301,6 +309,7 @@ header h1
 {
   -webkit-animation:rotating 4s linear infinite;
   -moz-animation:rotating 4s linear infinite;
+  -ms-animation:rotating 4s linear infinite;
 }
 
 #bg-image,#bg-regions-image

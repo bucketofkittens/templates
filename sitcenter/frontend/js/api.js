@@ -77,7 +77,7 @@ var RegionsParametrsWidgets = function(app) {
 			);
 			this.app.regionsMapColorWidget.updateParams();
 			this.elements["UOM"].html(parentLi.attr("data-uom"));
-			self.legendWidget.show();
+			//self.legendWidget.show();
 		} else {
 			/*$(this.CSS["PARAMETRS-LIST"]).find(".active").removeClass("active");
 			this.setTitle("");
@@ -1359,7 +1359,7 @@ var FooterNavWidget = function(app) {
 			this.elements["PAGE-TITLE"].addClass("onHidden");
 
 			if(this.app.regionsParametrsWidgets.currentParametr) {
-				this.app.regionsLegendWidget.show();
+				//this.app.regionsLegendWidget.show();
 			}
 		}
 		if(itemId == "MAP") {
