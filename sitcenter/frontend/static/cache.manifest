@@ -1,6 +1,6 @@
 CACHE MANIFEST
 
-# v11
+# v15
 
 CACHE:
 /static/video/101-in.mp4
@@ -144,8 +144,6 @@ CACHE:
 /static/images/mini/72.gif
 /static/images/mini/76.gif
 /static/images/mini/77.gif
-
-FALLBACK:
 
 NETWORK:
 /index.html

@@ -201,7 +201,6 @@ var VideoPlayer = function() {
 		this.video.attr("src", videoPath);
 		//this.video.attr("poster", $("#bg-image").css("backgroundImage").replace(")","").replace("url(",""));
 		this.endedCallback = endedCallback;
-
 		this.video[0].load();
 		this.video[0].play();
 		$(self.elements["BG"]).show();
@@ -604,6 +603,11 @@ var Application = function() {
 
 	this.apiHost = ConfigApp["API-HOST"];
 
+	this.loadingState = new LoadingState(this);
+	this.configManager = new ConfigManager(this, ConfigApp);
+	this.appTimer = new AppTimer(this);
+	this.footerNavWidget = new FooterNavWidget(this);
+
 	this.CSS = {
 		"APP": "#app",
 		"TITLE": "h1"
@@ -613,37 +617,7 @@ var Application = function() {
 		"TITLE": $(this.CSS["TITLE"])
 	}
 
-	this.regionManager = new RegionManager(this);
-	this.paramsManager = new ParamsManager(this);
-	this.configManager = new ConfigManager(this, ConfigApp);
-	this.mapStateManager = new MapStateManager(this);
-	this.legendManager = new LegendManager(this);
-
-	this.videoPlayer = new VideoPlayer();
-	this.loadingState = new LoadingState(this);
-	this.appTimer = new AppTimer(this);
-
-	this.ageSelectorWidget = new AgeSelectorWidget(this);
-	this.ageSelectorFormatWidget = new AgeSelectorFormatWidget(this);
-	this.ageSelectorRegionsWidget = new AgeSelectorRegionsWidget(this);
-	this.parametrsWidgets = new ParametrsWidgets(this);
-	this.mapColorWidget = new MapColorWidget(this);
-	this.mapColorel = new MapColorel(this);
-	this.regionsMapColorel = new RegionsMapColorel(this);
-	this.legendWidget = new LegendWidget(this);
-	this.regionsLegendWidget = new RegionsLegendWidget(this);
-	this.footerNavWidget = new FooterNavWidget(this);
-	this.regionsSelectorWidget = new RegionsSelectorWidget(this);
-	this.paramsSelectorWidget = new ParamsSelectorWidget(this);
-	this.formatWidget = new FormatWidget(this);
-	this.formatManager = new FormatManager(this);
-
-	this.regionsMapColorWidget = new RegionsMapColorWidget(this);
 	
-	this.regionsParametrsWidgets = new RegionsParametrsWidgets(this);
-	this.regionsLegendWidget = new RegionsLegendWidget(this);
-
-	this.regionPanel = new RegionPanel(this);
 
 	this.prevState = function() {
 		this.currentZoom--;
@@ -676,8 +650,6 @@ var Application = function() {
 	   		$("#load").addClass("onShow");
 	   	}, false);
 	   	appCache.addEventListener('progress', function(e) {
-	   		var percent = e.total / 100;
-	   		$("#load").addClass("onShow");
 	   		$("#load").find(".text").remove();
 	   		$("#load").append('<p class="text" id="loading">Загружено: '+parseInt(e.loaded)+" из "+ e.total +' </p>');
 	   	}, false);
@@ -693,6 +665,37 @@ var Application = function() {
 
 	this.onCacheLoaded_ = function() {
 		$("#load").find(".text").remove();
+
+		this.regionManager = new RegionManager(this);
+		this.paramsManager = new ParamsManager(this);
+		
+		this.mapStateManager = new MapStateManager(this);
+		this.legendManager = new LegendManager(this);
+
+		this.videoPlayer = new VideoPlayer();
+		
+		this.ageSelectorWidget = new AgeSelectorWidget(this);
+		this.ageSelectorFormatWidget = new AgeSelectorFormatWidget(this);
+		this.ageSelectorRegionsWidget = new AgeSelectorRegionsWidget(this);
+		this.parametrsWidgets = new ParametrsWidgets(this);
+		this.mapColorWidget = new MapColorWidget(this);
+		this.mapColorel = new MapColorel(this);
+		this.regionsMapColorel = new RegionsMapColorel(this);
+		this.legendWidget = new LegendWidget(this);
+		this.regionsLegendWidget = new RegionsLegendWidget(this);
+		
+		this.regionsSelectorWidget = new RegionsSelectorWidget(this);
+		this.paramsSelectorWidget = new ParamsSelectorWidget(this);
+		this.formatWidget = new FormatWidget(this);
+		this.formatManager = new FormatManager(this);
+
+		this.regionsMapColorWidget = new RegionsMapColorWidget(this);
+		
+		this.regionsParametrsWidgets = new RegionsParametrsWidgets(this);
+		this.regionsLegendWidget = new RegionsLegendWidget(this);
+
+		this.regionPanel = new RegionPanel(this);
+
 		var self = this;
 		setTimeout(function() {
 			self.loadingState.stop(function() {});
@@ -708,17 +711,16 @@ var Application = function() {
 }
 
 
-
-window.addEventListener('load', function(e) {
-	console.log(window.applicationCache);
-	console.log(window.applicationCache.status);
+$(document).ready(function() {
 	var application = new Application();
 	application.run();
-	window.applicationCache.addEventListener('updateready', function(e) {
-	    if (window.applicationCache.status == window.applicationCache.UPDATEREADY) {
-	      window.location.reload();
-	    } else {
-	    }
-	  }, false);
+	
+})
 
+window.applicationCache.addEventListener('updateready', function(e) {
+	if (window.applicationCache.status == window.applicationCache.UPDATEREADY) {
+		window.applicationCache.swapCache();
+	  window.location.reload();
+	} else {
+	}
 }, false);

@@ -936,7 +936,9 @@ var RegionsMapColorWidget = function(app) {
 	this.paramsLoaded_ = function(data) {
 		var ret = {};
 		$.each(data, function(key, value) {
-			ret[value.subject_id] = value.val_numeric;
+			if(value.val_numeric != 0) {
+				ret[value.subject_id] = value.val_numeric;	
+			}
 		});
 		this.app.mapStateManager.SVGWriter.drawParamValues(ret, "regions");
 	}
