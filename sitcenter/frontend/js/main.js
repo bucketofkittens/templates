@@ -43,7 +43,7 @@ var SVGLoader = function(app, clickCallback) {
 
 	this.appendCSS_ = function(svg) {
 		var styleElement = svg.createElementNS("http://www.w3.org/2000/svg", "style");
-		styleElement.textContent = '@font-face { font-family: "NeoSansPro-Bold"; src: url("/static/fonts/NeoSansPro-Bold.ttf"); } path { -webkit-transition: all 0.3s linear; } text { -webkit-transition: all 1.3s linear; font-family: "NeoSansPro-Bold", Times, serif; font-weight: bold; font-size: 36px; } .zoom2 { font-size: 32px; } .zoom3 { font-size: 25px;} .regions { font-size: 25px !important; }';
+		styleElement.textContent = '@font-face { font-family: "NeoSansPro-Bold"; src: url("/static/fonts/NeoSansPro-Bold.ttf"); } path { -webkit-transition: all 0.3s linear; } text { -webkit-transition: all 1.3s linear; font-family: "NeoSansPro-Bold", Times, serif; font-weight: bold; font-size: 30px; } .zoom2 { font-size: 32px; } .zoom3 { font-size: 25px;} .regions { font-size: 20px !important; }';
 		$(svg).find("svg")[0].appendChild(styleElement);
 	}
 
@@ -106,14 +106,18 @@ var SVGLoader = function(app, clickCallback) {
 					y = y + 10;
 				}
 				if(id == 102) {
-					x = x - 20;
-					y = y + 30;
+					x = x - 60;
+					y = y + 10;
+				}
+				if(id == 101) {
+					x = x - 70;
+					y = y - 30;
 				}
 				if(id == 103) {
 					x = x + 30;
 				}
 				if(id == 104) {
-					x = x + 15;
+					x = x - 15;
 				}
 				if(id == 108) {
 					x = x - 15;
@@ -136,6 +140,46 @@ var SVGLoader = function(app, clickCallback) {
 					if(id == 37) {
 						x = x - 20;
 					}
+					if(id == 70) {
+						x = x - 20;
+						y = y + 20;
+					}
+					if(id == 72) {
+						x = x - 20;
+						y = y + 20;
+					}
+					if(id == 38) {
+						x = x + 20;
+						y = y;
+					}
+					if(id == 52) {
+						x = x;
+						y = y + 20;
+					}
+					if(id == 55) {
+						x = x + 10;
+						y = y + 10;
+					}
+					if(id == 35) {
+						x = x - 10;
+						y = y + 10;
+					}
+					if(id == 59) {
+						x = x - 10;
+						y = y + 10;
+					}
+					if(id == 34) {
+						y = y + 10;
+					}
+					if(id == 13) {
+						y = y - 5;
+					}
+					if(id == 79) {
+						y = y + 10;
+					}
+					if(id == 59) {
+						x = x + 10;
+					}
 				}
 
 				var classes = "zoom"+self.app.currentZoom+" "+CSSclasses;
@@ -143,9 +187,7 @@ var SVGLoader = function(app, clickCallback) {
 				$(newElement).attr({
 					x: x,
 					y: y,
-					"fill": "#406080",
-					"stroke": "white",
-					"stroke-width": "1",
+					"fill": "#ffffff",
 					"class": classes,
 					"fill-opacity": "0"
 				});
@@ -199,8 +241,8 @@ var VideoPlayer = function() {
 	this.play = function(videoPath, endedCallback) {
 		var self = this;
 		this.video.attr("src", videoPath);
-		//this.video.attr("poster", $("#bg-image").css("backgroundImage").replace(")","").replace("url(",""));
 		this.endedCallback = endedCallback;
+		console.log(this.video[0]);
 		this.video[0].load();
 		this.video[0].play();
 		$(self.elements["BG"]).show();
@@ -642,7 +684,6 @@ var Application = function() {
 	this.initResource_ = function() {
 		var self = this; 
 		var appCache = window.applicationCache;
-
 	   	appCache.addEventListener('noupdate', $.proxy(this.onCacheLoaded_, this), false);
 	   	appCache.addEventListener('cached', $.proxy(this.onCacheLoaded_, this), false);
 	   	
@@ -651,7 +692,12 @@ var Application = function() {
 	   	}, false);
 	   	appCache.addEventListener('progress', function(e) {
 	   		$("#load").find(".text").remove();
-	   		$("#load").append('<p class="text" id="loading">Загружено: '+parseInt(e.loaded)+" из "+ e.total +' </p>');
+	   		if(e.loaded) {
+	   			$("#load").append('<p class="text" id="loading">Загружено: '+parseInt(e.loaded)+" из "+ e.total +' </p>');	
+	   		} else {
+	   			$("#load").append('<p class="text" id="loading">Загрузка приложения</p>');
+	   		}
+	   		
 	   	}, false);
 	}
 
@@ -695,6 +741,9 @@ var Application = function() {
 		this.regionsLegendWidget = new RegionsLegendWidget(this);
 
 		this.regionPanel = new RegionPanel(this);
+
+		this.regionsMapColorWidget.enable();
+		this.mapColorWidget.enable();
 
 		var self = this;
 		setTimeout(function() {

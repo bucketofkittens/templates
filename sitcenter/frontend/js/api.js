@@ -78,6 +78,14 @@ var RegionsParametrsWidgets = function(app) {
 			this.app.regionsMapColorWidget.updateParams();
 			this.elements["UOM"].html(parentLi.attr("data-uom"));
 			self.legendWidget.show();
+		} else {
+			/*$(this.CSS["PARAMETRS-LIST"]).find(".active").removeClass("active");
+			this.setTitle("");
+			this.currentParametr = null;
+			this.elements["UOM"].html("");
+			this.app.regionsMapColorWidget.onToggle_();
+			this.app.regionsLegendWidget.hide();
+			this.app.regionsMapColorel.hidden();*/
 		}
 	}
 
@@ -346,6 +354,14 @@ var ParametrsWidgets = function(app) {
 					self.legendWidget.show();
 				}
 			);
+		} else {
+			/*$(this.CSS["PARAMETRS-LIST"]).find(".active").removeClass("active");
+			this.setTitle("");
+			this.currentParametr = null;
+			this.elements["UOM"].html("");
+			this.app.mapColorWidget.onToggle_();
+			this.legendWidget.hide();
+			this.app.mapColorel.hidden();*/
 		}
 	}
 
@@ -832,7 +848,7 @@ var MapColorWidget = function(app) {
 	}
 
 	this.updateParams = function() {
-		if(this.state) {
+		if(this.state && this.app.parametrsWidgets.currentParametr) {
 			this.app.paramsManager.getParamValues(
 				this.app.parametrsWidgets.currentParametr.id,
 				this.app.currentRegion,
@@ -885,7 +901,7 @@ var MapColorWidget = function(app) {
 	}
 
 	this.updateParams = function() {
-		if(this.state) {
+		if(this.state && this.app.parametrsWidgets.currentParametr) {
 			this.app.paramsManager.getParamValues(
 				this.app.parametrsWidgets.currentParametr.id,
 				this.app.currentRegion,
@@ -895,16 +911,24 @@ var MapColorWidget = function(app) {
 		}
  	}
 
+ 	this.enable = function() {
+ 		this.elements["TOGGLE"].addClass("onShow");
+		this.state = true;
+
+		this.updateParams();
+ 	}
+
+ 	this.disable = function() {
+ 		this.elements["TOGGLE"].removeClass("onShow");
+		this.state = false;
+		this.app.mapStateManager.SVGWriter.removeParamValues();
+ 	}
+
 	this.onToggle_ = function() {
 		if(this.state == false) {
-			this.elements["TOGGLE"].addClass("onShow");
-			this.state = true;
-
-			this.updateParams();
+			this.enable();
 		} else {
-			this.elements["TOGGLE"].removeClass("onShow");
-			this.state = false;
-			this.app.mapStateManager.SVGWriter.removeParamValues();
+			this.disable();
 		}
 
 		return false;
@@ -944,7 +968,7 @@ var RegionsMapColorWidget = function(app) {
 	}
 
 	this.updateParams = function() {
-		if(this.state) {
+		if(this.state && this.app.regionsParametrsWidgets.currentParametr) {
 			this.app.paramsManager.getRegionsParamValues(
 				this.app.regionsParametrsWidgets.currentParametr.id,
 				this.app.ageSelectorRegionsWidget.selectedAge,
@@ -953,16 +977,24 @@ var RegionsMapColorWidget = function(app) {
 		}
  	}
 
+ 	this.enable = function() {
+ 		this.elements["TOGGLE"].addClass("onShow");
+		this.state = true;
+
+		this.updateParams();
+ 	}
+
+ 	this.disable = function() {
+ 		this.elements["TOGGLE"].removeClass("onShow");
+		this.state = false;
+		this.app.mapStateManager.SVGWriter.removeParamValues();
+ 	}
+
 	this.onToggle_ = function() {
 		if(this.state == false) {
-			this.elements["TOGGLE"].addClass("onShow");
-			this.state = true;
-
-			this.updateParams();
+			this.enable();
 		} else {
-			this.elements["TOGGLE"].removeClass("onShow");
-			this.state = false;
-			this.app.mapStateManager.SVGWriter.removeParamValues();
+			this.disable();
 		}
 
 		return false;
@@ -1306,7 +1338,7 @@ var FooterNavWidget = function(app) {
 
 		if(itemId == "REGIONS") {
 			this.app.mapStateManager.miniMapWriter.opacityHidden();
-			this.app.mapColorel.show();
+			
 			this.app.mapStateManager.SVGWriter.show();
 			this.app.parametrsWidgets.fullHidden();
 			this.app.regionsSelectorWidget.hidden();
@@ -1319,9 +1351,10 @@ var FooterNavWidget = function(app) {
 			this.app.mapColorel.hidden();
 			this.app.legendWidget.hide();
 			this.app.regionsMapColorWidget.updateParams();
+			this.app.mapColorel.hidden();
 
 			if(this.app.regionsParametrsWidgets.currentParametr) {
-				this.app.regionsLegendWidget.show();	
+				this.app.regionsLegendWidget.show();
 			}
 		}
 		if(itemId == "MAP") {
@@ -1329,7 +1362,7 @@ var FooterNavWidget = function(app) {
 			if(this.app.currentZoom != 1) {
 				this.app.mapStateManager.miniMapWriter.opacityShow();	
 			}
-			this.app.mapColorel.show();
+			
 			this.app.regionsLegendWidget.hide();
 			this.app.mapStateManager.SVGWriter.show();
 			this.app.mapStateManager.SVGWriter.load(this.app.configManager.getSvgById(this.app.currentRegion));
@@ -1340,9 +1373,10 @@ var FooterNavWidget = function(app) {
 			this.app.formatWidget.hidden();
 			this.app.regionPanel.hide();
 			this.app.mapColorWidget.updateParams();
+			this.app.mapColorel.show();
 
 			if(this.app.parametrsWidgets.currentParametr) {
-				this.app.legendWidget.show();	
+				this.app.legendWidget.show();
 			}
 		}
 
