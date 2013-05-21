@@ -29,6 +29,7 @@ var ConfigApp = {
 		}
 	},
 	"PRELOAD": [
+	  "/static/video/101-in.mp4",
 	  "/static/video/101-out.mp4",
 	  "/static/video/102-in.mp4",
 	  "/static/video/102-out.mp4",
@@ -141,7 +142,6 @@ var ConfigApp = {
 	  "/static/svg/72.svg",
 	  "/static/svg/76.svg",
 	  "/static/svg/77.svg",
-	  "/static/svg/100.svg?v=1",
 	  "/static/svg/all_regions_borders_center.svg",
 	  "/static/svg/all_regions_borders_left.svg",
 	  "/static/svg/all_regions_borders_right.svg",
