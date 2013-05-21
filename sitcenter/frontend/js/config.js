@@ -182,7 +182,7 @@ var ConfigApp = {
 var ConfigManager = function(app, config) {
 	this.app = app;
 	this.config = config;
-	
+
 	this.getMapById = function(id_region) {
 		return this.app.getResByPath(this.config["PATHES"]["MAP"]+id_region+".png").toURL();
 	}

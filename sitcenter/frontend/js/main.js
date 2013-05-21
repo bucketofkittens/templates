@@ -359,11 +359,11 @@ var RegionPanel = function(app) {
 	this.svgWriter = new SVGLoader(this);
 
 	this.getBgCurrentCamera = function() {
-		return ConfigApp["REGIONS"][this.currentCamera]["MAP"];
+		return this.app.getResByPath(ConfigApp["REGIONS"][this.currentCamera]["MAP"]).toURL();
 	}
 
 	this.getSVGCurrentCamera = function() {
-		return ConfigApp["REGIONS"][this.currentCamera]["SVG"];
+		return this.app.getResByPath(ConfigApp["REGIONS"][this.currentCamera]["SVG"]).toURL();
 	}
 
 	this.getVideoName = function(start, end) {
@@ -421,12 +421,12 @@ var RegionPanel = function(app) {
 		if(this.currentCamera == "CENTER") {
 			this.currentCamera = "LEFT";
 			this.elements["CAMERA-LEFT"].removeClass("onShow");
-			this.app.videoPlayer.play(this.getVideoName("CENTER", "LEFT"), $.proxy(this.onVideoPlayEnd_, this));
+			this.app.videoPlayer.play(this.app.getResByPath(this.getVideoName("CENTER", "LEFT")).toURL(), $.proxy(this.onVideoPlayEnd_, this));
 		}
 		if(this.currentCamera == "RIGHT") {
 			this.currentCamera = "CENTER";
 			this.elements["CAMERA-RIGHT"].addClass("onShow");
-			this.app.videoPlayer.play(this.getVideoName("RIGHT", "CENTER"), $.proxy(this.onVideoPlayEnd_, this));
+			this.app.videoPlayer.play(this.app.getResByPath(this.getVideoName("RIGHT", "CENTER")).toURL(), $.proxy(this.onVideoPlayEnd_, this));
 		}
 		
 	}
@@ -452,12 +452,12 @@ var RegionPanel = function(app) {
 		if(this.currentCamera == "CENTER") {
 			this.currentCamera = "RIGHT";
 			this.elements["CAMERA-RIGHT"].removeClass("onShow");
-			this.app.videoPlayer.play(this.getVideoName("CENTER", "RIGHT"), $.proxy(this.onVideoPlayEnd_, this));
+			this.app.videoPlayer.play(this.app.getResByPath(this.getVideoName("CENTER", "RIGHT")).toURL(), $.proxy(this.onVideoPlayEnd_, this));
 		}
 		if(this.currentCamera == "LEFT") {
 			this.currentCamera = "CENTER";
 			this.elements["CAMERA-LEFT"].addClass("onShow");
-			this.app.videoPlayer.play(this.getVideoName("LEFT", "CENTER"), $.proxy(this.onVideoPlayEnd_, this));
+			this.app.videoPlayer.play(this.app.getResByPath(this.getVideoName("LEFT", "CENTER")).toURL(), $.proxy(this.onVideoPlayEnd_, this));
 		}
 	}
 
