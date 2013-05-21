@@ -234,16 +234,14 @@ header h1
   font-size:18px;
   color:#fff;
   display:block;
-  padding:12px 0 11px 190px;
-  min-height: 23px;
+  min-height: 37px;
+  padding:3px 0 3px 190px;
 }
 
 #content .legend p:first-child
 {
-  margin-top:255px;
+  margin-top:270px;
   position:relative;
-  top:10px;
-  min-height: 23px;
 }
 
 #content .legend a
@@ -255,6 +253,8 @@ header h1
   line-height:15px;
   text-decoration:none;
   padding:10px 0 0 160px;
+  position: absolute;
+  bottom: 45px;
 }
 
 #content .legend a.onShow
@@ -481,13 +481,13 @@ header h1
 
 #content .data ul span
 {
-  width:180px;
+  width:170px;
   float:left;
 }
 
 #content .data ul i
 {
-  width:85px;
+  width:70px;
   float:right;
 }
 

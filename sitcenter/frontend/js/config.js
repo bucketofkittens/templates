@@ -27,7 +27,151 @@ var ConfigApp = {
 			},
 			"SVG": "/static/svg/all_regions_borders_right.svg"
 		}
-	}
+	},
+	"PRELOAD": [
+	  "/static/video/101-out.mp4",
+	  "/static/video/102-in.mp4",
+	  "/static/video/102-out.mp4",
+	  "/static/video/103-in.mp4",
+	  "/static/video/103-out.mp4",
+	  "/static/video/104-in.mp4",
+	  "/static/video/104-out.mp4",
+	  "/static/video/105-in.mp4",
+	  "/static/video/105-out.mp4",
+	  "/static/video/106-in.mp4",
+	  "/static/video/106-out.mp4",
+	  "/static/video/107-in.mp4",
+	  "/static/video/107-out.mp4",
+	  "/static/video/108-in.mp4",
+	  "/static/video/108-out.mp4",
+	  "/static/video/34-in.mp4",
+	  "/static/video/34-out.mp4",
+	  "/static/video/35-in.mp4",
+	  "/static/video/35-out.mp4",
+	  "/static/video/36-in.mp4",
+	  "/static/video/36-out.mp4",
+	  "/static/video/39-in.mp4",
+	  "/static/video/39-out.mp4",
+	  "/static/video/40-in.mp4",
+	  "/static/video/40-out.mp4",
+	  "/static/video/43-in.mp4",
+	  "/static/video/43-out.mp4",
+	  "/static/video/46-in.mp4",
+	  "/static/video/46-out.mp4",
+	  "/static/video/48-in.mp4",
+	  "/static/video/48-out.mp4",
+	  "/static/video/50-in.mp4",
+	  "/static/video/50-out.mp4",
+	  "/static/video/52-in.mp4",
+	  "/static/video/52-out.mp4",
+	  "/static/video/59-in.mp4",
+	  "/static/video/59-out.mp4",
+	  "/static/video/63-in.mp4",
+	  "/static/video/63-out.mp4",
+	  "/static/video/68-in.mp4",
+	  "/static/video/68-out.mp4",
+	  "/static/video/69-in.mp4",
+	  "/static/video/69-out.mp4",
+	  "/static/video/70-in.mp4",
+	  "/static/video/70-out.mp4",
+	  "/static/video/72-in.mp4",
+	  "/static/video/72-out.mp4",
+	  "/static/video/76-in.mp4",
+	  "/static/video/76-out.mp4",
+	  "/static/video/77-in.mp4",
+	  "/static/video/77-out.mp4",
+	  "/static/video/all-regions-left-forward.mp4",
+	  "/static/video/all-regions-left-rewind.mp4",
+	  "/static/video/all-regions-right-forward.mp4",
+	  "/static/video/all-regions-right-rewind.mp4",
+	  "/static/images/map/100.png",
+	  "/static/images/map/101.png",
+	  "/static/images/map/102.png",
+	  "/static/images/map/103.png",
+	  "/static/images/map/104.png",
+	  "/static/images/map/105.png",
+	  "/static/images/map/106.png",
+	  "/static/images/map/107.png",
+	  "/static/images/map/108.png",
+	  "/static/images/map/34.png",
+	  "/static/images/map/35.png",
+	  "/static/images/map/36.png",
+	  "/static/images/map/40.png",
+	  "/static/images/map/39.png",
+	  "/static/images/map/43.png",
+	  "/static/images/map/46.png",
+	  "/static/images/map/48.png",
+	  "/static/images/map/50.png",
+	  "/static/images/map/52.png",
+	  "/static/images/map/59.png",
+	  "/static/images/map/63.png",
+	  "/static/images/map/68.png",
+	  "/static/images/map/69.png",
+	  "/static/images/map/70.png",
+	  "/static/images/map/72.png",
+	  "/static/images/map/76.png",
+	  "/static/images/map/77.png",
+	  "/static/images/map/all-regions-center.png",
+	  "/static/images/map/all-regions-left.png",
+	  "/static/images/map/all-regions-right.png",
+	  "/static/svg/100.svg",
+	  "/static/svg/101.svg",
+	  "/static/svg/102.svg",
+	  "/static/svg/103.svg",
+	  "/static/svg/104.svg",
+	  "/static/svg/105.svg",
+	  "/static/svg/106.svg",
+	  "/static/svg/107.svg",
+	  "/static/svg/108.svg",
+	  "/static/svg/34.svg",
+	  "/static/svg/35.svg",
+	  "/static/svg/36.svg",
+	  "/static/svg/40.svg",
+	  "/static/svg/39.svg",
+	  "/static/svg/43.svg",
+	  "/static/svg/46.svg",
+	  "/static/svg/48.svg",
+	  "/static/svg/50.svg",
+	  "/static/svg/52.svg",
+	  "/static/svg/59.svg",
+	  "/static/svg/63.svg",
+	  "/static/svg/68.svg",
+	  "/static/svg/69.svg",
+	  "/static/svg/70.svg",
+	  "/static/svg/72.svg",
+	  "/static/svg/76.svg",
+	  "/static/svg/77.svg",
+	  "/static/svg/100.svg?v=1",
+	  "/static/svg/all_regions_borders_center.svg",
+	  "/static/svg/all_regions_borders_left.svg",
+	  "/static/svg/all_regions_borders_right.svg",
+	  "/static/images/mini/101.gif",
+	  "/static/images/mini/102.gif",
+	  "/static/images/mini/103.gif",
+	  "/static/images/mini/104.gif",
+	  "/static/images/mini/105.gif",
+	  "/static/images/mini/106.gif",
+	  "/static/images/mini/107.gif",
+	  "/static/images/mini/108.gif",
+	  "/static/images/mini/34.gif",
+	  "/static/images/mini/35.gif",
+	  "/static/images/mini/36.gif",
+	  "/static/images/mini/40.gif",
+	  "/static/images/mini/39.gif",
+	  "/static/images/mini/43.gif",
+	  "/static/images/mini/46.gif",
+	  "/static/images/mini/48.gif",
+	  "/static/images/mini/50.gif",
+	  "/static/images/mini/52.gif",
+	  "/static/images/mini/59.gif",
+	  "/static/images/mini/63.gif",
+	  "/static/images/mini/68.gif",
+	  "/static/images/mini/69.gif",
+	  "/static/images/mini/70.gif",
+	  "/static/images/mini/72.gif",
+	  "/static/images/mini/76.gif",
+	  "/static/images/mini/77.gif"
+	]
 }
 
 /**
@@ -38,24 +182,24 @@ var ConfigApp = {
 var ConfigManager = function(app, config) {
 	this.app = app;
 	this.config = config;
-
+	
 	this.getMapById = function(id_region) {
-		return this.config["PATHES"]["MAP"]+id_region+".png";
+		return this.app.getResByPath(this.config["PATHES"]["MAP"]+id_region+".png").toURL();
 	}
 
 	this.getMiniMapById = function(id_region) {
-		return this.config["PATHES"]["MINI-MAP"]+id_region+".gif";
+		return this.app.getResByPath(this.config["PATHES"]["MINI-MAP"]+id_region+".gif").toURL();
 	}
 
 	this.getSvgById = function(id_region) {
-		return this.config["PATHES"]["SVG"]+id_region+".svg";
+		return this.app.getResByPath(this.config["PATHES"]["SVG"]+id_region+".svg").toURL();
 	}
 
 	this.getInVideoById = function(id_region) {
-		return this.config["PATHES"]["VIDEO"]+id_region+"-in.mp4";
+		return this.app.getResByPath(this.config["PATHES"]["VIDEO"]+id_region+"-in.mp4").toURL();
 	}
 
 	this.getOutVideoById = function(id_region) {
-		return this.config["PATHES"]["VIDEO"]+id_region+"-out.mp4";
+		return this.app.getResByPath(this.config["PATHES"]["VIDEO"]+id_region+"-out.mp4").toURL();
 	}
 }

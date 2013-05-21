@@ -140,6 +140,10 @@ var SVGLoader = function(app, clickCallback) {
 					if(id == 73) {
 						x = x - 45;
 					}
+					if(id == 79) {
+						y = y - 20;
+						x = x - 30;
+					}
 					if(id == 37) {
 						x = x - 20;
 					}
@@ -322,7 +326,7 @@ var LoadingState = function(app) {
 
 	this.run = function() {
 		this.elements["BG-IMAGE"].addClass("blur");
-		this.elements["BG-IMAGE"].css("backgroundImage", "url('"+this.app.configManager.getMapById(100)+"')");
+		this.elements["BG-IMAGE"].css("backgroundImage", "url('/static/images/map/100.png')");
 		this.elements["LOADER"].addClass("onShow");
 	}
 
@@ -654,6 +658,17 @@ var Application = function() {
 	this.appTimer = new AppTimer(this);
 	this.footerNavWidget = new FooterNavWidget(this);
 
+	this.allCacheFile = $(ConfigApp["PRELOAD"]).size();
+	this.cachedFile = 0;
+	this.res = {};
+
+	
+	var self = this;
+
+	this.getResByPath = function(path) {
+		return this.res[path];
+	}
+	
 	this.CSS = {
 		"APP": "#app",
 		"TITLE": "h1"
@@ -662,8 +677,6 @@ var Application = function() {
 		"APP": $(this.CSS["APP"]),
 		"TITLE": $(this.CSS["TITLE"])
 	}
-
-	
 
 	this.prevState = function() {
 		this.currentZoom--;
@@ -678,31 +691,37 @@ var Application = function() {
 		this.appTimer.run();
 		this.initResource_();
 		this.footerNavWidget.draw();
-		//this.onCacheLoaded_();
-		//this.loadingState.stop(function() {});
-		//this.footerNavWidget.hidden();
-		//this.regionPanel.show();
 	}
 
 	// загружаем ресурсы
 	this.initResource_ = function() {
-		var self = this; 
-		var appCache = window.applicationCache;
-	   	appCache.addEventListener('noupdate', $.proxy(this.onCacheLoaded_, this), false);
-	   	appCache.addEventListener('cached', $.proxy(this.onCacheLoaded_, this), false);
-	   	
-	   	appCache.addEventListener('downloading', function(e) {
-	   		$("#load").addClass("onShow");
-	   	}, false);
-	   	appCache.addEventListener('progress', function(e) {
-	   		$("#load").find(".text").remove();
-	   		if(e.loaded) {
-	   			$("#load").append('<p class="text" id="loading">Загружено: '+parseInt(e.loaded)+" из "+ e.total +' </p>');	
-	   		} else {
-	   			$("#load").append('<p class="text" id="loading">Загрузка приложения</p>');
-	   		}
-	   		
-	   	}, false);
+		ImgCache.init(function(){
+			$.each(ConfigApp["PRELOAD"],function(key, value) {
+				ImgCache.isCached(value, function(e, state, file) {
+					if(state == false) {
+						ImgCache.cacheFile(value, function(file) {
+							$("#load").find("p").remove();
+							$("#load").append('<p class="text" id="loading">Загружено: '+parseInt(self.cachedFile)+" из "+ self.allCacheFile +' </p>');
+							self.res[value] = file;
+							self.cachedFile = self.cachedFile + 1;
+							console.log(self.res);
+							if(self.allCacheFile == self.cachedFile) {
+								self.onCacheLoaded_();
+								console.log(self.res);
+							}
+						});
+					} else {
+						self.res[e] = file;
+						self.cachedFile = self.cachedFile + 1;
+					}
+					
+					if(self.allCacheFile == self.cachedFile) {
+						//console.log(self.res);
+						self.onCacheLoaded_();
+					}
+				});
+			});
+		});
 	}
 
 	this.init = function() {
@@ -759,6 +778,10 @@ var Application = function() {
 	this.setAppTitle = function(title) {
 		this.elements["TITLE"].html(title);
 	}
+
+	
+
+	//this.onCacheLoaded_();
 
 	this.init();
 }
