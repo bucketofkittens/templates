@@ -46,7 +46,7 @@ var SVGLoader = function(app, clickCallback) {
 
 	this.appendCSS_ = function(svg) {
 		var styleElement = svg.createElementNS("http://www.w3.org/2000/svg", "style");
-		styleElement.textContent = '@font-face { font-family: "NeoSansPro-Bold"; src: url("/static/fonts/NeoSansPro-Bold.ttf"); } path { -webkit-transition: all 0.3s linear; } text { -webkit-transition: all 1.3s linear; font-family: "NeoSansPro-Bold", Times, serif; font-weight: bold; font-size: 30px; } .zoom2 { font-size: 32px; } .zoom3 { font-size: 25px;} .regions { font-size: 20px !important; }';
+		styleElement.textContent = 'path { -webkit-transition: all 0.3s linear; } text { -webkit-transition: all 1.3s linear; font-family: Verdana, Times, serif; font-weight: bold; font-size: 30px; } .zoom2 { font-size: 32px; } .zoom3 { font-size: 25px;} .regions { font-size: 20px !important; }';
 		$(svg).find("svg")[0].appendChild(styleElement);
 	}
 
