@@ -60,7 +60,6 @@ var SVGLoader = function(app, clickCallback) {
 			$(value).attr("fill", "#ffffff");
 			$(value).attr("fill-opacity", "0");
 			$(value).removeAttr("opacity");
-			console.log(self.app.currentZoom);
 			if(self.app.currentZoom != 3) {
 				$(value).css("cursor", "pointer");	
 			}
@@ -93,7 +92,6 @@ var SVGLoader = function(app, clickCallback) {
 		
 		$.each($(svg).find("g"), function(key, value) {
 			var id = $(value).attr("target");
-			console.log(id);
 			if(id) {
 				var newElement = document.createElementNS("http://www.w3.org/2000/svg", "text");
 				var path = $(value).find("path")[0];
@@ -240,7 +238,6 @@ var VideoPlayer = function() {
 
 	this.video.on('timeupdate',function(e) {
 		if(this.duration - this.currentTime < 0.2) {
-			console.log("end");
 			self.video[0].pause();
 			self.endedCallback();
 		}
@@ -250,7 +247,6 @@ var VideoPlayer = function() {
 		var self = this;
 		this.video.attr("src", videoPath);
 		this.endedCallback = endedCallback;
-		console.log(this.video[0]);
 		this.video[0].load();
 		this.video[0].play();
 		$(self.elements["BG"]).show();
@@ -704,10 +700,8 @@ var Application = function() {
 							$("#load").append('<p class="text" id="loading">Загружено: '+parseInt(self.cachedFile)+" из "+ self.allCacheFile +' </p>');
 							self.res[value] = file;
 							self.cachedFile = self.cachedFile + 1;
-							console.log(self.res);
 							if(self.allCacheFile == self.cachedFile) {
 								self.onCacheLoaded_();
-								console.log(self.res);
 							}
 						});
 					} else {
@@ -716,7 +710,6 @@ var Application = function() {
 					}
 					
 					if(self.allCacheFile == self.cachedFile) {
-						//console.log(self.res);
 						self.onCacheLoaded_();
 					}
 				});

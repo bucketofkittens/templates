@@ -347,7 +347,6 @@ var ImgCache = {
 			if (fail_callback) fail_callback($img);
 		};
 		var path = _getCachedFilePath(img_src, ImgCache.dirEntry.fullPath);
-		console.log(filePath);
 		ImgCache.filesystem.root.getFile(
 			path,
 			{ create: false },
@@ -504,7 +503,6 @@ var RegionsParametrsWidgets = function(app) {
 	}
 
 	this.parametrsNameClick_ = function(evt) {
-		console.log(evt);
 		if(!$(evt.target).hasClass("active")) {
 			var self = this;
 			var parentLi = $(evt.target).parent().parent();
@@ -839,7 +837,6 @@ var ParametrsWidgets = function(app) {
 
 	this.getParametrs_ = function(data) {
 		var self = this;
-		console.log(data);
 		this.parametrs = this.prepareParamerts_(data);
 		this.drawParamets_(this.parametrs);
 
