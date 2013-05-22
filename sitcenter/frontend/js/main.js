@@ -724,7 +724,6 @@ var Application = function() {
 		});
 
 		$(document).keydown(function(e) {
-			console.log(e);
 	        if (e.keyCode == 82 && e.altKey) {
 	           ImgCache.clearCache(function() {
 	           	location.reload();
