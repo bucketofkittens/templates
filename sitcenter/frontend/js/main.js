@@ -516,20 +516,24 @@ var MapStateManager = function(app) {
 	}
 
 	this.show = function() {
-		//this.app.mapColorel.hidden();
 		this.app.regionManager.getByParent(this.app.currentRegion, $.proxy(this.setRootRegions, this));
 		this.app.regionManager.getById(this.app.currentRegion, $.proxy(this.setCurrentRegion, this));
 		this.app.mapColorWidget.updateParams();
 		
 		this.setBgImage();
 
-		this.SVGWriter.load(this.app.configManager.getSvgById(this.app.currentRegion));
+		
 		this.app.parametrsWidgets.getParamsByRegionAndYeage(this.app.currentRegion);
 	}
 
 	this.backgroundImageLoaded_ = function() {
+		var self = this;
 		this.stateElements["BG-IMAGE"].css("backgroundImage", "url('"+this.bgImage.src+"')");
-		this.app.videoPlayer.hide();
+		console.log("load bg");
+		setTimeout(function() {
+			self.SVGWriter.load(self.app.configManager.getSvgById(self.app.currentRegion));
+			self.app.videoPlayer.hide();
+		}, 0);
 	}
 
 	this.setBgImage = function(bgImageLoaded) {
@@ -703,8 +707,11 @@ var Application = function() {
 							if(self.allCacheFile == self.cachedFile) {
 								self.onCacheLoaded_();
 							}
+						}, function() {
+							location.reload();
 						});
 					} else {
+						console.log("cached");
 						self.res[e] = file;
 						self.cachedFile = self.cachedFile + 1;
 					}
@@ -715,6 +722,14 @@ var Application = function() {
 				});
 			});
 		});
+
+		$(document).keydown(function(e) {
+	        if (e.keyCode == 82 && e.altKey) {
+	           ImgCache.clearCache(function() {
+	           	location.reload();
+	           });
+	        }
+	    });
 	}
 
 	this.init = function() {
