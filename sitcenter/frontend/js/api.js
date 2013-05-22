@@ -2027,7 +2027,7 @@ var FooterNavWidget = function(app) {
 				this.app.regionsSelectorWidget.show();
 				this.app.paramsSelectorWidget.show();
 				this.app.formatWidget.show();
-				this.app.regionPanel.addBlur();
+				this.app.regionPanel.hide();
 				this.app.graphParamsSelector.hidden();
 				this.app.graphRegionsSelectorWidget.hidden();
 				this.app.graphWidget.hidden();
