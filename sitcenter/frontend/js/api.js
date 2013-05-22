@@ -1511,7 +1511,13 @@ var MapColorWidget = function(app) {
 	}
 
 	this.paramsLoaded_ = function(data) {
-		this.app.mapStateManager.SVGWriter.drawParamValues(data);
+		var ret = {};
+		$.each(data, function(key, value) {
+			if(value.val_numeric != 0) {
+				ret[value.subject_id] = value.val_numeric;	
+			}
+		});
+		this.app.mapStateManager.SVGWriter.drawParamValues(ret);
 	}
 
 	this.updateParams = function() {
@@ -1960,7 +1966,8 @@ var FooterNavWidget = function(app) {
 			"title": "Формат"
 		},
 		"GRAPH": {
-			"title": "График"
+			"title": "График",
+			"cooming": true
 		},
 		"EVENTS": {
 			"title": "События",
@@ -1989,97 +1996,103 @@ var FooterNavWidget = function(app) {
 		var curElement = $(evt.target);
 		var itemId = curElement.attr("data-id");
 
-		if(itemId == "GRAPH") {
-			this.app.mapStateManager.addBlur();
-			this.app.mapStateManager.miniMapWriter.opacityHidden();
-			this.app.mapColorel.hidden();
-			this.app.mapStateManager.SVGWriter.hide();
-			this.app.parametrsWidgets.fullHidden();
-			this.app.regionsParametrsWidgets.fullHidden();
-			this.app.legendWidget.hide();
-			this.app.regionsLegendWidget.hide();
-			this.app.regionsSelectorWidget.hidden();
-			this.app.paramsSelectorWidget.hidden();
-			this.app.formatWidget.hidden();
-			this.app.regionPanel.addBlur();
-			this.app.graphParamsSelector.show();
-			this.app.graphRegionsSelectorWidget.show();
-			this.app.graphWidget.show();
+		if(!curElement.hasClass("cooming")) {
+			if(itemId == "GRAPH") {
+				this.app.mapStateManager.addBlur();
+				this.app.mapStateManager.miniMapWriter.opacityHidden();
+				this.app.mapColorel.hidden();
+				this.app.mapStateManager.SVGWriter.hide();
+				this.app.parametrsWidgets.fullHidden();
+				this.app.regionsParametrsWidgets.fullHidden();
+				this.app.legendWidget.hide();
+				this.app.regionsLegendWidget.hide();
+				this.app.regionsSelectorWidget.hidden();
+				this.app.paramsSelectorWidget.hidden();
+				this.app.formatWidget.hidden();
+				this.app.regionPanel.addBlur();
+				this.app.graphParamsSelector.show();
+				this.app.graphRegionsSelectorWidget.show();
+				this.app.graphWidget.show();
+			}
+			
+			if(itemId == "FORMAT") {
+				this.app.mapStateManager.addBlur();
+				this.app.mapStateManager.miniMapWriter.opacityHidden();
+				this.app.mapColorel.hidden();
+				this.app.mapStateManager.SVGWriter.hide();
+				this.app.parametrsWidgets.fullHidden();
+				this.app.regionsParametrsWidgets.fullHidden();
+				this.app.legendWidget.hide();
+				this.app.regionsLegendWidget.hide();
+				this.app.regionsSelectorWidget.show();
+				this.app.paramsSelectorWidget.show();
+				this.app.formatWidget.show();
+				this.app.regionPanel.addBlur();
+				this.app.graphParamsSelector.hidden();
+				this.app.graphRegionsSelectorWidget.hidden();
+				this.app.graphWidget.hidden();
+			}
+
+			if(itemId == "REGIONS") {
+				this.app.mapStateManager.miniMapWriter.opacityHidden();
+				
+				this.app.mapStateManager.SVGWriter.show();
+				this.app.parametrsWidgets.fullHidden();
+				this.app.regionsSelectorWidget.hidden();
+				this.app.paramsSelectorWidget.hidden();
+				this.app.formatWidget.hidden();
+				this.app.regionPanel.setBg();
+				this.app.regionPanel.show();
+				this.app.regionPanel.removeBlur();
+				this.app.regionsParametrsWidgets.fullShow();
+				this.app.mapColorel.hidden();
+				this.app.legendWidget.hide();
+				this.app.regionsMapColorWidget.updateParams();
+				this.app.mapColorel.hidden();
+				this.elements["PAGE-TITLE"].addClass("onHidden");
+				this.app.graphParamsSelector.hidden();
+				this.app.graphRegionsSelectorWidget.hidden();
+				this.app.graphWidget.hidden();
+
+				if(this.app.regionsParametrsWidgets.currentParametr) {
+					//this.app.regionsLegendWidget.show();
+				}
+			}
+			if(itemId == "MAP") {
+				this.app.mapStateManager.removeBlur();
+				if(this.app.currentZoom != 1) {
+					this.app.mapStateManager.miniMapWriter.opacityShow();	
+				}
+				
+				this.app.regionsLegendWidget.hide();
+				this.app.mapStateManager.SVGWriter.show();
+				this.app.mapStateManager.SVGWriter.load(this.app.configManager.getSvgById(this.app.currentRegion));
+				this.app.parametrsWidgets.fullShow();
+				this.app.regionsParametrsWidgets.fullHidden();
+				this.app.regionsSelectorWidget.hidden();
+				this.app.paramsSelectorWidget.hidden();
+				this.app.formatWidget.hidden();
+				this.app.regionPanel.hide();
+				this.app.mapColorWidget.updateParams();
+				this.app.mapColorel.show();
+				this.elements["PAGE-TITLE"].removeClass("onHidden");
+				this.app.graphParamsSelector.hidden();
+				this.app.graphRegionsSelectorWidget.hidden();
+				this.app.graphWidget.hidden();
+
+				if(this.app.parametrsWidgets.currentParametr) {
+					//this.app.legendWidget.show();
+				}
+			}
 		}
+
 		
-		if(itemId == "FORMAT") {
-			this.app.mapStateManager.addBlur();
-			this.app.mapStateManager.miniMapWriter.opacityHidden();
-			this.app.mapColorel.hidden();
-			this.app.mapStateManager.SVGWriter.hide();
-			this.app.parametrsWidgets.fullHidden();
-			this.app.regionsParametrsWidgets.fullHidden();
-			this.app.legendWidget.hide();
-			this.app.regionsLegendWidget.hide();
-			this.app.regionsSelectorWidget.show();
-			this.app.paramsSelectorWidget.show();
-			this.app.formatWidget.show();
-			this.app.regionPanel.addBlur();
-			this.app.graphParamsSelector.hidden();
-			this.app.graphRegionsSelectorWidget.hidden();
-			this.app.graphWidget.hidden();
-		}
 
-		if(itemId == "REGIONS") {
-			this.app.mapStateManager.miniMapWriter.opacityHidden();
-			
-			this.app.mapStateManager.SVGWriter.show();
-			this.app.parametrsWidgets.fullHidden();
-			this.app.regionsSelectorWidget.hidden();
-			this.app.paramsSelectorWidget.hidden();
-			this.app.formatWidget.hidden();
-			this.app.regionPanel.setBg();
-			this.app.regionPanel.show();
-			this.app.regionPanel.removeBlur();
-			this.app.regionsParametrsWidgets.fullShow();
-			this.app.mapColorel.hidden();
-			this.app.legendWidget.hide();
-			this.app.regionsMapColorWidget.updateParams();
-			this.app.mapColorel.hidden();
-			this.elements["PAGE-TITLE"].addClass("onHidden");
-			this.app.graphParamsSelector.hidden();
-			this.app.graphRegionsSelectorWidget.hidden();
-			this.app.graphWidget.hidden();
-
-			if(this.app.regionsParametrsWidgets.currentParametr) {
-				//this.app.regionsLegendWidget.show();
+		if(!curElement.hasClass("cooming")) {
+			if(!curElement.hasClass("active")) {
+				$(this.CSS["MAIN"]).find("a").removeClass("active");
+				curElement.toggleClass("active");		
 			}
-		}
-		if(itemId == "MAP") {
-			this.app.mapStateManager.removeBlur();
-			if(this.app.currentZoom != 1) {
-				this.app.mapStateManager.miniMapWriter.opacityShow();	
-			}
-			
-			this.app.regionsLegendWidget.hide();
-			this.app.mapStateManager.SVGWriter.show();
-			this.app.mapStateManager.SVGWriter.load(this.app.configManager.getSvgById(this.app.currentRegion));
-			this.app.parametrsWidgets.fullShow();
-			this.app.regionsParametrsWidgets.fullHidden();
-			this.app.regionsSelectorWidget.hidden();
-			this.app.paramsSelectorWidget.hidden();
-			this.app.formatWidget.hidden();
-			this.app.regionPanel.hide();
-			this.app.mapColorWidget.updateParams();
-			this.app.mapColorel.show();
-			this.elements["PAGE-TITLE"].removeClass("onHidden");
-			this.app.graphParamsSelector.hidden();
-			this.app.graphRegionsSelectorWidget.hidden();
-			this.app.graphWidget.hidden();
-
-			if(this.app.parametrsWidgets.currentParametr) {
-				//this.app.legendWidget.show();
-			}
-		}
-
-		if(!curElement.hasClass("cooming") || !curElement.hasClass("active")) {
-			$(this.CSS["MAIN"]).find("a").removeClass("active");
-			curElement.toggleClass("active");	
 		}
 	}
 

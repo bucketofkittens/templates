@@ -92,7 +92,7 @@ var SVGLoader = function(app, clickCallback) {
 		
 		$.each($(svg).find("g"), function(key, value) {
 			var id = $(value).attr("target");
-			if(id) {
+			if(id && data[id] != 0) {
 				var newElement = document.createElementNS("http://www.w3.org/2000/svg", "text");
 				var path = $(value).find("path")[0];
 				var x = parseInt(($(path).offset().left + path.getBoundingClientRect().width/2));
@@ -126,6 +126,106 @@ var SVGLoader = function(app, clickCallback) {
 				}
 				if(id == 70) {
 					x = x - 15;
+				}
+				if(id == 68) {
+					x = x - 5;
+					y = y - 45;				
+				}
+				if(id == 76) {
+					y = y - 35;				
+				}
+				if(id == 40) {
+					x = x + 10;				
+				}
+				if(id == 61) {
+					y = y + 10;
+					x = x - 10;
+				}
+				if(id == 25) {
+					y = y - 50;
+				}
+				if(id == 8) {
+					x = x + 15;
+				}
+				if(id == 6) {
+					y = y - 50;
+				}
+				if(id == 15) {
+					x = x - 10;
+					y = y - 40;
+				}
+				if(id == 7) {
+					y = y - 50;
+				}
+				if(id == 9) {
+					y = y - 50;
+				}
+				if(id == 58) {
+					x = x - 180;
+					y = y - 30;
+				}
+				if(id == 45) {
+					y = y + 30;
+					x = x - 10;
+				}
+				if(id == 12) {
+					y = y + 20;
+					x = x + 5;
+				}
+				if(id == 54) {
+					x = x - 20;
+				}
+				if(id == 21) {
+					x = x - 40;
+				}
+				if(id == 74) {
+					x = x - 60;
+				}
+				if(id == 13) {
+					x = x - 70;
+				}
+				if(id == 60) {
+					x = x - 60;
+				}
+				if(id == 64) {
+					x = x - 20;
+					y = y + 30;
+				}
+				if(id == 47) {
+					y = y + 20;
+				}
+				if(id == 75) {
+					y = y - 20;
+				}
+				if(id == 73) {
+					x = x - 50;
+				}
+				if(id == 4) {
+					x = x + 70;
+				}
+				if(id == 17) {
+					y = y + 40;
+				}
+				if(id == 19) {
+					y = y + 20;
+				}
+				if(id == 44) {
+					y = y + 20;
+					x = x - 40;
+				}
+				if(id == 24) {
+					x = x - 40;
+				}
+				if(id == 30) {
+					y = y + 80;
+					x = x - 40;
+				}
+				if(id == 66) {
+					x = x - 20;
+				}
+				if(id == 79) {
+					x = x - 30;
+					y = y - 10;
 				}
 				if(CSSclasses == "regions") {
 					if(id == 11) {
