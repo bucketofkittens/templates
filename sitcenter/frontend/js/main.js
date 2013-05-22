@@ -764,7 +764,10 @@ var Application = function() {
 		this.regionsSelectorWidget = new RegionsSelectorWidget(this);
 		this.paramsSelectorWidget = new ParamsSelectorWidget(this);
 		this.formatWidget = new FormatWidget(this);
+		this.graphWidget = new GraphWidget(this);
 		this.formatManager = new FormatManager(this);
+		this.graphParamsSelector = new GraphParamsSelector(this);
+		this.graphRegionsSelectorWidget = new GraphRegionsSelectorWidget(this);
 
 		this.regionsMapColorWidget = new RegionsMapColorWidget(this);
 		
