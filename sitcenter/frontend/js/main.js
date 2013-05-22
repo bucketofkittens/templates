@@ -522,14 +522,13 @@ var MapStateManager = function(app) {
 		
 		this.setBgImage();
 
-		
 		this.app.parametrsWidgets.getParamsByRegionAndYeage(this.app.currentRegion);
 	}
 
 	this.backgroundImageLoaded_ = function() {
 		var self = this;
 		this.stateElements["BG-IMAGE"].css("backgroundImage", "url('"+this.bgImage.src+"')");
-		console.log("load bg");
+
 		setTimeout(function() {
 			self.SVGWriter.load(self.app.configManager.getSvgById(self.app.currentRegion));
 			self.app.videoPlayer.hide();
@@ -578,6 +577,7 @@ var MapStateManager = function(app) {
 
 	this.onInVideoPlayStop_ = function(e) {
 		if(this.app.parametrsWidgets.currentParametr != null) {
+			this.app.mapColorel.hidden();
 			this.app.mapColorel.colored(
 				this.app.parametrsWidgets.currentParametr.id, 
 				this.app.currentRegion, 

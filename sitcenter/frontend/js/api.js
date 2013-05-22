@@ -1545,7 +1545,7 @@ var RegionsMapColorel = function(app) {
 	}
 
 
-	this.colored = function(params_id, year) {
+	this.colored = function(params_id, year, callback) {
 		//$(this.CSS["LOAD"]).addClass("onShow");
 
 		if(this.isShowed) {
