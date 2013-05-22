@@ -196,7 +196,12 @@ var ConfigManager = function(app, config) {
 	}
 
 	this.getInVideoById = function(id_region) {
-		return this.app.getResByPath(this.config["PATHES"]["VIDEO"]+id_region+"-in.mp4").toURL();
+		var res = this.app.getResByPath(this.config["PATHES"]["VIDEO"]+id_region+"-in.mp4");
+		if(res) {
+			return res.toURL();
+		} else {
+			return null;
+		}
 	}
 
 	this.getOutVideoById = function(id_region) {

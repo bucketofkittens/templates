@@ -1695,7 +1695,8 @@ var MapColorel = function(app) {
 	}
 
 
-	this.colored = function(params_id, region_id, year) {
+	this.colored = function(params_id, region_id, year, callback) {
+		var self = this;
 		var mapPath = this.app.apiHost+this.ajaxPath+params_id+"/"+region_id+"/"+year+"/map";
 
 		//$(this.CSS["LOAD"]).addClass("onShow");
@@ -1703,10 +1704,12 @@ var MapColorel = function(app) {
 		if(this.isShowed) {
 			this.elements["CONTAINER"].removeClass("onShow");
 		}
-		$.ajax({ url: mapPath }).always($.proxy(this.onGetMapLink_, this));
+		$.ajax({ url: mapPath }).always(function(data) {
+			self.onGetMapLink_(data, callback);
+		});
 	}
 
-	this.onGetMapLink_ = function(data) {
+	this.onGetMapLink_ = function(data, callback) {
 		var link = data.responseText;
 		var self = this;
 		var image = new Image();
@@ -1714,9 +1717,16 @@ var MapColorel = function(app) {
         image.src = self.app.apiHost+link;
 
         image.onload = function() {
-        	self.elements["CONTAINER"].css("backgroundImage", "url('"+self.app.apiHost+link+"')");
-			self.elements["CONTAINER"].addClass("onShow");
+        	if(callback) {
+        		callback();
+			}
+			setTimeout(function() {
+    			self.elements["CONTAINER"].css("backgroundImage", "url('"+self.app.apiHost+link+"')");
+				self.elements["CONTAINER"].addClass("onShow");
+    		}, 0);
+        	
 			//$(self.CSS["LOAD"]).removeClass("onShow");
+			
         }
 	}
 

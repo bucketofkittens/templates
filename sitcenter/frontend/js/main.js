@@ -98,135 +98,6 @@ var SVGLoader = function(app, clickCallback) {
 				var x = parseInt(($(path).offset().left + path.getBoundingClientRect().width/2));
 				var y = parseInt(($(path).offset().top + path.getBoundingClientRect().height/2));
 
-				if(id == 77) {
-					x = x - 20;
-					y = y + 20;
-				}
-				if(id == 76) {
-					x = x - 20;
-					y = y + 10;
-				}
-				if(id == 102) {
-					x = x - 60;
-					y = y + 10;
-				}
-				if(id == 101) {
-					x = x - 70;
-					y = y - 30;
-				}
-				if(id == 103) {
-					x = x + 30;
-				}
-				if(id == 104) {
-					x = x - 15;
-				}
-				if(id == 108) {
-					x = x - 15;
-					y = y - 50;
-				}
-				if(id == 70) {
-					x = x - 15;
-				}
-				if(id == 68) {
-					x = x - 5;
-					y = y - 45;				
-				}
-				if(id == 76) {
-					y = y - 35;				
-				}
-				if(id == 40) {
-					x = x + 10;				
-				}
-				if(id == 61) {
-					y = y + 10;
-					x = x - 10;
-				}
-				if(id == 25) {
-					y = y - 50;
-				}
-				if(id == 8) {
-					x = x + 15;
-				}
-				if(id == 6) {
-					y = y - 50;
-				}
-				if(id == 15) {
-					x = x - 10;
-					y = y - 40;
-				}
-				if(id == 7) {
-					y = y - 50;
-				}
-				if(id == 9) {
-					y = y - 50;
-				}
-				if(id == 58) {
-					x = x - 180;
-					y = y - 30;
-				}
-				if(id == 45) {
-					y = y + 30;
-					x = x - 10;
-				}
-				if(id == 12) {
-					y = y + 20;
-					x = x + 5;
-				}
-				if(id == 54) {
-					x = x - 20;
-				}
-				if(id == 21) {
-					x = x - 40;
-				}
-				if(id == 74) {
-					x = x - 60;
-				}
-				if(id == 13) {
-					x = x - 70;
-				}
-				if(id == 60) {
-					x = x - 60;
-				}
-				if(id == 64) {
-					x = x - 20;
-					y = y + 30;
-				}
-				if(id == 47) {
-					y = y + 20;
-				}
-				if(id == 75) {
-					y = y - 20;
-				}
-				if(id == 73) {
-					x = x - 50;
-				}
-				if(id == 4) {
-					x = x + 70;
-				}
-				if(id == 17) {
-					y = y + 40;
-				}
-				if(id == 19) {
-					y = y + 20;
-				}
-				if(id == 44) {
-					y = y + 20;
-					x = x - 40;
-				}
-				if(id == 24) {
-					x = x - 40;
-				}
-				if(id == 30) {
-					y = y + 80;
-					x = x - 40;
-				}
-				if(id == 66) {
-					x = x - 20;
-				}
-				if(id == 79) {
-					x = x - 30;
-					y = y - 10;
-				}
 				if(CSSclasses == "regions") {
 					if(id == 11) {
 						x = x - 30;
@@ -284,6 +155,139 @@ var SVGLoader = function(app, clickCallback) {
 					}
 					if(id == 59) {
 						x = x + 10;
+					}
+				} else {
+					if(id == 77) {
+						x = x - 20;
+						y = y + 20;
+					}
+					if(id == 76) {
+						x = x - 20;
+						y = y + 10;
+					}
+					if(id == 102) {
+						x = x - 60;
+						y = y + 10;
+					}
+					if(id == 101) {
+						x = x - 70;
+						y = y - 30;
+					}
+					if(id == 103) {
+						x = x + 30;
+					}
+					if(id == 104) {
+						x = x - 15;
+					}
+					if(id == 108) {
+						x = x - 15;
+						y = y - 50;
+					}
+					if(id == 70) {
+						x = x - 15;
+					}
+					if(id == 68) {
+						x = x - 5;
+						y = y - 45;				
+					}
+					if(id == 76) {
+						y = y - 35;				
+					}
+					if(id == 40) {
+						x = x + 10;				
+					}
+					if(id == 61) {
+						y = y + 10;
+						x = x - 10;
+					}
+					if(id == 25) {
+						y = y - 50;
+					}
+					if(id == 8) {
+						x = x + 15;
+					}
+					if(id == 6) {
+						y = y - 50;
+					}
+					if(id == 15) {
+						x = x - 10;
+						y = y - 40;
+					}
+					if(id == 7) {
+						y = y - 50;
+					}
+					if(id == 9) {
+						y = y - 50;
+					}
+					if(id == 58) {
+						x = x - 180;
+						y = y - 30;
+					}
+					if(id == 45) {
+						y = y + 30;
+						x = x - 10;
+					}
+					if(id == 12) {
+						y = y + 20;
+						x = x + 5;
+					}
+					if(id == 54) {
+						x = x - 20;
+					}
+					if(id == 21) {
+						x = x - 40;
+					}
+					if(id == 74) {
+						x = x - 60;
+					}
+					if(id == 13) {
+						x = x - 70;
+					}
+					if(id == 60) {
+						x = x - 60;
+					}
+					if(id == 64) {
+						x = x - 20;
+						y = y + 30;
+					}
+					if(id == 47) {
+						y = y + 20;
+					}
+					if(id == 75) {
+						y = y - 20;
+					}
+					if(id == 73) {
+						x = x - 50;
+					}
+					if(id == 4) {
+						x = x + 70;
+					}
+					if(id == 17) {
+						y = y + 40;
+					}
+					if(id == 19) {
+						y = y + 20;
+					}
+					if(id == 44) {
+						y = y + 20;
+						x = x - 40;
+					}
+					if(id == 24) {
+						x = x - 40;
+					}
+					if(id == 30) {
+						y = y + 80;
+						x = x - 40;
+					}
+					if(id == 66) {
+						x = x - 20;
+					}
+					if(id == 79) {
+						x = x - 30;
+						y = y - 10;
+					}
+					if(id == 42) {
+						x = x - 30;
 					}
 				}
 
@@ -649,16 +653,21 @@ var MapStateManager = function(app) {
 
 	this.onOutVideoPlayStop_ = function() {
 		this.app.currentRegion = this.prevRegion.id;
+		var self = this;
 		if(this.app.parametrsWidgets.currentParametr != null) {
 			this.app.mapColorel.colored(
 				this.app.parametrsWidgets.currentParametr.id, 
 				this.app.currentRegion, 
-				this.app.ageSelectorWidget.selectedAge
+				this.app.ageSelectorWidget.selectedAge,
+				function() {
+					self.app.prevState();
+					self.app.mapStateManager.show();
+				}
 			);	
+		} else {
+			self.app.prevState();
+			self.app.mapStateManager.show();
 		}
-		
-		this.app.prevState();
-		this.app.mapStateManager.show();
 	}
 
 	this.clear = function() {
@@ -668,24 +677,35 @@ var MapStateManager = function(app) {
 	this.onSvgClick_ = function(evt) {
 		var newIdRegion = $(evt.target).parent().attr("target");
 		if(newIdRegion) {
-			this.app.mapColorel.hidden();
-			this.app.currentRegion = $(evt.target).parent().attr("target");
-			this.app.videoPlayer.play(this.app.configManager.getInVideoById(this.app.currentRegion), $.proxy(this.onInVideoPlayStop_, this));
-			this.miniMapWriter.hiden();
+			var inVideo = this.app.configManager.getInVideoById($(evt.target).parent().attr("target"));
+			if(inVideo) {
+				this.app.currentRegion = $(evt.target).parent().attr("target");
+				this.app.mapColorel.hidden();
+				this.app.videoPlayer.play(inVideo, $.proxy(this.onInVideoPlayStop_, this));
+				this.miniMapWriter.hiden();	
+			}
 		}
 	} 
 
 	this.onInVideoPlayStop_ = function(e) {
+		var self = this;
 		if(this.app.parametrsWidgets.currentParametr != null) {
-			this.app.mapColorel.hidden();
 			this.app.mapColorel.colored(
 				this.app.parametrsWidgets.currentParametr.id, 
 				this.app.currentRegion, 
-				this.app.ageSelectorWidget.selectedAge
+				this.app.ageSelectorWidget.selectedAge,
+				function() {
+					self.app.mapColorel.hidden();
+					self.app.nextState();
+					self.app.mapStateManager.show();
+				}
 			);	
+		} else {
+			self.app.mapColorel.hidden();
+			self.app.nextState();
+			self.app.mapStateManager.show();
 		}
-		this.app.nextState();
-		this.app.mapStateManager.show();
+		
 	}
 
 	this.setPrevRegion = function(data) {
