@@ -2,6 +2,8 @@
 @import "fonts.css";
 @import "jquery.selectbox.css";
 @import "jquery.jscrollpane.css";
+@import "jquery.datepick.css";
+
 @-webkit-keyframes rotating {
     from{
         -webkit-transform: rotate(0deg);
@@ -595,6 +597,18 @@ header h1
   left:auto;
 }
 
+.show-g
+{
+  position:absolute;
+  background:url(/static/images/formats/show-right.png) right center no-repeat;
+  height:619px;
+  width:60px;
+  top:153px;
+  right:0;
+  z-index:200;
+  left:auto;
+}
+
 .reg
 {
   background:url(/static/images/formats/show-left.png) left center no-repeat;
@@ -625,6 +639,17 @@ header h1
   display:block;
 }
 
+#content .data.g
+{
+  position:absolute;
+  background:url(/static/images/right-g.png) right center no-repeat;
+  height:635px;
+  width:335px;
+  top:153px;
+  right:0;
+  display:block;
+}
+
 #content .data.region .hidden
 {
   position:absolute;
@@ -637,7 +662,7 @@ header h1
   z-index:130;
 }
 
-#content .data.f .hidden
+#content .data.f .hidden, #content .data.g .hidden
 {
   position:absolute;
   background:url(/static/images/formats/h-right.png) center center no-repeat;
@@ -649,7 +674,7 @@ header h1
   z-index:130;
 }
 
-#content .data.f h3
+#content .data.f h3, #content .data.g h3
 {
   padding-right:0;
   margin:23px 25px 20px 55px;
@@ -663,7 +688,7 @@ header h1
   margin:72px 0 35px 40px;
 }
 
-#content .data.f .search
+#content .data.f .search, #content .data.g .search
 {
   width:160px;
   height:25px;
@@ -671,7 +696,7 @@ header h1
   margin:0 0 35px -30px;
 }
 
-#content .data.f section ul a,#content .data.region section ul a
+#content .data.f section ul a, #content .data.region section ul a, #content .data.g section ul a
 {
   background:url(/static/images/formats/yah.png) center center no-repeat;
   height:30px;
@@ -679,7 +704,7 @@ header h1
   float:right;
 }
 
-#content .data.f section ul a.current,#content .data.region section ul a.current
+#content .data.f section ul a.current ,#content .data.region section ul a.current, #content .data.g section ul a.current
 {
   background:url(/static/images/formats/ya.png) center center no-repeat;
 }
@@ -691,18 +716,18 @@ header h1
   cursor:pointer;
 }
 
-#content .data.f section ul span
+#content .data.f section ul span, #content .data.g section ul span
 {
   width:205px!important;
   cursor:pointer;
 }
 
-#content .data.f section li ul li span
+#content .data.f section li ul li span, #content .data.g section li ul li span
 {
   width:195px!important;
 }
 
-#content .data.f .scroll
+#content .data.f .scroll, #content .data.g .scroll
 {
   overflow:auto;
   max-height:450px;
@@ -718,7 +743,7 @@ header h1
   padding-left:50px;
 }
 
-#content .data.f .scroll li
+#content .data.f .scroll li, #content .data.g.scroll li
 {
   width:250px!important;
 }
@@ -734,6 +759,17 @@ header h1
 }
 
 #content .table
+{
+  position:absolute;
+  background:url(/static/images/formats/table.png) center center no-repeat;
+  height:830px;
+  width:1130px;
+  left:420px;
+  top:155px;
+  z-index:100;
+}
+
+#content #graph-content
 {
   position:absolute;
   background:url(/static/images/formats/table.png) center center no-repeat;
@@ -777,7 +813,7 @@ header h1
   visibility:hidden;
 }
 
-#map-params.hidden,#regions-params.hidden
+#map-params.hidden,#regions-params.hidden,#graph-params.hidden
 {
   right:-370px;
 }
@@ -792,29 +828,36 @@ header h1
   transition:all 1s linear;
 }
 
-#region-data .jspVerticalBar
+#region-data .jspVerticalBar, 
+#graph-region-data .jspVerticalBar
 {
   left:0;
   right:auto;
   background:url(/static/images/formats/s1.png) center center no-repeat;
 }
 
-#panels #region-data .jspContainer .jspArrowUp,#panels #region-data .jspContainer .jspArrowDown
+#panels #region-data .jspContainer .jspArrowUp,
+#panels #region-data .jspContainer .jspArrowDown,
+#panels #graph-region-data .jspContainer .jspArrowUp,
+#panels #graph-region-data .jspContainer .jspArrowDown
 {
   left:2px!important;
 }
 
-#panels #region-data .jspContainer .jspDrag
+#panels #region-data .jspContainer .jspDrag,
+#panels #graph-region-data .jspContainer .jspDrag
 {
   right:3px!important;
 }
 
-#panels #content .data.f .jspVerticalBar
+#panels #content .data.f .jspVerticalBar,
+#panels #content .data.g .jspVerticalBar
 {
   background:url(/static/images/formats/s2.png) center center no-repeat;
 }
 
-#format-data.hidden
+#format-data.hidden, 
+#graph-content.hidden
 {
   top:1200px!important;
 }
@@ -900,12 +943,17 @@ header h1
   text-decoration:underline;
 }
 
-#content .data.region section li ul li span,#content .data.f .scroll li ul li
+#content .data.region section li ul li span,#content .data.f .scroll li ul li,#content .data.g .scroll li ul li
 {
   width:240px!important;
 }
 
-#map-params,#regions-params,#params-selector
+#map-params,
+#regions-params,
+#params-selector, 
+#graph-selector,
+#graph-regions-selector,
+#graph-data
 {
   position:relative;
   right:0;
@@ -915,12 +963,19 @@ header h1
   transition:all 1s linear;
 }
 
-#regions-selector.hidden,#region-data.hidden,#regions-nav-show.hidden
+#regions-selector.hidden, 
+#region-data.hidden,
+#graph-region-data.hidden,
+#regions-nav-show.hidden,
+#graph-regions-selector.hidden,
+#graph-regions-nav-show.hidden
 {
-  left:-370px;
+  left:-390px;
 }
 
-#region-data,#params-data
+#region-data,
+#graph-region-data,
+#params-data
 {
   -moz-transition:all 1s linear;
   -o-transition:all 1s linear;
@@ -929,7 +984,12 @@ header h1
   display:block!important;
 }
 
-#regions-nav-show,#params-nav-show,#format-data
+#regions-nav-show, 
+#params-nav-show, 
+#format-data,
+#graph-content, 
+#graph-nav-show,
+#graph-regions-nav-show
 {
   -moz-transition:all 1s linear;
   -o-transition:all 1s linear;
@@ -937,17 +997,32 @@ header h1
   transition:all 1s linear;
 }
 
-#params-selector.hidden,#params-data.hidden,#params-nav-show.hidden
+#params-selector.hidden,
+#params-data.hidden,
+#params-nav-show.hidden, 
+#graph-data.hidden, 
+#graph-selector.hidden, 
+#graph-nav-show.hidden
 {
   right:-370px!important;
 }
 
-#panels #region-data .jspContainer,#panels #content .data.f .jspContainer
+#panels #region-data .jspContainer,
+#panels #graph-region-data .jspContainer,
+#panels #content .data.f .jspContainer, 
+#panels #content .data.g .jspContainer
 {
   height:447px!important;
 }
 
-#content #region-data .jspPane,#content .data.f ul.first
+#content #region-data .jspPane,
+#content #graph-region-data .jspPane,
+#content .data.f ul.first,
+#content .data.g ul.first
 {
   margin-left:0!important;
+}
+
+#graph-panel {
+	height: 700px;
 }

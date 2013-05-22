@@ -82,6 +82,13 @@
                             </table>
                         </div>
                     </div>
+                    <div class=" hidden" id="graph-content">
+                        <div id="graph-panel"></div>
+                        <div id="graph-datas">
+                            <input type="text" id="graph-datas-begin" />
+                            <input id="graph-datas-end" />
+                        </div>
+                    </div>
                     <div id="params-selector" class="hidden">
                         <a href="#" class="show-f" id="params-nav-show"></a>
                         <div class="data f hidden" id="params-data">
@@ -90,6 +97,23 @@
                             <input type="text" class="search" placeholder="Поиск" />
                             <select class="year" id="params-age-selected"></select>
                             <section class="scroll" id="params-data-place"></section>
+                        </div>
+                    </div>
+                    <div id="graph-selector" class="hidden">
+                        <a href="#" class="show-f" id="graph-nav-show"></a>
+                        <div class="data g hidden" id="graph-data">
+                            <a href="#" class="hidden" id="graph-data-hidden"></a>
+                            <h3>&nbsp;</h3>
+                            <input type="text" class="search" placeholder="Поиск" />
+                            <section class="scroll" id="graph-data-place"></section>
+                        </div>
+                    </div>
+                    <div id="graph-regions-selector" class="hidden">
+                        <a href="#" class="show-f reg" id="graph-regions-nav-show"></a>
+                        <div class="data region hidden" id="graph-region-data">
+                            <a href="#" class="hidden" id="graph-region-data-hidden"></a>
+                            <input type="text" class="search" placeholder="Поиск" id="graph-region-selector-filter" />
+                            <section class="scroll" id="graph-region-data-place"></section>
                         </div>
                     </div>
                     <div id="regions-left-camera"></div>
@@ -115,6 +139,10 @@
         <script type="text/javascript" src="./js/jquery.mousewheel.js"></script>
         <script type="text/javascript" src="./js/mwheelIntent.js"></script>
         <script type="text/javascript" src="./js/jquery.jscrollpane.min.js"></script>
+        <script type="text/javascript" src="./js/jquery.datepick.min.js"></script>
+        <script type="text/javascript" src="./js/jquery.datepick-ru.js"></script>
+        <script type="text/javascript" src="./js/jquery.flot.min.js"></script>
+        
         <script type="text/javascript" src="./js/api.js"></script>
         <script type="text/javascript" src="./js/config.js"></script>
         <script type="text/javascript" src="./js/main.js"></script>
