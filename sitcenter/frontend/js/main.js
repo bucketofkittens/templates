@@ -700,6 +700,7 @@ var Application = function() {
 				ImgCache.isCached(value, function(e, state, file) {
 					if(state == false) {
 						ImgCache.cacheFile(value, function(file) {
+							console.log("loaded");
 							$("#load").find("p").remove();
 							$("#load").append('<p class="text" id="loading">Загружено: '+parseInt(self.cachedFile)+" из "+ self.allCacheFile +' </p>');
 							self.res[value] = file;
@@ -712,6 +713,8 @@ var Application = function() {
 						});
 					} else {
 						console.log("cached");
+						$("#load").find("p").remove();
+						$("#load").append('<p class="text" id="loading">Загружено: '+parseInt(self.cachedFile)+" из "+ self.allCacheFile +' </p>');
 						self.res[e] = file;
 						self.cachedFile = self.cachedFile + 1;
 					}
@@ -723,7 +726,7 @@ var Application = function() {
 			});
 		});
 
-		$(document).keydown(function(e) {
+		$(document).on("keydown", function(e) {
 	        if (e.keyCode == 82 && e.altKey) {
 	           ImgCache.clearCache(function() {
 	           	location.reload();
