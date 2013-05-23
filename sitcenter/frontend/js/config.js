@@ -8,7 +8,7 @@ var ConfigApp = {
 	"API-HOST": "http://54.224.205.171:3000",
 	"REGIONS": {
 		"LEFT": {
-			"MAP": "/static/images/map/all-regions-left.png",
+			"MAP": "/static/images/map/all-regions-left.jpg",
 			"VIDEO": {
 				"IN": "/static/video/all-regions-left-forward.mp4",
 				"OUT": "/static/video/all-regions-left-rewind.mp4"
@@ -16,11 +16,11 @@ var ConfigApp = {
 			"SVG": "/static/svg/all_regions_borders_left.svg"
 		},
 		"CENTER": {
-			"MAP": "/static/images/map/all-regions-center.png",
+			"MAP": "/static/images/map/all-regions-center.jpg",
 			"SVG": "/static/svg/all_regions_borders_center.svg"
 		},
 		"RIGHT": {
-			"MAP": "/static/images/map/all-regions-right.png",
+			"MAP": "/static/images/map/all-regions-right.jpg",
 			"VIDEO": {
 				"IN": "/static/video/all-regions-right-forward.mp4",
 				"OUT": "/static/video/all-regions-right-rewind.mp4"
@@ -85,36 +85,36 @@ var ConfigApp = {
 	  "/static/video/all-regions-left-rewind.mp4",
 	  "/static/video/all-regions-right-forward.mp4",
 	  "/static/video/all-regions-right-rewind.mp4",
-	  "/static/images/map/100.png",
-	  "/static/images/map/101.png",
-	  "/static/images/map/102.png",
-	  "/static/images/map/103.png",
-	  "/static/images/map/104.png",
-	  "/static/images/map/105.png",
-	  "/static/images/map/106.png",
-	  "/static/images/map/107.png",
-	  "/static/images/map/108.png",
-	  "/static/images/map/34.png",
-	  "/static/images/map/35.png",
-	  "/static/images/map/36.png",
-	  "/static/images/map/40.png",
-	  "/static/images/map/39.png",
-	  "/static/images/map/43.png",
-	  "/static/images/map/46.png",
-	  "/static/images/map/48.png",
-	  "/static/images/map/50.png",
-	  "/static/images/map/52.png",
-	  "/static/images/map/59.png",
-	  "/static/images/map/63.png",
-	  "/static/images/map/68.png",
-	  "/static/images/map/69.png",
-	  "/static/images/map/70.png",
-	  "/static/images/map/72.png",
-	  "/static/images/map/76.png",
-	  "/static/images/map/77.png",
-	  "/static/images/map/all-regions-center.png",
-	  "/static/images/map/all-regions-left.png",
-	  "/static/images/map/all-regions-right.png",
+	  "/static/images/map/100.jpg",
+	  "/static/images/map/101.jpg",
+	  "/static/images/map/102.jpg",
+	  "/static/images/map/103.jpg",
+	  "/static/images/map/104.jpg",
+	  "/static/images/map/105.jpg",
+	  "/static/images/map/106.jpg",
+	  "/static/images/map/107.jpg",
+	  "/static/images/map/108.jpg",
+	  "/static/images/map/34.jpg",
+	  "/static/images/map/35.jpg",
+	  "/static/images/map/36.jpg",
+	  "/static/images/map/40.jpg",
+	  "/static/images/map/39.jpg",
+	  "/static/images/map/43.jpg",
+	  "/static/images/map/46.jpg",
+	  "/static/images/map/48.jpg",
+	  "/static/images/map/50.jpg",
+	  "/static/images/map/52.jpg",
+	  "/static/images/map/59.jpg",
+	  "/static/images/map/63.jpg",
+	  "/static/images/map/68.jpg",
+	  "/static/images/map/69.jpg",
+	  "/static/images/map/70.jpg",
+	  "/static/images/map/72.jpg",
+	  "/static/images/map/76.jpg",
+	  "/static/images/map/77.jpg",
+	  "/static/images/map/all-regions-center.jpg",
+	  "/static/images/map/all-regions-left.jpg",
+	  "/static/images/map/all-regions-right.jpg",
 	  "/static/svg/100.svg",
 	  "/static/svg/101.svg",
 	  "/static/svg/102.svg",
@@ -184,7 +184,7 @@ var ConfigManager = function(app, config) {
 	this.config = config;
 
 	this.getMapById = function(id_region) {
-		return this.app.getResByPath(this.config["PATHES"]["MAP"]+id_region+".png").toURL();
+		return this.app.getResByPath(this.config["PATHES"]["MAP"]+id_region+".jpg").toURL();
 	}
 
 	this.getMiniMapById = function(id_region) {

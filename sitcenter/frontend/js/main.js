@@ -347,9 +347,13 @@ var VideoPlayer = function() {
 		}
     });
 
-	this.play = function(videoPath, endedCallback) {
+	this.play = function(videoPath, endedCallback, poster) {
 		var self = this;
 		this.video.attr("src", videoPath);
+		if(poster) {
+			this.video.attr("poster", poster);	
+		}
+		
 		this.endedCallback = endedCallback;
 		this.video[0].load();
 		this.video[0].play();
@@ -525,12 +529,20 @@ var RegionPanel = function(app) {
 		if(this.currentCamera == "CENTER") {
 			this.currentCamera = "LEFT";
 			this.elements["CAMERA-LEFT"].removeClass("onShow");
-			this.app.videoPlayer.play(this.app.getResByPath(this.getVideoName("CENTER", "LEFT")).toURL(), $.proxy(this.onVideoPlayEnd_, this));
+			this.app.videoPlayer.play(
+				this.app.getResByPath(this.getVideoName("CENTER", "LEFT")).toURL(),
+				$.proxy(this.onVideoPlayEnd_, this),
+				this.bgImage
+			);
 		}
 		if(this.currentCamera == "RIGHT") {
 			this.currentCamera = "CENTER";
 			this.elements["CAMERA-RIGHT"].addClass("onShow");
-			this.app.videoPlayer.play(this.app.getResByPath(this.getVideoName("RIGHT", "CENTER")).toURL(), $.proxy(this.onVideoPlayEnd_, this));
+			this.app.videoPlayer.play(
+				this.app.getResByPath(this.getVideoName("RIGHT", "CENTER")).toURL(), 
+				$.proxy(this.onVideoPlayEnd_, this),
+				this.bgImage
+			);
 		}
 		
 	}
@@ -556,12 +568,20 @@ var RegionPanel = function(app) {
 		if(this.currentCamera == "CENTER") {
 			this.currentCamera = "RIGHT";
 			this.elements["CAMERA-RIGHT"].removeClass("onShow");
-			this.app.videoPlayer.play(this.app.getResByPath(this.getVideoName("CENTER", "RIGHT")).toURL(), $.proxy(this.onVideoPlayEnd_, this));
+			this.app.videoPlayer.play(
+				this.app.getResByPath(this.getVideoName("CENTER", "RIGHT")).toURL(), 
+				$.proxy(this.onVideoPlayEnd_, this),
+				this.bgImage
+			);
 		}
 		if(this.currentCamera == "LEFT") {
 			this.currentCamera = "CENTER";
 			this.elements["CAMERA-LEFT"].addClass("onShow");
-			this.app.videoPlayer.play(this.app.getResByPath(this.getVideoName("LEFT", "CENTER")).toURL(), $.proxy(this.onVideoPlayEnd_, this));
+			this.app.videoPlayer.play(this.app.getResByPath(
+				this.getVideoName("LEFT", "CENTER")).toURL(), 
+				$.proxy(this.onVideoPlayEnd_, this),
+				this.bgImage
+			);
 		}
 	}
 
@@ -620,11 +640,14 @@ var MapStateManager = function(app) {
 	}
 
 	this.show = function() {
+		var self = this;
+		console.log(this.app.currentRegion);
 		this.app.regionManager.getByParent(this.app.currentRegion, $.proxy(this.setRootRegions, this));
 		this.app.regionManager.getById(this.app.currentRegion, $.proxy(this.setCurrentRegion, this));
 		this.app.mapColorWidget.updateParams();
 		
 		this.setBgImage();
+		this.SVGWriter.load(self.app.configManager.getSvgById(self.app.currentRegion));
 
 		this.app.parametrsWidgets.getParamsByRegionAndYeage(this.app.currentRegion);
 	}
@@ -634,9 +657,8 @@ var MapStateManager = function(app) {
 		this.stateElements["BG-IMAGE"].css("backgroundImage", "url('"+this.bgImage.src+"')");
 
 		setTimeout(function() {
-			self.SVGWriter.load(self.app.configManager.getSvgById(self.app.currentRegion));
 			self.app.videoPlayer.hide();
-		}, 0);
+		}, 50);
 	}
 
 	this.setBgImage = function(bgImageLoaded) {
@@ -648,7 +670,10 @@ var MapStateManager = function(app) {
 	this.onBack = function() {
 		this.app.mapColorel.hidden();
 		this.miniMapWriter.hiden();
-		this.app.videoPlayer.play(this.app.configManager.getOutVideoById(this.app.currentRegion), $.proxy(this.onOutVideoPlayStop_, this));
+		this.app.videoPlayer.play(
+			this.app.configManager.getOutVideoById(this.app.currentRegion), 
+			$.proxy(this.onOutVideoPlayStop_, this),
+			this.bgImage.src);
 	}
 
 	this.onOutVideoPlayStop_ = function() {
@@ -680,8 +705,9 @@ var MapStateManager = function(app) {
 			var inVideo = this.app.configManager.getInVideoById($(evt.target).parent().attr("target"));
 			if(inVideo) {
 				this.app.currentRegion = $(evt.target).parent().attr("target");
+				console.log(this.app.currentRegion);
 				this.app.mapColorel.hidden();
-				this.app.videoPlayer.play(inVideo, $.proxy(this.onInVideoPlayStop_, this));
+				this.app.videoPlayer.play(inVideo, $.proxy(this.onInVideoPlayStop_, this), this.bgImage.src);
 				this.miniMapWriter.hiden();	
 			}
 		}
@@ -695,13 +721,11 @@ var MapStateManager = function(app) {
 				this.app.currentRegion, 
 				this.app.ageSelectorWidget.selectedAge,
 				function() {
-					self.app.mapColorel.hidden();
 					self.app.nextState();
 					self.app.mapStateManager.show();
 				}
 			);	
 		} else {
-			self.app.mapColorel.hidden();
 			self.app.nextState();
 			self.app.mapStateManager.show();
 		}

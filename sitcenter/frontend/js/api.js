@@ -1641,6 +1641,7 @@ var RegionsMapColorWidget = function(app) {
 	}
 
 	this.updateParams = function() {
+		console.log(this.app.regionsParametrsWidgets.currentParametr);
 		if(this.state && this.app.regionsParametrsWidgets.currentParametr) {
 			this.app.paramsManager.getRegionsParamValues(
 				this.app.regionsParametrsWidgets.currentParametr.id,
