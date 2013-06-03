@@ -289,7 +289,7 @@ header h1
   left:50%;
   margin-left:-510px;
   top:40px;
-  z-index:200;
+  z-index:500;
   -moz-transition:all .5s linear;
   -o-transition:all .5s linear;
   -webkit-transition:all .5s linear;
@@ -758,6 +758,21 @@ header h1
   width:280px!important;
 }
 
+#content .data.region .scroll li ul,
+#content .data.g .scroll li ul {
+  height: 0px;
+  visibility: hidden;
+  -moz-transition:all 1s linear;
+  -o-transition:all 1s linear;
+  -webkit-transition:all 1s linear;
+  transition:all 1s linear;
+}
+#content .data.region .scroll li ul.itemShow, 
+#content .data.g .scroll li ul.itemShow {
+  height: auto;
+  visibility: visible;
+}
+
 #content .table
 {
   position:absolute;
@@ -777,7 +792,7 @@ header h1
   width:1130px;
   left:420px;
   top:155px;
-  z-index:100;
+  z-index:200;
 }
 
 #content .table table
@@ -1024,5 +1039,71 @@ header h1
 }
 
 #graph-panel {
-	height: 700px;
+	height: 680px;
+  margin: 40px 40px 20px 40px;
+}
+
+#graph-panel .legend {
+  display: block;
+  background: none;
+}
+
+#graph-datas {
+  margin-left: 60px;
+}
+
+#graph-datas label {
+  padding-left: 15px;
+  padding-right: 15px;
+  line-height: 37px;
+}
+
+#graph-datas .sbHolder,
+#graph-datas label {
+  float: left;
+  display: block;
+}
+
+#graph-datas .sbHolder {
+  background: rgba(2, 52, 102, 0.6);
+  border: 3px solid rgba(77, 130, 172, 0.6);
+}
+#graph-datas .sbOptions {
+  background: rgba(2, 52, 102, 0.6);
+  border: 3px solid rgba(77, 130, 172, 0.6);
+  padding-top: 0px;
+}
+#graph-datas .sbOptions li {
+  margin-left: 0px;
+}
+#graph-datas .sbOptions a {
+  padding: 0px 13px;
+}
+
+label {
+  font-family:NeoSansPro-Light;
+  font-size:16px;
+  color:#fff;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.flot-text {
+  font-family:NeoSansPro-Light;
+  font-size:14px !important;
+  color:#fff !important;
+}
+
+.legendLabel {
+  font-family:NeoSansPro-Light;
+  font-size:16px;
+  color:#fff;
+  padding-left: 5px;
+  padding-right: 5px;
+  line-height: 120%;
+  padding-bottom: 10px;
+}
+
+.legendColorBox > div {
+  border: 0px !important;
 }

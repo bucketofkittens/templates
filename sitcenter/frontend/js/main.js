@@ -895,6 +895,8 @@ var Application = function() {
 		
 		this.mapStateManager = new MapStateManager(this);
 		this.legendManager = new LegendManager(this);
+		this.graphManager = new GraphManager(this);
+		this.regionsManagerLocal = new RegionsManagerLocal(this);
 
 		this.videoPlayer = new VideoPlayer();
 		
