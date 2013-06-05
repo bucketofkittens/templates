@@ -315,7 +315,8 @@ header h1
   -ms-animation:rotating 4s linear infinite;
 }
 
-#bg-image,#bg-regions-image
+#bg-image,
+#bg-regions-image
 {
   display:block;
   width:100%;
@@ -331,6 +332,11 @@ header h1
   -o-transform:translatez(0);
   -webkit-transform:translatez(0);
   transform:translatez(0);
+}
+
+#bg-regions-image
+{
+  z-index: 20;
 }
 
 .blur

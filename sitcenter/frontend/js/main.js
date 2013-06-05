@@ -294,6 +294,81 @@ var LoadingState = function(app) {
  * @param  {[type]} app [description]
  * @return {[type]}     [description]
  */
+var DistrictsPanel = function(app) {
+	this.app = app;
+
+	this.show = function() {
+		this.app.mapStateManager.removeBlur();
+		if(this.app.currentZoom != 1) {
+			this.app.mapStateManager.miniMapWriter.opacityShow();	
+		}
+		
+		this.app.mapStateManager.SVGWriter.show();
+		this.app.mapStateManager.SVGWriter.load(this.app.configManager.getSvgById(this.app.currentRegion));
+		this.app.parametrsWidgets.fullShow();
+		this.app.mapColorWidget.updateParams();
+		this.app.mapColorel.show();
+		this.app.pageTitleWidget.show();
+	}
+
+	this.hidden = function() {
+		this.app.mapStateManager.addBlur();
+		this.app.mapStateManager.miniMapWriter.opacityHidden();
+		this.app.mapStateManager.SVGWriter.hide();
+
+		this.app.parametrsWidgets.fullHidden();
+		this.app.paramsSelectorWidget.hidden();
+		this.app.mapColorel.hidden();
+	}
+}
+
+/**
+ * [ description]
+ * @param  {[type]} app [description]
+ * @return {[type]}     [description]
+ */
+var FormatPanel = function(app) {
+	this.app = app;
+
+	this.show = function() {
+		this.app.formatWidget.show();
+		this.app.regionsSelectorWidget.show();
+		this.app.paramsSelectorWidget.show();
+	}
+
+	this.hidden = function() {
+		this.app.formatWidget.hidden();
+		this.app.regionsSelectorWidget.hidden();
+		this.app.paramsSelectorWidget.hidden();
+	}
+}
+
+/**
+ * [ description]
+ * @param  {[type]} app [description]
+ * @return {[type]}     [description]
+ */
+var GraphPanel = function(app) {
+	this.app = app;
+
+	this.show = function() {
+		this.app.graphParamsSelector.show();
+		this.app.graphRegionsSelectorWidget.show();
+		this.app.graphWidget.show();
+	}
+
+	this.hidden = function() {
+		this.app.graphParamsSelector.hidden();
+		this.app.graphRegionsSelectorWidget.hidden();
+		this.app.graphWidget.hidden();
+	}
+}
+
+/**
+ * [ description]
+ * @param  {[type]} app [description]
+ * @return {[type]}     [description]
+ */
 var RegionPanel = function(app) {
 	this.app = app;
 	this.bgImage = null;
@@ -348,19 +423,28 @@ var RegionPanel = function(app) {
 
 	this.show = function() {
 		this.elements["BG-IMAGE"].addClass("onShow");
+
 		if(this.currentCamera != "LEFT") {
 			this.elements["CAMERA-LEFT"].addClass("onShow");
 		}
 		if(this.currentCamera != "RIGHT") {
 			this.elements["CAMERA-RIGHT"].addClass("onShow");
 		}
+		this.svgWriter.show();
 		this.svgWriter.load(this.getSVGCurrentCamera());
+		this.setBg();
+
+		this.app.regionsParametrsWidgets.fullShow();
+		this.app.regionsMapColorWidget.updateParams();
 	}
 
-	this.hide = function() {
+	this.hidden = function() {
 		this.elements["BG-IMAGE"].removeClass("onShow");
 		this.elements["CAMERA-LEFT"].removeClass("onShow");
 		this.elements["CAMERA-RIGHT"].removeClass("onShow");
+
+		this.app.regionsParametrsWidgets.fullHidden();
+		this.app.regionsSelectorWidget.hidden();
 	}
 
 	this.addBlur = function() {
@@ -402,7 +486,7 @@ var RegionPanel = function(app) {
 
 	this.onVideoPlayEnd_ = function() {
 		var self = this;
-		
+
 		this.setBg(this.getBgCurrentCamera());
 		this.svgWriter.load(this.getSVGCurrentCamera());
 
@@ -760,6 +844,7 @@ var Application = function() {
 		this.regionsMapColorel = new RegionsMapColorel(this);
 		this.legendWidget = new LegendWidget(this);
 		this.regionsLegendWidget = new RegionsLegendWidget(this);
+		this.pageTitleWidget = new PageTitleWidget(this);
 		
 		this.regionsSelectorWidget = new RegionsSelectorWidget(this);
 		this.paramsSelectorWidget = new ParamsSelectorWidget(this);
@@ -775,6 +860,9 @@ var Application = function() {
 		this.regionsLegendWidget = new RegionsLegendWidget(this);
 
 		this.regionPanel = new RegionPanel(this);
+		this.districtsPanel = new DistrictsPanel(this);
+		this.graphPanel = new GraphPanel(this);
+		this.formatPanel = new FormatPanel(this);
 
 		this.regionsMapColorWidget.enable();
 		this.mapColorWidget.enable();
@@ -793,6 +881,7 @@ var Application = function() {
 
 	this.init();
 }
+
 
 
 $(document).ready(function() {

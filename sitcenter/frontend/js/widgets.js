@@ -56,3 +56,115 @@ var YearSelectWidget = function(app, configs) {
 		this.decorate_();
 	}
 }
+
+/**
+ * [ description]
+ * @param  {[type]} app [description]
+ * @return {[type]}     [description]
+ */
+var PageTitleWidget = function(app) {
+	this.CSS = {
+		"CONTAINER": "header h1"
+	};
+	this.elements = {
+		"CONTAINER": $(this.CSS["CONTAINER"])
+	};
+
+	this.hidden = function() {
+		this.elements["CONTAINER"].addClass("onHidden");
+	}
+
+	this.show = function() {
+		this.elements["CONTAINER"].removeClass("onHidden");
+	}
+}
+
+/**
+ * [FooterNavWidget description]
+ * @param {[type]} app [description]
+ */
+var FooterNavWidget = function(app) {
+	this.app = app;
+	this.CSS = {
+		"MAIN": "#footer-nav-widget"
+	};
+	this.elements = {
+		"MAIN": $(this.CSS["MAIN"])
+	};
+	this.items = ConfigApp["FOOTER-NAV"];
+
+	this.draw_ = function() {
+		$.each(this.items, $.proxy(this.drawItem_, this));
+	}
+	this.drawItem_ = function(index, element) {
+		var newLink = document.createElement("a");
+		var newLinkContent = document.createTextNode(element["title"]);
+
+		newLink.appendChild(newLinkContent);
+		newLink.setAttribute("data-id", index);
+
+		if(element["cooming"]) {
+			$(newLink).addClass("cooming");
+		}
+		if(index == "MAP") {
+			$(newLink).addClass("active");
+		}
+		this.elements["MAIN"].append(newLink);
+	}
+	this.addEvents_ = function() {
+		$(this.CSS["MAIN"]).find("a").on("click", $.proxy(this.onItemClick_, this));
+	}
+	this.onItemClick_ = function(evt) {
+		var curElement = $(evt.target);
+		var itemId = curElement.attr("data-id");
+
+		if(!curElement.hasClass("cooming")) {
+			if(itemId == "GRAPH") {
+				this.app.districtsPanel.hidden();
+				this.app.regionPanel.hidden();
+				this.app.formatPanel.hidden();
+
+				this.app.graphPanel.show();
+			}
+			
+			if(itemId == "FORMAT") {
+				this.app.districtsPanel.hidden();
+				this.app.regionPanel.hidden();
+				this.app.graphPanel.hidden();
+
+				this.app.formatPanel.show();
+			}
+
+			if(itemId == "REGIONS") {
+				this.app.districtsPanel.hidden();
+				this.app.graphPanel.hidden();
+				this.app.formatPanel.hidden();
+
+				this.app.regionPanel.show();
+			}
+			if(itemId == "MAP") {
+				this.app.regionPanel.hidden();
+				this.app.graphPanel.hidden();
+				this.app.formatPanel.hidden();
+
+				this.app.districtsPanel.show();
+			}
+		}
+
+		if(!curElement.hasClass("cooming")) {
+			if(!curElement.hasClass("active")) {
+				$(this.CSS["MAIN"]).find("a").removeClass("active");
+				curElement.toggleClass("active");		
+			}
+		}
+	}
+
+	this.draw = function() {
+		this.draw_();
+		this.addEvents_();	
+	}
+
+	this.hidden = function() {
+		this.elements["MAIN"].removeClass("onShow");
+	}
+}

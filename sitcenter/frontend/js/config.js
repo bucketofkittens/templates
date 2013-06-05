@@ -6,6 +6,24 @@ var ConfigApp = {
 		"MINI-MAP": "/static/images/mini/"
 	},
 	"API-HOST": "http://54.224.205.171:3000",
+	"FOOTER-NAV": {
+		"MAP": {
+			"title": "округа"
+		},
+		"REGIONS": {
+			"title": "Регионы"
+		},
+		"FORMAT": {
+			"title": "Формат"
+		},
+		"GRAPH": {
+			"title": "График"
+		},
+		"EVENTS": {
+			"title": "События",
+			"cooming": true
+		}
+	},
 	"REGIONS": {
 		"LEFT": {
 			"MAP": "/static/images/map/all-regions-left.jpg",
