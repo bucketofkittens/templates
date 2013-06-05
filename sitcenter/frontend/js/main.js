@@ -109,9 +109,9 @@ var SVGLoader = function(app, config) {
 			if(id && data[id] != 0) {
 				var newElement = document.createElementNS("http://www.w3.org/2000/svg", "text");
 				var path = $(value).find("path")[0];
+
 				var x = parseInt(($(path).offset().left + path.getBoundingClientRect().width/2));
 				var y = parseInt(($(path).offset().top + path.getBoundingClientRect().height/2));
-
 
 				var correctPath = "DISTRICT";
 
@@ -168,34 +168,36 @@ var VideoPlayer = function() {
 		"SVG": $(this.CSS["SVG"])
 	}
 
-	var self = this;
 	this.video = $("#video");
 	this.endedCallback = {};
 
-	this.video.on('timeupdate',function(e) {
-		if(this.duration - this.currentTime < 0.2) {
-			self.video[0].pause();
-			self.endedCallback();
+	this.onTimeupdate_ = function(e) {
+		if(e.currentTarget.duration - e.currentTarget.currentTime < 0.2) {
+			e.currentTarget.pause();
+			this.endedCallback();
 		}
-    });
+	}
 
-	this.play = function(videoPath, endedCallback, poster) {
-		var self = this;
+	this.video.on('timeupdate', $.proxy(this.onTimeupdate_, this));
+
+	this.play = function(videoPath, config) {
 		this.video.attr("src", videoPath);
-		if(poster) {
-			this.video.attr("poster", poster);	
+
+		if(config && config.poster) {
+			this.video.attr("poster", config.poster);	
 		}
 		
-		this.endedCallback = endedCallback;
+		if(config && config.onEndedCallback) {
+			this.endedCallback = config.onEndedCallback;
+		}
+		
 		this.video[0].load();
 		this.video[0].play();
-		$(self.elements["BG"]).show();
+		$(this.elements["BG"]).show();
 	}
 
 	this.hide = function() {
-		var self = this;
-
-		$(self.elements["BG"]).hide();
+		$(this.elements["BG"]).hide();
 		$(this.elements["VIDEO"]).removeAttr("src");
 	}
 }
@@ -273,12 +275,18 @@ var LoadingState = function(app) {
 		this.elements["NAV-ELEMENTS"].addClass("onShow");
 		this.elements["LOADER"].removeClass("onShow");
 
-		callback();
+		if(callback) {
+			callback();	
+		}
 	}
 
 	this.updateText = function(currentFile, allFile) {
 		this.elements["LOADING-TEXT"].html("");
 		this.elements["LOADING-TEXT"].html('Загружено: '+parseInt(currentFile)+' из '+ allFile +' </p>');
+	}
+
+	this.clearText = function() {
+		this.elements["LOADING-TEXT"].html("");
 	}
 }
 
@@ -365,24 +373,31 @@ var RegionPanel = function(app) {
 	}
 
 	this.onCameraLeftClick_ = function() {
+		var startState = "";
+		var endState = "";
+
 		if(this.currentCamera == "CENTER") {
 			this.currentCamera = "LEFT";
 			this.elements["CAMERA-LEFT"].removeClass("onShow");
-			this.app.videoPlayer.play(
-				this.app.getResByPath(this.getVideoName("CENTER", "LEFT")).toURL(),
-				$.proxy(this.onVideoPlayEnd_, this),
-				this.bgImage
-			);
+
+			startState = "CENTER";
+			endState = "LEFT";
 		}
 		if(this.currentCamera == "RIGHT") {
 			this.currentCamera = "CENTER";
 			this.elements["CAMERA-RIGHT"].addClass("onShow");
-			this.app.videoPlayer.play(
-				this.app.getResByPath(this.getVideoName("RIGHT", "CENTER")).toURL(), 
-				$.proxy(this.onVideoPlayEnd_, this),
-				this.bgImage
-			);
+
+			startState = "RIGHT";
+			endState = "CENTER";
 		}
+
+		this.app.videoPlayer.play(
+			this.app.getResByPath(this.getVideoName(startState, endState)).toURL(),
+			{
+				onEndedCallback: $.proxy(this.onVideoPlayEnd_, this),
+				poster: this.bgImage	
+			}
+		);
 		
 	}
 
@@ -404,24 +419,31 @@ var RegionPanel = function(app) {
 	}
 
 	this.onCameraRightClick_ = function() {
+		var startState = "";
+		var endState = "";
+
 		if(this.currentCamera == "CENTER") {
 			this.currentCamera = "RIGHT";
 			this.elements["CAMERA-RIGHT"].removeClass("onShow");
-			this.app.videoPlayer.play(
-				this.app.getResByPath(this.getVideoName("CENTER", "RIGHT")).toURL(), 
-				$.proxy(this.onVideoPlayEnd_, this),
-				this.bgImage
-			);
+
+			startState = "CENTER";
+			endState = "RIGHT";
 		}
 		if(this.currentCamera == "LEFT") {
 			this.currentCamera = "CENTER";
 			this.elements["CAMERA-LEFT"].addClass("onShow");
-			this.app.videoPlayer.play(this.app.getResByPath(
-				this.getVideoName("LEFT", "CENTER")).toURL(), 
-				$.proxy(this.onVideoPlayEnd_, this),
-				this.bgImage
-			);
+			
+			startState = "LEFT";
+			endState = "CENTER";
 		}
+
+		this.app.videoPlayer.play(
+			this.app.getResByPath(this.getVideoName(startState, endState)).toURL(),
+			{
+				onEndedCallback: $.proxy(this.onVideoPlayEnd_, this),
+				poster: this.bgImage	
+			}
+		);
 	}
 
 	this.bindEvents_ = function() {
@@ -509,9 +531,12 @@ var MapStateManager = function(app) {
 		this.app.mapColorel.hidden();
 		this.miniMapWriter.hiden();
 		this.app.videoPlayer.play(
-			this.app.configManager.getOutVideoById(this.app.currentRegion), 
-			$.proxy(this.onOutVideoPlayStop_, this),
-			this.bgImage.src);
+			this.app.configManager.getOutVideoById(this.app.currentRegion),
+			{
+				onEndedCallback: $.proxy(this.onOutVideoPlayStop_, this),
+				poster: this.bgImage.src	
+			}
+		);
 	}
 
 	this.onOutVideoPlayStop_ = function() {
@@ -543,9 +568,14 @@ var MapStateManager = function(app) {
 			var inVideo = this.app.configManager.getInVideoById($(evt.target).parent().attr("target"));
 			if(inVideo) {
 				this.app.currentRegion = $(evt.target).parent().attr("target");
-				console.log(this.app.currentRegion);
 				this.app.mapColorel.hidden();
-				this.app.videoPlayer.play(inVideo, $.proxy(this.onInVideoPlayStop_, this), this.bgImage.src);
+				this.app.videoPlayer.play(
+					inVideo,
+					{
+						onEndedCallback: $.proxy(this.onInVideoPlayStop_, this),
+						poster: this.bgImage.src	
+					}
+				);
 				this.miniMapWriter.hiden();	
 			}
 		}
@@ -737,7 +767,7 @@ var Application = function() {
 	}
 
 	this.onCacheLoaded_ = function() {
-		$("#load").find(".text").remove();
+		this.loadingState.clearText();
 
 		this.regionManager = new RegionManager(this);
 		this.paramsManager = new ParamsManager(this);
@@ -791,11 +821,8 @@ var Application = function() {
 		this.regionsMapColorWidget.enable();
 		this.mapColorWidget.enable();
 
-		var self = this;
-		setTimeout(function() {
-			self.loadingState.stop(function() {});
-			self.onPanelsShow();
-		}, 0);
+		this.loadingState.stop();
+		this.onPanelsShow();
 	}
 
 	this.setAppTitle = function(title) {
