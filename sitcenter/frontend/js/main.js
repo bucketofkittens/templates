@@ -432,7 +432,7 @@ var RegionPanel = function(app) {
 		if(this.currentCamera == "LEFT") {
 			this.currentCamera = "CENTER";
 			this.elements["CAMERA-LEFT"].addClass("onShow");
-			
+
 			startState = "LEFT";
 			endState = "CENTER";
 		}
@@ -484,30 +484,35 @@ var MapStateManager = function(app) {
 		this.stateElements["BG-IMAGE"].removeClass("blur");
 	}
 
-	this.setCurrentRegion = function(data) {
-		this.currentRegionData = data;
-		this.app.setAppTitle(this.currentRegionData.name);
-		if(this.app.currentZoom != 1) {
-			var backId = this.currentRegionData.district_id;
-			if(backId == null) {
-				backId = this.currentRegionData.country_id;
-			}
-			this.app.regionManager.getById(backId, $.proxy(this.setPrevRegion, this));
-		}
+	this.setPrevRegion = function(data) {
+		this.prevRegion = data;
+		this.miniMapWriter.setText(this.prevRegion.name);
+		this.miniMapWriter.show(this.app.configManager.getMiniMapById(this.app.currentRegion), $.proxy(this.onBack, this));
 	}
 
 	this.setRootRegions = function(data) {
-		this.regions = data;
+		this.regions = this.app.regionsManagerLocal.getRegionsByParent(this.app.currentRegion, data);
+		this.currentRegionData = this.app.regionsManagerLocal.getRegionById(this.app.currentRegion, data);
+
+		this.app.setAppTitle(this.currentRegionData.name);
+		if(this.app.currentZoom != 1) {
+			if(this.currentRegionData.parent_id) {
+				this.setPrevRegion(
+					this.app.regionsManagerLocal.getRegionById(
+						this.currentRegionData.parent_id, 
+						data
+					)
+				);
+			}
+		}
 	}
 
 	this.show = function() {
-		var self = this;
-		this.app.regionManager.getByParent(this.app.currentRegion, $.proxy(this.setRootRegions, this));
-		this.app.regionManager.getById(this.app.currentRegion, $.proxy(this.setCurrentRegion, this));
+		this.app.regionsManagerLocal.getRegions($.proxy(this.setRootRegions, this));
 		this.app.mapColorWidget.updateParams();
 		
 		this.setBgImage();
-		this.SVGWriter.load(self.app.configManager.getSvgById(self.app.currentRegion));
+		this.SVGWriter.load(this.app.configManager.getSvgById(this.app.currentRegion));
 
 		this.app.parametrsWidgets.getParamsByRegionAndYeage(this.app.currentRegion);
 	}
@@ -600,11 +605,7 @@ var MapStateManager = function(app) {
 		
 	}
 
-	this.setPrevRegion = function(data) {
-		this.prevRegion = data;
-		this.miniMapWriter.setText(this.prevRegion.name);
-		this.miniMapWriter.show(this.app.configManager.getMiniMapById(this.app.currentRegion), $.proxy(this.onBack, this));
-	}
+	
 
 	this.app = app;
 	this.SVGWriter = new SVGLoader(app, {

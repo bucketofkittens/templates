@@ -180,5 +180,27 @@ var RegionsManagerLocal = function(app) {
 		}
 	}
 
+	this.getRegionsByParent = function(parent_id, data) {
+		var ret = [];
+		$.each(data, function(key, value) {
+			if(value.parent_id == parent_id) {
+				ret.push(value);
+			}
+		});
+
+		return ret;
+	}
+
+	this.getRegionById = function(id, data) {
+		var ret = null;
+		$.each(data, function(key, value) {
+			if(value.id == id) {
+				ret = value;
+			}
+		});
+
+		return ret;
+	}
+
 	this.setLocalData_();
 }
