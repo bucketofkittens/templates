@@ -78,7 +78,6 @@ var RegionsParametrsWidgets = function(app) {
 			);
 			this.app.regionsMapColorWidget.updateParams();
 			this.elements["UOM"].html(parentLi.attr("data-uom"));
-			//self.legendWidget.show();
 		} else {
 			/*$(this.CSS["PARAMETRS-LIST"]).find(".active").removeClass("active");
 			this.setTitle("");
@@ -329,6 +328,10 @@ var ParametrsWidgets = function(app) {
 		return par;
 	}
 
+	this.coloredLoad_ = function() {
+		this.app.mapColorel.show();
+	}
+
 	this.parametrsNameClick_ = function(evt) {
 		if(!$(evt.target).hasClass("active")) {
 			var self = this;
@@ -339,11 +342,11 @@ var ParametrsWidgets = function(app) {
 			this.setTitle($(evt.target).html());
 
 			this.currentParametr = this.getParametrById(parentLi.attr("data-id"));
-			console.log(parentLi.attr("data-id"));
 			this.app.mapColorel.colored(
 				this.currentParametr.id, 
 				this.app.currentRegion, 
-				this.app.ageSelectorWidget.selectedYear
+				this.app.ageSelectorWidget.selectedYear,
+				$.proxy(this.coloredLoad_, this) 
 			);
 			this.app.mapColorWidget.updateParams();
 			this.app.paramsManager.getParamUom(this.currentParametr.id, function(data) {
@@ -355,11 +358,7 @@ var ParametrsWidgets = function(app) {
 			});
 			this.app.legendManager.getLegendByParamAndSubject(
 				this.currentParametr.id, 
-				this.app.currentRegion,
-				function(data) {
-					//self.legendWidget.setLevelText(data);
-					//self.legendWidget.show();
-				}
+				this.app.currentRegion
 			);
 		} else {
 			/*$(this.CSS["PARAMETRS-LIST"]).find(".active").removeClass("active");
@@ -927,8 +926,6 @@ var MapColorel = function(app) {
 		var self = this;
 		var mapPath = this.app.apiHost+this.ajaxPath+params_id+"/"+region_id+"/"+year+"/map";
 
-		//$(this.CSS["LOAD"]).addClass("onShow");
-
 		if(this.isShowed) {
 			this.elements["CONTAINER"].removeClass("onShow");
 		}
@@ -945,16 +942,10 @@ var MapColorel = function(app) {
         image.src = self.app.apiHost+link;
 
         image.onload = function() {
-        	if(callback) {
+    		self.elements["CONTAINER"].css("backgroundImage", "url('"+self.app.apiHost+link+"')");
+    		if(callback) {
         		callback();
 			}
-			setTimeout(function() {
-    			self.elements["CONTAINER"].css("backgroundImage", "url('"+self.app.apiHost+link+"')");
-				self.elements["CONTAINER"].addClass("onShow");
-    		}, 0);
-        	
-			//$(self.CSS["LOAD"]).removeClass("onShow");
-			
         }
 	}
 
@@ -1022,6 +1013,7 @@ var RegionsMapColorel = function(app) {
         image.src = self.app.apiHost+link;
 
         image.onload = function() {
+        	console.log(self.app.apiHost+link);
         	self.app.regionPanel.setBg(self.app.apiHost+link);
 			self.elements["CONTAINER"].addClass("onShow");
 			//$(self.CSS["LOAD"]).removeClass("onShow");
@@ -1299,10 +1291,7 @@ var RegionsSelectorWidget = function(app) {
 
 		this.app.paramsManager.getParamsByRegionAndAge(
 			this.getCurrentIds(),
-			this.app.ageSelectorFormatWidget.selectedYear,
-			function() {
-				
-			}
+			this.app.ageSelectorFormatWidget.selectedYear
 		);
 
 		this.app.paramsSelectorWidget.updateParams(this.getCurrentIds(), this.app.ageSelectorFormatWidget.selectedYear);
