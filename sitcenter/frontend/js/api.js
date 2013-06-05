@@ -51,8 +51,10 @@ var RegionsParametrsWidgets = function(app) {
 
 	this.getParametrById = function(id) {
 		var par = null;
-
+		console.log(this.parametrs);
 		$.each(this.parametrs, function(key, value) {
+			console.log(key);
+
 			if(value && value.id == id) {
 				par = value;
 			}
@@ -72,7 +74,7 @@ var RegionsParametrsWidgets = function(app) {
 			this.currentParametr = this.getParametrById(parentLi.attr("data-id"));
 			this.app.regionsMapColorel.colored(
 				this.currentParametr.id, 
-				this.app.ageSelectorRegionsWidget.selectedAge
+				this.app.ageSelectorRegionsWidget.selectedYear
 			);
 			this.app.regionsMapColorWidget.updateParams();
 			this.elements["UOM"].html(parentLi.attr("data-uom"));
@@ -242,7 +244,7 @@ var RegionsParametrsWidgets = function(app) {
 	this.getParamsByRegionAndYeage = function(region_id) {
 		this.app.paramsManager.getParamsByRegionAndYeage(
 			region_id, 
-			this.app.ageSelectorRegionsWidget.selectedAge, 
+			this.app.ageSelectorRegionsWidget.selectedYear, 
 			$.proxy(this.getParametrs_, this)
 		);
 	}
@@ -315,7 +317,7 @@ var ParametrsWidgets = function(app) {
 
 	this.getParametrById = function(id) {
 		var par = null;
-
+		console.log(this.parametrs);
 		$.each(this.parametrs, function(key, value) {
 			$.each(value.parameters, function(key2, value2) {
 				if(value2 && value2.id == id) {
@@ -335,11 +337,13 @@ var ParametrsWidgets = function(app) {
 			$(evt.target).toggleClass("active");
 
 			this.setTitle($(evt.target).html());
+
 			this.currentParametr = this.getParametrById(parentLi.attr("data-id"));
+			console.log(parentLi.attr("data-id"));
 			this.app.mapColorel.colored(
 				this.currentParametr.id, 
 				this.app.currentRegion, 
-				this.app.ageSelectorWidget.selectedAge
+				this.app.ageSelectorWidget.selectedYear
 			);
 			this.app.mapColorWidget.updateParams();
 			this.app.paramsManager.getParamUom(this.currentParametr.id, function(data) {
@@ -548,7 +552,7 @@ var ParametrsWidgets = function(app) {
 	this.getParamsByRegionAndYeage = function(region_id) {
 		this.app.paramsManager.getParamsByRegionAndYeage(
 			region_id, 
-			this.app.ageSelectorWidget.selectedAge, 
+			this.app.ageSelectorWidget.selectedYear, 
 			$.proxy(this.getParametrs_, this)
 		);
 	}
@@ -749,7 +753,7 @@ var MapColorWidget = function(app) {
 			this.app.paramsManager.getParamValues(
 				this.app.parametrsWidgets.currentParametr.id,
 				this.app.currentRegion,
-				this.app.ageSelectorWidget.selectedAge,
+				this.app.ageSelectorWidget.selectedYear,
 				$.proxy(this.paramsLoaded_, this)
 			);
 		}
@@ -802,7 +806,7 @@ var MapColorWidget = function(app) {
 			this.app.paramsManager.getParamValues(
 				this.app.parametrsWidgets.currentParametr.id,
 				this.app.currentRegion,
-				this.app.ageSelectorWidget.selectedAge,
+				this.app.ageSelectorWidget.selectedYear,
 				$.proxy(this.paramsLoaded_, this)
 			);
 		}
@@ -865,11 +869,10 @@ var RegionsMapColorWidget = function(app) {
 	}
 
 	this.updateParams = function() {
-		console.log(this.app.regionsParametrsWidgets.currentParametr);
 		if(this.state && this.app.regionsParametrsWidgets.currentParametr) {
 			this.app.paramsManager.getRegionsParamValues(
 				this.app.regionsParametrsWidgets.currentParametr.id,
-				this.app.ageSelectorRegionsWidget.selectedAge,
+				this.app.ageSelectorRegionsWidget.selectedYear,
 				$.proxy(this.paramsLoaded_, this)
 			);
 		}
@@ -1035,147 +1038,6 @@ var RegionsMapColorel = function(app) {
 		this.isShowed = false;
 	}
 }
-
-/**
- * [AgeSelectorWidget description]
- * @param {[type]} app [description]
- */
-var AgeSelectorWidget = function(app) {
-	this.app = app;
-	this.ages = [2012, 2011]
-	this.selectedAge = 2012;
-	this.CSS = {
-		"SELECTOR": "#age_select"
-	}
-
-	this.elements = {
-		"SELECTOR": $(this.CSS["SELECTOR"])
-	}
-
-	this.draw = function() {
-		var self = this;
-		self.elements["SELECTOR"].html("");
-		$.each(this.ages, function(key, value) {
-			var selected = "";
-			if(value == self.currentAge) {
-				selected = 'selected="selected"';
-			}
-			var html = '<option '+selected+' value="'+value+'">'+value+'</option>';
-			self.elements["SELECTOR"].append(html);
-		});
-		this.elements["SELECTOR"].selectbox({
-			effect: "slide",
-			onChange: $.proxy(this.ageSelected_, this)
-		});
-	}
-
-	this.ageSelected_ = function(val, inst) {
-		this.selectedAge = val;
-		var self = this;
-		this.app.paramsManager.getParamsByRegionAndYeage(this.app.currentRegion, val, $.proxy(this.app.parametrsWidgets.getParametrs_, this.app.parametrsWidgets));
-		if(this.app.parametrsWidgets.currentParametr) {
-			this.app.mapColorel.colored(
-				this.app.parametrsWidgets.currentParametr.id, 
-				this.app.currentRegion, 
-				this.app.ageSelectorWidget.selectedAge
-			);
-			this.app.mapColorWidget.updateParams();
-			this.app.legendManager.getLegendByParamAndSubject(
-				this.app.parametrsWidgets.currentParametr.id, 
-				this.app.currentRegion,
-				function(data) {
-					//self.app.legendWidget.setLevelText(data);
-					//self.app.legendWidget.show();
-				}
-			);
-		}
-	}
-}
-
-/**
- * [AgeSelectorWidget description]
- * @param {[type]} app [description]
- */
-var AgeSelectorFormatWidget = function(app) {
-	this.app = app;
-	this.ages = [2012, 2011, 2010, 2009, 2008]
-	this.selectedAge = 2012;
-	this.CSS = {
-		"SELECTOR": "#params-age-selected",
-		"LOAD": "#load"
-	}
-
-	this.elements = {
-		"SELECTOR": $(this.CSS["SELECTOR"])
-	}
-
-	this.draw = function() {
-		var self = this;
-		self.elements["SELECTOR"].html("");
-		$.each(this.ages, function(key, value) {
-			var selected = "";
-			if(value == self.currentAge) {
-				selected = 'selected="selected"';
-			}
-			var html = '<option '+selected+' value="'+value+'">'+value+'</option>';
-			self.elements["SELECTOR"].append(html);
-		});
-		this.elements["SELECTOR"].selectbox({
-			effect: "slide",
-			onChange: $.proxy(this.ageSelected_, this)
-		});
-	}
-
-	this.ageSelected_ = function(val, inst) {
-		this.selectedAge = val;
-
-		$(this.CSS["LOAD"]).addClass("onShow");
-		this.app.formatWidget.updateContent();
-	}
-}
-
-/**
- * [AgeSelectorWidget description]
- * @param {[type]} app [description]
- */
-var AgeSelectorRegionsWidget = function(app) {
-	this.app = app;
-	this.ages = [2012]
-	this.selectedAge = 2012;
-	this.CSS = {
-		"SELECTOR": "#regions_age_select",
-		"LOAD": "#load"
-	}
-
-	this.elements = {
-		"SELECTOR": $(this.CSS["SELECTOR"])
-	}
-
-	this.draw = function() {
-		var self = this;
-		self.elements["SELECTOR"].html("");
-		$.each(this.ages, function(key, value) {
-			var selected = "";
-			if(value == self.currentAge) {
-				selected = 'selected="selected"';
-			}
-			var html = '<option '+selected+' value="'+value+'">'+value+'</option>';
-			self.elements["SELECTOR"].append(html);
-		});
-		this.elements["SELECTOR"].selectbox({
-			effect: "slide",
-			onChange: $.proxy(this.ageSelected_, this)
-		});
-	}
-
-	this.ageSelected_ = function(val, inst) {
-		this.selectedAge = val;
-
-		$(this.CSS["LOAD"]).addClass("onShow");
-		this.app.formatWidget.updateContent();
-	}
-}
-
 /**
  * [FooterNavWidget description]
  * @param {[type]} app [description]
@@ -1437,13 +1299,13 @@ var RegionsSelectorWidget = function(app) {
 
 		this.app.paramsManager.getParamsByRegionAndAge(
 			this.getCurrentIds(),
-			this.app.ageSelectorFormatWidget.selectedAge,
+			this.app.ageSelectorFormatWidget.selectedYear,
 			function() {
 				
 			}
 		);
 
-		this.app.paramsSelectorWidget.updateParams(this.getCurrentIds(), this.app.ageSelectorFormatWidget.selectedAge);
+		this.app.paramsSelectorWidget.updateParams(this.getCurrentIds(), this.app.ageSelectorFormatWidget.selectedYear);
 			
 		$(this.CSS["DATA-PLACE"]+ " li a").on("click", $.proxy(this.onRegionClick_, this));
 		$(this.CSS["DATA-PLACE"]+ " li span").on("click", $.proxy(this.onRegionNameClick_, this));
@@ -1753,7 +1615,7 @@ var FormatWidget = function(app) {
 		this.app.formatManager.getFormat(
 			this.app.regionsSelectorWidget.getCurrentIds(),
 			this.app.paramsSelectorWidget.getCurrentIds(),
-			this.app.ageSelectorFormatWidget.selectedAge,
+			this.app.ageSelectorFormatWidget.selectedYear,
 			$.proxy(this.draw_, this)
 		);
 	}
@@ -2177,31 +2039,6 @@ var GraphRegionsSelectorWidget = function(app) {
 }
 
 /**
- * [OnGraphUpdateEvent description]
- * @param {[type]} app [description]
- */
-var OnGraphUpdateEvent = function(app) {
-	this.app = app;
-
-	this.onGraphDataRequest_ = function(data) {
-		console.log(data);
-		$(this.app.graphWidget.CSS["LOAD"]).removeClass("onShow");
-		this.app.graphWidget.updateContent(data);
-	}
-	
-	this.app.graphManager.getGraph(
-			this.app.graphRegionsSelectorWidget.getCurrentIds(),
-			this.app.graphParamsSelector.getCurrentIds(),
-			this.app.graphWidget.getBeginData(),
-			this.app.graphWidget.getEndData(),
-			$.proxy(this.onGraphDataRequest_, this)
-	);
-
-
-}
-
-
-/**
  * [GraphWidget description]
  * @param {[type]} app [description]
  */
@@ -2209,6 +2046,8 @@ var GraphWidget = function(app) {
 	this.app = app;
 	this.scrollApi = null;
 	this.onUpdateGraph = new signals.Signal();
+	this.onUpdateGraph.add(OnGraphUpdateEvent);
+
 	this.CSS = {
 		"MAIN": "#graph-content",
 		"HIDDEN": "hidden",
@@ -2226,13 +2065,26 @@ var GraphWidget = function(app) {
 		"GRAPH": $(this.CSS["GRAPH"])
 	}
 
-	this.ageSelectorGraphStartWidget = new AgeSelectorGraphStartWidget(this.app);
-	this.ageSelectorGraphEndWidget = new AgeSelectorGraphEndWidget(this.app);
+	this.ageSelectorGraphStartWidget = new YearSelectWidget(this, {
+		years: [2011, 2012],
+		selectedYear: 2012,
+		container: "#graph-datas-begin",
+		onAfterYearSelected: $.proxy(this.onUpdateGraphDispather_, this)
+	});
 
-	console.log(this.ageSelectorGraphStartWidget);
+	this.ageSelectorGraphEndWidget = new YearSelectWidget(this, {
+		years: [2011, 2012],
+		selectedYear: 2012,
+		container: "#graph-datas-end",
+		onAfterYearSelected: $.proxy(this.onUpdateGraphDispather_, this)
+	});
+
 	this.ageSelectorGraphStartWidget.draw();
 	this.ageSelectorGraphEndWidget.draw();
-	
+
+	this.onUpdateGraphDispather_ = function() {
+		this.onUpdateGraph.dispatch(this.app);
+	}
 
 	this.show = function() {
 		this.elements["MAIN"].removeClass(this.CSS["HIDDEN"]);
@@ -2281,113 +2133,19 @@ var GraphWidget = function(app) {
 				
 				dataLine["label"] = value.param_name+"<br/> <i>"+value2.subject_name+"</i>";
 				dataLine["data"] = line;
-				console.log(dataLine);
+
 				lines.push(dataLine);
 			});
 		});
 
-		console.log(lines);
 		$.plot(this.elements["GRAPH"], lines, options);
 	}
 
 	this.getBeginData = function() {
-		return this.ageSelectorGraphStartWidget.selectedAge;
+		return this.ageSelectorGraphStartWidget.selectedYear;
 	}
 
 	this.getEndData = function() {
-		return this.ageSelectorGraphEndWidget.selectedAge;
-	}
-
-	this.onUpdateGraph.add(OnGraphUpdateEvent);
-}
-
-/**
- * [AgeSelectorWidget description]
- * @param {[type]} app [description]
- */
-var AgeSelectorGraphStartWidget = function(app) {
-	this.app = app;
-	this.ages = [2010, 2011, 2012]
-	this.selectedAge = 2010;
-	this.onUpdateGraph = new signals.Signal();
-	this.onUpdateGraph.add(OnGraphUpdateEvent);
-	this.CSS = {
-		"SELECTOR": "#graph-datas-begin",
-		"LOAD": "#load"
-	}
-
-	this.elements = {
-		"SELECTOR": $(this.CSS["SELECTOR"])
-	}
-
-	this.draw = function() {
-		var self = this;
-
-		self.elements["SELECTOR"].html("");
-		$.each(this.ages, function(key, value) {
-			var selected = "";
-			if(value == self.selectedAge) {
-				selected = 'selected="selected"';
-			}
-			var html = '<option '+selected+' value="'+value+'">'+value+'</option>';
-			self.elements["SELECTOR"].append(html);
-		});
-		console.log(this.elements["SELECTOR"].html());
-		this.elements["SELECTOR"].selectbox({
-			effect: "slide",
-			onChange: $.proxy(this.ageSelected_, this)
-		});
-	}
-
-	this.ageSelected_ = function(val, inst) {
-		this.selectedAge = val;
-
-		$(this.CSS["LOAD"]).addClass("onShow");
-		this.onUpdateGraph.dispatch(this.app);
-	}
-}
-
-/**
- * [AgeSelectorWidget description]
- * @param {[type]} app [description]
- */
-var AgeSelectorGraphEndWidget = function(app) {
-	this.app = app;
-	this.ages = [2011, 2012]
-	this.selectedAge = 2012;
-	this.onUpdateGraph = new signals.Signal();
-	this.onUpdateGraph.add(OnGraphUpdateEvent);
-	this.CSS = {
-		"SELECTOR": "#graph-datas-end",
-		"LOAD": "#load"
-	}
-
-	this.elements = {
-		"SELECTOR": $(this.CSS["SELECTOR"])
-	}
-
-	this.draw = function() {
-		var self = this;
-		self.elements["SELECTOR"].html("");
-		$.each(this.ages, function(key, value) {
-			var selected = "";
-			if(value == self.selectedAge) {
-				selected = 'selected="selected"';
-			}
-			var html = '<option '+selected+' value="'+value+'">'+value+'</option>';
-			self.elements["SELECTOR"].append(html);
-		});
-
-		this.elements["SELECTOR"].selectbox({
-			effect: "slide",
-			onChange: $.proxy(this.ageSelected_, this)
-		});
-	}
-
-	this.ageSelected_ = function(val, inst) {
-		this.selectedAge = val;
-
-		$(this.CSS["LOAD"]).addClass("onShow");
-		this.onUpdateGraph.dispatch(this.app);
+		return this.ageSelectorGraphEndWidget.selectedYear;
 	}
 }

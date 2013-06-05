@@ -5,25 +5,41 @@
  * [SVGLoader description]
  * @param {[type]} app [description]
  */
-var SVGLoader = function(app, clickCallback) {
-	this.CSS = {
-		"BG": "#bg-svg",
-		"SVG": "#svg"
-	}
+var SVGLoader = function(app, config) {
 	this.app = app;
 	this.maxOpacity = 0.3;
 	this.minOpacity = 0.001;
-	this.groupClick = clickCallback;
+
+	if(config && config.onClick) {
+		this.onGroupClick = config.onClick;
+	}
+
+	this.CSS = {
+		"BG": "#bg-svg",
+		"SVG": "#svg",
+		"IN-SVG-CSS": "#in-svg-css"
+	}
 
 	this.elements = {
 		"BG": $(this.CSS["BG"]),
-		"SVG": $(this.CSS["SVG"])
+		"SVG": $(this.CSS["SVG"]),
+		"IN-SVG-CSS": $(this.CSS["IN-SVG-CSS"])
 	}
 
 	this.load = function(path) {
 		this.elements["BG"].hide();
-		this.elements["BG"].html('<object id="svg" type="image/svg+xml" data="'+path+'" width="100%" height="100%" ></object>');
+
+		var newObject = document.createElement("object");
+		newObject.setAttribute("id", "svg");
+		newObject.setAttribute("type", "image/svg+xml");
+		newObject.setAttribute("data", path);
+		newObject.setAttribute("width", "100%");
+		newObject.setAttribute("height", "100%");
+
+		this.elements["BG"].html("");
+		this.elements["BG"].append(newObject);
 		this.elements["SVG"] = $(this.CSS["SVG"]);
+
 		this.prepareSvg_();
 	}
 
@@ -40,13 +56,9 @@ var SVGLoader = function(app, clickCallback) {
 		this.elements["BG"].show();
 	}
 
-	this.onPathClick_ = function() {
-
-	}
-
 	this.appendCSS_ = function(svg) {
 		var styleElement = svg.createElementNS("http://www.w3.org/2000/svg", "style");
-		styleElement.textContent = 'path { -webkit-transition: all 0.3s linear; } text { -webkit-transition: all 1.3s linear; font-family: Verdana, Times, serif; font-weight: bold; font-size: 30px; } .zoom2 { font-size: 32px; } .zoom3 { font-size: 25px;} .regions { font-size: 20px !important; }';
+		styleElement.textContent = this.elements["IN-SVG-CSS"].html();
 		$(svg).find("svg")[0].appendChild(styleElement);
 	}
 
@@ -81,7 +93,9 @@ var SVGLoader = function(app, clickCallback) {
 			});
 		});
 
-		groups.on("click", this.groupClick);
+		if(this.onGroupClick) {
+			groups.on("click", this.onGroupClick);	
+		}
 	}
 
 	this.drawParamValues = function(data, CSSclasses) {
@@ -417,7 +431,8 @@ var LoadingState = function(app) {
 		"BG-IMAGE": "#bg-image",
 		"NAV-ELEMENTS": ".nav-elements",
 		"LOADER": "#load",
-		"LOAD-IMAGE": "#load-image"
+		"LOAD-IMAGE": "#load-image",
+		"LOADING-TEXT": "#loading"
 	}
 	this.animateSpeed = 2000;
 
@@ -425,7 +440,8 @@ var LoadingState = function(app) {
 		"BG-IMAGE": $(this.stateCSS["BG-IMAGE"]),
 		"NAV-ELEMENTS": $(this.stateCSS["NAV-ELEMENTS"]),
 		"LOADER": $(this.stateCSS["LOADER"]),
-		"LOAD-IMAGE": $(this.stateCSS["LOAD-IMAGE"])
+		"LOAD-IMAGE": $(this.stateCSS["LOAD-IMAGE"]),
+		"LOADING-TEXT": $(this.stateCSS["LOADING-TEXT"])
 	}
 
 	this.run = function() {
@@ -440,6 +456,11 @@ var LoadingState = function(app) {
 		this.elements["LOADER"].removeClass("onShow");
 
 		callback();
+	}
+
+	this.updateText = function(currentFile, allFile) {
+		this.elements["LOADING-TEXT"].html("");
+		this.elements["LOADING-TEXT"].html('Загружено: '+parseInt(currentFile)+' из '+ allFile +' </p>');
 	}
 }
 
@@ -641,7 +662,6 @@ var MapStateManager = function(app) {
 
 	this.show = function() {
 		var self = this;
-		console.log(this.app.currentRegion);
 		this.app.regionManager.getByParent(this.app.currentRegion, $.proxy(this.setRootRegions, this));
 		this.app.regionManager.getById(this.app.currentRegion, $.proxy(this.setCurrentRegion, this));
 		this.app.mapColorWidget.updateParams();
@@ -739,7 +759,9 @@ var MapStateManager = function(app) {
 	}
 
 	this.app = app;
-	this.SVGWriter = new SVGLoader(app, $.proxy(this.onSvgClick_, this));
+	this.SVGWriter = new SVGLoader(app, {
+		onClick: $.proxy(this.onSvgClick_, this)
+	});
 }
 
 /**
@@ -802,11 +824,16 @@ var Application = function() {
 	this.appTimer = new AppTimer(this);
 	this.footerNavWidget = new FooterNavWidget(this);
 
+	this.onDistrictUpdateMapEvent = new signals.Signal();
+	this.onDistrictUpdateMapEvent.add(OnDistrictUpdateMapEvent);
+
+	this.onFormatUpdateContentEvent = new signals.Signal();
+	this.onFormatUpdateContentEvent.add(OnFormatUpdateContentEvent);
+
 	this.allCacheFile = $(ConfigApp["PRELOAD"]).size();
 	this.cachedFile = 0;
 	this.res = {};
 
-	
 	var self = this;
 
 	this.getResByPath = function(path) {
@@ -844,9 +871,7 @@ var Application = function() {
 				ImgCache.isCached(value, function(e, state, file) {
 					if(state == false) {
 						ImgCache.cacheFile(value, function(file) {
-							console.log("loaded");
-							$("#load").find("p").remove();
-							$("#load").append('<p class="text" id="loading">Загружено: '+parseInt(self.cachedFile)+" из "+ self.allCacheFile +' </p>');
+							self.loadingState.updateText(self.cachedFile, self.allCacheFile);
 							self.res[value] = file;
 							self.cachedFile = self.cachedFile + 1;
 							if(self.allCacheFile == self.cachedFile) {
@@ -856,9 +881,7 @@ var Application = function() {
 							location.reload();
 						});
 					} else {
-						console.log("cached");
-						$("#load").find("p").remove();
-						$("#load").append('<p class="text" id="loading">Загружено: '+parseInt(self.cachedFile)+" из "+ self.allCacheFile +' </p>');
+						self.loadingState.updateText(self.cachedFile, self.allCacheFile);
 						self.res[e] = file;
 						self.cachedFile = self.cachedFile + 1;
 					}
@@ -887,6 +910,14 @@ var Application = function() {
 		this.mapStateManager.show();
 	}
 
+	this.onDistrictUpdateMapEventBind_ = function() {
+		this.onDistrictUpdateMapEvent.dispatch(this);
+	}
+
+	this.onFormatUpdateContentEventBind_ = function() {
+		this.onFormatUpdateContentEvent.dispatch(this);
+	}
+
 	this.onCacheLoaded_ = function() {
 		$("#load").find(".text").remove();
 
@@ -900,9 +931,23 @@ var Application = function() {
 
 		this.videoPlayer = new VideoPlayer();
 		
-		this.ageSelectorWidget = new AgeSelectorWidget(this);
-		this.ageSelectorFormatWidget = new AgeSelectorFormatWidget(this);
-		this.ageSelectorRegionsWidget = new AgeSelectorRegionsWidget(this);
+		this.ageSelectorWidget = new YearSelectWidget(this, {
+			years: [2012, 2011],
+			selectedYear: 2012,
+			container: "#age_select",
+			onAfterYearSelected: $.proxy(this.onDistrictUpdateMapEventBind_, this)
+		});
+		this.ageSelectorFormatWidget = new YearSelectWidget(this, {
+			years: [2012, 2011, 2010, 2009, 2008],
+			selectedYear: 2012,
+			container: "#params-age-selected",
+			onAfterYearSelected: $.proxy(this.onFormatUpdateContentEventBind_, this)
+		});
+		this.ageSelectorRegionsWidget = new YearSelectWidget(this, {
+			years: [2012],
+			selectedYear: 2012,
+			container: "#regions_age_select"
+		});
 		this.parametrsWidgets = new ParametrsWidgets(this);
 		this.mapColorWidget = new MapColorWidget(this);
 		this.mapColorel = new MapColorel(this);

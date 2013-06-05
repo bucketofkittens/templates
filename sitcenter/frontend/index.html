@@ -6,6 +6,13 @@
         <link href="./css/master.css" rel="stylesheet" type="text/css" />
     </head>
     <body>
+        <style type="text/css" id="in-svg-css">
+            path { -webkit-transition: all 0.3s linear; } 
+            text { -webkit-transition: all 1.3s linear; font-family: Verdana, Times, serif; font-weight: bold; font-size: 30px; } 
+            .zoom2 { font-size: 32px; } 
+            .zoom3 { font-size: 25px;} 
+            .regions { font-size: 20px !important; }
+        </style>
         <div id="app">
             <!-- Панель управления начало -->
             <div id="miniMap">
@@ -61,6 +68,7 @@
                         </div>
                     </div>
                     <div id="load">
+                        <p class="text" id="loading"></p>
                         <img src="/static/images/load.png" id="load-image" alt="" />
                     </div>
                     <div id="regions-selector" class="hidden">
@@ -146,6 +154,8 @@
         
         <script type="text/javascript" src="./js/signals.min.js"></script>
         <script type="text/javascript" src="./js/cache.js"></script>
+        <script type="text/javascript" src="./js/events.js"></script>
+        <script type="text/javascript" src="./js/widgets.js"></script>
         <script type="text/javascript" src="./js/managers.js"></script>
         <script type="text/javascript" src="./js/api.js"></script>
         <script type="text/javascript" src="./js/config.js"></script>

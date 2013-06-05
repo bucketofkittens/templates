@@ -69,6 +69,7 @@ header p
   color:transparent;
   line-height:25px;
   padding:28px 0 0 160px;
+  display: none;
 }
 
 header h1
