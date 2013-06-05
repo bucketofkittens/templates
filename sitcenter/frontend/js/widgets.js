@@ -168,3 +168,46 @@ var FooterNavWidget = function(app) {
 		this.elements["MAIN"].removeClass("onShow");
 	}
 }
+
+/**
+ * [AppTimer description]
+ * @param {[type]} app [description]
+ */
+var AppTimer = function(app) {
+	this.timerEvent_ = {};
+	this.CSS = {
+		"hour": "#hour",
+		"minute": "#minute",
+		"day": "#day",
+		"month": "#month",
+		"age": "#age"
+	}
+	this.month = ['января','февраля','марта','апреля','мая','июня', 'июля','августа','сентября','рктября','ноября','декабря'];
+	this.elements = {
+		"minute": $(this.CSS["minute"]),
+		"hour": $(this.CSS["hour"]),
+		"day": $(this.CSS["day"]),
+		"month": $(this.CSS["month"]),
+		"age": $(this.CSS["age"])
+	}
+
+	this.run = function() {
+		this.tick_();
+		this.timerEvent_ = setInterval($.proxy(this.tick_, this), 10000);
+	}
+
+	this.tick_ = function() {
+		var date = new Date();
+
+		var strMonth = '' + date.getMinutes();
+		if (strMonth.length == 1) {
+		  strMonth = '0' + strMonth;
+		}
+
+		this.elements["hour"].html(date.getHours());
+		this.elements["minute"].html(strMonth);
+		this.elements["day"].html(date.getDate());
+		this.elements["month"].html(this.month[date.getMonth()]);
+		this.elements["age"].html(date.getUTCFullYear());
+	}
+}
