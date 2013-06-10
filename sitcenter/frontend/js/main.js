@@ -568,7 +568,7 @@ var MapEventsPanel = function(app) {
 					value.latitude, 
 					value.longitude
 				);
-				console.log(pos);
+				self.elements['CONTAINER'].append('<div class="item" style="postion: absolute; left:'+pos.x+'px; top: '+pos.y+'px; background: red; width: 10px; height: 10px; border-radius: 100%;"></div>');
 			})
 		}
 	}
@@ -774,7 +774,13 @@ var Application = function() {
 								self.onCacheLoaded_();
 							}
 						}, function() {
-							location.reload();
+							self.loadingState.updateText(self.cachedFile, self.allCacheFile);
+							self.res[value] = file;
+							self.cachedFile = self.cachedFile + 1;
+							if(self.allCacheFile == self.cachedFile) {
+								self.onCacheLoaded_();
+							}
+							//location.reload();
 						});
 					} else {
 						self.loadingState.updateText(self.cachedFile, self.allCacheFile);

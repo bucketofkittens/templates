@@ -187,7 +187,7 @@ var RegionsManagerLocal = function(app) {
 				ret.push(value);
 			}
 		});
-
+		console.log(ret);
 		return ret;
 	}
 
@@ -198,7 +198,7 @@ var RegionsManagerLocal = function(app) {
 				ret = value;
 			}
 		});
-
+		
 		return ret;
 	}
 
