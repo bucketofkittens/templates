@@ -540,6 +540,53 @@ var RegionPanel = function(app) {
 	this.bindEvents_();
 }
 
+var MapEventsPanel = function(app) {
+	this.app = app;
+	this.events = [{
+		"latitude": 55.7517,
+		"longitude": 37.6178
+	}];
+
+	this.OnEvensMapChangeState = new signals.Signal();
+	this.OnEvensMapChangeState.add(OnEvensMapChangeState);
+	this.eventsFactory = new EventsFactory(this.app);
+
+	this.CSS = {
+		"CONTAINER": "#bg-events"
+	}
+
+	this.elements = {
+		"CONTAINER": $(this.CSS["CONTAINER"])
+	}
+
+	this.onAfterStop_ = function() {
+		var self = this;
+		if(this.app.currentRegion == 101) {
+			$.each(this.events, function(key, value) {
+				var pos = self.eventsFactory.getPosition(
+					self.app.currentRegion, 
+					value.latitude, 
+					value.longitude
+				);
+				console.log(pos);
+			})
+		}
+	}
+
+	this.show = function() {
+		this.elements["CONTAINER"].removeClass("onHidden");
+		this.app.mapStateManager.onAfterStateChange = $.proxy(this.onAfterStop_, this);
+	
+		//this.app.mapStateManager.OnDistrictChangeState.setOnAfterStop($.proxy(this.onAfterStop_, this));
+		
+		/**/
+	}
+
+	this.hidden = function() {
+		this.elements["CONTAINER"].addClass("onHidden");
+	}
+}
+
 /**
  * [MapStateManager description]
  * @param {[type]} app [description]
@@ -550,6 +597,8 @@ var MapStateManager = function(app) {
 
 	this.OnDistrictChangeState = new signals.Signal();
 	this.OnDistrictChangeState.add(OnDistrictChangeState);
+
+	this.onAfterStateChange = null;
 
 	this.stateCSS = {
 		"BG-IMAGE": "#bg-image"
@@ -820,6 +869,7 @@ var Application = function() {
 		this.districtsPanel = new DistrictsPanel(this);
 		this.graphPanel = new GraphPanel(this);
 		this.formatPanel = new FormatPanel(this);
+		this.mapEventsPanel = new MapEventsPanel(this);
 
 		this.regionsMapColorWidget.enable();
 		this.mapColorWidget.enable();

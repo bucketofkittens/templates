@@ -119,10 +119,12 @@ var FooterNavWidget = function(app) {
 		var itemId = curElement.attr("data-id");
 
 		if(!curElement.hasClass("cooming")) {
+			console.log(this.app);
 			if(itemId == "GRAPH") {
 				this.app.districtsPanel.hidden();
 				this.app.regionPanel.hidden();
 				this.app.formatPanel.hidden();
+				this.app.mapEventsPanel.hidden();
 
 				this.app.graphPanel.show();
 			}
@@ -131,6 +133,7 @@ var FooterNavWidget = function(app) {
 				this.app.districtsPanel.hidden();
 				this.app.regionPanel.hidden();
 				this.app.graphPanel.hidden();
+				this.app.mapEventsPanel.hidden();
 
 				this.app.formatPanel.show();
 			}
@@ -139,6 +142,7 @@ var FooterNavWidget = function(app) {
 				this.app.districtsPanel.hidden();
 				this.app.graphPanel.hidden();
 				this.app.formatPanel.hidden();
+				this.app.mapEventsPanel.hidden();
 
 				this.app.regionPanel.show();
 			}
@@ -146,11 +150,20 @@ var FooterNavWidget = function(app) {
 				this.app.regionPanel.hidden();
 				this.app.graphPanel.hidden();
 				this.app.formatPanel.hidden();
+				this.app.mapEventsPanel.hidden();
 
 				this.app.districtsPanel.show();
 			}
-		}
+			if(itemId == "EVENTS") {
+				this.app.regionPanel.hidden();
+				this.app.graphPanel.hidden();
+				this.app.formatPanel.hidden();
 
+				this.app.districtsPanel.show();
+				this.app.mapEventsPanel.show();
+			}
+		}
+		
 		if(!curElement.hasClass("cooming")) {
 			if(!curElement.hasClass("active")) {
 				$(this.CSS["MAIN"]).find("a").removeClass("active");

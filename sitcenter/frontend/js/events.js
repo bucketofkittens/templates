@@ -62,6 +62,15 @@ var OnFormatUpdateContentEvent = function(app) {
  * @param  {[type]} app [description]
  * @return {[type]}     [description]
  */
+var OnEvensMapChangeState = function(app) {
+	this.app = app;
+}
+
+/**
+ * [ description]
+ * @param  {[type]} app [description]
+ * @return {[type]}     [description]
+ */
 var OnDistrictChangeState = function(app, mapStateManager, video_id, currentRegion) {
 	this.app = app;
 	this.mapStateManager = mapStateManager;
@@ -86,6 +95,10 @@ var OnDistrictChangeState = function(app, mapStateManager, video_id, currentRegi
 		this.app.mapStateManager.show();
 		this.app.mapColorel.show();
 		this.app.videoPlayer.hide();
+		
+		if(this.app.mapStateManager.onAfterStateChange) {
+			this.app.mapStateManager.onAfterStateChange();
+		}
 	}
 
 	if(this.app.parametrsWidgets.currentParametr != null) {

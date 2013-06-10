@@ -18,10 +18,9 @@ var ConfigApp = {
 		},
 		"GRAPH": {
 			"title": "График"
-		},
+		}, 
 		"EVENTS": {
-			"title": "События",
-			"cooming": true
+			"title": "События"
 		}
 	},
 	"REGIONS": {

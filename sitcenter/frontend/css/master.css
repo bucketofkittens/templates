@@ -316,7 +316,8 @@ header h1
 }
 
 #bg-image,
-#bg-regions-image
+#bg-regions-image,
+#bg-events
 {
   display:block;
   width:100%;
@@ -337,6 +338,10 @@ header h1
 #bg-regions-image
 {
   z-index: 20;
+}
+
+#bg-events {
+  z-index: 30;
 }
 
 .blur
