@@ -568,7 +568,7 @@ var MapEventsPanel = function(app) {
 					value.latitude, 
 					value.longitude
 				);
-				self.elements['CONTAINER'].append('<div class="item" style="postion: absolute; left:'+pos.x+'px; top: '+pos.y+'px; background: red; width: 10px; height: 10px; border-radius: 100%;"></div>');
+				self.elements['CONTAINER'].append('<div class="item" style="position: absolute; left:'+pos.x+'px; top: '+pos.y+'px; background: red; width: 10px; height: 10px; border-radius: 100%;"></div>');
 			})
 		}
 	}
