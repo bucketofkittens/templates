@@ -65,7 +65,7 @@ var SVGLoader = function(app, config) {
 	this.onLoadSvg_ = function() {
 		var svg = this.elements["SVG"][0].getSVGDocument();
 		var self = this;
-
+		console.log(svg);
 		this.appendCSS_(svg);
 		
 		$.each($(svg).find("path"), function(key, value) {
