@@ -548,7 +548,7 @@ var ConfigApp = {
 	  "/static/images/map/83.jpg",
 	  "/static/images/map/all-regions-center.jpg",
 	  "/static/images/map/all-regions-left.jpg",
-	  "/static/images/map/all-regions-right.jpg",
+	  "/static/images/map/all-regions-right.jpg"/*
 	  "/static/svg/100.svg",
 	  "/static/svg/101.svg",
 	  "/static/svg/102.svg",
@@ -735,6 +735,7 @@ var ConfigApp = {
 	  "/static/images/mini/81.gif",
 	  "/static/images/mini/82.gif",
 	  "/static/images/mini/83.gif"
+	  */
 	]
 }
 
@@ -752,11 +753,11 @@ var ConfigManager = function(app, config) {
 	}
 
 	this.getMiniMapById = function(id_region) {
-		return this.app.getResByPath(this.config["PATHES"]["MINI-MAP"]+id_region+".gif").toURL();
+		return this.config["PATHES"]["MINI-MAP"]+id_region+".gif";
 	}
 
 	this.getSvgById = function(id_region) {
-		return this.app.getResByPath(this.config["PATHES"]["SVG"]+id_region+".svg").toURL();
+		return this.config["PATHES"]["SVG"]+id_region+".svg";
 	}
 
 	this.getInVideoById = function(id_region) {
