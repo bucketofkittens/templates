@@ -63,15 +63,18 @@ body {
 }
 #topmenu li {
 	display: inline-block;
-	padding: 15px 50px 0 50px;
+	padding: 0px 40px 5px 40px;
 }
 #topmenu li a {
 	color: #000000;
 	text-decoration: none;
-	font-size: 12px;
+	font-size: 11px;
 }
 #topmenu li a:hover {
 	text-decoration: underline;
+}
+#topmenu li a.current {
+	font-weight: bold;
 }
 
 footer {
@@ -82,9 +85,9 @@ footer {
 }
 footer p {
 	position: absolute;
-	right: 0px;
+	left: 0px;
 	bottom: 50px;
-	text-align: right;
+	text-align: left;
 	color: #002a74;
 	line-height: 150%;
 	font-size: 12px;
@@ -135,6 +138,21 @@ footer p {
 .gray_box .in {
 	padding: 20px;
 }
+.gray_box .in li {
+	display: block;
+	padding: 10px 0px;
+}
+.gray_box .in li a {
+	font-size: 14px;
+	color: #000000;
+	text-decoration: none;
+}
+.gray_box .in li a:hover {
+	text-decoration: underline;
+}
+.gray_box .in li a.current {
+	font-weight: bold;
+}
 
 .blue_box {
 	margin-left: 15px; 
@@ -156,4 +174,101 @@ footer p {
 
 .blue_box .in {
 	padding: 20px;
+	position: relative;
+}
+.blue_box .in h2 {
+	text-align: center;
+	font-size: 20px;
+	color: #000000;
+	margin-bottom: 30px;
+	display: block;
+}
+
+.blue_box .in section {
+	padding: 40px 0px;
+}
+.blue_box .in section p, .blue_box .in section i, .blue_box .in section b, .blue_box .in section strong {
+	display: block;
+	color: #000000;
+	font-size: 14px;
+	line-height: 16px;
+}
+.blue_box .in section i {
+	font-size: 12px;
+	color: #575757;
+}
+.blue_box .in section p {
+	font-style: italic;
+	font-weight: bold;
+	padding: 10px 20px;
+}
+
+.blue_box .in .angst {
+	display: block;
+	position: absolute;	
+	right: 250px;
+	margin-top: 120px;
+}
+.blue_box .in .angst p {
+	width: 230px;
+	position: absolute;
+	left: 10px;
+	top: 0px;
+	font-size: 14px;
+}
+.blue_box .in .send {
+	display: block;
+	padding: 15px 20px;
+}
+.blue_box .in .send p, .blue_box .in .send input, .blue_box .in .send select, .blue_box .in .send textarea {
+	display: inline-block;
+	color: #000000;
+	font-size: 14px;
+	line-height: 16px;
+	margin-right: 60px;
+}
+.blue_box .in .send input, .blue_box .in .send select {
+	position: absolute;
+	left: 200px;
+}
+.blue_box .in .send textarea {
+	vertical-align: top;
+	min-width: 300px;
+	min-height: 100px;
+}
+.blue_box .in .send input {
+	min-width: 300px;
+}
+.blue_box .in a.send {
+	font-size: 18px;
+	color: #000000;
+	margin-left: 150px;
+}
+.blue_box .in a.send:hover {
+	text-shadow: 0px 0px 10px #757575;
+}
+
+.blue_box .in article {
+	padding: 30px 50px;
+}
+.blue_box .in article i, .blue_box .in article b, .blue_box .in article a {
+	display: block;
+	color: #575757;
+	font-size: 12px;
+}
+.blue_box .in article p, .blue_box .in article strong {
+	color: #000000;
+	font-size: 14px;
+	line-height: 18px;
+	display: block;
+}
+.blue_box .in article strong {
+	font-style: italic;
+	margin-bottom: 20px;
+}
+.blue_box .in article .more {
+	padding-top: 30px;
+}
+.blue_box .in article a {
+	margin-left: 500px;
 }
