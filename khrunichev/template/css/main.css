@@ -57,6 +57,9 @@ a {
 #topnav li a:hover {
 	text-decoration: underline;
 }
+#topnav li a.current {
+	font-weight: bold;
+}
 
 #topmenu {
 	height: 47px;
@@ -202,7 +205,7 @@ footer p {
 	margin-bottom: 10px;
 }
 
-.gray_box .in .admin ul {
+.gray_box .in .admin ul, .gray_box .in .admin .soot {
 	padding: 10px 0px;
 	border-top: 1px solid #757575;
 }
