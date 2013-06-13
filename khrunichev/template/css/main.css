@@ -202,6 +202,16 @@ footer p {
 	margin-bottom: 10px;
 }
 
+.gray_box .in .admin ul {
+	padding: 10px 0px;
+	border-top: 1px solid #757575;
+}
+.gray_box .in .admin input {
+	vertical-align: top;
+	margin-right: 10px;
+}
+
+
 .blue_box {
 	margin-left: 15px; 
 
