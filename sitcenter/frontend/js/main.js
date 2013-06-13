@@ -388,11 +388,11 @@ var RegionPanel = function(app) {
 	this.svgWriter = new SVGLoader(this);
 
 	this.getBgCurrentCamera = function() {
-		return this.app.getResByPath(ConfigApp["REGIONS"][this.currentCamera]["MAP"]).toURL();
+		return ConfigApp["REGIONS"][this.currentCamera]["MAP"];
 	}
 
 	this.getSVGCurrentCamera = function() {
-		return this.app.getResByPath(ConfigApp["REGIONS"][this.currentCamera]["SVG"]).toURL();
+		return ConfigApp["REGIONS"][this.currentCamera]["SVG"];
 	}
 
 	this.getVideoName = function(start, end) {

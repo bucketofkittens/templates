@@ -15,7 +15,7 @@ var EventsFactory = function(app) {
 	this.get101_ = function(latitude, longitude) {
 		var ret = {};
 		var gps = {};
-		var cor = 57.924;
+		var cor = 57.296;
 
 		gps.x = latitude;
 		gps.y = longitude;
