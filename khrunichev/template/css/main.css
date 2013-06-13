@@ -398,3 +398,11 @@ footer p {
 .quiz_small {
 
 }
+
+.gray_box strong {
+	font-weight: bold;
+}
+
+.quiz_update {
+	font-size: 12px;
+}
