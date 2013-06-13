@@ -213,7 +213,40 @@ footer p {
 	vertical-align: top;
 	margin-right: 10px;
 }
+.gray_box .in .admin ul:nth-child(2) li:first-child {
+	background: rgba(0, 102, 204, 0.3);
+}
+.gray_box .in .admin ul:nth-child(2) li:nth-child(2) {
+	background: rgba(153, 204, 255, 0.4);
+}
 
+.blue_box .in section.let {
+	padding: 20px;
+	position: relative;
+}
+.blue_box .in section.let:first-child {
+	background: rgba(0, 102, 204, 0.2);
+}
+.blue_box .in section.let:nth-child(2) {
+	background: rgba(153, 204, 255, 0.5);
+}
+.blue_box .in section a.look {
+	display: block;
+	position: absolute;
+	left: 500px;
+	top: 80px;
+	padding: 10px 0px 0px 15px;
+	font-size: 20px;
+	text-decoration: none;
+	background: rgba(255, 255, 255, 0.5);
+	border-radius: 10px;
+	width: 100px;
+	height: 30px;
+	border: 1px solid #ffffff;
+}
+.blue_box .in section a.look:hover {
+
+}
 
 .blue_box {
 	margin-left: 15px; 
