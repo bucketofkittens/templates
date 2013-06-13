@@ -272,3 +272,29 @@ footer p {
 .blue_box .in article a {
 	margin-left: 500px;
 }
+
+.blue_box .in .news_list article {
+	padding: 0px;
+	overflow: hidden;
+	width: 100%;
+	margin-bottom: 50px;
+}
+.blue_box .in .news_list article img {
+	float: left;
+}
+.blue_box .in .news_list article div {
+	float: right;
+	width: 80%;
+}
+.blue_box .in .news_list article a {
+	margin: 0px;
+	font-size: 18px;
+	line-height: 140%;
+}
+.blue_box .in .news_list article p {
+	padding-left: 0px;
+	padding-bottom: 0px;
+	padding-top: 10px;
+	font-weight: normal;
+	font-style: normal;
+}
