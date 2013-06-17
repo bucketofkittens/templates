@@ -219,6 +219,9 @@ footer p {
 .gray_box .in .admin ul:nth-child(2) li:nth-child(2) {
 	background: rgba(153, 204, 255, 0.4);
 }
+.gray_box .in .send {
+	padding: 10px 0px;
+}
 
 .blue_box .in section.let {
 	padding: 20px;
@@ -244,8 +247,13 @@ footer p {
 	height: 30px;
 	border: 1px solid #ffffff;
 }
-.blue_box .in section a.look:hover {
-
+.blue_box .in .quiz_small section img {
+	margin: 0px 70px;
+	vertical-align: middle
+}
+.blue_box .in .quiz_small section strong {
+	font-size: 18px;
+	text-decoration: underline;
 }
 
 .blue_box {
