@@ -204,6 +204,13 @@ footer p {
 	font-weight: bold;
 	margin-bottom: 10px;
 }
+.gray_box .in a {
+	font-size: 16px;
+	color: #000000;
+	font-style: oblique;
+	margin: 10px 0px;
+	display: block;
+}
 
 .gray_box .in .admin ul, .gray_box .in .admin .soot {
 	padding: 10px 0px;
@@ -421,7 +428,15 @@ footer p {
 }
 
 .news_small article {
-	margin-bottom: 20px;
+	padding: 0px !important;
+	margin-bottom: 40px;
+}
+.news_small article a {
+	margin-left: 0px !important;
+	font-size: 17px !important;
+}
+.news_small article p {
+	padding: 0px !important;
 }
 .news_small h4 a {
 	color: #000000;
@@ -435,15 +450,170 @@ footer p {
 	margin-bottom: 5px;
 	font-size: 11px;
 }
-
-.quiz_small {
-
-}
-
 .gray_box strong {
 	font-weight: bold;
 }
 
 .quiz_update {
 	font-size: 12px;
+}
+
+.blue_box .in .stages ul {
+	display: block;
+	text-align: center;
+	margin: 0px 10px;
+	background: rgba(250, 250, 250, 0.3);
+	border-radius: 10px;
+	border: 1px solid #ffffff;
+	padding-top: 20px;
+}
+.blue_box .in .stages li {
+	display: inline-block;
+}
+.blue_box .in .stages li ul li {
+	background: rgba(255, 255, 255, 0.5);
+	border-radius: 10px;
+	margin-bottom: 10px;
+	margin-left: 10px;
+	padding: 3px;
+}
+.blue_box .in .stages a {
+	display: block;
+	color: #000000;
+	font-size: 18px;
+	text-decoration: none;
+	margin: 0px 10px 20px 10px;
+	font-style: normal;
+	font-weight: bold;
+}
+.blue_box .in .stages a:hover {
+	text-decoration: underline;
+}
+.blue_box .in .stages b {
+}
+.blue_box .in .stages p, .blue_box .in .stages b {
+	display: block;
+	color: #000000;
+	font-size: 12px;
+	font-weight: normal;
+	margin-bottom: 10px;
+	padding: 0px;
+}
+.blue_box .in .stages ul li ul {
+	background: rgba(153, 204, 255, 0.5);
+	border-radius: 10px;
+	border: 1px solid #ffffff;
+	padding: 20px 5px;
+}
+
+.blue_box .in b {
+	font-weight: bold;
+	font-style: italic;
+	margin: 10px 0px;
+}
+.blue_box .in p {
+	margin: 10px 0px;
+}
+
+.gray_box .in .list ul {
+	margin-left: 20px;
+}
+.gray_box .in .list li, .gray_box .in .list a {
+	margin: 3px 0px;
+	padding: 3px 0px;
+}
+.blue_box .in table {
+	width: 100%;
+}
+.blue_box .in table td img {
+	padding-bottom: 5px;
+}
+.blue_box .in table td a {
+	font-size: 14px;
+	padding-bottom: 30px;
+	text-decoration: none;
+	display: block;
+	text-align: center;
+	max-width: 170px;
+}
+.blue_box .in table td a:hover {
+	text-decoration: underline;
+}
+
+.find_adv {
+
+}
+.find_adv h3 {
+	font-weight: bold;
+	margin-bottom: 10px;
+}
+.find_adv input[type="text"] {
+	width: 100px;
+}
+
+.quiz_small p {
+	color: #000000;
+	font-size: 13px;
+	line-height: 18px;
+	display: block;
+	margin-bottom: 15px;
+}
+
+.quiz_small i {
+	font-size: 12px;
+	margin-bottom: 5px;
+}
+
+.cat-list {
+	width: 100%;
+	overflow: hidden;
+}
+.cat-list li {
+	margin-bottom: 15px;
+	width: 100%;
+	overflow: hidden;
+}
+.cat-list li img {
+	float: left;
+}
+.cat-list li .text {
+	float: left;
+	width: 600px;
+	margin-left: 20px;
+}
+.cat-list li .text a {
+	font-weight: bold;
+	font-size: 17px;
+}
+.cat-list li .text p {
+	font-size: 14px;
+}
+
+.nav1 {
+	color: #000000;
+	padding-right: 20px;
+}
+.nav1.current {
+	font-weight: bold;
+}
+
+.color2 {
+	background: rgba(255, 255, 255, 0.6);
+	padding: 5px;
+	border-radius: 5px;
+	margin-bottom: 2px !important;
+}
+.color3 {
+	background: rgba(50, 60, 60, 0.3);
+	padding: 5px;
+	border-radius: 5px;
+	margin-bottom: 2px !important;
+}
+
+.lt {
+	margin-bottom: 5px !important;
+	padding: 0px !important;
+	display: block;
+	font-style: normal !important;
+	font-weight: normal !important;
 }
