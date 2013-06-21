@@ -1,0 +1,1 @@
+[Fri, 21 Jun 2013 12:22:54 GMT] ERROR 127.0.0.1 - - [Fri Jun 21 2013 16:22:54 GMT+0400 (MSK)] "GET /api/news 1.1" 500 969 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.22 (KHTML, like Gecko) Ubuntu Chromium/25.0.1364.160 Chrome/25.0.1364.160 Safari/537.22"
