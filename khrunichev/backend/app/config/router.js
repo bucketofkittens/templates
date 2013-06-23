@@ -20,8 +20,15 @@
 var router = new geddy.RegExpRouter();
 
 router.get('/').to('Main.index');
-router.match('/api/news', 'GET').to('News.list'); 
+router.match('/api/news', 'GET').to('News.list');
+router.match('/news/add', 'GET').to('News.add');
+router.match('/news/edit/:id', 'GET').to('News.edit');
+router.match('/news/create', 'POST').to('News.create');
+router.match('/news/update/:id', 'POST').to('News.update');
+router.match('/news/destroy/:id', 'GET').to('News.destroy');
 
+router.match('/news', 'GET').to('News.index');
+router.match('/news', 'POST').to('News.index');
 
 // Basic routes
 // router.match('/moving/pictures/:id', 'GET').to('Moving.pictures');
@@ -41,4 +48,10 @@ router.match('/api/news', 'GET').to('News.list');
 //   this.get('/print(.:format)').to('Hemispheres.print');
 // });
 
+
+router.get('/login').to('Main.login');
+router.get('/logout').to('Main.logout');
+router.post('/auth/login').to('Auth.authenticate');
+router.resource('users');
+router.resource('messages');
 exports.router = router;

@@ -30,7 +30,7 @@ var config = {
 		    password: '1234',
   		 	database: 'kh',
   		 	host: 'localhost',
-  			user: 'postgres' 
+  			user: 'pgadmin' 
 		}
 	}
 , sessions: {

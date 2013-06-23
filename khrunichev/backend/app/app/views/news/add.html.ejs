@@ -1,7 +1,7 @@
 <div class="hero-unit">
-  <form id="news-form" class="form-horizontal" action="/news" method="POST">
+  <form id="news-form" class="form-horizontal" action="/news/create" method="POST">
     <fieldset>
-      <legend>Create a new News</legend>
+      <legend>Новая новость</legend>
       <% if(params.errors) { %>
       <div class="control-group">
         <ul>
@@ -15,7 +15,7 @@
       <%- partial('form', {news: {}}) %>
 
       <div class="form-actions">
-        <%- contentTag('input', 'Add', {type: 'submit', class: 'btn btn-primary'}) %>
+        <%- contentTag('input', 'Добавить', {type: 'submit', class: 'btn btn-primary'}) %>
       </div>
     </fieldset>
   </form>

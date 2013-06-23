@@ -1,6 +1,10 @@
 <div class="control-group">
-  <label for="title" class="control-label">title</label>
+  <label for="title" class="control-label">Заголовок</label>
   <div class="controls">
     <%- contentTag('input', news.title, {type:'text', class:'span6', name:'title'}) %>
+  </div>
+  <label for="title" class="control-label">Анонс</label>
+  <div class="controls">
+    <%- contentTag('textarea', news.anonce, {type:'text', class:'span6', name:'anonce'}) %>
   </div>
 </div>

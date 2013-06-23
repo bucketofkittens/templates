@@ -17,9 +17,28 @@
 */
 
 var Application = function () {
+
+    this.before(requireAuthorization, {
+        except: ['login', 'authenticate']
+      , async: true
+    });
+};
+
+var requireAuthorization = function (complete) {
+
+    var self = this
+        , opts
+        , config = geddy.config
+        , app = config.clientApp
+        , code
+        , req
+        , url;
+
+    if (!this.session.get('authenticated')) {
+        self.redirect('login');
+        complete();
+    }
+
 };
 
 exports.Application = Application;
-
-
-

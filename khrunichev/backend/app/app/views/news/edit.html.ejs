@@ -1,7 +1,7 @@
 <div class="hero-unit">
-  <form id="news-form" class="form-horizontal" action="/news/<%= params.id %>?_method=PUT" method="POST">
+  <form id="news-form" class="form-horizontal" action="/news/update/<%= params.id %>" method="POST">
     <fieldset>
-      <legend>Update this News</legend>
+      <legend>Редактирование новоти</legend>
       <% if(params.errors) { %>
       <div class="control-group">
         <ul>
@@ -15,8 +15,9 @@
       <%- partial('form', {news: news}) %>
 
       <div class="form-actions">
-        <%- contentTag('input', 'Save', {type: 'submit', class: 'btn btn-primary'}) %>
-        <%- contentTag('button', 'Remove', {type: 'submit', formaction: '/news/' + params.id + '?_method=DELETE', formmethod: 'POST', class: 'btn btn-danger'}) %>
+        <%- contentTag('input', 'Изменить', {type: 'submit', class: 'btn btn-primary'}) %>
+        <%- contentTag('button', 'Отменить', {type: 'submit', formaction: '/news/', formmethod: 'POST', class: 'btn btn-primary'}) %>
+        <%- contentTag('button', 'Удалить', {type: 'submit', formaction: '/news/destroy/' + params.id, formmethod: 'GET', class: 'btn btn-danger'}) %>
       </div>
     </fieldset>
   </form>

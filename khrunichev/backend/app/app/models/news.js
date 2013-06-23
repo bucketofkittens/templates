@@ -2,9 +2,7 @@ var News = function () {
 
   this.defineProperties({
     title: {type: 'string', required: true},
-    shortText: {type: 'string', required: true},
-    text: {type: 'string', required: true},
-    date: {type: 'date'}
+    anonce: {type: 'string', required: true}
   });
 
   /*

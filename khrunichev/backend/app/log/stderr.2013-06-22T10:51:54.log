@@ -1,0 +1,5 @@
+[Sat, 22 Jun 2013 06:43:31 GMT] ERROR 127.0.0.1 - - [Sat Jun 22 2013 10:43:31 GMT+0400 (MSK)] "GET /news/add 1.1" 500 34 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/28.0.1500.52 Safari/537.36"
+[Sat, 22 Jun 2013 06:43:32 GMT] ERROR 127.0.0.1 - - [Sat Jun 22 2013 10:43:32 GMT+0400 (MSK)] "GET /news/add 1.1" 500 34 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/28.0.1500.52 Safari/537.36"
+[Sat, 22 Jun 2013 06:47:00 GMT] ERROR 127.0.0.1 - - [Sat Jun 22 2013 10:47:00 GMT+0400 (MSK)] "POST /news 1.1" 500 35 "http://localhost:4000/news/add" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/28.0.1500.52 Safari/537.36"
+[Sat, 22 Jun 2013 06:47:20 GMT] ERROR 127.0.0.1 - - [Sat Jun 22 2013 10:47:20 GMT+0400 (MSK)] "POST /news 1.1" 500 962 "http://localhost:4000/news/add" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/28.0.1500.52 Safari/537.36"
+[Sat, 22 Jun 2013 06:47:32 GMT] ERROR Worker 16218 died.
