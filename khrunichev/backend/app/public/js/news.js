@@ -22,17 +22,51 @@ var NewsView = Backbone.View.extend({
   },
 });
 
+var NewsitemView = Backbone.View.extend({
+  className: 'newsitem',
+
+  initialize: function (opt) {
+    this.newsitemList = new NewsitemList({}, {id: opt.id});
+    this.newsitemList.fetch();
+
+    this.template = $('#newsitem-template').html();
+  },
+
+  render: function () {
+    $(this.el).html(_.template(this.template, { news: this.newsitemList.toJSON() } ));
+   
+    return this;
+  }
+});
+
 var NewsnavView = Backbone.View.extend({
   className: 'newsnav',
+  events: {
+    "click #newsnav-list a": "onNewsNavClick"
+  },
 
   initialize: function () {
+    _.bindAll(this,"onNewsNavClick", "render");
+    this.newsnavList = new NewsnavList();
+    this.newsnavList.fetch();
+
     this.template = $('#newsnav-template').html();
   },
 
   render: function () {
-    $(this.el).html(_.template(this.template, this.context));
+    $(this.el).html(_.template(this.template, { newsnav: this.newsnavList.toJSON() } ));
     
     return this;
+  },
+
+  onNewsNavClick: function(e) {
+    var id = $(e.target).attr("data-id");
+
+    $(".news_list article").slideDown();
+
+    if(id != 0) {
+      $(".news_list article[data-newsnavid!='"+id+"']").slideUp();
+    }
   }
 });
 
@@ -64,6 +98,7 @@ var NewsblueView = Backbone.View.extend({
 
 var NewsboxView = Backbone.View.extend({
   className: 'newsbox',
+  newsnav_id: null,
 
   initialize: function () {
     this.newsList = new NewsList();
@@ -100,5 +135,29 @@ var NewsList = Backbone.Collection.extend({
    url: '/api/news',
    parse: function(response, xhr) {
       return response.news;
+   }
+});
+
+var NewsnavModel = Backbone.Model.extend();
+
+var NewsnavList = Backbone.Collection.extend({
+   model: NewsnavModel,
+   url: '/api/newsnav',
+   parse: function(response, xhr) {
+      return response.newsnav;
+  }
+});
+
+var NewsitemModel = Backbone.Model.extend();
+
+var NewsitemList = Backbone.Collection.extend({
+   model: NewsitemModel,
+   initialize: function(models, options) {
+    this.id = options.id;
+    this.url = '/api/news/'+this.id;
+   },
+   url: '/api/news/'+this.id,
+   parse: function(response, xhr) {
+      return response.newsitem;
   }
 });

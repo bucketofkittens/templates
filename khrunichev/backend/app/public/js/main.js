@@ -3,6 +3,7 @@ var Controller = Backbone.Router.extend({
         "": "start",
         "!/": "start", 
         "!/news": "news",
+        "!/news/:id": "newsitem",
         "!/questions": "questions",
         "!/structure": "structure",
         "!/search": "search"
@@ -25,6 +26,13 @@ var Controller = Backbone.Router.extend({
        var news = new NewsView();
        $('#content').slideUp(function() {
             $('#content').html(news.render().el);
+            $('#content').slideDown();
+        });
+    },
+    newsitem: function(id) {
+       var newsItem = new NewsitemView({id: id});
+       $('#content').slideUp(function() {
+            $('#content').html(newsItem.render().el);
             $('#content').slideDown();
         });
     },
@@ -55,3 +63,10 @@ var Controller = Backbone.Router.extend({
 var controller = new Controller();
 
 Backbone.history.start();
+
+$(document).ready(function() {
+    $("body").on("click", "#left ul li a", function(e) {
+        $(e.target).parents("ul").find("a").removeClass("current");
+        $(e.target).addClass("current");
+    });
+});

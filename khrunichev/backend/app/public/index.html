@@ -127,11 +127,11 @@
 		<script id="newsnav-template" type="text/template">
 			<div class="gray_box">
 				<div class="in">
-					<ul>
-						<li><a href="#">Пресс-релизы</a></li>
-						<li><a href="#">Пресса о нас</a></li>
-						<li><a href="#">Актуальный репортаж</a></li>
-						<li><a href="#">Новости партнеров и филиалов</a></li>
+					<ul id="newsnav-list">
+						<li><a data-id="0">Все</a></li>
+						<% _.each(newsnav, function(newsnavItem) { %>
+							<li><a data-id="<%= newsnavItem.id %>"><%= newsnavItem.title %></a></li>
+						<% }); %>
 					</ul>
 				</div>
 			</div>
@@ -146,13 +146,26 @@
 				</div>
 			</div>
 		</script>
+		<script id="newsitem-template" type="text/template">
+			<div id="content">
+				<article class="news">
+					<img src="./images/news.jpg" alt="" />
+					<div>
+						<h2><%= newsItem.title %></h2>
+						<p class="date"><%= newsItem.createdAt %></p>
+						<p class="text"><%= newsItem.text %></p>
+						<a class="back">Назад</a>
+					</div>
+				</article>
+			</div>
+		</script>
 		<script id="newsbox-template" type="text/template">
 			<section class="news_list">
 				<% _.each(news, function(newsItem) { %>
-					<article>
+					<article data-newsnavid="<%= newsItem.newsnavId %>">
 						<img src="./images/news.jpg" alt="" />
 						<div>
-							<a href="/news/<%= newsItem.id %>"><%= newsItem.title %></a>
+							<a href="#!/news/<%= newsItem.id %>"><%= newsItem.title %></a>
 							<p class="date"><%= newsItem.createdAt %></p>
 							<p class="text"><%= newsItem.anonce %></p>
 						</div>
