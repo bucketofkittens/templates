@@ -139,25 +139,26 @@
 		<script id="newsblue-template" type="text/template">
 			<div class="blue_box">
 				<div class="in">
+					<h2>Новости</h2>
+					<div class="pgn1-widget"></div>
 					<div class="newsbox-widget"></div>
-					<div class="pgn-widget"></div>
+					<div class="pgn2-widget"></div>
 				</div>
 			</div>
 		</script>
 		<script id="newsbox-template" type="text/template">
-					<h2>Новости</h2>	
-					<section class="news_list">
-						<article>
-							<img src="./images/gerb-rossii-21.jpg" alt="" />
-							<div>
-								<a href="">Дмитрий Медведев поздравил коллектив ФГУП «Государственный космический научно-производственный центр имени М.В.Хруничева» с 20-летием со дня создания предприятия</a>
-								<p class="date">07.06.2013</p>
-								<p class="text">Сегодня ГКНПЦ имени Хруничева динамично развивается, чётко и своевременно выполняет важнейшие государственные заказы. Здесь завершается разработка ракеты-носителя “Ангара”, старт которой намечен на 2014 год. Реализация такого масштабного и перспективного проекта обеспечит нашей стране гарантированный и независимый доступ в космическое пространство.</p>
-							</div>
-						</article>
-					</section>
-				</div>
-			</div>
+			<section class="news_list">
+				<% _.each(news, function(newsItem) { %>
+					<article>
+						<img src="./images/news.jpg" alt="" />
+						<div>
+							<a href="/news/<%= newsItem.id %>"><%= newsItem.title %></a>
+							<p class="date"><%= newsItem.createdAt %></p>
+							<p class="text"><%= newsItem.anonce %></p>
+						</div>
+					</article>
+				<% }); %>
+			</section>
 		</script>
 		<script id="pgn-template" type="text/template">
 			<hr><p>Страницы 1 

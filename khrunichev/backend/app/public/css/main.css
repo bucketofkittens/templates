@@ -390,6 +390,7 @@ footer p {
 }
 .blue_box .in .news_list article img {
 	float: left;
+	max-width: 120px;
 }
 .blue_box .in .news_list article div {
 	float: right;

@@ -65,11 +65,14 @@ var NewsboxView = Backbone.View.extend({
 
   initialize: function () {
     this.newsList = new NewsList();
+    this.newsList.bind("reset", this.render, this);
     this.newsList.fetch();
+
     this.template = $('#newsbox-template').html();
   },
 
   render: function () {
+    console.log(this.newsList);
     $(this.el).html(_.template(this.template, this.context));
     
     return this;
@@ -94,5 +97,8 @@ var News = Backbone.Model.extend();
 
 var NewsList = Backbone.Collection.extend({
    model: News,
-   url: '/api/news'
+   url: '/api/news',
+   parse: function(response, xhr) {
+      return response.items;
+  }
 });

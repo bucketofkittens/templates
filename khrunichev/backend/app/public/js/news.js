@@ -10,13 +10,13 @@ var NewsView = Backbone.View.extend({
   },
 
   render: function () {
-  	$(this.el).html(_.template(this.template, this.context));
+    $(this.el).html(_.template(this.template, this.context));
 
-  	$(this.el).append(this.newsnav.el);
-  	this.newsnav.setElement(this.$(".newsnav-widget")).render();
+    $(this.el).append(this.newsnav.el);
+    this.newsnav.setElement(this.$(".newsnav-widget")).render();
 
-  	$(this.el).append(this.newsblue.el);
-  	this.newsblue.setElement(this.$(".newsblue-widget")).render();
+    $(this.el).append(this.newsblue.el);
+    this.newsblue.setElement(this.$(".newsblue-widget")).render();
    
     return this;
   },
@@ -50,11 +50,13 @@ var NewsblueView = Backbone.View.extend({
   render: function () {
     $(this.el).html(_.template(this.template, this.context));
 
+    $(this.el).append(this.pgn.el);
+    this.pgn.setElement(this.$(".pgn1-widget")).render();
+
     $(this.el).append(this.newsbox.el);
     this.newsbox.setElement(this.$(".newsbox-widget")).render();
 
-    $(this.el).append(this.pgn.el);
-    this.pgn.setElement(this.$(".pgn-widget")).render();
+    this.pgn.setElement(this.$(".pgn2-widget")).render();
     
     return this;
   }
@@ -66,11 +68,12 @@ var NewsboxView = Backbone.View.extend({
   initialize: function () {
     this.newsList = new NewsList();
     this.newsList.fetch();
+
     this.template = $('#newsbox-template').html();
   },
 
   render: function () {
-    $(this.el).html(_.template(this.template, this.context));
+    $(this.el).html(_.template(this.template, { news: this.newsList.toJSON() } ));
     
     return this;
   }
@@ -90,9 +93,12 @@ var PgnView = Backbone.View.extend({
   }
 });
 
-var News = Backbone.Model.extend();
+var NewsModel = Backbone.Model.extend();
 
 var NewsList = Backbone.Collection.extend({
-   model: News,
-   url: 'http://localhost:4000/api/news'
+   model: NewsModel,
+   url: '/api/news',
+   parse: function(response, xhr) {
+      return response.news;
+  }
 });
