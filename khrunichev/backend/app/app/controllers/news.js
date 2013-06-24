@@ -3,9 +3,7 @@ var News = function () {
 	
   this.list = function(req, resp, params) {
     var self = this;
-    var news = geddy.model.News.create({title: "test"});
-    news.save();
-    this.respondsWith = ['json', 'js'];
+    this.respondsWith = ['json', 'js']; 
     
     geddy.model.News.all(function(err, news) {
       self.respond({news: news});

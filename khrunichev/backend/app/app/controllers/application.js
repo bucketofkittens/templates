@@ -17,7 +17,6 @@
 */
 
 var Application = function () {
-
     /*this.before(requireAuthorization, {
         except: ['login', 'authenticate']
       , async: true
