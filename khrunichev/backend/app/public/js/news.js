@@ -94,5 +94,5 @@ var News = Backbone.Model.extend();
 
 var NewsList = Backbone.Collection.extend({
    model: News,
-   url: '/api/news'
+   url: 'http://localhost:4000/api/news'
 });
