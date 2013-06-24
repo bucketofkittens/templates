@@ -21,6 +21,9 @@ var router = new geddy.RegExpRouter();
 
 router.get('/').to('Main.index');
 router.match('/api/news', 'GET').to('News.list');
+router.match('/api/newslist', 'GET').to('Newslist.list');
+router.match('/api/newslist/:id', 'GET').to('Newslist.one');
+
 router.match('/news/add', 'GET').to('News.add');
 router.match('/news/edit/:id', 'GET').to('News.edit');
 router.match('/news/create', 'POST').to('News.create');
