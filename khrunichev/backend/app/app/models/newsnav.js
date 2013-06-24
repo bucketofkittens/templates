@@ -1,4 +1,4 @@
-var Newslist = function () {
+var Newsnav = function () {
 
   this.defineProperties({
     title: {type: 'string', required: true}
@@ -44,5 +44,5 @@ News.someStaticMethod = function () {
 News.someStaticProperty = 'YYZ';
 */
 
-Newslist = geddy.model.register('Newslist', Newslist);
+Newsnav = geddy.model.register('Newsnav', Newsnav);
 

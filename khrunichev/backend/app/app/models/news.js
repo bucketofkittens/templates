@@ -7,7 +7,7 @@ var News = function () {
     image: {type: 'string'}
   });
 
-  this.belongsTo('Newslist');
+  this.belongsTo('Newsnav');
 
   /*
   this.property('login', 'string', {required: true});
