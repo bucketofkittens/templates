@@ -2,8 +2,12 @@ var News = function () {
 
   this.defineProperties({
     title: {type: 'string', required: true},
-    anonce: {type: 'string', required: true}
+    anonce: {type: 'string'},
+    text: {type: 'string'},
+    image: {type: 'string'}
   });
+
+  this.belongsTo('Newslist');
 
   /*
   this.property('login', 'string', {required: true});

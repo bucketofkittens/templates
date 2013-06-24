@@ -1,8 +1,12 @@
-var Message = function () {
+var Newslist = function () {
 
   this.defineProperties({
-    body: {type: 'string'}
+    title: {type: 'string', required: true}
   });
+
+  this.hasMany('News');
+
+  
 
   /*
   this.property('login', 'string', {required: true});
@@ -30,15 +34,15 @@ var Message = function () {
 
 /*
 // Can also define them on the prototype
-Message.prototype.someOtherMethod = function () {
+News.prototype.someOtherMethod = function () {
   // Do some other stuff
 };
 // Can also define static methods and properties
-Message.someStaticMethod = function () {
+News.someStaticMethod = function () {
   // Do some other stuff
 };
-Message.someStaticProperty = 'YYZ';
+News.someStaticProperty = 'YYZ';
 */
 
-Message = geddy.model.register('Message', Message);
+Newslist = geddy.model.register('Newslist', Newslist);
 
