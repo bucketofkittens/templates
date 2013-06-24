@@ -51,6 +51,7 @@ var Controller = Backbone.Router.extend({
     }
 });
 
+
 var controller = new Controller();
 
 Backbone.history.start();
