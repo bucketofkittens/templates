@@ -24,8 +24,13 @@ var NewsView = Backbone.View.extend({
 
 var NewsitemView = Backbone.View.extend({
   className: 'newsitem',
+  events: {
+    "click #newsitem .back": "onBackClick"
+  },
 
   initialize: function (opt) {
+    _.bindAll(this,"onBackClick", "render");
+    this.newsnav = new NewsnavView();
     this.newsitemList = new NewsitemList({}, {id: opt.id});
     this.newsitemList.fetch();
 
@@ -33,9 +38,18 @@ var NewsitemView = Backbone.View.extend({
   },
 
   render: function () {
-    $(this.el).html(_.template(this.template, { news: this.newsitemList.toJSON() } ));
+    $(this.el).html(_.template(this.template, { newsItem: this.newsitemList.toJSON() } ));
+
+    $(this.el).append(this.newsnav.el);
+    this.newsnav.setElement(this.$(".newsnav-widget")).render();
+
+    
    
     return this;
+  },
+
+  onBackClick: function(e) {
+    window.history.back();
   }
 });
 
@@ -61,6 +75,7 @@ var NewsnavView = Backbone.View.extend({
 
   onNewsNavClick: function(e) {
     var id = $(e.target).attr("data-id");
+    window.location.hash = '#!/news';
 
     $(".news_list article").slideDown();
 
@@ -158,6 +173,6 @@ var NewsitemList = Backbone.Collection.extend({
    },
    url: '/api/news/'+this.id,
    parse: function(response, xhr) {
-      return response.newsitem;
+      return response.news;
   }
 });

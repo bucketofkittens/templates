@@ -381,21 +381,23 @@ footer p {
 }
 .blue_box .in article a {
 	margin-left: 500px;
+	cursor: pointer;
 }
 
-.blue_box .in .news_list article {
-	padding: 0px;
+.blue_box .in .news_list article, .blue_box .in #newsitem {
+	padding: 10px;
 	overflow: hidden;
 	width: 100%;
-	margin-bottom: 50px;
+	margin-bottom: 30px;
 }
-.blue_box .in .news_list article img {
+.blue_box .in .news_list article img, .blue_box .in #newsitem img {
 	float: left;
 	max-width: 120px;
+	padding: 0px 20px;
 }
 .blue_box .in .news_list article div {
 	float: right;
-	width: 80%;
+	width: 75%;
 }
 .blue_box .in .news_list article a {
 	margin: 0px;

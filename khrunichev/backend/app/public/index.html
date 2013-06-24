@@ -148,15 +148,24 @@
 		</script>
 		<script id="newsitem-template" type="text/template">
 			<div id="content">
-				<article class="news">
-					<img src="./images/news.jpg" alt="" />
-					<div>
-						<h2><%= newsItem.title %></h2>
-						<p class="date"><%= newsItem.createdAt %></p>
-						<p class="text"><%= newsItem.text %></p>
-						<a class="back">Назад</a>
+				<div id="left">
+					<div class="newsnav-widget"></div>
+				</div>
+				<div id="center">
+					<div class="blue_box">
+						<div class="in">
+							<article class="news" id="newsitem">
+								<img src="./images/news.jpg" alt="" />
+								<div>
+									<h2><%= newsItem[0].title %></h2>
+									<p class="date"><%= newsItem[0].createdAt %></p>
+									<p class="text"><%= newsItem[0].text %></p>
+									<a class="back">Назад</a>
+								</div>
+							</article>
+						</div>
 					</div>
-				</article>
+				</div>
 			</div>
 		</script>
 		<script id="newsbox-template" type="text/template">
