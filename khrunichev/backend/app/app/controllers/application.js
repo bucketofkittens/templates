@@ -18,10 +18,10 @@
 
 var Application = function () {
 
-    this.before(requireAuthorization, {
+    /*this.before(requireAuthorization, {
         except: ['login', 'authenticate']
       , async: true
-    });
+    });*/
 };
 
 var requireAuthorization = function (complete) {
