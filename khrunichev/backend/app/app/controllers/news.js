@@ -10,6 +10,16 @@ var News = function () {
     });
     
   };
+
+  this.one = function(req, resp, params) {
+    var self = this;
+    this.respondsWith = ['json', 'js'];
+
+    geddy.model.News.first(function(err, news) {
+        self.respond({news: news});
+    }); 
+    
+  };
   
   this.edit = function (req, resp, params) {
     var self = this;
