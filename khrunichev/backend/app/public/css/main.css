@@ -182,6 +182,9 @@ footer p {
 	width: 215px;
 	border: 3px solid #ffffff;
 }
+.gray_box.full {
+	width: 100%;
+}
 .gray_box .in {
 	padding: 20px;
 }
@@ -620,4 +623,43 @@ footer p {
 	display: block;
 	font-style: normal !important;
 	font-weight: normal !important;
+}
+
+.form {
+}
+.form p {
+	padding-bottom: 10px;
+}
+.form p label {
+	width: 100px;
+	display: inline-block;
+	vertical-align: middle;
+}
+.form p label.auto {
+	width: auto;
+}
+.form p input[type="text"], .form p input[type="password"] {
+	width: 300px;
+	display: inline-block;
+	vertical-align: middle;
+}
+.form p input[type="checkbox"] {
+	vertical-align: middle;
+}
+.form p textarea {
+	width: 100%;
+}
+
+.errors {
+
+}
+
+.errors .error {
+	color: red;
+	font-weight: bold;
+	display: none;
+}
+
+.exit-item {
+	display: none;
 }

@@ -14,7 +14,8 @@ var Controller = Backbone.Router.extend({
         "!/questions": "questions",
         "!/structure": "structure",
         "!/search": "search",
-        "!/login": "login"
+        "!/login": "login",
+        "!/logout": "logout"
     },
 
     after: function(route, params) {
@@ -55,6 +56,12 @@ var Controller = Backbone.Router.extend({
        var newsAdd = new NewsaddView();
        $('#content').slideUp(function() {
             $('#content').html(newsAdd.render().el);
+            CKEDITOR.replace('add_news_anonce', {
+              width: "700px"
+            });
+            CKEDITOR.replace('add_news_text', {
+              width: "700px"
+            });
             $('#content').slideDown();
         });
     },
@@ -120,17 +127,70 @@ var Controller = Backbone.Router.extend({
             $('#content').html(search.render().el);
             $('#content').slideDown();
         });
+    },
+    logout: function() {
+      console.log("g");
+      $.ajax(
+        "/api/auth/logout",
+        function(data) {
+          window.user = {};
+          window.location.hash = '#!/';
+          globalEvents.trigger('logouting', {});
+        }
+      );
+      
     }
 });
 
+var TopnavView = Backbone.View.extend({
+  className: 'topnav',
+
+  initialize: function () {
+    this.template = $('#topnav-template').html();
+    globalEvents.on('logining', this.onLogining, this);
+    globalEvents.on('logouting', this.onLogouting, this);
+  },
+
+  render: function () {
+    $(this.el).html(_.template(this.template, {}));
+    
+    return this;
+  },
+
+  onLogining: function() {
+    $(".enter-item").hide();
+    $(".exit-item").show();
+  },
+
+  onLogouting: function() {
+    $(".exit-item").hide();
+    $(".enter-item").show();
+  }
+});
+
+var globalEvents = {};
+_.extend(globalEvents, Backbone.Events);
+window.user = {};
 
 var controller = new Controller();
 
 Backbone.history.start();
 
 $(document).ready(function() {
-    $("body").on("click", "#left ul li a", function(e) {
-        $(e.target).parents("ul").find("a").removeClass("current");
-        $(e.target).addClass("current");
-    });
+  $.get(
+    "/api/auth/status",
+    function(data) {
+      if(data.status == "ok") {
+        window.user = data.user;
+        globalEvents.trigger('logining', {});
+      }
+    }
+  );
+  var topNav = new TopnavView();
+  $('#topnav-widget').html(topNav.render().el);
+
+  $("body").on("click", "#left ul li a", function(e) {
+      $(e.target).parents("ul").find("a").removeClass("current");
+      $(e.target).addClass("current");
+  });
 });

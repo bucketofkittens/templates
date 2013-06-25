@@ -2,11 +2,13 @@ var NewsView = Backbone.View.extend({
   className: 'news',
   newsnav: null,
   newsblue: null,
+  newsadmin: null,
 
   initialize: function () {
     this.template = $('#news-template').html();
     this.newsnav = new NewsnavView();
     this.newsblue = new NewsblueView();
+    this.newsadmin = new NewsadminView();
   },
 
   render: function () {
@@ -17,6 +19,11 @@ var NewsView = Backbone.View.extend({
 
     $(this.el).append(this.newsblue.el);
     this.newsblue.setElement(this.$(".newsblue-widget")).render();
+
+    if(window.user.id) {
+      $(this.el).append(this.newsadmin.el);
+      this.newsadmin.setElement(this.$(".newsadmin-widget")).render();
+    }
    
     return this;
   },
@@ -27,13 +34,26 @@ var NewsaddView = Backbone.View.extend({
   events: {
     "click #newsAdd": "onNewsAdd"
   },
+  newsnav: null,
+  newsadmin: null,
 
   initialize: function () {
     this.template = $('#newsadd-template').html();
+
+    this.newsnav = new NewsnavView();
+    this.newsadmin = new NewsadminView();
   },
 
   render: function () {
     $(this.el).html(_.template(this.template, this.context));
+
+    $(this.el).append(this.newsnav.el);
+    this.newsnav.setElement(this.$(".newsnav-widget")).render();
+
+    if(window.user.id) {
+      $(this.el).append(this.newsadmin.el);
+      this.newsadmin.setElement(this.$(".newsadmin-widget")).render();
+    }
    
     return this;
   },
@@ -41,8 +61,8 @@ var NewsaddView = Backbone.View.extend({
   onNewsAdd: function() {
     var params = {};
     params.title = $("#add_news_title").val();
-    params.anonce = $("#add_news_anonce").val();
-    params.text = $("#add_news_text").val();
+    params.anonce = CKEDITOR.instances["add_news_anonce"].getData();
+    params.text = CKEDITOR.instances["add_news_text"].getData();
 
     $.post('/api/news/create', params, function(data) {
       console.log(data);
@@ -141,7 +161,6 @@ var NewsblueView = Backbone.View.extend({
 
 var NewsboxView = Backbone.View.extend({
   className: 'newsbox',
-  newsnav_id: null,
 
   initialize: function () {
     this.newsList = new NewsList();
@@ -152,6 +171,20 @@ var NewsboxView = Backbone.View.extend({
 
   render: function () {
     $(this.el).html(_.template(this.template, { news: this.newsList.toJSON() } ));
+    
+    return this;
+  }
+});
+
+var NewsadminView = Backbone.View.extend({
+  className: 'newsadmin',
+
+  initialize: function () {
+    this.template = $('#newsadmin-template').html();
+  },
+
+  render: function () {
+    $(this.el).html(_.template(this.template, {} ));
     
     return this;
   }

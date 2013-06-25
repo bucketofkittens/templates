@@ -35,6 +35,10 @@ router.match('/api/hall/create', 'POST').to('Hall.create');
 router.match('/api/newspaper', 'GET').to('Newspaper.list');
 router.match('/api/newspaper/create', 'POST').to('Newspaper.create');
 
+router.match('/api/auth/login', 'POST').to('Auth.authenticate');
+router.match('/api/auth/status', 'GET').to('Auth.status');
+router.match('/api/auth/logout', 'GET').to('Auth.logout');
+
 router.match('/news/add', 'GET').to('News.add');
 router.match('/news/edit/:id', 'GET').to('News.edit');
 router.match('/news/create', 'POST').to('News.create');
@@ -65,7 +69,7 @@ router.match('/news', 'POST').to('News.index');
 
 router.get('/login').to('Main.login');
 router.get('/logout').to('Main.logout');
-router.post('/auth/login').to('Auth.authenticate');
+
 router.resource('users');
 router.resource('messages');
 exports.router = router;

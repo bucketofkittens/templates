@@ -140,6 +140,9 @@ var StartannView = Backbone.View.extend({
 
 var LoginView = Backbone.View.extend({
   className: 'login',
+  events: {
+    "click #logining": "onLogining"
+  },
 
   initialize: function () {
     this.template = $('#login-template').html();
@@ -149,5 +152,39 @@ var LoginView = Backbone.View.extend({
     $(this.el).html(_.template(this.template, this.context ));
     
     return this;
+  },
+
+  onLogining: function(e) {
+    var login = $("#login_login").val();
+    var passw = $("#login_passw").val();
+    var error = false;
+    var self = this;
+
+    $(".error").fadeOut();
+
+    if(login.length == 0) {
+      $(".error-login").fadeIn();
+      error = true;
+    }
+    if(passw.length == 0) {
+      $(".error-passw").fadeIn();
+      error = true;
+    }
+
+    if(!error) {
+      $.post(
+        "/api/auth/login",
+        {email: login, password: passw},
+        function(data) {
+          if(data.status == "ok") {
+            window.user = data.user;
+            window.location.hash = '#!/';
+            globalEvents.trigger('logining', {});
+          } else {
+            $(".error-not").fadeIn();
+          }
+        }
+      );
+    }
   }
 });

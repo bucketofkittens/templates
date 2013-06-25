@@ -1,16 +1,31 @@
 var Auth = function () {
 	this.authenticate = function (req, resp, params) {
+        this.respondsWith = ['json', 'js'];
         var self = this;
 
-        geddy.model.User.load({ "email": params.email }, null, function(err, user) {
+        geddy.model.User.first({ "email": params.email }, null, function(err, user) {
             if(!user || err || user.password !== params.password) {
-                params.errors = err;
-                //self.transfer('Main.index');
+                self.respond({status: "fail"});
             } else {
-                self.session.set('authenticated', true);
-                //self.transfer('Main.index'); 
+                self.respond({status: "ok", user: user});
+                self.session.set('authenticated', user);
             }
         });
+    };
+    this.status = function (req, resp, params) {
+        this.respondsWith = ['json', 'js'];
+        var self = this;
+
+        if(self.session.get("authenticated")) {
+            self.respond({status: "ok", user: self.session.get("authenticated")});
+        } else {
+            self.respond({status: "fail"});
+        }
+    };
+    this.logout = function (req, resp, params) {
+        this.respondsWith = ['json', 'js'];
+        this.session.set("authenticated", false);
+        self.respond({status: "ok"});
     };
 };
 

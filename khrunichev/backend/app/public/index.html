@@ -129,9 +129,21 @@
 			<% } %>
 		</script>
 
+		<script id="newsadmin-template" type="text/template">
+			<div class="gray_box">
+				<div class="in">
+					<h3>Администрирование</h3>
+					<ul>
+						<li><a href="#!/news/add">Добавить новость</a></li>
+					</ul>
+				</div>
+			</div>
+		</script>
+
 		<script id="news-template" type="text/template">
 			<div id="content">
 				<div id="left">
+					<div class="newsadmin-widget"></div>
 					<div class="newsnav-widget"></div>
 				</div>
 				<div id="center">
@@ -142,20 +154,32 @@
 
 		<script id="newsadd-template" type="text/template">
 			<div id="content">
-				<form action="/api/news/create" method="post" accept-charset="utf-8">
-					<p>
-						<label>Заголовок<input id="add_news_title" type="text" name="title" value="" /></label>
-					</p>
-					<p>
-						<label>Анонс <textarea id="add_news_anonce" name="anonce"></textarea></label>
-					</p>
-					<p>
-						<label>Текс <textarea id="add_news_text" name="text"></textarea></label>
-					</p>
-					<p>
-						<input type="button" name="" id="newsAdd" value="Добавить" />
-					</p>
-				</form>
+				<div id="left">
+					<div class="newsadmin-widget"></div>
+					<div class="newsnav-widget"></div>
+				</div>
+				<div id="center">
+					<div class="blue_box">
+						<div class="in">
+							<h2>Добавление новости</h2>
+							<form action="/api/news/create" method="post" accept-charset="utf-8" class="form">
+								<p>
+									<label>Заголовок<input id="add_news_title" type="text" name="title" value="" /></label>
+								</p>
+								<p>
+									<label>Анонс <textarea class="ckeditor" id="add_news_anonce" name="add_news_anonce"></textarea></label>
+								</p>
+								<p>
+									<label>Текс <textarea class="ckeditor" id="add_news_text" name="add_news_text"></textarea></label>
+								</p>
+								<p>
+									<input type="button" name="" id="newsAdd" value="Добавить" />
+									<input type="button" name="" id="newsAdd" value="Отменить" />
+								</p>
+							</form>
+						</div>
+					</div>
+				</div>
 			</div>
 		</script>
 		<script id="halllist-template" type="text/template">
@@ -272,17 +296,35 @@
 		</script>
 		<script id="login-template" type="text/template">
 			<div id="content">
-				<form action="/api/event/create" method="post" accept-charset="utf-8">
-					<p>
-						<label>Логин<input id="login_login" type="text" name="title" value="" /></label>
-					</p>
-					<p>
-						<label>Пароль <input id="login_passw" type="text" name="title" value="" /></label>
-					</p>
-					<p>
-						<input type="button" name="" id="eventAdd" value="Войти" />
-					</p>
-				</form>
+				<div class="gray_box full">
+					<div class="in">
+						<h3>Авторизация</h3>
+						<form action="/api/event/create" method="post" accept-charset="utf-8" class="form">
+							<p>
+								<label for="login_login">Логин</label>
+								<input id="login_login" type="text" name="title" value="" />
+							</p>
+							<p>
+								<label for="login_passw">Пароль</label>
+								<input id="login_passw" type="password" name="title" value="" />
+							</p>
+							<p>
+								<label></label>
+								<input id="login_save" type="checkbox" value="" />
+								<label class="auto" for="login_save">Запомнить меня</label>
+							</p>
+							<p>
+								<label></label>
+								<input type="button" name="" id="logining" value="Войти" />
+							</p>
+							<div class="errors">
+								<p class="error-login error">Необходимо указать логин.</p>
+								<p class="error-passw error">Необходимо указать пароль.</p>
+								<p class="error-not error">Логин или пароль указаны не верно.</p>
+							</div>
+						</form>
+					</div>
+				</div>
 			</div>
 		</script>
 		<script id="newsnav-template" type="text/template">
@@ -491,6 +533,12 @@
 				</div>
 			</div>
 		</script>
+		<script id="topnav-template" type="text/template">
+			<ul id="topnav">
+				<li class="enter-item"><a href="#!/login">Вход для уполномоченных лиц</a></li>
+				<li class="exit-item"><a href="#!/logout">Выйти</a></li>
+			</ul>
+		</script>
 		<script id="seabox-template" type="text/template">
 			<div class="blue_box">
 				<div class="in">
@@ -558,9 +606,7 @@
 		<div id="page">
 			<div id="page_sub">
 				<header id="head">
-					<ul id="topnav">
-						<li><a href="#!/login">Вход для уполномоченных лиц</a></li>
-					</ul>
+					<div id="topnav-widget"></div>
 					<ul id="topmenu">
 						<li><a href="#!/" class="current">Главная</a></li>
 						<li><a href="#!/news">Новости</a></li>
@@ -591,6 +637,8 @@
 		<script type="text/javascript" src="./js/json2.js"></script>
 		<script type="text/javascript" src="./js/backbone-min.js"></script>
 		<script type="text/javascript" src="./js/backbone.routefilter.min.js"></script>
+		<script type="text/javascript" src="./js/backbone-validation-min.js"></script>
+		<script type="text/javascript" src="./js/ckeditor/ckeditor.js"></script>
 		
 		<script type="text/javascript" src="./js/newspaper.js"></script>
 		<script type="text/javascript" src="./js/hall.js"></script>
