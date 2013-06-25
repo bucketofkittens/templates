@@ -31,6 +31,18 @@ var Hall = function () {
     });
   };
 
+  this.destroy = function (req, resp, params) {
+    var self = this;
+    this.respondsWith = ['json', 'js'];
+
+    geddy.model.Hall.remove(params.id, function(err) {
+      if (err) {
+        self.respond({status: "fail"});
+      } else {
+        self.respond({status: "ok"});
+      }
+    });
+  };
 };
 
 exports.Hall = Hall;

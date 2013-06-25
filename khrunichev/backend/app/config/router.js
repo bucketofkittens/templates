@@ -22,31 +22,30 @@ var router = new geddy.RegExpRouter();
 router.get('/').to('Main.index');
 router.match('/api/news', 'GET').to('News.list');
 router.match('/api/news/:id', 'GET').to('News.one');
+router.match('/api/news/delete/:id', 'GET').to('News.destroy');
 router.match('/api/news/create', 'POST').to('News.create');
+router.match('/api/news/delete/:id', 'GET').to('News.destroy');
+
 router.match('/api/newsnav', 'GET').to('Newsnav.list');
 router.match('/api/newsnav/:id', 'GET').to('Newsnav.one');
+router.match('/api/newsnav/create', 'POST').to('Newsnav.create');
+router.match('/api/newsnav/delete/:id', 'GET').to('Newsnav.destroy');
 
 router.match('/api/event', 'GET').to('Event.list');
 router.match('/api/event/create', 'POST').to('Event.create');
+router.match('/api/event/delete/:id', 'GET').to('Event.destroy');
 
 router.match('/api/hall', 'GET').to('Hall.list');
 router.match('/api/hall/create', 'POST').to('Hall.create');
+router.match('/api/hall/delete/:id', 'GET').to('Hall.destroy');
 
 router.match('/api/newspaper', 'GET').to('Newspaper.list');
 router.match('/api/newspaper/create', 'POST').to('Newspaper.create');
+router.match('/api/newspaper/delete/:id', 'GET').to('Newspaper.destroy');
 
 router.match('/api/auth/login', 'POST').to('Auth.authenticate');
 router.match('/api/auth/status', 'GET').to('Auth.status');
 router.match('/api/auth/logout', 'GET').to('Auth.logout');
-
-router.match('/news/add', 'GET').to('News.add');
-router.match('/news/edit/:id', 'GET').to('News.edit');
-router.match('/news/create', 'POST').to('News.create');
-router.match('/news/update/:id', 'POST').to('News.update');
-router.match('/news/destroy/:id', 'GET').to('News.destroy');
-
-router.match('/news', 'GET').to('News.index');
-router.match('/news', 'POST').to('News.index');
 
 // Basic routes
 // router.match('/moving/pictures/:id', 'GET').to('Moving.pictures');

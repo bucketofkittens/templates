@@ -213,7 +213,7 @@ footer p {
 	color: #000000;
 	font-style: oblique;
 	margin: 10px 0px;
-	display: block;
+	display: inline-block;
 }
 
 .gray_box .in .admin ul, .gray_box .in .admin .soot {
@@ -363,6 +363,7 @@ footer p {
 
 .blue_box .in article {
 	padding: 30px 50px;
+	position: relative;
 }
 .blue_box .in article i, .blue_box .in article b, .blue_box .in article a {
 	display: block;
@@ -660,6 +661,12 @@ footer p {
 	display: none;
 }
 
-.exit-item {
+.exit-item,
+.hall-item,
+.event-item {
 	display: none;
+}
+
+.deleteButton {
+	cursor: pointer;
 }

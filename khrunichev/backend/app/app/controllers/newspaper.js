@@ -26,6 +26,19 @@ var Newspaper = function () {
     });
   };
 
+  this.destroy = function (req, resp, params) {
+    var self = this;
+    this.respondsWith = ['json', 'js'];
+
+    geddy.model.Newspaper.remove(params.id, function(err) {
+      if (err) {
+        self.respond({status: "fail"});
+      } else {
+        self.respond({status: "ok"});
+      }
+    });
+  };
+
 };
 
 exports.Newspaper = Newspaper;

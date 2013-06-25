@@ -135,6 +135,7 @@
 					<h3>Администрирование</h3>
 					<ul>
 						<li><a href="#!/news/add">Добавить новость</a></li>
+						<li><a href="#!/newsnav/add">Добавить группу новостей</a></li>
 					</ul>
 				</div>
 			</div>
@@ -167,6 +168,11 @@
 									<label>Заголовок<input id="add_news_title" type="text" name="title" value="" /></label>
 								</p>
 								<p>
+									<label>Раздел</label>
+									<span class="newsnavselect-widget"></span>
+								</p>
+								
+								<p>
 									<label>Анонс <textarea class="ckeditor" id="add_news_anonce" name="add_news_anonce"></textarea></label>
 								</p>
 								<p>
@@ -174,7 +180,7 @@
 								</p>
 								<p>
 									<input type="button" name="" id="newsAdd" value="Добавить" />
-									<input type="button" name="" id="newsAdd" value="Отменить" />
+									<input type="button" name="" id="newsAddCancel" value="Отменить" />
 								</p>
 							</form>
 						</div>
@@ -182,45 +188,112 @@
 				</div>
 			</div>
 		</script>
+		<script id="newsnavadd-template" type="text/template">
+			<div id="content">
+				<div id="left">
+					<div class="newsadmin-widget"></div>
+					<div class="newsnav-widget"></div>
+				</div>
+				<div id="center">
+					<div class="blue_box">
+						<div class="in">
+							<h2>Добавление группы новостей</h2>
+							<form action="/api/news/create" method="post" accept-charset="utf-8" class="form">
+								<p>
+									<label>Заголовок<input id="add_news_title" type="text" name="title" value="" /></label>
+								</p>
+								<p>
+									<input type="button" name="" id="newsnavAdd" value="Добавить" />
+									<input type="button" name="" id="newsnavAddCancel" value="Отменить" />
+								</p>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</script>
+		<script id="halladmin-template" type="text/template">
+			<div class="gray_box">
+				<div class="in">
+					<h3>Администрирование</h3>
+					<ul>
+						<li><a href="#!/hall/add">Добавить запись</a></li>
+					</ul>
+				</div>
+			</div>
+		</script>
+		<script id="newspaperadmin-template" type="text/template">
+			<div class="gray_box">
+				<div class="in">
+					<h3>Администрирование</h3>
+					<ul>
+						<li><a href="#!/newspaper/add">Добавить новый выпус</a></li>
+					</ul>
+				</div>
+			</div>
+		</script>
+		<script id="eventadmin-template" type="text/template">
+			<div class="gray_box">
+				<div class="in">
+					<h3>Администрирование</h3>
+					<ul>
+						<li><a href="#!/event/add">Добавить событие</a></li>
+					</ul>
+				</div>
+			</div>
+		</script>
 		<script id="halllist-template" type="text/template">
 			<div id="content">
 				<div id="left">
-					left
+					<div class="halladmin-widget"></div>
+					<div class="startnag-widget"></div>
 				</div>
 				<div id="center">
-					<h2>Доска почета</h2>
-					<section class="news_list">
-						<% _.each(halls, function(hallItem) { %>
-							<article>
-								<img src="./images/news.jpg" alt="" />
-								<div>
-									<%= hallItem.title %></a>
-									<p class="date"><%= hallItem.fio %></p>
-									<p class="text"><%= hallItem.text %></p>
-								</div>
-							</article>
-						<% }); %>
-					</section>
+					<div class="blue_box">
+						<div class="in">
+							<h2>Доска почета</h2>
+							<section class="news_list">
+								<% _.each(halls, function(hallItem) { %>
+									<article>
+										<img src="./images/news.jpg" alt="" />
+										<div>
+											<%= hallItem.title %></a>
+											<p class="date"><%= hallItem.fio %></p>
+											<p class="text"><%= hallItem.text %></p>
+										</div>
+										<% if(user.id) { %>
+											<img style="width: 45px; position: absolute; right: 0px; top: 0px;" data-id="<%= hallItem.id %>" class="deleteButton deleteHall" src="./images/del.png" alt="" />
+										<% } %>
+									</article>
+								<% }); %>
+							</section>
+						</div>
+					</div>
 				</div>
 			</div>
 		</script>
 		<script id="newspaperlist-template" type="text/template">
 			<div id="content">
 				<div id="left">
-					left
+					<div class="newspaperadmin-widget"></div>
+					<div class="startnag-widget"></div>
 				</div>
 				<div id="center">
-					<h2>Газета "Все для родины"</h2>
-					<section class="news_list">
-						<% _.each(newspapers, function(newspaperItem) { %>
-							<article>
-								<div>
-									<%= newspaperItem.title %></a>
-									<p class="text"><%= newspaperItem.text %></p>
-								</div>
-							</article>
-						<% }); %>
-					</section>
+					<div class="blue_box">
+						<div class="in">
+							<h2>Газета "Все для родины"</h2>
+							<section class="news_list">
+								<% _.each(newspapers, function(newspaperItem) { %>
+									<article>
+										<div>
+											<%= newspaperItem.title %></a>
+											<p class="text"><%= newspaperItem.text %></p>
+										</div>
+									</article>
+								<% }); %>
+							</section>
+						</div>
+					</div>
 				</div>
 			</div>
 		</script>
@@ -228,70 +301,114 @@
 		<script id="eventlist-template" type="text/template">
 			<div id="content">
 				<div id="left">
-					left
+					<div class="eventadmin-widget"></div>
+					<div class="startnag-widget"></div>
 				</div>
 				<div id="center">
-					<h2>События</h2>
-					<section class="news_list">
-						<% _.each(events, function(eventItem) { %>
-							<article>
-								<div>
-									<p><%= eventItem.title %></p>
-									<i><%= eventItem.createdAt %></i>
-									<p><%= eventItem.text %></p>
-								</div>
-							</article>
-						<% }); %>
-					</section>
+					<div class="blue_box">
+						<div class="in">
+							<h2>События</h2>
+							<section class="news_list">
+								<% _.each(events, function(eventItem) { %>
+									<article>
+										<div>
+											<p><%= eventItem.title %></p>
+											<i><%= eventItem.createdAt %></i>
+											<p><%= eventItem.text %></p>
+										</div>
+										<% if(user.id) { %>
+											<img style="width: 45px; position: absolute; right: 0px; top: 0px;" data-id="<%= eventItem.id %>" class="deleteButton deleteEvent" src="./images/del.png" alt="" />
+										<% } %>
+									</article>
+								<% }); %>
+							</section>
+						</div>
+					</div>
 				</div>
 			</div>
 		</script>
 		<script id="halladd-template" type="text/template">
 			<div id="content">
-				<form action="/api/news/create" method="post" accept-charset="utf-8">
-					<p>
-						<label>Заголовок<input id="add_hall_title" type="text" name="title" value="" /></label>
-					</p>
-					<p>
-						<label>ФИО <input id="add_hall_fio" type="text" name="title" value="" /></label>
-					</p>
-					<p>
-						<label>Текст <textarea id="add_hall_text" name="text"></textarea></label>
-					</p>
-					<p>
-						<input type="button" name="" id="hallAdd" value="Добавить" />
-					</p>
-				</form>
+				<div id="left">
+					<div class="halladmin-widget"></div>
+					<div class="startnag-widget"></div>
+				</div>
+				<div id="center">
+					<div class="blue_box">
+						<div class="in">
+							<h2>Новая запись</h2>
+							<form action="/api/news/create" method="post" accept-charset="utf-8" class="form">
+								<p>
+									<label>Заголовок<input id="add_hall_title" type="text" name="title" value="" /></label>
+								</p>
+								<p>
+									<label>ФИО <input id="add_hall_fio" type="text" name="title" value="" /></label>
+								</p>
+								<p>
+									<label>Текст <textarea id="add_hall_text" name="add_hall_text"></textarea></label>
+								</p>
+								<p>
+									<input type="button" name="" id="hallAdd" value="Добавить" />
+									<input type="button" name="" id="hallAddCancel" value="Отменить" />
+								</p>
+							</form>
+						</div>
+					</div>
+				</div>
 			</div>
 		</script>
 		<script id="newspaperadd-template" type="text/template">
 			<div id="content">
-				<form action="/api/newspaper/create" method="post" accept-charset="utf-8">
-					<p>
-						<label>Заголовок<input id="add_newspaper_title" type="text" name="title" value="" /></label>
-					</p>
-					<p>
-						<label>Текст <textarea id="add_newspaper_text" name="text"></textarea></label>
-					</p>
-					<p>
-						<input type="button" name="" id="newspaperAdd" value="Добавить" />
-					</p>
-				</form>
+				<div id="left">
+					<div class="newspaperadmin-widget"></div>
+					<div class="startnag-widget"></div>
+				</div>
+				<div id="center">
+					<div class="blue_box">
+						<div class="in">
+							<h2>Новый выпуск</h2>
+							<form action="/api/news/create" method="post" accept-charset="utf-8" class="form">
+								<p>
+									<label>Заголовок<input id="add_newspaper_title" type="text" name="title" value="" /></label>
+								</p>
+								<p>
+									<label>Текст <textarea id="add_newspaper_text" name="add_newspaper_text"></textarea></label>
+								</p>
+								<p>
+									<input type="button" name="" id="newspaperAdd" value="Добавить" />
+									<input type="button" name="" id="newspaperAddCancel" value="Отменить" />
+								</p>
+							</form>
+						</div>
+					</div>
+				</div>
 			</div>
 		</script>
 		<script id="eventadd-template" type="text/template">
 			<div id="content">
-				<form action="/api/event/create" method="post" accept-charset="utf-8">
-					<p>
-						<label>Заголовок<input id="add_event_title" type="text" name="title" value="" /></label>
-					</p>
-					<p>
-						<label>Текс <textarea id="add_event_text" name="text"></textarea></label>
-					</p>
-					<p>
-						<input type="button" name="" id="eventAdd" value="Добавить" />
-					</p>
-				</form>
+				<div id="left">
+					<div class="eventadmin-widget"></div>
+					<div class="startnag-widget"></div>
+				</div>
+				<div id="center">
+					<div class="blue_box">
+						<div class="in">
+							<h2>Новая запись</h2>
+							<form action="/api/news/create" method="post" accept-charset="utf-8" class="form">
+								<p>
+									<label>Заголовок<input id="add_event_title" type="text" name="title" value="" /></label>
+								</p>
+								<p>
+									<label>Текст <textarea id="add_event_text" name="add_event_text"></textarea></label>
+								</p>
+								<p>
+									<input type="button" name="" id="eventAdd" value="Добавить" />
+									<input type="button" name="" id="eventAddCancel" value="Отменить" />
+								</p>
+							</form>
+						</div>
+					</div>
+				</div>
 			</div>
 		</script>
 		<script id="login-template" type="text/template">
@@ -333,11 +450,24 @@
 					<ul id="newsnav-list">
 						<li><a data-id="0">Все</a></li>
 						<% _.each(newsnav, function(newsnavItem) { %>
-							<li><a data-id="<%= newsnavItem.id %>"><%= newsnavItem.title %></a></li>
+							<li>
+								<a data-id="<%= newsnavItem.id %>"><%= newsnavItem.title %></a>
+								<% if(user.id) { %>
+									<img style="width: 15px;" data-id="<%= newsnavItem.id %>" class="deleteButton deleteNewsnav" src="./images/del.png" alt="" />
+								<% } %>
+							</li>
 						<% }); %>
 					</ul>
 				</div>
 			</div>
+		</script>
+		<script id="newsnavselect-template" type="text/template">
+			<select name="newsnav" id="newsnav-select">
+				<option value="0" selected="selected">Все</option>
+				<% _.each(newsnav, function(newsnavItem) { %>
+					<option value="<%= newsnavItem.id %>"><%= newsnavItem.title %></option>
+				<% }); %>
+			</select>
 		</script>
 		<script id="newsblue-template" type="text/template">
 			<div class="blue_box">
@@ -381,6 +511,9 @@
 							<p class="date"><%= newsItem.createdAt %></p>
 							<p class="text"><%= newsItem.anonce %></p>
 						</div>
+						<% if(user.id) { %>
+							<img style="width: 45px; position: absolute; right: 0px; top: 0px;" data-id="<%= newsItem.id %>" class="deleteButton deleteNews" src="./images/del.png" alt="" />
+						<% } %>
 					</article>
 				<% }); %>
 			</section>
@@ -537,6 +670,8 @@
 			<ul id="topnav">
 				<li class="enter-item"><a href="#!/login">Вход для уполномоченных лиц</a></li>
 				<li class="exit-item"><a href="#!/logout">Выйти</a></li>
+				<li class="hall-item"><a href="#!/hall">Доска почета</a></li>
+				<li class="event-item"><a href="#!/event">События</a></li>
 			</ul>
 		</script>
 		<script id="seabox-template" type="text/template">

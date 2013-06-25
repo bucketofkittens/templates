@@ -31,6 +31,19 @@ var Event = function () {
     });
   };
 
+  this.destroy = function (req, resp, params) {
+    var self = this;
+    this.respondsWith = ['json', 'js'];
+
+    geddy.model.Event.remove(params.id, function(err) {
+      if (err) {
+        self.respond({status: "fail"});
+      } else {
+        self.respond({status: "ok"});
+      }
+    });
+  };
+
 };
 
 exports.Event = Event;

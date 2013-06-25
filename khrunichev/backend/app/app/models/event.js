@@ -2,7 +2,7 @@ var Event = function () {
 
   this.defineProperties({
     title: {type: 'string', required: true},
-    text: {type: 'string'}
+    text: {type: 'text'}
   });
 
   /*

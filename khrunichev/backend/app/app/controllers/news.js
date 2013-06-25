@@ -3,7 +3,7 @@ var News = function () {
 	
   this.list = function(req, resp, params) {
     var self = this;
-    this.respondsWith = ['json', 'js'];
+    this.respondsWith = ['json', 'js']; 
     
     geddy.model.News.all(function(err, news) {
       self.respond({news: news});
@@ -91,13 +91,13 @@ var News = function () {
   
   this.destroy = function (req, resp, params) {
     var self = this;
+    this.respondsWith = ['json', 'js'];
 
     geddy.model.News.remove(params.id, function(err) {
       if (err) {
-        params.errors = err;
-        self.transfer('edit');
+        self.respond({status: "fail"});
       } else {
-        self.redirect({controller: self.name});
+        self.respond({status: "ok"});
       }
     });
   };

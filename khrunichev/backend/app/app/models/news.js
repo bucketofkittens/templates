@@ -2,8 +2,8 @@ var News = function () {
 
   this.defineProperties({
     title: {type: 'string', required: true},
-    anonce: {type: 'object'},
-    text: {type: 'object'},
+    anonce: {type: 'text'},
+    text: {type: 'text'},
     image: {type: 'string'}
   });
 

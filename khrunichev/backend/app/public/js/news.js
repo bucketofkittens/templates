@@ -32,13 +32,64 @@ var NewsView = Backbone.View.extend({
 var NewsaddView = Backbone.View.extend({
   className: 'newsadd',
   events: {
-    "click #newsAdd": "onNewsAdd"
+    "click #newsAdd": "onNewsAdd",
+    "click #newsAddCancel": "onNewsAddCancel"
   },
   newsnav: null,
   newsadmin: null,
 
   initialize: function () {
     this.template = $('#newsadd-template').html();
+
+    this.newsnav = new NewsnavView();
+    this.newsadmin = new NewsadminView();
+    this.newsnavSelect = new NewsnavSelectView();
+  },
+
+  render: function () {
+    $(this.el).html(_.template(this.template, this.context));
+
+    $(this.el).append(this.newsnavSelect.el);
+    this.newsnav.setElement(this.$(".newsnav-widget")).render();
+
+    $(this.el).append(this.newsnavSelect.el);
+    this.newsnavSelect.setElement(this.$(".newsnavselect-widget")).render();
+
+    if(window.user.id) {
+      $(this.el).append(this.newsadmin.el);
+      this.newsadmin.setElement(this.$(".newsadmin-widget")).render();
+    }
+   
+    return this;
+  },
+
+  onNewsAdd: function() {
+    var params = {};
+    params.title = $("#add_news_title").val();
+    params.anonce = CKEDITOR.instances["add_news_anonce"].getData();
+    params.text = CKEDITOR.instances["add_news_text"].getData();
+    params.newsnavId = $("#newsnav-select").find(":selected").attr("value");
+
+    $.post('/api/news/create', params, function(data) {
+      window.location.hash = '#!/news';
+    })
+  },
+  onNewsAddCancel: function() {
+    window.location.hash = '#!/news';
+  }
+});
+
+var NewsnavaddView = Backbone.View.extend({
+  className: 'newsnavadd',
+  events: {
+    "click #newsnavAdd": "onNewsnavAdd",
+    "click #newsnavAddCancel": "onNewsnavAddCancel"
+  },
+  newsnav: null,
+  newsadmin: null,
+
+  initialize: function () {
+    this.template = $('#newsnavadd-template').html();
 
     this.newsnav = new NewsnavView();
     this.newsadmin = new NewsadminView();
@@ -58,15 +109,16 @@ var NewsaddView = Backbone.View.extend({
     return this;
   },
 
-  onNewsAdd: function() {
+  onNewsnavAdd: function() {
     var params = {};
     params.title = $("#add_news_title").val();
-    params.anonce = CKEDITOR.instances["add_news_anonce"].getData();
-    params.text = CKEDITOR.instances["add_news_text"].getData();
 
-    $.post('/api/news/create', params, function(data) {
-      console.log(data);
+    $.post('/api/newsnav/create', params, function(data) {
+      window.location.hash = '#!/news';
     })
+  },
+  onNewsnavAddCancel: function() {
+    window.location.hash = '#!/news';
   }
 });
 
@@ -91,8 +143,6 @@ var NewsitemView = Backbone.View.extend({
     $(this.el).append(this.newsnav.el);
     this.newsnav.setElement(this.$(".newsnav-widget")).render();
 
-    
-   
     return this;
   },
 
@@ -104,7 +154,8 @@ var NewsitemView = Backbone.View.extend({
 var NewsnavView = Backbone.View.extend({
   className: 'newsnav',
   events: {
-    "click #newsnav-list a": "onNewsNavClick"
+    "click #newsnav-list a": "onNewsNavClick",
+    "click .deleteNewsnav": "onDeleteNewsnav"
   },
 
   initialize: function () {
@@ -116,7 +167,7 @@ var NewsnavView = Backbone.View.extend({
   },
 
   render: function () {
-    $(this.el).html(_.template(this.template, { newsnav: this.newsnavList.toJSON() } ));
+    $(this.el).html(_.template(this.template, { newsnav: this.newsnavList.toJSON(), user: window.user } ));
     
     return this;
   },
@@ -130,7 +181,34 @@ var NewsnavView = Backbone.View.extend({
     if(id != 0) {
       $(".news_list article[data-newsnavid!='"+id+"']").slideUp();
     }
+  },
+
+  onDeleteNewsnav: function(e) {
+    var self = this;
+    $.get(
+      "/api/newsnav/delete/"+$(e.target).attr("data-id"),
+      function(data) {
+        window.location.reload();
+      }
+    );
   }
+});
+
+var NewsnavSelectView = Backbone.View.extend({
+  className: 'newsnavselect',
+
+  initialize: function () {
+    this.newsnavList = new NewsnavList();
+    this.newsnavList.fetch();
+
+    this.template = $('#newsnavselect-template').html();
+  },
+
+  render: function () {
+    $(this.el).html(_.template(this.template, { newsnav: this.newsnavList.toJSON() } ));
+    
+    return this;
+  },
 });
 
 var NewsblueView = Backbone.View.extend({
@@ -161,6 +239,9 @@ var NewsblueView = Backbone.View.extend({
 
 var NewsboxView = Backbone.View.extend({
   className: 'newsbox',
+  events: {
+    "click .deleteNews": "onDeleteNews"
+  },
 
   initialize: function () {
     this.newsList = new NewsList();
@@ -170,9 +251,19 @@ var NewsboxView = Backbone.View.extend({
   },
 
   render: function () {
-    $(this.el).html(_.template(this.template, { news: this.newsList.toJSON() } ));
+    $(this.el).html(_.template(this.template, { news: this.newsList.toJSON(), user: window.user } ));
     
     return this;
+  },
+
+  onDeleteNews: function(e) {
+    var self = this;
+    $.get(
+      "/api/news/delete/"+$(e.target).attr("data-id"),
+      function(data) {
+        window.location.reload();
+      }
+    );
   }
 });
 

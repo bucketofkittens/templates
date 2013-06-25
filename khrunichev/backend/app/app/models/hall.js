@@ -4,7 +4,7 @@ var Hall = function () {
     title: {type: 'string', required: true},
     fio: {type: 'string'},
     photo: {type: 'string'},
-    text: {type: 'string'}
+    text: {type: 'text'}
   });
 
   /*

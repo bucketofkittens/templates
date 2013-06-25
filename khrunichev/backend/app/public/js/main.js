@@ -4,6 +4,7 @@ var Controller = Backbone.Router.extend({
         "!/": "start", 
         "!/news": "news",
         "!/news/add": "newsadd",
+        "!/newsnav/add": "newsnavadd",
         "!/news/:id": "newsitem",
         "!/event": "event",
         "!/event/add": "eventadd",
@@ -65,6 +66,13 @@ var Controller = Backbone.Router.extend({
             $('#content').slideDown();
         });
     },
+    newsnavadd: function() {
+       var newsnavAdd = new NewsnavaddView();
+       $('#content').slideUp(function() {
+            $('#content').html(newsnavAdd.render().el);
+            $('#content').slideDown();
+        });
+    },
     event: function() {
        var eventList = new EventListView();
        $('#content').slideUp(function() {
@@ -77,6 +85,9 @@ var Controller = Backbone.Router.extend({
        $('#content').slideUp(function() {
             $('#content').html(eventAdd.render().el);
             $('#content').slideDown();
+            CKEDITOR.replace('add_event_text', {
+              width: "700px"
+            });
         });
     },
     hall: function() {
@@ -91,6 +102,9 @@ var Controller = Backbone.Router.extend({
        $('#content').slideUp(function() {
             $('#content').html(hallAdd.render().el);
             $('#content').slideDown();
+            CKEDITOR.replace('add_hall_text', {
+              width: "700px"
+            });
         });
     },
     newspaper: function() {
@@ -105,6 +119,9 @@ var Controller = Backbone.Router.extend({
        $('#content').slideUp(function() {
             $('#content').html(newspaperAdd.render().el);
             $('#content').slideDown();
+            CKEDITOR.replace('add_newspaper_text', {
+              width: "700px"
+            });
         });
     },
     questions: function() {
@@ -160,10 +177,14 @@ var TopnavView = Backbone.View.extend({
   onLogining: function() {
     $(".enter-item").hide();
     $(".exit-item").show();
+    $(".hall-item").show();
+    $(".event-item").show();
   },
 
   onLogouting: function() {
     $(".exit-item").hide();
+    $(".hall-item").hide();
+    $(".event-item").hide();
     $(".enter-item").show();
   }
 });
