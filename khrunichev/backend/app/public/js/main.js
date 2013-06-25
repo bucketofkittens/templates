@@ -6,6 +6,7 @@ var Controller = Backbone.Router.extend({
         "!/news/add": "newsadd",
         "!/news/:id": "newsitem",
         "!/event/add": "eventadd",
+        "!/hall/add": "halladd",
         "!/questions": "questions",
         "!/structure": "structure",
         "!/search": "search"
@@ -49,6 +50,13 @@ var Controller = Backbone.Router.extend({
        var eventAdd = new EventaddView();
        $('#content').slideUp(function() {
             $('#content').html(eventAdd.render().el);
+            $('#content').slideDown();
+        });
+    },
+    halladd: function() {
+       var hallAdd = new HalladdView();
+       $('#content').slideUp(function() {
+            $('#content').html(hallAdd.render().el);
             $('#content').slideDown();
         });
     },

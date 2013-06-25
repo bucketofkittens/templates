@@ -106,10 +106,13 @@ var StartmanView = Backbone.View.extend({
 
   initialize: function () {
     this.template = $('#startman-template').html();
+
+    this.hallList = new HallList();
+    this.hallList.fetch();
   },
 
   render: function () {
-    $(this.el).html(_.template(this.template, this.context));
+    $(this.el).html(_.template(this.template, { halls: this.hallList.toJSON() } ));
     
     return this;
   }

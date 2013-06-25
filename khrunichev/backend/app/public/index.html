@@ -73,18 +73,28 @@
 			<% } %>
 		</script>
 		<script id="startman-template" type="text/template">
-			<div class="blue_box">
-				<div class="in">
-					<div class="quiz_small">
-						<h2>ДОСКА ПОЧЕТА</h2>
-						<section>
-							<strong><img src="./images/bugaiskii.jpg" alt="" />Фамилия И. О.</strong>
-							<p>Сотрудник сотрудник сотрудник сотрудник сотрудник сотрудник сотрудник сотрудник сотрудник сотрудник сотрудник сотрудник сотрудник сотрудник сотрудник сотрудник сотрудник сотрудник сотрудник сотрудник сотрудник сотрудник.</p>
-						</section>
-						<a href="#" class="all">Все почетные сотрудники</a>
+			<% if($(halls).size() > 0) { %>
+				<div class="blue_box">
+					<div class="in">
+						<div class="quiz_small">
+							<h2>ДОСКА ПОЧЕТА</h2>
+							<section class="news_small">
+								<% var i = 0; %>
+								<% _.each(halls, function(hallItem) { %>
+									<% i++; %>
+									<% if(i < 2) { %>
+										<section>
+											<strong><img src="./images/bugaiskii.jpg" alt="" /><%= hallItem.fio %></strong>
+											<p><%= hallItem.text %></p>
+										</section>
+									<% } %>
+								<% }); %>
+							</section>
+							<a href="#!/hall" class="all">Все почетные сотрудники</a>
+						</div>
 					</div>
 				</div>
-			</div>
+			<% } %>
 		</script>
 		<script id="startann-template" type="text/template">
 			<% if($(events).size() > 0) { %>
@@ -134,6 +144,24 @@
 					</p>
 					<p>
 						<input type="button" name="" id="newsAdd" value="Добавить" />
+					</p>
+				</form>
+			</div>
+		</script>
+		<script id="halladd-template" type="text/template">
+			<div id="content">
+				<form action="/api/news/create" method="post" accept-charset="utf-8">
+					<p>
+						<label>Заголовок<input id="add_hall_title" type="text" name="title" value="" /></label>
+					</p>
+					<p>
+						<label>ФИО <input id="add_hall_fio" type="text" name="title" value="" /></label>
+					</p>
+					<p>
+						<label>Текст <textarea id="add_hall_text" name="text"></textarea></label>
+					</p>
+					<p>
+						<input type="button" name="" id="hallAdd" value="Добавить" />
 					</p>
 				</form>
 			</div>
@@ -460,6 +488,7 @@
 		<script type="text/javascript" src="./js/backbone-min.js"></script>
 		<script type="text/javascript" src="./js/backbone.routefilter.min.js"></script>
 		
+		<script type="text/javascript" src="./js/hall.js"></script>
 		<script type="text/javascript" src="./js/start.js"></script>
 		<script type="text/javascript" src="./js/event.js"></script>
 		<script type="text/javascript" src="./js/search.js"></script>
