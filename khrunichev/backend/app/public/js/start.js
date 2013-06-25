@@ -75,10 +75,13 @@ var StartpprView = Backbone.View.extend({
 
   initialize: function () {
     this.template = $('#startppr-template').html();
+
+    this.newspaperList = new NewspaperList();
+    this.newspaperList.fetch();
   },
 
   render: function () {
-    $(this.el).html(_.template(this.template, this.context));
+    $(this.el).html(_.template(this.template, { newspapers: this.newspaperList.toJSON() } ));
     
     return this;
   }

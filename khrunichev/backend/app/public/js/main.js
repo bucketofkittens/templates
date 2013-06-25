@@ -5,8 +5,12 @@ var Controller = Backbone.Router.extend({
         "!/news": "news",
         "!/news/add": "newsadd",
         "!/news/:id": "newsitem",
+        "!/event": "event",
         "!/event/add": "eventadd",
+        "!/hall": "hall",
         "!/hall/add": "halladd",
+        "!/newspaper": "newspaper",
+        "!/newspaper/add": "newspaperadd",
         "!/questions": "questions",
         "!/structure": "structure",
         "!/search": "search"
@@ -46,6 +50,13 @@ var Controller = Backbone.Router.extend({
             $('#content').slideDown();
         });
     },
+    event: function() {
+       var eventList = new EventListView();
+       $('#content').slideUp(function() {
+            $('#content').html(eventList.render().el);
+            $('#content').slideDown();
+        });
+    },
     eventadd: function() {
        var eventAdd = new EventaddView();
        $('#content').slideUp(function() {
@@ -53,10 +64,31 @@ var Controller = Backbone.Router.extend({
             $('#content').slideDown();
         });
     },
+    hall: function() {
+       var hall = new HallListView();
+       $('#content').slideUp(function() {
+            $('#content').html(hall.render().el);
+            $('#content').slideDown();
+        });
+    },
     halladd: function() {
        var hallAdd = new HalladdView();
        $('#content').slideUp(function() {
             $('#content').html(hallAdd.render().el);
+            $('#content').slideDown();
+        });
+    },
+    newspaper: function() {
+       var newspaperList = new NewspaperListView();
+       $('#content').slideUp(function() {
+            $('#content').html(newspaperList.render().el);
+            $('#content').slideDown();
+        });
+    },
+    newspaperadd: function() {
+       var newspaperAdd = new NewspaperaddView();
+       $('#content').slideUp(function() {
+            $('#content').html(newspaperAdd.render().el);
             $('#content').slideDown();
         });
     },

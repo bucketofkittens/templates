@@ -26,6 +26,23 @@ var HalladdView = Backbone.View.extend({
   }
 });
 
+var HallListView = Backbone.View.extend({
+  className: 'halllist',
+
+  initialize: function () {
+    this.hallList = new HallList();
+    this.hallList.fetch();
+
+    this.template = $('#halllist-template').html();
+  },
+
+  render: function () {
+    $(this.el).html(_.template(this.template, { halls: this.hallList.toJSON() } ));
+    
+    return this;
+  }
+});
+
 var HallModel = Backbone.Model.extend();
 
 var HallList = Backbone.Collection.extend({

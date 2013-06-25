@@ -25,6 +25,23 @@ var EventaddView = Backbone.View.extend({
   }
 });
 
+var EventListView = Backbone.View.extend({
+  className: 'eventlist',
+
+  initialize: function () {
+    this.eventList = new EventList();
+    this.eventList.fetch();
+
+    this.template = $('#eventlist-template').html();
+  },
+
+  render: function () {
+    $(this.el).html(_.template(this.template, { events: this.eventList.toJSON() } ));
+    
+    return this;
+  }
+});
+
 var EventModel = Backbone.Model.extend();
 
 var EventList = Backbone.Collection.extend({

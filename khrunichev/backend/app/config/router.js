@@ -32,6 +32,9 @@ router.match('/api/event/create', 'POST').to('Event.create');
 router.match('/api/hall', 'GET').to('Hall.list');
 router.match('/api/hall/create', 'POST').to('Hall.create');
 
+router.match('/api/newspaper', 'GET').to('Newspaper.list');
+router.match('/api/newspaper/create', 'POST').to('Newspaper.create');
+
 router.match('/news/add', 'GET').to('News.add');
 router.match('/news/edit/:id', 'GET').to('News.edit');
 router.match('/news/create', 'POST').to('News.create');
