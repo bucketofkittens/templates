@@ -13,7 +13,8 @@ var Controller = Backbone.Router.extend({
         "!/newspaper/add": "newspaperadd",
         "!/questions": "questions",
         "!/structure": "structure",
-        "!/search": "search"
+        "!/search": "search",
+        "!/login": "login"
     },
 
     after: function(route, params) {
@@ -33,6 +34,13 @@ var Controller = Backbone.Router.extend({
        var news = new NewsView();
        $('#content').slideUp(function() {
             $('#content').html(news.render().el);
+            $('#content').slideDown();
+        });
+    },
+    login: function() {
+       var login = new LoginView();
+       $('#content').slideUp(function() {
+            $('#content').html(login.render().el);
             $('#content').slideDown();
         });
     },

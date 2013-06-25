@@ -137,3 +137,17 @@ var StartannView = Backbone.View.extend({
     return this;
   }
 });
+
+var LoginView = Backbone.View.extend({
+  className: 'login',
+
+  initialize: function () {
+    this.template = $('#login-template').html();
+  },
+
+  render: function () {
+    $(this.el).html(_.template(this.template, this.context ));
+    
+    return this;
+  }
+});

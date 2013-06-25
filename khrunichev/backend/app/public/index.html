@@ -270,6 +270,21 @@
 				</form>
 			</div>
 		</script>
+		<script id="login-template" type="text/template">
+			<div id="content">
+				<form action="/api/event/create" method="post" accept-charset="utf-8">
+					<p>
+						<label>Логин<input id="login_login" type="text" name="title" value="" /></label>
+					</p>
+					<p>
+						<label>Пароль <input id="login_passw" type="text" name="title" value="" /></label>
+					</p>
+					<p>
+						<input type="button" name="" id="eventAdd" value="Войти" />
+					</p>
+				</form>
+			</div>
+		</script>
 		<script id="newsnav-template" type="text/template">
 			<div class="gray_box">
 				<div class="in">
@@ -544,7 +559,7 @@
 			<div id="page_sub">
 				<header id="head">
 					<ul id="topnav">
-						<li><a href="./mail.html">Вход для уполномоченных лиц</a></li>
+						<li><a href="#!/login">Вход для уполномоченных лиц</a></li>
 					</ul>
 					<ul id="topmenu">
 						<li><a href="#!/" class="current">Главная</a></li>
