@@ -124,6 +124,24 @@
 				</div>
 			</div>
 		</script>
+		<script id="newsadd-template" type="text/template">
+			<div id="content">
+				<form action="/api/news/create" method="post" accept-charset="utf-8">
+					<p>
+						<label>Заголовок<input id="add_news_title" type="text" name="title" value="" /></label>
+					</p>
+					<p>
+						<label>Анонс <textarea id="add_anonce_title" name="anonce"></textarea></label>
+					</p>
+					<p>
+						<label>Текс <textarea id="add_text_title" name="text"></textarea></label>
+					</p>
+					<p>
+						<input type="button" name="" id="newsAdd" value="Добавить" />
+					</p>
+				</form>
+			</div>
+		</script>
 		<script id="newsnav-template" type="text/template">
 			<div class="gray_box">
 				<div class="in">

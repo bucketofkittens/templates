@@ -61,6 +61,7 @@ var News = function () {
   };
 
   this.create = function (req, resp, params) {
+    this.respondsWith = ['json', 'js'];
     var self = this
       , news = geddy.model.News.create(params);
 
@@ -74,7 +75,7 @@ var News = function () {
         params.errors = err;
         self.transfer('add');
       } else {
-        self.redirect({controller: self.name});
+        self.respond({status: "ok"});
       }
     });
   };

@@ -32,10 +32,7 @@ var Main = function () {
         data.user = user;
         data.authType = authTypes[self.session.get('authType')].name;
       }
-      self.respond(data, {
-        format: 'html'
-      , template: 'app/views/main/index'
-      });
+      self.redirect("index.html");
     });
   };
 

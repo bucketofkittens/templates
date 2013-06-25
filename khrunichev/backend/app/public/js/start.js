@@ -89,10 +89,13 @@ var StartnewView = Backbone.View.extend({
 
   initialize: function () {
     this.template = $('#startnew-template').html();
+
+    this.newsList = new NewsList();
+    this.newsList.fetch();
   },
 
   render: function () {
-    $(this.el).html(_.template(this.template, this.context));
+    $(this.el).html(_.template(this.template, { news: this.newsList.toJSON() } ));
     
     return this;
   }

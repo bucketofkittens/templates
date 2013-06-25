@@ -22,6 +22,34 @@ var NewsView = Backbone.View.extend({
   },
 });
 
+var NewsaddView = Backbone.View.extend({
+  className: 'newsadd',
+  events: {
+    "click #newsAdd": "onNewsAdd"
+  },
+
+  initialize: function () {
+    this.template = $('#newsadd-template').html();
+  },
+
+  render: function () {
+    $(this.el).html(_.template(this.template, this.context));
+   
+    return this;
+  },
+
+  onNewsAdd: function() {
+    var params = {};
+    params.title = $("#add_news_title").val();
+    params.anonce = $("#add_news_anonce").val();
+    params.text = $("#add_news_text").val();
+
+    $.post('/api/news/create', params, function(data) {
+      console.log(data);
+    })
+  }
+});
+
 var NewsitemView = Backbone.View.extend({
   className: 'newsitem',
   events: {
