@@ -36,15 +36,6 @@
 			</div>
 		</script>
 		<script id="startser-template" type="text/template">
-			<div class="gray_box">
-				<div class="in">
-					<h3>Поиск</h3>
-					<form action="">
-						<input type="text" />
-						<input type="submit" value="Найти" />
-					</form>
-				</div>
-			</div>
 		</script>
 		<script id="startppr-template" type="text/template">
 			<div class="gray_box">
@@ -58,28 +49,28 @@
 			</div>
 		</script>
 		<script id="startnew-template" type="text/template">
-			<div class="blue_box">
-				<div class="in">
-					<h2>Новости</h2>
-					<section class="news_small">
-						<article>
-							<h4>
-								<a href="">Дмитрий Медведев поздравил коллектив ФГУП «Государственный космический научно-производственный центр имени М.В.Хруничева»</a>
-							</h4>
-							<p class="data">07.06.2013</p>
-							<p class="text">Сегодня ГКНПЦ имени Хруничева динамично развивается, чётко и своевременно выполняет важнейшие государственные заказы. Здесь завершается разработка ракеты-носителя “Ангара”....</p>
-						</article>
-						<article>
-							<h4>
-								<a href="">Дмитрий Медведев поздравил коллектив ФГУП «Государственный космический научно-производственный центр имени М.В.Хруничева»</a>
-							</h4>
-							<p class="data">07.06.2013</p>
-							<p class="text">Сегодня ГКНПЦ имени Хруничева динамично развивается, чётко и своевременно выполняет важнейшие государственные заказы. Здесь завершается разработка ракеты-носителя “Ангара”...</p>
-						</article>
-						<a href="">Все новости</a>
-					</section>
+			<% if($(news).size() > 0) { %>
+				<div class="blue_box">
+					<div class="in">
+						<h2>Новости</h2>
+						<section class="news_small">
+							<% var i = 0; %>
+							<% _.each(news, function(newsItem) { %>
+								<% i++; %>
+								<% if(i < 4) { %>
+									<article data-newsnavid="<%= newsItem.newsnavId %>">
+										<h4><a href="#!/news/<%= newsItem.id %>"><%= newsItem.title %></a></h4>
+										<p class="date"><%= newsItem.createdAt %></p>
+										<p class="text"><%= newsItem.anonce %></p>
+									</article>
+								<% } %>
+							<% }); %>
+							<article>
+							<a href="#!/news">Все новости</a>
+						</section>
+					</div>
 				</div>
-			</div>
+			<% } %>
 		</script>
 		<script id="startman-template" type="text/template">
 			<div class="blue_box">
@@ -96,22 +87,27 @@
 			</div>
 		</script>
 		<script id="startann-template" type="text/template">
-			<div class="gray_box">
-				<div class="in">
-					<div class="quiz_small">
-						<h3>АНОНС СОБЫТИЙ</h3>
-						<section>
-							<i>03.05.2013</i>
-							<p>Десять лет назад функции оказания медицинской помощи на предприятии выполнял медико-оздоровительный комплекс (МОК). В 2003 году имеющийся здравпункт был преобразован в современную медсанчасть с квалифицированными врачами-специалистами и грамотным персоналом.</p>
-						</section>
-						<section>
-							<i>03.05.2013</i>
-							<p>Традиционно в качестве преподавателей были приглашены опытные организационные консультанты Центра психологического сопровождения бизнеса «3 апельсина».</p>
-						</section>
-						<a href="#" class="all">Все события</a>
+			<% if($(events).size() > 0) { %>
+				<div class="gray_box">
+					<div class="in">
+						<div class="quiz_small">
+							<% console.log(events); %>
+							<h3>АНОНС СОБЫТИЙ</h3>
+							<% var i = 0; %>
+							<% _.each(events, function(eventItem) { %>
+								<% i++; %>
+								<% if(i < 4) { %>
+									<section>
+										<i><%= eventItem.createdAt %></i>
+										<p><%= eventItem.text %></p>
+									</section>
+								<% } %>
+							<% }); %>
+							<a href="#!/events" class="all">Все события</a>
+						</div>
 					</div>
 				</div>
-			</div>
+			<% } %>
 		</script>
 
 		<script id="news-template" type="text/template">
@@ -131,13 +127,28 @@
 						<label>Заголовок<input id="add_news_title" type="text" name="title" value="" /></label>
 					</p>
 					<p>
-						<label>Анонс <textarea id="add_anonce_title" name="anonce"></textarea></label>
+						<label>Анонс <textarea id="add_news_anonce" name="anonce"></textarea></label>
 					</p>
 					<p>
-						<label>Текс <textarea id="add_text_title" name="text"></textarea></label>
+						<label>Текс <textarea id="add_news_text" name="text"></textarea></label>
 					</p>
 					<p>
 						<input type="button" name="" id="newsAdd" value="Добавить" />
+					</p>
+				</form>
+			</div>
+		</script>
+		<script id="eventadd-template" type="text/template">
+			<div id="content">
+				<form action="/api/event/create" method="post" accept-charset="utf-8">
+					<p>
+						<label>Заголовок<input id="add_event_title" type="text" name="title" value="" /></label>
+					</p>
+					<p>
+						<label>Текс <textarea id="add_event_text" name="text"></textarea></label>
+					</p>
+					<p>
+						<input type="button" name="" id="eventAdd" value="Добавить" />
 					</p>
 				</form>
 			</div>
@@ -201,13 +212,13 @@
 			</section>
 		</script>
 		<script id="pgn-template" type="text/template">
-			<hr><p>Страницы 1 
+			<!--<hr><p>Страницы 1 
 				<a href="">2</a>
 				<a href="">3</a>
 				<a href="">4</a>
 				<a href="">5</a>
 				<a href="">6</a>
-			</p><hr>
+			</p><hr>-->
 		</script>
 		
 		<script id="vopotv-template" type="text/template">
@@ -450,6 +461,7 @@
 		<script type="text/javascript" src="./js/backbone.routefilter.min.js"></script>
 		
 		<script type="text/javascript" src="./js/start.js"></script>
+		<script type="text/javascript" src="./js/event.js"></script>
 		<script type="text/javascript" src="./js/search.js"></script>
 		<script type="text/javascript" src="./js/str.js"></script>
 		<script type="text/javascript" src="./js/vopotv.js"></script>

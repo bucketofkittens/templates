@@ -120,10 +120,13 @@ var StartannView = Backbone.View.extend({
 
   initialize: function () {
     this.template = $('#startann-template').html();
+
+    this.eventList = new EventList();
+    this.eventList.fetch();
   },
 
   render: function () {
-    $(this.el).html(_.template(this.template, this.context));
+    $(this.el).html(_.template(this.template, { events: this.eventList.toJSON() } ));
     
     return this;
   }
