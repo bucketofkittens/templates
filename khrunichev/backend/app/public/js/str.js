@@ -139,15 +139,31 @@ var StrnavView = Backbone.View.extend({
 
 var StrboxView = Backbone.View.extend({
   className: 'strbox',
+  events: {
+    "click .deleteStr": "onDeleteStr"
+  },
 
   initialize: function () {
     this.template = $('#strbox-template').html();
+
+    this.strList = new StrList();
+    this.strList.fetch();
   },
 
   render: function () {
-    $(this.el).html(_.template(this.template, this.context));
+    $(this.el).html(_.template(this.template, { structs: this.strList.toJSON() }));
     
     return this;
+  },
+
+  onDeleteStr: function(e) {
+    var self = this;
+    $.get(
+      "/api/structure/delete/"+$(e.target).attr("data-id"),
+      function(data) {
+        window.location.reload();
+      }
+    );
   }
 });
 

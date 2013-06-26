@@ -754,34 +754,32 @@
 			<div class="blue_box">
 				<div class="in">	
 					<section class="stages">
-						<ul>
-							<li>										
-								<p><a href="#">Государственный космический <br> научно-производственный центр <br> имени М.В.Хруничева</a><b>Руководитель: </b>Фамилия И. О.</p>
+						<% _.each(structs, function(structsItem) { %>
+							<% if(structsItem.parentId == 0) { %>
 								<ul>
-									<li>
-										<p><a href="./struktura.html">«Хруничев Телеком»</a><b>Руководитель: </b>Фамилия И. О.</p>
-									</li>
-									<li>
-										<p><a href="./struktura.html">«Салют»</a><b>Руководитель: </b>Фамилия И. О.</p>
-									</li>
-									<li>
-										<p><a href="./struktura.html">«Длина»</a><b>Руководитель: </b>Фамилия И. О.</p>
-									</li>
-									<li>
-										<p><a href="./struktura.html">«Арматура»</a><b>Руководитель: </b>Фамилия И. О.</p>
-									</li>
-									<li>
-										<p><a href="./struktura.html">«Протон-ПМ»</a><b>Руководитель: </b>Фамилия И. О.</p>
-									</li>
-									<li>
-										<p><a href="./struktura.html">«Плесецк»</a><b>Руководитель: </b>Фамилия И. О.</p>
-									</li>
-									<li>
-										<p><a href="./struktura.html">«Полет»</a><b>Руководитель: </b>Фамилия И. О.</p>
+									<li>										
+										<p><a><%= structsItem.title %></a><b>Руководитель: </b><%= structsItem.leader %></p>
+										<% if(user.id) { %>
+											<img style="width: 45px; position: absolute; right: 0px; top: 0px;" data-id="<%= structsItem.id %>" class="deleteButton deleteStr" src="./images/del.png" alt="" />
+										<% } %>
+										<ul>
+											<% _.each(structs, function(structs2Item) { %>
+												<% if(structs2Item.parentId == structsItem.id) { %>
+													<li>
+														<p><a><%= structs2Item.title %></a><b>Руководитель: </b><%= structs2Item.leader %></p>
+														<% if(user.id) { %>
+															<img style="width: 45px; position: absolute; right: -10px; top: -10px;" data-id="<%= structs2Item.id %>" class="deleteButton deleteStr" src="./images/del.png" alt="" />
+														<% } %>
+													</li>
+												<% } %>
+											<% }); %>
+										</ul>
 									</li>
 								</ul>
-							</li>
-						</ul>
+								<br />
+							<% } %>
+						<% }); %>
+						
 					</section>		
 				</div>
 			</div>
