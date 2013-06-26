@@ -531,6 +531,7 @@
 		<script id="vopotv-template" type="text/template">
 			<div id="content">
 				<div id="left">
+					<div class="vopotvadmin-widget"></div>
 					<div class="vootnav-widget"></div>
 				</div>
 				<div id="center">
@@ -538,13 +539,109 @@
 				</div>
 			</div>
 		</script>
+		<script id="vopotvadmin-template" type="text/template">
+			<div class="gray_box">
+				<div class="in">
+					<h3>Администрирование</h3>
+					<ul>
+						<li><a href="#!/questnav/add">Добавить категорию</a></li>
+					</ul>
+				</div>
+			</div>
+		</script>
+		<script id="vopotvadd-template" type="text/template">
+			<div id="content">
+				<div id="left">
+					<div class="vopotvadmin-widget"></div>
+					<div class="vootnav-widget"></div>
+				</div>
+				<div id="center">
+					<div class="vopotvaddf-widget"></div>
+				</div>
+			</div>
+		</script>
+		<script id="questnavadd-template" type="text/template">
+			<div id="content">
+				<div id="left">
+					<div class="vopotvadmin-widget"></div>
+					<div class="vootnav-widget"></div>
+				</div>
+				<div id="center">
+					<div class="questnavaddf-widget"></div>
+				</div>
+			</div>
+		</script>
+		<script id="questnavaddf-template" type="text/template">
+			<div class="blue_box">
+				<div class="in">
+					<h2>Добавление категории</h2>
+					<form action="" method="post" accept-charset="utf-8" class="form">
+						<p>
+							<label>Заголовок<input id="add_questnav_title" type="text" name="title" value="" /></label>
+						</p>
+						<p>
+							<input type="button" name="" id="questnavAdd" value="Добавить" />
+							<input type="button" name="" id="questnavAddCancel" value="Отменить" />
+						</p>
+					</form>
+				</div>
+			</div>
+		</script>
+		
 		<script id="vootnav-template" type="text/template">
 			<div class="gray_box">
 				<div class="in">
 					<ul>
-						<li><a href="./vopros-otvet.html" class="current">Вопрос-ответ</a></li>
-						<li><a href="./zadat-vopros.html">Задать вопрос</a></li>
+						<li><a href="#!/questions">Вопрос-ответ</a></li>
+						<li><a href="#!/questions/add">Задать вопрос</a></li>
 					</ul>
+				</div>
+			</div>
+		</script>
+		<script id="vopotvaddf-template" type="text/template">
+			<div class="blue_box">
+				<div class="in">
+					<form action="index_submit" method="get" accept-charset="utf-8" class="form">
+						<h2>Задать вопрос</h2>
+						<div class="angst">* <p>Внимание! Все поля обязательны для заполнения!</p></div>
+						<div class="send">
+							<p>Категория</p>
+							<select>
+							</select>
+						</div>
+						<div class="send">
+							<p>Тема</p>
+							<input type="text" />
+						</div>
+						<div class="send">
+							<p>Предприятие</p>
+							<select>
+							</select>
+						</div>
+						<div class="send">
+							<p>Подразделение</p>
+							<select>
+							</select>
+						</div>
+						<div class="send">
+							<p>Отдел</p>
+							<select>
+							</select>
+						</div>
+						<div class="send">
+							<p>ФИО</p>
+							<input type="text" />
+						</div>
+						<div class="send">
+							<p>E-mail</p>
+							<input type="text" />
+						</div>
+						<div class="send">
+							<p>Текст вопроса</p>
+							<textarea></textarea>
+						</div>
+						<input type="button" id="addQuest" value="Задать вопрос" />
+					</form>
 				</div>
 			</div>
 		</script>
