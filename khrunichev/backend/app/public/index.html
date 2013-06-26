@@ -533,6 +533,7 @@
 				<div id="left">
 					<div class="vopotvadmin-widget"></div>
 					<div class="vootnav-widget"></div>
+					<div class="vopotvst-widget"></div>
 				</div>
 				<div id="center">
 					<div class="vootbox-widget"></div>
@@ -554,6 +555,7 @@
 				<div id="left">
 					<div class="vopotvadmin-widget"></div>
 					<div class="vootnav-widget"></div>
+					<div class="vopotvst-widget"></div>
 				</div>
 				<div id="center">
 					<div class="vopotvaddf-widget"></div>
@@ -565,6 +567,7 @@
 				<div id="left">
 					<div class="vopotvadmin-widget"></div>
 					<div class="vootnav-widget"></div>
+					<div class="vopotvst-widget"></div>
 				</div>
 				<div id="center">
 					<div class="questnavaddf-widget"></div>
@@ -598,16 +601,32 @@
 				</div>
 			</div>
 		</script>
+		<script id="vopotvst-template" type="text/template">
+			<div class="gray_box">
+				<div class="in">
+					<ul>
+						<li><a data-id="0">Все</a></li>
+						<% _.each(questnav, function(questnavItem) { %>
+							<li>
+								<a data-id="<%= questnavItem.id %>"><%= questnavItem.title %></a>
+								<% if(user.id) { %>
+									<img style="width: 15px;" data-id="<%= questnavItem.id %>" class="deleteButton deleteQuestnav" src="./images/del.png" alt="" />
+								<% } %>
+							</li>
+						<% }); %>
+					</ul>
+				</div>
+			</div>
+		</script>
 		<script id="vopotvaddf-template" type="text/template">
 			<div class="blue_box">
 				<div class="in">
 					<form action="index_submit" method="get" accept-charset="utf-8" class="form">
 						<h2>Задать вопрос</h2>
-						<div class="angst">* <p>Внимание! Все поля обязательны для заполнения!</p></div>
+						<div class="angst" style="color: red; position: relative; left: 0px; right: auto; margin-top: 10px; margin-bottom: 0px; height: 60px;">* <p>Внимание! Все поля обязательны для заполнения!</p></div>
 						<div class="send">
 							<p>Категория</p>
-							<select>
-							</select>
+							<span class="navselect-widget"></span>
 						</div>
 						<div class="send">
 							<p>Тема</p>
@@ -615,18 +634,15 @@
 						</div>
 						<div class="send">
 							<p>Предприятие</p>
-							<select>
-							</select>
+							<span class="pred1-widget"></span>
 						</div>
 						<div class="send">
 							<p>Подразделение</p>
-							<select>
-							</select>
+							<span class="pred2-widget"></span>
 						</div>
 						<div class="send">
 							<p>Отдел</p>
-							<select>
-							</select>
+							<span class="pred3-widget"></span>
 						</div>
 						<div class="send">
 							<p>ФИО</p>
@@ -644,6 +660,43 @@
 					</form>
 				</div>
 			</div>
+		</script>
+
+		<script id="pred1-template" type="text/template">
+			<select name="pred1-select" id="pred1-select">
+				<option value="0">Нет</option>
+				<% _.each(structs, function(structsItem) { %>
+					<option value="<%= structsItem.id %>"><%= structsItem.title %></option>
+				<% }); %>
+			</select>
+		</script>
+
+		<script id="pred2-template" type="text/template">
+			<select name="pred2-select" id="pred2-select">
+				<option value="0">Нет</option>
+				<% _.each(structs, function(structsItem) { %>
+					<option value="<%= structsItem.id %>"><%= structsItem.title %></option>
+				<% }); %>
+			</select>
+		</script>
+
+		<script id="pred3-template" type="text/template">
+			<select name="pred3-select" id="pred3-select">
+				<option value="0">Нет</option>
+				<% _.each(structs, function(structsItem) { %>
+					<option value="<%= structsItem.id %>"><%= structsItem.title %></option>
+				<% }); %>
+			</select>
+		</script>
+
+		<script id="questnavselect-template" type="text/template">
+			<select name="questnav-select" id="questnav-select">
+				<option value="0">Нет</option>
+				<% _.each(questnav, function(questnavItem) { %>
+					<option value="<%= questnavItem.id %>"><%= questnavItem.title %></option>
+				<% }); %>
+				structs
+			</select>
 		</script>
 		<script id="vootbox-template" type="text/template">
 			<div class="blue_box">
@@ -666,6 +719,8 @@
 			<div id="content">
 				<div id="left">
 					<div class="stradmin-widget"></div>
+					<div class="strclient-widget"></div>
+					<div class="strauth-widget"></div>
 					<div class="strnav-widget"></div>
 				</div>
 				<div id="center">
@@ -734,12 +789,87 @@
 			<div class="gray_box">
 				<div class="in">
 					<ul class="admin">
-						<li><a href="#!/structure/" class="current">Структура</a></li>
+						<li><a href="#!/structure">Структура</a></li>
 						<li><a href="#!/structure/document">Документы</a></li>
 					</ul>
 				</div>
 			</div>
 		</script>
+		<script id="strclient-template" type="text/template">
+			<div class="gray_box">
+				<div class="in">
+					<h3>Добро пожаловать</h3>
+					<form action="index_submit" method="get" accept-charset="utf-8" class="form">
+						<p>
+							<label>Ф.И.О<input id="client_fio" type="text" name="title" value="<%= client.fio %>" style="width: 170px;" /></label>
+						</p>
+						<p>
+							<label>
+								Предприятие
+								<select name="client_parent1">
+									<option value="0">Нет</option>
+									<% _.each(structs, function(structsItem) { %>
+										<option value="<%= structsItem.id %>"><%= structsItem.title %></option>
+									<% }); %>
+								</select>
+							</label>
+						</p>
+						<p>
+							<label>
+								Подразделение
+								<select name="client_parent2">
+									<option value="0">Нет</option>
+									<% _.each(structs, function(structsItem) { %>
+										<option value="<%= structsItem.id %>"><%= structsItem.title %></option>
+									<% }); %>
+								</select>
+							</label>
+						</p>
+						<p>
+							<label>
+								Отдел
+								<select name="client_parent3">
+									<option value="0">Нет</option>
+									<% _.each(structs, function(structsItem) { %>
+										<option value="<%= structsItem.id %>"><%= structsItem.title %></option>
+									<% }); %>
+								</select>
+							</label>
+						</p>
+						<p>
+							<input type="button" name="" id="strEnter" value="Сохранить" />
+						</p>
+					</form>
+					<a href="#!/logout/client" title="">Выйти</a>
+				</div>
+			</div>
+		</script>
+		<script id="straut-template" type="text/template">
+			<div class="gray_box">
+				<div class="in">
+					<h3>Авторизация пользователя</h3
+					<form action="index_submit" method="get" accept-charset="utf-8" class="form">
+						<p>
+							<label>Логин<input id="add_strenter_login" type="text" name="title" value="" /></label>
+						</p>
+						<br />
+						<p>
+							<label>Пароль<input id="add_strenter_passw" type="password" name="title" value="" /></label>
+						</p>
+						<p>
+							<input type="button" name="" id="strEnter" value="Войти" />
+						</p>
+						<br />
+						<div class="errors">
+							<p class="error-login error">Необходимо указать логин.</p>
+							<p class="error-passw error">Необходимо указать пароль.</p>
+							<p class="error-not error">Логин или пароль указаны не верно.</p>
+						</div>
+					</form>
+				</div>
+			</div>
+		</script>
+		
 		<script id="stradmin-template" type="text/template">
 			<div class="gray_box">
 				<div class="in">

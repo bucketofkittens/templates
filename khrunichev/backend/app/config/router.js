@@ -26,10 +26,21 @@ router.match('/api/news/delete/:id', 'GET').to('News.destroy');
 router.match('/api/news/create', 'POST').to('News.create');
 router.match('/api/news/delete/:id', 'GET').to('News.destroy');
 
+router.match('/api/quest', 'GET').to('Quest.list');
+router.match('/api/quest/:id', 'GET').to('Quest.one');
+router.match('/api/quest/delete/:id', 'GET').to('Quest.destroy');
+router.match('/api/quest/create', 'POST').to('Quest.create');
+router.match('/api/quest/delete/:id', 'GET').to('Quest.destroy');
+
 router.match('/api/newsnav', 'GET').to('Newsnav.list');
 router.match('/api/newsnav/:id', 'GET').to('Newsnav.one');
 router.match('/api/newsnav/create', 'POST').to('Newsnav.create');
 router.match('/api/newsnav/delete/:id', 'GET').to('Newsnav.destroy');
+
+router.match('/api/questnav', 'GET').to('Questnav.list');
+router.match('/api/questnav/:id', 'GET').to('Questnav.one');
+router.match('/api/questnav/create', 'POST').to('Questnav.create');
+router.match('/api/questnav/delete/:id', 'GET').to('Questnav.destroy');
 
 router.match('/api/event', 'GET').to('Event.list');
 router.match('/api/event/create', 'POST').to('Event.create');
@@ -48,8 +59,11 @@ router.match('/api/newspaper/create', 'POST').to('Newspaper.create');
 router.match('/api/newspaper/delete/:id', 'GET').to('Newspaper.destroy');
 
 router.match('/api/auth/login', 'POST').to('Auth.authenticate');
+router.match('/api/auth/client/login', 'POST').to('Auth.authenticateClient');
 router.match('/api/auth/status', 'GET').to('Auth.status');
+router.match('/api/auth/client/status', 'GET').to('Auth.statusClient');
 router.match('/api/auth/logout', 'GET').to('Auth.logout');
+router.match('/api/auth/client/logout', 'GET').to('Auth.logoutClient');
 
 // Basic routes
 // router.match('/moving/pictures/:id', 'GET').to('Moving.pictures');
