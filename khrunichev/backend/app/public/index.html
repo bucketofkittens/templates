@@ -649,6 +649,7 @@
 			<div class="blue_box">
 				<div class="in">
 					<h2>Вопрос - ответ</h2>
+					<!--
 					<section>
 						<i>03.05.2013</i>
 						<b>Фамилия И. О.</b>
@@ -656,20 +657,7 @@
 						<p>Вопрос вопрос вопрос вопрос вопрос вопрос вопрос вопрос вопрос вопрос вопрос вопрос вопрос вопрос вопрос вопрос вопрос вопрос вопрос вопрос вопрос вопрос вопрос вопрос вопрос вопрос вопрос вопрос вопрос вопрос вопрос вопрос вопрос?</p>
 						<strong>Ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ.</strong>
 					</section>
-					<section>
-						<i>03.05.2013</i>
-						<b>Фамилия И. О.</b>
-						<b>Предприятие А, подразделение 1, отдел 1x</b>
-						<p>Вопрос вопрос вопрос вопрос вопрос вопрос вопрос вопрос вопрос вопрос вопрос вопрос вопрос вопрос вопрос вопрос вопрос вопрос вопрос вопрос вопрос вопрос вопрос вопрос вопрос вопрос вопрос вопрос вопрос вопрос вопрос вопрос вопрос?</p>
-						<strong>Ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ.</strong>
-					</section>
-					<section>
-						<i>03.05.2013</i>
-						<b>Фамилия И. О.</b>
-						<b>Предприятие А, подразделение 1, отдел 1x</b>
-						<p>Вопрос вопрос вопрос вопрос вопрос вопрос вопрос вопрос вопрос вопрос вопрос вопрос вопрос вопрос вопрос вопрос вопрос вопрос вопрос вопрос вопрос вопрос вопрос вопрос вопрос вопрос вопрос вопрос вопрос вопрос вопрос вопрос вопрос?</p>
-						<strong>Ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ.</strong>
-					</section>
+					-->
 				</div>
 			</div>
 		</script>
@@ -677,6 +665,7 @@
 		<script id="str-template" type="text/template">
 			<div id="content">
 				<div id="left">
+					<div class="stradmin-widget"></div>
 					<div class="strnav-widget"></div>
 				</div>
 				<div id="center">
@@ -684,12 +673,79 @@
 				</div>
 			</div>
 		</script>
+		<script id="stradd-template" type="text/template">
+			<div id="content">
+				<div id="left">
+					<div class="stradmin-widget"></div>
+					<div class="strnav-widget"></div>
+				</div>
+				<div id="center">
+					<div class="straddf-widget"></div>
+				</div>
+			</div>
+		</script>
+		<script id="straddf-template" type="text/template">
+			<div class="blue_box">
+				<div class="in">
+					<h2>Добавление нового узла</h2>
+					<form action="index_submit" method="get" accept-charset="utf-8" class="form">
+						<p>
+							<label>Заголовок<input id="add_str_title" type="text" name="title" value="" /></label>
+						</p>
+						<p>
+							<label>Руководитель<input id="add_str_leader" type="text" name="title" value="" /></label>
+						</p>
+						<p>
+							<label>
+								Родительский раздел
+								<span class="strtreeselect-widget"></span>
+							</label>
+						</p>
+						<p>
+							<input type="button" name="" id="strAdd" value="Добавить" />
+							<input type="button" name="" id="strAddCancel" value="Отменить" />
+						</p>
+					</form>
+				</div>
+			</div>
+		</script>
+		<script id="strtreeselect-template" type="text/template">
+			<select name="add_str_parent" id="add_str_parent">
+				<option value="0">Предприятие</option>
+				<% _.each(structs, function(structsItem) { %>
+					<% if(structsItem.parentId == 0) { %>
+						<option value="<%= structsItem.id %>">- <%= structsItem.title %></option>
+						<% _.each(structs, function(structs2Item) { %>
+							<% if(structs2Item.parentId == structsItem.id) { %>
+								<option value="<%= structs2Item.id %>">-- <%= structs2Item.title %></option>
+								<% _.each(structs, function(structs3Item) { %>
+									<% if(structs3Item.parentId == structs2Item.id) { %>
+										<option value="<%= structs3Item.id %>">--- <%= structs3Item.title %></option>
+									<% } %>
+								<% }); %>
+							<% } %>
+						<% }); %>
+					<% } %>
+				<% }); %>
+				structs
+			</select>
+		</script>
 		<script id="strnav-template" type="text/template">
 			<div class="gray_box">
 				<div class="in">
 					<ul class="admin">
-						<li><a href="./strktr.html" class="current">Структура</a></li>
-						<li><a href="./instrukciya.html">Документы</a></li>
+						<li><a href="#!/structure/" class="current">Структура</a></li>
+						<li><a href="#!/structure/document">Документы</a></li>
+					</ul>
+				</div>
+			</div>
+		</script>
+		<script id="stradmin-template" type="text/template">
+			<div class="gray_box">
+				<div class="in">
+					<h3>Администрирование</h3>
+					<ul>
+						<li><a href="#!/structure/add">Добавить узел</a></li>
 					</ul>
 				</div>
 			</div>

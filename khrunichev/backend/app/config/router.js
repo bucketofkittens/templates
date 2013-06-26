@@ -39,6 +39,10 @@ router.match('/api/hall', 'GET').to('Hall.list');
 router.match('/api/hall/create', 'POST').to('Hall.create');
 router.match('/api/hall/delete/:id', 'GET').to('Hall.destroy');
 
+router.match('/api/structure', 'GET').to('Struct.list');
+router.match('/api/structure/create', 'POST').to('Struct.create');
+router.match('/api/structure/delete/:id', 'GET').to('Struct.destroy');
+
 router.match('/api/newspaper', 'GET').to('Newspaper.list');
 router.match('/api/newspaper/create', 'POST').to('Newspaper.create');
 router.match('/api/newspaper/delete/:id', 'GET').to('Newspaper.destroy');
