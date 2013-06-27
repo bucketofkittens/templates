@@ -531,12 +531,94 @@
 		<script id="vopotv-template" type="text/template">
 			<div id="content">
 				<div id="left">
+					<div class="vadmin-widget"></div>
 					<div class="vopotvadmin-widget"></div>
 					<div class="vootnav-widget"></div>
 					<div class="vopotvst-widget"></div>
 				</div>
 				<div id="center">
 					<div class="vootbox-widget"></div>
+					<div class="valist-widget"></div>
+				</div>
+			</div>
+		</script>
+		<script id="vedit-template" type="text/template">
+			<div id="content">
+				<div id="left">
+					<div class="vadmin-widget"></div>
+					<div class="vopotvadmin-widget"></div>
+					<div class="vootnav-widget"></div>
+					<div class="vopotvst-widget"></div>
+				</div>
+				<div id="center_small">
+					<div class="veditf-widget"></div>
+				</div>
+				<div id="right">
+					<div class="veditfr-widget"></div>
+				</div>
+			</div>
+		</script>
+		<script id="veditf-template" type="text/template">
+			<div class="blue_box">
+				<div class="in">
+					<section>
+						<i><%= quests[0].createdAt %></i>
+						<b>Фамилия <%= quests[0].fio %></b>
+						<!--
+						<b>Предприятие А, подразделение 1, отдел 1x</b>
+						<b>Категория: Организация труда</b>
+						-->
+						<b>Тема: <%= quests[0].title %></b>
+						<p><%= quests[0].quest %></p>
+						<p><input type="checkbox" id="l_status" <% if(quests[0].pub == 1) { %>checked="checked"<% } %> />Вопрос подлежит публикации</p>
+						<p>
+							<label for="">Вопрос:</label><br />
+							<textarea name="" id="l_quest" cols="45" rows="7"><%= quests[0].quest %></textarea>
+						</p>
+						<p>
+							<label for="">Ответ:</label><br />
+							<textarea name="" id="l_text" cols="45" rows="10"><%= quests[0].text %></textarea>
+						</p>
+						<p>
+							<input type="button" data-id="<%= quests[0].id %>" id="veditLUpdate" value="Ответить" />
+							<!--
+							<input type="button" value="Сохранить черновик" />
+							-->
+						</p>
+					</section>
+				</div>
+			</div>
+		</script>
+		<script id="veditfr-template" type="text/template">
+			<div class="gray_box">
+				<div class="in quiz_update">
+					<form action="">
+						<label for="">Статус</label>
+						<%= quests[0].pub %>
+						<select name="" id="quiz_status">
+							<option value="0" <% if(quests[0].status == 0) { %>selected="selected"<% } %>>Новый</option>
+							<option value="1" <% if(quests[0].status == 1) { %>selected="selected"<% } %>>В работе</option>
+							<option value="2" <% if(quests[0].status == 2) { %>selected="selected"<% } %>>Готовый</option>
+							<option value="3" <% if(quests[0].status == 3) { %>selected="selected"<% } %>>В корзине</option>
+						</select>
+						<br />
+						<input type="checkbox" id="quiz_pub" <% if(quests[0].pub == 1) { %>checked="checked"<% } %> />
+						<label for="" >Опубликовано</label>
+						<!--
+						<br /><br />
+						<p>Ответить до: <strong>05.05.2013</strong></p>
+						<div class="send">
+							<p>Ответственный:</p>
+							<select>
+								<option></option>
+								<option>Фамилия И. О.</option>
+								<option>Фамилия И. О.</option>
+								<option>Фамилия И. О.</option>
+							</select>
+						</div>
+						-->
+						<input type="button" data-id="<%= quests[0].id %>" id="veditRUpdate" value="Сохранить" />
+					</form>
 				</div>
 			</div>
 		</script>
@@ -547,6 +629,40 @@
 					<ul>
 						<li><a href="#!/questnav/add">Добавить категорию</a></li>
 					</ul>
+				</div>
+			</div>
+		</script>
+		<script id="valist-template" type="text/template">
+			<div class="blue_box">
+				<div class="in">
+					<% _.each(quests, function(questItem) { %>
+						<section class="let" data-pub="<%= questItem.pub %>" data-id="<%= questItem.id %>" data-status="<%= questItem.status %>">
+							<i><%= questItem.createdAt %></i>
+							<b><%= questItem.fio %></b>
+							<!--
+							<b>Предприятие А, подразделение 1, отдел 1x</b>
+							<b>Категория: </b>
+							-->
+							<b>Тема: <%= questItem.title %></b>
+							<b>Статус: 
+							<% if(questItem.status == 0) { %>
+								Новое
+							<% } %>
+							<% if(questItem.status == 1) { %>
+								В работе
+							<% } %>
+							<% if(questItem.status == 2) { %>
+								Готовый
+							<% } %>
+							<% if(questItem.status == 3) { %>
+								В корзине
+							<% } %>
+							</b>
+							<i>Ответить до: 05.05.2013</i>
+							<a href="#!/quest/edit/<%= questItem.id %>" class="look">Открыть</a>
+						</section>
+					<% }); %>								
+											
 				</div>
 			</div>
 		</script>
@@ -604,8 +720,8 @@
 		<script id="vopotvst-template" type="text/template">
 			<div class="gray_box">
 				<div class="in">
-					<ul>
-						<li><a data-id="0">Все</a></li>
+					<ul class="lnav">
+						<li><a data-id="0" class="current">Все</a></li>
 						<% _.each(questnav, function(questnavItem) { %>
 							<li>
 								<a data-id="<%= questnavItem.id %>"><%= questnavItem.title %></a>
@@ -630,7 +746,7 @@
 						</div>
 						<div class="send">
 							<p>Тема</p>
-							<input type="text" />
+							<input type="text" id="add_question_title" />
 						</div>
 						<div class="send">
 							<p>Предприятие</p>
@@ -646,22 +762,56 @@
 						</div>
 						<div class="send">
 							<p>ФИО</p>
-							<input type="text" />
+							<input type="text" id="add_question_fio" />
 						</div>
 						<div class="send">
 							<p>E-mail</p>
-							<input type="text" />
+							<input type="text" id="add_question_email" />
 						</div>
 						<div class="send">
 							<p>Текст вопроса</p>
-							<textarea></textarea>
+							<textarea id="add_question_quest" style="width: 100%;"></textarea>
 						</div>
-						<input type="button" id="addQuest" value="Задать вопрос" />
+						<input type="button" id="addQuest" style="margin-left: 20px;" value="Задать вопрос" />
+						<div class="errors">
+							<p class="error error-not">Все поля необходимо заполнить.</p>
+						</div>
 					</form>
 				</div>
 			</div>
 		</script>
 
+		<script id="vadmin-template" type="text/template">
+			<div class="gray_box">
+				<div class="in">
+					<ul class="admin">
+						<li><a href="#" class="current">Все</a></li>
+						<ul class="status_list">
+							<li data-status="0"><a>Новые</a></li>
+							<li data-status="1"><a>В работе</a></li>
+							<li data-status="2"><a>Готовые</a></li>
+							<li data-status="3"><a>Корзина</a></li>
+							<li data-pub="1"><a>Опубликованные</a></li>
+						</ul>
+						<!--
+						<ul>
+							<li><a href="#">Ответственный 1 (18)</a></li>
+							<li><a href="#">Ответственный 2 (23)</a></li>
+							<li><a href="#">Ответственный 3 (31)</a></li>
+						</ul>
+						<ul>
+							<li><a href="#">Личное (53)</a></li>
+							<li><a href="#">Рациональное предложение (47)</a></li>
+							<li><a href="#">Организация труда (29)</a></li>
+							<li><a href="#">Сообщение о нарушениях (8)</a></li>
+							<li><a href="#">Общественная жизнь (25)</a></li>
+							<li><a href="#">Прочее (16)</a></li>
+						</ul>
+						-->
+					</ul>
+				</div>
+			</div>
+		</script>
 		<script id="pred1-template" type="text/template">
 			<select name="pred1-select" id="pred1-select">
 				<option value="0">Нет</option>
@@ -702,15 +852,19 @@
 			<div class="blue_box">
 				<div class="in">
 					<h2>Вопрос - ответ</h2>
-					<!--
-					<section>
-						<i>03.05.2013</i>
-						<b>Фамилия И. О.</b>
-						<b>Предприятие А, подразделение 1, отдел 1x</b>
-						<p>Вопрос вопрос вопрос вопрос вопрос вопрос вопрос вопрос вопрос вопрос вопрос вопрос вопрос вопрос вопрос вопрос вопрос вопрос вопрос вопрос вопрос вопрос вопрос вопрос вопрос вопрос вопрос вопрос вопрос вопрос вопрос вопрос вопрос?</p>
-						<strong>Ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ ответ.</strong>
-					</section>
-					-->
+					<% _.each(quests, function(questItem) { %>
+						<% if(questItem.pub == 1) { %>
+							<section class="q" data-nav="<%= questItem.questnavId %>">
+								<i><%= questItem.createdAt %></i>
+								<b><%= questItem.fio %></b>
+								<!--
+								<b>Предприятие А, подразделение 1, отдел 1x</b>
+								-->
+								<p><%= questItem.quest %></p>
+								<strong><%= questItem.text %></strong>
+							</section>
+						<% } %>
+					<% }); %>
 				</div>
 			</div>
 		</script>

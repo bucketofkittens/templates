@@ -28,7 +28,7 @@ router.match('/api/news/delete/:id', 'GET').to('News.destroy');
 
 router.match('/api/quest', 'GET').to('Quest.list');
 router.match('/api/quest/:id', 'GET').to('Quest.one');
-router.match('/api/quest/delete/:id', 'GET').to('Quest.destroy');
+router.match('/api/quest/edit/:id', 'POST').to('Quest.update');
 router.match('/api/quest/create', 'POST').to('Quest.create');
 router.match('/api/quest/delete/:id', 'GET').to('Quest.destroy');
 

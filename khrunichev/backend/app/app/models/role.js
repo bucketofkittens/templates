@@ -1,20 +1,10 @@
-var Quest = function () {
+var Role = function () {
 
   this.defineProperties({
     title: {type: 'string', required: true},
-    parent1Id: {type: 'string'},
-    parent2Id: {type: 'string'},
-    parent3Id: {type: 'string'},
-    fio: {type: 'string'},
-    email: {type: 'string'},
-    text: {type: 'text'},
-    status: {type: 'string'},
-    quest: {type: 'text'},
-    adminId: {type: 'string'},
-    pub: {type: 'string'}
   });
 
-  this.belongsTo('Questnav');
+  this.hasMany('Users');
 
   /*
   this.property('login', 'string', {required: true});
@@ -52,5 +42,5 @@ News.someStaticMethod = function () {
 News.someStaticProperty = 'YYZ';
 */
 
-Quest = geddy.model.register('Quest', Quest);
+Role = geddy.model.register('Role', Role);
 

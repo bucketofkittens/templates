@@ -238,12 +238,14 @@ footer p {
 	padding: 20px;
 	position: relative;
 }
+/*
 .blue_box .in section.let:first-child {
 	background: rgba(0, 102, 204, 0.2);
 }
 .blue_box .in section.let:nth-child(3n) {
 	background: rgba(153, 204, 255, 0.5);
 }
+*/
 .blue_box .in section a.look {
 	display: block;
 	position: absolute;

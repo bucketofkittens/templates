@@ -4,6 +4,8 @@ var User = function () {
     email: {type: 'string'},
     password: {type: 'string'}
   });
+  
+  
 
   /*
   this.property('login', 'string', {required: true});

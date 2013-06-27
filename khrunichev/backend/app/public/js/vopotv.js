@@ -9,6 +9,8 @@ var VopotvView = Backbone.View.extend({
     this.vootbox = new VootboxView();
     this.vopotvadmin = new VopotvadminView();
     this.st = new VopotStView();
+    this.admin = new VadminView();
+    this.valist = new ValistView();
   },
 
   render: function () {
@@ -17,15 +19,21 @@ var VopotvView = Backbone.View.extend({
   	$(this.el).append(this.vootnav.el);
   	this.vootnav.setElement(this.$(".vootnav-widget")).render();
 
-  	$(this.el).append(this.vootbox.el);
-  	this.vootbox.setElement(this.$(".vootbox-widget")).render();
-
     $(this.el).append(this.st.el);
     this.st.setElement(this.$(".vopotvst-widget")).render();
 
-    if(window.user) {
+    if(window.user.id) {
       $(this.el).append(this.vopotvadmin.el);
-      this.vopotvadmin.setElement(this.$(".vopotvadmin-widget")).render();  
+      this.vopotvadmin.setElement(this.$(".vopotvadmin-widget")).render();
+
+      $(this.el).append(this.admin.el);
+      this.admin.setElement(this.$(".vadmin-widget")).render();
+
+      $(this.el).append(this.valist.el);
+      this.valist.setElement(this.$(".valist-widget")).render();  
+    } else {
+      $(this.el).append(this.vootbox.el);
+      this.vootbox.setElement(this.$(".vootbox-widget")).render();
     }
     
     return this;
@@ -125,7 +133,7 @@ var QuestnavAddfView = Backbone.View.extend({
 var VootaddfView = Backbone.View.extend({
   className: 'vopotvaddf',
   events: {
-    "click #addQuest", "onAddQuest"
+    "click #addQuest": "onAddQuest"
   },
 
   initialize: function () {
@@ -153,6 +161,43 @@ var VootaddfView = Backbone.View.extend({
     
     return this;
   },
+
+  onAddQuest: function(e) {
+    var params = {};
+    params.questnavId = $("#questnav-select option:selected").val();
+    params.parent1Id = $("#pred1-select option:selected").val();
+    params.parent2Id = $("#pred2-select option:selected").val();
+    params.parent3Id = $("#pred3-select option:selected").val();
+    params.title = $("#add_question_title").val();
+    params.fio = $("#add_question_fio").val();
+    params.email = $("#add_question_email").val();
+    params.quest = $("#add_question_quest").val();
+    params.status = 0;
+    params.pub = 0;
+
+    var error = false;
+    $(".error").fadeOut();
+
+    if(params.questnavId == 0 || 
+      params.parent1Id == 0 || 
+      params.parent2Id == 0 || 
+      params.parent3Id == 0 || 
+      params.title.length == 0 ||
+      params.fio.length == 0 || 
+      params.quest.length == 0) {
+      error = true;
+      
+      $(".error-not").fadeIn();
+    } else {
+      $.post(
+        "/api/quest/create",
+        params,
+        function(data) {
+          $(".vopotvaddf-widget .in").html("Ваше сообщение добавлено");
+        }
+      );
+    }
+  }
 });
 
 var VopotvadminView = Backbone.View.extend({
@@ -169,10 +214,40 @@ var VopotvadminView = Backbone.View.extend({
   },
 });
 
+var VadminView = Backbone.View.extend({
+  className: 'vadmin',
+  events:  {
+    "click .status_list a": "onStatusChange"
+  },
+
+  initialize: function () {
+    this.template = $('#vadmin-template').html();
+  },
+
+  render: function () {
+    $(this.el).html(_.template(this.template, this.context));
+    
+    return this;
+  },
+
+  onStatusChange: function(e) {
+    var status = $(e.target).parent().attr("data-status");
+    if(status) {
+      $(".let").fadeOut();
+      $(".let[data-status='"+status+"']").fadeIn();  
+    } else {
+      var pub = $(e.target).parent().attr("data-pub");
+      $(".let").fadeOut();
+      $(".let[data-pub='"+pub+"']").fadeIn();  
+    }
+  }
+});
+
 var VopotStView = Backbone.View.extend({
   className: 'vopotvst',
   events: {
-    "click .deleteQuestnav": "onDeleteQuestnav"
+    "click .deleteQuestnav": "onDeleteQuestnav",
+    "click .lnav a": "onSelect"
   },
 
   initialize: function () {
@@ -196,6 +271,16 @@ var VopotStView = Backbone.View.extend({
         window.location.reload();
       }
     );
+  },
+  onSelect: function(e) {
+    var id = $(e.target).attr('data-id');
+    console.log(id);
+    if(id != 0) {
+      $(".q").fadeOut();
+      $(".q[data-nav='"+id+"']").fadeIn();
+    } else {
+      $(".q").fadeIn();
+    }
   }
 });
 
@@ -323,19 +408,189 @@ var VootnavView = Backbone.View.extend({
   }
 });
 
-
-
 var VootboxView = Backbone.View.extend({
   className: 'vootbox',
 
   initialize: function () {
     this.template = $('#vootbox-template').html();
+
+    this.questList = new QuestList();
+    this.questList.fetch();
+  },
+
+  render: function () {
+    $(this.el).html(_.template(this.template, { quests: this.questList.toJSON() }));
+    
+    return this;
+  }
+});
+
+var ValistView = Backbone.View.extend({
+  className: 'valist',
+
+  initialize: function () {
+    this.template = $('#valist-template').html();
+
+    this.questList = new QuestList();
+    this.questList.fetch();
+  },
+
+  render: function () {
+    $(this.el).html(_.template(this.template, { quests: this.questList.toJSON() }));
+    
+    return this;
+  }
+});
+
+var VeditView = Backbone.View.extend({
+  className: 'vedit',
+
+  initialize: function (opt) {
+    this.template = $('#vedit-template').html();
+
+    this.vootnav = new VootnavView();
+    this.vootbox = new VootboxView();
+    this.vopotvadmin = new VopotvadminView();
+    this.st = new VopotStView();
+    this.admin = new VadminView();
+    this.valist = new ValistView();
+    this.veditf = new VeditfView({id: opt.id});
+    this.veditfr = new VeditfrView({id: opt.id});
   },
 
   render: function () {
     $(this.el).html(_.template(this.template, this.context));
+
+    $(this.el).append(this.vootnav.el);
+    this.vootnav.setElement(this.$(".vootnav-widget")).render();
+
+    $(this.el).append(this.st.el);
+    this.st.setElement(this.$(".vopotvst-widget")).render();
+
+    if(window.user.id) {
+      $(this.el).append(this.vopotvadmin.el);
+      this.vopotvadmin.setElement(this.$(".vopotvadmin-widget")).render();
+
+      $(this.el).append(this.admin.el);
+      this.admin.setElement(this.$(".vadmin-widget")).render();
+
+      $(this.el).append(this.valist.el);
+      this.valist.setElement(this.$(".valist-widget")).render(); 
+
+      $(this.el).append(this.veditf.el);
+      this.veditf.setElement(this.$(".veditf-widget")).render();
+
+      $(this.el).append(this.veditfr.el);
+      this.veditfr.setElement(this.$(".veditfr-widget")).render();  
+    } else {
+      $(this.el).append(this.vootbox.el);
+      this.vootbox.setElement(this.$(".vootbox-widget")).render();
+    }
     
     return this;
+  }
+});
+
+var VeditfView = Backbone.View.extend({
+  className: 'veditf',
+  events: {
+    "click #veditLUpdate": "onVeditLUpdate"
+  },
+
+  initialize: function (opt) {
+    this.template = $('#veditf-template').html();
+
+    this.questOneList = new QuestOneList({}, {id: opt.id});
+    this.questOneList.fetch();
+  },
+
+  render: function () {
+    $(this.el).html(_.template(this.template, { quests: this.questOneList.toJSON() }));
+    
+    return this;
+  },
+
+  onVeditLUpdate: function(e) {
+    var params = {};
+    params.quest = $("#l_quest").val();
+    params.text = $("#l_text").val();
+
+    if($("#l_status option:selected").prop("checked")) {
+      params.pub = 1;
+    } else {
+      params.pub = 0;
+    }
+
+    $.post(
+      "/api/quest/edit/"+$(e.target).attr("data-id"),
+      params,
+      function(data) {
+        window.location.hash = '#!/questions';
+      }
+    );
+  }
+});
+
+var VeditfrView = Backbone.View.extend({
+  className: 'veditfr',
+  events: {
+    "click #veditRUpdate": "onVeditRUpdate"
+  },
+
+  initialize: function (opt) {
+    this.template = $('#veditfr-template').html();
+
+    this.questOneList = new QuestOneList({}, {id: opt.id});
+    this.questOneList.fetch();
+  },
+
+  render: function () {
+    $(this.el).html(_.template(this.template, { quests: this.questOneList.toJSON() }));
+    
+    return this;
+  },
+
+  onVeditRUpdate: function(e) {
+    var params = {};
+    params.status = $("#quiz_status option:selected").val();
+
+    if($("#quiz_pub").prop("checked")) {
+      params.pub = 1;
+    } else {
+      params.pub = 0;
+    }
+
+    $.post(
+      "/api/quest/edit/"+$(e.target).attr("data-id"),
+      params,
+      function(data) {
+        window.location.hash = '#!/questions';
+      }
+    );
+  }
+});
+
+var QuestModel = Backbone.Model.extend();
+
+var QuestList = Backbone.Collection.extend({
+   model: QuestModel,
+   url: '/api/quest',
+   parse: function(response, xhr) {
+      return response.quests;
+  }
+});
+
+var QuestOneModel = Backbone.Model.extend();
+
+var QuestOneList = Backbone.Collection.extend({
+   model: QuestModel,
+   url: '/api/quest',
+   initialize: function(models, options) {
+    this.id = options.id;
+    this.url = '/api/quest/'+this.id;
+   },
+   parse: function(response, xhr) {
+      return response.quests;
   }
 });
 

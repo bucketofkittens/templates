@@ -14,6 +14,7 @@ var Controller = Backbone.Router.extend({
         "!/newspaper/add": "newspaperadd",
         "!/questions": "questions",
         "!/questions/add": "questionsAdd",
+        "!/quest/edit/:id": "questEdit",
         "!/questnav/add": "questnavAdd",
         "!/structure": "structure",
         "!/structure/add": "structureAdd",
@@ -134,6 +135,13 @@ var Controller = Backbone.Router.extend({
             $('#content').html(vopotv.render().el);
             $('#content').slideDown();
         });
+    },
+    questEdit: function(id) {
+      var vEdit = new VeditView({id: id});
+      $('#content').slideUp(function() {
+          $('#content').html(vEdit.render().el);
+          $('#content').slideDown();
+      });
     },
     questionsAdd: function() {
        var vopotvAdd = new VopotvAddView();
