@@ -17,6 +17,7 @@ var Controller = Backbone.Router.extend({
         "!/quest/edit/:id": "questEdit",
         "!/questnav/add": "questnavAdd",
         "!/structure": "structure",
+        "!/structure/view/:id": "structureView",
         "!/structure/add": "structureAdd",
         "!/structure/document": "document",
         "!/structure/document/added": "documentAdded",
@@ -175,8 +176,17 @@ var Controller = Backbone.Router.extend({
             $('#content').slideDown();
         });
     },
+    structureView: function(id) {
+       var strV = new StrVView({id: id});
+       $('#content').slideUp(function() {
+            $('#content').html(strV.render().el);
+            $('#content').slideDown();
+        });
+    },
     structureAdd: function() {
+      console.log("1");
        var strAdd = new StrAddView();
+       console.log(strAdd);
        $('#content').slideUp(function() {
             $('#content').html(strAdd.render().el);
             $('#content').slideDown();

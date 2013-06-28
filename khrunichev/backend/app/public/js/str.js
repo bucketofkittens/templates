@@ -36,6 +36,44 @@ var StrView = Backbone.View.extend({
   }
 });
 
+var StrVView = Backbone.View.extend({
+  className: 'strv',
+
+  initialize: function (opt) {
+    this.template = $('#strv-template').html();
+    this.strnav = new StrnavView();
+    this.strbox = new Strbox2View({id: opt.id});
+    this.stradmin = new StradminView();
+    this.strauth = new StrAuthView();
+    this.strclient = new StrClientView();
+  },
+
+  render: function () {
+    $(this.el).html(_.template(this.template, this.context));
+
+    $(this.el).append(this.strnav.el);
+    this.strnav.setElement(this.$(".strnav-widget")).render();
+
+    $(this.el).append(this.strbox.el);
+    this.strbox.setElement(this.$(".strbox-widget")).render();
+
+    if(window.user.id) {
+      $(this.el).append(this.stradmin.el);
+      this.stradmin.setElement(this.$(".stradmin-widget")).render(); 
+    } else {
+      if(window.clientUser.id) {
+        $(this.el).append(this.strclient.el);
+        this.strclient.setElement(this.$(".strclient-widget")).render();
+      } else {
+        $(this.el).append(this.strauth.el);
+        this.strauth.setElement(this.$(".strauth-widget")).render();  
+      }
+    }
+    
+    return this;
+  }
+});
+
 var StrAddView = Backbone.View.extend({
   className: 'stradd',
   events: {
@@ -88,6 +126,7 @@ var StrAddFView = Backbone.View.extend({
   className: 'straddf',
 
   initialize: function () {
+    console.log("aa");
     this.template = $('#straddf-template').html();
     this.treeSelect = new StrTreeSelectView();
   },
@@ -228,7 +267,38 @@ var StrboxView = Backbone.View.extend({
   },
 
   render: function () {
-    $(this.el).html(_.template(this.template, { structs: this.strList.toJSON() }));
+    $(this.el).html(_.template(this.template, { structs: this.strList.toJSON(), user: window.user, userClient: window.clientUser }));
+    
+    return this;
+  },
+
+  onDeleteStr: function(e) {
+    var self = this;
+    $.get(
+      "/api/structure/delete/"+$(e.target).attr("data-id"),
+      function(data) {
+        window.location.reload();
+      }
+    );
+  }
+});
+
+var Strbox2View = Backbone.View.extend({
+  className: 'strbox',
+  events: {
+    "click .deleteStr": "onDeleteStr"
+  },
+
+  initialize: function (opt) {
+    this.template = $('#strbox2-template').html();
+
+    this.strList = new StrList();
+    this.strList.fetch();
+    this.id = opt.id;
+  },
+
+  render: function () {
+    $(this.el).html(_.template(this.template, { id: this.id, structs: this.strList.toJSON(), user: window.user, userClient: window.clientUser }));
     
     return this;
   },

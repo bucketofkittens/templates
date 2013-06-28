@@ -882,6 +882,19 @@
 				</div>
 			</div>
 		</script>
+		<script id="strv-template" type="text/template">
+			<div id="content">
+				<div id="left">
+					<div class="stradmin-widget"></div>
+					<div class="strclient-widget"></div>
+					<div class="strauth-widget"></div>
+					<div class="strnav-widget"></div>
+				</div>
+				<div id="center">
+					<div class="strbox-widget"></div>
+				</div>
+			</div>
+		</script>
 		<script id="stradd-template" type="text/template">
 			<div id="content">
 				<div id="left">
@@ -1038,14 +1051,14 @@
 			<div class="blue_box">
 				<div class="in">
 					<h2>Государственный космический<br />
-научно-производственный центр <br />
-имени М.В.Хруничева</h2>
+					научно-производственный центр <br />
+					имени М.В.Хруничева</h2>
 					<section class="stages">
 						<% _.each(structs, function(structsItem) { %>
 							<% if(structsItem.parentId == 0) { %>
 								<ul>
 									<li>										
-										<p><a><%= structsItem.title %></a><b>Руководитель: </b><%= structsItem.leader %></p>
+										<p><a><%= structsItem.title %></a><% if(structsItem.leader) { %><b>Руководитель: </b><%= structsItem.leader %><% } %></p>
 										<% if(user.id) { %>
 											<img style="width: 45px; position: absolute; right: 0px; top: 0px;" data-id="<%= structsItem.id %>" class="deleteButton deleteStr" src="./images/del.png" alt="" />
 										<% } %>
@@ -1053,7 +1066,41 @@
 											<% _.each(structs, function(structs2Item) { %>
 												<% if(structs2Item.parentId == structsItem.id) { %>
 													<li>
-														<p><a><%= structs2Item.title %></a><b>Руководитель: </b><%= structs2Item.leader %></p>
+														<p><a <% if(userClient.id) { %>href="#!/structure/view/<%= structs2Item.id %>"<% } %>><%= structs2Item.title %></a><b>Руководитель: </b><%= structs2Item.leader %></p>
+														<% if(user.id) { %>
+															<img style="width: 45px; position: absolute; right: -10px; top: -10px;" data-id="<%= structs2Item.id %>" class="deleteButton deleteStr" src="./images/del.png" alt="" />
+														<% } %>
+													</li>
+												<% } %>
+											<% }); %>
+										</ul>
+									</li>
+								</ul>
+								<br />
+							<% } %>
+						<% }); %>
+						
+					</section>		
+				</div>
+			</div>
+		</script>
+		<script id="strbox2-template" type="text/template">
+			<div class="blue_box">
+				<div class="in">
+					<section class="stages">
+						<% _.each(structs, function(structsItem) { %>
+							<% if(structsItem.parentId == id) { %>
+								<ul>
+									<li>										
+										<p><a><%= structsItem.title %></a><% if(structsItem.leader) { %><b>Руководитель: </b><%= structsItem.leader %><% } %></p>
+										<% if(user.id) { %>
+											<img style="width: 45px; position: absolute; right: 0px; top: 0px;" data-id="<%= structsItem.id %>" class="deleteButton deleteStr" src="./images/del.png" alt="" />
+										<% } %>
+										<ul>
+											<% _.each(structs, function(structs2Item) { %>
+												<% if(structs2Item.parentId == structsItem.id) { %>
+													<li>
+														<p><a <% if(userClient.id) { %>href="#!/structure/<%= structs2Item.id %>"<% } %>><%= structs2Item.title %></a><b>Руководитель: </b><%= structs2Item.leader %></p>
 														<% if(user.id) { %>
 															<img style="width: 45px; position: absolute; right: -10px; top: -10px;" data-id="<%= structs2Item.id %>" class="deleteButton deleteStr" src="./images/del.png" alt="" />
 														<% } %>
