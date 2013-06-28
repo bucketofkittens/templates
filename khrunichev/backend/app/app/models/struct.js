@@ -3,6 +3,8 @@ var Struct = function () {
   this.defineProperties({
     title: {type: 'string', required: true},
     leader: {type: 'string'},
+    order: {type: 'int'},
+    phone: {type: 'string'},
     parentId: {type: 'string'}
   });
 

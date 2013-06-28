@@ -480,6 +480,7 @@ footer p {
 }
 .blue_box .in .stages li {
 	display: inline-block;
+	vertical-align: top;
 }
 .blue_box .in .stages li ul li {
 	background: rgba(255, 255, 255, 0.5);
@@ -494,7 +495,7 @@ footer p {
 	color: #000000;
 	font-size: 18px;
 	text-decoration: none;
-	margin: 0px 10px 20px 10px;
+	margin: 0px 10px 5px 10px;
 	font-style: normal;
 	font-weight: bold;
 }
@@ -508,7 +509,7 @@ footer p {
 	color: #000000;
 	font-size: 12px;
 	font-weight: normal;
-	margin-bottom: 10px;
+	margin-bottom: 4px;
 	padding: 0px;
 }
 .blue_box .in .stages ul li ul {
@@ -528,7 +529,7 @@ footer p {
 }
 
 .gray_box .in .list ul {
-	margin-left: 20px;
+	margin-left: 10px;
 }
 .gray_box .in .list li, .gray_box .in .list a {
 	margin: 3px 0px;
@@ -676,5 +677,49 @@ footer p {
 }
 
 .doc-list-items {
+	display: none;
+}
+
+.itt {
+	padding: 5px;
+	max-width: 90px;
+}
+.itt p {
+	padding-top: 0px;
+	margin-top: 0px;
+}
+
+.b_i {
+	display: block;
+	text-align: center;
+	margin: 0px 10px;
+	background: rgba(250, 250, 250, 0.3);
+	border-radius: 10px;
+	border: 1px solid #ffffff;
+	padding-top: 20px;
+	position: relative;
+}
+
+.list_doc th {
+	background: rgba(255, 255, 255, 0.4);
+	padding: 10px;
+	border-radius: 4px;
+	text-align: left;
+	font-weight: bold;
+}
+.list_doc td {
+	background: rgba(0, 0, 0, 0.1);
+	padding: 10px;
+	border-radius: 4px;
+	text-align: left;
+}
+.list_doc .col1 td {
+	background: rgba(255, 255, 255, 0.1) !important;
+}
+.list_doc td a {
+	text-align: left !important;
+}
+
+.add_file {
 	display: none;
 }

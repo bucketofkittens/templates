@@ -323,6 +323,7 @@ var DocView = Backbone.View.extend({
     this.doc = new DocListView();
     this.docs = new DocsView();
     this.adminList = new DocAdminView();
+    this.strclient = new StrClientView();
   },
 
   render: function () {
@@ -343,6 +344,11 @@ var DocView = Backbone.View.extend({
       $(this.el).append(this.adminList.el);
       this.adminList.setElement(this.$(".docadmin-widget")).render();
     }
+
+      if(window.clientUser.id) {
+      $(this.el).append(this.strclient.el);
+      this.strclient.setElement(this.$(".strclient-widget")).render();
+    }
     
     this.adminList
     return this;
@@ -351,17 +357,33 @@ var DocView = Backbone.View.extend({
 
 var DocListView = Backbone.View.extend({
   className: 'doclist',
+  events: {
+    "click #add_file_show": "onAddFileShow",
+    "click #onLoadDoc": "onLoadDoc"
+  },
 
   initialize: function () {
     this.template = $('#doclist-template').html();
 
-    
+    this.docList = new DocList();
+    this.docList.fetch();
   },
 
   render: function () {
-    $(this.el).html(_.template(this.template, { user: window.clientUser }));
+    $(this.el).html(_.template(this.template, { user: window.clientUser, docs: this.docList.toJSON() }));
     
     return this;
+  },
+
+  onAddFileShow: function(e) {
+    $(e.target).hide();
+    $(".add_file").slideDown();
+  },
+  onLoadDoc: function(e) {
+    if($("#add_title").val().length > 0) {
+      $("#add_file_form").submit();
+    }
+    return false;
   }
 });
 
@@ -390,6 +412,8 @@ var DocAddedView = Backbone.View.extend({
 
     this.tree = new StrtreeView();
     this.doc = new DocListView();
+
+    this.docs = new DocsView();
   },
 
   render: function () {
@@ -400,6 +424,11 @@ var DocAddedView = Backbone.View.extend({
 
     $(this.el).append(this.doc.el);
     this.doc.setElement(this.$(".doclist-widget")).render();
+
+    if(window.clientUser.id && !window.user.id) {
+      $(this.el).append(this.docs.el);
+      this.docs.setElement(this.$(".docs-widget")).render();
+    }
     
     return this;
   }
@@ -410,6 +439,44 @@ var DocEditView = Backbone.View.extend({
 
   initialize: function (opt) {
     this.template = $('#docedit-template').html();
+
+    this.tree = new StrtreeView();
+    this.doc = new DocListView();
+    this.id = opt.id;
+
+    this.docList = new DocList();
+    this.docList.fetch();
+
+    this.docs = new DocsView();
+  },
+
+  render: function () {
+    $(this.el).html(_.template(this.template, { user: window.clientUser, id: this.id, docs: this.docList.toJSON() }));
+
+    $(this.el).append(this.tree.el);
+    this.tree.setElement(this.$(".strtree-widget")).render();
+
+    $(this.el).append(this.doc.el);
+    this.doc.setElement(this.$(".doclist-widget")).render();
+
+    if(window.clientUser.id && !window.user.id) {
+      $(this.el).append(this.docs.el);
+      this.docs.setElement(this.$(".docs-widget")).render();
+    }
+    
+    return this;
+  }
+});
+
+var DocAccessView = Backbone.View.extend({
+  className: 'docaccess',
+  events: {
+    "click #addAccess": "onAddAccess",
+    "click #notAccess": "onNotAccess"
+  },
+
+  initialize: function (opt) {
+    this.template = $('#docaccess-template').html();
 
     this.tree = new StrtreeView();
     this.doc = new DocListView();
@@ -429,8 +496,22 @@ var DocEditView = Backbone.View.extend({
     this.doc.setElement(this.$(".doclist-widget")).render();
     
     return this;
-  }
+  },
+
+  onAddAccess: function(e) {
+    var self = this;
+    $.get(
+      "/api/structure/delete/"+$(e.target).attr("data-id"),
+      function(data) {
+        window.location.reload();
+      }
+    );
+  },
+  notAccess: function(e) {
+    
+  }  
 });
+
 
 var DocAdminView = Backbone.View.extend({
   className: 'docsadmin',
@@ -469,11 +550,13 @@ var StrtreeView = Backbone.View.extend({
   },
 
   onTreeItem: function(e) {
-    $(".tree_item").removeClass("current");
-    $(e.target).addClass("current");
+    if(!window.user.id) {
+      $(".tree_item").removeClass("current");
+      $(e.target).addClass("current");
 
-    $(".not").hide();
-    $(".doc-list-items").fadeIn();
+      $(".not").hide();
+      $(".doc-list-items").fadeIn();  
+    }
   }
 });
 

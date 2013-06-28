@@ -22,6 +22,7 @@ var Controller = Backbone.Router.extend({
         "!/structure/document": "document",
         "!/structure/document/added": "documentAdded",
         "!/doc/edit/:id": "docEdit",
+        "!/doc/access/:id": "docAccess",
         "!/search": "search",
         "!/login": "login",
         "!/logout": "logout",
@@ -149,9 +150,15 @@ var Controller = Backbone.Router.extend({
     },
     docEdit: function(id) {
       var docEdit = new DocEditView({id: id});
-      console.log(docEdit);
       $('#content').slideUp(function() {
           $('#content').html(docEdit.render().el);
+          $('#content').slideDown();
+      });
+    },
+    docAccess: function(id) {
+      var docAccess = new DocAccessView({id: id});
+      $('#content').slideUp(function() {
+          $('#content').html(docAccess.render().el);
           $('#content').slideDown();
       });
     },

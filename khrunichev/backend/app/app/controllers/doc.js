@@ -76,6 +76,7 @@ var Doc = function () {
         var newPath = path.join('public', 'upload', files['filename'].name);
         fs.writeFile(newPath, data, function (err) {
           fields.file = files['filename'].name;
+          fields.status = 0;
           var doc = geddy.model.Doc.create(fields);
           doc.save(function(err, data) {
             if (err) {

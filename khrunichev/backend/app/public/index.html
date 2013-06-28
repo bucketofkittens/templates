@@ -965,48 +965,6 @@
 		<script id="strclient-template" type="text/template">
 			<div class="gray_box">
 				<div class="in">
-					<h3>Добро пожаловать</h3>
-					<form action="index_submit" method="get" accept-charset="utf-8" class="form">
-						<p>
-							<label>Ф.И.О<input id="client_fio" type="text" name="title" value="<%= client.fio %>" style="width: 170px;" /></label>
-						</p>
-						<p>
-							<label>
-								Предприятие
-								<select name="client_parent1">
-									<option value="0">Нет</option>
-									<% _.each(structs, function(structsItem) { %>
-										<option value="<%= structsItem.id %>"><%= structsItem.title %></option>
-									<% }); %>
-								</select>
-							</label>
-						</p>
-						<p>
-							<label>
-								Подразделение
-								<select name="client_parent2">
-									<option value="0">Нет</option>
-									<% _.each(structs, function(structsItem) { %>
-										<option value="<%= structsItem.id %>"><%= structsItem.title %></option>
-									<% }); %>
-								</select>
-							</label>
-						</p>
-						<p>
-							<label>
-								Отдел
-								<select name="client_parent3">
-									<option value="0">Нет</option>
-									<% _.each(structs, function(structsItem) { %>
-										<option value="<%= structsItem.id %>"><%= structsItem.title %></option>
-									<% }); %>
-								</select>
-							</label>
-						</p>
-						<p>
-							<input type="button" name="" id="strEnter" value="Сохранить" />
-						</p>
-					</form>
 					<a href="#!/logout/client" title="">Выйти</a>
 				</div>
 			</div>
@@ -1050,46 +1008,61 @@
 		<script id="strbox-template" type="text/template">
 			<div class="blue_box">
 				<div class="in">
-					<h2>Государственный космический<br />
-					научно-производственный центр <br />
-					имени М.В.Хруничева</h2>
-					<section class="stages">
-						<% _.each(structs, function(structsItem) { %>
-							<% if(structsItem.parentId == 0) { %>
-								<ul>
-									<li>										
-										<p><a><%= structsItem.title %></a><% if(structsItem.leader) { %><b>Руководитель: </b><%= structsItem.leader %><% } %></p>
-										<% if(user.id) { %>
-											<img style="width: 45px; position: absolute; right: 0px; top: 0px;" data-id="<%= structsItem.id %>" class="deleteButton deleteStr" src="./images/del.png" alt="" />
-										<% } %>
+					<div class="b_i">
+						<h2>Государственный космический<br />
+							научно-производственный центр <br />
+							имени М.В.Хруничева</h2>
+							<section class="stages" style="padding-top: 10px;">
+								<% _.each(structs, function(structsItem) { %>
+									<% if(structsItem.parentId == 0) { %>
 										<ul>
-											<% _.each(structs, function(structs2Item) { %>
-												<% if(structs2Item.parentId == structsItem.id) { %>
-													<li>
-														<p><a <% if(userClient.id) { %>href="#!/structure/view/<%= structs2Item.id %>"<% } %>><%= structs2Item.title %></a><b>Руководитель: </b><%= structs2Item.leader %></p>
-														<% if(user.id) { %>
-															<img style="width: 45px; position: absolute; right: -10px; top: -10px;" data-id="<%= structs2Item.id %>" class="deleteButton deleteStr" src="./images/del.png" alt="" />
-														<% } %>
-													</li>
+											<li>										
+												<p>
+													<a><%= structsItem.title %></a>
+													<% if(structsItem.leader) { %><b>Руководитель: </b><%= structsItem.leader %><% } %>
+													<% if(structsItem.phone) { %><%= structsItem.phone %><% } %>
+												</p>
+												<% if(user.id) { %>
+													<img style="width: 45px; position: absolute; right: 0px; top: 0px;" data-id="<%= structsItem.id %>" class="deleteButton deleteStr" src="./images/del.png" alt="" />
 												<% } %>
-											<% }); %>
+												<ul>
+													<% _.each(structs, function(structs2Item) { %>
+														<% if(structs2Item.parentId == structsItem.id) { %>
+															<li>
+																<p>
+																	<a href="#!/structure/view/<%= structs2Item.id %>"><%= structs2Item.title %></a>
+																	<span class="itt">
+																		<% if(structs2Item.leader) { %><b>Руководитель: </b><%= structs2Item.leader %><% } %>
+																	</span><br />
+																	<span class="itt">
+																		<% if(structs2Item.phone) { %><%= structs2Item.phone %><% } %>
+																	</span>
+																</p>
+																<% if(user.id) { %>
+																	<img style="width: 45px; position: absolute; right: -10px; top: -10px;" data-id="<%= structs2Item.id %>" class="deleteButton deleteStr" src="./images/del.png" alt="" />
+																<% } %>
+															</li>
+														<% } %>
+													<% }); %>
+												</ul>
+											</li>
 										</ul>
-									</li>
-								</ul>
-								<br />
-							<% } %>
-						<% }); %>
-						
-					</section>		
+										<br />
+									<% } %>
+								<% }); %>
+								
+							</section>		
+					</div>
 				</div>
 			</div>
 		</script>
 		<script id="strbox2-template" type="text/template">
 			<div class="blue_box">
 				<div class="in">
+					<a href="#!/structure" title="">Назад</a>
 					<section class="stages">
 						<% _.each(structs, function(structsItem) { %>
-							<% if(structsItem.parentId == id) { %>
+							<% if(structsItem.id == id) { %>
 								<ul>
 									<li>										
 										<p><a><%= structsItem.title %></a><% if(structsItem.leader) { %><b>Руководитель: </b><%= structsItem.leader %><% } %></p>
@@ -1226,6 +1199,7 @@
 		<script id="doc-template" type="text/template">
 			<div id="content">
 				<div id="left">
+					<div class="strclient-widget"></div>
 					<div class="gray_box">
 						<div class="in">
 							<ul class="admin">
@@ -1240,7 +1214,6 @@
 							<div class="strtree-widget"></div>
 						</div>
 					</div>
-					<div class="docs-widget"></div>
 					<div class="docadmin-widget"></div>
 				</div>
 				<div id="center">
@@ -1270,6 +1243,7 @@
 							<div class="strtree-widget"></div>
 						</div>
 					</div>
+					<div class="docs-widget"></div>
 				</div>
 				<div id="center">
 					<div class="blue_box">
@@ -1322,6 +1296,47 @@
 			</div>
 		</script>
 
+		<script id="docaccess-template" type="text/template">
+			<div id="content">
+				<div id="left">
+					<div class="gray_box">
+						<div class="in">
+							<ul class="admin">
+								<li><a href="#!/structure">Структура</a></li>
+								<li><a href="#!/structure/document">Документы</a></li>
+							</ul>
+						</div>
+					</div>
+					<br />
+					<div class="gray_box">
+						<div class="in">
+							<div class="strtree-widget"></div>
+						</div>
+					</div>
+				</div>
+				<div id="center">
+					<div class="blue_box">
+						<div class="in">
+							<% _.each(docs, function(docItem) { %>
+								<% if(docItem.id == id) { %>
+									<br />
+									<hr />
+									<form action="/api/doc/create" method="post" enctype="multipart/form-data" accept-charset="utf-8">
+										<h2><%= docItem.title %></h2>
+										<a href="/upload/<%= docItem.file %>" title="">Скачать</a><br /><br />
+										<label>Комментарий:<br /> <textarea name="comment" style="width: 80%; height: 200px;"></textarea></label>
+										<br />
+										<input type="submit" name="" id="addAccess" value="Утвердить" />
+										<input type="submit" name="" id="notAccess" value="Отклонить" />
+									</form>
+								<% } %>
+							<% }) %>
+						</div>
+					</div>
+				</div>
+			</div>
+		</script>
+
 		<script id="docs-template" type="text/template">
 			<div class="blue_box">
 				<div class="in">
@@ -1330,6 +1345,7 @@
 						<% _.each(docs, function(docItem) { %>
 							<% if(docItem.creatorId == user.id) { %>
 								<li>
+									<br />
 									<a href="#!/doc/edit/<%= docItem.id %>" title=""><%= docItem.title %></a>
 									<strong style="font-weight: bold;">(<% if(docItem.status == 0) { %>На рассмотрении<% } %>)</strong>
 								</li>
@@ -1356,7 +1372,7 @@
 								<% }); %>
 								<% if(show) { %>
 									<li>
-										<a href="#!/doc/access/<%= docItem.id %>" title=""><%= docItem.title %></a>
+										<br /><a href="#!/doc/access/<%= docItem.id %>" title=""><%= docItem.title %></a>
 									</li>
 								<% } %>
 							<% } %>
@@ -1369,51 +1385,117 @@
 		<script id="doclist-template" type="text/template">
 			<p class="not">Для отображения документов выберите интересующее Вас отдел в списке слева.</p>
 			<div class="doc-list-items">
-				<b class="lt"><a href="">Должностная интрукция фрезировщика</a></b>
-				<b class="lt"><a href="">Меры пожарной безопасности</a></b>
-				<b class="lt"><a href="">Правила эксплуатирования оборудования</a></b>	
-				<b class="lt"><a href="">Техническое описание процесса</a></b>
+				<table class="list_doc">
+					<thead>
+						<tr>
+							<th>Название</th>
+							<th>Дата создания</th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td><b class="lt">Должностная интрукция фрезировщика</b></td>
+							<td>10.10.2013</td>
+							<td><a href="" title="">Скачать</a></td>
+						</tr>
+						<tr class="col1">
+							<td><b class="lt">Меры пожарной безопасности</b></td>
+							<td>10.10.2013</td>
+							<td><a href="" title="">Скачать</a></td>
+						</tr>
+						<tr>
+							<td><b class="lt">Правила эксплуатирования оборудования</b></td>
+							<td>10.10.2013</td>
+							<td><a href="" title="">Скачать</a></td>
+						</tr>
+						<tr class="col1">
+							<td><b class="lt">Техническое описание процесса</b></td>
+							<td>10.10.2013</td>
+							<td><a href="" title="">Скачать</a></td>
+						</tr>
+					</tbody>
+				</table>
+				<br />
+
+				<h2>Мои документы</h2>
+				<table class="list_doc">
+					<thead>
+						<tr>
+							<th>Название</th>
+							<th>Дата создания</th>
+							<th>Статус</th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						<% var i = 0; %>
+						<% _.each(docs, function(docItem) { %>
+							<% i++; %>
+							<% if(docItem.creatorId == user.id) { %>
+								<tr <% if(i%2) { %> <% } %>>
+									<td><b class="lt"><%= docItem.title %></b></td>
+									<td><%= docItem.createdAt %></td>
+									<td><span style="color: yellow; background: #000000; padding: 10px; border-radius: 10px;">На утверждении</span></td>
+									<td><a href="/upload/<%= docItem.file %>" title="">Скачать</a></td>
+								</tr>
+							<% } %>
+						<% }); %>
+					</tbody>
+				</table>
+
+				
+
 				<% if(user.id) { %>
 					<br />
-					<hr />
-					<form action="/api/doc/create" method="post" enctype="multipart/form-data" accept-charset="utf-8">
-						<input type="hidden" name="creatorId" value="<%= user.id %>" placeholder="" />
-						<h2>Загрузить новый документ</h2>
-						<input type="file" name="filename" value="" placeholder="" /><br /><br />
-						<label>Название:<br /> <input name="title" type="text" /></label><br /><br />
-						<label>Комментарий:<br /> <textarea name="comment" style="width: 80%; height: 200px;"></textarea></label>
+					<input type="button" id="add_file_show" value="Загрузить новый документ" placeholder="" />
+					<div class="add_file">
 						<br />
-						<input type="submit" name="" value="Загрузить" />
-					</form>
+						<hr />
+						<form id="add_file_form" action="/api/doc/create" method="post" enctype="multipart/form-data" accept-charset="utf-8">
+							<input type="hidden" name="creatorId" value="<%= user.id %>" placeholder="" />
+							<h2></h2>
+							<input type="file" name="filename" value="" placeholder="" /><br /><br />
+							<label>Название:<br /> <input id="add_title" name="title" type="text" style="width: 80%;" /></label><br /><br />
+							<label>Комментарий:<br /> <textarea name="comment" style="width: 80%; height: 200px;"></textarea></label>
+							<br />
+							<input type="submit" id="onLoadDoc" name="" value="Загрузить" />
+						</form>
+					</div>
 				<% } %>
 			</div>
 		</script>
 
 		<script id="strtree-template" type="text/template">
 			<ul class="list">
-				<li><a>Научно-производственный центр имени М.В.Хруничева</a>
-					<ul>
-						<% _.each(structs, function(structsItem) { %>
-							<% if(structsItem.parentId == 0) { %>
+				<% _.each(structs, function(structsItem) { %>
+					<% if(structsItem.parentId == 0) { %>
+						<ul>
+							<li>										
+								<a><%= structsItem.title %></a>
 								<ul>
-									<li>										
-										<a><%= structsItem.title %></a>
-										<ul>
-											<% _.each(structs, function(structs2Item) { %>
-												<% if(structs2Item.parentId == structsItem.id) { %>
-													<li>
-														<a data-id="<%= structs2Item.id %>" class="tree_item"><%= structs2Item.title %></a>
-													</li>
-												<% } %>
-											<% }); %>
-										</ul>
-									</li>
+									<% _.each(structs, function(structs2Item) { %>
+										<% if(structs2Item.parentId == structsItem.id) { %>
+											<li>
+												<a><%= structs2Item.title %></a>
+												<ul>
+													<% _.each(structs, function(structs3Item) { %>
+														<% if(structs3Item.parentId == structs2Item.id) { %>
+															<li>
+																<a data-id="<%= structs3Item.id %>" class="tree_item"><%= structs3Item.title %></a>
+															</li>
+														<% } %>
+													<% }); %>
+												</ul>
+											</li>
+										<% } %>
+									<% }); %>
 								</ul>
-								<br />
-							<% } %>
-						<% }); %>
-					</ul>
-				</li>
+							</li>
+						</ul>
+						<br />
+					<% } %>
+				<% }); %>
 			</ul>
 		</script>
 

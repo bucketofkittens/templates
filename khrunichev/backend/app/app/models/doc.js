@@ -5,7 +5,10 @@ var Doc = function () {
     file: {type: 'string'},
     title: {type: 'string'},
     status: {type: 'int'},
-    access: {type: 'text'}
+    access1: {type: 'text'},
+    access2: {type: 'text'},
+    access3: {type: 'text'},
+    access4: {type: 'text'}
   });
 
   /*
