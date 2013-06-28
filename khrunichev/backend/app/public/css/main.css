@@ -674,3 +674,7 @@ footer p {
 .deleteButton {
 	cursor: pointer;
 }
+
+.doc-list-items {
+	display: none;
+}

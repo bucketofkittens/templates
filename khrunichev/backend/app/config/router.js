@@ -50,6 +50,14 @@ router.match('/api/hall', 'GET').to('Hall.list');
 router.match('/api/hall/create', 'POST').to('Hall.create');
 router.match('/api/hall/delete/:id', 'GET').to('Hall.destroy');
 
+router.match('/api/doc', 'GET').to('Doc.list');
+router.match('/api/doc/create', 'POST').to('Doc.create');
+router.match('/api/doc/delete/:id', 'GET').to('Doc.destroy');
+
+router.match('/api/docnode', 'GET').to('Docnode.list');
+router.match('/api/docnode/create', 'POST').to('Docnode.create');
+router.match('/api/docnode/delete/:id', 'GET').to('Docnode.destroy');
+
 router.match('/api/structure', 'GET').to('Struct.list');
 router.match('/api/structure/create', 'POST').to('Struct.create');
 router.match('/api/structure/delete/:id', 'GET').to('Struct.destroy');

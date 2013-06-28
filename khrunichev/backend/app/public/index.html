@@ -1036,7 +1036,10 @@
 		</script>
 		<script id="strbox-template" type="text/template">
 			<div class="blue_box">
-				<div class="in">	
+				<div class="in">
+					<h2>Государственный космический<br />
+научно-производственный центр <br />
+имени М.В.Хруничева</h2>
 					<section class="stages">
 						<% _.each(structs, function(structsItem) { %>
 							<% if(structsItem.parentId == 0) { %>
@@ -1171,6 +1174,200 @@
 					<hr>
 				</div>
 			</div>
+		</script>
+
+		<script id="doc-template" type="text/template">
+			<div id="content">
+				<div id="left">
+					<div class="gray_box">
+						<div class="in">
+							<ul class="admin">
+								<li><a href="#!/structure">Структура</a></li>
+								<li><a href="#!/structure/document">Документы</a></li>
+							</ul>
+						</div>
+					</div>
+					<br />
+					<div class="gray_box">
+						<div class="in">
+							<div class="strtree-widget"></div>
+						</div>
+					</div>
+					<div class="docs-widget"></div>
+					<div class="docadmin-widget"></div>
+				</div>
+				<div id="center">
+					<div class="blue_box">
+						<div class="in">
+							<div class="doclist-widget"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</script>
+
+		<script id="docadded-template" type="text/template">
+			<div id="content">
+				<div id="left">
+					<div class="gray_box">
+						<div class="in">
+							<ul class="admin">
+								<li><a href="#!/structure">Структура</a></li>
+								<li><a href="#!/structure/document">Документы</a></li>
+							</ul>
+						</div>
+					</div>
+					<br />
+					<div class="gray_box">
+						<div class="in">
+							<div class="strtree-widget"></div>
+						</div>
+					</div>
+				</div>
+				<div id="center">
+					<div class="blue_box">
+						<div class="in">
+							<p>Ваш документ загружен и направлен на рассмотрение.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</script>
+
+		<script id="docedit-template" type="text/template">
+			<div id="content">
+				<div id="left">
+					<div class="gray_box">
+						<div class="in">
+							<ul class="admin">
+								<li><a href="#!/structure">Структура</a></li>
+								<li><a href="#!/structure/document">Документы</a></li>
+							</ul>
+						</div>
+					</div>
+					<br />
+					<div class="gray_box">
+						<div class="in">
+							<div class="strtree-widget"></div>
+						</div>
+					</div>
+				</div>
+				<div id="center">
+					<div class="blue_box">
+						<div class="in">
+							<% _.each(docs, function(docItem) { %>
+								<% if(docItem.id == id) { %>
+									<br />
+									<hr />
+									<form action="/api/doc/create" method="post" enctype="multipart/form-data" accept-charset="utf-8">
+										<h2><%= docItem.title %></h2>
+										<a href="/upload/<%= docItem.file %>" title="">Скачать</a><br /><br />
+										<br />
+										<% if(docItem.status == 4) { %>
+											<input type="submit" name="" value="Обновить" />
+										<% } %>
+									</form>
+								<% } %>
+							<% }) %>
+						</div>
+					</div>
+				</div>
+			</div>
+		</script>
+
+		<script id="docs-template" type="text/template">
+			<div class="blue_box">
+				<div class="in">
+					<h2>Мои документы</h2>
+					<ul>
+						<% _.each(docs, function(docItem) { %>
+							<% if(docItem.creatorId == user.id) { %>
+								<li>
+									<a href="#!/doc/edit/<%= docItem.id %>" title=""><%= docItem.title %></a>
+									<strong style="font-weight: bold;">(<% if(docItem.status == 0) { %>На рассмотрении<% } %>)</strong>
+								</li>
+							<% } %>
+						<% }); %>
+					</ul>
+				</div>
+			</div>
+		</script>
+
+		<script id="docsadmin-template" type="text/template">
+			<div class="blue_box">
+				<div class="in">
+					<h2>Документы на утверждении</h2>
+					<ul>
+						<% _.each(docs, function(docItem) { %>
+							<% if(docItem.status == 0) { %>
+								<% if(!docItem.access) { docItem.access = "" } %>
+								<% var access = docItem.access.split(','); 
+								%>
+								<% var show = true; %>
+								<% _.each(access, function(a) { %>
+									<% if(a == user.id) { show = false; } %>
+								<% }); %>
+								<% if(show) { %>
+									<li>
+										<a href="#!/doc/access/<%= docItem.id %>" title=""><%= docItem.title %></a>
+									</li>
+								<% } %>
+							<% } %>
+						<% }); %>
+					</ul>
+				</div>
+			</div>
+		</script>
+
+		<script id="doclist-template" type="text/template">
+			<p class="not">Для отображения документов выберите интересующее Вас отдел в списке слева.</p>
+			<div class="doc-list-items">
+				<b class="lt"><a href="">Должностная интрукция фрезировщика</a></b>
+				<b class="lt"><a href="">Меры пожарной безопасности</a></b>
+				<b class="lt"><a href="">Правила эксплуатирования оборудования</a></b>	
+				<b class="lt"><a href="">Техническое описание процесса</a></b>
+				<% if(user.id) { %>
+					<br />
+					<hr />
+					<form action="/api/doc/create" method="post" enctype="multipart/form-data" accept-charset="utf-8">
+						<input type="hidden" name="creatorId" value="<%= user.id %>" placeholder="" />
+						<h2>Загрузить новый документ</h2>
+						<input type="file" name="filename" value="" placeholder="" /><br /><br />
+						<label>Название:<br /> <input name="title" type="text" /></label><br /><br />
+						<label>Комментарий:<br /> <textarea name="comment" style="width: 80%; height: 200px;"></textarea></label>
+						<br />
+						<input type="submit" name="" value="Загрузить" />
+					</form>
+				<% } %>
+			</div>
+		</script>
+
+		<script id="strtree-template" type="text/template">
+			<ul class="list">
+				<li><a>Научно-производственный центр имени М.В.Хруничева</a>
+					<ul>
+						<% _.each(structs, function(structsItem) { %>
+							<% if(structsItem.parentId == 0) { %>
+								<ul>
+									<li>										
+										<a><%= structsItem.title %></a>
+										<ul>
+											<% _.each(structs, function(structs2Item) { %>
+												<% if(structs2Item.parentId == structsItem.id) { %>
+													<li>
+														<a data-id="<%= structs2Item.id %>" class="tree_item"><%= structs2Item.title %></a>
+													</li>
+												<% } %>
+											<% }); %>
+										</ul>
+									</li>
+								</ul>
+								<br />
+							<% } %>
+						<% }); %>
+					</ul>
+				</li>
+			</ul>
 		</script>
 
 		<div id="page">

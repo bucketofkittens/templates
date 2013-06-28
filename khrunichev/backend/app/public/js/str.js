@@ -244,6 +244,180 @@ var StrboxView = Backbone.View.extend({
   }
 });
 
+var DocView = Backbone.View.extend({
+  className: 'doc',
+
+  initialize: function () {
+    this.template = $('#doc-template').html();
+    this.tree = new StrtreeView();
+    this.doc = new DocListView();
+    this.docs = new DocsView();
+    this.adminList = new DocAdminView();
+  },
+
+  render: function () {
+    $(this.el).html(_.template(this.template, this.context));
+
+    $(this.el).append(this.tree.el);
+    this.tree.setElement(this.$(".strtree-widget")).render();
+
+    $(this.el).append(this.doc.el);
+    this.doc.setElement(this.$(".doclist-widget")).render();
+
+    if(window.clientUser.id && !window.user.id) {
+      $(this.el).append(this.docs.el);
+      this.docs.setElement(this.$(".docs-widget")).render();
+    }
+
+    if(window.user.id) {
+      $(this.el).append(this.adminList.el);
+      this.adminList.setElement(this.$(".docadmin-widget")).render();
+    }
+    
+    this.adminList
+    return this;
+  }
+});
+
+var DocListView = Backbone.View.extend({
+  className: 'doclist',
+
+  initialize: function () {
+    this.template = $('#doclist-template').html();
+
+    
+  },
+
+  render: function () {
+    $(this.el).html(_.template(this.template, { user: window.clientUser }));
+    
+    return this;
+  }
+});
+
+var DocsView = Backbone.View.extend({
+  className: 'docs',
+
+  initialize: function () {
+    this.template = $('#docs-template').html();
+
+    this.docList = new DocList();
+    this.docList.fetch();
+  },
+
+  render: function () {
+    $(this.el).html(_.template(this.template, { user: window.clientUser, docs: this.docList.toJSON() }));
+    
+    return this;
+  }
+});
+
+var DocAddedView = Backbone.View.extend({
+  className: 'docadded',
+
+  initialize: function () {
+    this.template = $('#docadded-template').html();
+
+    this.tree = new StrtreeView();
+    this.doc = new DocListView();
+  },
+
+  render: function () {
+    $(this.el).html(_.template(this.template, { user: window.clientUser }));
+
+    $(this.el).append(this.tree.el);
+    this.tree.setElement(this.$(".strtree-widget")).render();
+
+    $(this.el).append(this.doc.el);
+    this.doc.setElement(this.$(".doclist-widget")).render();
+    
+    return this;
+  }
+});
+
+var DocEditView = Backbone.View.extend({
+  className: 'docedit',
+
+  initialize: function (opt) {
+    this.template = $('#docedit-template').html();
+
+    this.tree = new StrtreeView();
+    this.doc = new DocListView();
+    this.id = opt.id;
+
+    this.docList = new DocList();
+    this.docList.fetch();
+  },
+
+  render: function () {
+    $(this.el).html(_.template(this.template, { user: window.clientUser, id: this.id, docs: this.docList.toJSON() }));
+
+    $(this.el).append(this.tree.el);
+    this.tree.setElement(this.$(".strtree-widget")).render();
+
+    $(this.el).append(this.doc.el);
+    this.doc.setElement(this.$(".doclist-widget")).render();
+    
+    return this;
+  }
+});
+
+var DocAdminView = Backbone.View.extend({
+  className: 'docsadmin',
+
+  initialize: function () {
+    this.template = $('#docsadmin-template').html();
+
+    this.docList = new DocList();
+    this.docList.fetch();
+  },
+
+  render: function () {
+    $(this.el).html(_.template(this.template, { user: window.clientUser, docs: this.docList.toJSON() }));
+    
+    return this;
+  }
+});
+
+var StrtreeView = Backbone.View.extend({
+  className: 'strtree',
+  events: {
+    "click .tree_item": "onTreeItem"
+  },
+
+  initialize: function () {
+    this.template = $('#strtree-template').html();
+
+    this.strList = new StrList();
+    this.strList.fetch();
+  },
+
+  render: function () {
+    $(this.el).html(_.template(this.template, { structs: this.strList.toJSON(), user: window.clientUser }));
+    
+    return this;
+  },
+
+  onTreeItem: function(e) {
+    $(".tree_item").removeClass("current");
+    $(e.target).addClass("current");
+
+    $(".not").hide();
+    $(".doc-list-items").fadeIn();
+  }
+});
+
+var DocModel = Backbone.Model.extend();
+
+var DocList = Backbone.Collection.extend({
+   model: DocModel,
+   url: '/api/doc/',
+   parse: function(response, xhr) {
+      return response.docs;
+   }
+});
+
+
 var StrModel = Backbone.Model.extend();
 
 var StrList = Backbone.Collection.extend({

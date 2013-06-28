@@ -18,6 +18,9 @@ var Controller = Backbone.Router.extend({
         "!/questnav/add": "questnavAdd",
         "!/structure": "structure",
         "!/structure/add": "structureAdd",
+        "!/structure/document": "document",
+        "!/structure/document/added": "documentAdded",
+        "!/doc/edit/:id": "docEdit",
         "!/search": "search",
         "!/login": "login",
         "!/logout": "logout",
@@ -143,6 +146,14 @@ var Controller = Backbone.Router.extend({
           $('#content').slideDown();
       });
     },
+    docEdit: function(id) {
+      var docEdit = new DocEditView({id: id});
+      console.log(docEdit);
+      $('#content').slideUp(function() {
+          $('#content').html(docEdit.render().el);
+          $('#content').slideDown();
+      });
+    },
     questionsAdd: function() {
        var vopotvAdd = new VopotvAddView();
        $('#content').slideUp(function() {
@@ -168,6 +179,20 @@ var Controller = Backbone.Router.extend({
        var strAdd = new StrAddView();
        $('#content').slideUp(function() {
             $('#content').html(strAdd.render().el);
+            $('#content').slideDown();
+        });
+    },
+    document: function() {
+      var doc = new DocView();
+       $('#content').slideUp(function() {
+            $('#content').html(doc.render().el);
+            $('#content').slideDown();
+        });
+    },
+    documentAdded: function() {
+      var docAdd = new DocAddedView();
+       $('#content').slideUp(function() {
+            $('#content').html(docAdd.render().el);
             $('#content').slideDown();
         });
     },
