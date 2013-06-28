@@ -1507,6 +1507,7 @@
 							<th>Название</th>
 							<th>Дата создания</th>
 							<th>Статус</th>
+							<th>Ответственный</th>
 							<th></th>
 						</tr>
 					</thead>
@@ -1515,10 +1516,11 @@
 						<% _.each(docs, function(docItem) { %>
 							<% i++; %>
 							<% if(docItem.status == 0) { %>
-								<tr <% if(i%2) { %> <% } %>>
+								<tr <% if(i%2) { %>class="col1" <% } %>>
 									<td><b class="lt"><%= docItem.title %></b></td>
 									<td><%= docItem.createdAt %></td>
-									<td><span style="display: block; color: yellow; background: #000000; padding: 10px; border-radius: 10px;">На утверждении у: <br />Павлов И. А.</span></td>
+									<td>На утверждении </td>
+									<td>Павлов И. А.</td>
 									<td>
 										<a style="padding-bottom: 2px;" href="/upload/<%= docItem.file %>" title="">Скачать</a>
 										<a style="padding-bottom: 2px;" href="" title="">Утвердить</a>
