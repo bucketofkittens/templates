@@ -321,6 +321,7 @@ var DocView = Backbone.View.extend({
     this.template = $('#doc-template').html();
     this.tree = new StrtreeView();
     this.doc = new DocListView();
+    this.doca = new DocListAView();
     this.docs = new DocsView();
     this.adminList = new DocAdminView();
     this.strclient = new StrClientView();
@@ -332,8 +333,7 @@ var DocView = Backbone.View.extend({
     $(this.el).append(this.tree.el);
     this.tree.setElement(this.$(".strtree-widget")).render();
 
-    $(this.el).append(this.doc.el);
-    this.doc.setElement(this.$(".doclist-widget")).render();
+    
 
     if(window.clientUser.id && !window.user.id) {
       $(this.el).append(this.docs.el);
@@ -345,12 +345,19 @@ var DocView = Backbone.View.extend({
       this.adminList.setElement(this.$(".docadmin-widget")).render();
     }
 
-      if(window.clientUser.id) {
+    if(window.clientUser.id) {
       $(this.el).append(this.strclient.el);
       this.strclient.setElement(this.$(".strclient-widget")).render();
     }
+
+    if(!window.user.id) {
+      $(this.el).append(this.doc.el);
+      this.doc.setElement(this.$(".doclist-widget")).render();
+    } else {
+      $(this.el).append(this.doca.el);
+      this.doca.setElement(this.$(".doclist-widget")).render();
+    }
     
-    this.adminList
     return this;
   }
 });
@@ -364,6 +371,38 @@ var DocListView = Backbone.View.extend({
 
   initialize: function () {
     this.template = $('#doclist-template').html();
+
+    this.docList = new DocList();
+    this.docList.fetch();
+  },
+
+  render: function () {
+    $(this.el).html(_.template(this.template, { user: window.clientUser, docs: this.docList.toJSON() }));
+    
+    return this;
+  },
+
+  onAddFileShow: function(e) {
+    $(e.target).hide();
+    $(".add_file").slideDown();
+  },
+  onLoadDoc: function(e) {
+    if($("#add_title").val().length > 0) {
+      $("#add_file_form").submit();
+    }
+    return false;
+  }
+});
+
+var DocListAView = Backbone.View.extend({
+  className: 'doclist',
+  events: {
+    "click #add_file_show": "onAddFileShow",
+    "click #onLoadDoc": "onLoadDoc"
+  },
+
+  initialize: function () {
+    this.template = $('#doclista-template').html();
 
     this.docList = new DocList();
     this.docList.fetch();

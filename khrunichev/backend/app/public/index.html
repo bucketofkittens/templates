@@ -1213,8 +1213,7 @@
 						<div class="in">
 							<div class="strtree-widget"></div>
 						</div>
-					</div>
-					<div class="docadmin-widget"></div>
+					</div>	
 				</div>
 				<div id="center">
 					<div class="blue_box">
@@ -1436,7 +1435,7 @@
 								<tr <% if(i%2) { %> <% } %>>
 									<td><b class="lt"><%= docItem.title %></b></td>
 									<td><%= docItem.createdAt %></td>
-									<td><span style="color: yellow; background: #000000; padding: 10px; border-radius: 10px;">На утверждении</span></td>
+									<td><span style="display: block; color: yellow; background: #000000; padding: 10px; border-radius: 10px;">На утверждении у: <br />Павлов И. А.</span></td>
 									<td><a href="/upload/<%= docItem.file %>" title="">Скачать</a></td>
 								</tr>
 							<% } %>
@@ -1463,6 +1462,73 @@
 						</form>
 					</div>
 				<% } %>
+			</div>
+		</script>
+
+		<script id="doclista-template" type="text/template">
+			<div class="doc-list-items" style="display: block;	">
+				<table class="list_doc">
+					<thead>
+						<tr>
+							<th>Название</th>
+							<th>Дата создания</th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td><b class="lt">Должностная интрукция фрезировщика</b></td>
+							<td>10.10.2013</td>
+							<td><a href="" title="">Скачать</a></td>
+						</tr>
+						<tr class="col1">
+							<td><b class="lt">Меры пожарной безопасности</b></td>
+							<td>10.10.2013</td>
+							<td><a href="" title="">Скачать</a></td>
+						</tr>
+						<tr>
+							<td><b class="lt">Правила эксплуатирования оборудования</b></td>
+							<td>10.10.2013</td>
+							<td><a href="" title="">Скачать</a></td>
+						</tr>
+						<tr class="col1">
+							<td><b class="lt">Техническое описание процесса</b></td>
+							<td>10.10.2013</td>
+							<td><a href="" title="">Скачать</a></td>
+						</tr>
+					</tbody>
+				</table>
+				<br />
+
+				<h2>Мои документы</h2>
+				<table class="list_doc">
+					<thead>
+						<tr>
+							<th>Название</th>
+							<th>Дата создания</th>
+							<th>Статус</th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						<% var i = 0; %>
+						<% _.each(docs, function(docItem) { %>
+							<% i++; %>
+							<% if(docItem.status == 0) { %>
+								<tr <% if(i%2) { %> <% } %>>
+									<td><b class="lt"><%= docItem.title %></b></td>
+									<td><%= docItem.createdAt %></td>
+									<td><span style="display: block; color: yellow; background: #000000; padding: 10px; border-radius: 10px;">На утверждении у: <br />Павлов И. А.</span></td>
+									<td>
+										<a style="padding-bottom: 2px;" href="/upload/<%= docItem.file %>" title="">Скачать</a>
+										<a style="padding-bottom: 2px;" href="" title="">Утвердить</a>
+										<a style="padding-bottom: 2px;" href="" title="">Отклонить</a>
+									</td>
+								</tr>
+							<% } %>
+						<% }); %>
+					</tbody>
+				</table>
 			</div>
 		</script>
 
