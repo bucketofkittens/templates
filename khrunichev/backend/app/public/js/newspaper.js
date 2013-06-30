@@ -27,13 +27,6 @@ var NewspaperaddView = Backbone.View.extend({
   },
 
   onNewspaperAdd: function() {
-    var params = {};
-    params.title = $("#add_newspaper_title").val();
-    params.text = CKEDITOR.instances["add_newspaper_text"].getData();
-    
-    $.post('/api/newspaper/create', params, function(data) {
-      window.location.hash = '#!/newspaper';
-    })
   },
 
   onNewspaperAddCancel: function() {

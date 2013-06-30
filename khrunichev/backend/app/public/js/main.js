@@ -133,7 +133,7 @@ var Controller = Backbone.Router.extend({
        $('#content').slideUp(function() {
             $('#content').html(newspaperAdd.render().el);
             $('#content').slideDown();
-            CKEDITOR.replace('add_newspaper_text', {
+            CKEDITOR.replace('text', {
               width: "700px"
             });
         });
@@ -229,13 +229,13 @@ var Controller = Backbone.Router.extend({
         "/api/auth/logout",
         function(data) {
           window.user = {};
-          window.location.hash = '#!/super';
+          window.location.hash = '#!/';
           window.location.reload();
           globalEvents.trigger('logouting', {});
         }
       );
 
-      window.location.hash = '#!/super';
+      window.location.hash = '#!/';
       window.location.reload();
       
     },

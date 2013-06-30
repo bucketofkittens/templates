@@ -282,13 +282,21 @@
 					<div class="blue_box">
 						<div class="in">
 							<h2>Газета "Все для родины"</h2>
+							<hr>
+							<label>Год выпуска:</label>
+							<select name="">
+								<option value="0">Все</option>
+								<option value="2013">2013</option>
+								<option value="2012">2012</option>
+								<option value="2011">2011</option>
+							</select>
+							<hr>
 							<section class="news_list">
 								<% _.each(newspapers, function(newspaperItem) { %>
 									<article>
-										<div>
-											<%= newspaperItem.title %></a>
-											<p class="text"><%= newspaperItem.text %></p>
-										</div>
+										<%= newspaperItem.title %></a>
+										<p class="text"><%= newspaperItem.text %></p>
+										<p class="text"><a href="/upload/<%= newspaperItem.link %>" title="">Скачать</a></p>
 									</article>
 								<% }); %>
 							</section>
@@ -367,15 +375,18 @@
 					<div class="blue_box">
 						<div class="in">
 							<h2>Новый выпуск</h2>
-							<form action="/api/news/create" method="post" accept-charset="utf-8" class="form">
+							<form action="/api/newspaper/create" method="post" accept-charset="utf-8" class="form" enctype="multipart/form-data">
 								<p>
-									<label>Заголовок<input id="add_newspaper_title" type="text" name="title" value="" /></label>
+									<label>Заголовок<input id="title" type="text" name="title" value="" /></label>
 								</p>
 								<p>
-									<label>Текст <textarea id="add_newspaper_text" name="add_newspaper_text"></textarea></label>
+									<label>Текст <textarea id="text" name="text"></textarea></label>
 								</p>
 								<p>
-									<input type="button" name="" id="newspaperAdd" value="Добавить" />
+									<label>Файл <input id="filename" type="file" name="filename" /></label>
+								</p>
+								<p>
+									<input type="submit" name="" id="newspaperAdd" value="Добавить" />
 									<input type="button" name="" id="newspaperAddCancel" value="Отменить" />
 								</p>
 							</form>
