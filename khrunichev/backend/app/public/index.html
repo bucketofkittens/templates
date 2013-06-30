@@ -1126,7 +1126,7 @@
 		</script>
 		<script id="topnav-template" type="text/template">
 			<ul id="topnav">
-				<li class="enter-item"><a href="#!/login">Вход для уполномоченных лиц</a></li>
+				<li class="enter-item"><a href="#!/login">Регистрация</a></li>
 				<li class="exit-item"><a href="#!/logout">Выйти</a></li>
 				<li class="hall-item"><a href="#!/hall">Доска почета</a></li>
 				<li class="event-item"><a href="#!/event">События</a></li>
@@ -1295,6 +1295,11 @@
 			</div>
 		</script>
 
+		<script id="super-template" type="text/template">
+			<div class="sup-widget"></div>
+			<div class="login-widget"></div>
+		</script>
+
 		<script id="docaccess-template" type="text/template">
 			<div id="content">
 				<div id="left">
@@ -1354,6 +1359,22 @@
 				</div>
 			</div>
 		</script>
+
+		
+
+		<script id="supersub-template" type="text/template">
+			<div class="blue_box">
+				<div class="in">
+					<h2>Администрирование</h2>
+					<ul>
+						<li><a href="#!/questions" title="">Администрирование вопросов и ответов</a></li>
+						<li><a href="#!/structure" title="">Администрирование документов</a></li>
+						<li><a href="#!/search" title="">Нормативно-справочная информация</a></li>
+					</ul>
+				</div>
+			</div>
+		</script>
+
 
 		<script id="docsadmin-template" type="text/template">
 			<div class="blue_box">
@@ -1576,7 +1597,7 @@
 						<li><a href="#!/news">Новости</a></li>
 						<li><a href="#!/questions">Руководство: Вопросы и ответы</a></li>
 						<li><a href="#!/structure">Организационно-штатная структура</a></li>
-						<li><a href="#!/search">Нормативно-справочная информация</a></li>
+						<li><a href="#!/super">Корпоративные информационные ресурсы</a></li>
 						<li><a href="#!/newspaper">Газета "Всё для Родины"</a></li>
 					</ul>
 					<h1></h1>
@@ -1609,6 +1630,7 @@
 		<script type="text/javascript" src="./js/start.js"></script>
 		<script type="text/javascript" src="./js/event.js"></script>
 		<script type="text/javascript" src="./js/search.js"></script>
+		<script type="text/javascript" src="./js/super.js"></script>
 		<script type="text/javascript" src="./js/str.js"></script>
 		<script type="text/javascript" src="./js/vopotv.js"></script>
 		<script type="text/javascript" src="./js/news.js"></script>

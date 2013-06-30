@@ -178,7 +178,8 @@ var LoginView = Backbone.View.extend({
         function(data) {
           if(data.status == "ok") {
             window.user = data.user;
-            window.location.hash = '#!/';
+            window.location.hash = '#!/super';
+            window.location.reload();
             globalEvents.trigger('logining', {});
           } else {
             $(".error-not").fadeIn();

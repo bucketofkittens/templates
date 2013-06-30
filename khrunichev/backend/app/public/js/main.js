@@ -26,14 +26,18 @@ var Controller = Backbone.Router.extend({
         "!/search": "search",
         "!/login": "login",
         "!/logout": "logout",
-        "!/logout/client": "logoutClient"
+        "!/logout/client": "logoutClient",
+        "!/super": "sup"
     },
 
     after: function(route, params) {
         $('#topmenu a').removeClass("current");
         $('#topmenu a[href="#'+route+'"]').addClass("current");
     },
-
+    after: function(route, params) {
+        $('#topmenu a').removeClass("current");
+        $('#topmenu a[href="#'+route+'"]').addClass("current");
+    },
     start: function() {
         var start = new StartView();
 
@@ -225,13 +229,13 @@ var Controller = Backbone.Router.extend({
         "/api/auth/logout",
         function(data) {
           window.user = {};
-          window.location.hash = '#!/';
+          window.location.hash = '#!/super';
           window.location.reload();
           globalEvents.trigger('logouting', {});
         }
       );
 
-      window.location.hash = '#!/';
+      window.location.hash = '#!/super';
       window.location.reload();
       
     },
@@ -247,6 +251,13 @@ var Controller = Backbone.Router.extend({
       );
       window.location.hash = '#!/structure';
       window.location.reload();
+    },
+    sup: function() {
+        var sup = new SuperView();
+     $('#content').slideUp(function() {
+          $('#content').html(sup.render().el);
+          $('#content').slideDown();
+      });
     }
 });
 

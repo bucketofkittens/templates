@@ -693,7 +693,7 @@ footer p {
 	display: block;
 	text-align: center;
 	margin: 0px 10px;
-	background: rgba(250, 250, 250, 0.3);
+	background: rgba(153, 204, 255, 0.5);
 	border-radius: 10px;
 	border: 1px solid #ffffff;
 	padding-top: 20px;
@@ -722,4 +722,11 @@ footer p {
 
 .add_file {
 	display: none;
+}
+
+.stages li img {
+	display: none;
+}
+.stages li:hover > img {
+	display: block;
 }
