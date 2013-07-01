@@ -20,6 +20,7 @@ var Controller = Backbone.Router.extend({
         "!/structure/view/:id": "structureView",
         "!/structure/add": "structureAdd",
         "!/structure/document": "document",
+        "!/structure/mydoc": "mydoc",
         "!/structure/document/added": "documentAdded",
         "!/doc/edit/:id": "docEdit",
         "!/doc/access/:id": "docAccess",
@@ -195,7 +196,6 @@ var Controller = Backbone.Router.extend({
         });
     },
     structureAdd: function() {
-      console.log("1");
        var strAdd = new StrAddView();
        console.log(strAdd);
        $('#content').slideUp(function() {
@@ -207,6 +207,13 @@ var Controller = Backbone.Router.extend({
       var doc = new DocView();
        $('#content').slideUp(function() {
             $('#content').html(doc.render().el);
+            $('#content').slideDown();
+        });
+    },
+    mydoc: function() {
+      var myDoc = new MyDocView();
+       $('#content').slideUp(function() {
+            $('#content').html(myDoc.render().el);
             $('#content').slideDown();
         });
     },
@@ -279,8 +286,10 @@ var TopnavView = Backbone.View.extend({
   onLogining: function() {
     $(".enter-item").hide();
     $(".exit-item").show();
-    $(".hall-item").show();
-    $(".event-item").show();
+    if(window.user.roleId != 10) {
+      $(".hall-item").show();
+      $(".event-item").show();  
+    }
   },
 
   onLogouting: function() {

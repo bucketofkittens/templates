@@ -1,3 +1,8 @@
+var formidable = require('formidable')
+  , fs = require('fs')
+  , path = require('path')
+  , utils = require('utils');
+
 var News = function () {
 	this.respondsWith = ['html', 'json', 'xml', 'js', 'txt'];
 	
@@ -62,21 +67,22 @@ var News = function () {
 
   this.create = function (req, resp, params) {
     this.respondsWith = ['json', 'js'];
-    var self = this
-      , news = geddy.model.News.create(params);
+    var self = this; 
+    var form = new formidable.IncomingForm()
+      , uploadedFile
+      , savedFile;
 
-    if (!news.isValid()) {
-      params.errors = news.errors;
-      self.transfer('add');
-    }
-
-    news.save(function(err, data) {
-      if (err) {
-        params.errors = err;
-        self.transfer('add');
-      } else {
-        self.respond({status: "ok"});
-      }
+    form.parse(req,function(err,fields,files) {
+      fs.readFile(files['filename'].path, function (err, data) {
+        var newPath = path.join('public', 'upload', files['filename'].name);
+        fs.writeFile(newPath, data, function (err) {
+          fields.шьфпу = files['filename'].name;
+          var news = geddy.model.News.create(fields);
+          news.save(function(err, data) {
+            self.redirect("/index.html#!/news");
+          });
+        });
+      });
     });
   };
   

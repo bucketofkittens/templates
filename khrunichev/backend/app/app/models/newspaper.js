@@ -2,8 +2,10 @@ var Newspaper = function () {
 
   this.defineProperties({
     title: {type: 'string', required: true},
-    text: {type: 'string'},
-    link: {type: 'string'}
+    text: {type: 'text'},
+    link: {type: 'string'},
+    age: {type: 'string'},
+    number: {type: 'string'}
   });
 
   /*

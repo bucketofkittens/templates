@@ -515,7 +515,7 @@ var VeditfView = Backbone.View.extend({
     params.quest = $("#l_quest").val();
     params.text = $("#l_text").val();
 
-    if($("#l_status option:selected").prop("checked")) {
+    if($("#l_status").prop("checked")) {
       params.pub = 1;
     } else {
       params.pub = 0;

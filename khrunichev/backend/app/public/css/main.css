@@ -730,3 +730,27 @@ footer p {
 .stages li:hover > img {
 	display: block;
 }
+
+.col1 {
+	background: rgba(0, 102, 204, 0.3);
+}
+
+.col2 {
+	background: rgba(153, 204, 255, 0.4);
+}
+
+.blue_box .in .news_list article img, .blue_box .in #newsitem img {
+	display: none;
+}
+
+.blue_box .in .news_list article:hover > img, .blue_box .in #newsitem:hover img {
+	display: block;
+}
+
+.strauth-widget {
+	display: none;
+}
+
+.add_f {
+	display: none;
+}

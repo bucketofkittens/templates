@@ -64,15 +64,6 @@ var NewsaddView = Backbone.View.extend({
   },
 
   onNewsAdd: function() {
-    var params = {};
-    params.title = $("#add_news_title").val();
-    params.anonce = CKEDITOR.instances["add_news_anonce"].getData();
-    params.text = CKEDITOR.instances["add_news_text"].getData();
-    params.newsnavId = $("#newsnav-select").find(":selected").attr("value");
-
-    $.post('/api/news/create', params, function(data) {
-      window.location.hash = '#!/news';
-    })
   },
   onNewsAddCancel: function() {
     window.location.hash = '#!/news';

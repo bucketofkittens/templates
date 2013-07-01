@@ -314,6 +314,25 @@ var Strbox2View = Backbone.View.extend({
   }
 });
 
+var MdView = Backbone.View.extend({
+  className: 'md',
+
+  initialize: function (opt) {
+    this.template = $('#md-template').html();
+
+    this.docList = new DocList();
+    this.docList.fetch();
+  },
+
+  render: function () {
+    $(this.el).html(_.template(this.template, { user: window.clientUser, docs: this.docList.toJSON() }));
+    
+    return this;
+  },
+});
+
+
+
 var DocView = Backbone.View.extend({
   className: 'doc',
 
@@ -323,15 +342,13 @@ var DocView = Backbone.View.extend({
     this.doc = new DocListView();
     this.doca = new DocListAView();
     this.docs = new DocsView();
+    this.md = new MdView();
     this.adminList = new DocAdminView();
     this.strclient = new StrClientView();
   },
 
   render: function () {
     $(this.el).html(_.template(this.template, this.context));
-
-    $(this.el).append(this.tree.el);
-    this.tree.setElement(this.$(".strtree-widget")).render();
 
     
 
@@ -361,6 +378,69 @@ var DocView = Backbone.View.extend({
     return this;
   }
 });
+
+var MyDocView = Backbone.View.extend({
+  className: 'MyDicView',
+  events: {
+    "click #add_file_show": "onAddFileShow",
+    "click #onLoadDoc": "onLoadDoc"
+  },
+
+  initialize: function () {
+    this.template = $('#mydoc-template').html();
+    this.tree = new StrtreeView();
+    this.doc = new DocListView();
+    this.doca = new DocListAView();
+    this.docs = new DocsView();
+    this.adminList = new DocAdminView();
+    this.strclient = new StrClientView();
+    this.md = new MdView();
+  },
+
+  render: function () {
+    $(this.el).html(_.template(this.template, this.context));
+
+    $(this.el).append(this.tree.el);
+    this.tree.setElement(this.$(".strtree-widget")).render();
+
+    
+
+    if(window.clientUser.id && !window.user.id) {
+      $(this.el).append(this.docs.el);
+      this.docs.setElement(this.$(".docs-widget")).render();
+    }
+
+    if(window.user.id) {
+      $(this.el).append(this.adminList.el);
+      this.adminList.setElement(this.$(".docadmin-widget")).render();
+    }
+
+    if(window.clientUser.id) {
+      $(this.el).append(this.strclient.el);
+      this.strclient.setElement(this.$(".strclient-widget")).render();
+    }
+
+    
+
+     $(this.el).append(this.md.el);
+    this.md.setElement(this.$(".doclist-widget")).render();
+    
+    return this;
+  },
+
+  onAddFileShow: function(e) {
+    $(e.target).hide();
+    $(".add_file").slideDown();
+  },
+  onLoadDoc: function(e) {
+    if($("#add_title").val().length > 0) {
+      $("#add_file_form").submit();
+    }
+    return false;
+  }
+});
+
+
 
 var DocListView = Backbone.View.extend({
   className: 'doclist',
