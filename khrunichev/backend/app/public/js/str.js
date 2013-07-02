@@ -316,6 +316,10 @@ var Strbox2View = Backbone.View.extend({
 
 var MdView = Backbone.View.extend({
   className: 'md',
+  events: {
+    "click .access": "access",
+    "click .den": "den"
+  },
 
   initialize: function (opt) {
     this.template = $('#md-template').html();
@@ -329,6 +333,13 @@ var MdView = Backbone.View.extend({
     
     return this;
   },
+
+  access: function(e) {
+
+  },
+  den: function(e) {
+
+  }
 });
 
 
@@ -350,6 +361,8 @@ var DocView = Backbone.View.extend({
   render: function () {
     $(this.el).html(_.template(this.template, this.context));
 
+    $(this.el).append(this.tree.el);
+    this.tree.setElement(this.$(".strtree-widget")).render();
     
 
     if(window.clientUser.id && !window.user.id) {
@@ -402,8 +415,6 @@ var MyDocView = Backbone.View.extend({
 
     $(this.el).append(this.tree.el);
     this.tree.setElement(this.$(".strtree-widget")).render();
-
-    
 
     if(window.clientUser.id && !window.user.id) {
       $(this.el).append(this.docs.el);
@@ -674,8 +685,10 @@ var StrtreeView = Backbone.View.extend({
       $(e.target).addClass("current");
 
       $(".not").hide();
-      $(".doc-list-items").fadeIn();  
+      $(".doc-list-items").fadeIn();
+
     }
+     $(".col1").hide();
   }
 });
 

@@ -141,7 +141,6 @@ var VootaddfView = Backbone.View.extend({
     this.navSelect = new VopotNavSelectView();
     this.pred1 = new Pred1SelectView();
     this.pred2 = new Pred2SelectView();
-    this.pred3 = new Pred3SelectView();
   },
 
   render: function () {
@@ -155,9 +154,6 @@ var VootaddfView = Backbone.View.extend({
 
     $(this.el).append(this.pred2.el);
     this.pred2.setElement(this.$(".pred2-widget")).render();
-
-    $(this.el).append(this.pred3.el);
-    this.pred3.setElement(this.$(".pred3-widget")).render();
     
     return this;
   },
@@ -314,6 +310,9 @@ var VopotNavSelectView = Backbone.View.extend({
 
 var Pred1SelectView = Backbone.View.extend({
   className: 'pred1',
+  events: {
+    "change #pred1-select": "onOptionClick"
+  },
 
   initialize: function () {
     this.template = $('#pred1-template').html();
@@ -336,6 +335,13 @@ var Pred1SelectView = Backbone.View.extend({
         window.location.reload();
       }
     );
+  },
+
+  onOptionClick: function(e) {
+    $("#pred2-select").removeAttr("disabled");
+    $("#pred2-select option:first-child").attr("selected", "selected");
+    $("#pred2-select option").hide();
+    $("#pred2-select option[data-parent='"+$(e.target).val()+"']").show();
   }
 });
 

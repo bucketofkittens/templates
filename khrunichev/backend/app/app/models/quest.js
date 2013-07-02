@@ -4,7 +4,6 @@ var Quest = function () {
     title: {type: 'string', required: true},
     parent1Id: {type: 'string'},
     parent2Id: {type: 'string'},
-    parent3Id: {type: 'string'},
     fio: {type: 'string'},
     email: {type: 'string'},
     text: {type: 'text'},

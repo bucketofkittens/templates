@@ -789,10 +789,6 @@
 							<span class="pred2-widget"></span>
 						</div>
 						<div class="send">
-							<p>Отдел</p>
-							<span class="pred3-widget"></span>
-						</div>
-						<div class="send">
 							<p>ФИО</p>
 							<input type="text" id="add_question_fio" />
 						</div>
@@ -848,25 +844,32 @@
 			<select name="pred1-select" id="pred1-select">
 				<option value="0">Нет</option>
 				<% _.each(structs, function(structsItem) { %>
-					<option value="<%= structsItem.id %>"><%= structsItem.title %></option>
+					<% if(structsItem.parentId == 0) { %>
+						<% _.each(structs, function(structs2Item) { %>
+							<% if(structs2Item.parentId == structsItem.id) { %>
+								<option value="<%= structs2Item.id %>"><%= structs2Item.title %></option>
+							<% } %>
+						<% }); %>
+					<% } %>
 				<% }); %>
 			</select>
 		</script>
 
 		<script id="pred2-template" type="text/template">
-			<select name="pred2-select" id="pred2-select">
+			<select name="pred2-select" id="pred2-select" disabled="disabled">
 				<option value="0">Нет</option>
 				<% _.each(structs, function(structsItem) { %>
-					<option value="<%= structsItem.id %>"><%= structsItem.title %></option>
-				<% }); %>
-			</select>
-		</script>
-
-		<script id="pred3-template" type="text/template">
-			<select name="pred3-select" id="pred3-select">
-				<option value="0">Нет</option>
-				<% _.each(structs, function(structsItem) { %>
-					<option value="<%= structsItem.id %>"><%= structsItem.title %></option>
+					<% if(structsItem.parentId == 0) { %>
+						<% _.each(structs, function(structs2Item) { %>
+							<% if(structs2Item.parentId == structsItem.id) { %>
+								<% _.each(structs, function(structs3Item) { %>
+									<% if(structs3Item.parentId == structs2Item.id) { %>
+										<option data-parent="<%= structs3Item.parentId %>" value="<%= structs3Item.id %>"><%= structs3Item.title %></option>
+									<% } %>
+								<% }); %>
+							<% } %>
+						<% }); %>
+					<% } %>
 				<% }); %>
 			</select>
 		</script>
@@ -1271,6 +1274,12 @@
 							</ul>
 						</div>
 					</div>
+					<br />
+					<div class="gray_box">
+						<div class="in">
+							<div class="strtree-widget"></div>
+						</div>
+					</div>	
 				</div>
 				<div id="center">
 					<div class="blue_box">
@@ -1428,7 +1437,7 @@
 							<li><a href="#!/questions" title="">Администрирование вопросов и ответов</a></li>
 							<li><a href="#!/structure" title="">Администрирование документов</a></li>
 							<li><a href="#!/search" title="">Нормативно-справочная информация</a></li>
-							<li><a href="/upload/1.pdf" title="">Единый телефонный справочник ГКНПЦ</a></li>
+							<li><a href="/upload/1.pdf" title="">Единый телефонный справочник ГКНПЦ им. М.В. Хруничева</a></li>
 							
 						</ul>
 					</div>
@@ -1464,6 +1473,7 @@
 		</script>
 
 		<script id="md-template" type="text/template">
+			<% if(window.user.id) { %>
 			<div class="doc-list-items" style="display: block;">
 				<table class="list_doc">
 					<thead>
@@ -1518,6 +1528,24 @@
 					</tbody>
 				</table>
 
+				<% if(window.user.id && window.user.roleId == 10) { %>
+					<br />
+					<input type="button" id="add_file_show" value="Загрузить новый документ" placeholder="" />
+					<div class="add_file">
+						<br />
+						<hr />
+						<form id="add_file_form" action="/api/doc/create" method="post" enctype="multipart/form-data" accept-charset="utf-8">
+							<input type="hidden" name="creatorId" value="<%= user.id %>" placeholder="" />
+							<h2></h2>
+							<input type="file" name="filename" value="" placeholder="" /><br /><br />
+							<label>Название:<br /> <input id="add_title" name="title" type="text" style="width: 80%;" /></label><br /><br />
+							<label>Комментарий:<br /> <textarea name="comment" style="width: 80%; height: 200px;"></textarea></label>
+							<br />
+							<input type="submit" id="onLoadDoc" name="" value="Загрузить" />
+						</form>
+					</div>
+				<% } %>
+
 				<div class="add_f">
 					<br />
 					<hr />
@@ -1532,6 +1560,9 @@
 					</form>
 				</div>
 			</div>
+			<% } else { %>
+				<p>Доступ запрещен. Необходимо авторизироваться.</p>
+			<% } %>
 		</script>
 
 		<script id="doclist-template" type="text/template">
