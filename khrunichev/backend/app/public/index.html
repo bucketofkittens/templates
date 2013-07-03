@@ -611,20 +611,27 @@
 						</p>
 						<p>
 							<input type="button" data-id="<%= quests[0].id %>" id="veditLUpdate" value="Ответить" />
-							<!--
-							<input type="button" value="Сохранить черновик" />
-							-->
 						</p>
 					</section>
 				</div>
 			</div>
+		</script>
+
+		<script id="questinsrole-template" type="text/template">
+			<select name="roleId" id="roleId">
+				<option value="">Нет</option>
+				<% _.each(users, function(user) { %>
+					<% if(user.roleId == 4) { %>
+						<option value="<%= user.id %>" <% if(currentUserId == user.id) { %>selected="selected"<% } %>><%= user.email %></option>
+					<% } %>
+				<% }); %>
+			</select>
 		</script>
 		<script id="veditfr-template" type="text/template">
 			<div class="gray_box">
 				<div class="in quiz_update">
 					<form action="">
 						<label for="">Статус</label>
-						<%= quests[0].pub %>
 						<select name="" id="quiz_status">
 							<option value="0" <% if(quests[0].status == 0) { %>selected="selected"<% } %>>Новый</option>
 							<option value="1" <% if(quests[0].status == 1) { %>selected="selected"<% } %>>В работе</option>
@@ -635,16 +642,12 @@
 						<input type="checkbox" id="quiz_pub" <% if(quests[0].pub == 1) { %>checked="checked"<% } %> />
 						<label for="" >Опубликовано</label>
 						
-						<p>Ответить до: <strong>05.07.2013</strong></p>
-						<% if(window.user.roleId) { %>
+						<p>Ответить до: <strong>15.07.2013</strong></p>
+						<% if(window.user.roleId == 3) { %>
 							<br /><br />
 							<div class="send">
 								<p>Ответственный:</p>
-								<select name="roleId" id="roleId">
-									<option value="">Нет</option>
-									<option value="3">Сидоров</option>
-									<option value="4">Петров</option>
-								</select>
+								<div class="questinsrole-widget"></div>
 							</div>
 						<% } %>
 						<input type="button" data-id="<%= quests[0].id %>" id="veditRUpdate" value="Сохранить" />
@@ -668,33 +671,34 @@
 			<div class="blue_box">
 				<div class="in">
 					<% _.each(quests, function(questItem) { %>
-						<section class="let  <% if(questItem.status == 0) { %>col1<% } %> <% if(questItem.status == 1) { %>col2<% } %>" data-pub="<%= questItem.pub %>" data-id="<%= questItem.id %>" data-status="<%= questItem.status %>">
-							<i><%= questItem.cretedAt %></i>
-							<b><%= questItem.fio %></b>
-							<!--
-							<b>Предприятие А, подразделение 1, отдел 1x</b>
-							<b>Категория: </b>
-							-->
-							<b>Тема: <%= questItem.title %></b>
-							<b>Статус: 
-							<% if(questItem.status == 0) { %>
-								Новое
-							<% } %>
-							<% if(questItem.status == 1) { %>
-								В работе
-							<% } %>
-							<% if(questItem.status == 2) { %>
-								Готовый
-							<% } %>
-							<% if(questItem.status == 3) { %>
-								В корзине
-							<% } %>
-							</b>
-							<i>Ответить до: 05.05.2013</i>
-							<a href="#!/quest/edit/<%= questItem.id %>" class="look">Открыть</a>
-						</section>
-					<% }); %>								
-											
+						<% if(window.user.roleId == 3 || (window.user.roleId == 4 && questItem.adminId == window.user.id)) { %>
+							<section class="let  <% if(questItem.status == 0) { %>col1<% } %> <% if(questItem.status == 1) { %>col2<% } %>" data-pub="<%= questItem.pub %>" data-id="<%= questItem.id %>" data-status="<%= questItem.status %>">
+								<i><%= questItem.cretedAt %></i>
+								<b><%= questItem.fio %></b>
+								<!--
+								<b>Предприятие А, подразделение 1, отдел 1x</b>
+								<b>Категория: </b>
+								-->
+								<b>Тема: <%= questItem.title %></b>
+								<b>Статус: 
+								<% if(questItem.status == 0) { %>
+									Новое
+								<% } %>
+								<% if(questItem.status == 1) { %>
+									В работе
+								<% } %>
+								<% if(questItem.status == 2) { %>
+									Готовый
+								<% } %>
+								<% if(questItem.status == 3) { %>
+									В корзине
+								<% } %>
+								</b>
+								<i>Ответить до: 05.05.2013</i>
+								<a href="#!/quest/edit/<%= questItem.id %>" class="look">Открыть</a>
+							</section>
+						<% } %>	
+					<% }); %>				
 				</div>
 			</div>
 		</script>
@@ -924,6 +928,7 @@
 					<div class="strclient-widget"></div>
 					<div class="strauth-widget"></div>
 					<div class="strnav-widget"></div>
+					<div class="tree-widget"></div>
 				</div>
 				<div id="center">
 					<div class="strbox-widget"></div>
@@ -938,6 +943,23 @@
 				</div>
 				<div id="center">
 					<div class="straddf-widget"></div>
+				</div>
+			</div>
+		</script>
+		<script id="treeleft-template" type="text/template">
+			<div class="gray_box">
+				<div class="in">
+					<ul class="admin">
+						<% _.each(structs, function(structsItem) { %>
+							<% if(structsItem.parentId == 0) { %>
+								<% _.each(structs, function(structs2Item) { %>
+									<% if(structs2Item.parentId == structsItem.id) { %>
+										<li><a href="#!/structure/view/<%= structs2Item.id  %>" title=""><%=  structs2Item.title %></a></li>
+									<% } %>
+								<% }); %>
+							<% } %>
+						<% }); %>
+					</ul>
 				</div>
 			</div>
 		</script>
@@ -984,7 +1006,6 @@
 						<% }); %>
 					<% } %>
 				<% }); %>
-				structs
 			</select>
 		</script>
 		<script id="strnav-template" type="text/template">
@@ -992,7 +1013,7 @@
 				<div class="in">
 					<ul class="admin">
 						<li><a href="#!/structure">Структура</a></li>
-						<li><a href="#!/structure/mydoc">Документы</a></li>
+						<li><a href="#!/structure/mydoc">Согласование должностных инструкций</a></li>
 					</ul>
 				</div>
 			</div>
@@ -1057,7 +1078,6 @@
 												<p>
 													<a><%= structsItem.title %></a>
 													<% if(structsItem.leader) { %><b>Руководитель: </b><%= structsItem.leader %><% } %>
-													<% if(structsItem.phone) { %><%= structsItem.phone %><% } %>
 												</p>
 												<% if(user.id && user.roleId != 10) { %>
 													<img style="width: 45px; position: absolute; right: 0px; top: 0px;" data-id="<%= structsItem.id %>" class="deleteButton deleteStr" src="./images/del.png" alt="" />
@@ -1070,9 +1090,6 @@
 																	<a href="#!/structure/view/<%= structs2Item.id %>"><%= structs2Item.title %></a>
 																	<span class="itt">
 																		<% if(structs2Item.leader) { %><b>Руководитель: </b><%= structs2Item.leader %><% } %>
-																	</span><br />
-																	<span class="itt">
-																		<% if(structs2Item.phone) { %><%= structs2Item.phone %><% } %>
 																	</span>
 																</p>
 																<% if(user.id && user.roleId != 10) { %>
@@ -1110,7 +1127,7 @@
 											<% _.each(structs, function(structs2Item) { %>
 												<% if(structs2Item.parentId == structsItem.id) { %>
 													<li>
-														<p><a href="#!/structure/document"><%= structs2Item.title %></a><b>Руководитель: </b><%= structs2Item.leader %></p>
+														<p><a href="#!/structure/document/<%= structs2Item.id %>/<%= structs2Item.parentId %>"><%= structs2Item.title %></a><b>Руководитель: </b><%= structs2Item.leader %></p>
 														<% if(user.id && user.roleId != 10) { %>
 															<img style="width: 45px; position: absolute; right: -10px; top: -10px;" data-id="<%= structs2Item.id %>" class="deleteButton deleteStr" src="./images/del.png" alt="" />
 														<% } %>
@@ -1241,7 +1258,7 @@
 						<div class="in">
 							<ul class="admin">
 								<li><a href="#!/structure">Структура</a></li>
-								<li><a href="#!/structure/mydoc">Документы</a></li>
+								<li><a href="#!/structure/mydoc">Согласование должностных инструкций</a></li>
 							</ul>
 						</div>
 					</div>
@@ -1270,21 +1287,38 @@
 						<div class="in">
 							<ul class="admin">
 								<li><a href="#!/structure">Структура</a></li>
-								<li><a href="#!/structure/mydoc">Документы</a></li>
+								<li><a href="#!/structure/mydoc">Согласование должностных инструкций</a></li>
 							</ul>
 						</div>
 					</div>
-					<br />
-					<div class="gray_box">
-						<div class="in">
-							<div class="strtree-widget"></div>
-						</div>
-					</div>	
 				</div>
 				<div id="center">
 					<div class="blue_box">
 						<div class="in">
 							<div class="doclist-widget"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</script>
+
+		<script id="mydocedit-template" type="text/template">
+			<div id="content">
+				<div id="left">
+					<div class="strclient-widget"></div>
+					<div class="gray_box">
+						<div class="in">
+							<ul class="admin">
+								<li><a href="#!/structure">Структура</a></li>
+								<li><a href="#!/structure/mydoc">Согласование должностных инструкций</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div id="center">
+					<div class="blue_box">
+						<div class="in">
+							<div class="mydoceditf-widget"></div>
 						</div>
 					</div>
 				</div>
@@ -1298,7 +1332,7 @@
 						<div class="in">
 							<ul class="admin">
 								<li><a href="#!/structure">Структура</a></li>
-								<li><a href="#!/structure/mydoc">Документы</a></li>
+								<li><a href="#!/structure/mydoc">Согласование должностных инструкций</a></li>
 							</ul>
 						</div>
 					</div>
@@ -1327,7 +1361,7 @@
 						<div class="in">
 							<ul class="admin">
 								<li><a href="#!/structure">Структура</a></li>
-								<li><a href="#!/structure/mydoc">Документы</a></li>
+								<li><a href="#!/structure/mydoc">Согласование должностных инструкций</a></li>
 							</ul>
 						</div>
 					</div>
@@ -1373,7 +1407,7 @@
 						<div class="in">
 							<ul class="admin">
 								<li><a href="#!/structure">Структура</a></li>
-								<li><a href="#!/structure/mydoc">Документы</a></li>
+								<li><a href="#!/structure/mydoc">Согласование должностных инструкций</a></li>
 							</ul>
 						</div>
 					</div>
@@ -1435,16 +1469,14 @@
 						<h2>Администрирование</h2>
 						<ul>
 							<li><a href="#!/questions" title="">Администрирование вопросов и ответов</a></li>
-							<li><a href="#!/structure" title="">Администрирование документов</a></li>
+							<li><a href="#!/structure/mydoc" title="">Согласование должностных инструкций</a></li>
 							<li><a href="#!/search" title="">Нормативно-справочная информация</a></li>
 							<li><a href="/upload/1.pdf" title="">Единый телефонный справочник ГКНПЦ им. М.В. Хруничева</a></li>
-							
 						</ul>
 					</div>
 				</div>
 			<% } %>
 		</script>
-
 
 		<script id="docsadmin-template" type="text/template">
 			<div class="blue_box">
@@ -1474,100 +1506,208 @@
 
 		<script id="md-template" type="text/template">
 			<% if(window.user.id) { %>
-			<div class="doc-list-items" style="display: block;">
-				<table class="list_doc">
-					<thead>
-						<tr>
-							<th>Название</th>
-							<th>Дата создания</th>
-							<th>Статус</th>
-							<th>Ответственный</th>
-							<th></th>
-						</tr>
-					</thead>
-					<tbody>
-						<% var i = 0; %>
-						<% _.each(docs, function(docItem) { %>
-							<% i++; %>
-							<% if(docItem.creatorId == user.id) { %>
-								<tr <% if(i%2) { %> <% } %>>
-									<td><b class="lt"><%= docItem.title %></b></td>
-									<td><%= docItem.createdAt.substr(0, 10) %></td>
-									<td>На утверждении</td>
-									<td>Павлов И. А.</td>
-									<td>
-										<a style="padding-bottom: 2px;" href="/upload/<%= docItem.file %>" title="">Скачать</a>
-										<% if(window.user.roleId != 10) { %>
-											Комментарий:
-											<textarea name=""></textarea>
-											<input type="button" style="padding-bottom: 2px;" style="cursor: pointer;" class="access" title="" value="Утвердить" />
-											<input type="button" style="padding-bottom: 2px;" style="cursor: pointer;" class="den" title="" value="Отклонить" />
-										<% } %>
-									</td>
-								</tr>
-							<% } else { %>
-								<% if(docItem.status == 0) { %>
-									<tr <% if(i%2) { %>class="col1" <% } %>>
+				<% if(window.user.roleId == 10) { %>
+				<div class="doc-list-items" style="display: block;">
+					<table class="list_doc">
+						<thead>
+							<tr>
+								<th>Название</th>
+								<th>Дата создания</th>
+								<th>Статус</th>
+								<th>Ответственный</th>
+								<th></th>
+							</tr>
+						</thead>
+						<tbody>
+							<% var i = 0; %>
+							<% _.each(docs, function(docItem) { %>
+								<% i++; %>
+								<% if(docItem.creatorId == user.id) { %>
+									<tr <% if(i%2) { %>class="col1"<% } %>>
 										<td><b class="lt"><%= docItem.title %></b></td>
 										<td><%= docItem.createdAt.substr(0, 10) %></td>
-										<td>На утверждении</td>
-										<td>Павлов И. А.</td>
+										<td>
+											<% if (docItem.status == 0) { %>На согласовании<% } %>
+											<% if (docItem.status == 2) { %>
+												Вернули на доработку<br />
+												<a href="#!/structure/mydoc/<%= docItem.id %>" title="">Изменить документ</a>
+											<% } %>
+											<% if (docItem.status == 1) { %>Одобрено<% } %>
+										</td>
+										<td>
+											<% if (docItem.access1 != 1) { %>Старший механик<% } %>
+											<% if (docItem.access2 != 1 && docItem.access1 == 1) { %>Начальник отдела<% } %>
+											<% if (docItem.access3 != 1 && docItem.access1 == 1 && docItem.access2 == 1) { %>Стасюк )<% } %>
+										</td>
 										<td>
 											<a style="padding-bottom: 2px;" href="/upload/<%= docItem.file %>" title="">Скачать</a>
-											<% if(window.user.roleId != 10) { %>
-												Комментарий:
-											<textarea name=""></textarea>
-											<input type="button" style="padding-bottom: 2px;" style="cursor: pointer;" class="access" title="" value="Утвердить" />
-											<input type="button" style="padding-bottom: 2px;" style="cursor: pointer;" class="den" title="" value="Отклонить" />
-											<% } %>
 										</td>
 									</tr>
 								<% } %>
-							<% } %>
-						<% }); %>
-					</tbody>
-				</table>
-
-				<% if(window.user.id && window.user.roleId == 10) { %>
-					<br />
-					<input type="button" id="add_file_show" value="Загрузить новый документ" placeholder="" />
+							<% }); %>
+						</tbody>
+					</table>
+					<hr />
+					<input type="button" id="add_file_show" value="Согласовать новый документ" placeholder="" />
 					<div class="add_file">
 						<br />
 						<hr />
 						<form id="add_file_form" action="/api/doc/create" method="post" enctype="multipart/form-data" accept-charset="utf-8">
 							<input type="hidden" name="creatorId" value="<%= user.id %>" placeholder="" />
-							<h2></h2>
-							<input type="file" name="filename" value="" placeholder="" /><br /><br />
+							<h2>Новый документ</h2>
+							<label>Предприятие: <strong style="font-weight: bold;"><%= window.user.pred %></strong></label><br /><br />
+							<label>Отдел: <strong style="font-weight: bold;"><%= window.user.otd %></strong></label><br /><br />
+							<label>Должность: <strong style="font-weight: bold;"><%= window.user.dol %></strong> </label><br /><br />
+							
 							<label>Название:<br /> <input id="add_title" name="title" type="text" style="width: 80%;" /></label><br /><br />
-							<label>Комментарий:<br /> <textarea name="comment" style="width: 80%; height: 200px;"></textarea></label>
+							<label>Файл:<br /> <input type="file" name="filename" value="" placeholder="" /></label><br /><br />
+							<label>
+								Список согласования:<br /> 
+								<div class="access1-widget"></div>
+								<select name="access2Id" id="">
+									<option value="1">Начальник отдела</option>
+								</select><br />
+								<select name="access3Id" id="">
+									<option value="1">Стасюк</option>
+								</select><br />
+								<select name="access4Id" id="">
+									<option value="1">Генеральный директор</option>
+								</select>
+							</label><br /><br />
 							<br />
-							<input type="submit" id="onLoadDoc" name="" value="Загрузить" />
+							<input type="submit" id="onLoadDoc" name="" value="Ок" />
+							<input type="submit" id="onLoadDocCancel" name="" value="Отменить" />
 						</form>
 					</div>
 				<% } %>
-
-				<div class="add_f">
-					<br />
-					<hr />
-					<form id="add_file_form" action="/api/doc/create" method="post" enctype="multipart/form-data" accept-charset="utf-8">
-						<input type="hidden" name="creatorId" value="<%= user.id %>" placeholder="" />
-						<h2></h2>
-						<input type="file" name="filename" value="" placeholder="" /><br /><br />
-						<label>Название:<br /> <input id="add_title" name="title" type="text" style="width: 80%;" /></label><br /><br />
-						<label>Комментарий:<br /> <textarea name="comment" style="width: 80%; height: 200px;"></textarea></label>
-						<br />
-						<input type="submit" id="onLoadDoc" name="" value="Загрузить" />
-					</form>
-				</div>
+				<% if(window.user.roleId == 11 || window.user.roleId == 12 || window.user.roleId == 13) { %>
+					<div class="doc-list-items" style="display: block;">
+					<table class="list_doc">
+						<thead>
+							<tr>
+								<th>Название</th>
+								<th>Дата создания</th>
+								<th>Инициатор</th>
+								<th></th>
+								<th></th>
+							</tr>
+						</thead>
+						<tbody>
+							<% var i = 0; %>
+							<% _.each(docs, function(docItem) { %>
+								<% if(
+										(window.user.roleId == 11 && docItem.access1 != 1) ||
+										(window.user.roleId == 12 && docItem.access1 == 1 && docItem.access2 != 1) ||
+										(window.user.roleId == 13 && docItem.access1 == 1 && docItem.access2 == 1 && docItem.access3 != 1)) { %>
+									<% i++; %>
+									<tr <% if(i%2) { %>class="col1"<% } %>>
+										<td><b class="lt"><%= docItem.title %></b></td>
+										<td><%= docItem.createdAt.substr(0, 10) %></td>
+										<td>
+											Иваненко С. А.
+										</td>
+										<td>
+											<a href="#!/structure/mydoc/<%= docItem.id %>" title="">Открыть</a>
+										</td>
+										<td>
+											<a style="padding-bottom: 2px;" href="/upload/<%= docItem.file %>" title="">Скачать</a>
+										</td>
+									</tr>
+								<% } %>
+							<% }); %>
+						</tbody>
+					</table>
+				<% } %>
 			</div>
 			<% } else { %>
 				<p>Доступ запрещен. Необходимо авторизироваться.</p>
 			<% } %>
 		</script>
 
+		<script id="mde-template" type="text/template">
+			<% if(window.user.id) { %>
+				<% if(window.user.roleId != 10) { %>
+					<% _.each(docs, function(docItem) { %>
+						<% if(docItem.id == id) { %>
+						<div class="doc-list-items" style="display: block;">
+							<div class="add_file" style="display: block;">
+								<a href="#!/structure/mydoc" title="">Назад</a><br /><br />
+								<form id="add_file_form" action="/api/doc/update" method="post" enctype="multipart/form-data" accept-charset="utf-8">
+									<input type="hidden" id="docId" name="id" value="<%= docItem.id %>" placeholder="" />
+									<label>Инициатор: <strong style="font-weight: bold;">Иваненко С. А.</strong></label><br /><br />
+									<label>Название: <strong style="font-weight: bold;"><%= docItem.title %></strong></label><br /><br />
+									<label>Скачать: <a href="/upload/<%= docItem.file %>" style="font-weight: bold;">Файл</a></label><br /><br />
+									<label>Комментарий:<br /> <textarea style="width: 80%; height: 100px;" name="commentText" id="commentText"></textarea></label><br /><br />
+									<input type="button" id="access" name="" value="Согласовать" />
+									<input type="button" id="deny" name="" value="Вернуть на доработку" />
+								</form>
+							</div>
+						<% } %>
+					<% }); %>
+				<% } else { %>
+					<a href="#!/structure/mydoc" title="">Назад</a><br /><br />
+					<hr />
+					<% _.each(docs, function(docItem) { %>
+						<% if(docItem.id == id) { %>
+						<form id="add_file_form" action="/api/doc/update2/<%= docItem.id %>" method="post" enctype="multipart/form-data" accept-charset="utf-8">
+							<h2>Внесение правок</h2>
+							<label>Предприятие: <strong style="font-weight: bold;"><%= window.user.pred %></strong></label><br /><br />
+							<label>Отдел: <strong style="font-weight: bold;"><%= window.user.otd %></strong></label><br /><br />
+							<label>Должность: <strong style="font-weight: bold;"><%= window.user.dol %></strong> </label><br /><br />
+							
+							<label>Название:<br /> <strong style="font-weight: bold;"><%= docItem.title %></strong></label><br /><br />
+							<label>Файл:<br /> <input type="file" name="filename" value="" placeholder="" /></label><br /><br />
+							<label>
+								Список согласования:<br /> 
+								<div class="access1-widget"></div>
+								<select name="access2Id" id="">
+									<option value="1">Начальник отдела</option>
+								</select><br />
+								<select name="access3Id" id="">
+									<option value="1">Стасюк</option>
+								</select><br />
+								<select name="access4Id" id="">
+									<option value="1">Генеральный директор</option>
+								</select>
+							</label><br /><br />
+							<br />
+							<input type="submit" id="onLoadDoc" name="" value="Ок" />
+							<input type="submit" id="onLoadDocCancel" name="" value="Отменить" />
+						</form>
+						<% } %>
+					<% }); %>
+				<% } %>
+				<br />
+				<div class="com-widget"></div>
+			<% } else { %>
+				<p>Доступ запрещен. Необходимо авторизироваться.</p>
+			<% } %>
+		</script>
+
+		<script id="access1-template" type="text/template">
+			<select name="access1Id" id="">
+				<% _.each(users, function(userItem) { %>
+					<% if(userItem.roleId == 11 && userItem.id != window.user.id) { %>
+						<option value="<%= userItem.id %>"><%= userItem.email %></option>
+					<% } %>
+				<% }); %>
+			</select>
+		</script>
+
+		<script id="docnodes-template" type="text/template">
+			<h2>Комментарии</h2>
+			<% _.each(comments, function(comItem) { %>
+				<% if(comItem.docId == id) { %>
+					<p style="font-weight: bold">Автор: Начальник цеха</p>
+					<p><%= comItem.text %></p>
+					<br /><br /><br />
+				<% } %>
+			<% }); %>
+		</script>
+
 		<script id="doclist-template" type="text/template">
-			<p class="not">Для отображения документов выберите интересующее Вас отдел в списке слева.</p>
-			<div class="doc-list-items">
+			<a href="#!/structure/view/<%= id %>" title="">Назад</a><br /><br />
+			<div class="doc-list-items" style="display: block;">
 				<table class="list_doc">
 					<thead>
 						<tr>
@@ -1601,53 +1741,6 @@
 				</table>
 				<br />
 
-				<!--
-				<h2>Мои документы</h2>
-				<table class="list_doc">
-					<thead>
-						<tr>
-							<th>Название</th>
-							<th>Дата создания</th>
-							<th>Статус</th>
-							<th></th>
-						</tr>
-					</thead>
-					<tbody>
-						<% var i = 0; %>
-						<% _.each(docs, function(docItem) { %>
-							<% i++; %>
-							<% if(docItem.creatorId == user.id) { %>
-								<tr <% if(i%2) { %> <% } %>>
-									<td><b class="lt"><%= docItem.title %></b></td>
-									<td><%= docItem.createdAt.substr(0, 10) %></td>
-									<td><span style="display: block; color: yellow; background: #000000; padding: 10px; border-radius: 10px;">На утверждении у: <br />Павлов И. А.</span></td>
-									<td><a href="/upload/<%= docItem.file %>" title="">Скачать</a></td>
-								</tr>
-							<% } %>
-						<% }); %>
-					</tbody>
-				</table>
-
-				
-
-				<% if(user.id && user.roleId == 10) { %>
-					<br />
-					<input type="button" id="add_file_show" value="Загрузить новый документ" placeholder="" />
-					<div class="add_file">
-						<br />
-						<hr />
-						<form id="add_file_form" action="/api/doc/create" method="post" enctype="multipart/form-data" accept-charset="utf-8">
-							<input type="hidden" name="creatorId" value="<%= user.id %>" placeholder="" />
-							<h2></h2>
-							<input type="file" name="filename" value="" placeholder="" /><br /><br />
-							<label>Название:<br /> <input id="add_title" name="title" type="text" style="width: 80%;" /></label><br /><br />
-							<label>Комментарий:<br /> <textarea name="comment" style="width: 80%; height: 200px;"></textarea></label>
-							<br />
-							<input type="submit" id="onLoadDoc" name="" value="Загрузить" />
-						</form>
-					</div>
-				<% } %>
-				-->
 			</div>
 		</script>
 
@@ -1684,41 +1777,6 @@
 						</tr>
 					</tbody>
 				</table>
-				<br />
-
-				<!--
-				<h2>Мои документы</h2>
-				<table class="list_doc">
-					<thead>
-						<tr>
-							<th>Название</th>
-							<th>Дата создания</th>
-							<th>Статус</th>
-							<th>Ответственный</th>
-							<th></th>
-						</tr>
-					</thead>
-					<tbody>
-						<% var i = 0; %>
-						<% _.each(docs, function(docItem) { %>
-							<% i++; %>
-							<% if(docItem.status == 0) { %>
-								<tr <% if(i%2) { %>class="col1" <% } %>>
-									<td><b class="lt"><%= docItem.title %></b></td>
-									<td><%= docItem.createdAt.substr(0, 10) %></td>
-									<td>На утверждении </td>
-									<td>Павлов И. А.</td>
-									<td>
-										<a style="padding-bottom: 2px;" href="/upload/<%= docItem.file %>" title="">Скачать</a>
-										<a style="padding-bottom: 2px;" href="" title="">Утвердить</a>
-										<a style="padding-bottom: 2px;" href="" title="">Отклонить</a>
-									</td>
-								</tr>
-							<% } %>
-						<% }); %>
-					</tbody>
-				</table>
-				-->
 			</div>
 		</script>
 
@@ -1727,27 +1785,17 @@
 				<% _.each(structs, function(structsItem) { %>
 					<% if(structsItem.parentId == 0) { %>
 						<ul>
-							<li>										
-								<a><%= structsItem.title %></a>
-								<ul>
-									<% _.each(structs, function(structs2Item) { %>
-										<% if(structs2Item.parentId == structsItem.id) { %>
+							<% _.each(structs, function(structs2Item) { %>
+								<% if(structs2Item.parentId == structsItem.id) { %>
+									<% _.each(structs, function(structs3Item) { %>
+										<% if(structs3Item.parentId == structs2Item.id && structs3Item.parentId == parentId) { %>
 											<li>
-												<a><%= structs2Item.title %></a>
-												<ul>
-													<% _.each(structs, function(structs3Item) { %>
-														<% if(structs3Item.parentId == structs2Item.id) { %>
-															<li>
-																<a data-id="<%= structs3Item.id %>" class="tree_item"><%= structs3Item.title %></a>
-															</li>
-														<% } %>
-													<% }); %>
-												</ul>
+												<a data-id="<%= structs3Item.id %>" class="tree_item"><%= structs3Item.title %></a>
 											</li>
 										<% } %>
 									<% }); %>
-								</ul>
-							</li>
+								<% } %>
+							<% }); %>
 						</ul>
 						<br />
 					<% } %>

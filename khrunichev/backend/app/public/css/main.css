@@ -190,7 +190,6 @@ footer p {
 }
 .gray_box .in li {
 	display: block;
-	padding: 10px 0px;
 }
 .gray_box .in li a {
 	font-size: 14px;
@@ -211,7 +210,6 @@ footer p {
 .gray_box .in a {
 	font-size: 16px;
 	color: #000000;
-	font-style: oblique;
 	margin: 10px 0px;
 	display: inline-block;
 }
@@ -233,7 +231,9 @@ footer p {
 .gray_box .in .send {
 	padding: 10px 0px;
 }
-
+.gray_box .in .admin ul li {
+	padding-left: 10px;
+}
 .blue_box .in section.let {
 	padding: 20px;
 	position: relative;
@@ -495,7 +495,7 @@ footer p {
 	color: #000000;
 	font-size: 18px;
 	text-decoration: none;
-	margin: 0px 10px 5px 10px;
+	margin: 0px 10px 0px 10px;
 	font-style: normal;
 	font-weight: bold;
 }
@@ -681,8 +681,8 @@ footer p {
 }
 
 .itt {
-	padding: 5px;
-	max-width: 90px;
+	padding: 3px 5px 0px 5px;
+	display: block;
 }
 .itt p {
 	padding-top: 0px;

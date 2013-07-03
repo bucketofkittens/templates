@@ -8,6 +8,7 @@ var StrView = Backbone.View.extend({
     this.stradmin = new StradminView();
     this.strauth = new StrAuthView();
     this.strclient = new StrClientView();
+    this.tree = new TreeleftView();
   },
 
   render: function () {
@@ -46,6 +47,9 @@ var StrVView = Backbone.View.extend({
     this.stradmin = new StradminView();
     this.strauth = new StrAuthView();
     this.strclient = new StrClientView();
+    this.tree = new TreeleftView();
+
+    this.id = opt.id;
   },
 
   render: function () {
@@ -56,6 +60,9 @@ var StrVView = Backbone.View.extend({
 
     $(this.el).append(this.strbox.el);
     this.strbox.setElement(this.$(".strbox-widget")).render();
+
+    $(this.el).append(this.tree.el);
+    this.tree.setElement(this.$(".tree-widget")).render(this.id);
 
     if(window.user.id) {
       $(this.el).append(this.stradmin.el);
@@ -314,10 +321,27 @@ var Strbox2View = Backbone.View.extend({
   }
 });
 
+var DocnodesView = Backbone.View.extend({
+  className: 'docnodes',
+
+  initialize: function () {
+    this.template = $('#docnodes-template').html();
+
+    this.docnodeList = new DocnodeList();
+    this.docnodeList.fetch();
+  },
+
+  render: function (id) {
+    $(this.el).html(_.template(this.template, { user: window.clientUser, comments: this.docnodeList.toJSON(), id: id }));
+    
+    return this;
+  }
+});
+
 var MdView = Backbone.View.extend({
   className: 'md',
   events: {
-    "click .access": "access",
+    "click #access": "access",
     "click .den": "den"
   },
 
@@ -326,10 +350,20 @@ var MdView = Backbone.View.extend({
 
     this.docList = new DocList();
     this.docList.fetch();
+
+    this.access1 = new Access1Views();
+    this.com = new DocnodesView();
+    this.id = opt.id;
   },
 
   render: function () {
-    $(this.el).html(_.template(this.template, { user: window.clientUser, docs: this.docList.toJSON() }));
+    $(this.el).html(_.template(this.template, { user: window.user, docs: this.docList.toJSON() }));
+
+    $(this.el).append(this.access1.el);
+    this.access1.setElement(this.$(".access1-widget")).render();
+
+    $(this.el).append(this.com.el);
+    this.com.setElement(this.$(".com-widget")).render(this.id);
     
     return this;
   },
@@ -342,27 +376,123 @@ var MdView = Backbone.View.extend({
   }
 });
 
+var MdeView = Backbone.View.extend({
+  className: 'md',
+  events: {
+    "click #access": "access",
+    "click #deny": "deny"
+  },
+
+  initialize: function (opt) {
+    this.template = $('#mde-template').html();
+
+    this.docList = new DocList();
+    this.docList.fetch();
+
+    this.access1 = new Access1Views();
+    this.com = new DocnodesView();
+    this.id = opt.id;
+  },
+
+  render: function (id) {
+    $(this.el).html(_.template(this.template, { user: window.user, docs: this.docList.toJSON(), id: id }));
+
+    $(this.el).append(this.access1.el);
+    this.access1.setElement(this.$(".access1-widget")).render();
+
+    $(this.el).append(this.com.el);
+    this.com.setElement(this.$(".com-widget")).render(this.id);
+    
+    return this;
+  },
+  access: function(e) {
+    var docId = $("#docId").val();
+    params = {};
+    if(user.roleId == 11) {
+      params.access1 = "1";
+    }
+    if(user.roleId == 12) {
+      params.access2 = "1";
+    }
+    if(user.roleId == 13) {
+      params.access3 = "1";
+      params.status = 1;
+    }
+
+    var params2 = {};
+    params2.docId = $("#docId").val();
+    params2.text = $("#commentText").val();
+
+    $.post("/api/doc/update/"+docId, params, function(data) {
+      $.post("/api/docnode/create", params2, function(data) {
+        window.location.hash = '#!/structure/mydoc';
+      });
+    });
+
+    return false;
+  },
+  deny: function(e) {
+    var docId = $("#docId").val();
+    params = {};
+    params.access1 = "";
+    params.access2 = "";
+    params.access3 = "";
+    params.status = 2;
+
+    var params2 = {};
+    params2.docId = $("#docId").val();
+    params2.text = $("#commentText").val();
+
+    $.post("/api/doc/update/"+docId, params, function(data) {
+      $.post("/api/docnode/create", params2, function(data) {
+        window.location.hash = '#!/structure/mydoc';
+      });
+    });
+
+    return false;
+  }
+});
+
+var Access1Views = Backbone.View.extend({
+  className: 'access1',
+
+  initialize: function (opt) {
+    this.template = $('#access1-template').html();
+
+    this.userList = new UserList();
+    this.userList.fetch();
+  },
+
+  render: function () {
+    $(this.el).html(_.template(this.template, { user: window.user, users: this.userList.toJSON()}));
+    
+    return this;
+  }
+});
 
 
 var DocView = Backbone.View.extend({
   className: 'doc',
 
-  initialize: function () {
+  initialize: function (opt) {
     this.template = $('#doc-template').html();
     this.tree = new StrtreeView();
     this.doc = new DocListView();
     this.doca = new DocListAView();
     this.docs = new DocsView();
-    this.md = new MdView();
+    this.md = new MdView(opt);
     this.adminList = new DocAdminView();
     this.strclient = new StrClientView();
+
+    this.id = opt.id;
+    this.parentId = opt.parentId;
   },
 
   render: function () {
     $(this.el).html(_.template(this.template, this.context));
 
     $(this.el).append(this.tree.el);
-    this.tree.setElement(this.$(".strtree-widget")).render();
+    this.tree.setElement(this.$(".strtree-widget")).render(this.parentId);
     
 
     if(window.clientUser.id && !window.user.id) {
@@ -382,10 +512,10 @@ var DocView = Backbone.View.extend({
 
     if(!window.user.id) {
       $(this.el).append(this.doc.el);
-      this.doc.setElement(this.$(".doclist-widget")).render();
+      this.doc.setElement(this.$(".doclist-widget")).render(this.parentId);
     } else {
       $(this.el).append(this.doca.el);
-      this.doca.setElement(this.$(".doclist-widget")).render();
+      this.doca.setElement(this.$(".doclist-widget")).render(this.parentId);
     }
     
     return this;
@@ -396,10 +526,12 @@ var MyDocView = Backbone.View.extend({
   className: 'MyDicView',
   events: {
     "click #add_file_show": "onAddFileShow",
-    "click #onLoadDoc": "onLoadDoc"
+    "click #onLoadDoc": "onLoadDoc",
+    "click #onLoadDocCancel": "onLoadDocCancel"
   },
 
-  initialize: function () {
+  initialize: function (opt) {
+
     this.template = $('#mydoc-template').html();
     this.tree = new StrtreeView();
     this.doc = new DocListView();
@@ -407,14 +539,12 @@ var MyDocView = Backbone.View.extend({
     this.docs = new DocsView();
     this.adminList = new DocAdminView();
     this.strclient = new StrClientView();
-    this.md = new MdView();
+    this.md = new MdView({id: ""});
   },
 
   render: function () {
     $(this.el).html(_.template(this.template, this.context));
 
-    $(this.el).append(this.tree.el);
-    this.tree.setElement(this.$(".strtree-widget")).render();
 
     if(window.clientUser.id && !window.user.id) {
       $(this.el).append(this.docs.el);
@@ -448,6 +578,58 @@ var MyDocView = Backbone.View.extend({
       $("#add_file_form").submit();
     }
     return false;
+  },
+  onLoadDocCancel: function(e) {
+
+  }
+});
+
+var MyDocEditView = Backbone.View.extend({
+  className: 'MyDicEditView',
+  events: {
+    "click #add_file_show": "onAddFileShow",
+    "click #onLoadDoc": "onLoadDoc",
+    "click #onLoadDocCancel": "onLoadDocCancel",
+    "click #access": "access",
+    "click #deny": "deny"
+  },
+
+  initialize: function (opt) {
+    this.template = $('#mydocedit-template').html();
+    this.tree = new StrtreeView();
+    this.doc = new DocListView();
+    this.doca = new DocListAView();
+    this.docs = new DocsView();
+    this.adminList = new DocAdminView();
+    this.strclient = new StrClientView();
+    this.md = new MdeView(opt);
+
+    this.id = opt.id;
+  },
+
+  render: function () {
+    $(this.el).html(_.template(this.template, this.context));
+
+
+    if(window.clientUser.id && !window.user.id) {
+      $(this.el).append(this.docs.el);
+      this.docs.setElement(this.$(".docs-widget")).render();
+    }
+
+    if(window.user.id) {
+      $(this.el).append(this.adminList.el);
+      this.adminList.setElement(this.$(".docadmin-widget")).render();
+    }
+
+    if(window.clientUser.id) {
+      $(this.el).append(this.strclient.el);
+      this.strclient.setElement(this.$(".strclient-widget")).render();
+    }
+
+     $(this.el).append(this.md.el);
+    this.md.setElement(this.$(".mydoceditf-widget")).render(this.id);
+    
+    return this;
   }
 });
 
@@ -467,8 +649,8 @@ var DocListView = Backbone.View.extend({
     this.docList.fetch();
   },
 
-  render: function () {
-    $(this.el).html(_.template(this.template, { user: window.clientUser, docs: this.docList.toJSON() }));
+  render: function (id) {
+    $(this.el).html(_.template(this.template, { user: window.clientUser, docs: this.docList.toJSON(), id: id }));
     
     return this;
   },
@@ -673,8 +855,37 @@ var StrtreeView = Backbone.View.extend({
     this.strList.fetch();
   },
 
-  render: function () {
-    $(this.el).html(_.template(this.template, { structs: this.strList.toJSON(), user: window.clientUser }));
+  render: function (id) {
+    $(this.el).html(_.template(this.template, { structs: this.strList.toJSON(), parentId: id }));
+    
+    return this;
+  },
+
+  onTreeItem: function(e) {
+    if(!window.user.id) {
+      $(".tree_item").removeClass("current");
+      $(e.target).addClass("current");
+
+      $(".not").hide();
+      $(".doc-list-items").fadeIn();
+
+    }
+     $(".col1").hide();
+  }
+});
+
+var TreeleftView = Backbone.View.extend({
+  className: 'treeleft',
+
+  initialize: function () {
+    this.template = $('#treeleft-template').html();
+
+    this.strList = new StrList();
+    this.strList.fetch();
+  },
+
+  render: function (id) {
+    $(this.el).html(_.template(this.template, { structs: this.strList.toJSON(), id: id }));
     
     return this;
   },
@@ -710,5 +921,15 @@ var StrList = Backbone.Collection.extend({
    url: '/api/structure/',
    parse: function(response, xhr) {
       return response.structs;
+   }
+});
+
+var DocnodeModel = Backbone.Model.extend();
+
+var DocnodeList = Backbone.Collection.extend({
+   model: DocnodeModel,
+   url: '/api/docnode/',
+   parse: function(response, xhr) {
+      return response.docnodes;
    }
 });

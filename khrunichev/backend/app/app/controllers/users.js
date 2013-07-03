@@ -1,11 +1,12 @@
 var Users = function () {
   this.respondsWith = ['html', 'json', 'xml', 'js', 'txt'];
 
-  this.index = function (req, resp, params) {
+  this.list = function (req, resp, params) {
     var self = this;
+    this.respondsWith = ['json', 'js']; 
 
-    geddy.model.User.all(function(err, users) {
-      self.respond({params: params, users: users});
+     geddy.model.User.all(function(err, users) {
+      self.respond({users: users});
     });
   };
 

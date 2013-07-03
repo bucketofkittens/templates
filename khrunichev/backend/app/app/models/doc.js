@@ -8,7 +8,8 @@ var Doc = function () {
     access1: {type: 'text'},
     access2: {type: 'text'},
     access3: {type: 'text'},
-    access4: {type: 'text'}
+    access4: {type: 'text'},
+    access1Id: {type: 'string'}
   });
 
   /*
@@ -16,6 +17,10 @@ var Doc = function () {
   this.property('password', 'string', {required: true});
   this.property('lastName', 'string');
   this.property('firstName', 'string');
+
+  Предприятие 1
+   Отдел 1
+   Старший механик
 
   this.validatesPresent('login');
   this.validatesFormat('login', /[a-z]+/, {message: 'Subdivisions!'});

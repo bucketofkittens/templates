@@ -5,8 +5,8 @@ var Docnode = function () {
     var self = this;
     this.respondsWith = ['json', 'js']; 
     
-    geddy.model.News.all(function(err, news) {
-      self.respond({news: news});
+    geddy.model.Docnode.all(function(err, docnodes) {
+      self.respond({docnodes: docnodes});
     });
   };
 
@@ -62,20 +62,10 @@ var Docnode = function () {
   this.create = function (req, resp, params) {
     this.respondsWith = ['json', 'js'];
     var self = this; 
-    var doc = geddy.model.Doc.create(params);
-
-    if (!doc.isValid()) {
-      params.errors = doc.errors;
-      self.transfer('add');
-    }
+    var doc = geddy.model.Docnode.create(params);
 
     doc.save(function(err, data) {
-      if (err) {
-        params.errors = err;
-        self.transfer('add');
-      } else {
-        self.respond({status: "ok"});
-      }
+      self.respond({status: "ok"});
     });
   };
   

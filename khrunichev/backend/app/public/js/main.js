@@ -19,8 +19,9 @@ var Controller = Backbone.Router.extend({
         "!/structure": "structure",
         "!/structure/view/:id": "structureView",
         "!/structure/add": "structureAdd",
-        "!/structure/document": "document",
+        "!/structure/document/:id/:parenId": "document",
         "!/structure/mydoc": "mydoc",
+        "!/structure/mydoc/:id": "mydocEdit",
         "!/structure/document/added": "documentAdded",
         "!/doc/edit/:id": "docEdit",
         "!/doc/access/:id": "docAccess",
@@ -203,8 +204,8 @@ var Controller = Backbone.Router.extend({
             $('#content').slideDown();
         });
     },
-    document: function() {
-      var doc = new DocView();
+    document: function(id, parentId) {
+      var doc = new DocView({id: id, parentId: parentId});
        $('#content').slideUp(function() {
             $('#content').html(doc.render().el);
             $('#content').slideDown();
@@ -214,6 +215,13 @@ var Controller = Backbone.Router.extend({
       var myDoc = new MyDocView();
        $('#content').slideUp(function() {
             $('#content').html(myDoc.render().el);
+            $('#content').slideDown();
+        });
+    },
+    mydocEdit: function(id) {
+      var myDocEdit = new MyDocEditView({id: id});
+       $('#content').slideUp(function() {
+            $('#content').html(myDocEdit.render().el);
             $('#content').slideDown();
         });
     },

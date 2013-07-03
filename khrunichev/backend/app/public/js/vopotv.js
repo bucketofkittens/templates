@@ -548,17 +548,23 @@ var VeditfrView = Backbone.View.extend({
 
     this.questOneList = new QuestOneList({}, {id: opt.id});
     this.questOneList.fetch();
+
+    this.userList = new Questinsrole();
   },
 
   render: function () {
     $(this.el).html(_.template(this.template, { quests: this.questOneList.toJSON() }));
+
+    $(this.el).append(this.userList.el);
+    this.userList.setElement(this.$(".questinsrole-widget")).render(this.questOneList.toJSON()[0].adminId);
     
     return this;
   },
 
   onVeditRUpdate: function(e) {
     var params = {};
-    params.status = $("#quiz_status option:selected").val();
+    params.status  = $("#quiz_status option:selected").val();
+    params.adminId = $("#roleId option:selected").val();
 
     if($("#quiz_pub").prop("checked")) {
       params.pub = 1;
@@ -576,6 +582,23 @@ var VeditfrView = Backbone.View.extend({
   }
 });
 
+var Questinsrole = Backbone.View.extend({
+  className: 'questinsrole',
+
+  initialize: function (opt) {
+    this.template = $('#questinsrole-template').html();
+
+    this.userList = new UserList();
+    this.userList.fetch();
+  },
+
+  render: function (currentUserId) {
+    $(this.el).html(_.template(this.template, { users: this.userList.toJSON(), currentUserId: currentUserId }));
+    
+    return this;
+  }
+});
+
 var QuestModel = Backbone.Model.extend();
 
 var QuestList = Backbone.Collection.extend({
@@ -583,6 +606,16 @@ var QuestList = Backbone.Collection.extend({
    url: '/api/quest',
    parse: function(response, xhr) {
       return response.quests;
+  }
+});
+
+var UserModel = Backbone.Model.extend();
+
+var UserList = Backbone.Collection.extend({
+   model: UserModel,
+   url: '/api/user',
+   parse: function(response, xhr) {
+      return response.users;
   }
 });
 

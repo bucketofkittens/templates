@@ -52,6 +52,8 @@ router.match('/api/hall/delete/:id', 'GET').to('Hall.destroy');
 
 router.match('/api/doc', 'GET').to('Doc.list');
 router.match('/api/doc/create', 'POST').to('Doc.create');
+router.match('/api/doc/update/:id', 'POST').to('Doc.update');
+router.match('/api/doc/update2/:id', 'POST').to('Doc.update2');
 router.match('/api/doc/delete/:id', 'GET').to('Doc.destroy');
 
 router.match('/api/docnode', 'GET').to('Docnode.list');
@@ -72,6 +74,8 @@ router.match('/api/auth/status', 'GET').to('Auth.status');
 router.match('/api/auth/client/status', 'GET').to('Auth.statusClient');
 router.match('/api/auth/logout', 'GET').to('Auth.logout');
 router.match('/api/auth/client/logout', 'GET').to('Auth.logoutClient');
+
+router.match('/api/user', 'GET').to('Users.list');
 
 // Basic routes
 // router.match('/moving/pictures/:id', 'GET').to('Moving.pictures');

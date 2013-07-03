@@ -2,7 +2,11 @@ var User = function () {
 
   this.defineProperties({
     email: {type: 'string'},
-    password: {type: 'string'}
+    pred: {type: 'string'},
+    otd: {type: 'string'},
+    dol: {type: 'string'},
+    password: {type: 'string'},
+    fio: {type: 'string'}
   });
   
   
