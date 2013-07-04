@@ -162,7 +162,6 @@ footer p {
 	padding-right: 0px;
 }
 #content #center_small .blue_box .all {
-	font-size: 12px;
 	padding-left: 20px;
 }
 
@@ -261,7 +260,7 @@ footer p {
 	border: 1px solid #ffffff;
 }
 .blue_box .in .quiz_small section img {
-	margin: 0px 70px;
+	margin: 0px 50px 0px 10px;
 	vertical-align: middle
 }
 .blue_box .in .quiz_small section strong {
@@ -313,8 +312,8 @@ footer p {
 	color: #575757;
 }
 .blue_box .in section p {
-	font-style: italic;
-	font-weight: bold;
+	font-size: 15px;
+	line-height: 120%;
 	padding: 10px 20px;
 }
 
@@ -756,4 +755,73 @@ footer p {
 
 .add_f {
 	display: none;
+}
+
+.plus {
+	display: inline-block;
+	width: 32px;
+	height: 32px;
+	background: url("../images/plus.png") left top no-repeat;
+}
+
+.minus {
+	display: inline-block;
+	width: 32px;
+	height: 32px;
+	background: url("../images/minus.png") left top no-repeat;
+}
+
+.list-sdi a {
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.list-sdi a.title {
+	max-width: 100px;
+}
+
+.folders li {
+	display: inline-block !important;
+	width: 200px;
+	padding: 5px;
+	border: 1px solid transparent;
+}
+.folders li * {
+	display: inline-block;
+	vertical-align: middle;
+}
+.folders li:hover {
+	border: 1px solid #666666;
+	border-radius: 10px;
+}
+
+.startman-widget .blue_box .in section p {
+	font-weight: normal;
+	line-height: 120%;
+	font-style: normal;
+	text-align: justify;
+	font-size: 15px;
+	padding-left: 5px;
+}
+
+.startnew-widget p {
+	text-align: justify;
+}
+
+.quiz_small p {
+	text-align: justify;
+}
+
+.news_small {
+	text-align: justify;
+}
+.blue_box .in .news_list article div {
+	text-align: justify;
+}
+
+.blue_box .in .news_list article p {
+	text-align: justify;
+}
+.news_small p {
+	font-size: 14px;
 }

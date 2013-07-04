@@ -78,8 +78,8 @@
 								<% } %>
 							<% }); %>
 							<article>
-							<a href="#!/news">Все новости</a>
 						</section>
+						<a href="#!/news" style="position: relative; left: 20px;">Все новости</a>
 					</div>
 				</div>
 			<% } %>
@@ -95,10 +95,8 @@
 								<% _.each(halls, function(hallItem) { %>
 									<% i++; %>
 									<% if(i < 2) { %>
-										<section>
-											<strong><img src="./images/bugaiskii.jpg" alt="" /><%= hallItem.fio %></strong>
-											<p><%= hallItem.text %></p>
-										</section>
+										<strong><img src="./images/bugaiskii.jpg" alt="" /><%= hallItem.fio %></strong>
+										<p><%= hallItem.text %></p>
 									<% } %>
 								<% }); %>
 							</section>
@@ -303,22 +301,21 @@
 							</select>
 							<hr>
 							
-									<section class="news_list">
-										<% _.each(newspapers, function(newspaperItem) { %>
-											<div class="gray_box" style="width: 100%;">
-												<div class="in">
-													<article>
-														<%= newspaperItem.title %></a>
-														<p class="text"><%= newspaperItem.text %></p>
-														<p class="text">Год выпуска: <%= newspaperItem.age %></p>
-														<p class="text">Номер: <%= newspaperItem.number %></p>
-														<p class="text"><a href="/upload/<%= newspaperItem.link %>" title="">Скачать</a></p>
-													</article>
-												</div>
-											</div>
-											<br /><br />
-										<% }); %>
-									</section>
+							<section class="news_list">
+								<% _.each(newspapers, function(newspaperItem) { %>
+									<div class="gray_box" style="width: 100%;">
+										<div class="in">
+											<article>
+												<p style="font-weight: bold">Год выпуска: <%= newspaperItem.age %>. Номер: <%= newspaperItem.number %></p> 
+												<p > В номере: <br /><%= newspaperItem.title %></p>
+												<div style="width: 100%; float: none;" class="text"><%= newspaperItem.text %></div>
+												<div style="width: 100%; float: none;" class="text"><a href="/upload/<%= newspaperItem.link %>" title="">Скачать</a></div>
+											</article>
+										</div>
+									</div>
+									<br /><br />
+								<% }); %>
+							</section>
 						</div>
 					</div>
 				</div>
@@ -1156,22 +1153,46 @@
 				</div>
 			</div>
 		</script>
+
+		<script id="superfolder-template" type="text/template">
+			<div id="content">
+				<div id="center" style="width: 100%;">
+					<div class="gray_box" style="width: 100%;">
+						<div class="in">
+							<ul class="folders">
+								<% _.each(groups, function(groupsItem) { %>
+									<li>
+										<img src="/images/folder.png" alt="" style="width: 60px;" />
+										<a href="#!/search/group/<%= groupsItem.GUID %>" title=""><%= groupsItem.NAME %></a>
+									</li>
+								<% }); %>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</script>
+
+		
 		<script id="seanav-template" type="text/template">
 			<div class="gray_box">
 				<div class="in">
-					<ul class="list">
-						<li><a href="./spravochnik.html">Справочник</a>
+					<ul class="list list-sdi">
+						<li>
+							<a href="#" title="" class="minus"></a><a href="./spravochnik.html" class="title">Справочник</a>
 							<ul>
-								<li><a href="./spravochnik.html">Крепежные изделия</a>
+								<li>
+									<a href="#" title="" class="minus"></a>
+									<a href="./spravochnik.html" class="title">Крепежные изделия</a>
 									<ul>
-										<li><a href="./spravochnik.html">Болты</a></li>
-										<li><a href="./spravochnik.html">Винты</a></li>
-										<li><a href="./spravochnik.html" class="current">Гайки</a></li>
-										<li><a href="./spravochnik.html">Шайбы</a></li>
+										<li><a href="#" title="" class="plus"></a><a href="./spravochnik.html">Болты</a></li>
+										<li><a href="#" title="" class="plus"></a><a href="./spravochnik.html">Винты</a></li>
+										<li><a href="#" title="" class="plus"></a><a href="./spravochnik.html" class="current">Гайки</a></li>
+										<li><a href="#" title="" class="plus"></a><a href="./spravochnik.html">Шайбы</a></li>
 									</ul>
 								</li>
-								<li><a href="#">Средства измерения</a></li>
-								<li><a href="#">Оборудование</a></li>
+								<li><a href="#" title="" class="plus"></a><a href="#" class="title">Средства измерения</a></li>
+								<li><a href="#" title="" class="plus"></a><a href="#" class="title">Оборудование</a></li>
 							</ul>
 						</li>
 					</ul>

@@ -167,10 +167,10 @@ var NewsnavView = Backbone.View.extend({
     var id = $(e.target).attr("data-id");
     window.location.hash = '#!/news';
 
-    $(".news_list article").slideDown();
+    $(".news_list article").parents(".gray_box").slideDown();
 
     if(id != 0) {
-      $(".news_list article[data-newsnavid!='"+id+"']").slideUp();
+      $(".news_list article[data-newsnavid!='"+id+"']").parents(".gray_box").slideUp();
     }
   },
 

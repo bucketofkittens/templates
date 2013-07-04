@@ -49,3 +49,52 @@ var SeaboxView = Backbone.View.extend({
     return this;
   }
 });
+
+var SearchFolderView = Backbone.View.extend({
+  className: 'superfolder',
+
+  initialize: function () {
+    this.template = $('#superfolder-template').html();
+
+    this.superFolderModel = new SearchFolderList();
+    this.superFolderModel.fetch();
+  },
+
+  render: function () {
+    $(this.el).html(_.template(this.template, { groups: this.superFolderModel.toJSON() } ));
+    
+    return this;
+  }
+});
+
+var SearchInView = Backbone.View.extend({
+  className: 'superin',
+
+  initialize: function () {
+    this.template = $('#superin-template').html();
+
+    this.superFolderModel = new SearchFolderList();
+    this.superFolderModel.fetch();
+  },
+
+  render: function () {
+    $(this.el).html(_.template(this.template, { groups: this.superFolderModel.toJSON() } ));
+    
+    return this;
+  }
+});
+
+
+
+
+var SearchFolderModel = Backbone.Model.extend();
+
+var SearchFolderList = Backbone.Collection.extend({
+   model: SearchFolderModel,
+   initialize: function(models, options) {
+    this.url = '/api/sdi/groups';
+   },
+   parse: function(response, xhr) {
+      return response.results;
+  }
+});
