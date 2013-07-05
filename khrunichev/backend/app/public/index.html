@@ -287,19 +287,20 @@
 			<div id="content">
 				<div id="left">
 					<div class="newspaperadmin-widget"></div>
-					<div class="startnag-widget"></div>
+					<div class="gray_box">
+					<div class="in">
+						<h3>Фильтр по году выпуска</h3>
+						<select name="">
+							<option value="0">Все</option>
+							<option value="2013">2013</option>
+						</select>
+					</div>
+				</div>
 				</div>
 				<div id="center">
 					<div class="blue_box">
 						<div class="in">
 							<h2>Газета "Все для родины"</h2>
-							<hr>
-							<label>Год выпуска:</label>
-							<select name="">
-								<option value="0">Все</option>
-								<option value="2013">2013</option>
-							</select>
-							<hr>
 							
 							<section class="news_list">
 								<% _.each(newspapers, function(newspaperItem) { %>
@@ -772,7 +773,7 @@
 				<div class="in">
 					<form action="index_submit" method="get" accept-charset="utf-8" class="form">
 						<h2>Задать вопрос</h2>
-						<div class="angst" style="color: red; position: relative; left: 0px; right: auto; margin-top: 10px; margin-bottom: 0px; height: 60px;">* <p>Внимание! Все поля обязательны для заполнения!</p></div>
+						<div class="angst" style="color: red; position: relative; left: 0px; right: auto; margin-top: 10px; margin-bottom: 0px; height: 60px;"> <p>Внимание! Все поля обязательны для заполнения!</p></div>
 						<div class="send">
 							<p>Категория</p>
 							<span class="navselect-widget"></span>
@@ -884,6 +885,7 @@
 				structs
 			</select>
 		</script>
+
 		<script id="vootbox-template" type="text/template">
 			<div class="blue_box">
 				<div class="in">
@@ -891,7 +893,7 @@
 					<% _.each(quests, function(questItem) { %>
 						<% if(questItem.pub == 1) { %>
 							<section class="q" data-nav="<%= questItem.questnavId %>">
-								<i><%= questItem.createdAt %></i>
+								<i><%= questItem.createdAt.substr(0, 10) %></i>
 								<b><%= questItem.fio %></b>
 								<!--
 								<b>Предприятие А, подразделение 1, отдел 1x</b>
@@ -1064,9 +1066,14 @@
 			<div class="blue_box">
 				<div class="in">
 					<div class="b_i">
-						<h2>Государственный космический<br />
+						<div class="bl" style="max-width: 400px; margin-left: auto; margin-right: auto; padding: 5px;">
+						<h2 style="margin-bottom: 5px; font-weight: bold;">Государственный космический<br />
 							научно-производственный центр <br />
 							имени М.В.Хруничева</h2>
+							<span class="itt">
+								<span style="font-style: italic;">Генеральный директор:</span>  Селиверстов А. И.
+							</span>
+						</div>
 							<section class="stages" style="padding-top: 10px;">
 								<% _.each(structs, function(structsItem) { %>
 									<% if(structsItem.parentId == 0) { %>
@@ -1173,32 +1180,58 @@
 			</div>
 		</script>
 
+		<script id="superin-template" type="text/template">
+			<div id="content">
+				<div id="center" style="width: 100%;">
+					<div class="gray_box" style="width: 100%;">
+						<div class="in">
+							<a href="#!/search" title="">Назад</a>
+							<ul class="folders">
+								<% _.each(groups, function(groupsItem) { %>
+									<li>
+										<img src="/images/folder.png" alt="" style="width: 60px;" />
+										<a href="#!/search/tree/250a3txX3_J.seL4UqJCKc" title=""><%= groupsItem.NAMESCREEN %></a>
+									</li>
+								<% }); %>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</script>
+
 		
 		<script id="seanav-template" type="text/template">
 			<div class="gray_box">
 				<div class="in">
 					<ul class="list list-sdi">
-						<li>
-							<a href="#" title="" class="minus"></a><a href="./spravochnik.html" class="title">Справочник</a>
-							<ul>
-								<li>
-									<a href="#" title="" class="minus"></a>
-									<a href="./spravochnik.html" class="title">Крепежные изделия</a>
-									<ul>
-										<li><a href="#" title="" class="plus"></a><a href="./spravochnik.html">Болты</a></li>
-										<li><a href="#" title="" class="plus"></a><a href="./spravochnik.html">Винты</a></li>
-										<li><a href="#" title="" class="plus"></a><a href="./spravochnik.html" class="current">Гайки</a></li>
-										<li><a href="#" title="" class="plus"></a><a href="./spravochnik.html">Шайбы</a></li>
-									</ul>
-								</li>
-								<li><a href="#" title="" class="plus"></a><a href="#" class="title">Средства измерения</a></li>
-								<li><a href="#" title="" class="plus"></a><a href="#" class="title">Оборудование</a></li>
-							</ul>
-						</li>
+						<% _.each(tree, function(treeItem) { %>
+							<li>
+								<a href="#" title="" class="plus"></a><a style="width: 140px;" class="in" class="title" data-id="<%= treeItem.CLASSID %>"><%= treeItem.DISPLAYNAME %></a>
+								<div class="append"></div>
+								<!--
+								<ul>
+									<li>
+										<a href="#" title="" class="minus"></a>
+										<a href="./spravochnik.html" class="title">Крепежные изделия</a>
+										<ul>
+											<li><a href="#" title="" class="plus"></a><a href="./spravochnik.html">Болты</a></li>
+											<li><a href="#" title="" class="plus"></a><a href="./spravochnik.html">Винты</a></li>
+											<li><a href="#" title="" class="plus"></a><a href="./spravochnik.html" class="current">Гайки</a></li>
+											<li><a href="#" title="" class="plus"></a><a href="./spravochnik.html">Шайбы</a></li>
+										</ul>
+									</li>
+									<li><a href="#" title="" class="plus"></a><a href="#" class="title">Средства измерения</a></li>
+									<li><a href="#" title="" class="plus"></a><a href="#" class="title">Оборудование</a></li>
+								</ul>
+								-->
+							</li>
+						<% }); %>
 					</ul>
 				</div>
 			</div>
 		</script>
+		
 		<script id="topnav-template" type="text/template">
 			<ul id="topnav">
 				<li class="enter-item"><a href="#!/login">Регистрация</a></li>
@@ -1481,22 +1514,19 @@
 			</div>
 		</script>
 
-		
-
 		<script id="supersub-template" type="text/template">
-			<% if(window.user.roleId != 10) { %>
-				<div class="blue_box">
-					<div class="in">
-						<h2>Администрирование</h2>
-						<ul>
-							<li><a href="#!/questions" title="">Администрирование вопросов и ответов</a></li>
-							<li><a href="#!/structure/mydoc" title="">Согласование должностных инструкций</a></li>
-							<li><a href="#!/search" title="">Нормативно-справочная информация</a></li>
-							<li><a href="/upload/1.pdf" title="">Единый телефонный справочник ГКНПЦ им. М.В. Хруничева</a></li>
-						</ul>
-					</div>
+			<div class="blue_box">
+				<div class="in">
+					<h2>Администрирование</h2>
+					<ul>
+						<li><a href="#!/questions" title="">Администрирование вопросов и ответов</a></li>
+						<li><a href="#!/structure/mydoc" title="">Согласование должностных инструкций</a></li>
+						<li><a href="#!/search" title="">Нормативно-справочная информация</a></li>
+						<li><a href="/upload/1.pdf" title="">Единый телефонный справочник ГКНПЦ им. М.В. Хруничева</a></li>
+						<li><a href="/upload/map.jpg" title="">Карта КНПЦ имени М.В.Хруничева</a></li>
+					</ul>
 				</div>
-			<% } %>
+			</div>
 		</script>
 
 		<script id="docsadmin-template" type="text/template">
@@ -1556,9 +1586,9 @@
 											<% if (docItem.status == 1) { %>Одобрено<% } %>
 										</td>
 										<td>
-											<% if (docItem.access1 != 1) { %>Старший механик<% } %>
-											<% if (docItem.access2 != 1 && docItem.access1 == 1) { %>Начальник отдела<% } %>
-											<% if (docItem.access3 != 1 && docItem.access1 == 1 && docItem.access2 == 1) { %>Стасюк )<% } %>
+											<% if (docItem.access1 != 1) { %>Начальник отдела<% } %>
+											<% if (docItem.access2 != 1 && docItem.access1 == 1) { %>Руководитель юридической службы<% } %>
+											<% if (docItem.access3 != 1 && docItem.access1 == 1 && docItem.access2 == 1) { %>Руководитель департамента труда и заработной платы<% } %>
 										</td>
 										<td>
 											<a style="padding-bottom: 2px;" href="/upload/<%= docItem.file %>" title="">Скачать</a>
@@ -1585,13 +1615,14 @@
 							<label>
 								Список согласования:<br /> 
 								<div class="access1-widget"></div>
-								<select name="access2Id" id="">
-									<option value="1">Начальник отдела</option>
+								<select name="access2Id" id="" style="width: 100%;">
+									<option value="1">Руководитель юридической службы</option>
 								</select><br />
-								<select name="access3Id" id="">
-									<option value="1">Стасюк</option>
-								</select><br />
-								<select name="access4Id" id="">
+								<select name="access3Id" id="" style="width: 100%;">
+									<option value="1">Руководитель департамента труда и заработной платы</option>
+								</select><br /><br />
+								Документ утверждает:<br />
+								<select name="access4Id" id="" style="width: 100%;">
 									<option value="1">Генеральный директор</option>
 								</select>
 							</label><br /><br />
@@ -1681,13 +1712,14 @@
 							<label>
 								Список согласования:<br /> 
 								<div class="access1-widget"></div>
-								<select name="access2Id" id="">
-									<option value="1">Начальник отдела</option>
+								<select name="access2Id" id="" style="width: 100%;">
+									<option value="1">Руководитель юридической службы</option>
 								</select><br />
-								<select name="access3Id" id="">
-									<option value="1">Стасюк</option>
+								<select name="access3Id" id="" style="width: 100%;">
+									<option value="1">Руководитель департамента труда и заработной платы</option>
 								</select><br />
-								<select name="access4Id" id="">
+								Документ утверждает:<br />
+								<select name="access4Id" id="" style="width: 100%;">
 									<option value="1">Генеральный директор</option>
 								</select>
 							</label><br /><br />
@@ -1706,10 +1738,11 @@
 		</script>
 
 		<script id="access1-template" type="text/template">
-			<select name="access1Id" id="">
+			<select name="access1Id" id="" style="width: 100%;">
+				<option value=""></option>
 				<% _.each(users, function(userItem) { %>
 					<% if(userItem.roleId == 11 && userItem.id != window.user.id) { %>
-						<option value="<%= userItem.id %>"><%= userItem.email %></option>
+						<option value="<%= userItem.id %>"><%= userItem.dol %></option>
 					<% } %>
 				<% }); %>
 			</select>

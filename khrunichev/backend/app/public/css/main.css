@@ -324,15 +324,12 @@ footer p {
 	margin-top: 120px;
 }
 .blue_box .in .angst p {
-	width: 230px;
-	position: absolute;
-	left: 10px;
-	top: 0px;
+	text-align: center;
 	font-size: 14px;
 }
 .blue_box .in .send {
 	display: block;
-	padding: 15px 20px;
+	padding: 6px 20px;
 }
 .blue_box .in .send p, .blue_box .in .send input, .blue_box .in .send select, .blue_box .in .send textarea {
 	display: inline-block;
@@ -789,6 +786,10 @@ footer p {
 .folders li * {
 	display: inline-block;
 	vertical-align: middle;
+	
+}
+.folders li a {
+	max-width: 100px;
 }
 .folders li:hover {
 	border: 1px solid #666666;
@@ -824,4 +825,13 @@ footer p {
 }
 .news_small p {
 	font-size: 14px;
+}
+
+.bl {
+	background: rgba(255, 255, 255, 0.5);
+	border-radius: 10px;
+	margin-bottom: 10px;
+	margin-left: 10px;
+	padding: 3px;
+	position: relative;
 }

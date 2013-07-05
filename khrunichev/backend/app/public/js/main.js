@@ -27,6 +27,7 @@ var Controller = Backbone.Router.extend({
         "!/doc/access/:id": "docAccess",
         "!/search": "search",
         "!/search/group/:id": "searchGroup",
+        "!/search/tree/:id": "searchTree",
         "!/login": "login",
         "!/logout": "logout",
         "!/logout/client": "logoutClient",
@@ -247,6 +248,13 @@ var Controller = Backbone.Router.extend({
             $('#content').slideDown();
         });
     },
+    searchTree: function(id) {
+      var search = new SearchView({id: id});
+       $('#content').slideUp(function() {
+            $('#content').html(search.render().el);
+            $('#content').slideDown();
+        });
+     },
     logout: function() {
       $.ajax(
         "/api/auth/logout",

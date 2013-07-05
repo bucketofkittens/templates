@@ -1,12 +1,10 @@
 var SearchView = Backbone.View.extend({
   className: 'search',
-  seanav: null,
-  seabox: null,
 
-  initialize: function () {
+  initialize: function (opt) {
     this.template = $('#search-template').html();
-    this.seanav = new SeanavView();
-    this.seabox = new SeaboxView();
+    this.seanav = new SeanavView(opt);
+    this.seabox = new SeaboxView(opt);
   },
 
   render: function () {
@@ -25,12 +23,16 @@ var SearchView = Backbone.View.extend({
 var SeanavView = Backbone.View.extend({
   className: 'seanav',
 
-  initialize: function () {
+  initialize: function (opt) {
     this.template = $('#seanav-template').html();
+
+    this.tree = new SearchTreeList();
+    this.tree.fetch({data: {id: opt.id}, type: 'POST'});
   },
 
   render: function () {
-    $(this.el).html(_.template(this.template, this.context));
+    console.log(this.tree.toJSON());
+    $(this.el).html(_.template(this.template, { tree: this.tree.toJSON() }));
     
     return this;
   }
@@ -70,11 +72,11 @@ var SearchFolderView = Backbone.View.extend({
 var SearchInView = Backbone.View.extend({
   className: 'superin',
 
-  initialize: function () {
+  initialize: function (opt) {
     this.template = $('#superin-template').html();
 
-    this.superFolderModel = new SearchFolderList();
-    this.superFolderModel.fetch();
+    this.superFolderModel = new SearchFolderInList();
+    this.superFolderModel.fetch({data: {id: opt.id}, type: 'POST'});
   },
 
   render: function () {
@@ -94,6 +96,30 @@ var SearchFolderList = Backbone.Collection.extend({
    initialize: function(models, options) {
     this.url = '/api/sdi/groups';
    },
+   parse: function(response, xhr) {
+      return response.results;
+  }
+});
+
+var SearchFolderInModel = Backbone.Model.extend();
+
+var SearchFolderInList = Backbone.Collection.extend({
+   model: SearchFolderInModel,
+   initialize: function(models, options) {
+   },
+   url: '/api/sdi/groups/in/',
+   parse: function(response, xhr) {
+      return response.results;
+  }
+});
+
+var SearchTreeModel = Backbone.Model.extend();
+
+var SearchTreeList = Backbone.Collection.extend({
+   model: SearchTreeModel,
+   initialize: function(models, options) {
+   },
+   url: '/api/sdi/tree/',
    parse: function(response, xhr) {
       return response.results;
   }

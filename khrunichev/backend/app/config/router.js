@@ -76,7 +76,9 @@ router.match('/api/auth/logout', 'GET').to('Auth.logout');
 router.match('/api/auth/client/logout', 'GET').to('Auth.logoutClient');
 
 router.match('/api/sdi/groups', 'GET').to('Sdi.groups');
-router.match('/api/sdi/groups/in/:id', 'GET').to('Sdi.groupsIn');
+router.match('/api/sdi/groups/in', 'POST').to('Sdi.groupsIn');
+router.match('/api/sdi/tree', 'POST').to('Sdi.tree');
+router.match('/api/sdi/tree2', 'POST').to('Sdi.tree2');
 
 router.match('/api/user', 'GET').to('Users.list');
 
