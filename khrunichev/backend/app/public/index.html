@@ -1200,36 +1200,31 @@
 			</div>
 		</script>
 
-		
 		<script id="seanav-template" type="text/template">
 			<div class="gray_box">
 				<div class="in">
+					<a href="#!/search/group/aqw.jrLHmyQkDnaw2U.8Qc" title="">Назад</a>
 					<ul class="list list-sdi">
 						<% _.each(tree, function(treeItem) { %>
 							<li>
-								<a href="#" title="" class="plus"></a><a style="width: 140px;" class="in" class="title" data-id="<%= treeItem.CLASSID %>"><%= treeItem.DISPLAYNAME %></a>
+								<a title="" class="plus"></a><a style="width: 140px;" class="inc title" data-class="<%= treeItem.CLASSID %>" data-id="<%= treeItem.GUID %>"><%= treeItem.DISPLAYNAME %></a>
 								<div class="append"></div>
-								<!--
-								<ul>
-									<li>
-										<a href="#" title="" class="minus"></a>
-										<a href="./spravochnik.html" class="title">Крепежные изделия</a>
-										<ul>
-											<li><a href="#" title="" class="plus"></a><a href="./spravochnik.html">Болты</a></li>
-											<li><a href="#" title="" class="plus"></a><a href="./spravochnik.html">Винты</a></li>
-											<li><a href="#" title="" class="plus"></a><a href="./spravochnik.html" class="current">Гайки</a></li>
-											<li><a href="#" title="" class="plus"></a><a href="./spravochnik.html">Шайбы</a></li>
-										</ul>
-									</li>
-									<li><a href="#" title="" class="plus"></a><a href="#" class="title">Средства измерения</a></li>
-									<li><a href="#" title="" class="plus"></a><a href="#" class="title">Оборудование</a></li>
-								</ul>
-								-->
 							</li>
 						<% }); %>
 					</ul>
 				</div>
 			</div>
+		</script>
+
+		<script id="seanavin-template" type="text/template">
+			<ul class="list list-sdi">
+				<% _.each(tree, function(treeItem) { %>
+					<li>
+						<a href="#" title="" class="plus"></a><a style="width: 140px;" class="inc title" data-class="<%= treeItem.CLASSID %>" data-id="<%= treeItem.GUID %>"><%= treeItem.DISPLAYNAME %></a>
+						<div class="append"></div>
+					</li>
+				<% }); %>
+			</ul>
 		</script>
 		
 		<script id="topnav-template" type="text/template">
@@ -1240,6 +1235,38 @@
 				<li class="event-item"><a href="#!/event">События</a></li>
 			</ul>
 		</script>
+		<script id="seacontent-template" type="text/template">
+			<div class="gray_box" style="width: 100%;">
+				<div class="in">
+					<table>
+						<thead>
+							<tr>
+								<% _.each(tree[0].cols, function(treeItem) { %>
+									<th style="font-weight:bold; text-align: left; padding: 4px;"><%= treeItem.NAMESCREEN %></th>
+								<% }); %>
+							</tr>
+						</thead>
+						<tbody>
+							<% var i = 0; %>
+							<% _.each(tree[0].rows, function(rowItem) { %>
+								<tr>
+									
+									<% i++; %>
+									<% _.each(rowItem, function(rowItem2, key) { %>
+										<% if(key != "MATRLOCATION" && key != "DESCRIPTION" && key != "PICTURE" && key != "APPLY" && key != "ID" && key != "CHCNT_MARKA" && key != "TEMPLATE_NAME_TYPESIZE" && key != "GUID") { %>
+											
+											<td style="padding: 4px; <% if(i%2) { %>background: #bbbbbb;<% } %>"><%= rowItem2 %></td>
+										<% } %>
+									<% }); %>
+								</tr>
+							<% }); %>
+							
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</script>
+		
 		<script id="seabox-template" type="text/template">
 			<div class="blue_box">
 				<div class="in">
@@ -1258,6 +1285,9 @@
 				</div>
 			</div>
 			<br />
+			<div id="seacontent"></div>
+			<!--
+			
 			<div class="blue_box">
 				<div class="in">
 					<a href="./spravochnik.html" class="current nav1">Таблица</a>
@@ -1302,6 +1332,7 @@
 					<hr>
 				</div>
 			</div>
+			-->
 		</script>
 
 		<script id="doc-template" type="text/template">

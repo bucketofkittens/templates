@@ -22,6 +22,9 @@ var SearchView = Backbone.View.extend({
 
 var SeanavView = Backbone.View.extend({
   className: 'seanav',
+  events: {
+    "click .inc": "onCurrent"
+  },
 
   initialize: function (opt) {
     this.template = $('#seanav-template').html();
@@ -31,8 +34,70 @@ var SeanavView = Backbone.View.extend({
   },
 
   render: function () {
-    console.log(this.tree.toJSON());
     $(this.el).html(_.template(this.template, { tree: this.tree.toJSON() }));
+    
+    return this;
+  },
+
+  onCurrent: function(e) {
+    var self = this;
+    var tree = new SearchTreeInList();
+    var inView = new SeanavInView({collection : tree});
+    
+    tree.fetch({
+      data: {id:$(e.target).attr("data-id")}, 
+      type: 'POST',
+      success : function(collection) {
+        $(e.target).parent().find(".plus").removeClass("plus").addClass("minus");
+        $(e.target).parent().find(".append").css("display", "none").html(inView.render().el);
+        $(e.target).parent().find(".append").slideDown();
+      }
+    });
+
+    var content = new SearchContentList();
+    var contentView = new SeaContentView({collection : content});
+    
+    content.fetch({
+      data: {className: $(e.target).attr("data-class"), id: $(e.target).attr("data-id")}, 
+      type: 'POST',
+      success : function(collection) {
+        $("#seacontent").css("display", "none").html(contentView.render().el);
+        $("#seacontent").slideDown();
+      }
+    });
+  }
+});
+
+var SeanavInView = Backbone.View.extend({
+  className: 'seanav',
+  events: {
+    "click .in": "onCurrent"
+  },
+
+  initialize: function (opt) {
+    this.template = $('#seanavin-template').html();
+  },
+
+  render: function () {
+    $(this.el).html(_.template(this.template, { tree: this.collection.toJSON() }));
+    
+    return this;
+  },
+
+  onCurrent: function(e) {
+    console.log(e);
+  }
+});
+
+var SeaContentView = Backbone.View.extend({
+  className: 'seacontent',
+
+  initialize: function (opt) {
+    this.template = $('#seacontent-template').html();
+  },
+
+  render: function () {
+    $(this.el).html(_.template(this.template, { tree: this.collection.toJSON() }));
     
     return this;
   }
@@ -120,6 +185,30 @@ var SearchTreeList = Backbone.Collection.extend({
    initialize: function(models, options) {
    },
    url: '/api/sdi/tree/',
+   parse: function(response, xhr) {
+      return response.results;
+  }
+});
+
+var SearchTreeInModel = Backbone.Model.extend();
+
+var SearchTreeInList = Backbone.Collection.extend({
+   model: SearchTreeInModel,
+   initialize: function(models, options) {
+   },
+   url: '/api/sdi/tree2/',
+   parse: function(response, xhr) {
+      return response.results;
+  }
+});
+
+var SearchContentModel = Backbone.Model.extend();
+
+var SearchContentList = Backbone.Collection.extend({
+   model: SearchTreeInModel,
+   initialize: function(models, options) {
+   },
+   url: '/api/sdi/content/',
    parse: function(response, xhr) {
       return response.results;
   }

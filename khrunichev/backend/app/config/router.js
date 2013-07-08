@@ -79,6 +79,7 @@ router.match('/api/sdi/groups', 'GET').to('Sdi.groups');
 router.match('/api/sdi/groups/in', 'POST').to('Sdi.groupsIn');
 router.match('/api/sdi/tree', 'POST').to('Sdi.tree');
 router.match('/api/sdi/tree2', 'POST').to('Sdi.tree2');
+router.match('/api/sdi/content', 'POST').to('Sdi.content');
 
 router.match('/api/user', 'GET').to('Users.list');
 
