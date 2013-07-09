@@ -52,10 +52,20 @@ var Controller = Backbone.Router.extend({
     },
     news: function() {
        var news = new NewsView();
-       $('#content').slideUp(function() {
-            $('#content').html(news.render().el);
-            $('#content').slideDown();
-        });
+        $('#content').animate({
+              left: "-1500px"
+            }, function() {
+              $('#content').css('display', "none").css('left', "1500px");
+              $('#content').html(news.render().el);
+              $('#content').css('display', "block").animate({
+                left: "0px"
+              });
+            })
+       //$('#content').slideUp(function() {
+           
+            //$('#content').html(news.render().el);
+            //$('#content').slideDown();
+        //});
     },
     login: function() {
        var login = new LoginView();
@@ -66,10 +76,15 @@ var Controller = Backbone.Router.extend({
     },
     newsitem: function(id) {
        var newsItem = new NewsitemView({id: id});
-       $('#content').slideUp(function() {
-            $('#content').html(newsItem.render().el);
-            $('#content').slideDown();
-        });
+        $('#content').animate({
+              bottom: "-1500px"
+            }, function() {
+              $('#content').css('display', "none").css('bottom', "1500px");
+              $('#content').html(newsItem.render().el);
+              $('#content').css('display', "block").animate({
+                bottom: "0px"
+              });
+            })
     },
     newsadd: function() {
        var newsAdd = new NewsaddView();
@@ -186,17 +201,30 @@ var Controller = Backbone.Router.extend({
     },
     structure: function() {
        var str = new StrView();
-       $('#content').slideUp(function() {
+       $('#content').fadeOut(function() {
+        $('#content').html(str.render().el);
+        $('#content').css("height", "0px").css("width", "0px").show();
+        $('#content').animate({
+          "width": "1000px",
+          "height": "1000px"
+        });
+       });
+       /*$('#content').slideUp(function() {
             $('#content').html(str.render().el);
             $('#content').slideDown();
         });
+*/
     },
     structureView: function(id) {
        var strV = new StrVView({id: id});
-       $('#content').slideUp(function() {
-            $('#content').html(strV.render().el);
-            $('#content').slideDown();
+       $('#content').fadeOut(function() {
+        $('#content').html(strV.render().el);
+        $('#content').css("height", "0px").css("width", "0px").show();
+        $('#content').animate({
+          "width": "1000px",
+          "height": "1000px"
         });
+       });
     },
     structureAdd: function() {
        var strAdd = new StrAddView();

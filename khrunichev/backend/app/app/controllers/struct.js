@@ -3,7 +3,7 @@ var Struct = function () {
     var self = this;
     this.respondsWith = ['json', 'js']; 
     
-    geddy.model.Struct.all({}, {order: "desc"}, function(err, structs) {
+    geddy.model.Struct.all({}, {sort: {order: "desc" }}, function(err, structs) {
       self.respond({structs: structs});
     });
     

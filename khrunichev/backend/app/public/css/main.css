@@ -109,6 +109,7 @@ footer p {
 #content {
 	width: 1000px;
 	margin: 0px auto;
+	position: relative;
 }
 #content:after {
     content: ".";

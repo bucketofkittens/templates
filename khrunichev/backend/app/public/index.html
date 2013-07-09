@@ -531,7 +531,7 @@
 		<script id="newsbox-template" type="text/template">
 			<section class="news_list">
 				<% _.each(news, function(newsItem) { %>
-					<div class="gray_box" style="width: 100%;">
+					<div class="gray_box" style="width: 100%; margin-bottom: 25px;">
 						<div class="in">
 							<article data-newsnavid="<%= newsItem.newsnavId %>" style="margin-bottom: 0px;">
 								<a style="font-weight: bold;" href="#!/news/<%= newsItem.id %>"><%= newsItem.title %></a>
@@ -542,7 +542,7 @@
 								<% } %>
 							</article>
 						</div>
-					</div><br /><br />
+					</div>
 				<% }); %>
 			</section>
 		</script>
