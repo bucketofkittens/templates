@@ -1,2 +1,0 @@
-[Sat, 22 Jun 2013 07:43:40 GMT] ERROR 127.0.0.1 - - [Sat Jun 22 2013 11:43:40 GMT+0400 (MSK)] "GET /news 1.1" 500 2194 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/28.0.1500.52 Safari/537.36"
-[Sat, 22 Jun 2013 07:49:28 GMT] ERROR Worker 19103 died.

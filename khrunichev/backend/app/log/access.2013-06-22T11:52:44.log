@@ -1,2 +1,0 @@
-[Sat, 22 Jun 2013 07:50:13 GMT] ACCESS 127.0.0.1 - - [Sat Jun 22 2013 11:50:13 GMT+0400 (MSK)] "GET /api/news 1.1" 200 13 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/28.0.1500.52 Safari/537.36"
-[Sat, 22 Jun 2013 07:50:13 GMT] ACCESS 127.0.0.1 - - [Sat Jun 22 2013 11:50:13 GMT+0400 (MSK)] "GET /favicon.ico 1.1" 200 318 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/28.0.1500.52 Safari/537.36"

@@ -1,1 +1,0 @@
-[Sat, 22 Jun 2013 08:25:36 GMT] ERROR 127.0.0.1 - - [Sat Jun 22 2013 12:25:36 GMT+0400 (MSK)] "GET /news/destroy/35B95813-7039-4602-93A0-20CD65140324?title=test2&anonce=ffffffd 1.1" 500 967 "http://localhost:4000/news/edit/35B95813-7039-4602-93A0-20CD65140324" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/28.0.1500.52 Safari/537.36"
