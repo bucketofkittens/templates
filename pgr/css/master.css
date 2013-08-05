@@ -35,11 +35,18 @@ header .social img {
 }
 .scroll {	
 	font-family: 'Myriad Pro';
-	font-size: 15px;
+	font-size: 16px;
 	color: #5e5c5d;
 	text-decoration: none;
 	position: absolute;
 	bottom: 30px;
 	left: 50%;
 	margin-left: -50px;
+}
+#content {
+	display: inline-block;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin: -100px 0px 0px -100px;
 }
