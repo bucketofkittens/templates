@@ -11,10 +11,8 @@
 	<body>
 		<header>
 			<a href="#/main" class="logo"><img src="" alt="PERSON GROWTH RANKING"></a>
-			<ul>
-				<li><a href="#">ABOUT</a></li>
-				<li><a href="#">LEAGUES</a></li>
-				<li><a href="#/profile">PROFILE</a></li>
+			<ul ng-controller="navCtrl">
+				<li ng-repeat="item in items"><a href="{{item.link}}">{{item.name}}</a></li>
 			</ul>
 			<div class="social">
 				<img src="./images/icons.png">
