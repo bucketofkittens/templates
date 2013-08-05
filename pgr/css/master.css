@@ -9,19 +9,27 @@ header {
 	width: 100%;
 	background: #000000;
 }
-header img {
+header .logo {
 	margin: 0px 500px 0px 100px;
+}
+header img {
 	width: 550px;
 	height: 50px;
+}
+header ul {
+	display: inline-block;
+	vertical-align: top;
+}
+header li {	
+	margin: 10px 30px;
+	display: inline-block;
+	vertical-align: top;
 }
 header a {
 	color: #cccccc;
 	text-decoration: none;
-	margin: 10px 30px;
 	font-family: 'Myriad Pro';
 	font-size: 15px;
-	display: inline-block;
-	vertical-align: top;
 }
 header .social {
 	width: 64px;
