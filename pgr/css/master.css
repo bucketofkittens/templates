@@ -103,13 +103,12 @@ header .social img {
 	font-style: italic;
 	padding-top: 15px;
 	display: block;
-	text-decoration: underline;
 }
 #content .pmain .publish p {
 	display: inline-block;
 }
 #content .pmain .publish button {
-	margin: 15px 15px 0px 15px;
+	margin: 15px 15px 0px 25px;
 	text-align: center;
 	font-family: 'Myriad Pro';
 	font-size: 16px;
