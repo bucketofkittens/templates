@@ -2,14 +2,8 @@
 	<div class="pmain">
 		<img src="../images/use.png">
 		<div class="pmpar">
-<<<<<<< HEAD
-			<p>{{'_NameL_' | i18n}}<a href="#"><img src="../images/pencil.png"></a></p>
-			<p>{{'_AgeL_' | i18n}}<a href="#"><img src="../images/pencil.png"></a></p>
-			<p>{{'_LocL_' | i18n}}<a href="#"><img src="../images/pencil.png"></a></p>
-			<p>{{'_ProfL_' | i18n}}<a href="#"><img src="../images/pencil.png"></a></p>
-=======
 			<p>
-				<label for="name_i">Name:</label> 
+				<label for="name_i">{{'_NameL_' | i18n}}:</label> 
 				<input 
 					type="text" 
 					id="name_i" 
@@ -32,16 +26,15 @@
 				<img src="../images/pencil.png"  ng-click="onEditActivate($event, 'email_i')">
 			</p>
 			<p>
-				Age: <span>null</span> <a href="#"><img src="../images/pencil.png"></a></p>
+				{{'_AgeL_' | i18n}}: <span>null</span> <a href="#"><img src="../images/pencil.png"></a></p>
 			<p>
-				Location: <span>null</span> <a href="#"><img src="../images/pencil.png"></a></p>
+				{{'_LocL_' | i18n}}: <span>null</span> <a href="#"><img src="../images/pencil.png"></a></p>
 			<p>
-				<label for="email_i">Profession:</label>
+				<label for="email_i">{{'_ProfL_' | i18n}}:</label>
 				<select ng-options="item.profession.name for item in professions" ng-model="professions">
 				</select>
 				<img src="../images/pencil.png">
 			</p>
->>>>>>> куча правок по странице профиля
 		</div>
 		<div class="publish">
 			<p><button>{{'_ChPhL_' | i18n}}</button></p>
@@ -54,17 +47,10 @@
 	</div>
 </section>
 <section class="procrit">
-<<<<<<< HEAD
 	<h2>{{'_CriteriaL_' | i18n}}</h2>
-	<ul>
-		<li>
-			<p>I am</p>
-=======
-	<h2>Criteria</h2>
 	<ul> 
 		<li ng-repeat="item in needs | orderBy:'need.position'">
 			<p>{{item.need.name}}</p>
->>>>>>> куча правок по странице профиля
 			<ul>
 				<li ng-repeat="subItem in item.need.goals| orderBy:'goal.position'">
 					<a href="#">{{subItem.goal.name}}</a>
@@ -72,103 +58,5 @@
 				</li>
 			</ul>
 		</li>
-		<!--
-		<li>
-			<p>Relation</p>
-			<ul>
-				<li>
-					<a href="#">Partner</a>
-					<span></span>
-				</li>
-				<li>
-					<a href="#">Children</a>
-					<span></span>
-				</li>
-				<li>
-					<a href="#">Relatives</a>
-					<span></span>
-				</li>
-				<li>
-					<a href="#">Friends</a>
-					<span></span>
-				</li>
-				<li>
-					<a href="#">Colleagues</a>
-					<span></span>
-				</li>
-				<li>
-					<a href="#">Neighbors</a>
-					<span></span>
-				</li>
-				<li>
-					<a href="#">Pets</a>
-					<span></span>
-				</li>
-			</ul>
-		</li>
-		<li>
-			<p>Career</p>
-			<ul>
-				<li>
-					<a href="#">Company</a>
-					<span></span>
-				</li>
-				<li>
-					<a href="#">Position</a>
-					<span></span>
-				</li>
-				<li>
-					<a href="#">Income</a>
-					<span></span>
-				</li>
-			</ul>
-		</li>
-		<li>
-			<p>Lifestyle</p>
-			<ul>
-				<li>
-					<a href="#">Realty</a>
-					<span></span>
-				</li>
-				<li>
-					<a href="#">Transport</a>
-					<span></span>
-				</li>
-				<li>
-					<a href="#">Accessories</a>
-					<span></span>
-				</li>
-				<li>
-					<a href="#">Sport</a>
-					<span></span>
-				</li>
-				<li>
-					<a href="#">Hobbies</a>
-					<span></span>
-				</li>
-				<li>
-					<a href="#">Places</a>
-					<span></span>
-				</li>
-				<li>
-					<a href="#">Sex</a>
-					<span></span>
-				</li>
-			</ul>
-		</li>
-		<li>
-			<p>5<sup>th</sup> element</p>
-			<ul>
-				<li>
-					<a href="#">Cognition</a>
-					<span></span>
-				</li>
-				<li>
-					<a href="#">Action</a>
-					<span></span>
-				</li>
-			</ul>
-		</li>
-	-->
 	</ul>
 </section>
