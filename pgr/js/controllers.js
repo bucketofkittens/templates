@@ -24,14 +24,15 @@ function navCtrl($scope) {
 	}
 }
 
-function ProfileController($scope, $route, $routeParams, User, Needs, Professions) {
+function ProfileController($scope, $route, $routeParams, User, Needs, Professions, States) {
 	$scope.userId = $routeParams.userId;
 	$scope.user = null;
+	$scope.needs = Needs.query();
+	$scope.professions = Professions.query();
+	$scope.states = States.query();
 
 	if($routeParams.userId) {
 		$scope.user = User.query({id: $routeParams.userId});
-		$scope.needs = Needs.query();
-		$scope.professions = Professions.query();
 	}
 
 	$scope.onEditActivate = function($event, elementId) {
@@ -44,9 +45,11 @@ function ProfileController($scope, $route, $routeParams, User, Needs, Profession
 	}
 
 	$scope.onEditSave = function($event) {
-		User.updateUser({"id": $scope.user.sguid}, {user: {
-			"login": $scope.user.login,
-			"name": $scope.user.name
-		}});
+		User.updateUser({"id": $scope.user.sguid},  $.param({user: {
+				"login": $scope.user.login,
+				"name": $scope.user.name,
+				"email": $scope.user.email
+			}})
+		);
 	}
 }
