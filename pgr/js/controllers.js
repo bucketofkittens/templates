@@ -24,6 +24,12 @@ function navCtrl($scope) {
 	}
 }
 
-function ProfileController($scope) {
+function ProfileController($scope, $route, $routeParams, User) {
+	$scope.userId = $routeParams.userId;
+	$scope.user = null;
 
+	if($routeParams.userId) {
+		$scope.user = User.query({userId: $routeParams.userId});
+		console.log($scope.user);
+	}
 }
