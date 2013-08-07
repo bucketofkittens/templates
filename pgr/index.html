@@ -3,9 +3,10 @@
 	<head>
 		<meta charset="utf-8" />
 		<link rel="stylesheet" href="./css/master.css" />
-		<title>TITLE</title>
+		<title>PGR</title>
 		<script src="./js/angular.min.js"></script>
 		<script src="./js/angular-resource.min.js"></script>
+		<script src="./js/localize.js"></script>
 		<script src="./js/app.js"></script>
 		<script src="./js/controllers.js"></script>
 		<script src="./js/resources.js"></script>
@@ -15,7 +16,7 @@
 		<header>
 			<a href="#/main" class="logo"><img src="" alt="PERSON GROWTH RANKING"></a>
 			<ul ng-controller="navCtrl">
-				<li ng-repeat="nav in navs"><a href="{{nav.link}}" class="{{nav.active}}" ng-click="onNavClick($event, nav.name)">{{nav.name}}</a></li>
+				<li ng-repeat="nav in navs"><a href="{{nav.link}}" class="{{nav.active}}" ng-click="onNavClick($event, nav.name)" placeholder="{{'_NavL_' | i18n}}">{{nav.name}}</a></li>
 			</ul>
 			<div class="social">
 				<img src="./images/icons.png">
@@ -24,6 +25,7 @@
 		<div id="content">
 			<span class="mar"></span>
 			<div ng-view></div>
+			<a class="scroll" href="#">{{'_ScrollL_' | i18n}}</a>
 		</div>
 	</body>
 </html>

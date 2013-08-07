@@ -1,0 +1,43 @@
+[
+    {
+        "key":"_NavL_",
+        "value":"Resource Localization Service",
+        "description":"text"
+    },
+    {
+        "key":"_ScrollL_",
+        "value":"Вниз"
+    },
+    {
+        "key":"_CriteriaL_",
+        "value":"Критерии"
+    },
+    {
+        "key":"_PointsL_",
+        "value":"баллов"
+    },
+    {
+        "key":"_ChPhL_",
+        "value":"Сменить фото"
+    },
+    {
+        "key":"_PublishL_",
+        "value":"Опубликовать"
+    },
+    {
+        "key":"_NameL_",
+        "value":"Имя"
+    },
+    {
+        "key":"_AgeL_",
+        "value":"Возраст"
+    },
+    {
+        "key":"_LocL_",
+        "value":"Город"
+    },
+    {
+        "key":"_ProfL_",
+        "value":"Профессия"
+    }
+]
