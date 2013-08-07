@@ -205,10 +205,53 @@ header .social img {
 }
 #content .procrit sup {
 	vertical-align: super;
-	font-family: 'Myriad Pro';
 	font-size: 14px;
 }
 
+#content .criterium {
+	position: absolute;
+	width: 70%;
+	height: 70%;
+	box-shadow: 0px 0px 200px #ffffff;
+}
+#content .criterium ul {
+	text-align: center;
+	vertical-align: middle;
+}
+#content .criterium li {
+	margin: 3% 0px;
+}
+#content .criterium p {
+	color: #000000;
+	font-family: 'Myriad Pro';
+	font-size: 18px;
+	font-style: italic;
+	text-align: left;
+}
+#content .criterium span {
+	display: block;
+	width: 50%;
+	height: 30px;
+	background: #cccccc;
+	border: 1px solid #a8a8a8;
+}
+#content .criterium sub {
+	width: 0px;
+	height: 0px;
+	border-style: solid;
+	border-width: 0 5px 20px 5px;
+	border-color: transparent transparent #a8a8a8 transparent;
+	text-align: center;
+}
+#content .criterium i, #content .criterium b {
+	font-family: 'Myriad Pro';
+	font-size: 18px;
+	color: #000000;
+	text-align: left;
+}
+#content .criterium b {
+	text-align: right;
+}
 .pmpar .form-control {
 	display: inline-block;
 	width: 200px;

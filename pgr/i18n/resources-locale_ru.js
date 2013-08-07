@@ -1,10 +1,5 @@
 [
     {
-        "key":"_NavL_",
-        "value":"Resource Localization Service",
-        "description":"text"
-    },
-    {
         "key":"_ScrollL_",
         "value":"Вниз"
     },

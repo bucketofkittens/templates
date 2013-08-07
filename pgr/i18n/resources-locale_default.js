@@ -1,9 +1,5 @@
 [
-    {
-        "key":"_NavL_",
-        "value":"text"
-    },
-    {
+   {
         "key":"_ScrollL_",
         "value":"Scroll down"
     },
