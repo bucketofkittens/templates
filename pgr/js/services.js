@@ -7,11 +7,11 @@ var host = "http://xmpp.dev.improva.com:9090\:9090/api/v1";
  */
 pgrModule.factory('User', function ($resource) {
     return $resource(
-        host+'/users/:userId', 
-        {userId:'@id'}, 
+        host+'/users/:id', 
+        {id:'@id'}, 
         {
             create: {method: 'POST'},
-            update: {method: 'PUT'},
+            updateUser: {method: 'PUT'},
             'query': {
             	method: 'GET', 
             	transformResponse: function (data) {
@@ -21,3 +21,28 @@ pgrModule.factory('User', function ($resource) {
         }
     );
 });
+
+pgrModule.factory('Needs', function ($resource) {
+    return $resource(
+        host+'/needs/:id', 
+        {id:'@id'}, 
+        {
+            create: {method: 'POST'},
+            updateUser: {method: 'PUT'}
+        }
+    );
+});
+
+pgrModule.factory('Professions', function ($resource) {
+    return $resource(
+        host+'/professions/:id', 
+        {id:'@id'}, 
+        {
+            create: {method: 'POST'},
+            updateUser: {method: 'PUT'}
+        }
+    );
+});
+
+
+

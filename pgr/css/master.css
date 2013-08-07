@@ -168,7 +168,7 @@ header .social img {
 }
 #content .procrit ul li {
 	display: inline-block;
-	margin: 10px 0px 0px 0px;
+	margin: 10px 0px 30px 0px;
 	vertical-align: top;
 	width: 18%;
 }
@@ -207,4 +207,14 @@ header .social img {
 	vertical-align: super;
 	font-family: 'Myriad Pro';
 	font-size: 14px;
+}
+
+.pmpar .form-control {
+	display: inline-block;
+	width: 200px;
+}
+.pmpar .form-control[disabled="disabled"] {
+	background: transparent;
+	border: 0px;
+	box-shadow: none;
 }

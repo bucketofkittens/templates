@@ -2,10 +2,46 @@
 	<div class="pmain">
 		<img src="../images/use.png">
 		<div class="pmpar">
+<<<<<<< HEAD
 			<p>{{'_NameL_' | i18n}}<a href="#"><img src="../images/pencil.png"></a></p>
 			<p>{{'_AgeL_' | i18n}}<a href="#"><img src="../images/pencil.png"></a></p>
 			<p>{{'_LocL_' | i18n}}<a href="#"><img src="../images/pencil.png"></a></p>
 			<p>{{'_ProfL_' | i18n}}<a href="#"><img src="../images/pencil.png"></a></p>
+=======
+			<p>
+				<label for="name_i">Name:</label> 
+				<input 
+					type="text" 
+					id="name_i" 
+					ui-keypress="{13:'onEditSave($event)'}" 
+					ng-onkeyup="onEditKeyUp()" 
+					class="clean form-control" 
+					disabled="disabled" 
+					ng-model="user.name" />
+				<img src="../images/pencil.png" ng-click="onEditActivate($event, 'name_i')" />
+			</p>
+			<p>
+				<label for="email_i">E-mail:</label> 
+				<input 
+					type="text" 
+					id="email_i" 
+					ui-keypress="{13:'onEditSave($event)'}" 
+					class="clean form-control" 
+					disabled="disabled" 
+					ng-model="user.email" /> 
+				<img src="../images/pencil.png"  ng-click="onEditActivate($event, 'email_i')">
+			</p>
+			<p>
+				Age: <span>null</span> <a href="#"><img src="../images/pencil.png"></a></p>
+			<p>
+				Location: <span>null</span> <a href="#"><img src="../images/pencil.png"></a></p>
+			<p>
+				<label for="email_i">Profession:</label>
+				<select ng-options="item.profession.name for item in professions" ng-model="professions">
+				</select>
+				<img src="../images/pencil.png">
+			</p>
+>>>>>>> куча правок по странице профиля
 		</div>
 		<div class="publish">
 			<p><button>{{'_ChPhL_' | i18n}}</button></p>
@@ -18,29 +54,25 @@
 	</div>
 </section>
 <section class="procrit">
+<<<<<<< HEAD
 	<h2>{{'_CriteriaL_' | i18n}}</h2>
 	<ul>
 		<li>
 			<p>I am</p>
+=======
+	<h2>Criteria</h2>
+	<ul> 
+		<li ng-repeat="item in needs | orderBy:'need.position'">
+			<p>{{item.need.name}}</p>
+>>>>>>> куча правок по странице профиля
 			<ul>
-				<li>
-					<a href="#">Health</a>
-					<span></span>
-				</li>
-				<li>
-					<a href="#">Beaury</a>
-					<span></span>
-				</li>
-				<li>
-					<a href="#">Mind</a>
-					<span></span>
-				</li>
-				<li>
-					<a href="#">Qualities</a>
+				<li ng-repeat="subItem in item.need.goals| orderBy:'goal.position'">
+					<a href="#">{{subItem.goal.name}}</a>
 					<span></span>
 				</li>
 			</ul>
 		</li>
+		<!--
 		<li>
 			<p>Relation</p>
 			<ul>
@@ -137,5 +169,6 @@
 				</li>
 			</ul>
 		</li>
+	-->
 	</ul>
 </section>

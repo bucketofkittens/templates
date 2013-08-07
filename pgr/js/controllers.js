@@ -24,12 +24,29 @@ function navCtrl($scope) {
 	}
 }
 
-function ProfileController($scope, $route, $routeParams, User) {
+function ProfileController($scope, $route, $routeParams, User, Needs, Professions) {
 	$scope.userId = $routeParams.userId;
 	$scope.user = null;
 
 	if($routeParams.userId) {
-		$scope.user = User.query({userId: $routeParams.userId});
-		console.log($scope.user);
+		$scope.user = User.query({id: $routeParams.userId});
+		$scope.needs = Needs.query();
+		$scope.professions = Professions.query();
+	}
+
+	$scope.onEditActivate = function($event, elementId) {
+		var elm = angular.element("#"+elementId)[0];
+		if(elm.getAttribute("disabled")) {
+			elm.removeAttribute("disabled");
+		} else {
+			elm.setAttribute("disabled", "disabled");
+		}
+	}
+
+	$scope.onEditSave = function($event) {
+		User.updateUser({"id": $scope.user.sguid}, {user: {
+			"login": $scope.user.login,
+			"name": $scope.user.name
+		}});
 	}
 }
