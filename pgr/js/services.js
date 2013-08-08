@@ -27,8 +27,7 @@ pgrModule.factory('Needs', function ($resource) {
         host+'/needs/:id', 
         {id:'@id'}, 
         {
-            create: {method: 'POST'},
-            updateUser: {method: 'PUT'}
+            create: {method: 'POST'}
         }
     );
 });
@@ -38,8 +37,7 @@ pgrModule.factory('Goals', function ($resource) {
         host+'/goals/:id', 
         {id:'@id'}, 
         {
-            create: {method: 'POST'},
-            updateUser: {method: 'PUT'}
+            create: {method: 'POST'}
         }
     );
 });
@@ -49,8 +47,7 @@ pgrModule.factory('Professions', function ($resource) {
         host+'/professions/:id', 
         {id:'@id'}, 
         {
-            create: {method: 'POST'},
-            updateUser: {method: 'PUT'}
+            create: {method: 'POST'}
         }
     );
 });
@@ -60,11 +57,21 @@ pgrModule.factory('States', function ($resource) {
         host+'/states/:id', 
         {id:'@id'}, 
         {
-            create: {method: 'POST'},
-            updateUser: {method: 'PUT'}
+            create: {method: 'POST'}
         }
     );
 });
+
+pgrModule.factory('Criterion', function ($resource) {
+    return $resource(
+        host+'/criterion/:id', 
+        {id:'@id'}, 
+        {
+            create: {method: 'POST'}
+        }
+    );
+});
+
 
 
 

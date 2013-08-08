@@ -54,10 +54,28 @@ function ProfileController($scope, $route, $routeParams, User, Needs, Profession
 	}
 }
 
-function CriteriaController($scope, Goals) {
+function CriteriaController($scope, Goals, Criterion) {
+	$scope.criterion_values = {};
 	$scope.open = function (goalId) {
+		var self = this;
+
 		$scope.shouldBeOpen = true;
-		$scope.goal = Goals.get({id: goalId});
+		Goals.get({id: goalId}, function(data) {
+			$scope.goal = data;
+			
+
+			angular.forEach($scope.goal, function(gV, gK) {
+				if(gV.criteria) {
+					angular.forEach(gV.criteria, function(cV, cK) {
+						Criterion.query({id: cV.criterium.sguid }, function(d) {
+							$scope.goal[gK].criteria[cK].criterium.criteria_values = d[0].criterium.criteria_values;
+							console.log($scope.goal);
+						})
+					});
+				}
+			});
+		});
+		
 	};
 
 	$scope.close = function () {
