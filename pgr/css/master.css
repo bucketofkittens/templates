@@ -20,6 +20,9 @@
    left: -100%;
 }
 
+label {
+	display: inline-block;
+}
 .shadow {
 	background: rgba(0, 0, 0, 0.5);
 	z-index: 10;
@@ -149,9 +152,9 @@ header .social img {
 }
 #content .pmain .pmpar p {
 	font-family: 'Myriad Pro';
-	font-size: 20px;
+	font-size: 18px;
 	color: #000000;
-	line-height: 50px;
+	line-height: 40px;
 }
 #content .pmain .pmpar img {
 	width: 20px;
@@ -220,11 +223,12 @@ header .social img {
 	width: 50%;
 	height: 70%;
 	z-index: 15;
-	background: #dedede;
+	background: #efefef;
 	border: 2px solid #cccccc;
 	top: 15%;
 	left: 25%;
 	display: none;
+	border-radius: 20px;
 }
 #content .criterion ul {
 	text-align: center;
@@ -285,8 +289,23 @@ header .social img {
 .pmpar .form-control {
 	display: inline-block;
 	width: 200px;
+	vertical-align: bottom;
+	font-family: 'Myriad Pro';
+	font-size: 18px;
+	margin-bottom: 5px;
 }
 .pmpar .form-control[disabled="disabled"] {
+	background: transparent;
+	border: 0px;
+	box-shadow: none;
+}
+.ng-pristine {	
+	vertical-align: bottom;
+	font-family: 'Myriad Pro';
+	font-size: 18px;
+	margin-bottom: 5px;
+}
+.ng-pristine[disabled="disabled"] {
 	background: transparent;
 	border: 0px;
 	box-shadow: none;

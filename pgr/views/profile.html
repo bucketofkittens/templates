@@ -11,7 +11,8 @@
 					ng-onkeyup="onEditKeyUp()" 
 					class="clean form-control" 
 					disabled="disabled" 
-					ng-model="user.name" />
+					ng-model="user.name"
+					placeholder="Batman" />
 				<img src="../images/pencil.png" ng-click="onEditActivate($event, 'name_i')" />
 			</p>
 			<p>
@@ -22,21 +23,29 @@
 					ui-keypress="{13:'onEditSave($event)'}" 
 					class="clean form-control" 
 					disabled="disabled" 
-					ng-model="user.email" /> 
+					ng-model="user.email"
+					placeholder="dccomics.com/batman" /> 
 				<img src="../images/pencil.png"  ng-click="onEditActivate($event, 'email_i')">
 			</p>
 			<p>
-				{{'_AgeL_' | i18n}}: <span>null</span> <a href="#"><img src="../images/pencil.png"></a></p>
+				{{'_AgeL_' | i18n}}: 
+				<select ng-options="item.age.name for item in ages" ng-model="ages" disabled="disabled" id="age_i">
+					<option value="">00</option>
+				</select>
+				<img src="../images/pencil.png" ng-click="onEditActivate($event, 'age_i')">
+			</p>
 			<p>
 				{{'_LocL_' | i18n}}:
-				<select ng-options="item.state.name for item in states" ng-model="states">
+				<select ng-options="item.state.name for item in states" ng-model="states" disabled="disabled" id="loc_i">
+					<option value="">Gotham City</option>
 				</select>
-				<a href="#"><img src="../images/pencil.png"></a></p>
+				<img src="../images/pencil.png" ng-click="onEditActivate($event, 'loc_i')"></p>
 			<p>
 				<label for="email_i">{{'_ProfL_' | i18n}}:</label>
-				<select ng-options="item.profession.name for item in professions" ng-model="professions">
+				<select ng-options="item.profession.name for item in professions" ng-model="professions" disabled="disabled" id="pro_i">
+					<option value="">Superhero</option>
 				</select>
-				<img src="../images/pencil.png">
+				<img src="../images/pencil.png" ng-click="onEditActivate($event, 'pro_i')">
 			</p>
 		</div>
 		<div class="publish">
