@@ -75,24 +75,10 @@
 	<div modal="shouldBeOpen" close="close()" options="opts">
         <div class="modal-body">
             <div class="criterion">
-				<h3>Character</h3>
+				<h3>{{goal.goal.name}}</h3>
 				<ul>
-					<li>
-						<p>Humor</p>
-						<span></span>
-						<sub></sub>
-						<i>0</i>
-						<b>100</b>
-					</li>
-					<li>
-						<p>Honesty</p>
-						<span></span>
-						<sub></sub>
-						<i>0</i>
-						<b>100</b>
-					</li>
-					<li>
-						<p>Kindness</p>
+					<li ng-repeat="crItem in goal.goal.criteria| orderBy:'criterium.position'">
+						<p>{{crItem.criterium.name}}</p>
 						<span></span>
 						<sub></sub>
 						<i>0</i>
