@@ -28,14 +28,14 @@
 				<img src="../images/pencil.png"  ng-click="onEditActivate($event, 'email_i')">
 			</p>
 			<p>
-				{{'_AgeL_' | i18n}}: 
+				<label for="age_i">{{'_AgeL_' | i18n}}:</label>
 				<select ng-options="item.age.name for item in ages" ng-model="ages" disabled="disabled" id="age_i">
 					<option value="">00</option>
 				</select>
 				<img src="../images/pencil.png" ng-click="onEditActivate($event, 'age_i')">
 			</p>
 			<p>
-				{{'_LocL_' | i18n}}:
+				<label for="loc_i">{{'_LocL_' | i18n}}:</label>
 				<select ng-options="item.state.name for item in states" ng-model="states" disabled="disabled" id="loc_i">
 					<option value="">Gotham City</option>
 				</select>
