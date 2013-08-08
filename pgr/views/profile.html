@@ -79,12 +79,7 @@
 				<ul>
 					<li ng-repeat="crItem in goal.goal.criteria | orderBy:'criterium.position'">
 						<p>{{crItem.criterium.name}}</p>
-						<span></span>
-						<sub></sub>
-						<i>0</i>
-						<b>100</b>
-						Значения
-						<ul>
+						<ul class="crp">
 							<li ng-repeat="value in crItem.criterium.criteria_values | orderBy:'value.criteria_value.position'">
 								{{value.criteria_value.name}}
 							</li>

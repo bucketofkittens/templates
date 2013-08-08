@@ -206,7 +206,7 @@ header .social img {
 	text-decoration: none;
 	font-style: italic;
 	display: inline-block;
-	width: 100px;
+	width: 150px;
 }
 #content .procrit span {
 	width: 50px;
@@ -265,17 +265,34 @@ header .social img {
 	top: 70%;
 	left: 50%;
 }
-.criterion i, .criterion b {
+.modal {
+	width: 50%;
+	height: 70%;
+	margin: 0px auto;
+	left: 25%;
+}
+.modal-body {
+	max-height: 90%;
+}
+.crp {
+	display: table;
+	width: 100%;
+	border-radius: 10px;
+	background: #1e5799;
+	background: -moz-linear-gradient(left,  #1e5799 0%, #207cca 0%, #adadad 0%, #e2e2e2 100%);
+	background: -webkit-gradient(linear, left top, right top, color-stop(0%,#1e5799), color-stop(0%,#207cca), color-stop(0%,#adadad), color-stop(100%,#e2e2e2));
+	background: -webkit-linear-gradient(left,  #1e5799 0%,#207cca 0%,#adadad 0%,#e2e2e2 100%);
+	background: -o-linear-gradient(left,  #1e5799 0%,#207cca 0%,#adadad 0%,#e2e2e2 100%);
+	background: -ms-linear-gradient(left,  #1e5799 0%,#207cca 0%,#adadad 0%,#e2e2e2 100%);
+	background: linear-gradient(to right,  #1e5799 0%,#207cca 0%,#adadad 0%,#e2e2e2 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e5799', endColorstr='#e2e2e2',GradientType=1 );
+}
+.crp li {
+	display: table-cell;
 	font-family: 'Myriad Pro';
 	font-size: 14px;
 	color: #000000;
-	position: absolute;
-	bottom: 0px;
-	left: 10px;
-}
-.criterion b {
-	left: auto;
-	right: 10px;
+	line-height: 200%;
 }
 
 .pmpar .form-control {
