@@ -53,3 +53,19 @@ function ProfileController($scope, $route, $routeParams, User, Needs, Profession
 		);
 	}
 }
+
+function CriteriaController($scope, Goals) {
+	$scope.open = function (goalId) {
+		$scope.shouldBeOpen = true;
+		$scope.goal = Goals.get({id: goalId});
+	};
+
+	$scope.close = function () {
+		$scope.shouldBeOpen = false;
+	};
+
+	$scope.opts = {
+		backdropFade: true,
+		dialogFade:true
+	};
+}

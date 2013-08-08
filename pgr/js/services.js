@@ -33,6 +33,17 @@ pgrModule.factory('Needs', function ($resource) {
     );
 });
 
+pgrModule.factory('Goals', function ($resource) {
+    return $resource(
+        host+'/goals/:id', 
+        {id:'@id'}, 
+        {
+            create: {method: 'POST'},
+            updateUser: {method: 'PUT'}
+        }
+    );
+});
+
 pgrModule.factory('Professions', function ($resource) {
     return $resource(
         host+'/professions/:id', 

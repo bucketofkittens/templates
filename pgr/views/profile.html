@@ -58,46 +58,52 @@
 		<i>00 000 000 <b>{{'_PointsL_' | i18n}}</b></i>
 	</div>
 </section>
-<section class="procrit">
+
+<section class="procrit" ng-controller="CriteriaController">
 	<h2>{{'_CriteriaL_' | i18n}}</h2>
 	<ul> 
 		<li ng-repeat="item in needs | orderBy:'need.position'">
 			<p>{{item.need.name}}</p>
 			<ul>
 				<li ng-repeat="subItem in item.need.goals| orderBy:'goal.position'">
-					<a>{{subItem.goal.name}}</a>
+					<a ng-click="open('{{subItem.goal.sguid}}')">{{subItem.goal.name}}</a>
 					<span></span>
-					<ul>
-						<li>Тест</li>
-					</ul>
 				</li>
 			</ul>
 		</li>
 	</ul>
+	<div modal="shouldBeOpen" close="close()" options="opts">
+        <div class="modal-body">
+            <div class="criterion">
+				<h3>Character</h3>
+				<ul>
+					<li>
+						<p>Humor</p>
+						<span></span>
+						<sub></sub>
+						<i>0</i>
+						<b>100</b>
+					</li>
+					<li>
+						<p>Honesty</p>
+						<span></span>
+						<sub></sub>
+						<i>0</i>
+						<b>100</b>
+					</li>
+					<li>
+						<p>Kindness</p>
+						<span></span>
+						<sub></sub>
+						<i>0</i>
+						<b>100</b>
+					</li>
+				</ul>
+			</div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-warning cancel" ng-click="close()">Cancel</button>
+        </div>
+    </div>
 </section>
-<div class="criterion">
-	<h3>Character</h3>
-	<ul>
-		<li>
-			<p>Humor</p>
-			<span></span>
-			<sub></sub>
-			<i>0</i>
-			<b>100</b>
-		</li>
-		<li>
-			<p>Honesty</p>
-			<span></span>
-			<sub></sub>
-			<i>0</i>
-			<b>100</b>
-		</li>
-		<li>
-			<p>Kindness</p>
-			<span></span>
-			<sub></sub>
-			<i>0</i>
-			<b>100</b>
-		</li>
-	</ul>
-</div>
+

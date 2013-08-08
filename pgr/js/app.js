@@ -4,7 +4,7 @@
  * Основной модуль приложения
  * @type {[type]}
  */
-var pgrModule = angular.module('pgrModule', [ "ngResource", "localization", "ui", "ui.keypress" ]);
+var pgrModule = angular.module('pgrModule', [ "ngResource", "localization", "ui", "ui.keypress", 'ui.bootstrap' ]);
 
 /**
  * Роутинг приложения

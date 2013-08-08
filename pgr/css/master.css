@@ -219,27 +219,18 @@ header .social img {
 	font-size: 14px;
 }
 
-#content .criterion {
-	position: absolute;
-	width: 50%;
-	height: 70%;
+.criterion {
 	z-index: 15;
-	background: #efefef;
-	border: 2px solid #cccccc;
-	top: 15%;
-	left: 25%;
-	display: none;
-	border-radius: 20px;
 }
-#content .criterion ul {
+.criterion ul {
 	text-align: center;
 	vertical-align: middle;
 }
-#content .criterion li {
+.criterion li {
 	margin: 3% 0px;
 	position: relative;
 }
-#content .criterion h3 {
+.criterion h3 {
 	color: #000000;
 	font-family: 'Myriad Pro';
 	font-size: 23px;
@@ -248,7 +239,7 @@ header .social img {
 	text-align: center;
 	margin: 3% 0px;
 }
-#content .criterion p {
+.criterion p {
 	color: #000000;
 	font-family: 'Myriad Pro';
 	font-size: 18px;
@@ -256,7 +247,7 @@ header .social img {
 	text-align: left;
 	margin: 0px 0px 10px 5%;
 }
-#content .criterion span {
+.criterion span {
 	display: inline-block;
 	width: 90%;
 	height: 30px;
@@ -264,7 +255,7 @@ header .social img {
 	border: 1px solid #a8a8a8;
 	text-align: center;
 }
-#content .criterion sub {
+.criterion sub {
 	width: 0px;
 	height: 0px;
 	border-style: solid;
@@ -274,7 +265,7 @@ header .social img {
 	top: 70%;
 	left: 50%;
 }
-#content .criterion i, #content .criterion b {
+.criterion i, .criterion b {
 	font-family: 'Myriad Pro';
 	font-size: 14px;
 	color: #000000;
@@ -282,7 +273,7 @@ header .social img {
 	bottom: 0px;
 	left: 10px;
 }
-#content .criterion b {
+.criterion b {
 	left: auto;
 	right: 10px;
 }
