@@ -62,14 +62,12 @@ function CriteriaController($scope, Goals, Criterion) {
 		$scope.shouldBeOpen = true;
 		Goals.get({id: goalId}, function(data) {
 			$scope.goal = data;
-			
 
 			angular.forEach($scope.goal, function(gV, gK) {
 				if(gV.criteria) {
 					angular.forEach(gV.criteria, function(cV, cK) {
 						Criterion.query({id: cV.criterium.sguid }, function(d) {
 							$scope.goal[gK].criteria[cK].criterium.criteria_values = d[0].criterium.criteria_values;
-							console.log($scope.goal);
 						})
 					});
 				}
