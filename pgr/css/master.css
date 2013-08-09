@@ -271,15 +271,15 @@ header .social img {
 .crp {
 	display: table;
 	width: 100%;
-	border-radius: 10px;
+	border-radius: 15px;
 	background: #1e5799;
-	background: -moz-linear-gradient(left,  #1e5799 0%, #207cca 0%, #adadad 0%, #e2e2e2 100%);
-	background: -webkit-gradient(linear, left top, right top, color-stop(0%,#1e5799), color-stop(0%,#207cca), color-stop(0%,#adadad), color-stop(100%,#e2e2e2));
-	background: -webkit-linear-gradient(left,  #1e5799 0%,#207cca 0%,#adadad 0%,#e2e2e2 100%);
-	background: -o-linear-gradient(left,  #1e5799 0%,#207cca 0%,#adadad 0%,#e2e2e2 100%);
-	background: -ms-linear-gradient(left,  #1e5799 0%,#207cca 0%,#adadad 0%,#e2e2e2 100%);
-	background: linear-gradient(to right,  #1e5799 0%,#207cca 0%,#adadad 0%,#e2e2e2 100%);
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e5799', endColorstr='#e2e2e2',GradientType=1 );
+	background: -moz-linear-gradient(left,  #1e5799 0%, #207cca 0%, #d3d3d3 0%, #f7f7f7 100%);
+	background: -webkit-gradient(linear, left top, right top, color-stop(0%,#1e5799), color-stop(0%,#207cca), color-stop(0%,#d3d3d3), color-stop(100%,#f7f7f7));
+	background: -webkit-linear-gradient(left,  #1e5799 0%,#207cca 0%,#d3d3d3 0%,#f7f7f7 100%);
+	background: -o-linear-gradient(left,  #1e5799 0%,#207cca 0%,#d3d3d3 0%,#f7f7f7 100%);
+	background: -ms-linear-gradient(left,  #1e5799 0%,#207cca 0%,#d3d3d3 0%,#f7f7f7 100%);
+	background: linear-gradient(to right,  #1e5799 0%,#207cca 0%,#d3d3d3 0%,#f7f7f7 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e5799', endColorstr='#f7f7f7',GradientType=1 );
 }
 .crp li {
 	display: table-cell;

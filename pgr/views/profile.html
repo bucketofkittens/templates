@@ -80,9 +80,7 @@
 					<li ng-repeat="crItem in goal.goal.criteria | orderBy:'criterium.position'">
 						<p>{{crItem.criterium.name}}</p>
 						<ul class="crp">
-							<li ng-repeat="value in crItem.criterium.criteria_values | orderBy:'value.criteria_value.position'">
-								{{value.criteria_value.name}}
-							</li>
+							<li ng-repeat="value in crItem.criterium.criteria_values | orderBy:'value.criteria_value.position'">{{value.criteria_value.name}}</li>
 						</ul>
 					</li>
 				</ul>
