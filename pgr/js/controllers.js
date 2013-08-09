@@ -9,13 +9,19 @@ function navCtrl($scope, localize, $location) {
 			//{name: localize.getLocalizedString("_LEAGUES_"), link: '#', activeClass: ''},
 			{name: localize.getLocalizedString("_PROFILE_"), link: '#/profile', activeClass: ''}
 		];
-    });
+
+		angular.forEach($scope.navs, function(value, key) {
+			if($location.path() == value.link.replace("#", "")) {
+				$scope.navs[key].activeClass='current';
+			} 
+		});
+   });
 
 	$scope.$on('$routeChangeStart', function(event, next, current) { 
    		angular.forEach($scope.navs, function(value, key) {
 			$scope.navs[key].activeClass = $scope.navs[key].link.replace("#", "") == $location.path() ? 'current' : '';
 		})
- 	});
+ 	})
 }
 
 function ProfileController($scope, $route, $routeParams, User, Needs, Professions, States) {
