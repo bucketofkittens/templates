@@ -163,3 +163,5 @@ pip-log.txt
 .DS_Store
 
 *.mp4
+/pgr/nbproject/project.xml
+/pgr/nbproject/project.properties
