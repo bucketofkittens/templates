@@ -16,4 +16,4 @@ pgrModule.config(['$routeProvider', function($routeProvider) {
 	$routeProvider.when('/profile/:userId', {templateUrl: 'views/profile.html', controller: ProfileController});
 	$routeProvider.when('/', {templateUrl: 'views/main.html', controller: ProfileController});
 	$routeProvider.otherwise({redirectTo: '/'});
-}]);	
+}]);

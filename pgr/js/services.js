@@ -10,7 +10,7 @@ pgrModule.factory('User', function ($resource) {
         host+'/users/:id', 
         {id:'@id'}, 
         {
-            create: {method: 'POST'},
+            create: {method: 'POST', headers : {'Content-Type': 'application/x-www-form-urlencoded'}},
             updateUser: {method: 'PUT', headers : {'Content-Type': 'application/x-www-form-urlencoded'} },
             'query': {
             	method: 'GET', 

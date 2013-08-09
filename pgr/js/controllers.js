@@ -59,7 +59,7 @@ function CriteriaController($scope, Goals, Criterion) {
 	$scope.open = function (goalId) {
 		var self = this;
 
-		$scope.shouldBeOpen = true;
+		
 		Goals.get({id: goalId}, function(data) {
 			$scope.goal = data;
 
@@ -72,7 +72,8 @@ function CriteriaController($scope, Goals, Criterion) {
 					});
 				}
 			});
-			console.log($scope.goal);
+
+			$scope.shouldBeOpen = true;
 		});
 		
 	};
@@ -87,12 +88,43 @@ function CriteriaController($scope, Goals, Criterion) {
 	};
 }
 
-function RegController($scope) {
+function RegController($scope, $location, User) {
+	$scope.user = {
+		login: "",
+		name: "",
+		password: "",
+		repassword: "",
+		email: ""
+	};
+	$scope.errors = "";
 	$scope.open = function () {
+		console.log($scope.user);
 		$scope.shouldBeOpen = true;		
 	};
 	$scope.close = function () {
+		console.log($scope.user);
 		$scope.shouldBeOpen = false;
+	};
+
+	$scope.addUser = function ($event) {
+		User.create($.param({user: {
+				"login": $scope.user.login,
+				"name": $scope.user.name,
+				"email": $scope.user.email,
+				"password": $scope.user.password
+			}})
+			,function(data) {
+				if(!data.success) {
+					angular.forEach(data.errors, function(value, key) {
+						console.log(value);
+						$scope.errors += value;
+					});
+				} else {
+					$scope.shouldBeOpen = false;
+					$location.path('/profile/'+data.message.guid);
+				}
+			}
+		);
 	};
 	$scope.opts = {
 		backdropFade: true,

@@ -325,7 +325,6 @@ header .social img {
 }
 
 .registration.modal {
-	height: 50%;
 	width: 30%;
 	left: 35%;
 	top: 20% !important;
@@ -343,4 +342,15 @@ header .social img {
 	font-weight: bold;
 	text-align: center;
 	margin: 5% 0px;
+}
+input.ng-invalid:not(.ng-pristine) {
+	color: #b94a48;
+	border-color: #ee5f5b;
+	border-color: #e9322d !important;
+	-webkit-box-shadow: 0 0 6px #f8b9b7 !important;
+	-moz-box-shadow: 0 0 6px #f8b9b7 !important;
+	box-shadow: 0 0 6px #f8b9b7 !important;
+}
+.registration form.ng-pristine {
+	width: 100%;
 }
