@@ -323,9 +323,13 @@ header .social img {
 	border: 0px;
 	box-shadow: none;
 }
+input {
+	width: 215px;
+}
 
 .registration.modal {
 	width: 30%;
+	height: 50%;
 	left: 35%;
 	top: 20% !important;
 }
