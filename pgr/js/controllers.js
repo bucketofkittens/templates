@@ -12,7 +12,7 @@ function navCtrl($scope, localize, $location) {
 
 		angular.forEach($scope.navs, function(value, key) {
 			if($location.path() == value.link.replace("#", "")) {
-				$scope.navs[key].activeClass='current';
+				$scope.navs[key].activeClass = 'current';
 			} 
 		});
    });
