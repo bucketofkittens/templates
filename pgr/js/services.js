@@ -1,5 +1,6 @@
 var host = "http://xmpp.dev.improva.com:9090\:9090/api/v1";
 //var host = "http://192.168.1.176:3000\:3000/api/v1";
+
 /**
  * Модель пользователя
  * @param  {[type]} $resource [description]
@@ -15,13 +16,16 @@ pgrModule.factory('User', function ($resource) {
             'query': {
             	method: 'GET', 
             	transformResponse: function (data) {
-            		return angular.fromJson(data)[0].user
-            	},
+            		return angular.fromJson(data)[0].user;
+            	}
             }
         }
     );
 });
 
+/**
+ * 
+ */
 pgrModule.factory('Needs', function ($resource) {
     return $resource(
         host+'/needs/:id', 
@@ -32,6 +36,9 @@ pgrModule.factory('Needs', function ($resource) {
     );
 });
 
+/**
+ * 
+ */
 pgrModule.factory('Goals', function ($resource) {
     return $resource(
         host+'/goals/:id', 
@@ -42,6 +49,9 @@ pgrModule.factory('Goals', function ($resource) {
     );
 });
 
+/**
+ * 
+ */
 pgrModule.factory('Professions', function ($resource) {
     return $resource(
         host+'/professions/:id', 
@@ -52,6 +62,9 @@ pgrModule.factory('Professions', function ($resource) {
     );
 });
 
+/**
+ * 
+ */
 pgrModule.factory('States', function ($resource) {
     return $resource(
         host+'/states/:id', 
@@ -62,6 +75,9 @@ pgrModule.factory('States', function ($resource) {
     );
 });
 
+/**
+ * 
+ */
 pgrModule.factory('Criterion', function ($resource) {
     return $resource(
         host+'/criterion/:id', 

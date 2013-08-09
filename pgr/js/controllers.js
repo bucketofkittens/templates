@@ -19,12 +19,24 @@ function navCtrl($scope, localize, $location) {
 
 	$scope.$on('$routeChangeStart', function(event, next, current) { 
    		angular.forEach($scope.navs, function(value, key) {
-			$scope.navs[key].activeClass = $scope.navs[key].link.replace("#", "") == $location.path() ? 'current' : '';
-		})
- 	})
+			$scope.navs[key].activeClass = $scope.navs[key].link.replace("#", "") === $location.path() ? 'current' : '';
+		});
+ 	});
 }
 
+/**
+ * Контроллер страницы профиля
+ * @param {type} $scope
+ * @param {type} $route
+ * @param {type} $routeParams
+ * @param {type} User
+ * @param {type} Needs
+ * @param {type} Professions
+ * @param {type} States
+ * @returns {undefined}
+ */
 function ProfileController($scope, $route, $routeParams, User, Needs, Professions, States) {
+    
 	$scope.userId = $routeParams.userId;
 	$scope.user = null;
 	$scope.needs = Needs.query();
@@ -35,6 +47,12 @@ function ProfileController($scope, $route, $routeParams, User, Needs, Profession
 		$scope.user = User.query({id: $routeParams.userId});
 	}
 
+    /**
+     * 
+     * @param {type} $event
+     * @param {type} elementId
+     * @returns {undefined}
+     */
 	$scope.onEditActivate = function($event, elementId) {
 		var elm = angular.element("#"+elementId)[0];
 		if(elm.getAttribute("disabled")) {
@@ -42,8 +60,13 @@ function ProfileController($scope, $route, $routeParams, User, Needs, Profession
 		} else {
 			elm.setAttribute("disabled", "disabled");
 		}
-	}
+	};
 
+    /**
+     * 
+     * @param {type} $event
+     * @returns {undefined}
+     */
 	$scope.onEditSave = function($event) {
 		User.updateUser({"id": $scope.user.sguid},  $.param({user: {
 				"login": $scope.user.login,
@@ -51,11 +74,17 @@ function ProfileController($scope, $route, $routeParams, User, Needs, Profession
 				"email": $scope.user.email
 			}})
 		);
-	}
+	};
 }
 
 function CriteriaController($scope, Goals, Criterion) {
 	$scope.criterion_values = {};
+    
+    /**
+     * 
+     * @param {type} goalId
+     * @returns {undefined}
+     */
 	$scope.open = function (goalId) {
 		var self = this;
 
@@ -78,6 +107,10 @@ function CriteriaController($scope, Goals, Criterion) {
 		
 	};
 
+    /**
+     * 
+     * @returns {undefined}
+     */
 	$scope.close = function () {
 		$scope.shouldBeOpen = false;
 	};
@@ -97,15 +130,30 @@ function RegController($scope, $location, User) {
 		email: ""
 	};
 	$scope.errors = "";
+    
+    /**
+     * 
+     * @returns {undefined}
+     */
 	$scope.open = function () {
 		console.log($scope.user);
 		$scope.shouldBeOpen = true;		
 	};
+    
+    /**
+     * 
+     * @returns {undefined}
+     */
 	$scope.close = function () {
 		console.log($scope.user);
 		$scope.shouldBeOpen = false;
 	};
 
+    /**
+     * 
+     * @param {type} $event
+     * @returns {undefined}
+     */
 	$scope.addUser = function ($event) {
 		User.create($.param({user: {
 				"login": $scope.user.login,
@@ -126,6 +174,7 @@ function RegController($scope, $location, User) {
 			}
 		);
 	};
+    
 	$scope.opts = {
 		backdropFade: true,
 		dialogFade:true,
