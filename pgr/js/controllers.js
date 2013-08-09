@@ -2,14 +2,11 @@
 
 function navCtrl($scope, localize) {
 	
-	/**
-	 * @TODO Потом нужно будет переменовать activate в className например.
-	 */
 	$scope.$on('localizeResourcesUpdates', function() {
         $scope.navs = [
-			{name: localize.getLocalizedString("_ABOUT_"), link: '#', active: ''},
-			{name: localize.getLocalizedString("_LEAGUES_"), link: '#', active: ''},
-			{name: localize.getLocalizedString("_PROFILE_"), link: '#/profile', active: ''}
+			{name: localize.getLocalizedString("_ABOUT_"), link: '#', activeClass: ''},
+			{name: localize.getLocalizedString("_LEAGUES_"), link: '#', activeClass: ''},
+			{name: localize.getLocalizedString("_PROFILE_"), link: '#/profile', activeClass: ''}
 		];
     });
 	
@@ -19,9 +16,9 @@ function navCtrl($scope, localize) {
 	$scope.onNavClick = function($event, name) {
 		angular.forEach($scope.navs, function(value, key) {
 			if($scope.navs[key].name == name) {
-				$scope.navs[key].active = 'current';
+				$scope.navs[key].activeClass = 'current';
 			} else {
-				$scope.navs[key].active = '';
+				$scope.navs[key].activeClass = '';
 			}
 		})
 	}
