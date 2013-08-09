@@ -1,27 +1,21 @@
 'use strict';
 
-function navCtrl($scope, localize) {
-	
+function navCtrl($scope, localize, $location) {
+	$scope.hidden = false;
+
 	$scope.$on('localizeResourcesUpdates', function() {
         $scope.navs = [
-			{name: localize.getLocalizedString("_ABOUT_"), link: '#', activeClass: ''},
-			{name: localize.getLocalizedString("_LEAGUES_"), link: '#', activeClass: ''},
+			//{name: localize.getLocalizedString("_ABOUT_"), link: '#', activeClass: ''},
+			//{name: localize.getLocalizedString("_LEAGUES_"), link: '#', activeClass: ''},
 			{name: localize.getLocalizedString("_PROFILE_"), link: '#/profile', activeClass: ''}
 		];
     });
-	
-	/**
-	 * @TODO Нужно будет потом оптимизировать
-	 */
-	$scope.onNavClick = function($event, name) {
-		angular.forEach($scope.navs, function(value, key) {
-			if($scope.navs[key].name == name) {
-				$scope.navs[key].activeClass = 'current';
-			} else {
-				$scope.navs[key].activeClass = '';
-			}
+
+	$scope.$on('$routeChangeStart', function(event, next, current) { 
+   		angular.forEach($scope.navs, function(value, key) {
+			$scope.navs[key].activeClass = $scope.navs[key].link.replace("#", "") == $location.path() ? 'current' : '';
 		})
-	}
+ 	});
 }
 
 function ProfileController($scope, $route, $routeParams, User, Needs, Professions, States) {
