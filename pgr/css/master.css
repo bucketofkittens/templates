@@ -63,8 +63,12 @@ header li {
 header a {
 	color: #cccccc;
 	text-decoration: none;
-	font-family: 'Myriad Pro';
+	font-family: Arial;
 	font-size: 15px;
+	text-transform: uppercase;
+}
+header a:hover {
+	color: #cccccc;
 }
 header .current {
 	text-shadow: 0px 0px 5px #ffffff;
@@ -240,14 +244,6 @@ header .social img {
 	font-style: italic;
 	text-align: left;
 	margin: 0px 0px 10px 5%;
-}
-.criterion span {
-	display: inline-block;
-	width: 90%;
-	height: 30px;
-	background: #cccccc;
-	border: 1px solid #a8a8a8;
-	text-align: center;
 }
 .criterion sub {
 	width: 0px;

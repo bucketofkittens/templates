@@ -1,15 +1,18 @@
 'use strict';
 
-function navCtrl($scope) {
+function navCtrl($scope, localize) {
+	
 	/**
 	 * @TODO Потом нужно будет переменовать activate в className например.
 	 */
-	$scope.navs = [
-		{name: 'ABOUT', link: '#', active: ''},
-		{name: 'LEAGUES', link: '#', active: ''},
-		{name: 'PROFILE', link: '#/profile', active: ''}
-	];
-
+	$scope.$on('localizeResourcesUpdates', function() {
+        $scope.navs = [
+			{name: localize.getLocalizedString("_ABOUT_"), link: '#', active: ''},
+			{name: localize.getLocalizedString("_LEAGUES_"), link: '#', active: ''},
+			{name: localize.getLocalizedString("_PROFILE_"), link: '#/profile', active: ''}
+		];
+    });
+	
 	/**
 	 * @TODO Нужно будет потом оптимизировать
 	 */
@@ -72,6 +75,7 @@ function CriteriaController($scope, Goals, Criterion) {
 					});
 				}
 			});
+			console.log($scope.goal);
 		});
 		
 	};

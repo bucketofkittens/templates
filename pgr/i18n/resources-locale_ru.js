@@ -34,5 +34,17 @@
     {
         "key":"_ProfL_",
         "value":"Профессия"
+    },
+    {
+        "key":"_ABOUT_",
+        "value":"О компании"
+    },
+    {
+        "key":"_LEAGUES_",
+        "value":"Лиги"
+    },
+    {
+        "key":"_PROFILE_",
+        "value":"Профиль"
     }
 ]
