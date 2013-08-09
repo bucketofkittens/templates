@@ -89,3 +89,17 @@ function CriteriaController($scope, Goals, Criterion) {
 		dialogFade:true
 	};
 }
+
+function RegController($scope) {
+	$scope.open = function () {
+		$scope.shouldBeOpen = true;		
+	};
+	$scope.close = function () {
+		$scope.shouldBeOpen = false;
+	};
+	$scope.opts = {
+		backdropFade: true,
+		dialogFade:true,
+		dialogClass: "registration modal"
+	};
+}

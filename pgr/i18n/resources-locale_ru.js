@@ -46,5 +46,21 @@
     {
         "key":"_PROFILE_",
         "value":"Профиль"
+    },
+    {
+        "key":"_PasswordL_",
+        "value":"Пароль"
+    },
+    {
+        "key":"_RepeatL_",
+        "value":"Повторите"
+    },
+    {
+        "key":"_LoginL_",
+        "value":"Логин"
+    },
+    {
+        "key":"_RegL_",
+        "value":"Регистрация"
     }
 ]

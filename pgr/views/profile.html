@@ -73,8 +73,8 @@
 		</li>
 	</ul>
 	<div modal="shouldBeOpen" close="close()" options="opts">
-        <div class="modal-body">
-            <div class="criterion">
+      <div class="modal-body">
+         <div class="criterion">
 				<h3>{{goal.goal.name}}</h3>
 				<ul>
 					<li ng-repeat="crItem in goal.goal.criteria | orderBy:'criterium.position'">
@@ -85,10 +85,10 @@
 					</li>
 				</ul>
 			</div>
-        </div>
-        <div class="modal-footer">
-            <button class="btn btn-warning cancel" ng-click="close()">Cancel</button>
-        </div>
+      </div>
+      <div class="modal-footer">
+         <button class="btn btn-warning cancel" ng-click="close()">Cancel</button>
+      </div>
     </div>
 </section>
 

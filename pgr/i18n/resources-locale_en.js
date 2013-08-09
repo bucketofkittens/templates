@@ -34,5 +34,21 @@
     {
         "key":"_ProfL_",
         "value":"Profession"
+    },
+    {
+        "key":"_PasswordL_",
+        "value":"Password"
+    },
+    {
+        "key":"_RepeatL_",
+        "value":"Repeat"
+    },
+    {
+        "key":"_LoginL_",
+        "value":"Login"
+    },
+    {
+        "key":"_RegL_",
+        "value":"Registration"
     }
 ]

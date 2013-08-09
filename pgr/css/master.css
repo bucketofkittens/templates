@@ -323,3 +323,24 @@ header .social img {
 	border: 0px;
 	box-shadow: none;
 }
+
+.registration.modal {
+	height: 50%;
+	width: 30%;
+	left: 35%;
+	top: 20% !important;
+}
+.registration.modal p {
+	margin: 5% 15%;
+	font-family: 'Myriad Pro';
+	font-size: 18px;
+	font-style: italic;
+}
+.registration.modal h4 {
+	font-family: 'Myriad Pro';
+	font-size: 23px;
+	font-style: italic;
+	font-weight: bold;
+	text-align: center;
+	margin: 5% 0px;
+}
