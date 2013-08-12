@@ -48,7 +48,7 @@ function navCtrl($scope, localize, $location) {
  * @param {type} States
  * @returns {undefined}
  */
-function ProfileController($scope, $route, $routeParams, User, Needs, Professions, States) {
+function ProfileController($scope, $route, $routeParams, User, Needs, Professions, States, $http) {
     
 	$scope.userId = $routeParams.userId;
 	$scope.user = null;
@@ -85,8 +85,9 @@ function ProfileController($scope, $route, $routeParams, User, Needs, Profession
      */
 	$scope.onEditSave = function($event) {
 		User.updateUser({"id": $scope.user.sguid},  $.param({user: {
-				"name": $scope.user.login,
-				"email": $scope.user.name
+				"login": $scope.user.login,
+				"name": $scope.user.name,
+				"email": $scope.user.email
 			}})
 		);
 		$event.target.setAttribute("disabled", "disabled"); 
@@ -96,17 +97,22 @@ function ProfileController($scope, $route, $routeParams, User, Needs, Profession
 		var photo = document.getElementById("photo");
     	// the file is the first element in the files property
     	var file = photo.files[0];
-    	User.updateUser({"id": $scope.user.sguid},  $.param({user: {
-					"name": $scope.user.name,
-					"email": $scope.user.email,
-					"picture_file": {
-							"tempfile":[],
-							"original_filename":file.name,
-							"content_type":file.type,
-							"headers":"Content-Disposition: form-data; name='user[picture_file]'; filename='"+file.name+"' Content-Type: "+file.type
-					}
-				}})
-			);
+    	var data = new FormData();
+    	data.append("picture", file);
+    	data.append("owner_type", 0);
+    	console.log(file);
+    	$http({
+		    method: 'PUT',
+		    url: 'http://xmpp.dev.improva.com:9090/api/v1/pictures/'+$scope.user.sguid,
+		    headers: {
+		        'Content-Type': 'multipart/form-data'
+		    },
+		    data: data,
+		    transformRequest: function(data) {
+		    	console.log(data);
+		    }
+		  });
+
 	}
 
 	/**

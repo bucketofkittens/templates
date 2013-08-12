@@ -12,7 +12,7 @@ pgrModule.factory('User', function ($resource) {
         {id:'@id'}, 
         {
             create: {method: 'POST', headers : {'Content-Type': 'application/x-www-form-urlencoded'}},
-            updateUser: {method: 'PUT', headers : {'Content-Type': 'multipart/form-data'} },
+            updateUser: {method: 'PUT', headers : {'Content-Type': 'application/x-www-form-urlencoded'} },
             'query': {
             	method: 'GET', 
             	transformResponse: function (data) {
@@ -22,6 +22,24 @@ pgrModule.factory('User', function ($resource) {
         }
     );
 });
+
+/**
+ * Модель картинов
+ * @param  {[type]} $resource [description]
+ * @return {[type]}           [description]
+ */
+pgrModule.factory('Picture', function ($resource) {
+    return $resource(
+        host+'/pictures/:id', 
+        {id:'@id'}, 
+        {
+            create: {method: 'POST', headers : {'Content-Type': 'application/x-www-form-urlencoded'}},
+            updatePicture: {method: 'PUT', headers : {'Content-Type': 'application/x-www-form-urlencoded'} }
+        }
+    );
+});
+
+
 
 /**
  * Модель для Needs
