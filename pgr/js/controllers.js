@@ -52,6 +52,7 @@ function ProfileController($scope, $route, $routeParams, User, Needs, Profession
     
 	$scope.userId = $routeParams.userId;
 	$scope.user = null;
+	$scope.newImage = null;
 	$scope.needs = Needs.query();
 	$scope.professions = Professions.query();
 	$scope.states = States.query();
@@ -95,24 +96,21 @@ function ProfileController($scope, $route, $routeParams, User, Needs, Profession
 
 	$scope.onReadFile = function($event) {
 		var photo = document.getElementById("photo");
-    	// the file is the first element in the files property
     	var file = photo.files[0];
     	var data = new FormData();
+
     	data.append("picture", file);
     	data.append("owner_type", 0);
-    	console.log(file);
-    	$http({
-		    method: 'PUT',
-		    url: 'http://xmpp.dev.improva.com:9090/api/v1/pictures/'+$scope.user.sguid,
-		    headers: {
-		        'Content-Type': 'multipart/form-data'
-		    },
-		    data: data,
-		    transformRequest: function(data) {
-		    	console.log(data);
-		    }
-		  });
 
+    	var xhr = new XMLHttpRequest();
+
+		xhr.open('PUT', 'http://xmpp.dev.improva.com:9090/api/v1/pictures/'+$scope.user.sguid, true);
+		xhr.onload = function (e) {
+		  if (xhr.readyState === 4) {
+		  	location.reload();
+		  }
+		};
+		xhr.send(data);
 	}
 
 	/**

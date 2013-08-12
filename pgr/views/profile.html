@@ -1,6 +1,6 @@
 <section class="promain">
 	<div class="pmain">
-		<img src="../images/use.png">
+		<img src="{{user.picture_url}}" />
 		<div class="pmpar">
 			<p>
 				<label for="name_i">{{'_NameL_' | i18n}}:</label> 
@@ -51,7 +51,7 @@
 			</p>
 		</div>
 		<div class="publish">
-			<p><input type="file" name="photo" id="photo"/></p>
+			<p><input type="file" name="photo" ng-model="newImage" id="photo"/></p>
 			<p><button ng-click="onReadFile()" >{{'_ChPhL_' | i18n}}</button></p>
 			<p><button ng-click="onPublish()">{{'_PublishL_' | i18n}}</button></p>
 		</div>
