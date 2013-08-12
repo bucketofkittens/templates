@@ -36,12 +36,28 @@
         "value":"Profession"
     },
     {
+        "key":"_ABOUT_",
+        "value":"About"
+    },
+    {
+        "key":"_LEAGUES_",
+        "value":"Leagues"
+    },
+    {
+        "key":"_PROFILE_",
+        "value":"Profile"
+    },
+    {
+        "key":"_LogoutL_",
+        "value":"Log out"
+    },
+    {
         "key":"_PasswordL_",
         "value":"Password"
     },
     {
         "key":"_RepeatL_",
-        "value":"Repeat"
+        "value":"Repeat the"
     },
     {
         "key":"_LoginL_",

@@ -37,7 +37,7 @@
     },
     {
         "key":"_ABOUT_",
-        "value":"О компании"
+        "value":"О проекте"
     },
     {
         "key":"_LEAGUES_",
@@ -46,6 +46,10 @@
     {
         "key":"_PROFILE_",
         "value":"Профиль"
+    },
+    {
+        "key":"_LogoutL_",
+        "value":"Выход"
     },
     {
         "key":"_PasswordL_",

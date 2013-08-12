@@ -12,7 +12,8 @@ function navCtrl($scope, localize, $location) {
         $scope.navs = [
 			//{name: localize.getLocalizedString("_ABOUT_"), link: '#', activeClass: ''},
 			//{name: localize.getLocalizedString("_LEAGUES_"), link: '#', activeClass: ''},
-			{name: localize.getLocalizedString("_PROFILE_"), link: '#/profile', activeClass: ''}
+			{name: localize.getLocalizedString("_PROFILE_"), link: '#/profile', activeClass: ''},
+			{name: localize.getLocalizedString("_LogoutL_"), link: '#', activeClass: ''}
 		];
 
 		angular.forEach($scope.navs, function(value, key) {
