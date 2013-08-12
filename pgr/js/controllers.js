@@ -66,6 +66,8 @@ function ProfileController($scope, $route, $routeParams, User, Needs, Profession
      * @returns {undefined}
      */
 	$scope.onEditActivate = function($event, elementId) {
+		angular.element(".form-control").attr("disabled", "disabled");
+		
 		var elm = angular.element("#"+elementId)[0];
 		if(elm.getAttribute("disabled")) {
 			elm.removeAttribute("disabled");
@@ -86,10 +88,16 @@ function ProfileController($scope, $route, $routeParams, User, Needs, Profession
 				"email": $scope.user.email
 			}})
 		);
+		$event.target.setAttribute("disabled", "disabled");
 	};
 
+	/**
+	 * Публикая профиля
+	 * Пока не работает нет backend
+	 * @param  {[type]} $event [description]
+	 * @return {[type]}        [description]
+	 */
 	$scope.onPublish = function($event) {
-		console.log("e");
 		User.updateUser({"id": $scope.user.sguid},  $.param({user: {
 				"login": $scope.user.login,
 				"name": $scope.user.name,

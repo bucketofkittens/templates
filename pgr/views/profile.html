@@ -12,13 +12,15 @@
 					class="clean form-control" 
 					disabled="disabled" 
 					ng-model="user.name"
-					placeholder="Batman" />
+					placeholder="Batman"
+					required
+					ng-minlength="6" />
 				<img src="../images/pencil.png" ng-click="onEditActivate($event, 'name_i')" />
 			</p>
 			<p>
 				<label for="email_i">E-mail:</label> 
 				<input 
-					type="text" 
+					type="email" 
 					id="email_i" 
 					ui-keypress="{13:'onEditSave($event)'}" 
 					class="clean form-control" 
