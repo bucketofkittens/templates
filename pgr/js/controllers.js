@@ -3,6 +3,11 @@
 function navCtrl($scope, localize, $location) {
 	$scope.hidden = false;
 
+	/**
+	 * Событие вызываемое при загрузке файлов локализации.
+	 * Нужно для создания массива верхнего меню, локализованного
+	 * @return {[type]} [description]
+	 */
 	$scope.$on('localizeResourcesUpdates', function() {
         $scope.navs = [
 			//{name: localize.getLocalizedString("_ABOUT_"), link: '#', activeClass: ''},
@@ -17,6 +22,13 @@ function navCtrl($scope, localize, $location) {
 		});
    });
 
+	/**
+	 * Событие вызываемое при переходе по роутингу
+	 * @param  {[type]}   event   [description]
+	 * @param  {Function} next    [description]
+	 * @param  {[type]}   current [description]
+	 * @return {[type]}           [description]
+	 */
 	$scope.$on('$routeChangeStart', function(event, next, current) { 
    		angular.forEach($scope.navs, function(value, key) {
 			$scope.navs[key].activeClass = $scope.navs[key].link.replace("#", "") === $location.path() ? 'current' : '';
@@ -88,7 +100,12 @@ function CriteriaController($scope, Goals, Criterion) {
 	$scope.open = function (goalId) {
 		var self = this;
 
-		
+		/**
+		 * Обход циклом для получения всех значений для критерий.
+		 * Можно найти более прямое решение
+		 * @param  {[type]} data [description]
+		 * @return {[type]}      [description]
+		 */
 		Goals.get({id: goalId}, function(data) {
 			$scope.goal = data;
 
@@ -115,13 +132,27 @@ function CriteriaController($scope, Goals, Criterion) {
 		$scope.shouldBeOpen = false;
 	};
 
+	/**
+	 * Параметры попапа
+	 * @type {Object}
+	 */
 	$scope.opts = {
 		backdropFade: true,
 		dialogFade:true
 	};
 }
 
+/**
+ * Контроллер формы регистрации
+ * @param {[type]} $scope    [description]
+ * @param {[type]} $location [description]
+ * @param {[type]} User      [description]
+ */
 function RegController($scope, $location, User) {
+	/**
+	 * Объект нового польхователя
+	 * @type {Object}
+	 */
 	$scope.user = {
 		login: "",
 		name: "",
@@ -129,6 +160,11 @@ function RegController($scope, $location, User) {
 		repassword: "",
 		email: ""
 	};
+
+	/**
+	 * Строка ошибок
+	 * @type {String}
+	 */
 	$scope.errors = "";
     
     /**
@@ -175,6 +211,10 @@ function RegController($scope, $location, User) {
 		);
 	};
     
+    /**
+     * Параметры попапа
+     * @type {Object}
+     */
 	$scope.opts = {
 		backdropFade: true,
 		dialogFade:true,

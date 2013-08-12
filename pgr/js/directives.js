@@ -1,3 +1,8 @@
+/**
+ * Директива для валидации паролей.
+ * Кривая как моя жизнь, зато работает
+ * @return {[type]} [description]
+ */
 pgrModule.directive('sameAs', [function() {
   return {
     require: 'ngModel',

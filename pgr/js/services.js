@@ -24,7 +24,9 @@ pgrModule.factory('User', function ($resource) {
 });
 
 /**
- * 
+ * Модель для Needs
+ * @param  {[type]} $resource [description]
+ * @return {[type]}           [description]
  */
 pgrModule.factory('Needs', function ($resource) {
     return $resource(
@@ -37,7 +39,9 @@ pgrModule.factory('Needs', function ($resource) {
 });
 
 /**
- * 
+ * Модель для Goals
+ * @param  {[type]} $resource [description]
+ * @return {[type]}           [description]
  */
 pgrModule.factory('Goals', function ($resource) {
     return $resource(
@@ -50,7 +54,9 @@ pgrModule.factory('Goals', function ($resource) {
 });
 
 /**
- * 
+ * Модель профессий
+ * @param  {[type]} $resource [description]
+ * @return {[type]}           [description]
  */
 pgrModule.factory('Professions', function ($resource) {
     return $resource(
@@ -63,7 +69,9 @@ pgrModule.factory('Professions', function ($resource) {
 });
 
 /**
- * 
+ * Модель для штатов
+ * @param  {[type]} $resource [description]
+ * @return {[type]}           [description]
  */
 pgrModule.factory('States', function ($resource) {
     return $resource(
@@ -76,7 +84,9 @@ pgrModule.factory('States', function ($resource) {
 });
 
 /**
- * 
+ * Модель для списка критериев
+ * @param  {[type]} $resource [description]
+ * @return {[type]}           [description]
  */
 pgrModule.factory('Criterion', function ($resource) {
     return $resource(
