@@ -26,9 +26,8 @@ header {
         color: #cccccc;
         text-decoration: none;
         font-family: Arial;
-        font-size: 15px;
+        font-size: 18px;
         text-transform: uppercase;
-        padding: 3px;
 
         &:hover {
             color: #cccccc;
@@ -37,30 +36,34 @@ header {
     ul {
         display: inline-block;
         vertical-align: top;
+        position: absolute;
+        right: 15%;
     }
     .current {
-        box-shadow: 0px 0px 10px 5px rgba(255, 255, 255, 0.5), inset 0px 0px 5px 0px rgba(255, 255, 255, 0.5);
-        border-radius: 10px;
+        color: #028dda;
     }
     img {
-        width: 300px;
-        height: 50px;
+        width: 360px;
+        height: 100%;
+        margin-top: -12px;
     }
     .logo {
-        margin: 0px 30% 0px 5%;
+        margin: 0px 5%;
     }
     .social {
-        width: 64px;
+        width: 96px;
         vertical-align: top;
         display: inline-block;
+        position: absolute;
+        top: 12px;
+        right: 5%;
         img {
             height: 32px;
-            width: 64px;
-            margin: 0px 100px;
+            width: 96px;
         }
     }
     li {
-        margin: 10px 30px;
+        margin: 13px;
         display: inline-block;
         vertical-align: top;
     }
@@ -74,8 +77,7 @@ header {
     height: 100%;
     .pmain:first-child {
         & > img {
-            width: 200px;
-            height: 200px;
+            width: 35%;
             border: 1px solid #000000;
             vertical-align: middle;
         }
@@ -83,6 +85,7 @@ header {
     .pmain.league {
         text-align: center;
         padding-top: 15px;
+        width: 12%;
         img {
             border-radius: 20px;
         }
@@ -144,17 +147,18 @@ header {
     }
     .pmain {
         display: inline-block;
-        margin: 30px 15% 30px 5%;
+        margin: 30px 0px 30px 5%;
         vertical-align: top;
+        width: 30%;
         .pmpar {
             display: inline-block;
             vertical-align: middle;
-            margin-left: 20px;
+            margin-left: 10px;
+            width: 60%;
             img {
                 width: 20px;
                 height: 20px;
                 vertical-align: middle;
-                margin-left: 10px;
             }
             p {
                 font-family: 'Myriad Pro';
@@ -166,7 +170,11 @@ header {
         .publish {
             button {
                 margin: 15px 15px 0px 25px;
-                text-align: center;
+                text-align: center;-webkit-transform: skewX(angle);
+                -moz-transform: skewX(angle);
+                -ms-transform: skewX(angle);
+                -o-transform: skewX(angle);
+                transform: skewX(angle);
                 font-family: 'Myriad Pro';
                 font-size: 16px;
                 color: #000000;
@@ -202,12 +210,15 @@ header {
         height: 60px;
     }
 }
-
+label {
+    display: inline-block;
+    width: 25%;
+}
 
 .pmpar {
     .form-control {
         display: inline-block;
-        width: 200px;
+        width: 60%;
         vertical-align: bottom;
         font-family: 'Myriad Pro';
         font-size: 18px;
@@ -225,7 +236,7 @@ header {
     font-family: 'Myriad Pro';
     font-size: 18px;
     margin-bottom: 5px;
-    width: 215px;
+    width: 64%;
 }
 
 input.ng-invalid:not(.ng-pristine) {
