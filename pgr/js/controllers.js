@@ -87,6 +87,17 @@ function ProfileController($scope, $route, $routeParams, User, Needs, Profession
 			}})
 		);
 	};
+
+	$scope.onPublish = function($event) {
+		console.log("e");
+		User.updateUser({"id": $scope.user.sguid},  $.param({user: {
+				"login": $scope.user.login,
+				"name": $scope.user.name,
+				"email": $scope.user.email,
+				"confirmed": 1
+			}})
+		);
+	}
 }
 
 function CriteriaController($scope, Goals, Criterion) {
