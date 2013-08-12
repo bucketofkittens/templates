@@ -32,9 +32,12 @@
 					<label for="pass_i">{{'_PasswordL_' | i18n}}:</label> 
 					<input 
 						type="password" 
-						id="pass_i" 
+						id="pass_i"
+						name="password"
 						class="form-control"
-						ng-model="user.password" required ng-minlength="6" /> 
+						ng-model="user.password" 
+						required 
+						ng-minlength="6" /> 
 				</p>
 				<p>
 					<label for="repass_i">{{'_RepeatL_' | i18n}} {{'_PasswordL_' | i18n}}:</label> 
@@ -42,7 +45,11 @@
 						type="password" 
 						id="repass_i" 
 						class="form-control"
-						ng-model="user.repassword" required ng-minlength="6"  /> 
+						ng-model="user.repassword" 
+						required 
+						ng-minlength="6"  
+						same-as="user"
+						/> 
 				</p>
 				<p id="errors">{{errors}}</p>
 			</form>

@@ -82,8 +82,8 @@ function CriteriaController($scope, Goals, Criterion) {
     
     /**
      * 
-     * @param {type} goalId
-     * @returns {undefined}
+     * @param  {[type]} goalId [description]
+     * @return {[type]}        [description]
      */
 	$scope.open = function (goalId) {
 		var self = this;
