@@ -82,6 +82,13 @@ header {
             border-radius: 20px;
         }
     }
+    .pmain {
+        .ng-pristine[disabled="disabled"] {
+            background: transparent;
+            border-color: transparent;
+            box-shadow: none;
+        }
+    }
     .procrit {
         margin: 30px 0px 0px 5%;
         a {
@@ -206,8 +213,8 @@ label {
     }
     .form-control[disabled="disabled"] {
         background: transparent;
-        border: 0px;
-        box-shadow: none;
+        border-color: transparent;
+        box-shadow-: none;
     }
 }
 
@@ -279,11 +286,7 @@ input.ng-invalid:not(.ng-pristine) {
     display: none;
 }
 
-.ng-pristine[disabled="disabled"] {
-    background: transparent;
-    border: 0px;
-    box-shadow: none;
-}
+
 .crp {
     display: table;
     width: 100%;

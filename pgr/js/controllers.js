@@ -72,6 +72,7 @@ function ProfileController($scope, $route, $routeParams, User, Needs, Profession
 		var elm = angular.element("#"+elementId)[0];
 		if(elm.getAttribute("disabled")) {
 			elm.removeAttribute("disabled");
+			elm.focus();
 		} else {
 			elm.setAttribute("disabled", "disabled");
 		}
@@ -84,13 +85,29 @@ function ProfileController($scope, $route, $routeParams, User, Needs, Profession
      */
 	$scope.onEditSave = function($event) {
 		User.updateUser({"id": $scope.user.sguid},  $.param({user: {
-				"login": $scope.user.login,
-				"name": $scope.user.name,
-				"email": $scope.user.email
+				"name": $scope.user.login,
+				"email": $scope.user.name
 			}})
 		);
-		$event.target.setAttribute("disabled", "disabled");
+		$event.target.setAttribute("disabled", "disabled"); 
 	};
+
+	$scope.onReadFile = function($event) {
+		var photo = document.getElementById("photo");
+    	// the file is the first element in the files property
+    	var file = photo.files[0];
+    	User.updateUser({"id": $scope.user.sguid},  $.param({user: {
+					"name": $scope.user.name,
+					"email": $scope.user.email,
+					"picture_file": {
+							"tempfile":[],
+							"original_filename":file.name,
+							"content_type":file.type,
+							"headers":"Content-Disposition: form-data; name='user[picture_file]'; filename='"+file.name+"' Content-Type: "+file.type
+					}
+				}})
+			);
+	}
 
 	/**
 	 * Публикая профиля
@@ -100,10 +117,8 @@ function ProfileController($scope, $route, $routeParams, User, Needs, Profession
 	 */
 	$scope.onPublish = function($event) {
 		User.updateUser({"id": $scope.user.sguid},  $.param({user: {
-				"login": $scope.user.login,
 				"name": $scope.user.name,
-				"email": $scope.user.email,
-				"confirmed": 1
+				"email": $scope.user.email
 			}})
 		);
 	}

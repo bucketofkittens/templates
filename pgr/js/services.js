@@ -12,7 +12,7 @@ pgrModule.factory('User', function ($resource) {
         {id:'@id'}, 
         {
             create: {method: 'POST', headers : {'Content-Type': 'application/x-www-form-urlencoded'}},
-            updateUser: {method: 'PUT', headers : {'Content-Type': 'application/x-www-form-urlencoded'} },
+            updateUser: {method: 'PUT', headers : {'Content-Type': 'multipart/form-data'} },
             'query': {
             	method: 'GET', 
             	transformResponse: function (data) {

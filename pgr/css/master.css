@@ -11,6 +11,7 @@ header .social{width:64px;vertical-align:top;display:inline-block}header .social
 header li{margin:10px 30px;display:inline-block;vertical-align:top}
 #content{position:relative;width:100%;height:100%}#content .pmain:first-child>img{width:200px;height:200px;border:1px solid #000;vertical-align:middle}
 #content .pmain.league{text-align:center;padding-top:15px}#content .pmain.league img{border-radius:20px}
+#content .pmain .ng-pristine[disabled="disabled"]{background:transparent;border-color:transparent;box-shadow:none}
 #content .procrit{margin:30px 0 0 5%}#content .procrit a{font-family:'Myriad Pro';font-size:18px;color:#000;text-decoration:none;font-style:italic;display:inline-block;width:150px}
 #content .procrit ul{margin-top:30px}#content .procrit ul li{display:inline-block;margin:10px 0 30px 0;vertical-align:top;width:18%}#content .procrit ul li ul{vertical-align:top}#content .procrit ul li ul li{display:block;line-height:200%;width:100%;margin:0}
 #content .procrit sup{vertical-align:super;font-size:14px}
@@ -25,7 +26,7 @@ header li{margin:10px 30px;display:inline-block;vertical-align:top}
 #content .mar{display:block;height:60px}
 label{display:inline-block;width:100px}
 .pmpar .form-control{display:inline-block;width:200px;vertical-align:bottom;font-family:'Myriad Pro';font-size:18px;margin-bottom:5px}
-.pmpar .form-control[disabled="disabled"]{background:transparent;border:0;box-shadow:none}
+.pmpar .form-control[disabled="disabled"]{background:transparent;border-color:transparent;box-shadow-:none}
 .ng-pristine{vertical-align:bottom;font-family:'Myriad Pro';font-size:18px;margin-bottom:5px;width:215px}
 input.ng-invalid:not(.ng-pristine){color:#b94a48;border-color:#ee5f5b;border-color:#e9322d !important;-webkit-box-shadow:0 0 6px #f8b9b7 !important;-moz-box-shadow:0 0 6px #f8b9b7 !important;box-shadow:0 0 6px #f8b9b7 !important}
 .registration.modal{width:30%;height:50%;left:35%;top:20% !important}.registration.modal h4{font-family:'Myriad Pro';font-size:23px;font-style:italic;font-weight:bold;text-align:center;margin:5% 0}
@@ -35,7 +36,6 @@ input.ng-invalid:not(.ng-pristine){color:#b94a48;border-color:#ee5f5b;border-col
 .modal-body{min-height:90%}
 .scroll{font-family:'Myriad Pro';font-size:16px;color:#5e5c5d;text-decoration:none;position:absolute;bottom:30px;left:50%;margin-left:-50px}
 .shadow{background:rgba(0,0,0,0.5);z-index:10;position:absolute;width:100%;height:100%;display:none}
-.ng-pristine[disabled="disabled"]{background:transparent;border:0;box-shadow:none}
 .crp{display:table;width:100%;border-radius:15px;background:#1e5799;background:-moz-linear-gradient(left, #1e5799 0, #207cca 0, #d3d3d3 0, #f7f7f7 100%);background:-webkit-gradient(linear, left top, right top, color-stop(0, #1e5799), color-stop(0, #207cca), color-stop(0, #d3d3d3), color-stop(100%, #f7f7f7));background:-webkit-linear-gradient(left, #1e5799 0, #207cca 0, #d3d3d3 0, #f7f7f7 100%);background:-o-linear-gradient(left, #1e5799 0, #207cca 0, #d3d3d3 0, #f7f7f7 100%);background:-ms-linear-gradient(left, #1e5799 0, #207cca 0, #d3d3d3 0, #f7f7f7 100%);background:linear-gradient(to right, #1e5799 0, #207cca 0, #d3d3d3 0, #f7f7f7 100%);filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#1e5799', endColorstr='#f7f7f7', GradientType=1)}.crp li{display:table-cell;font-family:'Myriad Pro';font-size:14px;color:#000;line-height:200%}
 .criterion{z-index:15}.criterion sub{width:0;height:0;border-style:solid;border-width:0 5px 20px 5px;border-color:transparent transparent #a8a8a8 transparent;position:absolute;top:70%;left:50%}
 .criterion h3{color:#000;font-family:'Myriad Pro';font-size:23px;font-style:italic;font-weight:bold;text-align:center;margin:3% 0}

@@ -51,7 +51,8 @@
 			</p>
 		</div>
 		<div class="publish">
-			<p><button>{{'_ChPhL_' | i18n}}</button></p>
+			<p><input type="file" name="photo" id="photo"/></p>
+			<p><button onclick="angular.element(this).scope().onReadFile(this)" >{{'_ChPhL_' | i18n}}</button></p>
 			<p><button ng-click="onPublish()">{{'_PublishL_' | i18n}}</button></p>
 		</div>
 	</div>
