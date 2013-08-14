@@ -1,6 +1,7 @@
 <section class="promain">
-	<div class="pmain">
-		<img src="{{user.picture_url}}" />
+	<div class="pmain pro">
+		<img src="../images/use.png">
+		<!--<img src="{{user.picture_url}}" />-->
 		<div class="pmpar">
 			<p>
 				<label for="name_i">{{'_NameL_' | i18n}}:</label> 
@@ -53,12 +54,21 @@
 		<div class="publish">
 			<p><input type="file" name="photo" ng-model="newImage" id="photo"/></p>
 			<p><button ng-click="onReadFile()" >{{'_ChPhL_' | i18n}}</button></p>
+			<!--<p><button onclick="angular.element(this).scope().onReadFile(this)" >{{'_ChPhL_' | i18n}}</button></p> -->
 			<p><button ng-click="onPublish()">{{'_PublishL_' | i18n}}</button></p>
 		</div>
 	</div>
 	<div class="pmain league">
 		<img src="../images/league.png">
 		<i>00 000 000 <b>{{'_PointsL_' | i18n}}</b></i>
+	</div>
+	<div class="pmain achiev">
+		<h3>{{'_AchievL_' | i18n}}</h3>
+		<strong>Huge force</strong>
+		<strong>Best detectiv</strong>
+		<strong>Master of martial Arts</strong>
+		<strong>High IQ</strong>
+		<strong>Inconspicuous</strong>
 	</div>
 </section>
 
@@ -95,3 +105,14 @@
     </div>
 </section>
 
+<section class="pronear">
+	<a href="#"><span></span></a>
+	<div class="ph">
+		<a href="#"><img src="../images/1.png"></a>
+		<a href="#"><img src="../images/2.png"></a>
+		<a href="#"><img src="../images/use.png"></a>
+		<a href="#"><img src="../images/4.png"></a>
+		<a href="#"><img src="../images/5.png"></a>
+	</div>
+	<a href="#"><span></span></a>
+</section>

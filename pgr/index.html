@@ -26,9 +26,9 @@
 			<a href="#/" class="logo"><img src="./images/logo.png" alt="PERSON GROWTH RANKING"></a>
 			<ul ng-controller="navCtrl">
 				<div ng-switch on="hidden" >
-			        <div ng-switch-when="false">
-			        	<li ng-repeat="nav in navs"><a href="{{nav.link}}" class="{{nav.activeClass}}" ng-click="onNavClick($event, nav.name)">{{nav.name}}</a></li>
-			        </div>
+		         <div ng-switch-when="false">
+		        		<li ng-repeat="nav in navs"><a href="{{nav.link}}" class="{{nav.activeClass}}" ng-click="onNavClick($event, nav.name)">{{nav.name}}</a></li>
+		         </div>
 			    </div>
 			</ul>
 			<div class="social">
@@ -38,7 +38,6 @@
 		<div id="content">
 			<span class="mar"></span>
 			<div ng-view></div>
-			
 		</div>
 	</body>
 </html>
