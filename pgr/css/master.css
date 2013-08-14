@@ -1,45 +1,42 @@
 @import "reset.css";
-body{width:100%;height:100%}
+select,textarea,input{padding:0 !important}
 input{width:215px}
-label{display:inline-block;width:100px}
-header{height:60px;width:100%;background:#000;position:absolute;top:0;z-index:5;overflow:hidden}header a{color:#ccc;text-decoration:none;font-family:Arial;font-size:15px;text-transform:uppercase;padding:3px}header a:hover{color:#ccc}
-header ul{display:inline-block;vertical-align:top}
-header .current{box-shadow:0 0 10px 5px rgba(255,255,255,0.5),inset 0 0 5px 0 rgba(255,255,255,0.5);border-radius:10px}
-header img{width:300px;height:50px}
-header .logo{margin:0 30% 0 5%}
-header .social{width:64px;vertical-align:top;display:inline-block}header .social img{height:32px;width:64px;margin:0 100px}
-header li{margin:10px 30px;display:inline-block;vertical-align:top}
-#content{position:relative;width:100%;height:100%}#content .pmain:first-child>img{width:200px;height:200px;border:1px solid #000;vertical-align:middle}
-#content .pmain.league{text-align:center;padding-top:15px}#content .pmain.league img{border-radius:20px}
-#content .pmain .ng-pristine[disabled="disabled"]{background:transparent;border-color:transparent;box-shadow:none}
-#content .procrit{margin:30px 0 0 5%}#content .procrit a{font-family:'Myriad Pro';font-size:18px;color:#000;text-decoration:none;font-style:italic;display:inline-block;width:150px}
-#content .procrit ul{margin-top:30px}#content .procrit ul li{display:inline-block;margin:10px 0 30px 0;vertical-align:top;width:18%}#content .procrit ul li ul{vertical-align:top}#content .procrit ul li ul li{display:block;line-height:200%;width:100%;margin:0}
-#content .procrit sup{vertical-align:super;font-size:14px}
-#content .procrit p{font-family:'Myriad Pro';font-size:18px;color:#000;font-style:italic;font-weight:bold}
-#content .procrit h2{font-family:'Myriad Pro';font-size:25px;color:#000;font-style:italic;margin-left:35%}
-#content .pmain{display:inline-block;margin:30px 15% 30px 5%;vertical-align:top}#content .pmain .pmpar{display:inline-block;vertical-align:middle;margin-left:20px}#content .pmain .pmpar img{width:20px;height:20px;vertical-align:middle;margin-left:10px}
-#content .pmain .pmpar p{font-family:'Myriad Pro';font-size:18px;color:#000;line-height:40px}
-#content .pmain .publish button{margin:15px 15px 0 25px;text-align:center;font-family:'Myriad Pro';font-size:16px;color:#000;width:150px}
-#content .pmain .publish p{display:inline-block}
-#content .pmain i{font-family:'Myriad Pro';font-size:20px;color:#000;font-style:italic;padding-top:15px;display:block}
+label{display:inline-block;width:25%}
+body{width:100%;height:100%}body .shadow{background:rgba(0,0,0,0.5);z-index:10;position:absolute;width:100%;height:100%;display:none}
+body header{height:60px;width:100%;background:#000;position:absolute;top:0;z-index:5;overflow:hidden}body header .logo{margin:0 5%}body header .logo img{width:360px;height:100%;margin-top:-12px}
+body header ul{display:inline-block;vertical-align:top;position:absolute;right:15%}body header ul li{margin:13px;display:inline-block;vertical-align:top}
+body header ul a{color:#ccc;text-decoration:none;font-family:Arial;font-size:18px;text-transform:uppercase}body header ul a:hover{color:#ccc}
+body header ul a.current{color:#028dda}
+body header .social{width:96px;vertical-align:top;display:inline-block;position:absolute;top:0;right:5%}body header .social img{height:32px;width:96px}
+#content{position:relative;width:100%;height:100%;}#content .mar{display:block;height:60px}
 #content .who img{width:200px;height:200px;border:1px solid #000;display:inline-block;position:absolute;top:50%;left:50%;margin:-100px 0 0 -130px}
-#content .mar{display:block;height:60px}
-.pmpar .form-control{display:inline-block;width:200px;vertical-align:bottom;font-family:'Myriad Pro';font-size:18px;margin-bottom:5px}
-.pmpar .form-control[disabled="disabled"]{background:transparent;border-color:transparent;box-shadow-:none}
-.ng-pristine{vertical-align:bottom;font-family:'Myriad Pro';font-size:18px;margin-bottom:5px;width:215px}
-input.ng-invalid:not(.ng-pristine){color:#b94a48;border-color:#ee5f5b;border-color:#e9322d !important;-webkit-box-shadow:0 0 6px #f8b9b7 !important;-moz-box-shadow:0 0 6px #f8b9b7 !important;box-shadow:0 0 6px #f8b9b7 !important}
+#content .scroll{font-family:'Myriad Pro';font-size:16px;color:#5e5c5d;text-decoration:none;position:absolute;bottom:30px;left:50%;margin-left:-50px}
+#content .promain .pmain{display:inline-block;margin:30px 0 30px 5%;vertical-align:top;width:30%}#content .promain .pmain.pro .pp{width:35%;border:1px solid #000;vertical-align:middle}
+#content .promain .pmain.pro .pmpar{display:inline-block;vertical-align:middle;margin-left:10px;width:60%}#content .promain .pmain.pro .pmpar p{font-family:'Myriad Pro';font-size:18px;color:#000;line-height:40px}
+#content .promain .pmain.pro .pmpar .form-control{display:inline-block;width:60%;vertical-align:bottom;font-family:'Myriad Pro';font-size:18px;margin-bottom:5px}
+#content .promain .pmain.pro .pmpar .form-control[disabled="disabled"]{background:transparent;border-color:transparent;box-shadow-:none}
+#content .promain .pmain.pro .pmpar .ng-pristine{vertical-align:bottom;font-family:'Myriad Pro';font-size:18px;margin-bottom:5px;width:64%}
+#content .promain .pmain.pro .pmpar .ng-pristine[disabled="disabled"]{background:transparent;border-color:transparent;box-shadow:none}
+#content .promain .pmain.pro .pmpar img{width:20px;height:20px;vertical-align:middle}
+#content .promain .pmain.pro .publish p{display:inline-block}#content .promain .pmain.pro .publish p button{margin:15px 15px 0 25px;text-align:center;-webkit-transform:skewX(angle);-moz-transform:skewX(angle);-ms-transform:skewX(angle);-o-transform:skewX(angle);transform:skewX(angle);font-family:'Myriad Pro';font-size:16px;color:#000;width:150px}
+#content .promain .pmain.league{text-align:center;padding-top:15px;width:12%}#content .promain .pmain.league img{border-radius:20px}
+#content .promain .pmain.league i{font-family:'Myriad Pro';font-size:20px;color:#000;font-style:italic;padding-top:15px;display:block}
+#content .promain .pmain.achiev{width:20%;text-align:center}#content .promain .pmain.achiev h3{color:#000;font-family:'Myriad Pro';font-size:23px;font-style:italic;font-weight:bold;text-align:center;margin-bottom:5%}
+#content .promain .pmain.achiev strong{display:inline-block;width:23%;border-radius:50%;box-shadow:0 0 4px 1px #028dda;background:rgba(2,141,218,0.1);text-align:center;color:#000;font-family:'Myriad Pro';font-size:20px;margin:3%;word-wrap:break-word;vertical-align:middle;padding:5px}
+#content .procrit{margin:30px 0 0 5%}#content .procrit h2{font-family:'Myriad Pro';font-size:25px;color:#000;font-style:italic;margin-left:35%}
+#content .procrit ul{margin-top:30px}#content .procrit ul li{display:inline-block;margin:10px 0 30px 0;vertical-align:top;width:18%}#content .procrit ul li p{font-family:'Myriad Pro';font-size:18px;color:#000;font-style:italic;font-weight:bold}
+#content .procrit ul li ul{vertical-align:top}#content .procrit ul li ul li{display:block;line-height:200%;width:100%;margin:0}#content .procrit ul li ul li a{font-family:'Myriad Pro';font-size:18px;color:#000;text-decoration:none;font-style:italic;display:inline-block;width:150px}
+#content .pronear{display:inline-block;margin:0 0 30px 5%;width:10%;position:absolute;top:70px;right:3%;overflow:hidden}#content .pronear span{display:block;margin-left:35%;width:0;height:0;border-style:solid;border-width:0 15px 15px 15px;border-color:transparent transparent #000 transparent}
+#content .pronear a:last-child span{border-width:15px 15px 0 15px;border-color:#000 transparent transparent transparent}
+#content .pronear .ph{width:85%}#content .pronear .ph a{display:block;margin:3% 0;border:1px solid #000}
+.criterion{z-index:15}.criterion h3{color:#000;font-family:'Myriad Pro';font-size:23px;font-style:italic;font-weight:bold;text-align:center;margin:3% 0}
+.criterion ul{text-align:center;vertical-align:middle}.criterion ul li{margin:3% 0;position:relative}
+.criterion ul p{color:#000;font-family:'Myriad Pro';font-size:18px;font-style:italic;text-align:left;margin:0 0 10px 5%}
+.criterion ul .crp{display:table;width:100%;border-radius:15px;background:#1e5799;background:-moz-linear-gradient(left, #1e5799 0, #207cca 0, #d3d3d3 0, #f7f7f7 100%);background:-webkit-gradient(linear, left top, right top, color-stop(0, #1e5799), color-stop(0, #207cca), color-stop(0, #d3d3d3), color-stop(100%, #f7f7f7));background:-webkit-linear-gradient(left, #1e5799 0, #207cca 0, #d3d3d3 0, #f7f7f7 100%);background:-o-linear-gradient(left, #1e5799 0, #207cca 0, #d3d3d3 0, #f7f7f7 100%);background:-ms-linear-gradient(left, #1e5799 0, #207cca 0, #d3d3d3 0, #f7f7f7 100%);background:linear-gradient(to right, #1e5799 0, #207cca 0, #d3d3d3 0, #f7f7f7 100%);filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#1e5799', endColorstr='#f7f7f7', GradientType=1)}.criterion ul .crp li{display:table-cell;font-family:'Myriad Pro';font-size:14px;color:#000;line-height:200%}
+.criterion sub{width:0;height:0;border-style:solid;border-width:0 5px 20px 5px;border-color:transparent transparent #a8a8a8 transparent;position:absolute;top:70%;left:50%}
 .registration.modal{width:30%;height:50%;left:35%;top:20% !important}.registration.modal h4{font-family:'Myriad Pro';font-size:23px;font-style:italic;font-weight:bold;text-align:center;margin:5% 0}
-.registration.modal p{margin:5% 15%;font-family:'Myriad Pro';font-size:18px;font-style:italic}
-.registration form.ng-pristine{width:100%}
-.btn-warning:hover,.btn-warning:active{background-color:#0064cf}
-.modal-body{min-height:90%}
-.scroll{font-family:'Myriad Pro';font-size:16px;color:#5e5c5d;text-decoration:none;position:absolute;bottom:30px;left:50%;margin-left:-50px}
-.shadow{background:rgba(0,0,0,0.5);z-index:10;position:absolute;width:100%;height:100%;display:none}
-.crp{display:table;width:100%;border-radius:15px;background:#1e5799;background:-moz-linear-gradient(left, #1e5799 0, #207cca 0, #d3d3d3 0, #f7f7f7 100%);background:-webkit-gradient(linear, left top, right top, color-stop(0, #1e5799), color-stop(0, #207cca), color-stop(0, #d3d3d3), color-stop(100%, #f7f7f7));background:-webkit-linear-gradient(left, #1e5799 0, #207cca 0, #d3d3d3 0, #f7f7f7 100%);background:-o-linear-gradient(left, #1e5799 0, #207cca 0, #d3d3d3 0, #f7f7f7 100%);background:-ms-linear-gradient(left, #1e5799 0, #207cca 0, #d3d3d3 0, #f7f7f7 100%);background:linear-gradient(to right, #1e5799 0, #207cca 0, #d3d3d3 0, #f7f7f7 100%);filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#1e5799', endColorstr='#f7f7f7', GradientType=1)}.crp li{display:table-cell;font-family:'Myriad Pro';font-size:14px;color:#000;line-height:200%}
-.criterion{z-index:15}.criterion sub{width:0;height:0;border-style:solid;border-width:0 5px 20px 5px;border-color:transparent transparent #a8a8a8 transparent;position:absolute;top:70%;left:50%}
-.criterion h3{color:#000;font-family:'Myriad Pro';font-size:23px;font-style:italic;font-weight:bold;text-align:center;margin:3% 0}
-.criterion ul{text-align:center;vertical-align:middle}
-.criterion p{color:#000;font-family:'Myriad Pro';font-size:18px;font-style:italic;text-align:left;margin:0 0 10px 5%}
-.criterion li{margin:3% 0;position:relative}
+.registration.modal form.ng-pristine{width:100%}.registration.modal form.ng-pristine p{margin:5% 15%;font-family:'Myriad Pro';font-size:18px;font-style:italic}
+input.ng-invalid:not(.ng-pristine){color:#b94a48;border-color:#ee5f5b;border-color:#e9322d !important;-webkit-box-shadow:0 0 6px #f8b9b7 !important;-moz-box-shadow:0 0 6px #f8b9b7 !important;box-shadow:0 0 6px #f8b9b7 !important}
+.modal{width:50%;height:70%;margin:0 auto;left:25%}.modal .modal-body{min-height:90%}
 .btn-warning{background-color:#ccc;background-image:-moz-linear-gradient(top, #8cc4ff, #0064cf);background-image:-webkit-gradient(linear, 0 0, 0 100%, from(#8cc4ff), to(#0064cf));background-image:-webkit-linear-gradient(top, #8cc4ff, #0064cf);background-image:-o-linear-gradient(top, #8cc4ff, #0064cf);background-image:linear-gradient(to bottom, #8cc4ff, #0064cf);border-color:#ccc #efefef #c0c0c0}
-.modal{width:50%;height:70%;margin:0 auto;left:25%}
+.btn-warning:hover,.btn-warning:active{background-color:#0064cf}

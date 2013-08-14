@@ -1,7 +1,11 @@
 <section class="promain">
 	<div class="pmain pro">
-		<img src="../images/use.png">
-		<!--<img src="{{user.picture_url}}" />-->
+		<span ng-switch on="user" >
+	        <span ng-switch-when="null"><img class="pp" src="../images/use.png" /></span>
+	        <span ng-switch-default><img class="pp" src="{{user.picture_url}}" /></span>
+	    </span>
+		
+		<!---->
 		<div class="pmpar">
 			<p>
 				<label for="name_i">{{'_NameL_' | i18n}}:</label> 
@@ -54,7 +58,6 @@
 		<div class="publish">
 			<p><input type="file" name="photo" ng-model="newImage" id="photo"/></p>
 			<p><button ng-click="onReadFile()" >{{'_ChPhL_' | i18n}}</button></p>
-			<!--<p><button onclick="angular.element(this).scope().onReadFile(this)" >{{'_ChPhL_' | i18n}}</button></p> -->
 			<p><button ng-click="onPublish()">{{'_PublishL_' | i18n}}</button></p>
 		</div>
 	</div>
