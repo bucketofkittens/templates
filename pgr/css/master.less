@@ -316,66 +316,85 @@ body {
 
 
 /** criterion **/
-.criterion {
-    z-index: 15;
-    h3 {
-        color: #000000;
-        font-family: 'Myriad Pro';
-        font-size: 23px;
-        font-style: italic;
-        font-weight: bold;
-        text-align: center;
-        margin: 3% 0px;
-    }
-    ul {
-        text-align: center;
-        vertical-align: middle;
-        li {
-            margin: 3% 0px;
-            position: relative;
-        }
-        p {
-            color: #000000;
-            font-family: 'Myriad Pro';
-            font-size: 18px;
-            font-style: italic;
-            text-align: left;
-            margin: 0px 0px 10px 5%;
-        }
-        .crp {
-            display: table;
-            width: 100%;
-            border-radius: 15px;
-            background: #1e5799;
-            background: -moz-linear-gradient(left,  #1e5799 0%, #207cca 0%, #d3d3d3 0%, #f7f7f7 100%);
-            background: -webkit-gradient(linear, left top, right top, color-stop(0%,#1e5799), color-stop(0%,#207cca), color-stop(0%,#d3d3d3), color-stop(100%,#f7f7f7));
-            background: -webkit-linear-gradient(left,  #1e5799 0%,#207cca 0%,#d3d3d3 0%,#f7f7f7 100%);
-            background: -o-linear-gradient(left,  #1e5799 0%,#207cca 0%,#d3d3d3 0%,#f7f7f7 100%);
-            background: -ms-linear-gradient(left,  #1e5799 0%,#207cca 0%,#d3d3d3 0%,#f7f7f7 100%);
-            background: linear-gradient(to right,  #1e5799 0%,#207cca 0%,#d3d3d3 0%,#f7f7f7 100%);
-            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e5799', endColorstr='#f7f7f7',GradientType=1 );
-            li {
-                display: table-cell;
-                font-family: 'Myriad Pro';
-                font-size: 14px;
+.modal {
+    width: 50%;
+    height: 70%;
+    margin: 0px auto;
+    left: 25%;
+    .modal-body {
+        min-height: 90%;
+        .criterion {
+            z-index: 15;
+            h3 {
                 color: #000000;
-                line-height: 200%;
+                font-family: 'Myriad Pro';
+                font-size: 23px;
+                font-style: italic;
+                font-weight: bold;
+                text-align: center;
+                margin: 3% 0px;
             }
+            ul {
+                text-align: center;
+                vertical-align: middle;
+                li {
+                    margin: 3% 0px;
+                    position: relative;
+                }
+                p {
+                    color: #000000;
+                    font-family: 'Myriad Pro';
+                    font-size: 18px;
+                    font-style: italic;
+                    text-align: left;
+                    margin: 0px 0px 10px 5%;
+                }
+                .crp {
+                    display: table;
+                    width: 100%;
+                    border-radius: 15px;
+                    background: #1e5799;
+                    background: -moz-linear-gradient(left,  #1e5799 0%, #207cca 0%, #d3d3d3 0%, #f7f7f7 100%);
+                    background: -webkit-gradient(linear, left top, right top, color-stop(0%,#1e5799), color-stop(0%,#207cca), color-stop(0%,#d3d3d3), color-stop(100%,#f7f7f7));
+                    background: -webkit-linear-gradient(left,  #1e5799 0%,#207cca 0%,#d3d3d3 0%,#f7f7f7 100%);
+                    background: -o-linear-gradient(left,  #1e5799 0%,#207cca 0%,#d3d3d3 0%,#f7f7f7 100%);
+                    background: -ms-linear-gradient(left,  #1e5799 0%,#207cca 0%,#d3d3d3 0%,#f7f7f7 100%);
+                    background: linear-gradient(to right,  #1e5799 0%,#207cca 0%,#d3d3d3 0%,#f7f7f7 100%);
+                    li {
+                        display: table-cell;
+                        font-family: 'Myriad Pro';
+                        font-size: 14px;
+                        color: #000000;
+                        line-height: 200%;
+                    }
+                }
+            }
+            sub {
+                width: 0px;
+                height: 0px;
+                border-style: solid;
+                border-width: 0 5px 20px 5px;
+                border-color: transparent transparent #a8a8a8 transparent;
+                position: absolute;
+                top: 70%;
+                left: 50%;
+            }
+        }       
+    } 
+    .btn-warning {
+        background-color: #cccccc;
+        background-image: -moz-linear-gradient(top, #8cc4ff, #0064cf);
+        background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#8cc4ff), to(#0064cf));
+        background-image: -webkit-linear-gradient(top, #8cc4ff, #0064cf);
+        background-image: -o-linear-gradient(top, #8cc4ff, #0064cf);
+        background-image: linear-gradient(to bottom, #8cc4ff, #0064cf);
+        border-color: #cccccc #efefef #c0c0c0;
+
+        &:hover, &:active {
+            background-color: #0064cf;
         }
-    }
-    sub {
-        width: 0px;
-        height: 0px;
-        border-style: solid;
-        border-width: 0 5px 20px 5px;
-        border-color: transparent transparent #a8a8a8 transparent;
-        position: absolute;
-        top: 70%;
-        left: 50%;
     }
 }
-
-
 
 /** registration.modal **/
 .registration {
@@ -392,7 +411,7 @@ body {
             text-align: center;
             margin: 5% 0px;
         }
-        form.ng-pristine {
+        form {
             width: 100%;
             p {
                 margin: 5% 15%;
@@ -401,39 +420,13 @@ body {
                 font-style: italic;
             }
         }
+        input.ng-invalid:not(.ng-pristine) {
+            color: #b94a48;
+            border-color: #ee5f5b;
+            border-color: #e9322d !important;
+            -webkit-box-shadow: 0 0 6px #f8b9b7 !important;
+            -moz-box-shadow: 0 0 6px #f8b9b7 !important;
+            box-shadow: 0 0 6px #f8b9b7 !important;
+        }
     }
-}
-
-
-input.ng-invalid:not(.ng-pristine) {
-    color: #b94a48;
-    border-color: #ee5f5b;
-    border-color: #e9322d !important;
-    -webkit-box-shadow: 0 0 6px #f8b9b7 !important;
-    -moz-box-shadow: 0 0 6px #f8b9b7 !important;
-    box-shadow: 0 0 6px #f8b9b7 !important;
-}
-
-
-.modal {
-    width: 50%;
-    height: 70%;
-    margin: 0px auto;
-    left: 25%;
-    .modal-body {
-        min-height: 90%;
-    }
-}
-
-.btn-warning {
-    background-color: #cccccc;
-    background-image: -moz-linear-gradient(top, #8cc4ff, #0064cf);
-    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#8cc4ff), to(#0064cf));
-    background-image: -webkit-linear-gradient(top, #8cc4ff, #0064cf);
-    background-image: -o-linear-gradient(top, #8cc4ff, #0064cf);
-    background-image: linear-gradient(to bottom, #8cc4ff, #0064cf);
-    border-color: #cccccc #efefef #c0c0c0;
-}
-.btn-warning:hover, .btn-warning:active {
-    background-color: #0064cf;
 }
