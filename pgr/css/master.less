@@ -169,20 +169,20 @@ body {
                     }
                 }
                 .publish {
-                    button {
-                        margin: 15px 15px 0px 25px;
-                        text-align: center;-webkit-transform: skewX(angle);
-                        -moz-transform: skewX(angle);
-                        -ms-transform: skewX(angle);
-                        -o-transform: skewX(angle);
-                        transform: skewX(angle);
-                        font-family: 'Myriad Pro';
-                        font-size: 16px;
-                        color: #000000;
-                        width: 150px;
-                    }
                     p {
                         display: inline-block;
+                        button {
+                            margin: 15px 15px 0px 25px;
+                            text-align: center;-webkit-transform: skewX(angle);
+                            -moz-transform: skewX(angle);
+                            -ms-transform: skewX(angle);
+                            -o-transform: skewX(angle);
+                            transform: skewX(angle);
+                            font-family: 'Myriad Pro';
+                            font-size: 16px;
+                            color: #000000;
+                            width: 150px;
+                        }
                     }
                 }
             }
@@ -214,10 +214,11 @@ body {
                     font-style: italic;
                     font-weight: bold;
                     text-align: center;
+                    margin-bottom: 5%;
                 }
                 strong {
                     display: inline-block;
-                    width: 25%;
+                    width: 23%;
                     border-radius: 50%;
                     box-shadow:  0px 0px 4px 1px rgba(2, 141, 218, 1); 
                     background: rgba(2, 141, 218, 0.1);
@@ -228,6 +229,7 @@ body {
                     margin: 3%;
                     word-wrap: break-word;
                     vertical-align: middle;
+                    padding: 5px;
                 }
             }
         }
@@ -281,27 +283,29 @@ body {
     .pronear {
         display: inline-block;
         margin: 0px 0px 30px 5%;
-        width: 15%;
+        width: 10%;
         position: absolute;
-        top: 65px;
-        right: -5%;
+        top: 70px;
+        right: 3%;
+        overflow: hidden;
         span {
             display: block;
+            margin-left: 35%;
             width: 0px;
             height: 0px;
             border-style: solid;
             border-width: 0 15px 15px 15px;
             border-color: transparent transparent #000000 transparent;
-            margin-left: 25%;
         }
         a:last-child span {
             border-width: 15px 15px 0 15px;
             border-color: #000000 transparent transparent transparent;
         }
         .ph {
-            img {
+            width: 85%;
+            a {
                 display: block;
-                width: 60%;
+                margin: 3% 0px;
                 border: 1px solid #000000;
             }
         }
