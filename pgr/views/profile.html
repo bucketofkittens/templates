@@ -1,11 +1,22 @@
 <section class="promain">
 	<div class="pmain pro">
-		<span ng-switch on="user" >
-	        <span ng-switch-when="null"><img class="pp" src="../images/use.png" /></span>
-	        <span ng-switch-default><img class="pp" src="{{user.picture_url}}" /></span>
+		<input 
+			class="hidden" 
+			type="file"  
+			name="photo" 
+			ng-model="newImage"
+			onchange="angular.element(this).scope().onReadFile()" 
+			id="photo" 
+			accept="image/jpeg,image/png,image/gif" />
+		<span ng-switch on="isImage" >
+	        <span ng-switch-when="false">
+	        	<img class="pp" ng-click="onUpdateFile()" src="../images/use.png" />
+	        </span>
+	        <span ng-switch-default>
+	        	<img class="pp" ng-click="onUpdateFile()" src="{{user.picture_url}}" />
+	        </span>
 	    </span>
 		
-		<!---->
 		<div class="pmpar">
 			<p>
 				<label for="name_i">{{'_NameL_' | i18n}}:</label> 
@@ -56,8 +67,6 @@
 			</p>
 		</div>
 		<div class="publish">
-			<p><input type="file" name="photo" ng-model="newImage" id="photo"/></p>
-			<p><button ng-click="onReadFile()" >{{'_ChPhL_' | i18n}}</button></p>
 			<p><button ng-click="onPublish()">{{'_PublishL_' | i18n}}</button></p>
 		</div>
 	</div>
@@ -80,12 +89,13 @@
 	<ul> 
 		<li ng-repeat="item in needs | orderBy:'need.position'">
 			<p>{{item.need.name}}</p>
+			<!--
 			<ul>
 				<li ng-repeat="subItem in item.need.goals| orderBy:'goal.position'">
 					<a ng-click="open('{{subItem.goal.sguid}}')">{{subItem.goal.name}}</a>
 					<span></span>
 				</li>
-			</ul>
+			</ul>-->
 		</li>
 	</ul>
 	<div modal="shouldBeOpen" close="close()" options="opts">

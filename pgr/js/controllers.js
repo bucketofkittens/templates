@@ -56,9 +56,15 @@ function ProfileController($scope, $route, $routeParams, User, Needs, Profession
 	$scope.needs = Needs.query();
 	$scope.professions = Professions.query();
 	$scope.states = States.query();
+	$scope.isImage = false;
 
 	if($routeParams.userId) {
-		$scope.user = User.query({id: $routeParams.userId});
+		User.query({id: $routeParams.userId}, function(data) {
+		 	$scope.user = data;
+		 	if($scope.user.picture_url && $scope.user.picture_url.length > 0) {
+				$scope.isImage = true;
+			}
+		});
 	}
 
     /**
@@ -94,6 +100,11 @@ function ProfileController($scope, $route, $routeParams, User, Needs, Profession
 		$event.target.setAttribute("disabled", "disabled"); 
 	};
 
+	/**
+	 * [onReadFile description]
+	 * @param  {[type]} $event
+	 * @return {[type]}
+	 */
 	$scope.onReadFile = function($event) {
 		var photo = document.getElementById("photo");
     	var file = photo.files[0];
@@ -114,6 +125,15 @@ function ProfileController($scope, $route, $routeParams, User, Needs, Profession
 	}
 
 	/**
+	 * 
+	 * @param  {[type]} $event
+	 * @return {[type]}
+	 */
+	$scope.onUpdateFile = function($event) {
+		$("#photo").click();
+	}
+
+	/**
 	 * Публикая профиля
 	 * Пока не работает нет backend
 	 * @param  {[type]} $event [description]
@@ -128,6 +148,12 @@ function ProfileController($scope, $route, $routeParams, User, Needs, Profession
 	}
 }
 
+/**
+ * 
+ * @param {[type]} $scope
+ * @param {[type]} Goals
+ * @param {[type]} Criterion
+ */
 function CriteriaController($scope, Goals, Criterion) {
 	$scope.criterion_values = {};
     
@@ -211,7 +237,6 @@ function RegController($scope, $location, User) {
      * @returns {undefined}
      */
 	$scope.open = function () {
-		console.log($scope.user);
 		$scope.shouldBeOpen = true;		
 	};
     
@@ -220,7 +245,6 @@ function RegController($scope, $location, User) {
      * @returns {undefined}
      */
 	$scope.close = function () {
-		console.log($scope.user);
 		$scope.shouldBeOpen = false;
 	};
 
