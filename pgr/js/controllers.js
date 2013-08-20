@@ -284,3 +284,61 @@ function RegController($scope, $location, User) {
 		dialogClass: "registration modal"
 	};
 }
+
+/**
+ * [LoginController description]
+ * @param {[type]} $scope [description]
+ */
+function LoginController($scope, Sessions) {
+	/**
+	 * Поле логина
+	 * @type {String}
+	 */
+	$scope.login = "";
+
+	/**
+	 * Поле пароля
+	 * @type {String}
+	 */
+	$scope.password = "";
+
+	/**
+	 * Вызывается при нажатии ok в форме авторизации
+	 * @param  {[type]} $event [description]
+	 * @return {[type]}        [description]
+	 */
+	$scope.onSingin = function($event) {
+		Sessions.signin({}, $.param({
+			"login": $scope.login,
+			"password": $scope.password
+		}), function(data) {
+			console.log(data);
+		});
+	}
+
+	/**
+     * 
+     * @returns {undefined}
+     */
+	$scope.open = function () {
+		$scope.shouldBeOpen = true;		
+	};
+    
+    /**
+     * 
+     * @returns {undefined}
+     */
+	$scope.close = function () {
+		$scope.shouldBeOpen = false;
+	};
+
+	/**
+     * Параметры попапа
+     * @type {Object}
+     */
+	$scope.opts = {
+		backdropFade: true,
+		dialogFade:true,
+		dialogClass: "login modal"
+	};
+}
