@@ -105,7 +105,9 @@
 					<li ng-repeat="crItem in goal.goal.criteria | orderBy:'criterium.position'" >
 						<p>{{crItem.criterium.name}}</p>
 						<ul class="crp">
-							<li ng-repeat="value in crItem.criterium.criteria_values | orderBy:'value.criteria_value.position'">{{value.criteria_value.name}}</li>
+							<li ng-click="onCliteriaSelect(value.criteria_value, crItem.criterium)" ng-repeat="value in crItem.criterium.criteria_values | orderBy:'value.criteria_value.position'">
+								<span class="{{value.user_criteria}}">{{value.criteria_value.name}}</span>
+							</li>
 						</ul>
 					</li>
 				</ul>

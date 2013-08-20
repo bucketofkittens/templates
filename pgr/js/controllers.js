@@ -186,8 +186,9 @@ function ProfileController($scope, $route, $routeParams, User, Needs, Profession
  * @param {[type]} Goals
  * @param {[type]} Criterion
  */
-function CriteriaController($scope, Goals, Criterion) {
+function CriteriaController($scope, Goals, Criterion, AuthUser, UserCriteriaValue, $rootScope) {
 	$scope.criterion_values = {};
+	$scope.user_criterion_values = {};
     
     /**
      * 
@@ -211,15 +212,49 @@ function CriteriaController($scope, Goals, Criterion) {
 					angular.forEach(gV.criteria, function(cV, cK) {
 						Criterion.query({id: cV.criterium.sguid }, function(d) {
 							$scope.goal[gK].criteria[cK].criterium.criteria_values = d[0].criterium.criteria_values;
+							$rootScope.$broadcast('addUserCriterionVaiue');
 						})
 					});
 				}
 			});
 
+			UserCriteriaValue.query( function(d) {
+				angular.forEach(d, function(cV, cK) {
+					UserCriteriaValue.get( {id: cV.user_criterion_value.sguid }, function(dd) {
+						if(dd.user_criterion_value.user.sguid == AuthUser.get()) {
+							$scope.user_criterion_values[dd.user_criterion_value.criteria.sguid] = dd.user_criterion_value.criteria_value.sguid;
+							$rootScope.$broadcast('addUserCriterionVaiue');
+						}
+					})
+				});
+			})
+
 			$scope.shouldBeOpen = true;
 		});
 		
 	};
+
+	/**
+	 * 
+	 * @return {[type]} [description]
+	 */
+	$scope.$on('addUserCriterionVaiue', function() {
+		angular.forEach($scope.goal, function(gV, gK) {
+			angular.forEach(gV.criteria, function(cV, cK) {
+				angular.forEach(cV.criterium.criteria_values, function(v, k) {
+					angular.forEach($scope.user_criterion_values, function(v2, k2) {
+						if(
+							v2 == $scope.goal[gK].criteria[cK].criterium.criteria_values[k].criteria_value.sguid &&
+							$scope.goal[gK].criteria[cK].criterium.sguid == k2) {
+							$scope.goal[gK].criteria[cK].criterium.criteria_values[k].user_criteria = "current";
+							console.log($scope.goal);
+						} 
+					});
+				});
+			});
+		});
+		
+	});
 
     /**
      * 
@@ -237,6 +272,36 @@ function CriteriaController($scope, Goals, Criterion) {
 		backdropFade: true,
 		dialogFade:true
 	};
+
+	/**
+	 * 
+	 * @param  {[type]} criteria [description]
+	 * @return {[type]}          [description]
+	 */
+	$scope.onCliteriaSelect = function(criteriaValue, criteria) {
+		UserCriteriaValue.query( function(d) {
+			angular.forEach(d, function(cV, cK) {
+				UserCriteriaValue.get( {id: cV.user_criterion_value.sguid }, function(dd) {
+					console.log(dd.user_criterion_value);
+					if(dd.user_criterion_value.user.sguid == AuthUser.get() && dd.user_criterion_value.criteria.sguid == criteria.sguid) {
+						UserCriteriaValue.del({id: cV.user_criterion_value.sguid}, function(data) {
+							
+						});
+					}
+				})
+			});
+
+			UserCriteriaValue.create({}, $.param({
+				"user_guid": AuthUser.get(),
+				"criteria_guid": criteria.sguid,
+				"criteria_value_guid": criteriaValue.sguid
+			}), function(data) {
+				
+			});
+		})
+
+		
+	}
 }
 
 /**
