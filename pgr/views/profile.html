@@ -88,10 +88,10 @@
 <section class="procrit" ng-controller="CriteriaController">
 	<ul> 
 		<li ng-repeat="item in needs | orderBy:'need.position'">
-			<p>{{item.need.name}} ({{item.current_value}} / {{item.max_value}})</p>
+			<p>{{item.need.name}} ({{item.current_value}} / {{item.need.values_sum}})</p>
 			<ul>
 				<li ng-repeat="subItem in item.need.goals| orderBy:'goal.position'" >
-					<a ng-click="open('{{subItem.goal.sguid}}')">{{subItem.goal.name}}  ({{subItem.current_value}} / {{subItem.max_value}})</a>
+					<a ng-click="open('{{subItem.goal.sguid}}')">{{subItem.goal.name}}  ({{subItem.current_value}} / {{subItem.goal.values_sum}})</a>
 					<span></span>
 				</li>
 			</ul>
