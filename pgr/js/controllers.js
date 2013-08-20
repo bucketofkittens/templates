@@ -278,11 +278,10 @@ function CriteriaController($scope, Goals, Criterion, AuthUser, UserCriteriaValu
 	 * @param  {[type]} criteria [description]
 	 * @return {[type]}          [description]
 	 */
-	$scope.onCliteriaSelect = function(criteriaValue, criteria) {
+	$scope.onCliteriaSelect = function(criteriaValue, criteria, $event) {
 		UserCriteriaValue.query( function(d) {
 			angular.forEach(d, function(cV, cK) {
 				UserCriteriaValue.get( {id: cV.user_criterion_value.sguid }, function(dd) {
-					console.log(dd.user_criterion_value);
 					if(dd.user_criterion_value.user.sguid == AuthUser.get() && dd.user_criterion_value.criteria.sguid == criteria.sguid) {
 						UserCriteriaValue.del({id: cV.user_criterion_value.sguid}, function(data) {
 							
@@ -296,7 +295,8 @@ function CriteriaController($scope, Goals, Criterion, AuthUser, UserCriteriaValu
 				"criteria_guid": criteria.sguid,
 				"criteria_value_guid": criteriaValue.sguid
 			}), function(data) {
-				
+				$($event.target).parent().parent().find("span").removeClass("current");
+				$($event.target).addClass("current");
 			});
 		})
 
