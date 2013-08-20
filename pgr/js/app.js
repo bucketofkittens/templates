@@ -4,7 +4,7 @@
  * Основной модуль приложения
  * @type {[type]}
  */
-var pgrModule = angular.module('pgrModule', [ "ngRoute", "ngResource", "ngAnimate", "localization", "ui", "ui.keypress", 'ui.bootstrap' ]);
+var pgrModule = angular.module('pgrModule', [ "ngRoute", "ngCookies", "ngResource", "ngAnimate", "localization", "ui", "ui.keypress", 'ui.bootstrap' ]);
 
 /**
  * Роутинг приложения
@@ -14,6 +14,7 @@ var pgrModule = angular.module('pgrModule', [ "ngRoute", "ngResource", "ngAnimat
 pgrModule.config(['$routeProvider', function($routeProvider) {
 	$routeProvider.when('/profile', {templateUrl: 'views/profile.html', controller: ProfileController});
 	$routeProvider.when('/profile/:userId', {templateUrl: 'views/profile.html', controller: ProfileController});
+	$routeProvider.when('/logout', {resolve: {redirect: 'LogoutService'}} );
 	$routeProvider.when('/', {templateUrl: 'views/main.html', controller: ProfileController});
 	$routeProvider.otherwise({redirectTo: '/'});
 }]);

@@ -30,7 +30,13 @@
 			<ul ng-controller="navCtrl">
 				<div ng-switch on="hidden" >
 		         <div ng-switch-when="false">
-		        		<li ng-repeat="nav in navs"><a href="{{nav.link}}" class="{{nav.activeClass}}" ng-click="onNavClick($event, nav.name)">{{nav.name}}</a></li>
+		        		<li ng-repeat="nav in navs">
+		        			<span ng-switch on="nav.show" >
+						        <span ng-switch-when="true">
+						        	<a href="{{nav.link}}" class="{{nav.activeClass}}" ng-click="onNavClick($event, nav.name)">{{nav.name}}</a>
+						        </span>
+						    </span>
+		        		</li>
 		         </div>
 			    </div>
 			</ul>

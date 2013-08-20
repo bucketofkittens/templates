@@ -1,7 +1,17 @@
 'use strict';
 
-function navCtrl($scope, localize, $location) {
+function navCtrl($scope, localize, $location, AuthUser) {
+	/**
+	 * 
+	 * @type {Boolean}
+	 */
 	$scope.hidden = false;
+
+	/**
+	 * 
+	 * @type {[type]}
+	 */
+	$scope.authUser = AuthUser.get();
 
 	/**
 	 * Событие вызываемое при загрузке файлов локализации.
@@ -9,19 +19,41 @@ function navCtrl($scope, localize, $location) {
 	 * @return {[type]} [description]
 	 */
 	$scope.$on('localizeResourcesUpdates', function() {
-        $scope.navs = [
-			//{name: localize.getLocalizedString("_ABOUT_"), link: '#', activeClass: ''},
-			//{name: localize.getLocalizedString("_LEAGUES_"), link: '#', activeClass: ''},
-			{name: localize.getLocalizedString("_PROFILE_"), link: '#/profile', activeClass: ''},
-			{name: localize.getLocalizedString("_LogoutL_"), link: '#', activeClass: ''}
-		];
+		$scope.generateNav();
 
 		angular.forEach($scope.navs, function(value, key) {
 			if($location.path() == value.link.replace("#", "")) {
 				$scope.navs[key].activeClass = 'current';
 			} 
 		});
-   });
+	});
+
+	/**
+	 * 
+	 * @return {[type]} [description]
+	 */
+	$scope.$on('logout', function() {
+		$scope.authUser = AuthUser.get();
+		$scope.generateNav();
+	});
+
+	/**
+	 * 
+	 * @return {[type]} [description]
+	 */
+	$scope.$on('login', function() {
+		$scope.authUser = AuthUser.get();
+		$scope.generateNav();
+	});
+
+	$scope.generateNav = function() {
+	    $scope.navs = [
+			//{name: localize.getLocalizedString("_ABOUT_"), link: '#', activeClass: ''},
+			//{name: localize.getLocalizedString("_LEAGUES_"), link: '#', activeClass: ''},
+			{name: localize.getLocalizedString("_PROFILE_"), link: $scope.authUser ? '#/profile/'+$scope.authUser : '#/profile/', activeClass: '', show: true},
+			{name: localize.getLocalizedString("_LogoutL_"), link: '#/logout', activeClass: '', show: $scope.authUser ? true : false}
+		];
+	};
 
 	/**
 	 * Событие вызываемое при переходе по роутингу
@@ -298,7 +330,7 @@ function RegController($scope, $location, User) {
  * [LoginController description]
  * @param {[type]} $scope [description]
  */
-function LoginController($scope, Sessions, $rootScope) {
+function LoginController($scope, Sessions, $rootScope, AuthUser) {
 	/**
 	 * Поле логина
 	 * @type {String}
@@ -334,7 +366,9 @@ function LoginController($scope, Sessions, $rootScope) {
 			"password": $scope.password
 		}), function(data) {
 			if(data.success) {
-
+				AuthUser.set(data.guid);
+				$scope.shouldBeOpen = false;
+				$rootScope.$broadcast('login');
 			} else {
 				$scope.error = data.message;
 			}

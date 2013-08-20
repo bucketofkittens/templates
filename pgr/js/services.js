@@ -1,5 +1,5 @@
 var host = "http://xmpp.dev.improva.com:9090/api/v1";
-var hostShort = "http://xmpp.dev.improva.com:9090";
+var hostShort = host.replace("/api/v1", "");
 //var host = "http://192.168.1.176:3000\:3000/api/v1";
 
 /**
@@ -117,7 +117,11 @@ pgrModule.factory('Criterion', function ($resource) {
     );
 });
 
-
+/**
+ * 
+ * @param  {[type]} $resource [description]
+ * @return {[type]}           [description]
+ */
 pgrModule.factory('Sessions', function ($resource) {
     return $resource(
         hostShort+'/signin/', 
@@ -127,3 +131,42 @@ pgrModule.factory('Sessions', function ($resource) {
         }
     );
 });
+
+
+/**
+ * 
+ * @param  {[type]} $cookies [description]
+ * @return {[type]}          [description]
+ */
+pgrModule.factory('AuthUser', function ($cookieStore) {
+    var AuthUser = function() {
+        this.get = function() {
+            return $cookieStore.get("user");
+        }
+
+        this.set = function(guid) {
+            $cookieStore.put("user", guid); 
+        }
+
+        this.logout = function() {
+            $cookieStore.remove("user"); 
+        }
+    };
+    return new AuthUser();
+});
+
+/**
+ * 
+ * @param  {[type]} AuthUser  [description]
+ * @param  {[type]} $location [description]
+ * @return {[type]}           [description]
+ */
+pgrModule.factory('LogoutService', function (AuthUser, $location, $rootScope) {
+    AuthUser.logout();
+    
+    $location.path("/");
+    $rootScope.$broadcast('logout');
+});
+
+
+
