@@ -247,7 +247,6 @@ function CriteriaController($scope, Goals, Criterion, AuthUser, UserCriteriaValu
 							v2 == $scope.goal[gK].criteria[cK].criterium.criteria_values[k].criteria_value.sguid &&
 							$scope.goal[gK].criteria[cK].criterium.sguid == k2) {
 							$scope.goal[gK].criteria[cK].criterium.criteria_values[k].user_criteria = "current";
-							console.log($scope.goal);
 						} 
 					});
 				});
@@ -279,28 +278,14 @@ function CriteriaController($scope, Goals, Criterion, AuthUser, UserCriteriaValu
 	 * @return {[type]}          [description]
 	 */
 	$scope.onCliteriaSelect = function(criteriaValue, criteria, $event) {
-		UserCriteriaValue.query( function(d) {
-			angular.forEach(d, function(cV, cK) {
-				UserCriteriaValue.get( {id: cV.user_criterion_value.sguid }, function(dd) {
-					if(dd.user_criterion_value.user.sguid == AuthUser.get() && dd.user_criterion_value.criteria.sguid == criteria.sguid) {
-						UserCriteriaValue.del({id: cV.user_criterion_value.sguid}, function(data) {
-							
-						});
-					}
-				})
-			});
-
-			UserCriteriaValue.create({}, $.param({
-				"user_guid": AuthUser.get(),
-				"criteria_guid": criteria.sguid,
-				"criteria_value_guid": criteriaValue.sguid
-			}), function(data) {
-				$($event.target).parent().parent().find("span").removeClass("current");
-				$($event.target).addClass("current");
-			});
-		})
-
-		
+		UserCriteriaValue.create({}, $.param({
+			"user_guid": AuthUser.get(),
+			"criteria_guid": criteria.sguid,
+			"criteria_value_guid": criteriaValue.sguid
+		}), function(data) {
+			$($event.target).parent().find("li").removeClass("current");
+			$($event.target).addClass("current");
+		});
 	}
 }
 

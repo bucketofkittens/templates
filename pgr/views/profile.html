@@ -88,10 +88,10 @@
 	<h2>{{'_CriteriaL_' | i18n}}</h2>
 	<ul> 
 		<li ng-repeat="item in needs | orderBy:'need.position'">
-			<p>{{item.need.name}}</p>
+			<p>{{item.need.name}} ({{item.current_value}} / {{item.max_value}})</p>
 			<ul>
 				<li ng-repeat="subItem in item.need.goals| orderBy:'goal.position'" >
-					<a ng-click="open('{{subItem.goal.sguid}}')">{{subItem.goal.name}}</a>
+					<a ng-click="open('{{subItem.goal.sguid}}')">{{subItem.goal.name}}  ({{subItem.current_value}} / {{subItem.max_value}})</a>
 					<span></span>
 				</li>
 			</ul>
@@ -105,8 +105,8 @@
 					<li ng-repeat="crItem in goal.goal.criteria | orderBy:'criterium.position'" >
 						<p>{{crItem.criterium.name}}</p>
 						<ul class="crp">
-							<li ng-click="onCliteriaSelect(value.criteria_value, crItem.criterium, $event)" ng-repeat="value in crItem.criterium.criteria_values | orderBy:'value.criteria_value.position'">
-								<span class="{{value.user_criteria}}">{{value.criteria_value.name}}</span>
+							<li ng-click="onCliteriaSelect(value.criteria_value, crItem.criterium, $event)" ng-repeat="value in crItem.criterium.criteria_values | orderBy:'value.criteria_value.position'"  class="{{value.user_criteria}}">
+								{{value.criteria_value.name}}
 							</li>
 						</ul>
 					</li>
