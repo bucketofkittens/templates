@@ -9,14 +9,13 @@
 			id="photo" 
 			accept="image/jpeg,image/png,image/gif" />
 		<span ng-switch on="isImage" >
-	        <span ng-switch-when="false">
+	      <span ng-switch-when="false">
 	        	<img class="pp" ng-click="onUpdateFile()" src="../images/use.png" />
-	        </span>
-	        <span ng-switch-default>
+	      </span>
+	      <span ng-switch-default>
 	        	<img class="pp" ng-click="onUpdateFile()" src="{{user.picture_url}}" />
-	        </span>
-	    </span>
-		
+	      </span>
+	   </span>		
 		<div class="pmpar">
 			<p>
 				<label for="name_i">{{'_NameL_' | i18n}}:</label> 
