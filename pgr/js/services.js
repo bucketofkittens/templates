@@ -1,4 +1,5 @@
 var host = "http://xmpp.dev.improva.com:9090/api/v1";
+var hostShort = "http://xmpp.dev.improva.com:9090";
 //var host = "http://192.168.1.176:3000\:3000/api/v1";
 
 /**
@@ -11,7 +12,7 @@ pgrModule.factory('User', function ($resource) {
         host+'/users/:id', 
         {id:'@id'}, 
         {
-            create: {method: 'POST', headers : {'Content-Type': 'application/x-www-form-urlencoded'}},
+            create: {method: 'POST'},
             updateUser: {method: 'PUT', headers : {'Content-Type': 'application/x-www-form-urlencoded'} },
             'query': {
             	method: 'GET', 
@@ -119,13 +120,10 @@ pgrModule.factory('Criterion', function ($resource) {
 
 pgrModule.factory('Sessions', function ($resource) {
     return $resource(
-        host+'/signin/', 
+        hostShort+'/signin/', 
         {}, 
         {
             signin: {method: 'POST',  headers : {'Content-Type': 'application/x-www-form-urlencoded'}}
         }
     );
 });
-
-
-

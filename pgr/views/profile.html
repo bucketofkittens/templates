@@ -89,13 +89,12 @@
 	<ul> 
 		<li ng-repeat="item in needs | orderBy:'need.position'">
 			<p>{{item.need.name}}</p>
-			<!--
 			<ul>
-				<li ng-repeat="subItem in item.need.goals| orderBy:'goal.position'">
+				<li ng-repeat="subItem in item.need.goals| orderBy:'goal.position'" >
 					<a ng-click="open('{{subItem.goal.sguid}}')">{{subItem.goal.name}}</a>
 					<span></span>
 				</li>
-			</ul>-->
+			</ul>
 		</li>
 	</ul>
 	<div modal="shouldBeOpen" close="close()" options="opts">
@@ -103,7 +102,7 @@
          <div class="criterion">
 				<h3>{{goal.goal.name}}</h3>
 				<ul>
-					<li ng-repeat="crItem in goal.goal.criteria | orderBy:'criterium.position'">
+					<li ng-repeat="crItem in goal.goal.criteria | orderBy:'criterium.position'" >
 						<p>{{crItem.criterium.name}}</p>
 						<ul class="crp">
 							<li ng-repeat="value in crItem.criterium.criteria_values | orderBy:'value.criteria_value.position'">{{value.criteria_value.name}}</li>

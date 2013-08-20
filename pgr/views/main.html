@@ -1,5 +1,4 @@
-<!--<div ng-controller="RegController">
-	<a ng-click="open()" class="who"><img src="./images/it.png"></a>
+<div ng-controller="RegController">
 	<div modal="shouldBeOpen" close="close()" options="opts">
 		<div class="modal-body">
 			<h4>{{'_RegL_' | i18n}}</h4>
@@ -59,7 +58,7 @@
 		   	<button class="btn btn-danger cancel" ng-click="close()">Cancel</button>
 		</div>
 	</div>
-</div>-->
+</div>
 <div ng-controller="LoginController">
 	<a ng-click="open()" class="who"><img src="./images/it.png"></a>
 	<div modal="shouldBeOpen" close="close()" options="opts">
@@ -85,7 +84,8 @@
 						required 
 						ng-minlength="6" /> 
 				</p>
-				<p id="errors">{{errors}}</p>
+				<p><a ng-click="regiostrationOpen()">Registration</a></p>
+				<p id="errors">{{error}}</p>
 			</form>
 		</div>
 		<div class="modal-footer">

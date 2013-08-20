@@ -115,7 +115,7 @@ function ProfileController($scope, $route, $routeParams, User, Needs, Profession
 
     	var xhr = new XMLHttpRequest();
 
-		xhr.open('PUT', 'http://xmpp.dev.improva.com:9090/api/v1/pictures/'+$scope.user.sguid, true);
+		xhr.open('PUT', host+'/pictures/'+$scope.user.sguid, true);
 		xhr.onload = function (e) {
 		  if (xhr.readyState === 4) {
 		  	location.reload();
@@ -237,7 +237,7 @@ function RegController($scope, $location, User) {
      * @returns {undefined}
      */
 	$scope.open = function () {
-		$scope.shouldBeOpen = true;		
+		$scope.shouldBeOpen = true;
 	};
     
     /**
@@ -248,18 +248,27 @@ function RegController($scope, $location, User) {
 		$scope.shouldBeOpen = false;
 	};
 
+	/**
+	 * 
+	 * @return {[type]} [description]
+	 */
+	$scope.$on('registrationModalShow', function() {
+		$scope.shouldBeOpen = true;
+	});
+
     /**
      * 
      * @param {type} $event
      * @returns {undefined}
      */
 	$scope.addUser = function ($event) {
-		User.create($.param({user: {
+		User.create(
+			{user: JSON.stringify({
 				"login": $scope.user.login,
 				"name": $scope.user.name,
 				"email": $scope.user.email,
 				"password": $scope.user.password
-			}})
+			})}
 			,function(data) {
 				if(!data.success) {
 					angular.forEach(data.errors, function(value, key) {
@@ -289,7 +298,7 @@ function RegController($scope, $location, User) {
  * [LoginController description]
  * @param {[type]} $scope [description]
  */
-function LoginController($scope, Sessions) {
+function LoginController($scope, Sessions, $rootScope) {
 	/**
 	 * Поле логина
 	 * @type {String}
@@ -303,6 +312,18 @@ function LoginController($scope, Sessions) {
 	$scope.password = "";
 
 	/**
+	 * Поле пароля
+	 * @type {String}
+	 */
+	$scope.error = "";
+
+	/**
+	 * 
+	 * @type {Boolean}
+	 */
+	$scope.shouldBeOpen = false;
+
+	/**
 	 * Вызывается при нажатии ok в форме авторизации
 	 * @param  {[type]} $event [description]
 	 * @return {[type]}        [description]
@@ -312,8 +333,21 @@ function LoginController($scope, Sessions) {
 			"login": $scope.login,
 			"password": $scope.password
 		}), function(data) {
-			console.log(data);
+			if(data.success) {
+
+			} else {
+				$scope.error = data.message;
+			}
 		});
+	}
+
+	/**
+	 * 
+	 * @param  {[type]} $event [description]
+	 * @return {[type]}        [description]
+	 */
+	$scope.regiostrationOpen = function($event) {
+		$rootScope.$broadcast('registrationModalShow');
 	}
 
 	/**
