@@ -4,10 +4,6 @@
         "value":"Вниз"
     },
     {
-        "key":"_CriteriaL_",
-        "value":"Критерии"
-    },
-    {
         "key":"_PointsL_",
         "value":"баллов"
     },

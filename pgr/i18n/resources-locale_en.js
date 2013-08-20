@@ -4,10 +4,6 @@
         "value":"Scroll down"
     },
     {
-        "key":"_CriteriaL_",
-        "value":"Criteria"
-    },
-    {
         "key":"_PointsL_",
         "value":"points"
     },
