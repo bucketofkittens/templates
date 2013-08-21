@@ -80,12 +80,14 @@ function navCtrl($scope, localize, $location, AuthUser) {
  * @param {type} States
  * @returns {undefined}
  */
-function ProfileController($scope, $route, $routeParams, User, Needs, Professions, States, $http) {
+function ProfileController($scope, $route, $routeParams, User, Needs, Professions, States, $http, NeedsByUser, $rootScope, GoalsByUser) {
     
 	$scope.userId = $routeParams.userId;
 	$scope.user = null;
 	$scope.newImage = null;
-	$scope.needs = Needs.query();
+	$scope.needs = Needs.query({}, {}, function(data) {
+		$rootScope.$broadcast('needsLoaded');
+	});
 	$scope.professions = Professions.query();
 	$scope.states = States.query();
 	$scope.isImage = false;
@@ -98,6 +100,35 @@ function ProfileController($scope, $route, $routeParams, User, Needs, Profession
 			}
 		});
 	}
+
+	/**
+	 * 
+	 * @return {[type]} [description]
+	 */
+	$scope.$on('needsLoaded', function() {
+		NeedsByUser.get({id: $routeParams.userId}, {}, function(data) {
+			angular.forEach(data, function(value, key){
+				angular.forEach($scope.needs, function(needVal, needKey){
+					if($scope.needs[needKey].need.sguid == key) {
+						$scope.needs[needKey].current_value = value;
+					}
+				});
+			});
+		});
+
+		GoalsByUser.get({id: $routeParams.userId}, {}, function(data) {
+			console.log(data);
+			angular.forEach(data, function(value, key){
+				angular.forEach($scope.needs, function(needVal, needKey){
+					angular.forEach(needVal.need.goals, function(goal, goalKey){
+						if(goal.goal.sguid == key) {
+							$scope.needs[needKey].need.goals[goalKey].current_value = value;
+						}
+					});
+				});
+			});
+		});
+	});
 
     /**
      * 
@@ -186,9 +217,9 @@ function ProfileController($scope, $route, $routeParams, User, Needs, Profession
  * @param {[type]} Goals
  * @param {[type]} Criterion
  */
-function CriteriaController($scope, Goals, Criterion, AuthUser, UserCriteriaValue, $rootScope) {
-	$scope.criterion_values = {};
-	$scope.user_criterion_values = {};
+function CriteriaController($scope, Goals, Criterion, AuthUser, UserCriteriaValue, $rootScope, CriterionByGoal, UserCriteriaValueByUser) {
+	$scope.criteriums = {};
+	$scope.goal = {};
     
     /**
      * 
@@ -204,56 +235,29 @@ function CriteriaController($scope, Goals, Criterion, AuthUser, UserCriteriaValu
 		 * @param  {[type]} data [description]
 		 * @return {[type]}      [description]
 		 */
-		Goals.get({id: goalId}, function(data) {
-			$scope.goal = data;
+		CriterionByGoal.query({id: goalId}, function(data) {
+			$scope.criteriums = data;
 
-			angular.forEach($scope.goal, function(gV, gK) {
-				if(gV.criteria) {
-					angular.forEach(gV.criteria, function(cV, cK) {
-						Criterion.query({id: cV.criterium.sguid }, function(d) {
-							$scope.goal[gK].criteria[cK].criterium.criteria_values = d[0].criterium.criteria_values;
-							$rootScope.$broadcast('addUserCriterionVaiue');
-						})
+			UserCriteriaValueByUser.query({id: AuthUser.get()}, {}, function(d) {
+				angular.forEach(d, function(userCriteriaItem, userCriteriaKey) {
+					angular.forEach($scope.criteriums, function(criteriumsItem, criteriumsKey) {
+						angular.forEach(criteriumsItem.criterium.criteria_values, function(criteriaValueItem, criteriaValueKey) {
+							if(
+								userCriteriaItem.user_criterion_value.criteria_value_sguid == criteriaValueItem.criteria_value.sguid &&
+								userCriteriaItem.user_criterion_value.criteria_sguid == $scope.criteriums[criteriumsKey].criterium.sguid) {
+								$scope.criteriums[criteriumsKey].criterium.criteria_values[criteriaValueKey].user_criteria = "current";
+							} 
+						});
 					});
-				}
-			});
-
-			UserCriteriaValue.query( function(d) {
-				angular.forEach(d, function(cV, cK) {
-					UserCriteriaValue.get( {id: cV.user_criterion_value.sguid }, function(dd) {
-						if(dd.user_criterion_value.user.sguid == AuthUser.get()) {
-							$scope.user_criterion_values[dd.user_criterion_value.criteria.sguid] = dd.user_criterion_value.criteria_value.sguid;
-							$rootScope.$broadcast('addUserCriterionVaiue');
-						}
-					})
 				});
 			})
 
 			$scope.shouldBeOpen = true;
 		});
+
+		$scope.goal = Goals.get({id: goalId});
 		
 	};
-
-	/**
-	 * 
-	 * @return {[type]} [description]
-	 */
-	$scope.$on('addUserCriterionVaiue', function() {
-		angular.forEach($scope.goal, function(gV, gK) {
-			angular.forEach(gV.criteria, function(cV, cK) {
-				angular.forEach(cV.criterium.criteria_values, function(v, k) {
-					angular.forEach($scope.user_criterion_values, function(v2, k2) {
-						if(
-							v2 == $scope.goal[gK].criteria[cK].criterium.criteria_values[k].criteria_value.sguid &&
-							$scope.goal[gK].criteria[cK].criterium.sguid == k2) {
-							$scope.goal[gK].criteria[cK].criterium.criteria_values[k].user_criteria = "current";
-						} 
-					});
-				});
-			});
-		});
-		
-	});
 
     /**
      * 

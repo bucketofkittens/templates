@@ -58,6 +58,30 @@ pgrModule.factory('Needs', function ($resource) {
 });
 
 /**
+ * 
+ * @param  {[type]} $resource [description]
+ * @return {[type]}           [description]
+ */
+pgrModule.factory('NeedsByUser', function ($resource) {
+    return $resource(
+        host+'/needs/by_user/:id', 
+        {id:'@id'}
+    );
+});
+
+/**
+ * 
+ * @param  {[type]} $resource [description]
+ * @return {[type]}           [description]
+ */
+pgrModule.factory('GoalsByUser', function ($resource) {
+    return $resource(
+        host+'/goals/by_user/:id', 
+        {id:'@id'}
+    );
+});
+
+/**
  * Модель для Goals
  * @param  {[type]} $resource [description]
  * @return {[type]}           [description]
@@ -122,6 +146,18 @@ pgrModule.factory('Criterion', function ($resource) {
  * @param  {[type]} $resource [description]
  * @return {[type]}           [description]
  */
+pgrModule.factory('CriterionByGoal', function ($resource) {
+    return $resource(
+        host+'/criterion/by_goal/:id', 
+        {id:'@id'}
+    );
+});
+
+/**
+ * 
+ * @param  {[type]} $resource [description]
+ * @return {[type]}           [description]
+ */
 pgrModule.factory('Sessions', function ($resource) {
     return $resource(
         hostShort+'/signin/', 
@@ -177,5 +213,12 @@ pgrModule.factory('UserCriteriaValue', function ($resource) {
             create: {method: 'POST',  headers : {'Content-Type': 'application/x-www-form-urlencoded'}},
             del: {method: "DELETE"}
         }
+    );
+});
+
+pgrModule.factory('UserCriteriaValueByUser', function ($resource) {
+    return $resource(
+        host+'/user_criterion_values/by_user/:id', 
+        {id:'@id'}
     );
 });
