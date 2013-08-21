@@ -30,7 +30,8 @@ body header .social{width:13%;vertical-align:top;display:inline-block;position:a
 #content .procrit ul li ul{vertical-align:top;height:0;opacity:0;overflow:hidden;transition:all 1s ease-out;-webkit-transition:all 1s ease-out}#content .procrit ul li ul.show{opacity:1;height:auto}
 #content .procrit ul li ul li{display:block;line-height:200%;width:100%;margin:0}#content .procrit ul li ul li a{font-size:170%;color:#000;text-decoration:none;display:inline-block;width:16%;vertical-align:middle;text-align:left}
 #content .procrit ul li ul li span{display:inline-block;vertical-align:middle;margin-right:2%}
-#content .procrit ul li ul li strong{background:#759fd2;border:1px solid #ccc;display:inline-block;line-height:100%;width:60%}#content .procrit ul li ul li strong b{font-size:150%;color:#000;text-align:center;display:block;margin-top:1%}
+#content .procrit ul li ul li strong{background:#759fd2;border:1px solid #ccc;display:inline-block;line-height:100%;width:60%;position:relative}#content .procrit ul li ul li strong b{font-size:150%;color:#000;text-align:center;display:block;margin-top:1%}
+#content .procrit ul li ul li strong span{position:absolute;left:0;top:0;height:100%;display:block;background:#000}
 #content .pronear{display:inline-block;width:10%;height:auto;position:absolute;right:0;top:4%;padding:5% 0 1% 0;margin-top:-5%;overflow:hidden;background:#fff;border-left:1px solid #ccc}#content .pronear span{display:block;margin:0 auto 10% auto;width:0;height:0;border-style:solid;border-width:0 15px 15px 15px;border-color:transparent transparent #000 transparent}
 #content .pronear a:last-child span{border-width:15px 15px 0 15px;border-color:#000 transparent transparent transparent;margin:10% auto 0 auto}
 #content .pronear .ph{margin:0 auto;width:80%}#content .pronear .ph a{display:block;margin:5% 0;border:1px solid #000}

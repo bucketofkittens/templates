@@ -100,6 +100,7 @@
 					<a ng-click="open('{{subItem.goal.sguid}}', $event, '{{item.need.sguid}}', subItem)">{{subItem.goal.name}}</a>					
 					<strong>
 						<b>{{subItem.current_value}} / {{subItem.goal.values_sum}}</b>
+						<span class="current_position" style="width: {{(subItem.current_value / (subItem.goal.values_sum ))*100}}%;"></span>
 					</strong>
 					<div class="criterion">
 						<ul>
