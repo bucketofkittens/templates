@@ -7,7 +7,6 @@ select, textarea, input {
 body {
     width: 100%;
     height: 100%;
-    overflow: hidden;
     font-family: 'Helvetica Neue Light';
     .shadow {
         background: rgba(0, 0, 0, 0.5);
@@ -108,7 +107,7 @@ body {
      /** profile page **/
     .promain {
         height: 40%;
-        margin: 1% 2% 0% 2%;
+        margin: 0% 2%;
         width: 85%;
         .hidden {
             display: none;
@@ -127,6 +126,7 @@ body {
                     vertical-align: middle;
                     cursor: pointer;
                     margin-right: 3%;
+                    background: #ffffff;
                 }
                 .pmpar {
                     display: inline-block;
@@ -140,9 +140,16 @@ body {
                     label {
                         display: inline-block;
                         width: 33%;
+                        vertical-align: middle;
                     }
                     select, input {                        
                         width: 57%;
+                        height: 100%;
+                        line-height: 100%;
+                        margin: 0%;
+                        vertical-align: middle !important;
+                        display: inline-block;
+                        padding-bottom: 1.3% !important;
                     }
                     .form-control {
                         display: inline-block;
@@ -174,7 +181,7 @@ body {
                 .publish {
                     p {
                         display: inline-block;
-                        margin: 2% 5% 0% 5%;
+                        margin: 1% 5%;
                         height: 20%;
                         width: 30%;
                         button {
@@ -195,7 +202,7 @@ body {
 
             &.league {
                 text-align: center;
-                padding: 2% 0% 5.4% 0%;
+                padding: 2% 0% 5.6% 0%;
                 width: 19%;
                 height: 100%;
                 background: #ffffff;
@@ -235,13 +242,10 @@ body {
                 }
                 strong {
                     display: inline-block;
-                    width: 23%;
-                    border-radius: 50%;
-                    background: rgba(2, 141, 218, 0.5);
+                    width: 15%;
                     text-align: center; 
                     vertical-align: middle;
                     margin: 3%;
-                    padding: 5px;
                 }
             }
         }
@@ -256,23 +260,39 @@ body {
         width: 87%;
         height: auto;
         position: relative;
-        margin-bottom: -100%;
-        padding-bottom: 100%;
         ul {
-            margin-top: 30px;
             text-align: center;
             position: relative;
             z-index: 5;
-            margin-top: 1%;
+            margin: 2% auto;
             li {
-                display: inline-block;
-                margin: 10px 0px 30px 0px;
-                vertical-align: top;
-                width: 18%;
-                p {
-                    font-size: 18px;
-                    color: #000000;
-                    font-weight: bold;
+                margin: 2% auto;
+                width: 93%;
+                .cr {
+                    background: rgb(117,159,210);
+                    background: linear-gradient(to right,  rgb(117,159,210) 0%,rgb(55,55,75) 100%,rgb(125,185,232) 100%);
+                    line-height: 400%;
+                    p {
+                        font-size: 200%;
+                        color: #ffffff;
+                        display: inline-block;
+                        margin-top: 0.5%;
+                        width: 20%;
+                        text-align: left;
+                    }     
+                    strong {
+                        background: #ffffff;
+                        display: inline-block;
+                        line-height: 150%;
+                        width: 65%;
+                        b {
+                            font-size: 150%;
+                            color: #000000;
+                            text-align: center;
+                            display: block;
+                            margin-top: 1%;
+                        }
+                    }               
                 }
                 ul {
                     vertical-align: top;
@@ -300,11 +320,12 @@ body {
         height: 100%;
         position: absolute;
         right: 0%;
-        top: 10%;
+        top: 9%;
         padding-top: 5%;
         margin-top: -5%;
         overflow: hidden;
         background: #ffffff;
+        border-left: 1px solid #cccccc;
         span {
             display: block;
             margin: 0% auto 10% auto;
