@@ -87,7 +87,7 @@
 <section class="procrit" ng-controller="CriteriaController">
 	<ul> 
 		<li ng-repeat="item in needs | orderBy:'need.position'">
-			<div class="cr">
+			<div class="cr" ng-click="onShowGoals($event)">
 				<p>{{item.need.name}}</p>
 				<strong>
 					<b>{{item.current_value}} / {{item.need.values_sum}}</b>
@@ -96,7 +96,7 @@
 			<ul>
 				<li ng-repeat="subItem in item.need.goals| orderBy:'goal.position'" >
 					<span><img src="../images/point.png"></span>
-					<a ng-click="open('{{subItem.goal.sguid}}')">{{subItem.goal.name}}</a>					
+					<a ng-click="open('{{subItem.goal.sguid}}', $event)">{{subItem.goal.name}}</a>					
 					<strong>
 						<b>{{subItem.current_value}} / {{subItem.goal.values_sum}}</b>
 					</strong>
@@ -104,26 +104,18 @@
 			</ul>
 		</li>
 	</ul>
-	<div modal="shouldBeOpen" close="close()" options="opts">
-      <div class="modal-body">
-         <div class="criterion">
-				<h3>{{goal.goal.name}}</h3>
-				<ul>
-					<li ng-repeat="crItem in criteriums | orderBy:'criterium.position'" >
-						<p>{{crItem.criterium.name}}</p>
-						<ul class="crp">
-							<li ng-click="onCliteriaSelect(value.criteria_value, crItem.criterium, $event)" ng-repeat="value in crItem.criterium.criteria_values | orderBy:'value.criteria_value.position'"  class="{{value.user_criteria}}">
-								{{value.criteria_value.name}}
-							</li>
-						</ul>
+	<div class="criterion">
+		<ul>
+			<li ng-repeat="crItem in criteriums | orderBy:'criterium.position'" >
+				<p>{{crItem.criterium.name}}</p>
+				<ul class="crp">
+					<li ng-click="onCliteriaSelect(value.criteria_value, crItem.criterium, $event)" ng-repeat="value in crItem.criterium.criteria_values | orderBy:'value.criteria_value.position'"  class="{{value.user_criteria}}">
+						{{value.criteria_value.name}}
 					</li>
 				</ul>
-			</div>
-      </div>
-      <div class="modal-footer">
-         <button class="btn btn-warning cancel" ng-click="close()">Cancel</button>
-      </div>
-    </div>
+			</li>
+		</ul>
+	</div>
 </section>
 
 <section class="pronear">

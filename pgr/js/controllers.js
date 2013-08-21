@@ -219,14 +219,13 @@ function ProfileController($scope, $route, $routeParams, User, Needs, Profession
  */
 function CriteriaController($scope, Goals, Criterion, AuthUser, UserCriteriaValue, $rootScope, CriterionByGoal, UserCriteriaValueByUser) {
 	$scope.criteriums = {};
-	$scope.goal = {};
     
     /**
      * 
      * @param  {[type]} goalId [description]
      * @return {[type]}        [description]
      */
-	$scope.open = function (goalId) {
+	$scope.open = function (goalId, $event) {
 		var self = this;
 
 		/**
@@ -251,29 +250,9 @@ function CriteriaController($scope, Goals, Criterion, AuthUser, UserCriteriaValu
 					});
 				});
 			})
-
-			$scope.shouldBeOpen = true;
 		});
-
-		$scope.goal = Goals.get({id: goalId});
+		$(".criterion").appendTo($($event.target).parent());
 		
-	};
-
-    /**
-     * 
-     * @returns {undefined}
-     */
-	$scope.close = function () {
-		$scope.shouldBeOpen = false;
-	};
-
-	/**
-	 * Параметры попапа
-	 * @type {Object}
-	 */
-	$scope.opts = {
-		backdropFade: true,
-		dialogFade:true
 	};
 
 	/**
@@ -290,6 +269,11 @@ function CriteriaController($scope, Goals, Criterion, AuthUser, UserCriteriaValu
 			$($event.target).parent().find("li").removeClass("current");
 			$($event.target).addClass("current");
 		});
+	}
+
+	$scope.onShowGoals = function($event) {
+		console.log($($event.target).parent());
+		$($event.target).parent().parent().find("ul").toggleClass("show");
 	}
 }
 
