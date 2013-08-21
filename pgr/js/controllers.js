@@ -91,6 +91,8 @@ function ProfileController($scope, $route, $routeParams, User, Needs, Profession
 	$scope.professions = Professions.query();
 	$scope.states = States.query();
 	$scope.isImage = false;
+	
+
 
 	if($routeParams.userId) {
 		User.query({id: $routeParams.userId}, function(data) {
@@ -112,6 +114,16 @@ function ProfileController($scope, $route, $routeParams, User, Needs, Profession
 	$scope.$on('userCriteriaUpdate', function() {
 		$scope.userCriteriaUpdate();
 	});
+
+	this.generateAgesArray = function(min, max) {
+		var i = min, ret = [];
+		for(i = min; i <= max; i++){
+			ret.push(i);
+		}
+		return ret;
+	}
+
+	$scope.ages = this.generateAgesArray(14, 150);
 
 	$scope.userCriteriaUpdate = function() {
 		NeedsByUser.get({id: $routeParams.userId}, {}, function(data) {
@@ -168,13 +180,24 @@ function ProfileController($scope, $route, $routeParams, User, Needs, Profession
      * @returns {undefined}
      */
 	$scope.onEditSave = function($event) {
-		User.updateUser({"id": $scope.user.sguid},  $.param({user: {
+		if(!$scope.user.published) {
+			$scope.user.published = 0;
+		}
+		console.log($scope.user.state);
+		User.updateUser({"id": $scope.user.sguid},  {user: JSON.stringify({
 				"login": $scope.user.login,
 				"name": $scope.user.name,
-				"email": $scope.user.email
-			}})
+				"email": $scope.user.email,
+				"age": $scope.user.age,
+				"profession": $scope.user.profession ? $scope.user.profession : null ,
+				"state": $scope.user.state ? $scope.user.state : null,
+				"published": $scope.user.published
+			})}
 		);
-		$event.target.setAttribute("disabled", "disabled"); 
+		
+		if($event) {
+			$event.target.setAttribute("disabled", "disabled");
+		}
 	};
 
 	/**
@@ -218,8 +241,13 @@ function ProfileController($scope, $route, $routeParams, User, Needs, Profession
 	 */
 	$scope.onPublish = function($event) {
 		User.updateUser({"id": $scope.user.sguid},  $.param({user: {
+				"login": $scope.user.login,
 				"name": $scope.user.name,
-				"email": $scope.user.email
+				"email": $scope.user.email,
+				"age": $scope.user.age,
+				"published": 1,
+				"profession": 0,
+				"state": 0
 			}})
 		);
 	}
