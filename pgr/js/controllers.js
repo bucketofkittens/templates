@@ -106,18 +106,32 @@ function ProfileController($scope, $route, $routeParams, User, Needs, Profession
 	 * @return {[type]} [description]
 	 */
 	$scope.$on('needsLoaded', function() {
+		$scope.userCriteriaUpdate();
+	});
+
+	$scope.$on('userCriteriaUpdate', function() {
+		$scope.userCriteriaUpdate();
+	});
+
+	$scope.userCriteriaUpdate = function() {
 		NeedsByUser.get({id: $routeParams.userId}, {}, function(data) {
 			angular.forEach(data, function(value, key){
 				angular.forEach($scope.needs, function(needVal, needKey){
 					if($scope.needs[needKey].need.sguid == key) {
 						$scope.needs[needKey].current_value = value;
 					}
+					if(!$scope.user.points) {
+						$scope.user.points = 0;
+					}
+					
+					if(typeof(value) == 'number') {
+						$scope.user.points += value;
+					}
 				});
 			});
 		});
 
 		GoalsByUser.get({id: $routeParams.userId}, {}, function(data) {
-			console.log(data);
 			angular.forEach(data, function(value, key){
 				angular.forEach($scope.needs, function(needVal, needKey){
 					angular.forEach(needVal.need.goals, function(goal, goalKey){
@@ -128,7 +142,7 @@ function ProfileController($scope, $route, $routeParams, User, Needs, Profession
 				});
 			});
 		});
-	});
+	}
 
     /**
      * 
@@ -268,6 +282,8 @@ function CriteriaController($scope, Goals, Criterion, AuthUser, UserCriteriaValu
 		}), function(data) {
 			$($event.target).parent().find("li").removeClass("current");
 			$($event.target).addClass("current");
+
+			$rootScope.$broadcast('userCriteriaUpdate');
 		});
 	}
 
