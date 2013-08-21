@@ -310,7 +310,7 @@ body {
                         width: 100%;
                         margin: 0px;
                         a {
-                            font-size: 150%;
+                            font-size: 170%;
                             color: #000000;
                             text-decoration: none;
                             display: inline-block;
@@ -387,13 +387,6 @@ body {
 /** criterion **/
 .criterion {
     z-index: 15;
-    h3 {
-        color: #000000;
-        font-size: 23px;
-        font-weight: bold;
-        text-align: center;
-        margin: 3% 0px;
-    }
     ul {
         text-align: center;
         vertical-align: middle;
@@ -405,61 +398,33 @@ body {
         }
         p {
             color: #000000;
-            font-size: 18px;
-            text-align: left;
-            margin: 0px 0px 10px 5%;
+            font-size: 130%;
+            display: inline-block;
         }
         .crp {
-            display: table;
-            width: 100%;
-            border-radius: 15px;
-            background: #1e5799;
-            background: -moz-linear-gradient(left,  #1e5799 0%, #207cca 0%, #d3d3d3 0%, #f7f7f7 100%);
-            background: -webkit-gradient(linear, left top, right top, color-stop(0%,#1e5799), color-stop(0%,#207cca), color-stop(0%,#d3d3d3), color-stop(100%,#f7f7f7));
-            background: -webkit-linear-gradient(left,  #1e5799 0%,#207cca 0%,#d3d3d3 0%,#f7f7f7 100%);
-            background: -o-linear-gradient(left,  #1e5799 0%,#207cca 0%,#d3d3d3 0%,#f7f7f7 100%);
-            background: -ms-linear-gradient(left,  #1e5799 0%,#207cca 0%,#d3d3d3 0%,#f7f7f7 100%);
-            background: linear-gradient(to right,  #1e5799 0%,#207cca 0%,#d3d3d3 0%,#f7f7f7 100%);
+            display: inline-block;
             cursor: pointer;
             li {
-                display: table-cell;
+                display: inline-block;
                 color: #000000;
-                font-size: 23px;
-                text-align: center;
+                font-size: 100%;
                 margin: 3% 0px;
-                &.current {
-                    background: #ffffff;
-                }
-            }
-            ul {
-                text-align: center;
-                vertical-align: middle;
-                li {
-                    margin: 3% 0px;
-                    position: relative;
-                    &.current {
-                        background: #ffffff;
+                border: 1px solid #cccccc;
+                ul {
+                    text-align: center;
+                    li {
+                        display: inline-block;
+                        &.current {
+                            background: #ffffff;
+                        }
+                    }
+                    p {
+                        color: #000000;
+                        font-size: 100%;
                     }
                 }
-                p {
-                    color: #000000;
-                    font-size: 18px;
-                    text-align: left;
-                    margin: 0px 0px 10px 5%;
-                }
-                
             }
         }
-    }
-    sub {
-        width: 0px;
-        height: 0px;
-        border-style: solid;
-        border-width: 0 5px 20px 5px;
-        border-color: transparent transparent #a8a8a8 transparent;
-        position: absolute;
-        top: 70%;
-        left: 50%;
     }
 }     
 .btn-warning {
