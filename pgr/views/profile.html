@@ -91,7 +91,7 @@
 				<p>{{item.need.name}}</p>
 				<strong>
 					<b>{{item.current_value}} / {{item.need.values_sum}}</b>
-					<span class="current_position">{{item.current_value / (item.need.values_sum )}}</span>
+					<span class="current_position" style="width: {{(item.current_value / (item.need.values_sum ))*100}}%;"></span>
 				</strong>
 			</div>
 			<ul>
