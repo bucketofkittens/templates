@@ -34,7 +34,8 @@ body header .social{width:13%;vertical-align:top;display:inline-block;position:a
 #content .pronear{display:inline-block;width:10%;height:auto;position:absolute;right:0;top:4%;padding:5% 0 1% 0;margin-top:-5%;overflow:hidden;background:#fff;border-left:1px solid #ccc}#content .pronear span{display:block;margin:0 auto 10% auto;width:0;height:0;border-style:solid;border-width:0 15px 15px 15px;border-color:transparent transparent #000 transparent}
 #content .pronear a:last-child span{border-width:15px 15px 0 15px;border-color:#000 transparent transparent transparent;margin:10% auto 0 auto}
 #content .pronear .ph{margin:0 auto;width:80%}#content .pronear .ph a{display:block;margin:5% 0;border:1px solid #000}
-.criterion{z-index:15}.criterion ul{text-align:center;vertical-align:middle;opacity:1 !important;height:auto !important}.criterion ul li{margin:3% 0;position:relative}
+.criterion{z-index:15;opacity:0;height:0}.criterion.show{opacity:1;height:auto}
+.criterion ul{text-align:center;vertical-align:middle;opacity:1 !important;height:auto !important}.criterion ul li{margin:3% 0;position:relative}
 .criterion ul p{color:#000;font-size:130%;display:inline-block}
 .criterion ul .crp{display:inline-block;cursor:pointer}.criterion ul .crp li{display:inline-block;color:#000;font-size:100%;margin:3% 0;border:1px solid #ccc}.criterion ul .crp li ul{text-align:center}.criterion ul .crp li ul li{display:inline-block}.criterion ul .crp li ul li.current{background:#fff}
 .criterion ul .crp li ul p{color:#000;font-size:100%}

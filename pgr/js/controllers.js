@@ -239,7 +239,7 @@ function CriteriaController($scope, Goals, Criterion, AuthUser, UserCriteriaValu
      * @param  {[type]} goalId [description]
      * @return {[type]}        [description]
      */
-	$scope.open = function (goalId, $event) {
+	$scope.open = function (goalId, $event, needId, goal) {
 		var self = this;
 
 		/**
@@ -249,7 +249,7 @@ function CriteriaController($scope, Goals, Criterion, AuthUser, UserCriteriaValu
 		 * @return {[type]}      [description]
 		 */
 		CriterionByGoal.query({id: goalId}, function(data) {
-			$scope.criteriums = data;
+			goal.goal.criteriums = data;
 
 			UserCriteriaValueByUser.query({id: AuthUser.get()}, {}, function(d) {
 				angular.forEach(d, function(userCriteriaItem, userCriteriaKey) {
@@ -258,14 +258,17 @@ function CriteriaController($scope, Goals, Criterion, AuthUser, UserCriteriaValu
 							if(
 								userCriteriaItem.user_criterion_value.criteria_value_sguid == criteriaValueItem.criteria_value.sguid &&
 								userCriteriaItem.user_criterion_value.criteria_sguid == $scope.criteriums[criteriumsKey].criterium.sguid) {
-								$scope.criteriums[criteriumsKey].criterium.criteria_values[criteriaValueKey].user_criteria = "current";
+								goal.goal.criteriums[criteriumsKey].criterium.criteria_values[criteriaValueKey].user_criteria = "current";
 							} 
 						});
 					});
 				});
-			})
+			});
 		});
-		$(".criterion").appendTo($($event.target).parent());
+
+
+
+		$($event.target).parent().find(".criterion").toggleClass("show");
 		
 	};
 

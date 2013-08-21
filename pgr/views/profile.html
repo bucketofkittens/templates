@@ -86,7 +86,7 @@
 
 <section class="procrit" ng-controller="CriteriaController">
 	<ul> 
-		<li ng-repeat="item in needs | orderBy:'need.position'">
+		<li ng-repeat="(key,item) in needs | orderBy:'need.position'">
 			<div class="cr" ng-click="onShowGoals($event)">
 				<p>{{item.need.name}}</p>
 				<strong>
@@ -95,28 +95,30 @@
 				</strong>
 			</div>
 			<ul>
-				<li ng-repeat="subItem in item.need.goals| orderBy:'goal.position'" >
+				<li ng-repeat="(subKey,subItem) in item.need.goals| orderBy:'goal.position'" >
 					<span><img src="../images/point.png"></span>
-					<a ng-click="open('{{subItem.goal.sguid}}', $event)">{{subItem.goal.name}}</a>					
+					<a ng-click="open('{{subItem.goal.sguid}}', $event, '{{item.need.sguid}}', subItem)">{{subItem.goal.name}}</a>					
 					<strong>
 						<b>{{subItem.current_value}} / {{subItem.goal.values_sum}}</b>
 					</strong>
+					<div class="criterion">
+						<ul>
+							<li ng-repeat="crItem in subItem.goal.criteriums | orderBy:'criterium.position'" >
+								<p>{{crItem.criterium.name}}</p>
+								<ul class="crp">
+									<li ng-click="onCliteriaSelect(value.criteria_value, crItem.criterium, $event)" ng-repeat="value in crItem.criterium.criteria_values | orderBy:'value.criteria_value.position'"  class="{{value.user_criteria}}">
+										{{value.criteria_value.name}}
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</div>
 				</li>
+				
 			</ul>
 		</li>
 	</ul>
-	<div class="criterion">
-		<ul>
-			<li ng-repeat="crItem in criteriums | orderBy:'criterium.position'" >
-				<p>{{crItem.criterium.name}}</p>
-				<ul class="crp">
-					<li ng-click="onCliteriaSelect(value.criteria_value, crItem.criterium, $event)" ng-repeat="value in crItem.criterium.criteria_values | orderBy:'value.criteria_value.position'"  class="{{value.user_criteria}}">
-						{{value.criteria_value.name}}
-					</li>
-				</ul>
-			</li>
-		</ul>
-	</div>
+	
 </section>
 
 <section class="pronear">

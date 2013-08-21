@@ -396,6 +396,12 @@ body {
 /** criterion **/
 .criterion {
     z-index: 15;
+    opacity: 0;
+    height: 0px;
+    &.show {
+        opacity: 1;
+        height: auto;
+    }
     ul {
         text-align: center;
         vertical-align: middle;
