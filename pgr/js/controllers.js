@@ -320,7 +320,7 @@ function CriteriaController($scope, Goals, Criterion, AuthUser, UserCriteriaValu
 
 	$scope.onShowGoals = function($event) {
 		console.log($($event.target).parent());
-		$($event.target).parent().parent().find("ul").toggleClass("show");
+		$($event.target).parent().parent().find("> ul").toggleClass("show");
 	}
 }
 

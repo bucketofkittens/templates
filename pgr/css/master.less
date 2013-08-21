@@ -298,45 +298,42 @@ body {
                             top: 0px;
                             height: 100%;
                             display: block;
-                            background: #000000;
+                            background: #759fd2;
                         }
                     }               
                 }
                 ul {
                     vertical-align: top;
-                    height: 0px;
-                    opacity: 0;
-                    overflow: hidden;
+                    display: none;
                     transition: all 1s ease-out;
                     -webkit-transition: all 1s ease-out;
                     &.show {
-                        opacity: 1;
-                        height: auto;
+                        display: block;
                     }
                     li {
                         display: block;
                         line-height: 200%;
                         width: 100%;
-                        margin: 0px;
+                        margin: 2% auto;
                         a {
                             font-size: 170%;
                             color: #000000;
                             text-decoration: none;
                             display: inline-block;
-                            width: 16%;
+                            width: 20%;
                             vertical-align: middle;
                             text-align: left;
                         }
                         span {
                             display: inline-block;
                             vertical-align: middle;
-                            margin-right: 2%;
+                            margin-right: 3%;
                         }
                         strong {
-                            background: #759fd2;
+                            background: #ffffff;
                             border: 1px solid #cccccc;
                             display: inline-block;
-                            line-height: 100%;
+                            line-height: 130%;
                             width: 60%;
                             position: relative;
                             b {
@@ -345,6 +342,8 @@ body {
                                 text-align: center;
                                 display: block;
                                 margin-top: 1%;
+                                position: relative;
+                                z-index: 5;
                             }
                             span {
                                 position: absolute;
@@ -352,9 +351,48 @@ body {
                                 top: 0px;
                                 height: 100%;
                                 display: block;
-                                background: #000000;
+                                background: #759fd2;
                             }
                         }
+                        /** criterion **/
+                        .criterion {
+                            display: none;
+                            transition: all 1s ease-out;
+                            -webkit-transition: all 1s ease-out;
+                            overflow: hidden;
+                            margin: 1% auto;
+                            &.show {
+                                display: block;
+                            }
+                            li {
+                                margin: 3% auto;                                    
+                                p {
+                                    color: #000000;
+                                    font-size: 130%;
+                                    display: inline-block;
+                                    width: 20%;
+                                    text-align: left;
+                                }
+                                .crp {
+                                    display: inline-block;
+                                    cursor: pointer;
+                                    margin: 0% auto;
+                                    border: 1px solid #cccccc;
+                                    width: 70%;
+                                    .tab {
+                                        display: table;
+                                        width: 100%;
+                                        li {
+                                            display: table-cell;
+                                            color: #000000;
+                                            font-size: 100%;
+                                            width: auto;
+                                            margin: 0% auto;
+                                        }
+                                    }
+                                }
+                            }
+                        } 
                     }
                 }
             }
@@ -400,70 +438,6 @@ body {
 }
     
 
-
-
-/** criterion **/
-.criterion {
-    z-index: 15;
-    opacity: 0;
-    height: 0px;
-    &.show {
-        opacity: 1;
-        height: auto;
-    }
-    ul {
-        text-align: center;
-        vertical-align: middle;
-        opacity: 1 !important;
-        height: auto !important;
-        li {
-            margin: 3% 0px;
-            position: relative;
-        }
-        p {
-            color: #000000;
-            font-size: 130%;
-            display: inline-block;
-        }
-        .crp {
-            display: inline-block;
-            cursor: pointer;
-            li {
-                display: inline-block;
-                color: #000000;
-                font-size: 100%;
-                margin: 3% 0px;
-                border: 1px solid #cccccc;
-                ul {
-                    text-align: center;
-                    li {
-                        display: inline-block;
-                        &.current {
-                            background: #ffffff;
-                        }
-                    }
-                    p {
-                        color: #000000;
-                        font-size: 100%;
-                    }
-                }
-            }
-        }
-    }
-}     
-.btn-warning {
-    background-color: #cccccc;
-    background-image: -moz-linear-gradient(top, #8cc4ff, #0064cf);
-    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#8cc4ff), to(#0064cf));
-    background-image: -webkit-linear-gradient(top, #8cc4ff, #0064cf);
-    background-image: -o-linear-gradient(top, #8cc4ff, #0064cf);
-    background-image: linear-gradient(to bottom, #8cc4ff, #0064cf);
-    border-color: #cccccc #efefef #c0c0c0;
-
-    &:hover, &:active {
-        background-color: #0064cf;
-    }
-}
 
 /** registration.modal **/
 .registration, .login {
