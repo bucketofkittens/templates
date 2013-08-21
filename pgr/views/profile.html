@@ -95,8 +95,11 @@
 			</div>
 			<ul>
 				<li ng-repeat="subItem in item.need.goals| orderBy:'goal.position'" >
-					<a ng-click="open('{{subItem.goal.sguid}}')">{{subItem.goal.name}}  ({{subItem.current_value}} / {{subItem.goal.values_sum}})</a>
-					<span></span>
+					<span><img src="../images/point.png"></span>
+					<a ng-click="open('{{subItem.goal.sguid}}')">{{subItem.goal.name}}</a>					
+					<strong>
+						<b>{{subItem.current_value}} / {{subItem.goal.values_sum}}</b>
+					</strong>
 				</li>
 			</ul>
 		</li>
