@@ -239,8 +239,7 @@ function ProfileController($scope, $route, $routeParams, User, Needs, Profession
  * @param {[type]} Goals
  * @param {[type]} Criterion
  */
-function CriteriaController($scope, Goals, Criterion, AuthUser, UserCriteriaValue, $rootScope, CriterionByGoal, UserCriteriaValueByUser) {
-	$scope.criteriums = {};
+function CriteriaController($scope, Goals, Criterion, AuthUser, UserCriteriaValue, $rootScope, CriterionByGoal, UserCriteriaValueByUser, $routeParams) {
     
     /**
      * 
@@ -259,14 +258,17 @@ function CriteriaController($scope, Goals, Criterion, AuthUser, UserCriteriaValu
 		CriterionByGoal.query({id: goalId}, function(data) {
 			goal.goal.criteriums = data;
 
-			UserCriteriaValueByUser.query({id: AuthUser.get()}, {}, function(d) {
+			UserCriteriaValueByUser.query({id: $routeParams.userId}, {}, function(d) {
 				angular.forEach(d, function(userCriteriaItem, userCriteriaKey) {
-					angular.forEach($scope.criteriums, function(criteriumsItem, criteriumsKey) {
+					angular.forEach(goal.goal.criteriums, function(criteriumsItem, criteriumsKey) {
 						angular.forEach(criteriumsItem.criterium.criteria_values, function(criteriaValueItem, criteriaValueKey) {
+							console.log(userCriteriaItem.user_criterion_value.criteria_sguid);
 							if(
 								userCriteriaItem.user_criterion_value.criteria_value_sguid == criteriaValueItem.criteria_value.sguid &&
-								userCriteriaItem.user_criterion_value.criteria_sguid == $scope.criteriums[criteriumsKey].criterium.sguid) {
+								userCriteriaItem.user_criterion_value.criteria_sguid == goal.goal.criteriums[criteriumsKey].criterium.sguid) {
 								goal.goal.criteriums[criteriumsKey].criterium.criteria_values[criteriaValueKey].user_criteria = "current";
+								goal.goal.criteriums[criteriumsKey].criterium.current_position = criteriaValueItem.criteria_value.position;
+								console.log(goal.goal.criteriums[criteriumsKey].criterium.current_position);
 							} 
 						});
 					});

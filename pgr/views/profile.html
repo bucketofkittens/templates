@@ -127,7 +127,7 @@
 				</strong>
 			</div>
 			<ul>
-				<li ng-repeat="(subKey,subItem) in item.need.goals| orderBy:'goal.position'" >
+				<li ng-repeat="(subKey,subItem) in item.need.goals | orderBy:'goal.position'" >
 					<span><img src="../images/point.png"></span>
 					<a ng-click="open('{{subItem.goal.sguid}}', $event, '{{item.need.sguid}}', subItem)">{{subItem.goal.name}}</a>					
 					<strong>
@@ -139,11 +139,15 @@
 							<p>{{crItem.criterium.name}}</p>
 							<ul class="crp">
 								<div class="tab">
-									<li ng-click="onCliteriaSelect(value.criteria_value, crItem.criterium, $event)" ng-repeat="value in crItem.criterium.criteria_values | orderBy:'value.criteria_value.position'"  class="{{value.user_criteria}}">
+									<li ng-click="onCliteriaSelect(value.criteria_value, crItem.criterium, $event)" 
+										ng-repeat="value in crItem.criterium.criteria_values | orderBy:'criteria_value.position'"  
+										class="{{value.user_criteria}} position_{{value.criteria_value.position}}">
 										{{value.criteria_value.name}}
 									</li>
-									<span>
+									<span style="width: {{ 100 - ((crItem.criterium.criteria_values.length / 100 ) * crItem.criterium.current_position * 100) }}%;">
 										<img src="../images/ar.png">
+										{{}}
+										{{crItem.criterium.current_position}}
 									</span>
 								</div>
 							</ul>
