@@ -66,5 +66,13 @@
     {
         "key":"_AchievL_",
         "value":"Achievement"
+    },
+    {
+        "key":"_Auth_",
+        "value":"Authorization"
+    },
+    {
+        "key":"_Update_",
+        "value":"Update"
     }
 ]
