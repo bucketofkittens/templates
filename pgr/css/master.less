@@ -372,22 +372,45 @@ body {
                                     display: inline-block;
                                     width: 20%;
                                     text-align: left;
+                                    vertical-align: middle;
                                 }
                                 .crp {
                                     display: inline-block;
                                     cursor: pointer;
                                     margin: 0% auto;
-                                    border: 1px solid #cccccc;
+                                    background: rgb(117,159,210);
+                                    background: linear-gradient(to right,  rgb(117,159,210) 0%,rgb(55,55,75) 100%,rgb(125,185,232) 100%);
                                     width: 70%;
+                                    vertical-align: middle;
+                                    overflow: hidden;
                                     .tab {
                                         display: table;
                                         width: 100%;
                                         li {
                                             display: table-cell;
-                                            color: #000000;
-                                            font-size: 100%;
+                                            color: #cccccc;
+                                            font-size: 130%;
                                             width: auto;
                                             margin: 0% auto;
+                                            line-height: 270%;
+                                            z-index: 7;
+                                            position: relative;
+                                        }
+                                        span {
+                                            position: absolute;
+                                            right: -3%;
+                                            top: 0%;
+                                            height: 100%;
+                                            display: block;
+                                            background: #ffffff;
+                                            width: 100%;
+                                            img {
+                                                position: absolute;
+                                                left: -3%;
+                                                top: 0%;
+                                                height: 100%;
+                                                width: 3%;
+                                            }
                                         }
                                     }
                                 }
@@ -405,7 +428,7 @@ body {
         height: auto;
         position: absolute;
         right: 0%;
-        top: 7%;
+        top: 8%;
         padding: 5% 0% 1% 0%;
         margin-top: -5%;
         overflow: hidden;
