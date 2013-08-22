@@ -39,7 +39,7 @@ body {
             right: 2%;
             width: 40%;
             li {
-                margin: 13px;
+                margin: 3%;
                 display: inline-block;
                 vertical-align: top;
             }
@@ -47,7 +47,7 @@ body {
                 color: #cccccc;
                 text-decoration: none;
                 font-family: 'Helvetica Neue';
-                font-size: 18px;
+                font-size: 150%;
                 text-transform: uppercase;
 
                 &:hover {
@@ -60,14 +60,26 @@ body {
         }
         .social {
             width: 13%;
+            height: 50%;
             vertical-align: top;
             display: inline-block;
             position: absolute;
-            top: 0px;
+            top: 5%;
             right: 5%;
-            img {
-                height: 32px;
-                width: 96px;
+            text-decoration: none;
+            b {
+                background: url("../images/icons.png") center center no-repeat;
+                width: 20%;
+                height: 100%;
+                margin: 1%;
+                display: inline-block;
+                overflow: hidden;
+                &:first-child {
+                    background-position: 0% 0%;
+                }
+                &:last-child {
+                    background-position: 100% 0%;
+                }
             }
         }
     }
