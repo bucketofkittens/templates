@@ -8,21 +8,36 @@
 			onchange="angular.element(this).scope().onReadFile()" 
 			id="photo" 
 			accept="image/jpeg,image/png,image/gif" />
-		<span ng-switch on="isImage" >
-	      <span ng-switch-when="false">
-	        	<img class="pp" ng-click="onUpdateFile()" src="../images/use.png" />
-	      </span>
-	      <span ng-switch-default>
-	        	<img class="pp" ng-click="onUpdateFile()" src="{{user.picture_url}}" />
-	      </span>
-	   </span>		
+			
+			<span ng-switch on="isCurrentUser" >
+			  <span ng-switch-when="true">
+			    	<span ng-switch on="isImage" >
+					  <span ng-switch-when="false">
+					    	<img class="pp" ng-click="onUpdateFile()" src="../images/use.png" />
+					  </span>
+					  <span ng-switch-default>
+					    	<img class="pp" ng-click="onUpdateFile()" src="{{user.picture_url}}" />
+					  </span>
+					</span>	
+			  </span>
+			  <span ng-switch-when="false">
+			    	<span ng-switch on="isImage" >
+					  <span ng-switch-when="false">
+					    	<img class="pp" src="../images/use.png" />
+					  </span>
+					  <span ng-switch-default>
+					    	<img class="pp" src="{{user.picture_url}}" />
+					  </span>
+					</span>	
+			  </span>
+			</span>	
+				
 		<div class="pmpar">
 			<p>
 				<label for="name_i">{{'_NameL_' | i18n}}:</label> 
 				<input 
 					type="text" 
 					id="name_i" 
-					ui-keypress="{13:'onEditSave($event)'}" 
 					ng-onkeyup="onEditKeyUp()" 
 					class="clean form-control" 
 					disabled="disabled" 
@@ -30,40 +45,60 @@
 					placeholder="Batman"
 					required
 					ng-minlength="6" />
-				<img src="../images/pencil.png" ng-click="onEditActivate($event, 'name_i')" />
+				<span ng-if="isCurrentUser">
+					<img src="../images/pencil.png" ng-click="onEditActivate($event, 'name_i')" />
+				</span>
 			</p>
 			<p>
 				<label for="email_i">E-mail:</label> 
 				<input 
 					type="email" 
 					id="email_i" 
-					ui-keypress="{13:'onEditSave($event)'}" 
 					class="clean form-control" 
 					disabled="disabled" 
 					ng-model="user.email"
 					placeholder="dccomics.com/batman" /> 
-				<img src="../images/pencil.png"  ng-click="onEditActivate($event, 'email_i')">
+				<span ng-if="isCurrentUser">
+					<img src="../images/pencil.png"  ng-click="onEditActivate($event, 'email_i')">
+				</span>
 			</p>
 			<p>
 				<label for="age_i">{{'_AgeL_' | i18n}}:</label>
-				<select ng-options="item for item in ages" ng-change="onEditSave($event)" ng-model="user.age" disabled="disabled" id="age_i">
+				<select ng-options="item for item in ages" ng-model="user.age" disabled="disabled" id="age_i">
 				</select>
-				<img src="../images/pencil.png" ng-click="onEditActivate($event, 'age_i')">
+				<span ng-if="isCurrentUser">
+					<img src="../images/pencil.png" ng-click="onEditActivate($event, 'age_i')">
+				</span>
 			</p>
 			<p>
 				<label for="loc_i">{{'_LocL_' | i18n}}:</label>
-				<select ng-options="item.state.sguid as item.state.name for item in states" ng-model="user.state" disabled="disabled" id="loc_i" ng-change="onEditSave($event)">
+				<select ng-options="item.state.sguid as item.state.name for item in states" ng-model="user.state.sguid" disabled="disabled" id="loc_i">
 				</select>
-				<img src="../images/pencil.png" ng-click="onEditActivate($event, 'loc_i')"></p>
+				<span ng-if="isCurrentUser">
+					<img src="../images/pencil.png" ng-click="onEditActivate($event, 'loc_i')"></p>
+				</span>
 			<p>
 				<label for="email_i">{{'_ProfL_' | i18n}}:</label>
-				<select ng-options="item.profession.sguid as item.profession.name for item in professions" ng-model="user.profession" disabled="disabled" id="pro_i" ng-change="onEditSave($event)">
+				<select ng-options="item.profession.sguid as item.profession.name for item in professions" ng-model="user.profession.sguid" disabled="disabled" id="pro_i" >
 				</select>
-				<img src="../images/pencil.png" ng-click="onEditActivate($event, 'pro_i')">
+				<span ng-if="isCurrentUser">	
+					<img src="../images/pencil.png" ng-click="onEditActivate($event, 'pro_i')">
+				</span>
 			</p>
 		</div>
 		<div class="publish">
-			<p><button ng-click="onPublish()">{{'_PublishL_' | i18n}}</button></p>
+			<p ng-if="isCurrentUser">
+				<button ng-click="onPublish()">
+					<span ng-switch on="user.published" >
+						<span ng-switch-when="1">
+							{{'_Update_' | i18n}}
+						</span>
+						<span ng-switch-when="0">
+							{{'_PublishL_' | i18n}}
+						</span>
+					</span>	
+				</button>
+			</p>
 		</div>
 	</div>
 	<div class="pmain league">

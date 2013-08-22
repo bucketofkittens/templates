@@ -6,41 +6,38 @@ body header ul{display:inline-block;vertical-align:top;position:absolute;right:2
 body header ul a{color:#ccc;text-decoration:none;font-family:'Helvetica Neue';font-size:18px;text-transform:uppercase}body header ul a:hover{color:#ccc}
 body header ul a.current{color:#028dda}
 body header .social{width:13%;vertical-align:top;display:inline-block;position:absolute;top:0;right:5%}body header .social img{height:32px;width:96px}
-#content{position:relative;width:100%;background:#f8f8f8;padding-top:5%;}#content .who img{width:200px;height:200px;border:1px solid #000;display:inline-block;position:absolute;top:50%;left:50%;margin:-100px 0 0 -130px}
+#content{position:relative;width:100%;background:#f8f8f8;padding-top:6%;}#content .who img{width:200px;height:200px;border:1px solid #000;display:inline-block;position:absolute;top:50%;left:50%;margin:-100px 0 0 -130px}
 #content .scroll{font-size:16px;color:#5e5c5d;text-decoration:none;position:absolute;bottom:30px;left:50%;margin-left:-50px}
 #content .promain{height:40%;margin:0 2%;width:85%}#content .promain .hidden{display:none}
-#content .promain .pmain{display:inline-block;margin:0 1%;vertical-align:top;width:43%}#content .promain .pmain.pro{margin:0 1%}#content .promain .pmain.pro .pp{width:33%;height:70%;border:1px solid #000;vertical-align:middle;cursor:pointer;margin-right:3%;background:#fff}
-#content .promain .pmain.pro .pmpar{display:inline-block;vertical-align:middle;width:55%}#content .promain .pmain.pro .pmpar p{font-size:120%;color:#969696;line-height:250%}
-#content .promain .pmain.pro .pmpar label{display:inline-block;width:33%;vertical-align:middle}
-#content .promain .pmain.pro .pmpar select,#content .promain .pmain.pro .pmpar input{width:57%;height:100%;line-height:100%;margin:0;vertical-align:middle !important;display:inline-block;padding-bottom:1.3% !important}
-#content .promain .pmain.pro .pmpar .form-control{display:inline-block;width:55%;vertical-align:bottom;font-size:100%}
+#content .promain .pmain{display:inline-block;margin:0 1%;vertical-align:top;width:50%}#content .promain .pmain.pro{margin:0 1%}#content .promain .pmain.pro .pp{width:30%;height:70%;border:1px solid #000;vertical-align:middle;cursor:pointer;margin-right:3%;background:#fff}
+#content .promain .pmain.pro .pmpar{display:inline-block;vertical-align:middle;width:65%}#content .promain .pmain.pro .pmpar p{font-size:110%;color:#969696;line-height:200%}
+#content .promain .pmain.pro .pmpar label{display:inline-block;width:35%;vertical-align:middle}
+#content .promain .pmain.pro .pmpar select,#content .promain .pmain.pro .pmpar input{width:55%;height:100%;line-height:100%;margin:0;vertical-align:middle !important;display:inline-block;padding-bottom:1.3% !important}
+#content .promain .pmain.pro .pmpar .form-control{display:inline-block;width:50%;vertical-align:bottom;font-size:100%}
 #content .promain .pmain.pro .pmpar .form-control[disabled="disabled"]{background:transparent;border-color:transparent;box-shadow:none}
-#content .promain .pmain.pro .pmpar .ng-pristine{vertical-align:bottom;font-size:100%;width:55%}
+#content .promain .pmain.pro .pmpar .ng-pristine{vertical-align:bottom;font-size:100%;width:50%}
 #content .promain .pmain.pro .pmpar .ng-pristine[disabled="disabled"]{background:transparent;border-color:transparent;box-shadow:none}
 #content .promain .pmain.pro .pmpar img{width:5%;height:8%;vertical-align:middle}
 #content .promain .pmain.pro .publish p{display:inline-block;margin:1% 5%;height:20%;width:30%}#content .promain .pmain.pro .publish p button{text-align:center;transform:skewX(angle);font-size:16px;color:#fff;padding:5% 10%;background:#028dda;border-top:1px solid #fff;border-left:1px solid #fff;border-right:1px solid #ccc;border-bottom:1px solid #ccc}
 #content .promain .pmain.league{text-align:center;padding:2% 0 5.6% 0;width:19%;height:100%;background:#fff;border-left:1px solid #ccc;box-shadow:0 0 30px 1px rgba(0,0,0,0.3);z-index:3;position:relative}#content .promain .pmain.league img{border-radius:20px}
 #content .promain .pmain.league i{font-size:20px;color:#000;padding-top:15px;display:block}
 #content .promain .pmain.league sub{background:#fff;position:absolute;display:block;bottom:-10%;left:-8%;height:10%;width:115%}
-#content .promain .pmain.achiev{width:30%;text-align:center}#content .promain .pmain.achiev h3{color:#000;font-size:23px;text-align:center;margin-bottom:5%}
-#content .promain .pmain.achiev strong{display:inline-block;width:15%;text-align:center;vertical-align:middle;margin:3%}
-#content .procrit{margin:0 1.5%;background:#fff;border-top:1px solid #ccc;border-left:1px solid #ccc;box-shadow:0 0 40px 0 rgba(0,0,0,0.3);width:87%;height:auto;position:relative}#content .procrit ul{text-align:center;position:relative;z-index:5;margin:2% auto}#content .procrit ul li{margin:2% auto;width:93%}#content .procrit ul li .cr{background:#759fd2;background:linear-gradient(to right, #759fd2 0, #37374b 100%, #7db9e8 100%);line-height:400%;cursor:pointer}#content .procrit ul li .cr p{font-size:200%;color:#fff;display:inline-block;margin-top:.5%;width:20%;text-align:left}
+#content .promain .pmain.achiev{width:22%;text-align:center}#content .promain .pmain.achiev h3{color:#000;font-size:150%;text-align:center;margin-bottom:5%}
+#content .promain .pmain.achiev strong{display:inline-block;width:20%;text-align:center;vertical-align:middle;margin:3%}
+#content .procrit{margin:0 1.5%;background:#fff;border-top:1px solid #ccc;border-left:1px solid #ccc;box-shadow:0 0 40px 0 rgba(0,0,0,0.3);width:87%;height:auto;position:relative}#content .procrit ul{text-align:center;position:relative;z-index:5;margin:2% auto}#content .procrit ul li{margin:2% auto;width:93%;cursor:pointer}#content .procrit ul li .cr{background:#759fd2;background:linear-gradient(to right, #759fd2 0, #37374b 100%, #7db9e8 100%);line-height:400%;cursor:pointer}#content .procrit ul li .cr p{font-size:200%;color:#fff;display:inline-block;margin-top:.5%;width:20%;text-align:left}
 #content .procrit ul li .cr strong{background:#fff;display:inline-block;line-height:150%;width:65%;position:relative}#content .procrit ul li .cr strong b{font-size:150%;color:#000;text-align:center;display:block;margin-top:1%}
-#content .procrit ul li .cr strong span{position:absolute;left:0;top:0;height:100%;display:block;background:#000}
-#content .procrit ul li ul{vertical-align:top;height:0;opacity:0;overflow:hidden;transition:all 1s ease-out;-webkit-transition:all 1s ease-out}#content .procrit ul li ul.show{opacity:1;height:auto}
-#content .procrit ul li ul li{display:block;line-height:200%;width:100%;margin:0}#content .procrit ul li ul li a{font-size:170%;color:#000;text-decoration:none;display:inline-block;width:16%;vertical-align:middle;text-align:left}
-#content .procrit ul li ul li span{display:inline-block;vertical-align:middle;margin-right:2%}
-#content .procrit ul li ul li strong{background:#759fd2;border:1px solid #ccc;display:inline-block;line-height:100%;width:60%;position:relative}#content .procrit ul li ul li strong b{font-size:150%;color:#000;text-align:center;display:block;margin-top:1%}
-#content .procrit ul li ul li strong span{position:absolute;left:0;top:0;height:100%;display:block;background:#000}
-#content .pronear{display:inline-block;width:10%;height:auto;position:absolute;right:0;top:4%;padding:5% 0 1% 0;margin-top:-5%;overflow:hidden;background:#fff;border-left:1px solid #ccc}#content .pronear span{display:block;margin:0 auto 10% auto;width:0;height:0;border-style:solid;border-width:0 15px 15px 15px;border-color:transparent transparent #000 transparent}
+#content .procrit ul li .cr strong span{position:absolute;left:0;top:0;height:100%;display:block;background:#759fd2;transition:all .5s ease}
+#content .procrit ul li ul{vertical-align:top;display:none;transition:all 1s ease-out;-webkit-transition:all 1s ease-out}#content .procrit ul li ul.show{display:block}
+#content .procrit ul li ul li{display:block;line-height:200%;width:100%;margin:2% auto;}#content .procrit ul li ul li a{font-size:170%;color:#000;text-decoration:none;display:inline-block;width:20%;vertical-align:middle;text-align:left}
+#content .procrit ul li ul li span{display:inline-block;vertical-align:middle;margin-right:3%;transition:all .5s ease}
+#content .procrit ul li ul li strong{background:#fff;border:1px solid #ccc;display:inline-block;line-height:130%;width:60%;position:relative}#content .procrit ul li ul li strong b{font-size:150%;color:#000;text-align:center;display:block;margin-top:1%;position:relative;z-index:5}
+#content .procrit ul li ul li strong span{position:absolute;left:0;top:0;height:100%;display:block;background:#759fd2}
+#content .procrit ul li ul li .criterion{display:none;transition:all 1s ease-out;-webkit-transition:all 1s ease-out;overflow:hidden;margin:1% auto}#content .procrit ul li ul li .criterion.show{display:block}
+#content .procrit ul li ul li .criterion li{margin:3% auto}#content .procrit ul li ul li .criterion li p{color:#000;font-size:130%;display:inline-block;width:20%;text-align:left}
+#content .procrit ul li ul li .criterion li .crp{display:inline-block;cursor:pointer;margin:0 auto;border:1px solid #ccc;width:70%}#content .procrit ul li ul li .criterion li .crp .tab{display:table;width:100%}#content .procrit ul li ul li .criterion li .crp .tab li{display:table-cell;color:#000;font-size:100%;width:auto;margin:0 auto}
+#content .pronear{display:inline-block;width:10%;height:auto;position:absolute;right:0;top:7%;padding:5% 0 1% 0;margin-top:-5%;overflow:hidden;background:#fff;border-left:1px solid #ccc}#content .pronear span{display:block;margin:0 auto 10% auto;width:0;height:0;border-style:solid;border-width:0 15px 15px 15px;border-color:transparent transparent #000 transparent}
 #content .pronear a:last-child span{border-width:15px 15px 0 15px;border-color:#000 transparent transparent transparent;margin:10% auto 0 auto}
 #content .pronear .ph{margin:0 auto;width:80%}#content .pronear .ph a{display:block;margin:5% 0;border:1px solid #000}
-.criterion{z-index:15;opacity:0;height:0}.criterion.show{opacity:1;height:auto}
-.criterion ul{text-align:center;vertical-align:middle;opacity:1 !important;height:auto !important}.criterion ul li{margin:3% 0;position:relative}
-.criterion ul p{color:#000;font-size:130%;display:inline-block}
-.criterion ul .crp{display:inline-block;cursor:pointer}.criterion ul .crp li{display:inline-block;color:#000;font-size:100%;margin:3% 0;border:1px solid #ccc}.criterion ul .crp li ul{text-align:center}.criterion ul .crp li ul li{display:inline-block}.criterion ul .crp li ul li.current{background:#fff}
-.criterion ul .crp li ul p{color:#000;font-size:100%}
-.btn-warning{background-color:#ccc;background-image:-moz-linear-gradient(top, #8cc4ff, #0064cf);background-image:-webkit-gradient(linear, 0 0, 0 100%, from(#8cc4ff), to(#0064cf));background-image:-webkit-linear-gradient(top, #8cc4ff, #0064cf);background-image:-o-linear-gradient(top, #8cc4ff, #0064cf);background-image:linear-gradient(to bottom, #8cc4ff, #0064cf);border-color:#ccc #efefef #c0c0c0}.btn-warning:hover,.btn-warning:active{background-color:#0064cf}
 .registration.modal,.login.modal{width:30%;height:50%;left:35%;top:20% !important}.registration.modal h4,.login.modal h4{font-size:23px;text-align:center;margin:5% 0}
 .registration.modal form,.login.modal form{width:100%}.registration.modal form p,.login.modal form p{margin:5% 15%;font-size:18px}
 .registration.modal input.ng-invalid:not(.ng-pristine),.login.modal input.ng-invalid:not(.ng-pristine){color:#b94a48;border-color:#ee5f5b;border-color:#e9322d !important;-webkit-box-shadow:0 0 6px #f8b9b7 !important;-moz-box-shadow:0 0 6px #f8b9b7 !important;box-shadow:0 0 6px #f8b9b7 !important}

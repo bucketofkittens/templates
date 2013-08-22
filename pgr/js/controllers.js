@@ -80,7 +80,7 @@ function navCtrl($scope, localize, $location, AuthUser) {
  * @param {type} States
  * @returns {undefined}
  */
-function ProfileController($scope, $route, $routeParams, User, Needs, Professions, States, $http, NeedsByUser, $rootScope, GoalsByUser) {
+function ProfileController($scope, $route, $routeParams, User, Needs, Professions, States, $http, NeedsByUser, $rootScope, GoalsByUser, AuthUser) {
     
 	$scope.userId = $routeParams.userId;
 	$scope.user = null;
@@ -91,12 +91,14 @@ function ProfileController($scope, $route, $routeParams, User, Needs, Profession
 	$scope.professions = Professions.query();
 	$scope.states = States.query();
 	$scope.isImage = false;
-	
-
+	$scope.isCurrentUser = false;
 
 	if($routeParams.userId) {
 		User.query({id: $routeParams.userId}, function(data) {
 		 	$scope.user = data;
+		 	if($scope.user.sguid == AuthUser.get()) {
+		 		$scope.isCurrentUser = true;
+		 	}
 		 	if($scope.user.picture_url && $scope.user.picture_url.length > 0) {
 				$scope.isImage = true;
 			}
@@ -174,32 +176,6 @@ function ProfileController($scope, $route, $routeParams, User, Needs, Profession
 		}
 	};
 
-    /**
-     * 
-     * @param {type} $event
-     * @returns {undefined}
-     */
-	$scope.onEditSave = function($event) {
-		if(!$scope.user.published) {
-			$scope.user.published = 0;
-		}
-		console.log($scope.user.state);
-		User.updateUser({"id": $scope.user.sguid},  {user: JSON.stringify({
-				"login": $scope.user.login,
-				"name": $scope.user.name,
-				"email": $scope.user.email,
-				"age": $scope.user.age,
-				"profession": $scope.user.profession ? $scope.user.profession : null ,
-				"state": $scope.user.state ? $scope.user.state : null,
-				"published": $scope.user.published
-			})}
-		);
-		
-		if($event) {
-			$event.target.setAttribute("disabled", "disabled");
-		}
-	};
-
 	/**
 	 * [onReadFile description]
 	 * @param  {[type]} $event
@@ -240,15 +216,19 @@ function ProfileController($scope, $route, $routeParams, User, Needs, Profession
 	 * @return {[type]}        [description]
 	 */
 	$scope.onPublish = function($event) {
-		User.updateUser({"id": $scope.user.sguid},  $.param({user: {
+		if(!$scope.user.published) {
+			$scope.user.published = 0;
+		}
+		console.log($scope.user.state);
+		User.updateUser({"id": $scope.user.sguid},  {user: JSON.stringify({
 				"login": $scope.user.login,
 				"name": $scope.user.name,
 				"email": $scope.user.email,
 				"age": $scope.user.age,
-				"published": 1,
-				"profession": 0,
-				"state": 0
-			}})
+				"profession": $scope.user.profession ? $scope.user.profession.sguid : null ,
+				"state": $scope.user.state ? $scope.user.state.sguid : null,
+				"published": $scope.user.published
+			})}
 		);
 	}
 }
