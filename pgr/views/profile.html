@@ -1,4 +1,4 @@
-<section class="promain">
+<section class="promain" ng-if="userId">
 	<div class="pmain pro">
 		<input 
 			class="hidden" 
@@ -116,7 +116,7 @@
 	</div>
 </section>
 
-<section class="procrit" ng-controller="CriteriaController">
+<section class="procrit" ng-controller="CriteriaController" ng-if="userId">
 	<ul> 
 		<li ng-repeat="(key,item) in needs | orderBy:'need.position'">
 			<div class="cr" ng-click="onShowGoals($event)">
@@ -159,7 +159,7 @@
 	
 </section>
 
-<section class="pronear">
+<section class="pronear" ng-if="userId">
 	<a href="#"><span></span></a>
 	<div class="ph">
 		<a href="#"><img src="../images/1.png"></a>

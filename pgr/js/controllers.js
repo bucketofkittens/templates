@@ -264,7 +264,6 @@ function CriteriaController($scope, Goals, Criterion, AuthUser, UserCriteriaValu
 							if(
 								userCriteriaItem.user_criterion_value.criteria_value_sguid == criteriaValueItem.criteria_value.sguid &&
 								userCriteriaItem.user_criterion_value.criteria_sguid == goal.goal.criteriums[criteriumsKey].criterium.sguid) {
-								goal.goal.criteriums[criteriumsKey].criterium.criteria_values[criteriaValueKey].user_criteria = "current";
 
 								var currentElement = $('li[data-id="'+userCriteriaItem.user_criterion_value.criteria_sguid+'"] li[data-id="'+userCriteriaItem.user_criterion_value.criteria_value_sguid+'"]');
 								$scope.setCriteriaPosition(currentElement);
@@ -336,7 +335,9 @@ function CriteriaController($scope, Goals, Criterion, AuthUser, UserCriteriaValu
  * @param {[type]} $location [description]
  * @param {[type]} User      [description]
  */
-function RegController($scope, $location, User) {
+function RegController($scope, $location, User, AuthUser) {
+	
+
 	/**
 	 * Объект нового польхователя
 	 * @type {Object}
@@ -422,6 +423,7 @@ function RegController($scope, $location, User) {
  * @param {[type]} $scope [description]
  */
 function LoginController($scope, Sessions, $rootScope, AuthUser) {
+	$scope.authUser = AuthUser.get();
 	/**
 	 * Поле логина
 	 * @type {String}
