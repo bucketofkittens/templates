@@ -262,13 +262,13 @@ function CriteriaController($scope, Goals, Criterion, AuthUser, UserCriteriaValu
 				angular.forEach(d, function(userCriteriaItem, userCriteriaKey) {
 					angular.forEach(goal.goal.criteriums, function(criteriumsItem, criteriumsKey) {
 						angular.forEach(criteriumsItem.criterium.criteria_values, function(criteriaValueItem, criteriaValueKey) {
-							console.log(userCriteriaItem.user_criterion_value.criteria_sguid);
 							if(
 								userCriteriaItem.user_criterion_value.criteria_value_sguid == criteriaValueItem.criteria_value.sguid &&
 								userCriteriaItem.user_criterion_value.criteria_sguid == goal.goal.criteriums[criteriumsKey].criterium.sguid) {
 								goal.goal.criteriums[criteriumsKey].criterium.criteria_values[criteriaValueKey].user_criteria = "current";
-								goal.goal.criteriums[criteriumsKey].criterium.current_position = criteriaValueItem.criteria_value.position;
-								console.log(goal.goal.criteriums[criteriumsKey].criterium.current_position);
+
+								var currentElement = $('li[data-id="'+userCriteriaItem.user_criterion_value.criteria_sguid+'"] li[data-id="'+userCriteriaItem.user_criterion_value.criteria_value_sguid+'"]');
+								$scope.setCriteriaPosition(currentElement);
 							} 
 						});
 					});
@@ -282,6 +282,8 @@ function CriteriaController($scope, Goals, Criterion, AuthUser, UserCriteriaValu
 		
 	};
 
+
+
 	/**
 	 * 
 	 * @param  {[type]} criteria [description]
@@ -293,10 +295,31 @@ function CriteriaController($scope, Goals, Criterion, AuthUser, UserCriteriaValu
 			"criteria_guid": criteria.sguid,
 			"criteria_value_guid": criteriaValue.sguid
 		}), function(data) {
-			$($event.target).parent().find("li").removeClass("current");
-			$($event.target).addClass("current");
+			$scope.setCriteriaPosition($($event.target));
 
 			$rootScope.$broadcast('userCriteriaUpdate');
+		});
+	}
+
+	$scope.setCriteriaPosition = function(elm) {
+		var slider = elm.parent().find("span");
+
+		elm.parent().find("li").removeClass("current");
+		elm.addClass("current");
+		slider.css("width", elm.parent().get(0).clientWidth - elm.get(0).offsetLeft - elm.get(0).clientWidth);
+
+		var isCurrent = false;
+		$.each(elm.parent().find("li"), function(key, value) {
+			if(value == elm.get(0)) {
+				isCurrent = true;
+			}
+
+			if(!isCurrent) {
+				$(value).addClass("white-text");
+			} else {
+				$(value).removeClass("white-text");
+			}
+			
 		});
 	}
 

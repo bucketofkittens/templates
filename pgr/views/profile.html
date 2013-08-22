@@ -135,19 +135,17 @@
 						<span class="current_position" style="width: {{(subItem.current_value / (subItem.goal.values_sum ))*100}}%;"></span>
 					</strong>
 					<ul class="criterion">
-						<li ng-repeat="crItem in subItem.goal.criteriums | orderBy:'criterium.position'" >
+						<li data-id="{{crItem.criterium.sguid}}" ng-repeat="crItem in subItem.goal.criteriums | orderBy:'criterium.position'" >
 							<p>{{crItem.criterium.name}}</p>
 							<ul class="crp">
 								<div class="tab">
-									<li ng-click="onCliteriaSelect(value.criteria_value, crItem.criterium, $event)" 
+									<li data-id="{{value.criteria_value.sguid}}" ng-click="onCliteriaSelect(value.criteria_value, crItem.criterium, $event)" 
 										ng-repeat="value in crItem.criterium.criteria_values | orderBy:'criteria_value.position'"  
 										class="{{value.user_criteria}} position_{{value.criteria_value.position}}">
 										{{value.criteria_value.name}}
 									</li>
-									<span style="width: {{ 100 - ((crItem.criterium.criteria_values.length / 100 ) * crItem.criterium.current_position * 100) }}%;">
+									<span>
 										<img src="../images/ar.png">
-										{{}}
-										{{crItem.criterium.current_position}}
 									</span>
 								</div>
 							</ul>

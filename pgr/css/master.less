@@ -295,6 +295,8 @@ body {
                             text-align: center;
                             display: block;
                             margin-top: 1%;
+                            position: relative;
+                            z-index: 5;
                         }
                         span {
                             position: absolute;
@@ -393,10 +395,9 @@ body {
                                     .tab {
                                         display: table;
                                         width: 100%;
-                                        table-layout: fixed;
                                         li {
                                             display: table-cell;
-                                            color: #cccccc;
+                                            color: #000000;
                                             font-size: 130%;
                                             width: auto;
                                             margin: 0% auto;
@@ -404,6 +405,9 @@ body {
                                             z-index: 7;
                                             position: relative;
                                             padding: 2% 0%;
+                                            &.white-text, &.current {
+                                                color: #ffffff;
+                                            }
                                         }
                                         span {
                                             position: absolute;
@@ -415,10 +419,10 @@ body {
                                             width: 100%;
                                             img {
                                                 position: absolute;
-                                                left: -3%;
+                                                left: -5%;
                                                 top: 0%;
                                                 height: 100%;
-                                                width: 3%;
+                                                width: 5%;
                                             }
                                         }
                                     }
