@@ -176,6 +176,15 @@ function ProfileController($scope, $route, $routeParams, User, Needs, Profession
 		}
 	};
 
+
+	$scope.onElementClick = function($event) {
+		var elm = $($event.target);
+		$("input[type='text']", ".pmpar").attr("readonly", "readonly");
+		$(elm).attr("readonly", false);
+		$(elm).focus();
+	};
+	
+
 	/**
 	 * [onReadFile description]
 	 * @param  {[type]} $event

@@ -38,16 +38,13 @@
 				<input 
 					type="text" 
 					id="name_i" 
-					ng-onkeyup="onEditKeyUp()" 
 					class="clean form-control" 
-					disabled="disabled" 
 					ng-model="user.name"
+					readonly="readonly"
 					placeholder="Batman"
 					required
-					ng-minlength="6" />
-				<span ng-if="isCurrentUser">
-					<img src="../images/pencil.png" ng-click="onEditActivate($event, 'name_i')" />
-				</span>
+					ng-minlength="6"
+					ng-click="onElementClick($event)" />
 			</p>
 			<p>
 				<label for="email_i">E-mail:</label> 
@@ -55,35 +52,38 @@
 					type="email" 
 					id="email_i" 
 					class="clean form-control" 
-					disabled="disabled" 
+					readonly="readonly"
 					ng-model="user.email"
-					placeholder="dccomics.com/batman" /> 
-				<span ng-if="isCurrentUser">
-					<img src="../images/pencil.png"  ng-click="onEditActivate($event, 'email_i')">
-				</span>
+					placeholder="dccomics.com/batman"
+					ng-click="onElementClick($event)" /> 
 			</p>
 			<p>
 				<label for="age_i">{{'_AgeL_' | i18n}}:</label>
-				<select ng-options="item for item in ages" ng-model="user.age" disabled="disabled" id="age_i">
+				<select 
+					ng-options="item for item in ages" 
+					ng-model="user.age" 
+					disabled="disabled" 
+					id="age_i"
+					ng-click="onElementClick($event)">
 				</select>
-				<span ng-if="isCurrentUser">
-					<img src="../images/pencil.png" ng-click="onEditActivate($event, 'age_i')">
-				</span>
 			</p>
 			<p>
 				<label for="loc_i">{{'_LocL_' | i18n}}:</label>
-				<select ng-options="item.state.sguid as item.state.name for item in states" ng-model="user.state.sguid" disabled="disabled" id="loc_i">
+				<select 
+					ng-options="item.state.sguid as item.state.name for item in states" 
+					ng-model="user.state.sguid" 
+					disabled="disabled" 
+					id="loc_i"
+					ng-click="onElementClick($event)">
 				</select>
-				<span ng-if="isCurrentUser">
-					<img src="../images/pencil.png" ng-click="onEditActivate($event, 'loc_i')"></p>
-				</span>
 			<p>
 				<label for="email_i">{{'_ProfL_' | i18n}}:</label>
-				<select ng-options="item.profession.sguid as item.profession.name for item in professions" ng-model="user.profession.sguid" disabled="disabled" id="pro_i" >
+				<select 
+					ng-options="item.profession.sguid as item.profession.name for item in professions" 
+					ng-model="user.profession.sguid" 
+					disabled="disabled" 
+					id="pro_i" >
 				</select>
-				<span ng-if="isCurrentUser">	
-					<img src="../images/pencil.png" ng-click="onEditActivate($event, 'pro_i')">
-				</span>
 			</p>
 		</div>
 		<div class="publish">

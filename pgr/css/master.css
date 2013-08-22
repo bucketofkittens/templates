@@ -2,21 +2,22 @@
 select,textarea,input{padding:0 !important}
 body{width:100%;height:100%;font-family:'Helvetica Neue Light'}body .shadow{background:rgba(0,0,0,0.5);z-index:10;position:absolute;width:100%;height:100%;display:none}
 body header{height:8%;width:100%;background:#000;position:absolute;top:0;z-index:5;overflow:hidden}body header .logo{width:30%;margin:0 12% 0 3%}body header .logo img{width:22%;height:90%}
-body header ul{display:inline-block;vertical-align:top;position:absolute;right:2%;width:40%}body header ul li{margin:13px;display:inline-block;vertical-align:top}
-body header ul a{color:#ccc;text-decoration:none;font-family:'Helvetica Neue';font-size:18px;text-transform:uppercase}body header ul a:hover{color:#ccc}
+body header ul{display:inline-block;vertical-align:top;position:absolute;right:2%;width:40%}body header ul li{margin:3%;display:inline-block;vertical-align:top}
+body header ul a{color:#ccc;text-decoration:none;font-family:'Helvetica Neue';font-size:150%;text-transform:uppercase}body header ul a:hover{color:#ccc}
 body header ul a.current{color:#028dda}
-body header .social{width:13%;vertical-align:top;display:inline-block;position:absolute;top:0;right:5%}body header .social img{height:32px;width:96px}
+body header .social{width:13%;height:50%;vertical-align:top;display:inline-block;position:absolute;top:5%;right:5%;text-decoration:none}body header .social b{background:url("../images/icons.png") center center no-repeat;width:20%;height:100%;margin:1%;display:inline-block;overflow:hidden}body header .social b:first-child{background-position:0 0}
+body header .social b:last-child{background-position:100% 0}
 #content{position:relative;width:100%;background:#f8f8f8;padding-top:6%;}#content .who img{width:200px;height:200px;border:1px solid #000;display:inline-block;position:absolute;top:50%;left:50%;margin:-100px 0 0 -130px}
 #content .scroll{font-size:100%;color:#5e5c5d;text-decoration:none;position:absolute;bottom:5%;left:50%;margin-left:-3%;z-index:5;line-height:150%}
 #content .promain{height:40%;margin:0 2%;width:85%}#content .promain .hidden{display:none}
 #content .promain .pmain{display:inline-block;margin:0 1%;vertical-align:top;width:50%}#content .promain .pmain.pro{margin:0 1%}#content .promain .pmain.pro .pp{width:30%;height:70%;border:1px solid #000;vertical-align:middle;margin-right:3%;background:#fff}#content .promain .pmain.pro .pp.edit{cursor:pointer}
 #content .promain .pmain.pro .pmpar{display:inline-block;vertical-align:middle;width:65%}#content .promain .pmain.pro .pmpar p{font-size:110%;color:#969696;line-height:200%}
 #content .promain .pmain.pro .pmpar label{display:inline-block;width:35%;vertical-align:middle}
-#content .promain .pmain.pro .pmpar select,#content .promain .pmain.pro .pmpar input{width:55%;height:100%;line-height:100%;margin:0;vertical-align:middle !important;display:inline-block;padding-bottom:1.3% !important}
+#content .promain .pmain.pro .pmpar select,#content .promain .pmain.pro .pmpar input{width:55%;height:100%;line-height:100%;margin:0;vertical-align:middle !important;display:inline-block;padding-bottom:1.3% !important;cursor:pointer}
 #content .promain .pmain.pro .pmpar .form-control{display:inline-block;width:50%;vertical-align:bottom;font-size:100%}
-#content .promain .pmain.pro .pmpar .form-control[disabled="disabled"]{background:transparent;border-color:transparent;box-shadow:none}
+#content .promain .pmain.pro .pmpar .form-control[readonly="readonly"]{background:transparent;border-color:transparent;box-shadow:none}
 #content .promain .pmain.pro .pmpar .ng-pristine{vertical-align:bottom;font-size:100%;width:50%}
-#content .promain .pmain.pro .pmpar .ng-pristine[disabled="disabled"]{background:transparent;border-color:transparent;box-shadow:none}
+#content .promain .pmain.pro .pmpar .ng-pristine[readonly="readonly"]{background:transparent;border-color:transparent;box-shadow:none}
 #content .promain .pmain.pro .pmpar img{width:5%;height:8%;vertical-align:middle}
 #content .promain .pmain.pro .publish p{display:inline-block;margin:1% 5%;height:20%;width:30%}#content .promain .pmain.pro .publish p button{text-align:center;transform:skewX(angle);font-size:16px;color:#fff;padding:5% 10%;background:#028dda;border-top:1px solid #fff;border-left:1px solid #fff;border-right:1px solid #ccc;border-bottom:1px solid #ccc}
 #content .promain .pmain.league{text-align:center;padding:2% 0 5.6% 0;width:19%;height:100%;background:#fff;border-left:1px solid #ccc;box-shadow:0 0 30px 1px rgba(0,0,0,0.3);z-index:3;position:relative}#content .promain .pmain.league img{border-radius:20px}
@@ -27,12 +28,12 @@ body header .social{width:13%;vertical-align:top;display:inline-block;position:a
 #content .procrit{margin:0 1.5%;background:#fff;border-top:1px solid #ccc;border-left:1px solid #ccc;box-shadow:0 0 40px 0 rgba(0,0,0,0.3);width:87%;height:auto;position:relative;padding-bottom:.5%;transition:all .5s ease-out;-webkit-transition:all .5s ease-out}#content .procrit ul{text-align:center;z-index:5;margin:2% auto;position:relative;overflow:hidden}#content .procrit ul li{margin:2% auto;width:93%;cursor:pointer}#content .procrit ul li .cr{background:#759fd2;background:linear-gradient(to right, #759fd2 0, #37374b 100%, #7db9e8 100%);line-height:400%;cursor:pointer}#content .procrit ul li .cr p{font-size:200%;color:#fff;display:inline-block;margin-top:.5%;width:20%;text-align:left}
 #content .procrit ul li .cr strong{background:#fff;display:inline-block;line-height:150%;width:65%;position:relative}#content .procrit ul li .cr strong b{font-size:150%;color:#000;text-align:center;display:block;margin-top:1%;position:relative;z-index:5}
 #content .procrit ul li .cr strong span{position:absolute;left:0;top:0;height:100%;display:block;background:#759fd2;transition:all .5s ease}
-#content .procrit ul li ul{vertical-align:top;overflow:hidden;transition:all 1s ease-out;-webkit-transition:all 1s ease-out;position:relative;max-height:0;opacity:0}#content .procrit ul li ul.show{max-height:4000px;opacity:1}
+#content .procrit ul li ul{vertical-align:top;overflow:hidden;transition:all 1s ease-out;-webkit-transition:all 1s ease-out;position:relative;max-height:0;opacity:0;margin:0}#content .procrit ul li ul.show{max-height:4000px;opacity:1;margin:1% auto}
 #content .procrit ul li ul li{display:block;line-height:200%;width:100%;margin:2% auto;}#content .procrit ul li ul li a{font-size:170%;color:#000;text-decoration:none;display:inline-block;width:17%;vertical-align:middle;text-align:left}
 #content .procrit ul li ul li span{display:inline-block;vertical-align:middle;transition:all .5s ease;margin-right:1%}
 #content .procrit ul li ul li strong{background:#fff;border:1px solid #ccc;display:inline-block;line-height:130%;width:65%;position:relative;overflow:hidden}#content .procrit ul li ul li strong b{font-size:150%;color:#000;text-align:center;display:block;margin-top:1%;position:relative;z-index:5}
 #content .procrit ul li ul li strong span{position:absolute;left:0;top:0;height:100%;display:block;background:#759fd2}
-#content .procrit ul li ul li .criterion{transition:all 1s ease-out;-webkit-transition:all 1s ease-out;overflow:hidden;margin:1% auto;max-height:0;opacity:0}#content .procrit ul li ul li .criterion.show{max-height:4000px;opacity:1}
+#content .procrit ul li ul li .criterion{transition:all 1s ease-out;-webkit-transition:all 1s ease-out;overflow:hidden;margin:0;max-height:0;opacity:0}#content .procrit ul li ul li .criterion.show{max-height:4000px;opacity:1;margin:1% auto}
 #content .procrit ul li ul li .criterion li{margin:3% auto}#content .procrit ul li ul li .criterion li p{color:#000;font-size:130%;display:inline-block;width:15%;text-align:left;vertical-align:middle}
 #content .procrit ul li ul li .criterion li .crp{display:inline-block;cursor:pointer;margin:0 auto;background:#759fd2;background:linear-gradient(to right, #759fd2 0, #37374b 100%, #7db9e8 100%);width:70%;vertical-align:middle;overflow:hidden;max-height:4000px;opacity:1}#content .procrit ul li ul li .criterion li .crp .tab{display:table;width:100%}#content .procrit ul li ul li .criterion li .crp .tab li{display:table-cell;color:#000;font-size:130%;width:auto;margin:0 auto;line-height:100%;z-index:7;position:relative;padding:2% 0}#content .procrit ul li ul li .criterion li .crp .tab li.white-text,#content .procrit ul li ul li .criterion li .crp .tab li.current{color:#fff}
 #content .procrit ul li ul li .criterion li .crp .tab span{position:absolute;right:-1%;top:0;height:100%;display:block;background:#fff;width:100%}#content .procrit ul li ul li .criterion li .crp .tab span img{position:absolute;left:-5%;top:0;height:100%;width:5%}
