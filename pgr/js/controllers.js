@@ -219,7 +219,6 @@ function ProfileController($scope, $route, $routeParams, User, Needs, Profession
 		if(!$scope.user.published) {
 			$scope.user.published = 0;
 		}
-		console.log($scope.user.state);
 		User.updateUser({"id": $scope.user.sguid},  {user: JSON.stringify({
 				"login": $scope.user.login,
 				"name": $scope.user.name,
@@ -290,15 +289,17 @@ function CriteriaController($scope, Goals, Criterion, AuthUser, UserCriteriaValu
 	 * @return {[type]}          [description]
 	 */
 	$scope.onCliteriaSelect = function(criteriaValue, criteria, $event) {
-		UserCriteriaValue.create({}, $.param({
-			"user_guid": AuthUser.get(),
-			"criteria_guid": criteria.sguid,
-			"criteria_value_guid": criteriaValue.sguid
-		}), function(data) {
-			$scope.setCriteriaPosition($($event.target));
+		if($scope.isCurrentUser) {
+			UserCriteriaValue.create({}, $.param({
+				"user_guid": AuthUser.get(),
+				"criteria_guid": criteria.sguid,
+				"criteria_value_guid": criteriaValue.sguid
+			}), function(data) {
+				$scope.setCriteriaPosition($($event.target));
 
-			$rootScope.$broadcast('userCriteriaUpdate');
-		});
+				$rootScope.$broadcast('userCriteriaUpdate');
+			});	
+		}
 	}
 
 	$scope.setCriteriaPosition = function(elm) {

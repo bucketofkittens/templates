@@ -125,9 +125,11 @@ body {
                     height: 70%;
                     border: 1px solid #000000;
                     vertical-align: middle;
-                    cursor: pointer;
                     margin-right: 3%;
                     background: #ffffff;
+                    &.edit {
+                        cursor: pointer;
+                    }
                 }
                 .pmpar {
                     display: inline-block;
@@ -266,6 +268,8 @@ body {
             position: relative;
             z-index: 5;
             margin: 2% auto;
+            position: relative;
+            overflow: hidden;
             li {
                 margin: 2% auto;
                 width: 93%;
@@ -311,11 +315,15 @@ body {
                 }
                 ul {
                     vertical-align: top;
-                    display: none;
+                    overflow: hidden;
                     transition: all 1s ease-out;
                     -webkit-transition: all 1s ease-out;
+                    position: relative;
+                    max-height:0;
+                    opacity: 0;
                     &.show {
-                        display: block;
+                        max-height:4000px;
+                        opacity: 1;
                     }
                     li {
                         display: block;
@@ -365,13 +373,15 @@ body {
                         }
                         /** criterion **/
                         .criterion {
-                            display: none;
                             transition: all 1s ease-out;
                             -webkit-transition: all 1s ease-out;
                             overflow: hidden;
                             margin: 1% auto;
+                            max-height:0px;
+                            opacity: 0;
                             &.show {
-                                display: block;
+                                max-height:4000px;
+                                opacity: 1;
                             }
                             li {
                                 margin: 3% auto;                                    
@@ -392,6 +402,8 @@ body {
                                     width: 70%;
                                     vertical-align: middle;
                                     overflow: hidden;
+                                    max-height: 4000px;
+                                    opacity: 1;
                                     .tab {
                                         display: table;
                                         width: 100%;
