@@ -540,3 +540,23 @@ body {
         }
     }
 }
+
+#modal-shadow {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: none;
+    z-index: 500;
+    text-align: center;
+    &.show {
+        display: block;
+    }
+    img {
+        display: inline-block;
+        position: relative;
+        top: 50%;
+    }
+}

@@ -93,17 +93,7 @@ function ProfileController($scope, $route, $routeParams, User, Needs, Profession
 	$scope.isImage = false;
 	$scope.isCurrentUser = false;
 
-	if($routeParams.userId) {
-		User.query({id: $routeParams.userId}, function(data) {
-		 	$scope.user = data;
-		 	if($scope.user.sguid == AuthUser.get()) {
-		 		$scope.isCurrentUser = true;
-		 	}
-		 	if($scope.user.picture_url && $scope.user.picture_url.length > 0) {
-				$scope.isImage = true;
-			}
-		});
-	}
+	
 
 	/**
 	 * 
@@ -117,12 +107,32 @@ function ProfileController($scope, $route, $routeParams, User, Needs, Profession
 		$scope.userCriteriaUpdate();
 	});
 
+	$scope.$on('updateUser', function() {
+		$scope.getUserInfo();
+	});
+
 	this.generateAgesArray = function(min, max) {
 		var i = min, ret = [];
 		for(i = min; i <= max; i++){
 			ret.push(i);
 		}
 		return ret;
+	}
+
+	$scope.getUserInfo = function() {
+		User.query({id: $routeParams.userId}, function(data) {
+		 	$scope.user = data;
+		 	if($scope.user.sguid == AuthUser.get()) {
+		 		$scope.isCurrentUser = true;
+		 	}
+		 	if($scope.user.picture_url && $scope.user.picture_url.length > 0) {
+				$scope.isImage = true;
+			}
+		});
+	}
+
+	if($routeParams.userId) {
+		$scope.getUserInfo();
 	}
 
 	$scope.ages = this.generateAgesArray(14, 150);
@@ -191,6 +201,8 @@ function ProfileController($scope, $route, $routeParams, User, Needs, Profession
 	 * @return {[type]}
 	 */
 	$scope.onReadFile = function($event) {
+		$rootScope.$broadcast('loaderShow');
+
 		var photo = document.getElementById("photo");
     	var file = photo.files[0];
     	var data = new FormData();
@@ -203,7 +215,8 @@ function ProfileController($scope, $route, $routeParams, User, Needs, Profession
 		xhr.open('PUT', host+'/pictures/'+$scope.user.sguid, true);
 		xhr.onload = function (e) {
 		  if (xhr.readyState === 4) {
-		  	location.reload();
+		  	$rootScope.$broadcast('updateUser');
+		  	$rootScope.$broadcast('loaderHide');
 		  }
 		};
 		xhr.send(data);
@@ -225,9 +238,12 @@ function ProfileController($scope, $route, $routeParams, User, Needs, Profession
 	 * @return {[type]}        [description]
 	 */
 	$scope.onPublish = function($event) {
+		$rootScope.$broadcast('loaderShow');
+
 		if(!$scope.user.published) {
 			$scope.user.published = 0;
 		}
+
 		User.updateUser({"id": $scope.user.sguid},  {user: JSON.stringify({
 				"login": $scope.user.login,
 				"name": $scope.user.name,
@@ -236,7 +252,10 @@ function ProfileController($scope, $route, $routeParams, User, Needs, Profession
 				"profession": $scope.user.profession ? $scope.user.profession.sguid : null ,
 				"state": $scope.user.state ? $scope.user.state.sguid : null,
 				"published": $scope.user.published
-			})}
+			})}, function(data) {
+				$rootScope.$broadcast('loaderHide');
+				$("input[type='text'], input[type='email'], select", ".pmpar").attr("readonly", "readonly");
+			}
 		);
 	}
 }
@@ -511,4 +530,15 @@ function LoginController($scope, Sessions, $rootScope, AuthUser) {
 		dialogFade:true,
 		dialogClass: "login modal"
 	};
+}
+
+function LoaderController($scope) {
+	$scope.$on('loaderShow', function() {
+		$("#modal-shadow").css("height", $("#content").outerHeight(true)+$("header").outerHeight(true));
+		$("#modal-shadow").addClass("show");
+	});
+
+	$scope.$on('loaderHide', function() {
+		$("#modal-shadow").removeClass("show");
+	});
 }
