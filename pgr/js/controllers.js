@@ -50,7 +50,7 @@ function navCtrl($scope, localize, $location, AuthUser) {
 	    $scope.navs = [
 			//{name: localize.getLocalizedString("_ABOUT_"), link: '#', activeClass: ''},
 			//{name: localize.getLocalizedString("_LEAGUES_"), link: '#', activeClass: ''},
-			{name: localize.getLocalizedString("_PROFILE_"), link: $scope.authUser ? '#/profile/'+$scope.authUser : '#/profile/', activeClass: '', show: true},
+			{name: localize.getLocalizedString("_PROFILE_"), link: $scope.authUser ? '#/profile/'+$scope.authUser : '#/profile/', activeClass: '', show: $scope.authUser ? true : false},
 			{name: localize.getLocalizedString("_LogoutL_"), link: '#/logout', activeClass: '', show: $scope.authUser ? true : false}
 		];
 	};
@@ -179,7 +179,7 @@ function ProfileController($scope, $route, $routeParams, User, Needs, Profession
 
 	$scope.onElementClick = function($event) {
 		var elm = $($event.target);
-		$("input[type='text']", ".pmpar").attr("readonly", "readonly");
+		$("input[type='text'], input[type='email'], select", ".pmpar").attr("readonly", "readonly");
 		$(elm).attr("readonly", false);
 		$(elm).focus();
 	};

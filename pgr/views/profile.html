@@ -55,6 +55,7 @@
 					readonly="readonly"
 					ng-model="user.email"
 					placeholder="dccomics.com/batman"
+					required
 					ng-click="onElementClick($event)" /> 
 			</p>
 			<p>
@@ -62,7 +63,7 @@
 				<select 
 					ng-options="item for item in ages" 
 					ng-model="user.age" 
-					disabled="disabled" 
+					readonly="readonly"
 					id="age_i"
 					ng-click="onElementClick($event)">
 				</select>
@@ -72,7 +73,7 @@
 				<select 
 					ng-options="item.state.sguid as item.state.name for item in states" 
 					ng-model="user.state.sguid" 
-					disabled="disabled" 
+					readonly="readonly" 
 					id="loc_i"
 					ng-click="onElementClick($event)">
 				</select>
@@ -81,8 +82,9 @@
 				<select 
 					ng-options="item.profession.sguid as item.profession.name for item in professions" 
 					ng-model="user.profession.sguid" 
-					disabled="disabled" 
-					id="pro_i" >
+					readonly="readonly" 
+					id="pro_i" 
+					ng-click="onElementClick($event)">
 				</select>
 			</p>
 		</div>
