@@ -65,7 +65,7 @@
     },
     {
         "key":"_AchievL_",
-        "value":"Achievement"
+        "value":"Achievements"
     },
     {
         "key":"_Auth_",
