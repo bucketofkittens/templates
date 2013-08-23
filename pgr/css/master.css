@@ -46,3 +46,4 @@ body header .social b:last-child{background-position:100% 0}
 .registration.modal input.ng-invalid:not(.ng-pristine),.login.modal input.ng-invalid:not(.ng-pristine){color:#b94a48;border-color:#ee5f5b;border-color:#e9322d !important;-webkit-box-shadow:0 0 6px #f8b9b7 !important;-moz-box-shadow:0 0 6px #f8b9b7 !important;box-shadow:0 0 6px #f8b9b7 !important}
 #modal-shadow{position:absolute;left:0;top:0;width:100%;height:100%;background:rgba(0,0,0,0.5);display:none;z-index:500;text-align:center}#modal-shadow.show{display:block}
 #modal-shadow img{display:inline-block;position:relative;top:50%}
+.controller__{min-height:100% !important}

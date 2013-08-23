@@ -1,6 +1,6 @@
 'use strict';
 
-function navCtrl($scope, localize, $location, AuthUser) {
+function navCtrl($scope, localize, $location, AuthUser, $rootScope, $route) {
 	/**
 	 * 
 	 * @type {Boolean}
@@ -12,6 +12,8 @@ function navCtrl($scope, localize, $location, AuthUser) {
 	 * @type {[type]}
 	 */
 	$scope.authUser = AuthUser.get();
+
+	$rootScope.controller = $route.controller;
 
 	/**
 	 * Событие вызываемое при загрузке файлов локализации.
@@ -81,7 +83,6 @@ function navCtrl($scope, localize, $location, AuthUser) {
  * @returns {undefined}
  */
 function ProfileController($scope, $route, $routeParams, User, Needs, Professions, States, $http, NeedsByUser, $rootScope, GoalsByUser, AuthUser) {
-    
 	$scope.userId = $routeParams.userId;
 	$scope.user = null;
 	$scope.newImage = null;
@@ -92,8 +93,6 @@ function ProfileController($scope, $route, $routeParams, User, Needs, Profession
 	$scope.states = States.query();
 	$scope.isImage = false;
 	$scope.isCurrentUser = false;
-
-	
 
 	/**
 	 * 
@@ -352,7 +351,6 @@ function CriteriaController($scope, Goals, Criterion, AuthUser, UserCriteriaValu
 	}
 
 	$scope.onShowGoals = function($event) {
-		console.log($($event.target).parent());
 		$($event.target).parent().parent().find("> ul").toggleClass("show");
 	}
 }
@@ -424,7 +422,6 @@ function RegController($scope, $location, User, AuthUser) {
 			,function(data) {
 				if(!data.success) {
 					angular.forEach(data.errors, function(value, key) {
-						console.log(value);
 						$scope.errors += value;
 					});
 				} else {
@@ -541,4 +538,16 @@ function LoaderController($scope) {
 	$scope.$on('loaderHide', function() {
 		$("#modal-shadow").removeClass("show");
 	});
+}
+
+function ContentController($scope, $rootScope, $route, $location) {
+	$scope.controller = $location.path().split("/").join("_");
+
+	$scope.$on('$routeChangeStart', function(event, next, current) { 
+		console.log($location.path());
+    	$scope.controller = $location.path().split("/").join("_");
+ 	});
+}
+
+function MainController($scope) {
 }
