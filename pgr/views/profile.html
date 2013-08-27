@@ -1,5 +1,5 @@
-<section class="promain" ng-if="userId">
-	<div class="pmain pro">
+<section class="promain" ng-if="userId && isProfileLoaded">
+	<div class="pmain pro" >
 		<input 
 			class="hidden" 
 			type="file"  
@@ -9,26 +9,12 @@
 			id="photo" 
 			accept="image/jpeg,image/png,image/gif" />
 			
-			<span ng-switch on="isCurrentUser" >
-			  <span ng-switch-when="true">
-			    	<span ng-switch on="isImage" >
-					  <span ng-switch-when="false">
-					    	<img class="pp edit" ng-click="onUpdateFile()" src="../images/use.png" />
-					  </span>
-					  <span ng-switch-default>
-					    	<img class="pp edit" ng-click="onUpdateFile()" src="{{user.picture_url}}" />
-					  </span>
-					</span>	
-			  </span>
+			<span ng-switch on="isImage" >
 			  <span ng-switch-when="false">
-			    	<span ng-switch on="isImage" >
-					  <span ng-switch-when="false">
-					    	<img class="pp" src="../images/use.png" />
-					  </span>
-					  <span ng-switch-default>
-					    	<img class="pp" src="{{user.picture_url}}" />
-					  </span>
-					</span>	
+			    	<img class="pp" ng-class="{edit: isCurrentUser}" ng-click="onUpdateFile()" src="../images/use.png" />
+			  </span>
+			  <span ng-switch-default>
+			    	<img class="pp" ng-class="{edit: isCurrentUser}" ng-click="onUpdateFile()" src="{{user.avatar.full_path}}" />
 			  </span>
 			</span>	
 				
@@ -89,19 +75,26 @@
 			</p>
 		</div>
 		<div class="publish">
-			<p ng-if="isCurrentUser">
-				<button ng-click="onPublish()">
-					<span ng-switch on="user.published" >
-						<span ng-switch-when="1">
-							{{'_Update_' | i18n}}
-						</span>
-						<span ng-switch-when="0">
-							{{'_PublishL_' | i18n}}
-						</span>
-					</span>	
-				</button>
+			<p ng-switch on="isCurrentUser" >
+				<span ng-switch-when="true">
+					<button ng-click="onPublish()">
+						<span ng-switch on="user.published" >
+							<span ng-switch-when="1">
+								{{'_Update_' | i18n}}
+							</span>
+							<span ng-switch-when="0">
+								{{'_PublishL_' | i18n}}
+							</span>
+						</span>	
+					</button>
+				</span>
+				<span ng-switch-default>
+					<button ng-click="onAddFrend()">
+							{{'_AddFrend_' | i18n}}
+					</button>
+				</span>
 			</p>
-		</div>
+		</div>	
 	</div>
 	<div class="pmain league">
 		<img src="../images/league.png">

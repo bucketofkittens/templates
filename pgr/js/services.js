@@ -18,7 +18,9 @@ pgrModule.factory('User', function ($resource) {
             'query': {
             	method: 'GET', 
             	transformResponse: function (data) {
-            		return angular.fromJson(data)[0].user;
+                    var user = angular.fromJson(data)[0].user;
+                    user.avatar.full_path = user.avatar.scheme+"://"+user.avatar.host+":"+user.avatar.port+user.avatar.path+"?"+user.avatar.query;
+            		return user;
             	}
             }
         }
@@ -168,6 +170,18 @@ pgrModule.factory('Sessions', function ($resource) {
         }
     );
 });
+
+pgrModule.factory('Friendships', function ($resource) {
+    return $resource(
+        host+'/friendships/', 
+        {}, 
+        {
+            create: {method: 'POST'}
+        }
+    );
+});
+
+
 
 
 /**

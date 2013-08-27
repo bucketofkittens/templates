@@ -6,6 +6,7 @@ function navCtrl($scope, localize, $location, AuthUser, $rootScope, $route) {
 	 * @type {Boolean}
 	 */
 	$scope.hidden = false;
+	
 
 	/**
 	 * 
@@ -82,7 +83,7 @@ function navCtrl($scope, localize, $location, AuthUser, $rootScope, $route) {
  * @param {type} States
  * @returns {undefined}
  */
-function ProfileController($scope, $route, $routeParams, User, Needs, Professions, States, $http, NeedsByUser, $rootScope, GoalsByUser, AuthUser) {
+function ProfileController($scope, $route, $routeParams, User, Needs, Professions, States, $http, NeedsByUser, $rootScope, GoalsByUser, AuthUser, Friendships) {
 	$scope.userId = $routeParams.userId;
 	$scope.user = null;
 	$scope.newImage = null;
@@ -93,6 +94,7 @@ function ProfileController($scope, $route, $routeParams, User, Needs, Profession
 	$scope.states = States.query();
 	$scope.isImage = false;
 	$scope.isCurrentUser = false;
+	$scope.isProfileLoaded = false;
 
 	/**
 	 * 
@@ -124,9 +126,11 @@ function ProfileController($scope, $route, $routeParams, User, Needs, Profession
 		 	if($scope.user.sguid == AuthUser.get()) {
 		 		$scope.isCurrentUser = true;
 		 	}
-		 	if($scope.user.picture_url && $scope.user.picture_url.length > 0) {
+		 	if($scope.user.avatar) {
 				$scope.isImage = true;
 			}
+
+			$scope.isProfileLoaded = true;
 		});
 	}
 
@@ -174,23 +178,28 @@ function ProfileController($scope, $route, $routeParams, User, Needs, Profession
      * @returns {undefined}
      */
 	$scope.onEditActivate = function($event, elementId) {
-		angular.element(".form-control").attr("disabled", "disabled");
+		if($scope.isCurrentUser) {
+			angular.element(".form-control").attr("disabled", "disabled");
 		
-		var elm = angular.element("#"+elementId)[0];
-		if(elm.getAttribute("disabled")) {
-			elm.removeAttribute("disabled");
-			elm.focus();
-		} else {
-			elm.setAttribute("disabled", "disabled");
+			var elm = angular.element("#"+elementId)[0];
+			if(elm.getAttribute("disabled")) {
+				elm.removeAttribute("disabled");
+				elm.focus();
+			} else {
+				elm.setAttribute("disabled", "disabled");
+			}	
 		}
+		
 	};
 
 
 	$scope.onElementClick = function($event) {
-		var elm = $($event.target);
-		$("input[type='text'], input[type='email'], select", ".pmpar").attr("readonly", "readonly");
-		$(elm).attr("readonly", false);
-		$(elm).focus();
+		if($scope.isCurrentUser) {
+			var elm = $($event.target);
+			$("input[type='text'], input[type='email'], select", ".pmpar").attr("readonly", "readonly");
+			$(elm).attr("readonly", false);
+			$(elm).focus();
+		}
 	};
 	
 
@@ -200,25 +209,27 @@ function ProfileController($scope, $route, $routeParams, User, Needs, Profession
 	 * @return {[type]}
 	 */
 	$scope.onReadFile = function($event) {
-		$rootScope.$broadcast('loaderShow');
+		if($scope.isCurrentUser) {
+			$rootScope.$broadcast('loaderShow');
 
-		var photo = document.getElementById("photo");
-    	var file = photo.files[0];
-    	var data = new FormData();
+			var photo = document.getElementById("photo");
+	    	var file = photo.files[0];
+	    	var data = new FormData();
 
-    	data.append("picture", file);
-    	data.append("owner_type", 0);
+	    	data.append("picture", file);
+	    	data.append("owner_type", 0);
 
-    	var xhr = new XMLHttpRequest();
+	    	var xhr = new XMLHttpRequest();
 
-		xhr.open('PUT', host+'/pictures/'+$scope.user.sguid, true);
-		xhr.onload = function (e) {
-		  if (xhr.readyState === 4) {
-		  	$rootScope.$broadcast('updateUser');
-		  	$rootScope.$broadcast('loaderHide');
-		  }
-		};
-		xhr.send(data);
+			xhr.open('PUT', host+'/pictures/'+$scope.user.sguid, true);
+			xhr.onload = function (e) {
+			  if (xhr.readyState === 4) {
+			  	$rootScope.$broadcast('updateUser');
+			  	$rootScope.$broadcast('loaderHide');
+			  }
+			};
+			xhr.send(data);
+		}
 	}
 
 	/**
@@ -227,7 +238,9 @@ function ProfileController($scope, $route, $routeParams, User, Needs, Profession
 	 * @return {[type]}
 	 */
 	$scope.onUpdateFile = function($event) {
-		$("#photo").click();
+		if($scope.isCurrentUser) {
+			$("#photo").click();
+		}
 	}
 
 	/**
@@ -256,6 +269,14 @@ function ProfileController($scope, $route, $routeParams, User, Needs, Profession
 				$("input[type='text'], input[type='email'], select", ".pmpar").attr("readonly", "readonly");
 			}
 		);
+	}
+
+	$scope.onAddFrend = function($event) {
+		$rootScope.$broadcast('loaderShow');
+
+		Friendships.create({friendship: JSON.stringify({user_guid: AuthUser.get(), friend_guid: $scope.userId}) }, function(data) {
+
+		});
 	}
 }
 
@@ -544,7 +565,6 @@ function ContentController($scope, $rootScope, $route, $location) {
 	$scope.controller = $location.path().split("/").join("_");
 
 	$scope.$on('$routeChangeStart', function(event, next, current) { 
-		console.log($location.path());
     	$scope.controller = $location.path().split("/").join("_");
  	});
 }

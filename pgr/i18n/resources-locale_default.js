@@ -74,5 +74,9 @@
     {
         "key":"_Update_",
         "value":"Update"
+    },
+    {
+        "key":"_AddFrend_",
+        "value": "Add Frend"
     }
 ]
