@@ -89,9 +89,20 @@
 					</button>
 				</span>
 				<span ng-switch-default>
-					<button ng-click="onAddFrend()">
-							{{'_AddFrend_' | i18n}}
-					</button>
+				
+					<span ng-switch on="isFrend" >
+						<span ng-switch-when="true">
+							<button ng-click="onRemoveFrend()">
+								{{'_RemoveFrend_' | i18n}}
+							</button>
+						</span>
+						<span ng-switch-when="false">
+							<button ng-click="onAddFrend()">
+								{{'_AddFrend_' | i18n}}
+							</button>
+						</span>
+					</span>	
+					
 				</span>
 			</p>
 		</div>	

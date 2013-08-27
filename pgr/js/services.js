@@ -176,7 +176,8 @@ pgrModule.factory('Friendships', function ($resource) {
         host+'/friendships/', 
         {}, 
         {
-            create: {method: 'POST'}
+            create: {method: 'POST'},
+            del: {method: "DELETE"}
         }
     );
 });

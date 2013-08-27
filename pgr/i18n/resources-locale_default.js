@@ -78,5 +78,9 @@
     {
         "key":"_AddFrend_",
         "value": "Add Frend"
+    },
+    {
+        "key":"_RemoveFrend_",
+        "value": "Remove Frend"
     }
 ]

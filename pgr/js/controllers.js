@@ -95,6 +95,7 @@ function ProfileController($scope, $route, $routeParams, User, Needs, Profession
 	$scope.isImage = false;
 	$scope.isCurrentUser = false;
 	$scope.isProfileLoaded = false;
+	$scope.isFrend = false;
 
 	/**
 	 * 
@@ -132,6 +133,21 @@ function ProfileController($scope, $route, $routeParams, User, Needs, Profession
 
 			$scope.isProfileLoaded = true;
 		});
+
+		/**
+		 * Определяем есть ли пользователь в друзьях или нет
+		 * @param  {[type]} data [description]
+		 * @return {[type]}      [description]
+		 */
+		User.query({id: AuthUser.get()}, function(data) {
+			angular.forEach(data.friends_guids, $.proxy($scope.testFriend, this)); 
+		});
+	}
+
+	$scope.testFriend = function(value, key) {
+		if(value == $routeParams.userId) {
+			$scope.isFrend = true;
+		}
 	}
 
 	if($routeParams.userId) {
@@ -275,6 +291,14 @@ function ProfileController($scope, $route, $routeParams, User, Needs, Profession
 		$rootScope.$broadcast('loaderShow');
 
 		Friendships.create({friendship: JSON.stringify({user_guid: AuthUser.get(), friend_guid: $scope.userId}) }, function(data) {
+
+		});
+	}
+
+	$scope.onRemoveFrend = function($event) {
+		$rootScope.$broadcast('loaderShow');
+
+		Friendships.del({friendship: JSON.stringify({user_guid: AuthUser.get(), friend_guid: $scope.userId}) }, function(data) {
 
 		});
 	}
