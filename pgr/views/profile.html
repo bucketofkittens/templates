@@ -107,17 +107,23 @@
 			</p>
 		</div>	
 	</div>
+	
 	<div class="pmain league">
 		<img src="../images/league.png">
 		<i>{{user.points}} <b>{{'_PointsL_' | i18n}}</b></i>
-	</div>
-	<div class="pmain achiev">
-		<h3>{{'_AchievL_' | i18n}}</h3>
-		<strong><img src="../images/ach.png"></strong>
-		<strong><img src="../images/ach.png"></strong>
-		<strong><img src="../images/ach.png"></strong>
-		<strong><img src="../images/ach.png"></strong>
-		<strong><img src="../images/ach.png"></strong>
+	</div>achievements
+	<div ng-switch on="user.achievements.length" >
+		<div ng-switch-when="0"></div>
+		<div ng-switch-default>
+			<div class="pmain achiev">
+				<h3>{{'_AchievL_' | i18n}}</h3>
+				<strong><img src="../images/ach.png"></strong>
+				<strong><img src="../images/ach.png"></strong>
+				<strong><img src="../images/ach.png"></strong>
+				<strong><img src="../images/ach.png"></strong>
+				<strong><img src="../images/ach.png"></strong>
+			</div>
+		</div>
 	</div>
 </section>
 
