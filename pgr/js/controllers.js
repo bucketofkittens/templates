@@ -96,6 +96,7 @@ function ProfileController($scope, $route, $routeParams, User, Needs, Profession
 	$scope.isCurrentUser = false;
 	$scope.isProfileLoaded = false;
 	$scope.isFrend = false;
+	$scope.isAchievements = false;
 
 	/**
 	 * 
@@ -129,6 +130,9 @@ function ProfileController($scope, $route, $routeParams, User, Needs, Profession
 		 	}
 		 	if($scope.user.avatar) {
 				$scope.isImage = true;
+			}
+			if($scope.user.achievements.length > 0) {
+				$scope.isAchievements = true;
 			}
 
 			$scope.isProfileLoaded = true;
