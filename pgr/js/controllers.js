@@ -616,7 +616,7 @@ function ContentController($scope, $rootScope, $route, $location) {
  * @param {[type]} $scope  [description]
  * @param {[type]} Leagues [description]
  */
-function MainController($scope, Leagues, User) {
+function MainController($scope, Leagues, User, AuthUser) {
 
 	/**
 	 * Массив лиг
@@ -635,6 +635,8 @@ function MainController($scope, Leagues, User) {
 	 * @type {type}
 	 */
 	$scope.cells = {id: "test"};
+
+	$scope.authUser = AuthUser.get();
 
 	/**
 	 * Забираем запросом список лиг.

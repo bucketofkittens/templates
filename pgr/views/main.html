@@ -7,6 +7,14 @@
 		</li>
 	</ul>
 </section>
+<ul id="main_nav" ng-if="authUser">
+	<li><i class="icon top"></i><a href="#">TOP</a></li>
+	<li><i class="icon classmates"></i><a href="#">Classmates</a></li>
+	<li><i class="icon fellows"></i><a href="#">Fellows</a></li>
+	<li><i class="icon neighbours"></i><a href="#">Neighbours</a></li>
+	<li><i class="icon custom"></i><a href="#">Custom</a></li>
+	<li><i class="icon colleagues"></i><a href="#">Colleagues</a></li>
+</ul>
 
 <div ng-controller="RegController">
 	<div modal="shouldBeOpen" close="close()" options="opts">
