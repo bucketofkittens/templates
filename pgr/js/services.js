@@ -26,7 +26,14 @@ pgrModule.factory('User', function ($resource) {
             "by_league": {
                 method: 'GET',
                 isArray: true,
-                url: host+"/users/by_league/:league_guid"
+                url: host+"/users/by_league/:league_guid",
+                transformResponse: function (data) {
+                    var users = angular.fromJson(data);
+                    angular.forEach(users, function(value, key){
+                        users[key].user.avatar.full_path = users[key].user.avatar.scheme+"://"+users[key].user.avatar.host+":"+users[key].user.avatar.port+users[key].user.avatar.path+"?"+users[key].user.avatar.query;
+                    });
+                    return users;
+                }
             }
         }
     );

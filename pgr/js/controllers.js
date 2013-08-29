@@ -83,7 +83,7 @@ function navCtrl($scope, localize, $location, AuthUser, $rootScope, $route) {
  * @param {type} States
  * @returns {undefined}
  */
-function ProfileController($scope, $route, $routeParams, User, Needs, Professions, States, $http, NeedsByUser, $rootScope, GoalsByUser, AuthUser, Friendships) {
+function ProfileController($scope, $route, $routeParams, User, Needs, Professions, States, $http, NeedsByUser, $rootScope, GoalsByUser, AuthUser, Friendships, Leagues) {
 	$scope.userId = $routeParams.userId;
 	$scope.user = null;
 	$scope.newImage = null;
@@ -134,6 +134,15 @@ function ProfileController($scope, $route, $routeParams, User, Needs, Profession
 			if($scope.user.achievements.length > 0) {
 				$scope.isAchievements = true;
 			}
+			if($scope.user.league) {
+				User.by_league({league_guid: $scope.user.league.sguid}, {}, function(data) {
+					$scope.user.league.users = data;
+					if($scope.user.league.users.length > 0) {
+						$scope.user.league.isUser = true;
+					}
+				});
+			}
+			
 
 			$scope.isProfileLoaded = true;
 		});

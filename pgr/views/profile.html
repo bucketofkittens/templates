@@ -16,7 +16,7 @@
 			  <span ng-switch-default>
 			    	<img class="pp" ng-class="{edit: isCurrentUser}" ng-click="onUpdateFile()" src="{{user.avatar.full_path}}" />
 			  </span>
-			</span>	
+			</span>
 				
 		<div class="pmpar">
 			<p>
@@ -89,7 +89,6 @@
 					</button>
 				</span>
 				<span ng-switch-default>
-				
 					<span ng-switch on="isFrend" >
 						<span ng-switch-when="true">
 							<button ng-click="onRemoveFrend()">
@@ -102,15 +101,15 @@
 							</button>
 						</span>
 					</span>	
-					
 				</span>
 			</p>
+			<i class="points">{{user.points}} <b>{{'_PointsL_' | i18n}}</b></i>
 		</div>	
 	</div>
 	
 	<div class="pmain league">
 		<img src="../images/league.png">
-		<i>{{user.points}} <b>{{'_PointsL_' | i18n}}</b></i>
+		
 	</div>
 	<div class="pmain achiev" ng-if="isAchievements">
 		<h3>{{'_AchievL_' | i18n}}</h3>
@@ -166,14 +165,10 @@
 	</div>
 </section>
 
-<section class="pronear" ng-if="userId">
+<section class="pronear" ng-if="userId && user.league.isUser">
 	<a href="#"><span></span></a>
 	<div class="ph">
-		<a href="#"><img src="../images/1.png"></a>
-		<a href="#"><img src="../images/2.png"></a>
-		<a href="#"><img src="../images/use.png"></a>
-		<a href="#"><img src="../images/4.png"></a>
-		<a href="#"><img src="../images/5.png"></a>
+		<a href="#/profile/{{userItem.user.sguid}}" ng-repeat="userItem in user.league.users | orderBy:'criterium.position'"><img src="{{userItem.user.avatar.full_path}}"></a>
 	</div>
 	<a href="#"><span></span></a>
 </section>
