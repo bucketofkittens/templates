@@ -7,7 +7,7 @@ body header ul a{color:#fff;text-decoration:none;font-family:'Helvetica Neue';fo
 body header ul a.current{color:#028dda}
 body header .social{width:12%;height:50%;vertical-align:top;display:inline-block;position:absolute;top:10%;right:0;text-decoration:none}body header .social a{background:url("../images/icons.png") center center no-repeat;width:15%;height:100%;margin:5% 7%;display:inline-block;overflow:hidden;background-position:50% 0;background-size:500% 65%}body header .social a:first-child{background-position:0 0}
 body header .social a:last-child{background-position:100% 0}
-#content{position:relative;width:100%;background:#f8f8f8;padding-top:6%;}#content .who img{width:13%;height:22%;border:1px solid #000;display:inline-block;position:absolute;top:50%;left:50%;margin:-11% 0 0 -7%}
+#content{position:relative;width:100%;background:#f8f8f8;padding-top:6%;}#content .who img{max-width:13%;height:auto;border:1px solid #000;display:inline-block;position:absolute;top:50%;left:50%;margin:-11% 0 0 -7%;cursor:pointer}
 #content .scroll{font-size:100%;color:#5e5c5d;text-decoration:none;position:absolute;bottom:5%;left:50%;margin-left:-3%;z-index:5;line-height:150%}
 #content .promain{height:40%;margin:0 2%;width:85%}#content .promain.noleague{width:100%}
 #content .promain .hidden{display:none}
