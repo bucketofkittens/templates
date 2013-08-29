@@ -22,6 +22,11 @@ pgrModule.factory('User', function ($resource) {
                     user.avatar.full_path = user.avatar.scheme+"://"+user.avatar.host+":"+user.avatar.port+user.avatar.path+"?"+user.avatar.query;
             		return user;
             	}
+            },
+            "by_league": {
+                method: 'GET',
+                isArray: true,
+                url: host+"/users/by_league/:league_guid"
             }
         }
     );
@@ -235,6 +240,13 @@ pgrModule.factory('UserCriteriaValue', function ($resource) {
 pgrModule.factory('UserCriteriaValueByUser', function ($resource) {
     return $resource(
         host+'/user_criterion_values/by_user/:id', 
+        {id:'@id'}
+    );
+});
+
+pgrModule.factory('Leagues', function ($resource) {
+    return $resource(
+        host+'/leagues/:id', 
         {id:'@id'}
     );
 });

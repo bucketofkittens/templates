@@ -19,3 +19,11 @@ pgrModule.directive('sameAs', [function() {
     }
   };
 }]);
+
+pgrModule.directive('paralaxImage', function ($parse) {
+     return function($scope, element, attrs) {
+        attrs.$observe('src', function(val){
+          console.log(attrs.cells);
+        });
+    }
+});

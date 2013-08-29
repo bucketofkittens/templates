@@ -597,5 +597,64 @@ function ContentController($scope, $rootScope, $route, $location) {
  	});
 }
 
-function MainController($scope) {
+
+/**
+ * Контроллер главной страницы
+ * @param {[type]} $scope  [description]
+ * @param {[type]} Leagues [description]
+ */
+function MainController($scope, Leagues, User) {
+
+	/**
+	 * Массив лиг
+	 * @type {Array}
+	 */
+	$scope.leagues = [];
+
+	/**
+	 * Количество лиг показываемых на главной
+	 * @type {Number}
+	 */
+	$scope.maxLeaguesView = 3;
+
+	/**
+	 * Массив ячеек
+	 * @type {type}
+	 */
+	$scope.cells = {id: "test"};
+
+	/**
+	 * Забираем запросом список лиг.
+	 * @param  {[type]} data [description]
+	 * @return {[type]}      [description]
+	 */
+	Leagues.query({}, {}, function(data) {
+		/**
+		 * Сортируем лиги по убыванию
+		 * @param  {[type]} a [description]
+		 * @param  {[type]} b [description]
+		 * @return {[type]}   [description]
+		 */
+		data.sort(function(a,b) {
+		    return a.league.position + b.league.position;
+		});
+
+		/**
+		 * Получаем 3 наикрутейшие лиги
+		 * @type {[type]}
+		 */
+		$scope.leagues = data.splice(0,$scope.maxLeaguesView);
+
+		/**
+		 * Проходимся по оплучившемуся массиву лиг и получаем список пользователей
+		 * @param  {[type]} value [description]
+		 * @param  {[type]} key   [description]
+		 * @return {[type]}       [description]
+		 */
+		angular.forEach($scope.leagues, function(value, key){
+			User.by_league({league_guid: value.league.sguid}, {}, function(userData) {
+				value.league.users = userData;
+			});
+		});
+	})
 }
