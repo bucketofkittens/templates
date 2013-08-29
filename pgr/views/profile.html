@@ -1,4 +1,4 @@
-<section class="promain" ng-if="userId && isProfileLoaded">
+<section class="promain" ng-if="userId && isProfileLoaded" ng-class="{ noleague: !isLeague}">
 	<div class="pmain pro" ng-class="{ noach: !isAchievements}" >
 		<input 
 			class="hidden" 
@@ -107,7 +107,7 @@
 		</div>	
 	</div>
 	
-	<div class="pmain league">
+	<div class="pmain league" ng-if="user.league">
 		<img ng-if="user.league.icon.full_path" src="{{user.league.icon.full_path}}" title="{{user.league.name}}" alt="{{user.league.name}}" />
 		<i class="points" ng-if="user.points">{{user.points}} <b>{{'_PointsL_' | i18n}}</b></i>
 		
@@ -122,7 +122,7 @@
 	</div>
 </section>
 
-<section class="procrit" ng-controller="CriteriaController" ng-if="userId">
+<section class="procrit" ng-controller="CriteriaController" ng-if="userId" ng-class="{ noleague: !isLeague}">
 	<div class="white">
 		<ul> 
 			<li ng-repeat="(key,item) in needs | orderBy:'need.position'">

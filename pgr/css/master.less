@@ -127,6 +127,9 @@ body {
         height: 40%;
         margin: 0% 2%;
         width: 85%;
+        &.noleague {
+            width: 100%;
+        }
         .hidden {
             display: none;
         }
@@ -254,7 +257,7 @@ body {
                 i {
                     font-size: 150%;
                     color: #000000;
-                    margin: 10% 0% -15% 0%;
+                    margin: 5% 0% -15% 0%;
                     display: block;
                 }
             }
@@ -290,6 +293,9 @@ body {
         position: relative;
         transition: all 0.5s ease-out;
         -webkit-transition: all 0.5s ease-out;
+        &.noleague {
+            width: 100%;
+        }
         .white {
             display: block;
             width: 100%;
@@ -597,8 +603,29 @@ body {
             a {
                 img {
                     position: absolute;
+                    left: 50%;
+                    top: 50%;
                 }
             }
         }
     }
+}
+
+.ng-enter, .ng-leave {
+  -webkit-transition:0.5s linear all;
+  -moz-transition:0.5s linear all;
+  -o-transition:0.5s linear all;
+  transition:0.5s linear all;
+}
+
+.ng-enter, .ng-leave.ng-leave-active {
+  opacity:0;
+}
+.ng-leave,
+.ng-enter.ng-enter-active {
+  opacity:1;
+}
+
+.ng-hide {
+  display:none!important;
 }

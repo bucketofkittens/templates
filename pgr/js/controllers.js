@@ -97,6 +97,7 @@ function ProfileController($scope, $route, $routeParams, User, Needs, Profession
 	$scope.isProfileLoaded = false;
 	$scope.isFrend = false;
 	$scope.isAchievements = false;
+	$scope.isLeague = false;
 
 	/**
 	 * 
@@ -135,11 +136,11 @@ function ProfileController($scope, $route, $routeParams, User, Needs, Profession
 				$scope.isAchievements = true;
 			}
 			if($scope.user.league) {
-				console.log($scope.user.league);
 				User.by_league({league_guid: $scope.user.league.sguid}, {}, function(data) {
 					$scope.user.league.users = data;
 					if($scope.user.league.users.length > 0) {
 						$scope.user.league.isUser = true;
+						$scope.isLeague = true;
 					}
 				});
 			}
@@ -293,7 +294,7 @@ function ProfileController($scope, $route, $routeParams, User, Needs, Profession
 				"age": $scope.user.age,
 				"profession": $scope.user.profession ? $scope.user.profession.sguid : null ,
 				"state": $scope.user.state ? $scope.user.state.sguid : null,
-				"published": $scope.user.published
+				"published": 1
 			})}, function(data) {
 				$rootScope.$broadcast('loaderHide');
 				$("input[type='text'], input[type='email'], select", ".pmpar").attr("readonly", "readonly");
