@@ -23,7 +23,18 @@ pgrModule.directive('sameAs', [function() {
 pgrModule.directive('paralaxImage', function ($parse) {
      return function($scope, element, attrs) {
         attrs.$observe('src', function(val){
-          console.log(attrs.cells);
+          var position = {
+            x: getRandomInt(0, 70)+"%",
+            y: getRandomInt(0, 70)+"%"
+          }
+          $(element).animate({
+            "left": position.x,
+            "top": position.y
+          })
         });
     }
 });
+
+function getRandomInt(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}

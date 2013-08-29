@@ -9,14 +9,14 @@
 			id="photo" 
 			accept="image/jpeg,image/png,image/gif" />
 			
-			<span ng-switch on="isImage" >
-			  <span ng-switch-when="false">
-			    	<img class="pp" ng-class="{edit: isCurrentUser}" ng-click="onUpdateFile()" src="../images/use.png" />
-			  </span>
-			  <span ng-switch-default>
-			    	<img class="pp" ng-class="{edit: isCurrentUser}" ng-click="onUpdateFile()" src="{{user.avatar.full_path}}" />
-			  </span>
-			</span>
+		<span ng-switch on="isImage" >
+		  <span ng-switch-when="false">
+		    	<img class="pp" ng-class="{edit: isCurrentUser}" ng-click="onUpdateFile()" src="../images/use.png" />
+		  </span>
+		  <span ng-switch-default>
+		    	<img class="pp" ng-class="{edit: isCurrentUser}" ng-click="onUpdateFile()" src="{{user.avatar.full_path}}" />
+		  </span>
+		</span>
 				
 		<div class="pmpar">
 			<p>
@@ -103,12 +103,13 @@
 					</span>	
 				</span>
 			</p>
-			<i class="points">{{user.points}} <b>{{'_PointsL_' | i18n}}</b></i>
+			
 		</div>	
 	</div>
 	
 	<div class="pmain league">
-		<img src="../images/league.png">
+		<img ng-if="user.league.icon.full_path" src="{{user.league.icon.full_path}}" title="{{user.league.name}}" alt="{{user.league.name}}" />
+		<i class="points" ng-if="user.points">{{user.points}} <b>{{'_PointsL_' | i18n}}</b></i>
 		
 	</div>
 	<div class="pmain achiev" ng-if="isAchievements">

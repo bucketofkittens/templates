@@ -135,6 +135,7 @@ function ProfileController($scope, $route, $routeParams, User, Needs, Profession
 				$scope.isAchievements = true;
 			}
 			if($scope.user.league) {
+				console.log($scope.user.league);
 				User.by_league({league_guid: $scope.user.league.sguid}, {}, function(data) {
 					$scope.user.league.users = data;
 					if($scope.user.league.users.length > 0) {
@@ -304,7 +305,8 @@ function ProfileController($scope, $route, $routeParams, User, Needs, Profession
 		$rootScope.$broadcast('loaderShow');
 
 		Friendships.create({friendship: JSON.stringify({user_guid: AuthUser.get(), friend_guid: $scope.userId}) }, function(data) {
-
+			$rootScope.$broadcast('updateUser');
+			$rootScope.$broadcast('loaderHide');
 		});
 	}
 
@@ -312,7 +314,8 @@ function ProfileController($scope, $route, $routeParams, User, Needs, Profession
 		$rootScope.$broadcast('loaderShow');
 
 		Friendships.del({friendship: JSON.stringify({user_guid: AuthUser.get(), friend_guid: $scope.userId}) }, function(data) {
-
+			$rootScope.$broadcast('updateUser');
+			$rootScope.$broadcast('loaderHide');
 		});
 	}
 }

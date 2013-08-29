@@ -2,6 +2,10 @@
 var host = "http://xmpp.dev.improva.com:9090/api/v1";
 var hostShort = host.replace("/api/v1", "");
 
+function createImageFullPath(obj) {
+    return obj.scheme+"://"+obj.host+":"+obj.port+obj.path+"?"+obj.query;
+}
+
 
 /**
  * Модель пользователя
@@ -19,7 +23,13 @@ pgrModule.factory('User', function ($resource) {
             	method: 'GET', 
             	transformResponse: function (data) {
                     var user = angular.fromJson(data)[0].user;
-                    user.avatar.full_path = user.avatar.scheme+"://"+user.avatar.host+":"+user.avatar.port+user.avatar.path+"?"+user.avatar.query;
+                    
+                    if(user.avatar) {
+                        user.avatar.full_path = createImageFullPath(user.avatar);    
+                    }
+                    if(user.league && user.league.icon) {
+                         user.league.icon.full_path = createImageFullPath(user.league.icon);
+                    }
             		return user;
             	}
             },
@@ -30,7 +40,9 @@ pgrModule.factory('User', function ($resource) {
                 transformResponse: function (data) {
                     var users = angular.fromJson(data);
                     angular.forEach(users, function(value, key){
-                        users[key].user.avatar.full_path = users[key].user.avatar.scheme+"://"+users[key].user.avatar.host+":"+users[key].user.avatar.port+users[key].user.avatar.path+"?"+users[key].user.avatar.query;
+                        if(users[key].user.avatar) {
+                            users[key].user.avatar.full_path = createImageFullPath(users[key].user.avatar);
+                        }
                     });
                     return users;
                 }

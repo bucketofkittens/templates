@@ -1,8 +1,8 @@
 <section id="main_leagues">
 	<ul ng-repeat="(leagueKey, leagueItem) in leagues" class="league_{{leagueKey}}">
 		<li ng-repeat="userItem in leagueItem.league.users">
-			<a  href="#/profile/{{userItem.user.sguid}}" >
-				<img src="{{userItem.user.picture_url.scheme}}://{{userItem.user.picture_url.host}}{{userItem.user.picture_url.path}}?{{userItem.user.picture_url.query}}" cells="{{cells}}" alt="" paralax-image />
+			<a href="#/profile/{{userItem.user.sguid}}" >
+				<img src="{{userItem.user.avatar.full_path}}" cells="{{cells}}" alt="" paralax-image />
 			</a>
 		</li>
 	</ul>

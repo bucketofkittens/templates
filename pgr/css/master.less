@@ -134,7 +134,10 @@ body {
             display: inline-block;
             margin: 0% 1%;
             vertical-align: top;
-            width: 50%; 
+            width: 50%;
+            &.noach {
+                width: 60%;
+            }
             &.pro {
                 margin: 0% 1%;
                 .pp {
@@ -246,7 +249,6 @@ body {
                 z-index: 3;
                 position: relative;
                 img {
-                    border-radius: 13% 13% 30% 30%;
                     width: 90%
                 }
                 i {
@@ -586,4 +588,17 @@ body {
 
 .controller__ {
     min-height: 100% !important;
+}
+
+/** main_leagues **/
+#main_leagues {
+    ul {
+        li {
+            a {
+                img {
+                    position: absolute;
+                }
+            }
+        }
+    }
 }
