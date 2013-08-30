@@ -200,7 +200,26 @@ pgrModule.factory('Friendships', function ($resource) {
         {}, 
         {
             create: {method: 'POST'},
-            del: {method: "DELETE"}
+            del: {method: "DELETE"},
+            "by_user": {
+                method: 'GET',
+                isArray: true,
+                url: host+"/friendships/by_user/:user_guid",
+                transformResponse: function (data) {
+                    var frends = angular.fromJson(data);
+                    var users = [];
+                    angular.forEach(frends, function(value, key){
+                        console.log(value);
+                    });
+                    console.log(users);
+                    angular.forEach(users, function(value, key){
+                        if(users[key].user.avatar) {
+                            users[key].user.avatar.full_path = createImageFullPath(users[key].user.avatar);
+                        }
+                    });
+                    return users;
+                }
+            }
         }
     );
 });

@@ -129,17 +129,17 @@
 				<div class="cr" ng-click="onShowGoals($event)">
 					<p>{{item.need.name}}</p>
 					<strong>
-						<b>{{item.current_value}} / {{item.need.values_sum}}</b>
-						<span class="current_position" style="width: {{(item.current_value / (item.need.values_sum ))*100}}%;"></span>
+						<b>{{item.current_value}} / {{item.need.points_summary}}</b>
+						<span class="current_position" style="width: {{(item.current_value / (item.need.points_summary ))*100}}%;"></span>
 					</strong>
-				</div>
+				</div> 
 				<ul>
 					<li ng-repeat="(subKey,subItem) in item.need.goals | orderBy:'goal.position'" >
 						<span><img src="../images/point.png"></span>
 						<a ng-click="open('{{subItem.goal.sguid}}', $event, '{{item.need.sguid}}', subItem)">{{subItem.goal.name}}</a>					
 						<strong>
-							<b>{{subItem.current_value}} / {{subItem.goal.values_sum}}</b>
-							<span class="current_position" style="width: {{(subItem.current_value / (subItem.goal.values_sum ))*100}}%;"></span>
+							<b>{{subItem.current_value}} / {{subItem.goal.points_summary}}</b>
+							<span class="current_position" style="width: {{(subItem.current_value / (subItem.goal.points_summary ))*100}}%;"></span>
 						</strong>
 						<ul class="criterion">
 							<li data-id="{{crItem.criterium.sguid}}" ng-repeat="crItem in subItem.goal.criteriums | orderBy:'criterium.position'" >
