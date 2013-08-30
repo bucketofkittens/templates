@@ -1,7 +1,7 @@
 @import "reset.css";
 select,textarea,input{padding:0 !important}
 body{width:100%;height:100%;font-family:'Helvetica Neue Light';-moz-font-smoothing:antialiased;-webkit-font-smoothing:antialiased}body .shadow{background:rgba(0,0,0,0.5);z-index:10;position:absolute;width:100%;height:100%;display:none}
-body header{height:8%;width:100%;min-height:52px;background:#000;position:absolute;top:0;z-index:5;overflow:hidden}body header .logo{width:30%;margin:0 12% 0 3%}body header .logo img{width:22%;height:90%}
+body header{height:8%;width:100%;min-height:72px;background:#000;position:absolute;top:0;z-index:5;overflow:hidden}body header .logo{width:30%;margin:0 12% 0 3%}body header .logo img{width:22%;height:90%}
 body header ul{display:inline-block;vertical-align:top;position:absolute;right:2%;width:42%}body header ul li{margin:3%;display:inline-block;vertical-align:top}
 body header ul a{color:#fff;text-decoration:none;font-family:'Helvetica Neue';font-size:150%;text-transform:uppercase}body header ul a:hover{color:#fff}
 body header ul a.current{color:#028dda}
