@@ -44,7 +44,7 @@ body header .social a:last-child{background-position:100% 0}
 #content .pronear{display:inline-block;width:12%;height:auto;position:absolute;right:0;top:7.5%;padding:1% 0 1% 0;margin-top:-1%;overflow:hidden;background:#fff;border-left:1px solid #ccc}#content .pronear span{display:block;margin:0 auto 1% auto;width:0;height:0;border-style:solid;border-width:0 15px 15px 15px;border-color:transparent transparent #000 transparent}
 #content .pronear a:last-child span{border-width:15px 15px 0 15px;border-color:#000 transparent transparent transparent;margin:1% auto 0 auto}
 #content .pronear .ph{margin:0 auto;width:70%}#content .pronear .ph a{display:block;margin:5% 0;border:1px solid #000}#content .pronear .ph a img{display:block}
-.registration.modal,.login.modal{width:30%;height:50%;left:35%;top:15% !important;margin:0 auto}.registration.modal h4,.login.modal h4{font-size:130%;text-align:center;margin:5% 0}
+.registration.modal,.login.modal{width:20%;left:45%;top:15% !important;margin:0 auto;max-height:420px}.registration.modal h4,.login.modal h4{font-size:130%;text-align:center;margin:5% 0}
 .registration.modal form,.login.modal form{width:100%}.registration.modal form p,.login.modal form p{margin:5% 15%;font-size:100%}
 .registration.modal input.ng-invalid:not(.ng-pristine),.login.modal input.ng-invalid:not(.ng-pristine){color:#b94a48;border-color:#ee5f5b;border-color:#e9322d !important;-webkit-box-shadow:0 0 6px #f8b9b7 !important;-moz-box-shadow:0 0 6px #f8b9b7 !important;box-shadow:0 0 6px #f8b9b7 !important}
 .registration.modal{height:70% !important}

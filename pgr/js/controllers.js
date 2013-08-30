@@ -424,7 +424,7 @@ function CriteriaController($scope, Goals, Criterion, AuthUser, UserCriteriaValu
  * @param {[type]} $location [description]
  * @param {[type]} User      [description]
  */
-function RegController($scope, $location, User, AuthUser) {
+function RegController($scope, $location, User, AuthUser, $rootScope) {
 	
 
 	/**
@@ -469,6 +469,8 @@ function RegController($scope, $location, User, AuthUser) {
 		$scope.shouldBeOpen = true;
 	});
 
+	
+
     /**
      * 
      * @param {type} $event
@@ -489,7 +491,7 @@ function RegController($scope, $location, User, AuthUser) {
 					});
 				} else {
 					$scope.shouldBeOpen = false;
-					$location.path('/profile/'+data.message.guid);
+					$rootScope.$broadcast('registered');
 				}
 			}
 		);
@@ -535,6 +537,12 @@ function LoginController($scope, Sessions, $rootScope, AuthUser) {
 	 * @type {Boolean}
 	 */
 	$scope.shouldBeOpen = false;
+
+
+
+	$scope.$on('registered', function() {
+		$scope.shouldBeOpen = false;
+	});
 
 	/**
 	 * Вызывается при нажатии ok в форме авторизации
