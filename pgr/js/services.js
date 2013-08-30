@@ -45,6 +45,14 @@ pgrModule.factory('User', function ($resource) {
                     });
                     return users;
                 }
+            },
+            "needs_points": {
+                method: 'GET',
+                url: host+"/users/:id/needs_points"
+            },
+            "goals_points": {
+                method: 'GET',
+                url: host+"/users/:id/goals_points"
             }
         }
     );
@@ -209,13 +217,13 @@ pgrModule.factory('Friendships', function ($resource) {
                     var frends = angular.fromJson(data);
                     var users = [];
                     angular.forEach(frends, function(value, key){
-                        console.log(value);
-                    });
-                    console.log(users);
-                    angular.forEach(users, function(value, key){
-                        if(users[key].user.avatar) {
-                            users[key].user.avatar.full_path = createImageFullPath(users[key].user.avatar);
+                        if(value.friendship.user.avatar) {
+                            value.friendship.user.avatar.full_path = createImageFullPath(value.friendship.user.avatar);
                         }
+                        var user = {
+                            user: value.friendship.user
+                        }
+                        users.push(user);
                     });
                     return users;
                 }

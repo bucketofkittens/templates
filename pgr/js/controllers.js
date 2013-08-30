@@ -172,7 +172,7 @@ function ProfileController($scope, $route, $routeParams, User, Needs, Profession
 	$scope.ages = this.generateAgesArray(14, 150);
 
 	$scope.userCriteriaUpdate = function() {
-		NeedsByUser.get({id: $routeParams.userId}, {}, function(data) {
+		User.needs_points({id: $routeParams.userId}, {}, function(data) {
 			angular.forEach(data, function(value, key){
 				angular.forEach($scope.needs, function(needVal, needKey){
 					if($scope.needs[needKey].need.sguid == key) {
@@ -189,7 +189,7 @@ function ProfileController($scope, $route, $routeParams, User, Needs, Profession
 			});
 		});
 
-		GoalsByUser.get({id: $routeParams.userId}, {}, function(data) {
+		User.goals_points({id: $routeParams.userId}, {}, function(data) {
 			angular.forEach(data, function(value, key){
 				angular.forEach($scope.needs, function(needVal, needKey){
 					angular.forEach(needVal.need.goals, function(goal, goalKey){
@@ -660,15 +660,24 @@ function MainController($scope, Leagues, User, AuthUser, $rootScope, Friendships
 		$scope.loadUser();
 	});
 
-	$scope.onFellows = function() {
-		Friendships.by_user({user_guid: $scope.authUser}, {}, function(data) {
-			var users = [];
-			
-		});
-		//$scope.viewedUsers = $scope.authUserData.friends_guids;
+	$scope.setCurrentElementNav = function($event) {
+		var el = $($event);
+		$("#main_nav li").removeClass("current");
+		if(el[0]) {
+			$(el[0].target).parent().addClass("current");
+		}
 	}
 
-	$scope.onTop = function() {
+	$scope.onFellows = function($event) {
+		Friendships.by_user({user_guid: $scope.authUser}, {}, function(data) {
+			$scope.viewedUsers = data;
+		});
+		$scope.setCurrentElementNav($event);
+	}
+
+	$scope.onTop = function($event) {
+		$scope.setCurrentElementNav($event);
+
 		/**
 		 * Забираем запросом список лиг.
 		 * @param  {[type]} data [description]
@@ -690,6 +699,7 @@ function MainController($scope, Leagues, User, AuthUser, $rootScope, Friendships
 			 * @type {[type]}
 			 */
 			$scope.leagues = data.splice(0,$scope.maxLeaguesView);
+			$scope.viewedUsers = [];
 
 			/**
 			 * Проходимся по оплучившемуся массиву лиг и получаем список пользователей

@@ -109,6 +109,8 @@ body {
             left: 50%;
             margin: -11% 0% 0% -7%;
             cursor: pointer;
+            box-shadow: 0px 30px 0px 0px rgba(255, 255, 255, 1), 0px 0px 30px 1px rgba(0, 0, 0, 0.3);
+            border: 1px solid #666666;
         }
     }
     .scroll {
@@ -638,12 +640,22 @@ body {
     top: 50%;
     margin-top: -200px;
     background: #89b4e8;
-    padding: 20px 14px 20px 0px;
+    padding: 20px 0px 20px 0px;
+    li {
+        padding: 0px 14px 0px 0px;
+        &.current {
+            background-color: #ffffff;
+        }
+    }
     .icon {
         display: inline-block;
         width: 65px;
         height: 62px;
         background: url("../images/icon1.png") left top no-repeat;
+        &.top {
+            background-position: 0px 5px;
+            height: 56px;
+        }
         &.classmates {
             background-position: 0px -50px;
         }
@@ -667,6 +679,7 @@ body {
         color: #123123;
         font-size: 28px;
         font-family: 'Conv_calibri';
+        cursor: pointer;
     }
     a, .icon {
         vertical-align: middle;

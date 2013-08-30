@@ -7,7 +7,7 @@ body header ul a{color:#fff;text-decoration:none;font-family:'Helvetica Neue';fo
 body header ul a.current{color:#028dda}
 body header .social{width:12%;height:50%;vertical-align:top;display:inline-block;position:absolute;top:10%;right:0;text-decoration:none}body header .social a{background:url("../images/icons.png") center center no-repeat;width:15%;height:100%;margin:5% 7%;display:inline-block;overflow:hidden;background-position:50% 0;background-size:500% 65%}body header .social a:first-child{background-position:0 0}
 body header .social a:last-child{background-position:100% 0}
-#content{position:relative;width:100%;background:#f8f8f8;padding-top:6%;}#content .who img{max-width:13%;height:auto;border:1px solid #000;display:inline-block;position:absolute;top:50%;left:50%;margin:-11% 0 0 -7%;cursor:pointer}
+#content{position:relative;width:100%;background:#f8f8f8;padding-top:6%;}#content .who img{max-width:13%;height:auto;border:1px solid #000;display:inline-block;position:absolute;top:50%;left:50%;margin:-11% 0 0 -7%;cursor:pointer;box-shadow:0 30px 0 0 #fff,0 0 30px 1px rgba(0,0,0,0.3);border:1px solid #666}
 #content .scroll{font-size:100%;color:#5e5c5d;text-decoration:none;position:absolute;bottom:5%;left:50%;margin-left:-3%;z-index:5;line-height:150%}
 #content .promain{height:40%;margin:0 2%;width:85%}#content .promain.noleague{width:100%}
 #content .promain .hidden{display:none}
@@ -56,10 +56,12 @@ body header .social a:last-child{background-position:100% 0}
 .ng-enter,.ng-leave.ng-leave-active{opacity:0}
 .ng-leave,.ng-enter.ng-enter-active{opacity:1}
 .ng-hide{display:none !important}
-#main_nav{position:absolute;left:0;top:50%;margin-top:-200px;background:#89b4e8;padding:20px 14px 20px 0}#main_nav .icon{display:inline-block;width:65px;height:62px;background:url("../images/icon1.png") left top no-repeat}#main_nav .icon.classmates{background-position:0 -50px}
+#main_nav{position:absolute;left:0;top:50%;margin-top:-200px;background:#89b4e8;padding:20px 0 20px 0}#main_nav li{padding:0 14px 0 0}#main_nav li.current{background-color:#fff}
+#main_nav .icon{display:inline-block;width:65px;height:62px;background:url("../images/icon1.png") left top no-repeat}#main_nav .icon.top{background-position:0 5px;height:56px}
+#main_nav .icon.classmates{background-position:0 -50px}
 #main_nav .icon.fellows{background-position:0 -110px;height:56px}
 #main_nav .icon.neighbours{background-position:0 -165px;height:56px}
 #main_nav .icon.custom{background-position:0 -215px}
 #main_nav .icon.colleagues{background-position:0 -280px}
-#main_nav a{display:inline-block;color:#123123;font-size:28px;font-family:'Conv_calibri'}
+#main_nav a{display:inline-block;color:#123123;font-size:28px;font-family:'Conv_calibri';cursor:pointer}
 #main_nav a,#main_nav .icon{vertical-align:middle}
