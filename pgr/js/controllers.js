@@ -616,7 +616,7 @@ function ContentController($scope, $rootScope, $route, $location) {
  * @param {[type]} $scope  [description]
  * @param {[type]} Leagues [description]
  */
-function MainController($scope, Leagues, User, AuthUser) {
+function MainController($scope, Leagues, User, AuthUser, $rootScope) {
 
 	/**
 	 * Массив лиг
@@ -635,8 +635,30 @@ function MainController($scope, Leagues, User, AuthUser) {
 	 * @type {type}
 	 */
 	$scope.cells = {id: "test"};
+	$scope.isAuth = false;
 
-	$scope.authUser = AuthUser.get();
+	$scope.loadUser = function() {
+		$scope.authUser = AuthUser.get();
+		if($scope.authUser) {
+			$scope.isAuth = true;
+			User.query({id: $scope.authUser}, function(data) {
+			 	$scope.authUserData = data;
+			});	
+		} else {
+			$scope.isAuth = false;
+		}
+	}
+
+	
+	$scope.authUserData = null;
+	$scope.loadUser();
+	
+
+	$scope.$on('login', function() {
+		$scope.loadUser();
+	});
+	
+	
 
 	/**
 	 * Забираем запросом список лиг.
