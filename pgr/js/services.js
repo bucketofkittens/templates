@@ -21,14 +21,16 @@ pgrModule.factory('User', function ($resource) {
             'query': {
             	method: 'GET', 
             	transformResponse: function (data) {
-                    var user = angular.fromJson(data)[0].user;
-                    if(user.avatar) {
-                        user.avatar.full_path = createImageFullPath(user.avatar);    
+                    if(data) {
+                        var user = angular.fromJson(data)[0].user;
+                        if(user.avatar) {
+                            user.avatar.full_path = createImageFullPath(user.avatar);    
+                        }
+                        if(user.league && user.league.icon) {
+                             user.league.icon.full_path = createImageFullPath(user.league.icon);
+                        }
+                        return user;    
                     }
-                    if(user.league && user.league.icon) {
-                         user.league.icon.full_path = createImageFullPath(user.league.icon);
-                    }
-            		return user;
             	}
             },
             'get_all': {

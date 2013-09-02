@@ -100,7 +100,7 @@ function ProfileController($scope, $route, $routeParams, User, Needs, Profession
 	$scope.isLeague = false;
 	$scope.nextUser = null;
 	$scope.users = User.get_all({}, {}, function(data) {
-
+		
 	});
 
 	/**
@@ -159,6 +159,7 @@ function ProfileController($scope, $route, $routeParams, User, Needs, Profession
 		 * @return {[type]}      [description]
 		 */
 		User.query({id: AuthUser.get()}, function(data) {
+			$scope.nextUser = data;
 			angular.forEach(data.friends_guids, $.proxy($scope.testFriend, this)); 
 		});
 	}
@@ -317,11 +318,6 @@ function ProfileController($scope, $route, $routeParams, User, Needs, Profession
 	}
 
 	$scope.onRemoveFrend = function($event) {
-		User.query({id: AuthUser.get()}, function(data) {
-			angular.forEach(data.friends_guids, function(data) {
-				//console.
-			}); 
-		});
 		/**
 		$rootScope.$broadcast('loaderShow');
 		console.log($scope.user);
