@@ -1,6 +1,14 @@
 <section class="promain" ng-if="userId && isProfileLoaded">
-	<div class="pmain pro" >
+	<div class="pmain pro">
 		<div class="block">
+			<input 
+				class="hidden" 
+				type="file"  
+				name="photo" 
+				ng-model="newImage"
+				onchange="angular.element(this).scope().onReadFile()" 
+				id="photo" 
+				accept="image/jpeg,image/png,image/gif" />
 				
 			<span ng-switch on="isImage" >
 			  <span ng-switch-when="false">

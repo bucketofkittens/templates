@@ -243,34 +243,22 @@ function ProfileController($scope, $route, $routeParams, User, Needs, Profession
 		if($scope.isCurrentUser) {
 			$rootScope.$broadcast('loaderShow');
 
-			var photo = document.getElementById("photo");
-	    	var file = photo.files[0];
-	    	var data = new FormData();
-
-	    	data.append("picture", file);
+			var data = new FormData();
+	    	data.append("picture", document.getElementById("photo").files[0]);
 	    	data.append("owner_type", 0);
 
-	    	//var xhr = new XMLHttpRequest();
-
-			/**xhr.open('PUT', host+'/pictures/'+$scope.user.sguid, true);
-			xhr.onload = function (e) {
-			  if (xhr.readyState === 4) {
-			  	$scope.getUserInfo();
-			  	$rootScope.$broadcast('loaderHide');
-			  }
-			};
-			xhr.send(data);**/
-			console.log(data);
-			$http({
-			    method: 'PUT', 
-			    url: host+'/pictures2/'+$scope.user.sguid,
-			    headers: {
-			    	'Content-Type': false
-			    },
+	    	$.ajax({
+			    url: host+'/pictures/'+$scope.user.sguid,
 			    data: data,
-		  	}).success(function(response){
-			    $scope.getUserInfo();
-			  	$rootScope.$broadcast('loaderHide');
+			    cache: false,
+			    contentType: false,
+			    processData: false,
+			    type: 'PUT'
+			}).done(function(data) {
+				$scope.$apply(function(){
+					$scope.getUserInfo();
+					$rootScope.$broadcast('loaderHide');
+				});
 			});
 		}
 	}
