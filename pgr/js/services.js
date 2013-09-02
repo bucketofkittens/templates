@@ -37,13 +37,20 @@ pgrModule.factory('User', function ($resource) {
                 isArray: true,
                 url: host+"/users/by_league/:league_guid",
                 transformResponse: function (data) {
-                    var users = angular.fromJson(data);
-                    angular.forEach(users, function(value, key){
-                        if(users[key].user.avatar) {
-                            users[key].user.avatar.full_path = createImageFullPath(users[key].user.avatar);
-                        }
-                    });
-                    return users;
+                    
+                    if(data) {
+                        var users = angular.fromJson(data);
+
+                        angular.forEach(users, function(value, key){
+                            if(users[key].user.avatar) {
+                                users[key].user.avatar.full_path = createImageFullPath(users[key].user.avatar);
+                            }
+                        });
+
+                        return users; 
+                    }
+                    
+                    
                 }
             },
             "needs_points": {
