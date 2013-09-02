@@ -250,16 +250,28 @@ function ProfileController($scope, $route, $routeParams, User, Needs, Profession
 	    	data.append("picture", file);
 	    	data.append("owner_type", 0);
 
-	    	var xhr = new XMLHttpRequest();
+	    	//var xhr = new XMLHttpRequest();
 
-			xhr.open('PUT', host+'/pictures/'+$scope.user.sguid, true);
+			/**xhr.open('PUT', host+'/pictures/'+$scope.user.sguid, true);
 			xhr.onload = function (e) {
 			  if (xhr.readyState === 4) {
-			  	$rootScope.$broadcast('updateUser');
+			  	$scope.getUserInfo();
 			  	$rootScope.$broadcast('loaderHide');
 			  }
 			};
-			xhr.send(data);
+			xhr.send(data);**/
+			console.log(data);
+			$http({
+			    method: 'PUT', 
+			    url: host+'/pictures2/'+$scope.user.sguid,
+			    headers: {
+			    	'Content-Type': false
+			    },
+			    data: data,
+		  	}).success(function(response){
+			    $scope.getUserInfo();
+			  	$rootScope.$broadcast('loaderHide');
+			});
 		}
 	}
 
@@ -270,6 +282,7 @@ function ProfileController($scope, $route, $routeParams, User, Needs, Profession
 	 */
 	$scope.onUpdateFile = function($event) {
 		if($scope.isCurrentUser) {
+
 			$("#photo").click();
 		}
 	}

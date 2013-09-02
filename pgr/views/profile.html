@@ -109,12 +109,12 @@
 		</div>
 	</div>
 	
-	<div class="pmain league" ng-if="user.league">
+	<div class="pmain league">
 		<img ng-if="user.league.icon.full_path" src="{{user.league.icon.full_path}}" title="{{user.league.name}}" alt="{{user.league.name}}" />
 		<i class="points" ng-if="user.points">{{user.points}} <b>{{'_PointsL_' | i18n}}</b></i>
 		
 	</div>
-	<div class="pmain achiev" ng-if="isAchievements">
+	<div class="pmain achiev">
 		<h3>{{'_AchievL_' | i18n}}</h3>
 		<strong><img src="../images/ach.png"></strong>
 		<strong><img src="../images/ach.png"></strong>
@@ -168,7 +168,7 @@
 	</div>
 </section>
 
-<section class="pronear" ng-if="userId && user.league.isUser">
+<section class="pronear" ng-if="userId">
 	<a href="#"><span></span></a>
 	<div class="ph">
 		<a href="#/profile/{{userItem.user.sguid}}" ng-repeat="userItem in user.league.users | orderBy:'criterium.position'"><img src="{{userItem.user.avatar.full_path}}"></a>

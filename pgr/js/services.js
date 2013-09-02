@@ -68,7 +68,7 @@ pgrModule.factory('Picture', function ($resource) {
         host+'/pictures/:id', 
         {id:'@id'}, 
         {
-            create: {method: 'POST', headers : {'Content-Type': 'application/x-www-form-urlencoded'}},
+            create: {method: 'PUT', headers : {'Content-Type': 'multipart/form-data'}},
             updatePicture: {method: 'PUT', headers : {'Content-Type': 'application/x-www-form-urlencoded'} }
         }
     );
