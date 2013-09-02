@@ -82,5 +82,9 @@
     {
         "key":"_RemoveFrend_",
         "value": "Remove Frend"
+    },
+    {
+        "key":"_GRAPHS_",
+        "value": "Graphs"
     }
 ]

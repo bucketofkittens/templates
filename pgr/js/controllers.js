@@ -54,6 +54,7 @@ function navCtrl($scope, localize, $location, AuthUser, $rootScope, $route) {
 			//{name: localize.getLocalizedString("_ABOUT_"), link: '#', activeClass: ''},
 			//{name: localize.getLocalizedString("_LEAGUES_"), link: '#', activeClass: ''},
 			{name: localize.getLocalizedString("_PROFILE_"), link: $scope.authUser ? '#/profile/'+$scope.authUser : '#/profile/', activeClass: '', show: $scope.authUser ? true : false},
+			{name: localize.getLocalizedString("_GRAPHS_"), link: '#/graphs', activeClass: '', show: $scope.authUser ? true : false},
 			{name: localize.getLocalizedString("_LogoutL_"), link: '#/logout', activeClass: '', show: $scope.authUser ? true : false}
 		];
 	};
@@ -741,4 +742,9 @@ function MainController($scope, Leagues, User, AuthUser, $rootScope, Friendships
 	}
 	
 	$scope.onTop();
+}
+
+/** Контроллер графика */
+function GraphsController($scope, $rootScope, $route, $location) {
+	
 }
