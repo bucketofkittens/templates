@@ -22,7 +22,6 @@ pgrModule.factory('User', function ($resource) {
             	method: 'GET', 
             	transformResponse: function (data) {
                     var user = angular.fromJson(data)[0].user;
-                    
                     if(user.avatar) {
                         user.avatar.full_path = createImageFullPath(user.avatar);    
                     }
@@ -31,6 +30,10 @@ pgrModule.factory('User', function ($resource) {
                     }
             		return user;
             	}
+            },
+            'get_all': {
+                method: 'GET',
+                isArray: true
             },
             "by_league": {
                 method: 'GET',

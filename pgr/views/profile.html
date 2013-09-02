@@ -78,6 +78,15 @@
 					ng-click="onElementClick($event)" /> 
 			</p>
 			<p>
+				<label for="age_i">Accounts:</label>
+				<select 
+					ng-options="item.user.login for item in users" 
+					ng-model="nextUser" 
+					readonly="readonly"
+					ng-change="onMoveUserClick($event, nextUser)">
+				</select>
+			</p>
+			<p>
 				<label for="age_i">{{'_AgeL_' | i18n}}:</label>
 				<select 
 					ng-options="item for item in ages" 
@@ -110,17 +119,20 @@
 	</div>
 	
 	<div class="pmain league">
-		<img ng-if="user.league.icon.full_path" src="{{user.league.icon.full_path}}" title="{{user.league.name}}" alt="{{user.league.name}}" />
+		<p>{{user.league.name}}</p>
+		<!--<img ng-if="user.league.icon.full_path" src="{{user.league.icon.full_path}}" title="{{user.league.name}}" alt="{{user.league.name}}" /> -->
 		<i class="points" ng-if="user.points">{{user.points}} <b>{{'_PointsL_' | i18n}}</b></i>
 		
 	</div>
 	<div class="pmain achiev">
 		<h3>{{'_AchievL_' | i18n}}</h3>
+		<!--
 		<strong><img src="../images/ach.png"></strong>
 		<strong><img src="../images/ach.png"></strong>
 		<strong><img src="../images/ach.png"></strong>
 		<strong><img src="../images/ach.png"></strong>
 		<strong><img src="../images/ach.png"></strong>
+		-->
 	</div>
 </section>
 

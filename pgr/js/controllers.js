@@ -83,7 +83,7 @@ function navCtrl($scope, localize, $location, AuthUser, $rootScope, $route) {
  * @param {type} States
  * @returns {undefined}
  */
-function ProfileController($scope, $route, $routeParams, User, Needs, Professions, States, $http, NeedsByUser, $rootScope, GoalsByUser, AuthUser, Friendships, Leagues) {
+function ProfileController($scope, $route, $routeParams, User, Needs, Professions, States, $http, NeedsByUser, $rootScope, GoalsByUser, AuthUser, Friendships, Leagues, $location) {
 	$scope.userId = $routeParams.userId;
 	$scope.user = null;
 	$scope.newImage = null;
@@ -98,6 +98,10 @@ function ProfileController($scope, $route, $routeParams, User, Needs, Profession
 	$scope.isFrend = false;
 	$scope.isAchievements = false;
 	$scope.isLeague = false;
+	$scope.nextUser = null;
+	$scope.users = User.get_all({}, {}, function(data) {
+
+	});
 
 	/**
 	 * 
@@ -270,7 +274,6 @@ function ProfileController($scope, $route, $routeParams, User, Needs, Profession
 	 */
 	$scope.onUpdateFile = function($event) {
 		if($scope.isCurrentUser) {
-
 			$("#photo").click();
 		}
 	}
@@ -313,12 +316,25 @@ function ProfileController($scope, $route, $routeParams, User, Needs, Profession
 	}
 
 	$scope.onRemoveFrend = function($event) {
+		User.query({id: AuthUser.get()}, function(data) {
+			angular.forEach(data.friends_guids, function(data) {
+				//console.
+			}); 
+		});
+		/**
 		$rootScope.$broadcast('loaderShow');
-
+		console.log($scope.user);
 		Friendships.del({friendship: JSON.stringify({user_guid: AuthUser.get(), friend_guid: $scope.userId}) }, function(data) {
 			$rootScope.$broadcast('updateUser');
 			$rootScope.$broadcast('loaderHide');
 		});
+		**/
+	}
+
+	$scope.onMoveUserClick = function($event, nextUser) {
+		AuthUser.set(nextUser.user.sguid);
+		$rootScope.$broadcast('login');
+		$location.path("/profile/"+nextUser.user.sguid);
 	}
 }
 
@@ -543,6 +559,8 @@ function LoginController($scope, Sessions, $rootScope, AuthUser) {
 
 	$scope.$on('registered', function() {
 		$scope.shouldBeOpen = false;
+
+		$(".modal-backdrop").remove();
 	});
 
 	/**
