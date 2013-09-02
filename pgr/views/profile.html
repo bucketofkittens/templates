@@ -1,23 +1,56 @@
 <section class="promain" ng-if="userId && isProfileLoaded" ng-class="{ noleague: !isLeague}">
 	<div class="pmain pro" ng-class="{ noach: !isAchievements}" >
-		<input 
-			class="hidden" 
-			type="file"  
-			name="photo" 
-			ng-model="newImage"
-			onchange="angular.element(this).scope().onReadFile()" 
-			id="photo" 
-			accept="image/jpeg,image/png,image/gif" />
-			
-		<span ng-switch on="isImage" >
-		  <span ng-switch-when="false">
-		    	<img class="pp" ng-class="{edit: isCurrentUser}" ng-click="onUpdateFile()" src="../images/use.png" />
-		  </span>
-		  <span ng-switch-default>
-		    	<img class="pp" ng-class="{edit: isCurrentUser}" ng-click="onUpdateFile()" src="{{user.avatar.full_path}}" />
-		  </span>
-		</span>
+		<div class="block">
+			<input 
+				class="hidden" 
+				type="file"  
+				name="photo" 
+				ng-model="newImage"
+				onchange="angular.element(this).scope().onReadFile()" 
+				id="photo" 
+				accept="image/jpeg,image/png,image/gif" />
 				
+			<span ng-switch on="isImage" >
+			  <span ng-switch-when="false">
+			    	<img class="pp" ng-class="{edit: isCurrentUser}" ng-click="onUpdateFile()" src="../images/use.png" />
+			  </span>
+			  <span ng-switch-default>
+			    	<img class="pp" ng-class="{edit: isCurrentUser}" ng-click="onUpdateFile()" src="{{user.avatar.full_path}}" />
+			  </span>
+			</span>
+	
+			<div class="publish">
+				<p ng-switch on="isCurrentUser" >
+					<span ng-switch-when="true">
+						<button ng-click="onPublish()">
+							<span ng-switch on="user.published" >
+								<span ng-switch-when="1">
+									{{'_Update_' | i18n}}
+								</span>
+								<span ng-switch-when="0">
+									{{'_PublishL_' | i18n}}
+								</span>
+							</span>	
+						</button>
+					</span>
+					<span ng-switch-default>
+						<span ng-switch on="isFrend" >
+							<span ng-switch-when="true">
+								<button ng-click="onRemoveFrend()">
+									{{'_RemoveFrend_' | i18n}}
+								</button>
+							</span>
+							<span ng-switch-when="false">
+								<button ng-click="onAddFrend()">
+									{{'_AddFrend_' | i18n}}
+								</button>
+							</span>
+						</span>	
+					</span>
+				</p>			
+			</div>				
+		</div>
+
 		<div class="pmpar">
 			<p>
 				<label for="name_i">{{'_NameL_' | i18n}}:</label> 
@@ -74,37 +107,6 @@
 				</select>
 			</p>
 		</div>
-		<div class="publish">
-			<p ng-switch on="isCurrentUser" >
-				<span ng-switch-when="true">
-					<button ng-click="onPublish()">
-						<span ng-switch on="user.published" >
-							<span ng-switch-when="1">
-								{{'_Update_' | i18n}}
-							</span>
-							<span ng-switch-when="0">
-								{{'_PublishL_' | i18n}}
-							</span>
-						</span>	
-					</button>
-				</span>
-				<span ng-switch-default>
-					<span ng-switch on="isFrend" >
-						<span ng-switch-when="true">
-							<button ng-click="onRemoveFrend()">
-								{{'_RemoveFrend_' | i18n}}
-							</button>
-						</span>
-						<span ng-switch-when="false">
-							<button ng-click="onAddFrend()">
-								{{'_AddFrend_' | i18n}}
-							</button>
-						</span>
-					</span>	
-				</span>
-			</p>
-			
-		</div>	
 	</div>
 	
 	<div class="pmain league" ng-if="user.league">
