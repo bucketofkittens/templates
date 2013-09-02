@@ -353,34 +353,34 @@ function CriteriaController($scope, Goals, Criterion, AuthUser, UserCriteriaValu
      * @return {[type]}        [description]
      */
 	$scope.open = function (goalId, $event, needId, goal) {
-		var self = this;
-		console.log(goal.goal.criteriums);
+		if(!goal.goal.criteriums) {
+			/**
+			 * Обход циклом для получения всех значений для критерий.
+			 * Можно найти более прямое решение
+			 * @param  {[type]} data [description]
+			 * @return {[type]}      [description]
+			 */
+			CriterionByGoal.query({id: goalId}, function(data) {
+				goal.goal.criteriums = data;
 
-		/**
-		 * Обход циклом для получения всех значений для критерий.
-		 * Можно найти более прямое решение
-		 * @param  {[type]} data [description]
-		 * @return {[type]}      [description]
-		 */
-		CriterionByGoal.query({id: goalId}, function(data) {
-			goal.goal.criteriums = data;
+				UserCriteriaValueByUser.query({id: $routeParams.userId}, {}, function(d) {
+					angular.forEach(d, function(userCriteriaItem, userCriteriaKey) {
+						angular.forEach(goal.goal.criteriums, function(criteriumsItem, criteriumsKey) {
+							angular.forEach(criteriumsItem.criterium.criteria_values, function(criteriaValueItem, criteriaValueKey) {
+								if(
+									userCriteriaItem.user_criterion_value.criteria_value_sguid == criteriaValueItem.criteria_value.sguid &&
+									userCriteriaItem.user_criterion_value.criteria_sguid == goal.goal.criteriums[criteriumsKey].criterium.sguid) {
 
-			UserCriteriaValueByUser.query({id: $routeParams.userId}, {}, function(d) {
-				angular.forEach(d, function(userCriteriaItem, userCriteriaKey) {
-					angular.forEach(goal.goal.criteriums, function(criteriumsItem, criteriumsKey) {
-						angular.forEach(criteriumsItem.criterium.criteria_values, function(criteriaValueItem, criteriaValueKey) {
-							if(
-								userCriteriaItem.user_criterion_value.criteria_value_sguid == criteriaValueItem.criteria_value.sguid &&
-								userCriteriaItem.user_criterion_value.criteria_sguid == goal.goal.criteriums[criteriumsKey].criterium.sguid) {
-
-								var currentElement = $('li[data-id="'+userCriteriaItem.user_criterion_value.criteria_sguid+'"] li[data-id="'+userCriteriaItem.user_criterion_value.criteria_value_sguid+'"]');
-								$scope.setCriteriaPosition(currentElement);
-							} 
+									var currentElement = $('li[data-id="'+userCriteriaItem.user_criterion_value.criteria_sguid+'"] li[data-id="'+userCriteriaItem.user_criterion_value.criteria_value_sguid+'"]');
+									$scope.setCriteriaPosition(currentElement);
+								} 
+							});
 						});
 					});
 				});
-			});
-		});
+			});	
+		}
+		
 
 
 
