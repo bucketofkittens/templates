@@ -301,6 +301,7 @@ function ProfileController($scope, $route, $routeParams, User, Needs, Profession
 				"published": 1
 			})}, function(data) {
 				$rootScope.$broadcast('loaderHide');
+				$rootScope.$broadcast('updateUser');
 				$("input[type='text'], input[type='email'], select", ".pmpar").attr("readonly", "readonly");
 			}
 		);
@@ -353,6 +354,7 @@ function CriteriaController($scope, Goals, Criterion, AuthUser, UserCriteriaValu
      */
 	$scope.open = function (goalId, $event, needId, goal) {
 		var self = this;
+		console.log(goal.goal.criteriums);
 
 		/**
 		 * Обход циклом для получения всех значений для критерий.
