@@ -107,7 +107,7 @@ body {
             left: 50%;
             margin: -11% 0% 0% -7%;
             cursor: pointer;
-            box-shadow: 0px 30px 0px 0px rgba(255, 255, 255, 1), 0px 0px 30px 1px rgba(0, 0, 0, 0.3);
+            box-shadow:0px 0px 30px 1px rgba(0, 0, 0, 0.3);
             border: 1px solid #666666;
         }
     }
@@ -539,36 +539,40 @@ body {
 /** registration.modal **/
 .registration, .login {
     &.modal {
-        width: 20%;
-        left: 45%;
-        top: 15% !important;
+        width: 30%;
+        left: 35%;
+        top: 20% !important;
         margin: 0% auto;
-        max-height: 420px;
-        h4 {
-            font-size: 130%;
-            text-align: center;
-            margin: 5% 0px;
-        }
-        form {
-            width: 100%;
-            p {
-                margin: 5% 15%;
-                font-size: 100%;
+        height: auto;
+        .modal-body {    
+            height: auto;
+            max-height: 100%;
+            h4 {
+                font-size: 130%;
+                text-align: center;
+                margin: 5% 0px;
             }
-        }
-        input.ng-invalid:not(.ng-pristine) {
-            color: #b94a48;
-            border-color: #ee5f5b;
-            border-color: #e9322d !important;
-            -webkit-box-shadow: 0 0 6px #f8b9b7 !important;
-            -moz-box-shadow: 0 0 6px #f8b9b7 !important;
-            box-shadow: 0 0 6px #f8b9b7 !important;
+            form {
+                width: 100%;
+                p {
+                    margin: 5% 20%;
+                    font-size: 100%;
+                }
+            }
+            input.ng-invalid:not(.ng-pristine) {
+                color: #b94a48;
+                border-color: #ee5f5b;
+                border-color: #e9322d !important;
+                -webkit-box-shadow: 0 0 6px #f8b9b7 !important;
+                -moz-box-shadow: 0 0 6px #f8b9b7 !important;
+                box-shadow: 0 0 6px #f8b9b7 !important;
+            }
         }
     }
 }
-.registration {
+.login {
     &.modal {
-        height: 70% !important;
+        top: 30% !important;
     }
 }
 
