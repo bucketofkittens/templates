@@ -44,10 +44,10 @@ body header .social a:last-child{background-position:100% 0}
 #content .pronear{display:inline-block;width:12%;height:auto;position:absolute;right:0;top:7.5%;padding:1% 0 1% 0;margin-top:-1%;overflow:hidden;background:#fff;border-left:1px solid #ccc}#content .pronear span{display:block;margin:0 auto 1% auto;width:0;height:0;border-style:solid;border-width:0 15px 15px 15px;border-color:transparent transparent #000 transparent}
 #content .pronear a:last-child span{border-width:15px 15px 0 15px;border-color:#000 transparent transparent transparent;margin:1% auto 0 auto}
 #content .pronear .ph{margin:0 auto;width:70%}#content .pronear .ph a{display:block;margin:5% 0;border:1px solid #000}#content .pronear .ph a img{display:block}
-#content table#graphs{height:90%;width:90%;margin:0 auto;position:relative}#content table#graphs tr{height:9%}#content table#graphs tr td{vertical-align:top;text-align:center;border-top:1px solid #ccc;position:relative;line-height:350%}#content table#graphs tr td img{width:40%;margin-top:-5%}
-#content table#graphs tr td:first-child{border-top:none;border-right:1px solid #000;line-height:50%}
-#content table#graphs tr:last-child td:first-child{border-right:none}
-#content table#graphs tr:first-child td{border-top:none}
+#content table#graphs{height:90%;width:90%;margin:0 auto;position:relative}#content table#graphs tr{height:9%}#content table#graphs tr td,#content table#graphs tr th{vertical-align:top;text-align:center;border-top:1px solid #ccc;position:relative;line-height:350%;height:100px}#content table#graphs tr td img,#content table#graphs tr th img{width:100px;margin-top:10%;position:relative}
+#content table#graphs tr th{border-top:none;border-right:1px solid #000;line-height:50% !important;width:10%}
+#content table#graphs tr:last-child th{border-right:none}
+#content table#graphs tr:first-child td,#content table#graphs tr th{border-top:none}
 .registration.modal,.login.modal{width:30%;left:35%;top:20% !important;margin:0 auto;height:auto}.registration.modal .modal-body,.login.modal .modal-body{height:auto;max-height:100%}.registration.modal .modal-body h4,.login.modal .modal-body h4{font-size:130%;text-align:center;margin:5% 0}
 .registration.modal .modal-body form,.login.modal .modal-body form{width:100%}.registration.modal .modal-body form p,.login.modal .modal-body form p{margin:5% 20%;font-size:100%}
 .registration.modal .modal-body input.ng-invalid:not(.ng-pristine),.login.modal .modal-body input.ng-invalid:not(.ng-pristine){color:#b94a48;border-color:#ee5f5b;border-color:#e9322d !important;-webkit-box-shadow:0 0 6px #f8b9b7 !important;-moz-box-shadow:0 0 6px #f8b9b7 !important;box-shadow:0 0 6px #f8b9b7 !important}

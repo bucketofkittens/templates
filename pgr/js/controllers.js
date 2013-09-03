@@ -124,8 +124,16 @@ function ProfileController($scope, $route, $routeParams, User, Needs, Profession
 		$scope.needSummUpdate();
 	});
 
+	$scope.$on('updateLegue', function() {
+		$scope.needSummUpdate();
+	});
+
 	$scope.$on('userCriteriaUpdate', function() {
 		$scope.userCriteriaUpdate();
+		$rootScope.$broadcast('needSummUpdate');
+		User.update_legue({id: AuthUser.get()}, {
+			points: {}
+		})
 	});
 
 	$scope.$on('updateUser', function() {
@@ -439,7 +447,7 @@ function CriteriaController($scope, Goals, Criterion, AuthUser, UserCriteriaValu
 					"criteria_value_guid": criteriaValue.sguid
 				}), function(data) {
 					$rootScope.$broadcast('userCriteriaUpdate');
-				});	
+				});
 			} else {
 				if(criteria.user_criteria_id) {
 					UserCriteriaValue.del({id: criteria.user_criteria_id}, {}, function(data) {
@@ -824,7 +832,17 @@ function GraphsController($scope, $rootScope, $route, $location, Leagues, User) 
 
 		angular.forEach($scope.leagues, function(value, key){
 			User.by_league({league_guid:value.league.sguid}, {}, function(v2, k2){
-				value.league.users = v2.splice(0,10);
+				var users = v2.splice(0,10);
+				if(users.length < 10) {
+					var i = 0;
+					for(i = users.length; i <= 10; i++) {
+						users.push({});
+					}
+				}
+				
+				value.league.users = users;
+
+
 			})
 		});
 	})
