@@ -109,7 +109,13 @@ function ProfileController($scope, $route, $routeParams, User, Needs, Profession
 		    if(a.user.login > b.user.login) return 1;
 		    return 0;
 		})
-		$scope.users = data;
+		var users = [];
+		angular.forEach(data, function(value, key){
+			if(value.user.published == 1) {
+				users.push(value);
+			}
+		});
+		$scope.users = users;
 	});
 
 	/**
