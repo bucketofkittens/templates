@@ -800,11 +800,20 @@ function MainController($scope, Leagues, User, AuthUser, $rootScope, Friendships
 }
 
 /** Контроллер графика */
-function GraphsController($scope, $rootScope, $route, $location) {
+function GraphsController($scope, $rootScope, $route, $location, Leagues, User) {
 	$.each($("#graphs tr"), function(key, value){
 		$.each($(value).find("td"), function(keyd, valued){
 			var a = 3;
 			$(valued).css("top", (a*keyd)+"px")
 		})
+	})
+
+	Leagues.query({}, {}, function(data){
+		$scope.leagues = data;
+		angular.forEach($scope.leagues, function(value, key){
+			User.by_league({league_guid:value.league.sguid}, {}, function(v2, k2){
+				value.users = v2;
+			})
+		});
 	})
 }
