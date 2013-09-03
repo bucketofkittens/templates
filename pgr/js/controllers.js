@@ -826,7 +826,7 @@ function GraphsController($scope, $rootScope, $route, $location, Leagues, User) 
 	setInterval(function() {
 		$.each($("#graphs tr"), function(key, value){
 			$.each($(value).find("td"), function(keyd, valued){
-				var a = 10;
+				var a = 5;
 				$(valued).css("top", (a*keyd)+"px")
 			})
 		})
