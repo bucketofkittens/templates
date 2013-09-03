@@ -832,7 +832,7 @@ function GraphsController($scope, $rootScope, $route, $location, Leagues, User) 
 	setInterval(function() {
 		$.each($("#graphs tr"), function(key, value){
 			$.each($(value).find("td"), function(keyd, valued){
-				var a = 5;
+				var a = 10;
 				$(valued).find("img").css("margin-top", (a*keyd)+"px")
 			})
 		})
@@ -843,7 +843,13 @@ function GraphsController($scope, $rootScope, $route, $location, Leagues, User) 
 
 		angular.forEach($scope.leagues, function(value, key){
 			User.by_league({league_guid:value.league.sguid}, {}, function(v2, k2){
-				var users = v2.splice(0,10);
+				var user2 = [];
+				angular.forEach(v2, function(value, key){
+					if(value.user.published == 1) {
+						user2.push(value);
+					}
+				});
+				var users = user2.splice(0,10);
 				if(users.length < 10) {
 					var i = 0;
 					for(i = users.length; i <= 10; i++) {
@@ -857,4 +863,20 @@ function GraphsController($scope, $rootScope, $route, $location, Leagues, User) 
 			})
 		});
 	})
+}
+
+/**
+ * 
+ * @param {[type]} $scope [description]
+ */
+function RightGalleryController($scope) {
+	$scope.slideStep = 180;
+	$scope.currentStep = 0;
+
+	$scope.onBottom = function() {
+		$scope.currentStep += $scope.slideStep;
+	}
+	$scope.onTop = function() {
+		$scope.currentStep -= $scope.slideStep;
+	}
 }

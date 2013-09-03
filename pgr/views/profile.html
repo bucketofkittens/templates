@@ -186,13 +186,13 @@
 	</div>
 </section>
 
-<section class="pronear" ng-if="userId">
-	<a href="#"><span></span></a>
-	<div class="ph">
+<section class="pronear" ng-if="userId" ng-controller="RightGalleryController">
+	<a ng-click="onTop"><span></span></a>
+	<div class="ph" style="top: -{{currentStep}}px;">
 		<a href="#/profile/{{userItem.user.sguid}}" ng-repeat="userItem in user.league.users | orderBy:'criterium.position'">
 			<img ng-if="userItem.user.avatar.full_path" src="{{userItem.user.avatar.full_path}}">
 			<img ng-if="!userItem.user.avatar.full_path" src="./images/unknown-person.png">
 		</a>
 	</div>
-	<a href="#"><span></span></a>
+	<a ng-click="onBottom"><span></span></a>
 </section>
