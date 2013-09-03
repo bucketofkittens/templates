@@ -88,7 +88,9 @@ function ProfileController($scope, $route, $routeParams, User, Needs, Profession
 	$scope.userId = $routeParams.userId;
 	$scope.user = null;
 	$scope.newImage = null;
-	$scope.needs = Needs.query({}, {}, function(data) {
+
+	Needs.query({}, {}, function(data) {
+		$scope.needs = data;
 		$rootScope.$broadcast('needsLoaded');
 	});
 	$scope.professions = Professions.query();
@@ -101,7 +103,7 @@ function ProfileController($scope, $route, $routeParams, User, Needs, Profession
 	$scope.isLeague = false;
 	$scope.nextUser = null;
 	$scope.users = User.get_all({}, {}, function(data) {
-		
+
 	});
 
 	/**
@@ -110,6 +112,10 @@ function ProfileController($scope, $route, $routeParams, User, Needs, Profession
 	 */
 	$scope.$on('needsLoaded', function() {
 		$scope.userCriteriaUpdate();
+	});
+
+	$scope.$on('needSummUpdate', function() {
+		$scope.needSummUpdate();
 	});
 
 	$scope.$on('userCriteriaUpdate', function() {
@@ -126,6 +132,17 @@ function ProfileController($scope, $route, $routeParams, User, Needs, Profession
 			ret.push(i);
 		}
 		return ret;
+	}
+
+	$scope.needSummUpdate = function() {
+		var summ = 0;
+		angular.forEach($scope.needs, function(value, key){
+			console.log(value);
+			summ += parseInt(value.current_value);
+		});
+
+		$scope.needs.summ = summ;
+		console.log($scope.needs);
 	}
 
 	$scope.getUserInfo = function() {
@@ -193,6 +210,8 @@ function ProfileController($scope, $route, $routeParams, User, Needs, Profession
 					}
 				});
 			});
+
+			$rootScope.$broadcast('needSummUpdate');
 		});
 
 		User.goals_points({id: $routeParams.userId}, {}, function(data) {
@@ -363,6 +382,7 @@ function CriteriaController($scope, Goals, Criterion, AuthUser, UserCriteriaValu
 				UserCriteriaValueByUser.query({id: $routeParams.userId}, {}, function(d) {
 					angular.forEach(d, function(userCriteriaItem, userCriteriaKey) {
 						angular.forEach(goal.goal.criteriums, function(criteriumsItem, criteriumsKey) {
+							console.log(criteriumsItem.criterium.criteria_values);
 							angular.forEach(criteriumsItem.criterium.criteria_values, function(criteriaValueItem, criteriaValueKey) {
 								if(
 									userCriteriaItem.user_criterion_value.criteria_value_sguid == criteriaValueItem.criteria_value.sguid &&
@@ -378,9 +398,6 @@ function CriteriaController($scope, Goals, Criterion, AuthUser, UserCriteriaValu
 			});	
 		}
 		
-
-
-
 		$($event.target).parent().find(".criterion").toggleClass("show");
 		
 	};
@@ -393,7 +410,7 @@ function CriteriaController($scope, Goals, Criterion, AuthUser, UserCriteriaValu
 	 * @return {[type]}          [description]
 	 */
 	$scope.onCliteriaSelect = function(criteriaValue, criteria, $event) {
-		if($scope.isCurrentUser) {
+		if($scope.isCurrentUser && !$($event.target).hasClass("current")) {
 			UserCriteriaValue.create({}, $.param({
 				"user_guid": AuthUser.get(),
 				"criteria_guid": criteria.sguid,

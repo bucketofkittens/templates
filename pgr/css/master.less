@@ -441,13 +441,15 @@ body {
                                 margin: 0%;
                                 max-height:0px;
                                 opacity: 0;
+
                                 &.show {
                                     max-height: 100%;
                                     opacity: 1;
                                     margin: 1% auto;
                                 }
                                 li {
-                                    margin: 3% auto;                                    
+                                    margin: 3% auto;   
+                                    border-bottom: 1px solid #666666;                                 
                                     p {
                                         color: #000000;
                                         font-size: 130%;
@@ -485,6 +487,7 @@ body {
                                                 z-index: 7;
                                                 position: relative;
                                                 padding: 2% 0%;
+                                                border: 0px;
                                                 &.white-text, &.current {
                                                     color: #ffffff;
                                                 }
@@ -669,6 +672,7 @@ body {
     }
 }
 
+/**
 .ng-enter, .ng-leave {
   -webkit-transition:0.5s linear all;
   -moz-transition:0.5s linear all;
@@ -687,7 +691,7 @@ body {
 .ng-hide {
   display:none!important;
 }
-
+**/
 #main_nav {
     position: absolute;
     left: 0px;
