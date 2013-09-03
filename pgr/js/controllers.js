@@ -102,8 +102,14 @@ function ProfileController($scope, $route, $routeParams, User, Needs, Profession
 	$scope.isAchievements = false;
 	$scope.isLeague = false;
 	$scope.nextUser = null;
-	$scope.users = User.get_all({}, {}, function(data) {
 
+	User.get_all({}, {}, function(data) {
+		data.sort(function(a, b){
+		    if(a.user.login < b.user.login) return -1;
+		    if(a.user.login > b.user.login) return 1;
+		    return 0;
+		})
+		$scope.users = data;
 	});
 
 	/**
@@ -815,9 +821,10 @@ function GraphsController($scope, $rootScope, $route, $location, Leagues, User) 
 
 	Leagues.query({}, {}, function(data){
 		$scope.leagues = data;
+
 		angular.forEach($scope.leagues, function(value, key){
 			User.by_league({league_guid:value.league.sguid}, {}, function(v2, k2){
-				value.users = v2;
+				value.league.users = v2.splice(0,10);
 			})
 		});
 	})
