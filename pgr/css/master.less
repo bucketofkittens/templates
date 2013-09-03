@@ -575,7 +575,7 @@ body {
         position: relative;
         tr {
             height: 9%;
-            td {
+            td, th {
                 vertical-align: top;
                 text-align: center;
                 border-top: 1px solid #cccccc;
@@ -585,16 +585,16 @@ body {
                     width: 40%;     
                     margin-top: -5%; 
                 }
-                &:first-child {
-                    border-top: none;
-                    border-right: 1px solid #000000;
-                    line-height: 50%;
-                }
             }
-            &:last-child td:first-child {
+            th {
+                border-top: none;
+                border-right: 1px solid #000000;
+                line-height: 50% !important;
+            }
+            &:last-child th {
                 border-right: none;
             }
-            &:first-child td {
+            &:first-child td, th {
                 border-top: none;
             }
         }
