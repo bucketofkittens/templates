@@ -37,7 +37,7 @@
 		</tr>
 		<tr ng-repeat="(lKey,lItem) in leagues | orderBy:'league.position':true"	>
 			<th>
-				{{lItem.league.position*10000}}
+				{{(lItem.league.position+1)*10000}}
 			</th>
 			<td ng-repeat="(uKey,uItem) in lItem.league.users">
 				<a href="#/profile/{{uItem.user.sguid}}">
