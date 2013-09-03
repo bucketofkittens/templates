@@ -827,7 +827,7 @@ function GraphsController($scope, $rootScope, $route, $location, Leagues, User) 
 		$.each($("#graphs tr"), function(key, value){
 			$.each($(value).find("td"), function(keyd, valued){
 				var a = 5;
-				$(valued).css("top", (a*keyd)+"px")
+				$(valued).find("img").css("margin-top", (a*keyd)+"px")
 			})
 		})
 	}, 100);
