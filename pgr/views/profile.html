@@ -189,7 +189,9 @@
 <section class="pronear" ng-if="userId">
 	<a href="#"><span></span></a>
 	<div class="ph">
-		<a href="#/profile/{{userItem.user.sguid}}" ng-repeat="userItem in user.league.users | orderBy:'criterium.position'"><img src="{{userItem.user.avatar.full_path}}"></a>
+		<a href="#/profile/{{userItem.user.sguid}}" ng-repeat="userItem in user.league.users | orderBy:'criterium.position'">
+		<img src="{{userItem.user.avatar.full_path}}">
+	</a>
 	</div>
 	<a href="#"><span></span></a>
 </section>
