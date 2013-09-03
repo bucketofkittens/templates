@@ -42,7 +42,6 @@ pgrModule.factory('User', function ($resource) {
                 isArray: true,
                 url: host+"/users/by_league/:league_guid",
                 transformResponse: function (data) {
-                    
                     if(data) {
                         var users = angular.fromJson(data);
 
@@ -54,9 +53,11 @@ pgrModule.factory('User', function ($resource) {
 
                         return users; 
                     }
-                    
-                    
                 }
+            },
+            "update_legue": {
+                url: host+"/users/:id/league",
+                method: "POST"
             },
             "needs_points": {
                 method: 'GET',

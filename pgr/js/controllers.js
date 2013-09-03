@@ -456,7 +456,12 @@ function CriteriaController($scope, Goals, Criterion, AuthUser, UserCriteriaValu
 		parentUl.find("li").removeClass("current");
 		parentLi.addClass("current");
 
-		slider.css("width", parentUl.get(0).clientWidth - parentLi.get(0).offsetLeft - parentLi.get(0).clientWidth + "px");
+		if(parentLi.index() != 0) {
+			slider.css("width", parentUl.get(0).clientWidth - parentLi.get(0).offsetLeft - parentLi.get(0).clientWidth + "px");
+		} else {
+			slider.css("width", "95%");
+		}
+		
 
 		var isCurrent = false;
 		$.each(parentUl.find("li"), function(key, value) {
