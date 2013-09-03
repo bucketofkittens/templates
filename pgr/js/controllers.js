@@ -801,5 +801,10 @@ function MainController($scope, Leagues, User, AuthUser, $rootScope, Friendships
 
 /** Контроллер графика */
 function GraphsController($scope, $rootScope, $route, $location) {
-	
+	$.each($("#graphs tr"), function(key, value){
+		$.each($(value).find("td"), function(keyd, valued){
+			var a = 3;
+			$(valued).css("top", (a*keyd)+"px")
+		})
+	})
 }
