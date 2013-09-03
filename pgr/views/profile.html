@@ -190,8 +190,9 @@
 	<a href="#"><span></span></a>
 	<div class="ph">
 		<a href="#/profile/{{userItem.user.sguid}}" ng-repeat="userItem in user.league.users | orderBy:'criterium.position'">
-		<img src="{{userItem.user.avatar.full_path}}">
-	</a>
+			<img ng-if="userItem.user.avatar.full_path" src="{{userItem.user.avatar.full_path}}">
+			<img ng-if="!userItem.user.avatar.full_path" src="./images/unknown-person.png">
+		</a>
 	</div>
 	<a href="#"><span></span></a>
 </section>
