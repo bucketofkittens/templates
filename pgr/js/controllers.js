@@ -823,12 +823,14 @@ function MainController($scope, Leagues, User, AuthUser, $rootScope, Friendships
 
 /** Контроллер графика */
 function GraphsController($scope, $rootScope, $route, $location, Leagues, User) {
-	$.each($("#graphs tr"), function(key, value){
-		$.each($(value).find("td"), function(keyd, valued){
-			var a = 3;
-			$(valued).css("top", (a*keyd)+"px")
+	setInterval(function() {
+		$.each($("#graphs tr"), function(key, value){
+			$.each($(value).find("td"), function(keyd, valued){
+				var a = 10;
+				$(valued).css("top", (a*keyd)+"px")
+			})
 		})
-	})
+	}, 100);
 
 	Leagues.query({}, {}, function(data){
 		$scope.leagues = data;

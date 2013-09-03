@@ -598,7 +598,10 @@ body {
             &:last-child th {
                 border-right: none;
             }
-            &:first-child td, th {
+            &:first-child td, &:first-child th {
+                border-top: none;
+            }
+            &:last-child td {
                 border-top: none;
             }
         }
