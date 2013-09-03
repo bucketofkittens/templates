@@ -134,15 +134,17 @@ function ProfileController($scope, $route, $routeParams, User, Needs, Profession
 		return ret;
 	}
 
+	/**
+	 * Считаем общую сумму балов юзера
+	 * @return {[type]} [description]
+	 */
 	$scope.needSummUpdate = function() {
 		var summ = 0;
 		angular.forEach($scope.needs, function(value, key){
-			console.log(value);
 			summ += parseInt(value.current_value);
 		});
 
 		$scope.needs.summ = summ;
-		console.log($scope.needs);
 	}
 
 	$scope.getUserInfo = function() {
@@ -370,6 +372,8 @@ function CriteriaController($scope, Goals, Criterion, AuthUser, UserCriteriaValu
      */
 	$scope.open = function (goalId, $event, needId, goal) {
 		if(!goal.goal.criteriums) {
+
+
 			/**
 			 * Обход циклом для получения всех значений для критерий.
 			 * Можно найти более прямое решение
@@ -378,16 +382,29 @@ function CriteriaController($scope, Goals, Criterion, AuthUser, UserCriteriaValu
 			 */
 			CriterionByGoal.query({id: goalId}, function(data) {
 				goal.goal.criteriums = data;
+				/**
+				 * добавляем пустой элемент
+				 */
+				angular.forEach(goal.goal.criteriums, function(criteriumsItem, criteriumsKey) {
+					criteriumsItem.criterium.criteria_values.splice(0,0, {
+						criteria_value: {
+							name: "none",
+							position: 0,
+							sguid: "none",
+							value: 0
+						}
+					});
+				});
 
 				UserCriteriaValueByUser.query({id: $routeParams.userId}, {}, function(d) {
 					angular.forEach(d, function(userCriteriaItem, userCriteriaKey) {
 						angular.forEach(goal.goal.criteriums, function(criteriumsItem, criteriumsKey) {
-							console.log(criteriumsItem.criterium.criteria_values);
 							angular.forEach(criteriumsItem.criterium.criteria_values, function(criteriaValueItem, criteriaValueKey) {
 								if(
 									userCriteriaItem.user_criterion_value.criteria_value_sguid == criteriaValueItem.criteria_value.sguid &&
 									userCriteriaItem.user_criterion_value.criteria_sguid == goal.goal.criteriums[criteriumsKey].criterium.sguid) {
-
+									criteriumsItem.criterium.user_criteria_id = userCriteriaItem.user_criterion_value.sguid;
+									
 									var currentElement = $('li[data-id="'+userCriteriaItem.user_criterion_value.criteria_sguid+'"] li[data-id="'+userCriteriaItem.user_criterion_value.criteria_value_sguid+'"]');
 									$scope.setCriteriaPosition(currentElement);
 								} 
@@ -399,9 +416,7 @@ function CriteriaController($scope, Goals, Criterion, AuthUser, UserCriteriaValu
 		}
 		
 		$($event.target).parent().find(".criterion").toggleClass("show");
-		
 	};
-
 
 
 	/**
@@ -411,29 +426,41 @@ function CriteriaController($scope, Goals, Criterion, AuthUser, UserCriteriaValu
 	 */
 	$scope.onCliteriaSelect = function(criteriaValue, criteria, $event) {
 		if($scope.isCurrentUser && !$($event.target).hasClass("current")) {
-			UserCriteriaValue.create({}, $.param({
-				"user_guid": AuthUser.get(),
-				"criteria_guid": criteria.sguid,
-				"criteria_value_guid": criteriaValue.sguid
-			}), function(data) {
-				
-				$rootScope.$broadcast('userCriteriaUpdate');
-			});	
-
-			$scope.setCriteriaPosition($($event.target));
+			if(criteriaValue.sguid !== "none") {
+				UserCriteriaValue.create({}, $.param({
+					"user_guid": AuthUser.get(),
+					"criteria_guid": criteria.sguid,
+					"criteria_value_guid": criteriaValue.sguid
+				}), function(data) {
+					$rootScope.$broadcast('userCriteriaUpdate');
+				});	
+			} else {
+				if(criteria.user_criteria_id) {
+					UserCriteriaValue.del({id: criteria.user_criteria_id}, {}, function(data) {
+						$rootScope.$broadcast('userCriteriaUpdate');
+					});	
+				} else {
+					$rootScope.$broadcast('userCriteriaUpdate');
+				}
+			}
+			var target = $event.target.tagName == "LI" ? $($event.target) : $($event.target).parent();
+			$scope.setCriteriaPosition(target);
 		}
 	}
 
 	$scope.setCriteriaPosition = function(elm) {
-		var slider = elm.parent().find("span");
+		var parentLi  = elm,
+			parentUl  = parentLi.parent(),
+		    slider = parentUl.find("span");
 
-		elm.parent().find("li").removeClass("current");
-		elm.addClass("current");
-		slider.css("width", elm.parent().get(0).clientWidth - elm.get(0).offsetLeft - elm.get(0).clientWidth);
+		parentUl.find("li").removeClass("current");
+		parentLi.addClass("current");
+
+		slider.css("width", parentUl.get(0).clientWidth - parentLi.get(0).offsetLeft - parentLi.get(0).clientWidth + "px");
 
 		var isCurrent = false;
-		$.each(elm.parent().find("li"), function(key, value) {
-			if(value == elm.get(0)) {
+		$.each(parentUl.find("li"), function(key, value) {
+			if(value == parentLi.get(0)) {
 				isCurrent = true;
 			}
 
@@ -444,6 +471,17 @@ function CriteriaController($scope, Goals, Criterion, AuthUser, UserCriteriaValu
 			}
 			
 		});
+	}
+
+	$scope.setCriteriaPositionNull = function(elm) {
+		var parentLi  = elm.parent(),
+			parentUl  = parentLi.parent(),
+		    slider = parentUl.find("span");
+
+		parentUl.find("li").removeClass("current").removeClass("white-text");
+		parentUl.find("li:eq(0)").addClass("current");
+
+		slider.css("width", "5%");
 	}
 
 	$scope.onShowGoals = function($event) {

@@ -163,10 +163,13 @@
 								<p>{{crItem.criterium.name}}</p>
 								<ul class="crp">
 									<div class="tab">
-										<li data-id="{{value.criteria_value.sguid}}" ng-click="onCliteriaSelect(value.criteria_value, crItem.criterium, $event)" 
+										<li data-id="{{value.criteria_value.sguid}}"  
 											ng-repeat="value in crItem.criterium.criteria_values | orderBy:'criteria_value.position'"  
-											class="{{value.user_criteria}} position_{{value.criteria_value.position}}">
-											{{value.criteria_value.name}}
+											class="{{value.user_criteria}} position_{{value.criteria_value.position}}" ng-click="onCliteriaSelect(value.criteria_value, crItem.criterium, $event)">
+
+											<i ng-if="value.criteria_value.sguid != 'none'">{{value.criteria_value.name}}</i>
+											<i ng-if="value.criteria_value.sguid == 'none'" class="null_criteria"></i>
+
 										</li>
 										<span>
 											<img src="../images/ar.png">
