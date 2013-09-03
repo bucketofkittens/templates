@@ -44,7 +44,7 @@ body header .social a:last-child{background-position:100% 0}
 #content .pronear{display:inline-block;width:12%;height:auto;position:absolute;right:0;top:7.5%;padding:1% 0 1% 0;margin-top:-1%;overflow:hidden;background:#fff;border-left:1px solid #ccc}#content .pronear span{display:block;margin:0 auto 1% auto;width:0;height:0;border-style:solid;border-width:0 15px 15px 15px;border-color:transparent transparent #000 transparent}
 #content .pronear a:last-child span{border-width:15px 15px 0 15px;border-color:#000 transparent transparent transparent;margin:1% auto 0 auto}
 #content .pronear .ph{margin:0 auto;width:70%}#content .pronear .ph a{display:block;margin:5% 0;border:1px solid #000}#content .pronear .ph a img{display:block}
-#content table#graphs{height:90%;width:90%;margin:0 auto;position:relative;table-layout:fixed}#content table#graphs tr{height:9%}#content table#graphs tr td,#content table#graphs tr th{vertical-align:top;text-align:center;border-top:1px solid #ccc;position:relative;line-height:350%;height:100px}#content table#graphs tr td img,#content table#graphs tr th img{width:100px;margin-top:10%;position:relative}
+#content table#graphs{height:90%;width:90%;margin:0 auto;position:relative;table-layout:fixed}#content table#graphs tr{height:9%}#content table#graphs tr td,#content table#graphs tr th{vertical-align:top;text-align:center;border-top:1px solid #ccc;position:relative;line-height:350%}#content table#graphs tr td img,#content table#graphs tr th img{width:90%}
 #content table#graphs tr th{border-top:none;border-right:1px solid #000;line-height:50% !important;width:10%}
 #content table#graphs tr:last-child th{border-right:none}
 #content table#graphs tr:first-child td,#content table#graphs tr:first-child th{border-top:none}
