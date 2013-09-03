@@ -131,9 +131,6 @@ function ProfileController($scope, $route, $routeParams, User, Needs, Profession
 	$scope.$on('userCriteriaUpdate', function() {
 		$scope.userCriteriaUpdate();
 		$rootScope.$broadcast('needSummUpdate');
-		User.update_legue({id: AuthUser.get()}, {
-			points: {}
-		})
 	});
 
 	$scope.$on('updateUser', function() {
@@ -159,6 +156,12 @@ function ProfileController($scope, $route, $routeParams, User, Needs, Profession
 		});
 
 		$scope.needs.summ = summ;
+
+		User.update_legue({id: AuthUser.get()}, {
+			points: summ
+		}, function(data) {
+			$scope.getUserInfo();
+		});
 	}
 
 	$scope.getUserInfo = function() {
