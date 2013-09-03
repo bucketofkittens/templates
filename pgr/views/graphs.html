@@ -1,40 +1,6 @@
 <table id="graphs">
 	<tbody>
-	<tr >
-			<th>
-				100000
-			</th>
-			<td >
-				
-			</td>
-			<td >
-				
-			</td>
-			<td >
-				
-			</td>
-			<td >
-				
-			</td>
-			<td >
-				
-			</td>
-			<td >
-				
-			</td>
-			<td >
-				
-			</td>
-			<td >
-				
-			</td>
-			<td >
-				
-			</td>
-			<td >
-				
-			</td>
-		</tr>
+	
 		<tr ng-repeat="(lKey,lItem) in leagues | orderBy:'league.position':true"	>
 			<th>
 				{{(lItem.league.position+1)*10000}}
@@ -45,6 +11,40 @@
 				</a>
 			</td>
 		</tr>
-
+		<tr>
+			<th>
+				0
+			</th>
+			<td >
+				
+			</td>
+			<td >
+				
+			</td>
+			<td >
+				
+			</td>
+			<td >
+				
+			</td>
+			<td >
+				
+			</td>
+			<td >
+				
+			</td>
+			<td >
+				
+			</td>
+			<td >
+				
+			</td>
+			<td >
+				
+			</td>
+			<td >
+				
+			</td>
+		</tr>
 	</tbody>
 </table>
