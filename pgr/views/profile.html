@@ -45,8 +45,12 @@
 									{{'_AddFrend_' | i18n}}
 								</button>
 							</span>
-						</span>
-							
+							<span>
+								<button ng-click="onCompare(user.sguid)">
+									{{'_Compare_' | i18n}}
+								</button>
+							</span>
+						</span>	
 					</span>
 				</p>			
 			</div>				
@@ -61,26 +65,25 @@
 					class="clean form-control" 
 					ng-model="user.name"
 					readonly="readonly"
-					placeholder="Batman"
 					required
 					ng-minlength="6"
 					ng-click="onElementClick($event)" />
 			</p>
 			<p>
-				<label for="email_i">E-mail:</label> 
+				<label for="email_i">{{'_EmaiL_' | i18n}}:</label> 
 				<input 
 					type="email" 
 					id="email_i" 
 					class="clean form-control" 
 					readonly="readonly"
 					ng-model="user.email"
-					placeholder="dccomics.com/batman"
 					required
-					ng-click="onElementClick($event)" /> 
+					ng-click="onElementClick($event)" />
 			</p>
 			<p>
-				<label for="age_i">Accounts:</label>
+				<label for="acc_i">{{'_AccL_' | i18n}}:</label>
 				<select 
+					id="acc_i"
 					ng-options="item.user.login for item in users" 
 					ng-model="nextUser" 
 					readonly="readonly"
@@ -108,7 +111,7 @@
 					ng-click="onElementClick($event)">
 				</select>
 			<p>
-				<label for="email_i">{{'_ProfL_' | i18n}}:</label>
+				<label for="pro_i">{{'_ProfL_' | i18n}}:</label>
 				<select 
 					ng-options="item.profession.sguid as item.profession.name for item in professions" 
 					ng-model="user.profession.sguid" 

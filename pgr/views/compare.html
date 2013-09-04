@@ -1,0 +1,170 @@
+<section class="promain comp" >
+	<div class="pmain pro nopro">
+		<div class="block">				
+			<span ng-switch on="isImage" >
+			  <span ng-switch-when="false">
+			    	<img class="pp" ng-class="{edit: isCurrentUser}" ng-click="onUpdateFile()" src="../images/user.png" />
+			  </span>
+			  <span ng-switch-default>
+			    	<img class="pp" ng-class="{edit: isCurrentUser}" ng-click="onUpdateFile()" src="{{user.avatar.full_path}}" />
+			  </span>
+			</span>
+
+			<div>
+				<p ng-if="user.league.name">{{user.league.name}}</p>
+				<p class="small" ng-if="!user.league">Fill Your profile to gain points</p>			
+				<!--<img ng-if="user.league.icon.full_path" src="{{user.league.icon.full_path}}" title="{{user.league.name}}" alt="{{user.league.name}}" /> -->
+				<i class="points" ng-if="user.points">{{user.points}} <b>{{'_PointsL_' | i18n}}</b></i>				
+			</div>
+		</div>
+
+		<div class="pmpar">
+			<p>
+				<label for="name_i">{{'_NameL_' | i18n}}:</label> 
+				<i>{{user.name_i}}</i>
+			</p>
+			<p>
+				<label for="email_i">{{'_EmaiL_' | i18n}}:</label> 
+				<i>{{user.e-mail_i}}</i> 
+			</p>
+			<p>
+				<label for="age_i">{{'_AgeL_' | i18n}}:</label>
+				<i>{{user.age_i}}</i>
+			</p>
+			<p>
+				<label for="loc_i">{{'_LocL_' | i18n}}:</label>
+				<i>{{user.loc_i}}</i>
+			<p>
+				<label for="pro_i">{{'_ProfL_' | i18n}}:</label>
+				<i>{{user.pro_i}}</i>
+			</p>
+
+			<div>
+				<h3>{{'_AchievL_' | i18n}}</h3>
+				<!--
+				<strong><img src="../images/ach.png"></strong>
+				<strong><img src="../images/ach.png"></strong>
+				<strong><img src="../images/ach.png"></strong>
+				<strong><img src="../images/ach.png"></strong>
+				<strong><img src="../images/ach.png"></strong>
+				-->
+			</div>
+		</div>
+	</div>	
+
+	<div class="pmain pro">
+		<div class="block">
+			<span ng-switch on="isImage" >
+			  <span ng-switch-when="false">
+			    	<img class="pp" ng-class="{edit: isCurrentUser}" ng-click="onUpdateFile()" src="../images/user.png" />
+			  </span>
+			  <span ng-switch-default>
+			    	<img class="pp" ng-class="{edit: isCurrentUser}" ng-click="onUpdateFile()" src="{{user.avatar.full_path}}" />
+			  </span>
+			</span>
+
+			<div>
+				<p ng-if="user.league.name">{{user.league.name}}</p>
+				<p class="small" ng-if="!user.league">Fill Your profile to gain points</p>			
+				<!--<img ng-if="user.league.icon.full_path" src="{{user.league.icon.full_path}}" title="{{user.league.name}}" alt="{{user.league.name}}" /> -->
+				<i class="points" ng-if="user.points">{{user.points}} <b>{{'_PointsL_' | i18n}}</b></i>				
+			</div>
+		</div>
+
+		<div class="pmpar">
+			<p>
+				<label for="name_i">{{'_NameL_' | i18n}}:</label> 
+				<i>{{user.name_i}}</i>
+			</p>
+			<p>
+				<label for="email_i">{{'_EmaiL_' | i18n}}:</label> 
+				<i>{{user.e-mail_i}}</i> 
+			</p>
+			<p>
+				<label for="age_i">{{'_AgeL_' | i18n}}:</label>
+				<i>{{user.age_i}}</i>
+			</p>
+			<p>
+				<label for="loc_i">{{'_LocL_' | i18n}}:</label>
+				<i>{{user.loc_i}}</i>
+			<p>
+				<label for="pro_i">{{'_ProfL_' | i18n}}:</label>
+				<i>{{user.pro_i}}</i>
+			</p>
+
+			<div>
+				<h3>{{'_AchievL_' | i18n}}</h3>
+				<!--
+				<strong><img src="../images/ach.png"></strong>
+				<strong><img src="../images/ach.png"></strong>
+				<strong><img src="../images/ach.png"></strong>
+				<strong><img src="../images/ach.png"></strong>
+				<strong><img src="../images/ach.png"></strong>
+				-->
+			</div>
+		</div>
+	</div>
+</section>
+
+<section class="procrit comp" ng-controller="CriteriaController" ng-class="{ noleague: !isLeague}">
+	<div class="white">
+		<ul> 
+			<li ng-repeat="(key,item) in needs | orderBy:'need.position'">
+				<div class="cr" ng-click="onShowGoals($event)">
+					<p>{{item.need.name}}</p>
+					<strong>
+						<b>{{item.current_value}} / {{item.need.points_summary}}</b>
+						<span class="current_position" style="width: {{(item.current_value / (item.need.points_summary ))*100}}%;"></span>
+						<span class="current_position du" style="width: {{(item.current_value / (item.need.points_summary ))*100}}%;"></span>
+					</strong>
+				</div> 
+				<ul>
+					<li ng-repeat="(subKey,subItem) in item.need.goals | orderBy:'goal.position'" >
+						<span><img src="../images/point.png"></span>
+						<a ng-click="open('{{subItem.goal.sguid}}', $event, '{{item.need.sguid}}', subItem)">{{subItem.goal.name}}</a>					
+						<strong>
+							<b>{{subItem.current_value}} / {{subItem.goal.points_summary}}</b>
+							<span class="current_position" style="width: {{(subItem.current_value / (subItem.goal.points_summary ))*100}}%;"></span>
+							<span class="current_position du" style="width: {{(subItem.current_value / (subItem.goal.points_summary ))*100}}%;"></span>
+						</strong>
+						<ul class="criterion">
+							<li data-id="{{crItem.criterium.sguid}}" ng-repeat="crItem in subItem.goal.criteriums | orderBy:'criterium.position'" >
+								<p>{{crItem.criterium.name}}</p>
+								<ul class="crp">
+									<div class="tab">
+										<li data-id="{{value.criteria_value.sguid}}"  
+											ng-repeat="value in crItem.criterium.criteria_values | orderBy:'criteria_value.position'"  
+											class="{{value.user_criteria}} position_{{value.criteria_value.position}}" ng-click="onCliteriaSelect(value.criteria_value, crItem.criterium, $event)">
+
+											<i ng-if="value.criteria_value.sguid != 'none'">{{value.criteria_value.name}}</i>
+											<i ng-if="value.criteria_value.sguid == 'none'" class="null_criteria"></i>
+
+										</li>
+										<span>
+											<img src="../images/ar.png">
+										</span>
+										<span class="du">
+											<img src="../images/ar.png">
+										</span>
+									</div>
+								</ul>
+							</li>
+						</ul>
+					</li>
+					
+				</ul>
+			</li>
+		</ul>
+	</div>
+</section>
+
+<section class="pronear" ng-controller="RightGalleryController">
+	<a ng-click="onTop"><span></span></a>
+	<div class="ph" style="top: -{{currentStep}}px;">
+		<a href="#/profile/{{userItem.user.sguid}}" ng-repeat="userItem in user.league.users | orderBy:'criterium.position'">
+			<img ng-if="userItem.user.avatar.full_path" src="{{userItem.user.avatar.full_path}}">
+			<img ng-if="!userItem.user.avatar.full_path" src="./images/unknown-person.png">
+		</a>
+	</div>
+	<a ng-click="onBottom"><span></span></a>
+</section>

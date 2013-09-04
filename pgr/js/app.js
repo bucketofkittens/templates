@@ -17,5 +17,6 @@ pgrModule.config(['$routeProvider', function($routeProvider) {
 	$routeProvider.when('/logout', {resolve: {redirect: 'LogoutService'}} );
 	$routeProvider.when('/', {templateUrl: 'views/main.html', controller: MainController});
 	$routeProvider.when('/graphs', {templateUrl: 'views/graphs.html', controller: GraphsController});
+	$routeProvider.when('/compare/:id', {templateUrl: 'views/compare.html', controller: CompareController});
 	$routeProvider.otherwise({redirectTo: '/'});
 }]);

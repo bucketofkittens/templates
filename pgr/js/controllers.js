@@ -225,6 +225,9 @@ function ProfileController($scope, $route, $routeParams, User, Needs, Profession
 			});
 		});
 	}
+	$scope.onCompare = function(id) {
+		$location.path('/compare/'+id);
+	}
 
     /**
      * 
@@ -853,4 +856,9 @@ function RightGalleryController($scope) {
 	$scope.onTop = function() {
 		$scope.currentStep -= $scope.slideStep;
 	}
+}
+
+/** Контроллер сравнений */
+function CompareController($scope, $location) {	
+	
 }

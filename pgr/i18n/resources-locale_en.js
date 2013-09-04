@@ -20,6 +20,14 @@
         "value":"Name"
     },
     {
+        "key":"_EmaiL_",
+        "value":"E-mail"
+    },
+    {
+        "key":"_AccL_",
+        "value":"Accounts"
+    },
+    {
         "key":"_AgeL_",
         "value":"Age"
     },
@@ -86,5 +94,9 @@
     {
         "key":"_GRAPHS_",
         "value": "Graphs"
+    },
+    {
+        "key":"_Compare_",
+        "value": "Compare"
     }
 ]

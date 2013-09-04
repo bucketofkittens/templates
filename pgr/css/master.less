@@ -178,6 +178,8 @@ body {
                                 border-left: 1px solid #ffffff; 
                                 border-right: 1px solid #cccccc; 
                                 border-bottom: 1px solid #cccccc; 
+                                width: 49%;
+                                display: inline-block;
                             }
                         }
                     }
@@ -247,7 +249,8 @@ body {
                 width: 19%;
                 height: 100%;
                 background: #ffffff;
-                border-left: 1px solid #cccccc;
+                border: 1px solid #cccccc;
+                border-bottom: none;
                 box-shadow: 0px 30px 0px 0px rgba(255, 255, 255, 1), 0px 0px 30px 1px rgba(0, 0, 0, 0.3);
                 z-index: 3;
                 position: relative;
@@ -300,8 +303,8 @@ body {
     .procrit {
         margin: 0% 1.5%;
         background: #ffffff;
-        border-top: 1px solid #cccccc;
-        border-left: 1px solid #cccccc;
+        border: 1px solid #cccccc;
+        border-bottom: none;
         box-shadow: 0px 0px 40px 0px rgba(0, 0, 0, 0.3);
         width: 85%;
         height: auto;
@@ -569,6 +572,38 @@ body {
                 }
             }
         }
+    }
+
+    /** Compare **/
+    .comp {
+        .pmain {
+            width: 45%;
+            padding: 2% 1%;
+            &.nopro {   
+                padding-bottom: 20%;
+                margin-bottom: -20%;
+                background: #ffffff;
+                border: 1px solid #cccccc;
+                border-bottom: none;
+                box-shadow: 0px 30px 0px 0px rgba(255, 255, 255, 1), 0px 0px 30px 1px rgba(0, 0, 0, 0.3);
+                z-index: 3;
+                position: relative; 
+            }               
+            label {                    
+                cursor: pointer;
+            }
+            i {                        
+                width: 55%;
+                height: 100%;
+                line-height: 100%;
+                cursor: pointer;
+            }
+        }    
+        .white{
+            .du {
+                background: #cccccc;
+            }
+        }        
     }
 
     /** GRAPHS **/
