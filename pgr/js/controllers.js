@@ -437,6 +437,7 @@ function CriteriaController($scope, Goals, Criterion, AuthUser, UserCriteriaValu
 									userCriteriaItem.user_criterion_value.criteria_value_sguid == criteriaValueItem.sguid &&
 									userCriteriaItem.user_criterion_value.criteria_sguid == goal.criteriums[criteriumsKey].sguid) {
 									criteriumsItem.user_criteria_sguid = userCriteriaItem.user_criterion_value.criteria_value_sguid;
+									criteriumsItem.user_criteria_id = userCriteriaItem.user_criterion_value.sguid;
 									
 									var currentElement = $('li[data-id="'+userCriteriaItem.user_criterion_value.criteria_sguid+'"] li[data-id="'+userCriteriaItem.user_criterion_value.criteria_value_sguid+'"]');
 									$scope.setCriteriaPosition(currentElement);
@@ -466,6 +467,7 @@ function CriteriaController($scope, Goals, Criterion, AuthUser, UserCriteriaValu
 					"criteria_guid": criteria.sguid,
 					"criteria_value_guid": criteriaValue.sguid
 				}), function(data) {
+					criteria.user_criteria_id = data.message.sguid;
 					$rootScope.$broadcast('userCriteriaUpdate');
 				});
 			} else {
@@ -491,6 +493,7 @@ function CriteriaController($scope, Goals, Criterion, AuthUser, UserCriteriaValu
 		var fCriteriumValue = fCriterium[0].criteria_values.filter(function(value) {
 			return value.sguid == fCriterium[0].user_criteria_sguid;
 		});
+
 		var currentValue = fCriteriumValue[0].value;
 
 		if(currentValue != criteriaValue.value) {
@@ -504,6 +507,7 @@ function CriteriaController($scope, Goals, Criterion, AuthUser, UserCriteriaValu
 		}
 
 		fCriterium[0].user_criteria_sguid = criteriaValue.sguid;
+		
 	}
 
 	$scope.setCriteriaPosition = function(elm) {
@@ -520,7 +524,6 @@ function CriteriaController($scope, Goals, Criterion, AuthUser, UserCriteriaValu
 			slider.css("width", "95%");
 		}
 		
-
 		var isCurrent = false;
 		$.each(parentUl.find("li"), function(key, value) {
 			if(value == parentLi.get(0)) {
