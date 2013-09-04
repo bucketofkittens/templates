@@ -1,7 +1,7 @@
 <section id="main_leagues">
 	<ul class="league_">
 		<li ng-repeat="(userKey, userItem) in viewedUsers">
-			<a ng-if="userItem.user.avatar" href="#/profile/{{userItem.user.sguid}}" >
+			<a ng-if="userItem.user.avatar && userItem.user.published" href="#/profile/{{userItem.user.sguid}}" >
 				<img src="{{userItem.user.avatar.full_path}}" cells="{{cells}}" alt="" paralax-image />
 			</a>
 		</li>
