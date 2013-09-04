@@ -917,6 +917,13 @@ function RightGalleryController($scope) {
 }
 
 /** Контроллер сравнений */
-function CompareController($scope, $location) {	
-	
+function CompareController($scope, $location, User, $routeParams) {	
+	$scope.user = false;
+	$scope.getUserInfo = function() {
+		User.query({id: $routeParams.id}, function(data) {
+		 	$scope.user = data;
+		 	console.log($scope.user)		 	
+		});
+	}
+	$scope.getUserInfo()
 }
