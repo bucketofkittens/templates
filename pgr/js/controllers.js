@@ -462,7 +462,7 @@ function CriteriaController($scope, Goals, Criterion, AuthUser, UserCriteriaValu
 	 * @param  {[type]} criteria [description]
 	 * @return {[type]}          [description]
 	 */
-	$scope.onCliteriaSelect = function(criteriaValue, criteria, $event) {
+	$scope.onCriteriaSelect = function(criteriaValue, criteria, $event) {
 		if($scope.isCurrentUser && !$($event.target).hasClass("current")) {
 			if(criteriaValue.sguid !== "none") {
 				UserCriteriaValue.create({}, $.param({
