@@ -5,10 +5,10 @@
 			<th>
 				{{(lItem.league.position+1)*10000}}
 			</th>
-			<td ng-repeat="(uKey,uItem) in lItem.league.users">
+			<td ng-repeat="(uKey,uItem) in lItem.league.users" data-points="{{uItem.user.points}}" data-step="{{lItem.league.position}}">
 				<a ng-if="uItem.user" href="#/profile/{{uItem.user.sguid}}">
-					<img ng-if="uItem.user.avatar.full_path" src="{{uItem.user.avatar.full_path}}" />
-					<img ng-if="!uItem.user.avatar.full_path" src="./images/unknown-person.png" />	
+					<img style="z-index: {{lItem.league.position}};" ng-if="uItem.user.avatar.full_path" src="{{uItem.user.avatar.full_path}}" />
+					<img style="z-index: {{lItem.league.position}};"ng-if="!uItem.user.avatar.full_path" src="./images/unknown-person.png" />	
 				</a>
 			</td>
 		</tr>

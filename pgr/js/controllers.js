@@ -885,7 +885,18 @@ function GraphsController($scope, $rootScope, $route, $location, Leagues, User) 
 		$.each($("#graphs tr"), function(key, value){
 			$.each($(value).find("td"), function(keyd, valued){
 				var a = 10;
-				$(valued).find("img").css("margin-top", (a*keyd)+"px")
+				var points = $(valued).attr("data-points");
+				var step = ($(valued).attr("data-step")+1)*1000;
+				if(points) {
+					if(points != 0) {
+						$(valued).find("img").css("top", (step/points*100)+"%");
+					} else {
+						$(valued).find("img").css("top", "100%");
+					}
+				} else {
+					$(valued).find("img").css("top", "100%");
+				}
+				
 			})
 		})
 	}, 100);
