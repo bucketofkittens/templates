@@ -102,6 +102,7 @@ function ProfileController($scope, $route, $routeParams, User, Needs, Profession
 	$scope.isAchievements = false;
 	$scope.isLeague = false;
 	$scope.nextUser = null;
+	$scope.userId = AuthUser.get();
 
 	/**
 	 * список всех пользователей
@@ -400,7 +401,8 @@ function CriteriaController($scope, Goals, Criterion, AuthUser, UserCriteriaValu
      * @param  {[type]} goalId [description]
      * @return {[type]}        [description]
      */
-	$scope.open = function ($event, need, goal) {
+	$scope.open = function ($event, need, goal, userId) {
+		console.log(userId);
 		if(!goal.criteriums) {
 			$scope.currentGoal = goal;
 			$scope.currentNeed = need;
@@ -427,7 +429,7 @@ function CriteriaController($scope, Goals, Criterion, AuthUser, UserCriteriaValu
 					}
 				});
 
-				UserCriteriaValueByUser.query({id: $routeParams.userId}, {}, function(d) {
+				UserCriteriaValueByUser.query({id: userId}, {}, function(d) {
 					$scope.currentUserCriterias = d;
 
 					angular.forEach(d, function(userCriteriaItem, userCriteriaKey) {
@@ -928,6 +930,7 @@ function RightGalleryController($scope) {
 function CompareController($scope, $location, User, $routeParams, AuthUser, Needs, $rootScope) {	
 	$scope.user = false;
 	$scope.useri = false;
+	$scope.userId = AuthUser.get();
 	$scope.getUserInfo = function() {
 		User.query({id: $routeParams.id}, function(data) {
 		 	$scope.user = data;		 	
@@ -935,7 +938,15 @@ function CompareController($scope, $location, User, $routeParams, AuthUser, Need
 	}
 	$scope.getUseriInfo = function() {
 		User.query({id: AuthUser.get()}, function(data) {
-		 	$scope.useri = data;	
+		 	$scope.useri = data;
+		 	if($scope.useri.league) {
+				User.by_league({league_guid: $scope.useri.league.sguid}, {}, function(data) {
+					$scope.useri.league.users = data;
+					if($scope.useri.league.users.length > 0) {
+						$scope.useri.league.isUser = true;
+					}
+				});
+			}
 		});
 	}
 	$scope.getUserInfo();
@@ -945,4 +956,27 @@ function CompareController($scope, $location, User, $routeParams, AuthUser, Need
 		$scope.needs = data;
 		$rootScope.$broadcast('needsLoaded');
 	});
+	$scope.$on('needsLoaded', function() {
+		$scope.userCriteriaUpdate();
+	});
+	$scope.userCriteriaUpdate = function() {
+		User.needs_points({id: AuthUser.get()}, {}, function(data) {
+			angular.forEach(data, function(value, key) {
+				var fNeed = $scope.needs.filter(function (need) { return need.sguid == key });
+				if(fNeed[0]) {
+					fNeed[0].current_value = value;
+				}
+			});
+		});
+		User.goals_points({id: AuthUser.get()}, {}, function(data) {
+			angular.forEach(data, function(value, key){
+				angular.forEach($scope.needs, function(needVal, needKey){
+					var fGoal = $scope.needs[needKey].goals.filter(function (goal) { return goal.sguid == key });
+					if(fGoal[0]) {
+						fGoal[0].current_value = value;
+					}
+				});
+			});
+		});
+	}
 }
