@@ -99,7 +99,30 @@ pgrModule.factory('Needs', function ($resource) {
         host+'/needs/:id', 
         {id:'@id'}, 
         {
-            create: {method: 'POST'}
+            create: {method: 'POST'},
+            query: {
+                method: 'GET',
+                isArray: true,
+                /**
+                 * упрощаем массив с данными
+                 * @param  {[type]} data [description]
+                 * @return {[type]}      [description]
+                 */
+                transformResponse: function (data) {
+                    var rawNeeds = angular.fromJson(data);
+                    rawNeeds = rawNeeds.sort(function(a,b) {
+                        return a.need.position - b.need.position;
+                    });
+                    angular.forEach(rawNeeds, function(value, key){
+                        angular.forEach(value.need.goals, function(g_value, g_key) {
+                            rawNeeds[key].need.goals[g_key] = g_value.goal;
+                        });
+                        rawNeeds[key] = value.need;
+                    });
+                    
+                    return rawNeeds;
+                }
+            }
         }
     );
 });
@@ -196,7 +219,27 @@ pgrModule.factory('Criterion', function ($resource) {
 pgrModule.factory('CriterionByGoal', function ($resource) {
     return $resource(
         host+'/criterion/by_goal/:id', 
-        {id:'@id'}
+        {id:'@id'},
+        {
+            query: {
+                method: 'GET',
+                isArray: true,
+                transformResponse: function (data) {
+                    var rawCriterions = angular.fromJson(data);
+                    rawCriterions = rawCriterions.sort(function(a,b) {
+                        return a.criterium.position - b.criterium.position;
+                    });
+                    angular.forEach(rawCriterions, function(value, key){
+                        angular.forEach(value.criterium.criteria_values, function(c_value, c_key) {
+                            rawCriterions[key].criterium.criteria_values[c_key] = c_value.criteria_value;
+                        });
+                        rawCriterions[key] = value.criterium;
+                    });
+                    
+                    return rawCriterions;
+                }
+            }
+        }
     );
 });
 

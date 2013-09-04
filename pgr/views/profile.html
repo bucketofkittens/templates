@@ -143,36 +143,36 @@
 	</div>
 </section>
 
-<section class="procrit" ng-controller="CriteriaController" ng-if="userId" ng-class="{ noleague: !isLeague}">
+<section class="procrit" ng-controller="CriteriaController" ng-if="userId">
 	<div class="white">
 		<ul> 
-			<li ng-repeat="(key,item) in needs | orderBy:'need.position'">
+			<li ng-repeat="(needKey, needItem) in needs | orderBy:'position'">
 				<div class="cr" ng-click="onShowGoals($event)">
-					<p>{{item.need.name}}</p>
+					<p>{{needItem.name}}</p>
 					<strong>
-						<b>{{item.current_value}} / {{item.need.points_summary}}</b>
-						<span class="current_position" style="width: {{(item.current_value / (item.need.points_summary ))*100}}%;"></span>
+						<b>{{needItem.current_value}} / {{needItem.points_summary}}</b>
+						<span class="current_position" style="width: {{(needItem.current_value / (needItem.points_summary ))*100}}%;"></span>
 					</strong>
 				</div> 
 				<ul>
-					<li ng-repeat="(subKey,subItem) in item.need.goals | orderBy:'goal.position'" >
+					<li ng-repeat="(goalKey,goalItem) in needItem.goals | orderBy:'position'" >
 						<span><img src="../images/point.png"></span>
-						<a ng-click="open('{{subItem.goal.sguid}}', $event, '{{item.need.sguid}}', subItem)">{{subItem.goal.name}}</a>					
+						<a ng-click="open($event, needItem, goalItem)">{{goalItem.name}}</a>					
 						<strong>
-							<b>{{subItem.current_value}} / {{subItem.goal.points_summary}}</b>
-							<span class="current_position" style="width: {{(subItem.current_value / (subItem.goal.points_summary ))*100}}%;"></span>
+							<b>{{goalItem.current_value}} / {{goalItem.points_summary}}</b>
+							<span class="current_position" style="width: {{(goalItem.current_value / (goalItem.points_summary ))*100}}%;"></span>
 						</strong>
 						<ul class="criterion">
-							<li data-id="{{crItem.criterium.sguid}}" ng-repeat="crItem in subItem.goal.criteriums | orderBy:'criterium.position'" >
-								<p>{{crItem.criterium.name}}</p>
+							<li data-id="{{crItem.sguid}}" ng-repeat="crItem in goalItem.criteriums | orderBy:'position'" >
+								<p>{{crItem.name}}</p>
 								<ul class="crp">
 									<div class="tab">
-										<li data-id="{{value.criteria_value.sguid}}"  
-											ng-repeat="value in crItem.criterium.criteria_values | orderBy:'criteria_value.position'"  
-											class="{{value.user_criteria}} position_{{value.criteria_value.position}}" ng-click="onCliteriaSelect(value.criteria_value, crItem.criterium, $event)">
+										<li data-id="{{value.sguid}}"  
+											ng-repeat="value in crItem.criteria_values | orderBy:'criteria_value.position'"  
+											class="{{value.user_criteria}} position_{{value.position}}" ng-click="onCliteriaSelect(value, crItem, $event)">
 
-											<i ng-if="value.criteria_value.sguid != 'none'">{{value.criteria_value.name}}</i>
-											<i ng-if="value.criteria_value.sguid == 'none'" class="null_criteria"></i>
+											<i ng-if="value.sguid != 'none'">{{value.name}}</i>
+											<i ng-if="value.sguid == 'none'" class="null_criteria"></i>
 
 										</li>
 										<span>
@@ -195,7 +195,7 @@
 	<div class="ph" style="top: -{{currentStep}}px;">
 		<a href="#/profile/{{userItem.user.sguid}}" ng-repeat="userItem in user.league.users | orderBy:'criterium.position'">
 			<img ng-if="userItem.user.avatar.full_path" src="{{userItem.user.avatar.full_path}}">
-			<img ng-if="!userItem.user.avatar.full_path" src="./images/unknown-person.png">
+			<img ng-if="!userItem.user.avatar" src="./images/unknown-person.png">
 		</a>
 	</div>
 	<a ng-click="onBottom"><span></span></a>
