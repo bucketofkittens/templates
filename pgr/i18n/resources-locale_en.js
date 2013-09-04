@@ -74,5 +74,17 @@
     {
         "key":"_Update_",
         "value":"Update"
+    },
+    {
+        "key":"_AddFrend_",
+        "value": "Follow"
+    },
+    {
+        "key":"_RemoveFrend_",
+        "value": "Remove Frend"
+    },
+    {
+        "key":"_GRAPHS_",
+        "value": "Graphs"
     }
 ]

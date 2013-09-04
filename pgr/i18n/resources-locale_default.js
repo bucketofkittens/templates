@@ -77,7 +77,7 @@
     },
     {
         "key":"_AddFrend_",
-        "value": "Add Frend"
+        "value": "Follow"
     },
     {
         "key":"_RemoveFrend_",
