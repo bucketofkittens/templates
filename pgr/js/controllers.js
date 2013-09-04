@@ -882,21 +882,25 @@ function MainController($scope, Leagues, User, AuthUser, $rootScope, Friendships
 /** Контроллер графика */
 function GraphsController($scope, $rootScope, $route, $location, Leagues, User) {
 	setInterval(function() {
-		$.each($("#graphs tr"), function(key, value){
+		var key = 0;
+		$.each($("#graphs tr"), function(key, value){ 
+			key += 1;
 			$.each($(value).find("td"), function(keyd, valued){
 				var a = 10;
 				var points = $(valued).attr("data-points");
-				var step = ($(valued).attr("data-step")+1)*1000;
+				var step = ($(valued).attr("data-step"))*10000;
 				if(points) {
 					if(points != 0) {
-						$(valued).find("img").css("top", (step/points*100)+"%");
+						console.log(step-points);
+						$(valued).find("a").css("top", (step-points)/100+"%");
+						$(valued).find("a").attr("data-sp", (step-points)/100);
 					} else {
-						$(valued).find("img").css("top", "100%");
+						$(valued).find("a").css("top", "100%");
 					}
 				} else {
-					$(valued).find("img").css("top", "100%");
+					$(valued).find("a").css("top", "100%");
 				}
-				
+				$(valued).find("a").css("z-index", key);
 			})
 		})
 	}, 100);
