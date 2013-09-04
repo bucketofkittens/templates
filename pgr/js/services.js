@@ -313,19 +313,6 @@ pgrModule.factory('AuthUser', function ($cookieStore) {
     return new AuthUser();
 });
 
-/**
- * 
- * @param  {[type]} AuthUser  [description]
- * @param  {[type]} $location [description]
- * @return {[type]}           [description]
- */
-pgrModule.factory('LogoutService', function (AuthUser, $location, $rootScope) {
-    AuthUser.logout();
-
-    $location.path("/");
-    $rootScope.$broadcast('logout');
-});
-
 
 pgrModule.factory('UserCriteriaValue', function ($resource) {
     return $resource(

@@ -253,6 +253,7 @@ function ProfileController($scope, $route, $routeParams, User, Needs, Profession
 			});
 		});
 	}
+
 	$scope.onCompare = function(id) {
 		$location.path('/compare/'+id);
 	}
@@ -719,6 +720,12 @@ function LoginController($scope, Sessions, $rootScope, AuthUser) {
 		$rootScope.$broadcast('registrationModalShow');
 	}
 
+	$scope.onSubmit = function($event) {
+		if($scope.form.$valid) {
+			$scope.onSingin();
+		}
+	}
+
 	/**
      * 
      * @returns {undefined}
@@ -979,4 +986,11 @@ function CompareController($scope, $location, User, $routeParams, AuthUser, Need
 			});
 		});
 	}
+}
+
+function LogoutController($scope, AuthUser, $location, $rootScope) {
+    AuthUser.logout();
+    
+    $location.path("/");
+    $rootScope.$broadcast('logout');
 }
