@@ -144,7 +144,7 @@
 	</div>
 </section>
 
-<section class="procrit" ng-controller="CriteriaController" ng-if="userId">
+<section class="procrit" ng-controller="CriteriaController" ng-if="needs">
 	<div class="white">
 		<ul> 
 			<li ng-repeat="(needKey, needItem) in needs | orderBy:'position'">
