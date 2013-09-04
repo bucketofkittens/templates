@@ -168,7 +168,7 @@
 								<ul class="crp">
 									<div class="tab">
 										<li data-id="{{value.sguid}}"  
-											ng-repeat="value in crItem.criteria_values | orderBy:'criteria_value.position'"  
+											ng-repeat="value in crItem.criteria_values | orderBy:'position'"  
 											class="{{value.user_criteria}} position_{{value.position}}" ng-click="onCliteriaSelect(value, crItem, $event)">
 
 											<i ng-if="value.sguid != 'none'">{{value.name}}</i>
