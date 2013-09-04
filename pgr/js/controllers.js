@@ -946,6 +946,7 @@ function CompareController($scope, $location, User, $routeParams, AuthUser, Need
 	$scope.getUseriInfo = function() {
 		User.query({id: AuthUser.get()}, function(data) {
 		 	$scope.useri = data;
+		 	console.log($scope.useri);
 		 	if($scope.useri.league) {
 				User.by_league({league_guid: $scope.useri.league.sguid}, {}, function(data) {
 					$scope.useri.league.users = data;
