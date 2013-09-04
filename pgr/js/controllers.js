@@ -126,17 +126,19 @@ function ProfileController($scope, $route, $routeParams, User, Needs, Profession
 		$scope.userCriteriaUpdate();
 	});
 
-	$scope.$on('needSummUpdate', function() {
-		$scope.needSummUpdate();
-	});
-
 	$scope.$on('updateLegue', function() {
-		$scope.needSummUpdate();
+		console.log($scope.user.points);
+		User.update_legue({id: AuthUser.get()}, {
+			points: $scope.user.points
+		}, function(data) {
+			$scope.getUserInfo();
+		});
 	});
 
 	$scope.$on('userCriteriaUpdate', function() {
 		$scope.userCriteriaUpdate();
-		$rootScope.$broadcast('needSummUpdate');
+		$rootScope.$broadcast('updateUser');
+		$rootScope.$broadcast('updateLegue');
 	});
 
 	$scope.$on('updateUser', function() {
@@ -149,25 +151,6 @@ function ProfileController($scope, $route, $routeParams, User, Needs, Profession
 			ret.push(i);
 		}
 		return ret;
-	}
-
-	/**
-	 * Считаем общую сумму балов юзера
-	 * @return {[type]} [description]
-	 */
-	$scope.needSummUpdate = function() {
-		var summ = 0;
-		angular.forEach($scope.needs, function(value, key){
-			summ += parseInt(value.current_value);
-		});
-
-		$scope.needs.summ = summ;
-
-		User.update_legue({id: AuthUser.get()}, {
-			points: summ
-		}, function(data) {
-			$scope.getUserInfo();
-		});
 	}
 
 	$scope.getUserInfo = function() {
@@ -226,17 +209,8 @@ function ProfileController($scope, $route, $routeParams, User, Needs, Profession
 					if($scope.needs[needKey].need.sguid == key) {
 						$scope.needs[needKey].current_value = value;
 					}
-					if(!$scope.user.points) {
-						$scope.user.points = 0;
-					}
-					
-					if(typeof(value) == 'number') {
-						$scope.user.points += value;
-					}
 				});
 			});
-
-			$rootScope.$broadcast('needSummUpdate');
 		});
 
 		User.goals_points({id: $routeParams.userId}, {}, function(data) {
