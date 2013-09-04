@@ -925,13 +925,24 @@ function RightGalleryController($scope) {
 }
 
 /** Контроллер сравнений */
-function CompareController($scope, $location, User, $routeParams) {	
+function CompareController($scope, $location, User, $routeParams, AuthUser, Needs, $rootScope) {	
 	$scope.user = false;
+	$scope.useri = false;
 	$scope.getUserInfo = function() {
 		User.query({id: $routeParams.id}, function(data) {
-		 	$scope.user = data;
-		 	console.log($scope.user)		 	
+		 	$scope.user = data;		 	
 		});
 	}
-	$scope.getUserInfo()
+	$scope.getUseriInfo = function() {
+		User.query({id: AuthUser.get()}, function(data) {
+		 	$scope.useri = data;	
+		});
+	}
+	$scope.getUserInfo();
+	$scope.getUseriInfo()
+
+	Needs.query({}, {}, function(data) {
+		$scope.needs = data;
+		$rootScope.$broadcast('needsLoaded');
+	});
 }
