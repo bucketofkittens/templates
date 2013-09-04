@@ -490,11 +490,16 @@ function CriteriaController($scope, Goals, Criterion, AuthUser, UserCriteriaValu
 		var fCriterium = $scope.currentGoal.criteriums.filter(function (criterium) { 
 			return criterium.sguid == criteria.sguid;
 		});
-		var fCriteriumValue = fCriterium[0].criteria_values.filter(function(value) {
-			return value.sguid == fCriterium[0].user_criteria_sguid;
-		});
 
-		var currentValue = fCriteriumValue[0].value;
+		var currentValue = 0;
+
+		if(fCriterium[0].user_criteria_sguid) {
+			var fCriteriumValue = fCriterium[0].criteria_values.filter(function(value) {
+				return value.sguid == fCriterium[0].user_criteria_sguid;
+			});
+		
+			currentValue = fCriteriumValue[0].value;	
+		} 
 
 		if(currentValue != criteriaValue.value) {
 			if(currentValue > criteriaValue.value) {
