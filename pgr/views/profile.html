@@ -157,7 +157,7 @@
 				<ul>
 					<li ng-repeat="(goalKey,goalItem) in needItem.goals | orderBy:'position'" >
 						<span><img src="../images/point.png"></span>
-						<a ng-click="open($event, needItem, goalItem, userId)">{{goalItem.name}}</a>					
+						<a ng-click="openCriteriumList($event, needItem, goalItem)">{{goalItem.name}}</a>					
 						<strong>
 							<b>{{goalItem.current_value}} / {{goalItem.points_summary}}</b>
 							<span class="current_position" style="width: {{(goalItem.current_value / (goalItem.points_summary ))*100}}%;"></span>

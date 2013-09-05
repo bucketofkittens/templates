@@ -367,46 +367,36 @@ function CriteriaController($scope, Goals, Criterion, AuthUser, UserCriteriaValu
      */
     Needs.query({}, {}, function(data) {
 		$scope.needs = data;
-		$rootScope.$broadcast('needsLoaded');
+		$scope.getCurrentUserData();
 	});
 
     $scope.currentGoal = null;
     $scope.currentNeed = null;
     $scope.currentUserCriterias = null;
 
-    $scope.userCriteriaUpdate = function() {
-		User.needs_points({id: $scope.currentUserId}, {}, function(data) {
-			console.log(data);
-			angular.forEach(data, function(value, key) {
-				var fNeed = $scope.needs.filter(function (need) { return need.sguid == key });
-				if(fNeed[0]) {
-					fNeed[0].current_value = value;
-				}
-			});
-		});
-
-		User.goals_points({id: $scope.currentUserId}, {}, function(data) {
-			angular.forEach(data, function(value, key){
-				angular.forEach($scope.needs, function(needVal, needKey){
-					var fGoal = $scope.needs[needKey].goals.filter(function (goal) { return goal.sguid == key });
-					if(fGoal[0]) {
-						fGoal[0].current_value = value;
-					}
+    /**
+     * Получаем зачение критериев пользователя
+     * @return {[type]} [description]
+     */
+    $scope.getCurrentUserData = function() {
+		User.needs_points({id: $scope.currentUserId}, {}, function(needsData) {
+			User.goals_points({id: $scope.currentUserId}, {}, function(goalsData) {
+				angular.forEach($scope.needs, function(needItem, needKey) {
+					needItem.current_value = needsData[needItem.sguid];
+					angular.forEach(needItem.goals, function(goalItem, goalKey){
+						goalItem.current_value = goalsData[goalItem.sguid];
+					});
 				});
 			});
 		});
 	}
-
-	$scope.$on('needsLoaded', function() {
-		$scope.userCriteriaUpdate();
-	});
 
     /**
      * 
      * @param  {[type]} goalId [description]
      * @return {[type]}        [description]
      */
-	$scope.open = function ($event, need, goal) {
+	$scope.openCriteriumList = function ($event, need, goal) {
 		if(!goal.criteriums) {
 			$scope.currentGoal = goal;
 			$scope.currentNeed = need;
