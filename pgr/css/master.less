@@ -137,7 +137,7 @@ body {
         background: #ffffff;
         border: 1px solid #cccccc;
         border-bottom: none; 
-        box-shadow: 0px 30px 0px 0px rgba(255, 255, 255, 1), 0px 0px 30px 1px rgba(0, 0, 0, 0.3);
+        box-shadow: /** 0px 30px 0px 0px rgba(255, 255, 255, 1), **/ 0px 0px 30px 1px rgba(0, 0, 0, 0.3);
         z-index: 3;
         position: relative;
         .hidden {
@@ -145,7 +145,6 @@ body {
         }
         .pmain {   
             display: inline-block;
-            margin: 0% 1%;
             vertical-align: top;
             width: 100%;
             &.pro {
@@ -248,8 +247,7 @@ body {
 
             &.league {
                 text-align: center;
-                padding-bottom: 20%;
-                margin: 3% 0% -20% 0%;
+                margin: 3% 0% 0% 0%;
                 width: 45%;
                 display: inline-block;
                 img {
@@ -294,59 +292,116 @@ body {
         }
     }
 
-    .procrit {
-        margin: 0% 1%;
+    /** CRITERIA **/
+    .crits {
+        display: block;
+        width: 100%;
+        height: 100%;
         background: #ffffff;
-        border: 1px solid #cccccc;
-        border-bottom: none;
-        box-shadow: 0px 0px 40px 0px rgba(0, 0, 0, 0.3);
-        width: 50%;
+        position: relative;
+        z-index: 5;
         height: auto;
         position: relative;
         transition: all 0.5s ease-out;
         -webkit-transition: all 0.5s ease-out;
-        .white {
-            display: block;
-            width: 100%;
-            height: 100%;
-            background: #ffffff;
+        ul {
+            text-align: center;
             position: relative;
-            z-index: 5;
-            ul {
-                text-align: center;
-                position: relative;
-                margin: 0% auto;
-                position: relative;
-                overflow: hidden;
-                li {
-                    margin: 1% auto;
-                    width: 96%;
+            margin: 0% auto;
+            position: relative;
+            overflow: hidden;
+            li {
+                margin: 1% auto;
+                width: 96%;
+                cursor: pointer;
+                .cr {
+                    background: rgb(117,159,210);
+                    background: -moz-linear-gradient(left, rgb(117,159,210) 0%, rgb(55,55,75) 100%, rgb(125,185,232) 100%);
+                    background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgb(117,159,210)), color-stop(100%,rgb(55,55,75)), color-stop(100%,rgb(125,185,232)));
+                    background: -webkit-linear-gradient(left, rgb(117,159,210) 0%,rgb(55,55,75) 100%,rgb(125,185,232) 100%);
+                    background: -o-linear-gradient(left, rgb(117,159,210) 0%,rgb(55,55,75) 100%,rgb(125,185,232) 100%);
+                    background: -ms-linear-gradient(left, rgb(117,159,210) 0%,rgb(55,55,75) 100%,rgb(125,185,232) 100%);
+                    background: linear-gradient(to right, rgb(117,159,210) 0%,rgb(55,55,75) 100%,rgb(125,185,232) 100%);
+                    line-height: 250%;
                     cursor: pointer;
-                    .cr {
-                        background: rgb(117,159,210);
-                        background: -moz-linear-gradient(left, rgb(117,159,210) 0%, rgb(55,55,75) 100%, rgb(125,185,232) 100%);
-                        background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgb(117,159,210)), color-stop(100%,rgb(55,55,75)), color-stop(100%,rgb(125,185,232)));
-                        background: -webkit-linear-gradient(left, rgb(117,159,210) 0%,rgb(55,55,75) 100%,rgb(125,185,232) 100%);
-                        background: -o-linear-gradient(left, rgb(117,159,210) 0%,rgb(55,55,75) 100%,rgb(125,185,232) 100%);
-                        background: -ms-linear-gradient(left, rgb(117,159,210) 0%,rgb(55,55,75) 100%,rgb(125,185,232) 100%);
-                        background: linear-gradient(to right, rgb(117,159,210) 0%,rgb(55,55,75) 100%,rgb(125,185,232) 100%);
-                        line-height: 250%;
-                        cursor: pointer;
-                        p {
-                            font-size: 150%;
-                            color: #ffffff;
-                            display: inline-block;
+                    p {
+                        font-size: 150%;
+                        color: #ffffff;
+                        display: inline-block;
+                        margin-top: 1%;
+                        width: 20%;
+                        text-align: left;
+                    }     
+                    strong {
+                        background: #ffffff;
+                        display: inline-block;
+                        line-height: 100%;
+                        width: 65%;
+                        position: relative;
+                        overflow: hidden;
+                        b {
+                            font-size: 120%;
+                            color: #000000;
+                            text-align: center;
+                            display: block;
                             margin-top: 1%;
-                            width: 20%;
+                            position: relative;
+                            z-index: 5;
+                        }
+                        span {
+                            position: absolute;
+                            left: 0%;
+                            top: 0%;
+                            height: 100%;
+                            display: block;
+                            background: #759fd2;
+                            transition: all 0.5s ease;
+                        }
+                    }               
+                }
+                ul {
+                    vertical-align: top;
+                    overflow: hidden;
+                    transition: all 1s ease-out;
+                    -webkit-transition: all 1s ease-out;
+                    position: relative;
+                    max-height: 0;
+                    opacity: 0;
+                    margin: 0%;
+                    padding: 0%;
+                    &.show {
+                        max-height: 100%;
+                        opacity: 1;
+                        margin: 0.5% auto;
+                    }
+                    li {
+                        display: block;
+                        width: 100%;
+                        margin: 1% auto;
+                        a {
+                            font-size: 120%;
+                            color: #000000;
+                            text-decoration: none;
+                            display: inline-block;
+                            width: 17%;
+                            vertical-align: middle;
                             text-align: left;
-                        }     
+                        }
+                        span {
+                            display: inline-block;
+                            vertical-align: middle;
+                            transition: all 0.5s ease;
+                            margin-right: 1%;
+                        }
                         strong {
                             background: #ffffff;
+                            border: 1px solid #cccccc;
                             display: inline-block;
                             line-height: 100%;
                             width: 65%;
                             position: relative;
                             overflow: hidden;
+                            margin-left: -1%;
                             b {
                                 font-size: 120%;
                                 color: #000000;
@@ -363,162 +418,98 @@ body {
                                 height: 100%;
                                 display: block;
                                 background: #759fd2;
-                                transition: all 0.5s ease;
                             }
-                        }               
-                    }
-                    ul {
-                        vertical-align: top;
-                        overflow: hidden;
-                        transition: all 1s ease-out;
-                        -webkit-transition: all 1s ease-out;
-                        position: relative;
-                        max-height: 0;
-                        opacity: 0;
-                        margin: 0%;
-                        padding: 0%;
-                        &.show {
-                            max-height: 100%;
-                            opacity: 1;
-                            margin: 0.5% auto;
                         }
-                        li {
-                            display: block;
-                            width: 100%;
-                            margin: 1% auto;
-                            a {
-                                font-size: 120%;
-                                color: #000000;
-                                text-decoration: none;
-                                display: inline-block;
-                                width: 17%;
-                                vertical-align: middle;
-                                text-align: left;
-                            }
-                            span {
-                                display: inline-block;
-                                vertical-align: middle;
-                                transition: all 0.5s ease;
-                                margin-right: 1%;
-                            }
-                            strong {
-                                background: #ffffff;
-                                border: 1px solid #cccccc;
-                                display: inline-block;
-                                line-height: 100%;
-                                width: 65%;
-                                position: relative;
-                                overflow: hidden;
-                                margin-left: -1%;
-                                b {
-                                    font-size: 120%;
-                                    color: #000000;
-                                    text-align: center;
-                                    display: block;
-                                    margin-top: 1%;
-                                    position: relative;
-                                    z-index: 5;
-                                }
-                                span {
-                                    position: absolute;
-                                    left: 0%;
-                                    top: 0%;
-                                    height: 100%;
-                                    display: block;
-                                    background: #759fd2;
-                                }
-                            }
-                            /** criterion **/
-                            .criterion {
-                                transition: all 1s ease-out;
-                                -webkit-transition: all 1s ease-out;
-                                overflow: hidden;
-                                margin: 0%;
-                                max-height:0px;
-                                opacity: 0;
+                        /** criterion **/
+                        .criterion {
+                            transition: all 1s ease-out;
+                            -webkit-transition: all 1s ease-out;
+                            overflow: hidden;
+                            margin: 0%;
+                            max-height:0px;
+                            opacity: 0;
 
-                                &.show {
+                            &.show {
+                                max-height: 100%;
+                                opacity: 1;
+                                margin: 0% auto;
+                            }
+                            li {
+                                margin: 1% auto;                             
+                                p {
+                                    color: #000000;
+                                    font-size: 100%;
+                                    display: inline-block;
+                                    width: 20%;
+                                    text-align: left;
+                                    vertical-align: middle;
+                                }
+                                .crp {
+                                    display: inline-block;
+                                    cursor: pointer;
+                                    margin: 0% auto;
+                                    background: rgb(117,159,210);
+                                    background: -moz-linear-gradient(left, rgb(117,159,210) 0%, rgb(55,55,75) 100%, rgb(125,185,232) 100%);
+                                    background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgb(117,159,210)), color-stop(100%,rgb(55,55,75)), color-stop(100%,rgb(125,185,232)));
+                                    background: -webkit-linear-gradient(left, rgb(117,159,210) 0%,rgb(55,55,75) 100%,rgb(125,185,232) 100%);
+                                    background: -o-linear-gradient(left, rgb(117,159,210) 0%,rgb(55,55,75) 100%,rgb(125,185,232) 100%);
+                                    background: -ms-linear-gradient(left, rgb(117,159,210) 0%,rgb(55,55,75) 100%,rgb(125,185,232) 100%);
+                                    background: linear-gradient(to right, rgb(117,159,210) 0%,rgb(55,55,75) 100%,rgb(125,185,232) 100%);
+                                    width: 65%;
+                                    vertical-align: middle;
+                                    overflow: hidden;
                                     max-height: 100%;
                                     opacity: 1;
-                                    margin: 0% auto;
-                                }
-                                li {
-                                    margin: 1% auto;                             
-                                    p {
-                                        color: #000000;
-                                        font-size: 100%;
-                                        display: inline-block;
-                                        width: 20%;
-                                        text-align: left;
-                                        vertical-align: middle;
-                                    }
-                                    .crp {
-                                        display: inline-block;
-                                        cursor: pointer;
-                                        margin: 0% auto;
-                                        background: rgb(117,159,210);
-                                        background: -moz-linear-gradient(left, rgb(117,159,210) 0%, rgb(55,55,75) 100%, rgb(125,185,232) 100%);
-                                        background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgb(117,159,210)), color-stop(100%,rgb(55,55,75)), color-stop(100%,rgb(125,185,232)));
-                                        background: -webkit-linear-gradient(left, rgb(117,159,210) 0%,rgb(55,55,75) 100%,rgb(125,185,232) 100%);
-                                        background: -o-linear-gradient(left, rgb(117,159,210) 0%,rgb(55,55,75) 100%,rgb(125,185,232) 100%);
-                                        background: -ms-linear-gradient(left, rgb(117,159,210) 0%,rgb(55,55,75) 100%,rgb(125,185,232) 100%);
-                                        background: linear-gradient(to right, rgb(117,159,210) 0%,rgb(55,55,75) 100%,rgb(125,185,232) 100%);
-                                        width: 65%;
-                                        vertical-align: middle;
-                                        overflow: hidden;
-                                        max-height: 100%;
-                                        opacity: 1;
-                                        .tab {
-                                            display: table;
-                                            width: 100%;
-                                            li {
-                                                display: table-cell;
-                                                color: #000000;
-                                                font-size: 80%;
-                                                width: auto;
-                                                margin: 0% auto;
-                                                line-height: 100%;
-                                                z-index: 7;
-                                                position: relative;
-                                                padding: 2% 0%;
-                                                border: 0px;
-                                                text-align: left;
-                                                &.white-text, &.current {
-                                                    color: #ffffff;
-                                                }
-                                                i {
-                                                    display: block;
-                                                    cursor: pointer;
-                                                    &.null_criteria {
-                                                        width: 50px;
-                                                        height: 100%;
-                                                    }
+                                    .tab {
+                                        display: table;
+                                        width: 100%;
+                                        li {
+                                            display: table-cell;
+                                            color: #000000;
+                                            font-size: 80%;
+                                            width: auto;
+                                            margin: 0% auto;
+                                            line-height: 100%;
+                                            z-index: 7;
+                                            position: relative;
+                                            padding: 2% 0%;
+                                            border: 0px;
+                                            text-align: left;
+                                            &.white-text, &.current {
+                                                color: #ffffff;
+                                            }
+                                            i {
+                                                display: block;
+                                                cursor: pointer;
+                                                &.null_criteria {
+                                                    width: 50px;
+                                                    height: 100%;
                                                 }
                                             }
-                                            span {
+                                        }
+                                        span {
+                                            position: absolute;
+                                            right: -1%;
+                                            top: 0%;
+                                            height: 100%;
+                                            display: block;
+                                            background: #ffffff;
+                                            width: 95%;
+                                            img {
                                                 position: absolute;
-                                                right: -1%;
+                                                left: -5%;
                                                 top: 0%;
                                                 height: 100%;
-                                                display: block;
-                                                background: #ffffff;
-                                                width: 95%;
-                                                img {
-                                                    position: absolute;
-                                                    left: -5%;
-                                                    top: 0%;
-                                                    height: 100%;
-                                                    width: 5%;
-                                                }
+                                                width: 5%;
                                             }
                                         }
                                     }
                                 }
-                            } 
-                        }
+                            }
+                        } 
                     }
-                } 
-            }        
+                }
+            }       
         }
     }
 
@@ -532,25 +523,6 @@ body {
         border-left: 1px solid #cccccc;
     }
 
-    /** Compare **/
-    .comp {        
-        .pmain {
-            i {                        
-                width: 55%;
-                height: 100%;
-                line-height: 100%;
-                cursor: pointer;
-            }
-        } 
-        &.noleague {
-            width: 100%;
-        }
-        .white{
-            .du {
-                background: #cccccc;
-            }
-        }        
-    }
 
     /** GRAPHS **/
     table#graphs {

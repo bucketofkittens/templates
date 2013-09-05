@@ -130,10 +130,8 @@
 			</div>
 		</div>
 	</div>
-</section>
 
-<section class="procrit" ng-controller="NeedsAndGoalsController" ng-init="currentUserId=routeUserId;isUpdateCriteria=true">
-	<div class="white">
+	<div class="crits" ng-controller="NeedsAndGoalsController" ng-init="currentUserId=routeUserId;isUpdateCriteria=true">
 		<ul> 
 			<li ng-repeat="(needKey, needItem) in needs | orderBy:'position'">
 				<div class="cr" ng-click="onShowGoals($event)">
