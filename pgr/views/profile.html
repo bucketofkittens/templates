@@ -53,7 +53,7 @@
 						</span>	
 					</span>
 				</p>			
-			</div>				
+			</div>		
 		</div>
 
 		<div class="pmpar">
@@ -120,27 +120,26 @@
 					ng-click="onElementClick($event)">
 				</select>
 			</p>
+
+	
+			<div class="pmain league">
+				<p ng-if="user.league.name">{{user.league.name}} league</p>
+				<p class="small" ng-if="!user.league && isCurrentUser">Fill Your profile to gain points</p>
+				<p class="small" ng-if="!user.league && !isCurrentUser">No league</p>
+				<!--<img ng-if="user.league.icon.full_path" src="{{user.league.icon.full_path}}" title="{{user.league.name}}" alt="{{user.league.name}}" /> -->
+				<i class="points" ng-if="user.points">{{user.points}} <b>{{'_PointsL_' | i18n}}</b></i>
+			</div>		
+			<div class="pmain achiev">
+				<h3>{{'_AchievL_' | i18n}}</h3>
+				<!--
+				<strong><img src="../images/ach.png"></strong>
+				<strong><img src="../images/ach.png"></strong>
+				<strong><img src="../images/ach.png"></strong>
+				<strong><img src="../images/ach.png"></strong>
+				<strong><img src="../images/ach.png"></strong>
+				-->
+			</div>
 		</div>
-	</div>
-	
-	<div class="pmain league">
-		<p ng-if="user.league.name">{{user.league.name}} league</p>
-		<p class="small" ng-if="!user.league && isCurrentUser">Fill Your profile to gain points</p>
-		<p class="small" ng-if="!user.league && !isCurrentUser">No league</p>
-	
-		<!--<img ng-if="user.league.icon.full_path" src="{{user.league.icon.full_path}}" title="{{user.league.name}}" alt="{{user.league.name}}" /> -->
-		<i class="points" ng-if="user.points">{{user.points}} <b>{{'_PointsL_' | i18n}}</b></i>
-		
-	</div>
-	<div class="pmain achiev">
-		<h3>{{'_AchievL_' | i18n}}</h3>
-		<!--
-		<strong><img src="../images/ach.png"></strong>
-		<strong><img src="../images/ach.png"></strong>
-		<strong><img src="../images/ach.png"></strong>
-		<strong><img src="../images/ach.png"></strong>
-		<strong><img src="../images/ach.png"></strong>
-		-->
 	</div>
 </section>
 <section class="procrit" ng-controller="NeedsAndGoalsController" ng-init="currentUserId=routeUserId;">
