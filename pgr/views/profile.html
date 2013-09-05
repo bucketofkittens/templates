@@ -10,15 +10,7 @@
 				id="photo" 
 				accept="image/jpeg,image/png,image/gif" />
 			
-			
-			<span ng-switch on="user && user.avatar && user.avatar.full_path" >
-			  <span ng-switch-when="false">
-			    	<img class="pp" ng-click="onUpdateFile()" src="../images/user.png" />
-			  </span>
-			  <span ng-switch-default>
-			    	<img class="pp" ng-click="onUpdateFile()" ng-src="{{user.avatar.full_path}}" />
-			  </span>
-			</span>
+			<img class="pp" ng-click="onUpdateFile()" ng-src="{{user.avatar.full_path}}" err-src="/images/unknown-person.png" />
 	
 			<div class="publish">
 				<p ng-switch on="authUserId == currentUserId" >

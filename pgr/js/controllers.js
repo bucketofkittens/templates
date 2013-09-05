@@ -97,7 +97,6 @@ function UserController($scope, $route, $routeParams, User, Needs, Professions, 
 	$scope.newImage = null;
 	$scope.professions = Professions.query();
 	$scope.states = States.query();
-	$scope.nextUser = null;
 	$scope.authUserId = AuthUser.get();
 
 	$scope.$watch($scope.currentUserId, function (newVal, oldVal, scope) {
