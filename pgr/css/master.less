@@ -540,25 +540,21 @@ body {
         margin-left: -3%;
         z-index: 7;
         border: 1px solid #cccccc; 
-        span {
+        sup, sub {
             position: absolute;
             left: 0%;
-            bottom: 0%;
-            width: 100%;
+            top: 55%;
             display: block;
-            background: #37374B;
-            height: 70%; 
-            &:last-child {
-                background: #759fd2;
-                height: 40%;
-            }
-            b {
-                font-size: 70%;
-                top: 0%;
-                left: 0%;
-                position: relative;
-                color: #ffffff;
-            }
+            width: 0px;
+            height: 0px;
+            border-style: solid;
+            border-width: 7.5px 0 7.5px 15px;
+            border-color: transparent transparent transparent #1ca315;
+        }
+        sub {
+            top: 65%;
+            border-width: 7.5px 15px 7.5px 0;
+            border-color: transparent #bd1b1b transparent transparent;
         }
     }
     .comp {
