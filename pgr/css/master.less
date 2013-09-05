@@ -102,6 +102,7 @@ body {
     background: #f8f8f8;
     padding-top: 6%;
     min-height: 88%;
+    overflow: hidden;
     /** main page **/
     .who {
         img {
@@ -133,7 +134,7 @@ body {
      /** profile page **/
     .promain {
         margin-left: 1%;
-        width: 50%;
+        width: 48%;
         background: #ffffff;
         border: 1px solid #cccccc;
         border-bottom: none; 
@@ -141,6 +142,7 @@ body {
         z-index: 3;
         position: relative;
         display: inline-block;
+    }
         .hidden {
             display: none;
         }
@@ -291,7 +293,6 @@ body {
                 }
             }
         }
-    }
 
     /** CRITERIA **/
     .crits {
@@ -327,7 +328,7 @@ body {
                     line-height: 250%;
                     cursor: pointer;
                     p {
-                        font-size: 150%;
+                        font-size: 130%;
                         color: #ffffff;
                         display: inline-block;
                         margin-top: 1%;
@@ -342,7 +343,7 @@ body {
                         position: relative;
                         overflow: hidden;
                         b {
-                            font-size: 120%;
+                            font-size: 100%;
                             color: #000000;
                             text-align: center;
                             display: block;
@@ -405,7 +406,7 @@ body {
                             overflow: hidden;
                             margin-left: -1%;
                             b {
-                                font-size: 120%;
+                                font-size: 100%;
                                 color: #000000;
                                 text-align: center;
                                 display: block;
@@ -516,13 +517,55 @@ body {
     }
 
     .pronear {
-        width: 45%;
+        width: 48%;
         height: auto;
         display: inline-block;
         position: relative;
-        margin: 0% 1%;
-        border-left: 1px solid #cccccc;
+        margin-left: 2%;
         vertical-align: top;
+    }
+
+
+    /** COMPARE **/
+    .du {
+        width: 3%;
+        height: 100%;
+        position: absolute;
+        margin-left: -3%;
+        z-index: 7;
+        border: 1px solid #cccccc; 
+        span {
+            position: absolute;
+            left: 0%;
+            bottom: 0%;
+            width: 100%;
+            display: block;
+            background: #37374B;
+            height: 70%; 
+            &:last-child {
+                background: #759fd2;
+                height: 40%;
+            }
+            b {
+                font-size: 70%;
+                top: 0%;
+                left: 0%;
+                position: relative;
+                color: #ffffff;
+            }
+        }
+    }
+    .comp {
+        width: 100%;
+        background: #f8f8f8;
+        border: none;
+        box-shadow: none;
+        .publish {
+            display: none !important;
+        }
+        .crits {
+            background: #f8f8f8;
+        }
     }
 
 
