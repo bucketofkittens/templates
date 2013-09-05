@@ -13,27 +13,18 @@
 			<img class="pp" ng-click="onUpdateFile()" ng-src="{{user.avatar.full_path}}" err-src="/images/unknown-person.png" />
 	
 			<div class="publish">
-				<p ng-switch on="authUserId == currentUserId" >
-					<span ng-switch-when="true">
-						<button ng-click="onPublish()">
-							<span ng-switch on="user.published" >
-								<span ng-switch-when="1">
-									{{'_Update_' | i18n}}
-								</span>
-								<span ng-switch-when="0">
-									{{'_PublishL_' | i18n}}
-								</span>
-							</span>	
-						</button>
-					</span>
-					<span ng-switch-default>
-						<span>
-							<button ng-click="onCompare(user.sguid)">
-								{{'_Compare_' | i18n}}
-							</button>
-						</span>
-					</span>
-				</p>			
+				<p>
+					<button ng-click="onPublish()" ng-if="authUserId == currentUserId">
+						<span ng-switch on="user.published" >
+							<span ng-switch-when="1">
+								{{'_Update_' | i18n}}
+							</span>
+							<span ng-switch-when="0">
+								{{'_PublishL_' | i18n}}
+							</span>
+						</span>	
+					</button>
+				</p>
 			</div>		
 		</div>
 
