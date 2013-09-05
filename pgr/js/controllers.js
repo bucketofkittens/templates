@@ -77,8 +77,20 @@ function navCtrl($scope, localize, $location, AuthUser, $rootScope, $route) {
  * Контроллер страницы профиля
  * @param {[type]} $scope [description]
  */
-function ProfileController($scope, $routeParams) {
+function ProfileController($scope, $routeParams, AuthUser) {
 	$scope.routeUserId = $routeParams.userId;
+	$scope.authUserId = AuthUser.get();
+	$scope.currentUserEditStatus = true;
+
+	$scope.templates = {
+		user: "partials/compare.html"
+	}
+	$scope.rightTemplate = '';
+
+	if($scope.authUserId != $scope.routeUserId) {
+		$scope.rightTemplate = $scope.templates.user;
+		$scope.currentUserEditStatus = false;
+	}
 }
 
 /**
@@ -284,7 +296,7 @@ function UserController($scope, $route, $routeParams, User, Needs, Professions, 
 	 * @return {[type]}
 	 */
 	$scope.onUpdateFile = function($event) {
-		if($scope.user.sguid == $scope.authUserId) {
+		if($scope.user.sguid == $scope.authUserId && $scope.isEdit) {
 			$("#photo").click();
 		}
 	}
@@ -331,9 +343,8 @@ function UserController($scope, $route, $routeParams, User, Needs, Professions, 
  * @param {[type]} Goals
  * @param {[type]} Criterion
  */
-function NeedsAndGoalsController($scope, Goals, Criterion, AuthUser, UserCriteriaValue, $rootScope, CriterionByGoal, UserCriteriaValueByUser, $routeParams, Needs, User) {
+function NeedsAndGoalsController($scope, Goals, Criterion, AuthUser, UserCriteriaValue, $rootScope, CriterionByGoal, UserCriteriaValueByUser, $routeParams, Needs, User, $element) {
     
-	
     /**
      * Получаем список needs
      * @param  {[type]} data [description]
@@ -386,9 +397,15 @@ function NeedsAndGoalsController($scope, Goals, Criterion, AuthUser, UserCriteri
 		CriterionByGoal.query({id: goal.sguid}, function(data) {
 			goal.criteriums = data;
 
-			$rootScope.$broadcast('criteriumLoaded', {
-				goal: goal
-			});
+			/**
+			 * добавляем пустой элемент
+			 */
+			$scope.addEmptyElement(goal);
+
+			/**
+			 * забираем значения для текущего пользователя
+			 */
+			$scope.getCriteriumValueByUser(goal);	
 		});	
 	}
 
@@ -408,29 +425,12 @@ function NeedsAndGoalsController($scope, Goals, Criterion, AuthUser, UserCriteri
 					fCriteria.user_criteria_sguid = userCriteriaItem.criteria_value_sguid;
 					fCriteria.user_criteria_id = userCriteriaItem.sguid;
 
-					var currentElement = $('li[data-id="'+fCriteria.sguid+'"] li[data-id="'+userCriteriaItem.criteria_value_sguid+'"]');
+					var currentElement = $('li[data-id="'+fCriteria.sguid+'"] li[data-id="'+userCriteriaItem.criteria_value_sguid+'"]', $($element));
 					$scope.setCriteriaPosition(currentElement);
 				}
 			});
 		});
 	}
-
-	/**
-	 * Событие когда загружены критерии
-	 * @param  {[type]} message [description]
-	 * @return {[type]}         [description]
-	 */
-	$scope.$on('criteriumLoaded', function($event, message) {
-		/**
-		 * добавляем пустой элемент
-		 */
-		$scope.addEmptyElement(message.goal);
-
-		/**
-		 * забираем значения для текущего пользователя
-		 */
-		$scope.getCriteriumValueByUser(message.goal);
-	});
 
 
     /**
@@ -453,7 +453,7 @@ function NeedsAndGoalsController($scope, Goals, Criterion, AuthUser, UserCriteri
 	 * @return {[type]}          [description]
 	 */
 	$scope.onCriteriaSelect = function(criteriaValue, criteria, $event, needItem, goalItem) {
-		if($scope.isUpdateCriteria && !$($event.target).hasClass("current")) {
+		if($scope.isUpdateCriteria && !$($event.target).hasClass("current") && $scope.isEdit) {
 			if(criteriaValue.sguid !== "none") {
 				UserCriteriaValue.create({}, $.param({
 					"user_guid": AuthUser.get(),
@@ -972,5 +972,5 @@ function LogoutController($scope, AuthUser, $location, $rootScope) {
 }
 
 function CompareController($scope) {
-	
+
 }

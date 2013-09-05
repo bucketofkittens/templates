@@ -13,7 +13,7 @@
 
 		<div class="publish">
 			<p>
-				<button ng-click="onPublish()" ng-if="authUserId == currentUserId">
+				<button ng-click="onPublish()" ng-if="authUserId == currentUserId && isEdit">
 					<span ng-switch on="user.published" >
 						<span ng-switch-when="1">
 							{{'_Update_' | i18n}}
@@ -22,6 +22,12 @@
 							{{'_PublishL_' | i18n}}
 						</span>
 					</span>	
+				</button>
+				<button ng-if="authUserId != currentUserId">
+					{{'_AddFrend_' | i18n}}
+				</button>
+				<button class="color2" ng-if="!isEdit && authUserId == currentUserId">
+					Back
 				</button>
 			</p>
 		</div>		
@@ -38,7 +44,9 @@
 				readonly="readonly"
 				required
 				ng-minlength="6"
-				ng-click="onElementClick($event)" />
+				ng-click="onElementClick($event)"
+				ng-if="isEdit" />
+			<i ng-if="!isEdit">{{user.name}}</i>
 		</p>
 		<p>
 			<label for="email_i">{{'_EmaiL_' | i18n}}:</label> 
@@ -49,9 +57,11 @@
 				readonly="readonly"
 				ng-model="user.email"
 				required
-				ng-click="onElementClick($event)" />
+				ng-click="onElementClick($event)"
+				ng-if="isEdit" />
+				<i ng-if="!isEdit">{{user.email}}</i>
 		</p>
-		<p ng-if="allUser">
+		<p ng-if="allUser && isEdit">
 			<label for="acc_i">{{'_AccL_' | i18n}}:</label>
 			<select 
 				id="acc_i"
@@ -61,6 +71,7 @@
 				ng-change="onMoveUserClick($event, nextUser)">
 				<option value="">{{user.login}}</option>
 			</select>
+			<i ng-if="!isEdit">{{user.login}}</i>
 		</p>
 		<p>
 			<label for="age_i">{{'_AgeL_' | i18n}}:</label>
@@ -69,8 +80,10 @@
 				ng-model="user.age" 
 				readonly="readonly"
 				id="age_i"
-				ng-click="onElementClick($event)">
+				ng-click="onElementClick($event)"
+				ng-if="isEdit">
 			</select>
+			<i ng-if="!isEdit">{{user.age}}</i>
 		</p>
 		<p>
 			<label for="loc_i">{{'_LocL_' | i18n}}:</label>
@@ -79,8 +92,10 @@
 				ng-model="user.state.sguid" 
 				readonly="readonly" 
 				id="loc_i"
-				ng-click="onElementClick($event)">
+				ng-click="onElementClick($event)"
+				ng-if="isEdit">
 			</select>
+			<i ng-if="!isEdit">{{user.state.name}}</i>
 		<p>
 			<label for="pro_i">{{'_ProfL_' | i18n}}:</label>
 			<select 
@@ -88,8 +103,10 @@
 				ng-model="user.profession.sguid" 
 				readonly="readonly" 
 				id="pro_i" 
-				ng-click="onElementClick($event)">
+				ng-click="onElementClick($event)"
+				ng-if="isEdit">
 			</select>
+			<i ng-if="!isEdit">{{user.profession.name}}</i>
 		</p>
 
 
@@ -113,7 +130,7 @@
 	</div>
 </div>
 
-<div class="crits" ng-controller="NeedsAndGoalsController" ng-init="currentUserId=routeUserId;isUpdateCriteria=true">
+<div class="crits" ng-controller="NeedsAndGoalsController" ng-init="currentUserId=currentUserId;isUpdateCriteria=true">
 	<ul> 
 		<li ng-repeat="(needKey, needItem) in needs | orderBy:'position'">
 			<div class="cr" ng-click="onShowGoals($event)">
