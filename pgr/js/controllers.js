@@ -85,14 +85,9 @@ function navCtrl($scope, localize, $location, AuthUser, $rootScope, $route) {
  * @returns {undefined}
  */
 function ProfileController($scope, $route, $routeParams, User, Needs, Professions, States, $http, NeedsByUser, $rootScope, GoalsByUser, AuthUser, Friendships, Leagues, $location) {
-	$scope.userId = $routeParams.userId;
 	$scope.user = null;
 	$scope.newImage = null;
-
-	Needs.query({}, {}, function(data) {
-		$scope.needs = data;
-		$rootScope.$broadcast('needsLoaded');
-	});
+	
 	$scope.professions = Professions.query();
 	$scope.states = States.query();
 	$scope.isImage = false;
@@ -103,6 +98,7 @@ function ProfileController($scope, $route, $routeParams, User, Needs, Profession
 	$scope.isLeague = false;
 	$scope.nextUser = null;
 	$scope.userId = AuthUser.get();
+	$scope.routeUserId = $routeParams.userId;
 
 	/**
 	 * список всех пользователей
@@ -122,14 +118,6 @@ function ProfileController($scope, $route, $routeParams, User, Needs, Profession
 			}
 		});
 		$scope.users = users;
-	});
-
-	/**
-	 * 
-	 * @return {[type]} [description]
-	 */
-	$scope.$on('needsLoaded', function() {
-		$scope.userCriteriaUpdate();
 	});
 
 	/**
@@ -161,7 +149,6 @@ function ProfileController($scope, $route, $routeParams, User, Needs, Profession
 		$scope.user.league = data.league;
 		$scope.user.points = data.points;
 	}
-
 
 	/**
 	 * Событие при изменении критерия
@@ -232,27 +219,7 @@ function ProfileController($scope, $route, $routeParams, User, Needs, Profession
 
 	$scope.ages = this.generateAgesArray(14, 150);
 
-	$scope.userCriteriaUpdate = function() {
-		User.needs_points({id: $routeParams.userId}, {}, function(data) {
-			angular.forEach(data, function(value, key) {
-				var fNeed = $scope.needs.filter(function (need) { return need.sguid == key });
-				if(fNeed[0]) {
-					fNeed[0].current_value = value;
-				}
-			});
-		});
-
-		User.goals_points({id: $routeParams.userId}, {}, function(data) {
-			angular.forEach(data, function(value, key){
-				angular.forEach($scope.needs, function(needVal, needKey){
-					var fGoal = $scope.needs[needKey].goals.filter(function (goal) { return goal.sguid == key });
-					if(fGoal[0]) {
-						fGoal[0].current_value = value;
-					}
-				});
-			});
-		});
-	}
+	
 
 	$scope.onCompare = function(id) {
 		$location.path('/compare/'+id);
@@ -392,18 +359,54 @@ function ProfileController($scope, $route, $routeParams, User, Needs, Profession
  * @param {[type]} Goals
  * @param {[type]} Criterion
  */
-function CriteriaController($scope, Goals, Criterion, AuthUser, UserCriteriaValue, $rootScope, CriterionByGoal, UserCriteriaValueByUser, $routeParams) {
+function CriteriaController($scope, Goals, Criterion, AuthUser, UserCriteriaValue, $rootScope, CriterionByGoal, UserCriteriaValueByUser, $routeParams, Needs, User) {
+    /**
+     * Получаем список needs
+     * @param  {[type]} data [description]
+     * @return {[type]}      [description]
+     */
+    Needs.query({}, {}, function(data) {
+		$scope.needs = data;
+		$rootScope.$broadcast('needsLoaded');
+	});
+
     $scope.currentGoal = null;
     $scope.currentNeed = null;
     $scope.currentUserCriterias = null;
+
+    $scope.userCriteriaUpdate = function() {
+		User.needs_points({id: $scope.currentUserId}, {}, function(data) {
+			console.log(data);
+			angular.forEach(data, function(value, key) {
+				var fNeed = $scope.needs.filter(function (need) { return need.sguid == key });
+				if(fNeed[0]) {
+					fNeed[0].current_value = value;
+				}
+			});
+		});
+
+		User.goals_points({id: $scope.currentUserId}, {}, function(data) {
+			angular.forEach(data, function(value, key){
+				angular.forEach($scope.needs, function(needVal, needKey){
+					var fGoal = $scope.needs[needKey].goals.filter(function (goal) { return goal.sguid == key });
+					if(fGoal[0]) {
+						fGoal[0].current_value = value;
+					}
+				});
+			});
+		});
+	}
+
+	$scope.$on('needsLoaded', function() {
+		$scope.userCriteriaUpdate();
+	});
 
     /**
      * 
      * @param  {[type]} goalId [description]
      * @return {[type]}        [description]
      */
-	$scope.open = function ($event, need, goal, userId) {
-		console.log(userId);
+	$scope.open = function ($event, need, goal) {
 		if(!goal.criteriums) {
 			$scope.currentGoal = goal;
 			$scope.currentNeed = need;
@@ -430,7 +433,7 @@ function CriteriaController($scope, Goals, Criterion, AuthUser, UserCriteriaValu
 					}
 				});
 
-				UserCriteriaValueByUser.query({id: userId}, {}, function(d) {
+				UserCriteriaValueByUser.query({id: $scope.currentUserId}, {}, function(d) {
 					$scope.currentUserCriterias = d;
 
 					angular.forEach(d, function(userCriteriaItem, userCriteriaKey) {
@@ -974,34 +977,6 @@ function CompareController($scope, $location, User, $routeParams, AuthUser, Need
 	}
 	$scope.getUserInfo();
 	$scope.getUseriInfo()
-
-	Needs.query({}, {}, function(data) {
-		$scope.needs = data;
-		$rootScope.$broadcast('needsLoaded');
-	});
-	$scope.$on('needsLoaded', function() {
-		$scope.userCriteriaUpdate();
-	});
-	$scope.userCriteriaUpdate = function() {
-		User.needs_points({id: AuthUser.get()}, {}, function(data) {
-			angular.forEach(data, function(value, key) {
-				var fNeed = $scope.needs.filter(function (need) { return need.sguid == key });
-				if(fNeed[0]) {
-					fNeed[0].current_value = value;
-				}
-			});
-		});
-		User.goals_points({id: AuthUser.get()}, {}, function(data) {
-			angular.forEach(data, function(value, key){
-				angular.forEach($scope.needs, function(needVal, needKey){
-					var fGoal = $scope.needs[needKey].goals.filter(function (goal) { return goal.sguid == key });
-					if(fGoal[0]) {
-						fGoal[0].current_value = value;
-					}
-				});
-			});
-		});
-	}
 }
 
 function LogoutController($scope, AuthUser, $location, $rootScope) {

@@ -106,7 +106,7 @@
 	</div>
 </section>
 
-<section class="procrit comp" ng-controller="CriteriaController">
+<section class="procrit comp" ng-controller="CriteriaController" ng-init="currentUserId=userId;">
 	<div class="white">
 		<ul> 
 			<li ng-repeat="(needKey, needItem) in needs | orderBy:'position'">

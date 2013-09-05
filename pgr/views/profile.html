@@ -143,8 +143,7 @@
 		-->
 	</div>
 </section>
-
-<section class="procrit" ng-controller="CriteriaController" ng-if="needs">
+<section class="procrit" ng-controller="CriteriaController" ng-init="currentUserId=routeUserId;">
 	<div class="white">
 		<ul> 
 			<li ng-repeat="(needKey, needItem) in needs | orderBy:'position'">
