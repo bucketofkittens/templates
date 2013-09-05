@@ -1,4 +1,4 @@
-<section class="promain" ng-if="userId && isProfileLoaded">
+<section class="promain" ng-controller="UserController" ng-init="currentUserId=routeUserId;allUser=true">
 	<div class="pmain pro">
 		<div class="block">
 			<input 
@@ -9,18 +9,19 @@
 				onchange="angular.element(this).scope().onReadFile()" 
 				id="photo" 
 				accept="image/jpeg,image/png,image/gif" />
-				
-			<span ng-switch on="isImage" >
+			
+			
+			<span ng-switch on="user && user.avatar" >
 			  <span ng-switch-when="false">
-			    	<img class="pp" ng-class="{edit: isCurrentUser}" ng-click="onUpdateFile()" src="../images/user.png" />
+			    	<img class="pp" ng-click="onUpdateFile()" src="../images/user.png" />
 			  </span>
 			  <span ng-switch-default>
-			    	<img class="pp" ng-class="{edit: isCurrentUser}" ng-click="onUpdateFile()" src="{{user.avatar.full_path}}" />
+			    	<img class="pp" ng-click="onUpdateFile()" src="{{user.avatar.full_path}}" />
 			  </span>
 			</span>
 	
 			<div class="publish">
-				<p ng-switch on="isCurrentUser" >
+				<p ng-switch on="authUserId == currentUserId" >
 					<span ng-switch-when="true">
 						<button ng-click="onPublish()">
 							<span ng-switch on="user.published" >
@@ -34,23 +35,11 @@
 						</button>
 					</span>
 					<span ng-switch-default>
-						<span ng-switch on="isFrend" >
-							<span ng-switch-when="true">
-								<button ng-click="onRemoveFrend()">
-									{{'_RemoveFrend_' | i18n}}
-								</button>
-							</span>
-							<span ng-switch-when="false">
-								<button ng-click="onAddFrend()">
-									{{'_AddFrend_' | i18n}}
-								</button>
-							</span>
-							<span>
-								<button ng-click="onCompare(user.sguid)">
-									{{'_Compare_' | i18n}}
-								</button>
-							</span>
-						</span>	
+						<span>
+							<button ng-click="onCompare(user.sguid)">
+								{{'_Compare_' | i18n}}
+							</button>
+						</span>
 					</span>
 				</p>			
 			</div>		
@@ -80,7 +69,7 @@
 					required
 					ng-click="onElementClick($event)" />
 			</p>
-			<p>
+			<p ng-if="allUser">
 				<label for="acc_i">{{'_AccL_' | i18n}}:</label>
 				<select 
 					id="acc_i"
@@ -123,9 +112,9 @@
 
 	
 			<div class="pmain league">
-				<p ng-if="user.league.name">{{user.league.name}} league</p>
-				<p class="small" ng-if="!user.league && isCurrentUser">Fill Your profile to gain points</p>
-				<p class="small" ng-if="!user.league && !isCurrentUser">No league</p>
+				<p ng-if="user && user.league.name">{{user.league.name}} league</p>
+				<p class="small" ng-if="user && !user.league && authUserId == currentUserId">Fill Your profile to gain points</p>
+				<p class="small" ng-if="user&& !user.league && authUserId != currentUserId">No league</p>
 				<!--<img ng-if="user.league.icon.full_path" src="{{user.league.icon.full_path}}" title="{{user.league.name}}" alt="{{user.league.name}}" /> -->
 				<i class="points" ng-if="user.points">{{user.points}} <b>{{'_PointsL_' | i18n}}</b></i>
 			</div>		
@@ -142,7 +131,8 @@
 		</div>
 	</div>
 </section>
-<section class="procrit" ng-controller="NeedsAndGoalsController" ng-init="currentUserId=routeUserId;">
+
+<section class="procrit" ng-controller="NeedsAndGoalsController" ng-init="currentUserId=routeUserId;isUpdateCriteria=true">
 	<div class="white">
 		<ul> 
 			<li ng-repeat="(needKey, needItem) in needs | orderBy:'position'">
@@ -187,13 +177,6 @@
 	</div>
 </section>
 
-<section class="pronear" ng-if="userId" ng-controller="RightGalleryController">
-	<a ng-click="onTop"><span></span></a>
-	<div class="ph" style="top: -{{currentStep}}px;">
-		<a href="#/profile/{{userItem.user.sguid}}" ng-repeat="userItem in user.league.users | orderBy:'criterium.position'">
-			<img ng-if="userItem.user.avatar.full_path" src="{{userItem.user.avatar.full_path}}">
-			<img ng-if="!userItem.user.avatar" src="./images/unknown-person.png">
-		</a>
-	</div>
-	<a ng-click="onBottom"><span></span></a>
+<section class="pronear">
+	
 </section>

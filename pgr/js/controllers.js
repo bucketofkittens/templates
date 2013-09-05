@@ -75,6 +75,14 @@ function navCtrl($scope, localize, $location, AuthUser, $rootScope, $route) {
 
 /**
  * Контроллер страницы профиля
+ * @param {[type]} $scope [description]
+ */
+function ProfileController($scope, $routeParams) {
+	$scope.routeUserId = $routeParams.userId;
+}
+
+/**
+ * Контроллер  профиля
  * @param {type} $scope
  * @param {type} $route
  * @param {type} $routeParams
@@ -84,41 +92,65 @@ function navCtrl($scope, localize, $location, AuthUser, $rootScope, $route) {
  * @param {type} States
  * @returns {undefined}
  */
-function ProfileController($scope, $route, $routeParams, User, Needs, Professions, States, $http, NeedsByUser, $rootScope, GoalsByUser, AuthUser, Friendships, Leagues, $location) {
+function UserController($scope, $route, $routeParams, User, Needs, Professions, States, $http, NeedsByUser, $rootScope, GoalsByUser, AuthUser, Friendships, Leagues, $location) {
 	$scope.user = null;
 	$scope.newImage = null;
-	
 	$scope.professions = Professions.query();
 	$scope.states = States.query();
-	$scope.isImage = false;
-	$scope.isCurrentUser = false;
-	$scope.isProfileLoaded = false;
-	$scope.isFrend = false;
-	$scope.isAchievements = false;
-	$scope.isLeague = false;
 	$scope.nextUser = null;
-	$scope.userId = AuthUser.get();
-	$scope.routeUserId = $routeParams.userId;
+	$scope.authUserId = AuthUser.get();
+
+	$scope.$watch($scope.currentUserId, function (newVal, oldVal, scope) {
+	    if($scope.currentUserId) {
+	    	$scope.getUserInfo();
+	    }
+	});
 
 	/**
-	 * список всех пользователей
-	 * @param  {[type]} data [description]
-	 * @return {[type]}      [description]
+	 * Информация по пользователю
+	 * @return {[type]} [description]
 	 */
-	User.get_all({}, {}, function(data) {
-		data.sort(function(a, b){
-		    if(a.user.login < b.user.login) return -1;
-		    if(a.user.login > b.user.login) return 1;
-		    return 0;
-		})
-		var users = [];
-		angular.forEach(data, function(value, key){
-			if(value.user.published == 1) {
-				users.push(value);
+	$scope.getUserInfo = function() {
+
+		User.query({id: $scope.currentUserId}, function(data) {
+		 	$scope.user = data;
+			if($scope.user.league) {
+				User.by_league({league_guid: $scope.user.league.sguid}, {}, function(data) {
+					$scope.user.league.users = data;
+				});
 			}
 		});
-		$scope.users = users;
+	}
+
+	
+
+	/**
+	 * получаем список всех пользователей если надо
+	 */
+	$scope.$watch($scope.allUser, function (newVal, oldVal, scope) {
+		if($scope.allUser) {
+			/**
+			 * список всех пользователей
+			 * @param  {[type]} data [description]
+			 * @return {[type]}      [description]
+			 */
+			User.get_all({}, {}, function(data) {
+				data.sort(function(a, b){
+				    if(a.user.login < b.user.login) return -1;
+				    if(a.user.login > b.user.login) return 1;
+				    return 0;
+				})
+				var users = [];
+				angular.forEach(data, function(value, key){
+					if(value.user.published == 1) {
+						users.push(value);
+					}
+				});
+				$scope.users = users;
+			});	
+		}
 	});
+	
 
 	/**
 	 * Отправляет запрос изменение лиги на сервер
@@ -137,7 +169,7 @@ function ProfileController($scope, $route, $routeParams, User, Needs, Profession
 	 * @return {[type]} [description]
 	 */
 	$scope.$on('updateUserLegueAndPoints', function() {
-		User.query({id: $routeParams.userId}, $.proxy($scope.userLegueAndPointsUpdate_, $scope));
+		User.query({id: $scope.currentUserId}, $.proxy($scope.userLegueAndPointsUpdate_, $scope));
 	});
 
 	/**
@@ -146,7 +178,7 @@ function ProfileController($scope, $route, $routeParams, User, Needs, Profession
 	 * @return {[type]}      [description]
 	 */
 	$scope.userLegueAndPointsUpdate_ = function(data) {
-		$scope.user.league = data.league;
+		$scope.user.league = data.league;	
 		$scope.user.points = data.points;
 	}
 
@@ -162,6 +194,12 @@ function ProfileController($scope, $route, $routeParams, User, Needs, Profession
 		$scope.getUserInfo();
 	});
 
+	/**
+	 * Список годов
+	 * @param  {[type]} min [description]
+	 * @param  {[type]} max [description]
+	 * @return {[type]}     [description]
+	 */
 	this.generateAgesArray = function(min, max) {
 		var i = min, ret = [];
 		for(i = min; i <= max; i++){
@@ -170,52 +208,7 @@ function ProfileController($scope, $route, $routeParams, User, Needs, Profession
 		return ret;
 	}
 
-	$scope.getUserInfo = function() {
-		User.query({id: $routeParams.userId}, function(data) {
-		 	$scope.user = data;
-		 	if($scope.user.sguid == AuthUser.get()) {
-		 		$scope.isCurrentUser = true;
-		 	}
-		 	if($scope.user.avatar) {
-				$scope.isImage = true;
-			}
-			if($scope.user.achievements.length > 0) {
-				$scope.isAchievements = true;
-			}
-			if($scope.user.league) {
-				User.by_league({league_guid: $scope.user.league.sguid}, {}, function(data) {
-					$scope.user.league.users = data;
-					if($scope.user.league.users.length > 0) {
-						$scope.user.league.isUser = true;
-						$scope.isLeague = true;
-					}
-				});
-			}
-			
-
-			$scope.isProfileLoaded = true;
-		});
-
-		/**
-		 * Определяем есть ли пользователь в друзьях или нет
-		 * @param  {[type]} data [description]
-		 * @return {[type]}      [description]
-		 */
-		User.query({id: AuthUser.get()}, function(data) {
-			$scope.nextUser = data;
-			angular.forEach(data.friends_guids, $.proxy($scope.testFriend, this)); 
-		});
-	}
-
-	$scope.testFriend = function(value, key) {
-		if(value == $routeParams.userId) {
-			$scope.isFrend = true;
-		}
-	}
-
-	if($routeParams.userId) {
-		$scope.getUserInfo();
-	}
+	
 
 	$scope.ages = this.generateAgesArray(14, 150);
 
@@ -263,7 +256,7 @@ function ProfileController($scope, $route, $routeParams, User, Needs, Profession
 	 * @return {[type]}
 	 */
 	$scope.onReadFile = function($event) {
-		if($scope.isCurrentUser) {
+		if($scope.user.sguid == $scope.authUserId) {
 			$rootScope.$broadcast('loaderShow');
 
 			var data = new FormData();
@@ -292,7 +285,7 @@ function ProfileController($scope, $route, $routeParams, User, Needs, Profession
 	 * @return {[type]}
 	 */
 	$scope.onUpdateFile = function($event) {
-		if($scope.isCurrentUser) {
+		if($scope.user.sguid == $scope.authUserId) {
 			$("#photo").click();
 		}
 	}
@@ -326,26 +319,6 @@ function ProfileController($scope, $route, $routeParams, User, Needs, Profession
 		);
 	}
 
-	$scope.onAddFrend = function($event) {
-		$rootScope.$broadcast('loaderShow');
-
-		Friendships.create({friendship: JSON.stringify({user_guid: AuthUser.get(), friend_guid: $scope.userId}) }, function(data) {
-			$rootScope.$broadcast('updateUser');
-			$rootScope.$broadcast('loaderHide');
-		});
-	}
-
-	$scope.onRemoveFrend = function($event) {
-		/**
-		$rootScope.$broadcast('loaderShow');
-		console.log($scope.user);
-		Friendships.del({friendship: JSON.stringify({user_guid: AuthUser.get(), friend_guid: $scope.userId}) }, function(data) {
-			$rootScope.$broadcast('updateUser');
-			$rootScope.$broadcast('loaderHide');
-		});
-		**/
-	}
-
 	$scope.onMoveUserClick = function($event, nextUser) {
 		AuthUser.set(nextUser.user.sguid);
 		$rootScope.$broadcast('login');
@@ -360,6 +333,8 @@ function ProfileController($scope, $route, $routeParams, User, Needs, Profession
  * @param {[type]} Criterion
  */
 function NeedsAndGoalsController($scope, Goals, Criterion, AuthUser, UserCriteriaValue, $rootScope, CriterionByGoal, UserCriteriaValueByUser, $routeParams, Needs, User) {
+    
+	
     /**
      * Получаем список needs
      * @param  {[type]} data [description]
@@ -367,6 +342,9 @@ function NeedsAndGoalsController($scope, Goals, Criterion, AuthUser, UserCriteri
      */
     Needs.query({}, {}, function(data) {
 		$scope.needs = data;
+	});
+
+	$scope.$watch($scope.currentUserId, function (newVal, oldVal, scope) {
 		$scope.getCurrentUserData();
 	});
 
@@ -476,7 +454,7 @@ function NeedsAndGoalsController($scope, Goals, Criterion, AuthUser, UserCriteri
 	 * @return {[type]}          [description]
 	 */
 	$scope.onCriteriaSelect = function(criteriaValue, criteria, $event, needItem, goalItem) {
-		if($scope.isCurrentUser && !$($event.target).hasClass("current")) {
+		if($scope.isUpdateCriteria && !$($event.target).hasClass("current")) {
 			if(criteriaValue.sguid !== "none") {
 				UserCriteriaValue.create({}, $.param({
 					"user_guid": AuthUser.get(),
@@ -599,8 +577,6 @@ function NeedsAndGoalsController($scope, Goals, Criterion, AuthUser, UserCriteri
  * @param {[type]} User      [description]
  */
 function RegController($scope, $location, User, AuthUser, $rootScope) {
-	
-
 	/**
 	 * Объект нового польхователя
 	 * @type {Object}
@@ -959,22 +935,6 @@ function GraphsController($scope, $rootScope, $route, $location, Leagues, User) 
 			})
 		});
 	})
-}
-
-/**
- * 
- * @param {[type]} $scope [description]
- */
-function RightGalleryController($scope) {
-	$scope.slideStep = 180;
-	$scope.currentStep = 0;
-
-	$scope.onBottom = function() {
-		$scope.currentStep += $scope.slideStep;
-	}
-	$scope.onTop = function() {
-		$scope.currentStep -= $scope.slideStep;
-	}
 }
 
 /** Контроллер сравнений */
