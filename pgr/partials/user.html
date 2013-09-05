@@ -132,8 +132,8 @@
 
 <div class="crits" ng-controller="NeedsAndGoalsController" ng-init="currentUserId=currentUserId;isUpdateCriteria=true">
 	<ul> 
-		<li ng-repeat="(needKey, needItem) in needs | orderBy:'position'">
-			<div class="cr" ng-click="onShowGoals($event)">
+		<li ng-repeat="(needKey, needItem) in needs | orderBy:'position'" data-needId="{{needItem.sguid}}">
+			<div class="cr" ng-click="onShowGoals($event, needItem.sguid)">
 				<p>{{needItem.name}}</p>
 				<strong>
 					<b>{{needItem.current_value}} / {{needItem.points_summary}}</b>
@@ -141,7 +141,7 @@
 				</strong>
 			</div> 
 			<ul>
-				<li ng-repeat="(goalKey,goalItem) in needItem.goals | orderBy:'position'" >
+				<li ng-repeat="(goalKey,goalItem) in needItem.goals | orderBy:'position'" data-goalid="{{goalItem.sguid}}" >
 					<span><img src="../images/point.png"></span>
 					<a ng-click="openCriteriumList($event, needItem, goalItem)">{{goalItem.name}}</a>					
 					<strong>

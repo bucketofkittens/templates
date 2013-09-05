@@ -443,7 +443,7 @@ function NeedsAndGoalsController($scope, Goals, Criterion, AuthUser, UserCriteri
 			$scope.getCriteriumByGoal(goal);
 		}
 
-		$($event.target).parent().find(".criterion").toggleClass("show");
+		$("li[data-goalid='"+goal.sguid+"'] .criterion", $($element)).toggleClass("show");
 	};
 
 
@@ -564,8 +564,8 @@ function NeedsAndGoalsController($scope, Goals, Criterion, AuthUser, UserCriteri
 		slider.css("width", "5%");
 	}
 
-	$scope.onShowGoals = function($event) {
-		$($event.target).parent().parent().find("> ul").toggleClass("show");
+	$scope.onShowGoals = function($event, sguid) {
+		$("li[data-needId='"+sguid+"'] > ul").toggleClass("show");
 	}
 }
 
