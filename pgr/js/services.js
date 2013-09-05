@@ -328,7 +328,21 @@ pgrModule.factory('UserCriteriaValue', function ($resource) {
 pgrModule.factory('UserCriteriaValueByUser', function ($resource) {
     return $resource(
         host+'/user_criterion_values/by_user/:id', 
-        {id:'@id'}
+        {id:'@id'}, 
+        {
+            "query": {
+                method: 'GET',
+                isArray: true,
+                transformResponse: function (data) {
+                    var values = angular.fromJson(data);
+                    angular.forEach(values, function(value, key){
+                        values[key] = value.user_criterion_value;
+                    });
+                    return values;
+                }
+            }
+            
+        }
     );
 });
 

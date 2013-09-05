@@ -359,7 +359,7 @@ function ProfileController($scope, $route, $routeParams, User, Needs, Profession
  * @param {[type]} Goals
  * @param {[type]} Criterion
  */
-function CriteriaController($scope, Goals, Criterion, AuthUser, UserCriteriaValue, $rootScope, CriterionByGoal, UserCriteriaValueByUser, $routeParams, Needs, User) {
+function NeedsAndGoalsController($scope, Goals, Criterion, AuthUser, UserCriteriaValue, $rootScope, CriterionByGoal, UserCriteriaValueByUser, $routeParams, Needs, User) {
     /**
      * Получаем список needs
      * @param  {[type]} data [description]
@@ -391,6 +391,76 @@ function CriteriaController($scope, Goals, Criterion, AuthUser, UserCriteriaValu
 		});
 	}
 
+	$scope.addEmptyElement = function(goal) {
+		angular.forEach(goal.criteriums, function(criteriumsItem, criteriumsKey) {
+			if(criteriumsItem.criteria_values) {
+				criteriumsItem.criteria_values.splice(0, 0, {
+					name: "none",
+					position: 0,
+					sguid: "none",
+					value: 0
+				});	
+			}
+		});
+	}
+
+	/**
+	 * Забираем список критериев для goals
+	 * @param  {[type]} goal [description]
+	 * @return {[type]}      [description]
+	 */
+	$scope.getCriteriumByGoal = function(goal) {
+		CriterionByGoal.query({id: goal.sguid}, function(data) {
+			goal.criteriums = data;
+
+			$rootScope.$broadcast('criteriumLoaded', {
+				goal: goal
+			});
+		});	
+	}
+
+	/**
+	 * получаем данные по колбаскам для текущего пользователя
+	 * @param  {[type]} goal [description]
+	 * @return {[type]}      [description]
+	 */
+	$scope.getCriteriumValueByUser = function(goal) {
+		UserCriteriaValueByUser.query({id: $scope.currentUserId}, {}, function(d) {
+			$scope.currentUserCriterias = d;
+
+			angular.forEach(d, function(userCriteriaItem, userCriteriaKey) {
+				var fCriteria = goal.criteriums.filter(function(value) {
+					return value.sguid == userCriteriaItem.criteria_sguid;
+				})[0];
+				if(fCriteria) {
+					fCriteria.user_criteria_sguid = userCriteriaItem.criteria_value_sguid;
+					fCriteria.user_criteria_id = userCriteriaItem.sguid;
+
+					var currentElement = $('li[data-id="'+fCriteria.sguid+'"] li[data-id="'+userCriteriaItem.criteria_value_sguid+'"]');
+					$scope.setCriteriaPosition(currentElement);
+				}
+			});
+		});
+	}
+
+	/**
+	 * Событие когда загружены критерии
+	 * @param  {[type]} message [description]
+	 * @return {[type]}         [description]
+	 */
+	$scope.$on('criteriumLoaded', function($event, message) {
+		/**
+		 * добавляем пустой элемент
+		 */
+		$scope.addEmptyElement(message.goal);
+
+		/**
+		 * забираем значения для текущего пользователя
+		 */
+		$scope.getCriteriumValueByUser(message.goal);
+	});
+
+
     /**
      * 
      * @param  {[type]} goalId [description]
@@ -401,52 +471,10 @@ function CriteriaController($scope, Goals, Criterion, AuthUser, UserCriteriaValu
 			$scope.currentGoal = goal;
 			$scope.currentNeed = need;
 
-			/**
-			 * Обход циклом для получения всех значений для критерий.
-			 * Можно найти более прямое решение
-			 * @param  {[type]} data [description]
-			 * @return {[type]}      [description]
-			 */
-			CriterionByGoal.query({id: goal.sguid}, function(data) {
-				goal.criteriums = data;
-				/**
-				 * добавляем пустой элемент
-				 */
-				angular.forEach(goal.criteriums, function(criteriumsItem, criteriumsKey) {
-					if(criteriumsItem.criteria_values) {
-						criteriumsItem.criteria_values.splice(0, 0, {
-							name: "none",
-							position: 0,
-							sguid: "none",
-							value: 0
-						});	
-					}
-				});
+			$($event.target).parent().find(".criterion").toggleClass("show");
 
-				UserCriteriaValueByUser.query({id: $scope.currentUserId}, {}, function(d) {
-					$scope.currentUserCriterias = d;
-
-					angular.forEach(d, function(userCriteriaItem, userCriteriaKey) {
-						angular.forEach(goal.criteriums, function(criteriumsItem, criteriumsKey) {
-							angular.forEach(criteriumsItem.criteria_values, function(criteriaValueItem, criteriaValueKey) {
-								if(
-									userCriteriaItem.user_criterion_value.criteria_value_sguid == criteriaValueItem.sguid &&
-									userCriteriaItem.user_criterion_value.criteria_sguid == goal.criteriums[criteriumsKey].sguid) {
-									criteriumsItem.user_criteria_sguid = userCriteriaItem.user_criterion_value.criteria_value_sguid;
-									criteriumsItem.user_criteria_id = userCriteriaItem.user_criterion_value.sguid;
-									
-									var currentElement = $('li[data-id="'+userCriteriaItem.user_criterion_value.criteria_sguid+'"] li[data-id="'+userCriteriaItem.user_criterion_value.criteria_value_sguid+'"]');
-									$scope.setCriteriaPosition(currentElement);
-								} 
-							});
-						});
-					});
-
-				});
-			});	
+			$scope.getCriteriumByGoal(goal);
 		}
-		
-		$($event.target).parent().find(".criterion").toggleClass("show");
 	};
 
 
