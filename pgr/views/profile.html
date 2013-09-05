@@ -1,5 +1,5 @@
 <section class="promain" ng-controller="UserController" ng-init="currentUserId=routeUserId;allUser=true">
-	<div class="pmain pro">
+	<div class="pmain pro" ng-if="user">
 		<div class="block">
 			<input 
 				class="hidden" 
@@ -11,12 +11,12 @@
 				accept="image/jpeg,image/png,image/gif" />
 			
 			
-			<span ng-switch on="user && user.avatar" >
+			<span ng-switch on="user && user.avatar && user.avatar.full_path" >
 			  <span ng-switch-when="false">
 			    	<img class="pp" ng-click="onUpdateFile()" src="../images/user.png" />
 			  </span>
 			  <span ng-switch-default>
-			    	<img class="pp" ng-click="onUpdateFile()" src="{{user.avatar.full_path}}" />
+			    	<img class="pp" ng-click="onUpdateFile()" ng-src="{{user.avatar.full_path}}" />
 			  </span>
 			</span>
 	
@@ -114,7 +114,7 @@
 			<div class="pmain league">
 				<p ng-if="user && user.league.name">{{user.league.name}} league</p>
 				<p class="small" ng-if="user && !user.league && authUserId == currentUserId">Fill Your profile to gain points</p>
-				<p class="small" ng-if="user&& !user.league && authUserId != currentUserId">No league</p>
+				<p class="small" ng-if="user && !user.league && authUserId != currentUserId">No league</p>
 				<!--<img ng-if="user.league.icon.full_path" src="{{user.league.icon.full_path}}" title="{{user.league.name}}" alt="{{user.league.name}}" /> -->
 				<i class="points" ng-if="user.points">{{user.points}} <b>{{'_PointsL_' | i18n}}</b></i>
 			</div>		
