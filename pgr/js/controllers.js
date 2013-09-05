@@ -468,13 +468,10 @@ function NeedsAndGoalsController($scope, Goals, Criterion, AuthUser, UserCriteri
      */
 	$scope.openCriteriumList = function ($event, need, goal) {
 		if(!goal.criteriums) {
-			$scope.currentGoal = goal;
-			$scope.currentNeed = need;
-
-			$($event.target).parent().find(".criterion").toggleClass("show");
-
 			$scope.getCriteriumByGoal(goal);
 		}
+
+		$($event.target).parent().find(".criterion").toggleClass("show");
 	};
 
 
@@ -483,7 +480,7 @@ function NeedsAndGoalsController($scope, Goals, Criterion, AuthUser, UserCriteri
 	 * @param  {[type]} criteria [description]
 	 * @return {[type]}          [description]
 	 */
-	$scope.onCriteriaSelect = function(criteriaValue, criteria, $event) {
+	$scope.onCriteriaSelect = function(criteriaValue, criteria, $event, needItem, goalItem) {
 		if($scope.isCurrentUser && !$($event.target).hasClass("current")) {
 			if(criteriaValue.sguid !== "none") {
 				UserCriteriaValue.create({}, $.param({
@@ -506,12 +503,12 @@ function NeedsAndGoalsController($scope, Goals, Criterion, AuthUser, UserCriteri
 
 			var target = $event.target.tagName == "LI" ? $($event.target) : $($event.target).parent();
 			$scope.setCriteriaPosition(target);
-			$scope.updateNeedsAndAreaPoints(criteriaValue, criteria);
+			$scope.updateNeedsAndAreaPoints(criteriaValue, criteria, needItem, goalItem);
 		}
 	}
 
-	$scope.updateNeedsAndAreaPoints = function(criteriaValue, criteria) {
-		var fCriterium = $scope.currentGoal.criteriums.filter(function (criterium) { 
+	$scope.updateNeedsAndAreaPoints = function(criteriaValue, criteria, needItem, goalItem) {
+		var fCriterium = goalItem.criteriums.filter(function (criterium) { 
 			return criterium.sguid == criteria.sguid;
 		});
 
@@ -527,11 +524,11 @@ function NeedsAndGoalsController($scope, Goals, Criterion, AuthUser, UserCriteri
 
 		if(currentValue != criteriaValue.value) {
 			if(currentValue > criteriaValue.value) {
-				$scope.currentNeed.current_value -= (currentValue - criteriaValue.value);
-				$scope.currentGoal.current_value -= (currentValue - criteriaValue.value);
+				needItem.current_value -= (currentValue - criteriaValue.value);
+				goalItem.current_value -= (currentValue - criteriaValue.value);
 			} else {
-				$scope.currentNeed.current_value += (criteriaValue.value - currentValue);
-				$scope.currentGoal.current_value += (criteriaValue.value - currentValue);
+				needItem.current_value += (criteriaValue.value - currentValue);
+				goalItem.current_value += (criteriaValue.value - currentValue);
 			}
 		}
 
