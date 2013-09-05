@@ -370,10 +370,6 @@ function NeedsAndGoalsController($scope, Goals, Criterion, AuthUser, UserCriteri
 		$scope.getCurrentUserData();
 	});
 
-    $scope.currentGoal = null;
-    $scope.currentNeed = null;
-    $scope.currentUserCriterias = null;
-
     /**
      * Получаем зачение критериев пользователя
      * @return {[type]} [description]
@@ -426,7 +422,6 @@ function NeedsAndGoalsController($scope, Goals, Criterion, AuthUser, UserCriteri
 	 */
 	$scope.getCriteriumValueByUser = function(goal) {
 		UserCriteriaValueByUser.query({id: $scope.currentUserId}, {}, function(d) {
-			$scope.currentUserCriterias = d;
 
 			angular.forEach(d, function(userCriteriaItem, userCriteriaKey) {
 				var fCriteria = goal.criteriums.filter(function(value) {
@@ -507,6 +502,14 @@ function NeedsAndGoalsController($scope, Goals, Criterion, AuthUser, UserCriteri
 		}
 	}
 
+	/**
+	 * Обновляет данные needs и area на фронте
+	 * @param  {[type]} criteriaValue [description]
+	 * @param  {[type]} criteria      [description]
+	 * @param  {[type]} needItem      [description]
+	 * @param  {[type]} goalItem      [description]
+	 * @return {[type]}               [description]
+	 */
 	$scope.updateNeedsAndAreaPoints = function(criteriaValue, criteria, needItem, goalItem) {
 		var fCriterium = goalItem.criteriums.filter(function (criterium) { 
 			return criterium.sguid == criteria.sguid;
@@ -536,6 +539,10 @@ function NeedsAndGoalsController($scope, Goals, Criterion, AuthUser, UserCriteri
 		
 	}
 
+	/**
+	 * перемещает текущее положение колбасок
+	 * @param {[type]} elm [description]
+	 */
 	$scope.setCriteriaPosition = function(elm) {
 		var parentLi  = elm,
 			parentUl  = parentLi.parent(),
@@ -565,6 +572,10 @@ function NeedsAndGoalsController($scope, Goals, Criterion, AuthUser, UserCriteri
 		});
 	}
 
+	/**
+	 * выставляет колбаски на коль
+	 * @param {[type]} elm [description]
+	 */
 	$scope.setCriteriaPositionNull = function(elm) {
 		var parentLi  = elm.parent(),
 			parentUl  = parentLi.parent(),
