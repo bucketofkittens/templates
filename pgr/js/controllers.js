@@ -970,3 +970,7 @@ function LogoutController($scope, AuthUser, $location, $rootScope) {
     $location.path("/");
     $rootScope.$broadcast('logout');
 }
+
+function CompareController($scope) {
+	
+}
