@@ -1,163 +1,157 @@
-<section class="promain" ng-controller="UserController" ng-init="currentUserId=routeUserId;allUser=true">
-	<div class="pmain pro" ng-if="user">
-		<div class="block">
+<div class="pmain pro" ng-if="user">
+	<div class="block">
+		<input 
+			class="hidden" 
+			type="file"  
+			name="photo" 
+			ng-model="newImage"
+			onchange="angular.element(this).scope().onReadFile()" 
+			id="photo" 
+			accept="image/jpeg,image/png,image/gif" />
+		
+		<img class="pp" ng-click="onUpdateFile()" ng-src="{{user.avatar.full_path}}" err-src="/images/unknown-person.png" />
+
+		<div class="publish">
+			<p>
+				<button ng-click="onPublish()" ng-if="authUserId == currentUserId">
+					<span ng-switch on="user.published" >
+						<span ng-switch-when="1">
+							{{'_Update_' | i18n}}
+						</span>
+						<span ng-switch-when="0">
+							{{'_PublishL_' | i18n}}
+						</span>
+					</span>	
+				</button>
+			</p>
+		</div>		
+	</div>
+
+	<div class="pmpar">
+		<p>
+			<label for="name_i">{{'_NameL_' | i18n}}:</label> 
 			<input 
-				class="hidden" 
-				type="file"  
-				name="photo" 
-				ng-model="newImage"
-				onchange="angular.element(this).scope().onReadFile()" 
-				id="photo" 
-				accept="image/jpeg,image/png,image/gif" />
-			
-			<img class="pp" ng-click="onUpdateFile()" ng-src="{{user.avatar.full_path}}" err-src="/images/unknown-person.png" />
-	
-			<div class="publish">
-				<p>
-					<button ng-click="onPublish()" ng-if="authUserId == currentUserId">
-						<span ng-switch on="user.published" >
-							<span ng-switch-when="1">
-								{{'_Update_' | i18n}}
-							</span>
-							<span ng-switch-when="0">
-								{{'_PublishL_' | i18n}}
-							</span>
-						</span>	
-					</button>
-				</p>
-			</div>		
-		</div>
+				type="text" 
+				id="name_i" 
+				class="clean form-control" 
+				ng-model="user.name"
+				readonly="readonly"
+				required
+				ng-minlength="6"
+				ng-click="onElementClick($event)" />
+		</p>
+		<p>
+			<label for="email_i">{{'_EmaiL_' | i18n}}:</label> 
+			<input 
+				type="email" 
+				id="email_i" 
+				class="clean form-control" 
+				readonly="readonly"
+				ng-model="user.email"
+				required
+				ng-click="onElementClick($event)" />
+		</p>
+		<p ng-if="allUser">
+			<label for="acc_i">{{'_AccL_' | i18n}}:</label>
+			<select 
+				id="acc_i"
+				ng-options="item.user.login for item in users" 
+				ng-model="nextUser" 
+				readonly="readonly"
+				ng-change="onMoveUserClick($event, nextUser)">
+				<option value="">{{user.login}}</option>
+			</select>
+		</p>
+		<p>
+			<label for="age_i">{{'_AgeL_' | i18n}}:</label>
+			<select 
+				ng-options="item for item in ages" 
+				ng-model="user.age" 
+				readonly="readonly"
+				id="age_i"
+				ng-click="onElementClick($event)">
+			</select>
+		</p>
+		<p>
+			<label for="loc_i">{{'_LocL_' | i18n}}:</label>
+			<select 
+				ng-options="item.state.sguid as item.state.name for item in states" 
+				ng-model="user.state.sguid" 
+				readonly="readonly" 
+				id="loc_i"
+				ng-click="onElementClick($event)">
+			</select>
+		<p>
+			<label for="pro_i">{{'_ProfL_' | i18n}}:</label>
+			<select 
+				ng-options="item.profession.sguid as item.profession.name for item in professions" 
+				ng-model="user.profession.sguid" 
+				readonly="readonly" 
+				id="pro_i" 
+				ng-click="onElementClick($event)">
+			</select>
+		</p>
 
-		<div class="pmpar">
-			<p>
-				<label for="name_i">{{'_NameL_' | i18n}}:</label> 
-				<input 
-					type="text" 
-					id="name_i" 
-					class="clean form-control" 
-					ng-model="user.name"
-					readonly="readonly"
-					required
-					ng-minlength="6"
-					ng-click="onElementClick($event)" />
-			</p>
-			<p>
-				<label for="email_i">{{'_EmaiL_' | i18n}}:</label> 
-				<input 
-					type="email" 
-					id="email_i" 
-					class="clean form-control" 
-					readonly="readonly"
-					ng-model="user.email"
-					required
-					ng-click="onElementClick($event)" />
-			</p>
-			<p ng-if="allUser">
-				<label for="acc_i">{{'_AccL_' | i18n}}:</label>
-				<select 
-					id="acc_i"
-					ng-options="item.user.login for item in users" 
-					ng-model="nextUser" 
-					readonly="readonly"
-					ng-change="onMoveUserClick($event, nextUser)">
-					<option value="">{{user.login}}</option>
-				</select>
-			</p>
-			<p>
-				<label for="age_i">{{'_AgeL_' | i18n}}:</label>
-				<select 
-					ng-options="item for item in ages" 
-					ng-model="user.age" 
-					readonly="readonly"
-					id="age_i"
-					ng-click="onElementClick($event)">
-				</select>
-			</p>
-			<p>
-				<label for="loc_i">{{'_LocL_' | i18n}}:</label>
-				<select 
-					ng-options="item.state.sguid as item.state.name for item in states" 
-					ng-model="user.state.sguid" 
-					readonly="readonly" 
-					id="loc_i"
-					ng-click="onElementClick($event)">
-				</select>
-			<p>
-				<label for="pro_i">{{'_ProfL_' | i18n}}:</label>
-				<select 
-					ng-options="item.profession.sguid as item.profession.name for item in professions" 
-					ng-model="user.profession.sguid" 
-					readonly="readonly" 
-					id="pro_i" 
-					ng-click="onElementClick($event)">
-				</select>
-			</p>
 
-	
-			<div class="pmain league">
-				<p ng-if="user && user.league.name">{{user.league.name}} league</p>
-				<p class="small" ng-if="user && !user.league && authUserId == currentUserId">Fill Your profile to gain points</p>
-				<p class="small" ng-if="user && !user.league && authUserId != currentUserId">No league</p>
-				<!--<img ng-if="user.league.icon.full_path" src="{{user.league.icon.full_path}}" title="{{user.league.name}}" alt="{{user.league.name}}" /> -->
-				<i class="points" ng-if="user.points">{{user.points}} <b>{{'_PointsL_' | i18n}}</b></i>
-			</div>		
-			<div class="pmain achiev">
-				<h3>{{'_AchievL_' | i18n}}</h3>
-				<!--
-				<strong><img src="../images/ach.png"></strong>
-				<strong><img src="../images/ach.png"></strong>
-				<strong><img src="../images/ach.png"></strong>
-				<strong><img src="../images/ach.png"></strong>
-				<strong><img src="../images/ach.png"></strong>
-				-->
-			</div>
+		<div class="pmain league">
+			<p ng-if="user && user.league.name">{{user.league.name}} league</p>
+			<p class="small" ng-if="user && !user.league && authUserId == currentUserId">Fill Your profile to gain points</p>
+			<p class="small" ng-if="user && !user.league && authUserId != currentUserId">No league</p>
+			<!--<img ng-if="user.league.icon.full_path" src="{{user.league.icon.full_path}}" title="{{user.league.name}}" alt="{{user.league.name}}" /> -->
+			<i class="points" ng-if="user.points">{{user.points}} <b>{{'_PointsL_' | i18n}}</b></i>
+		</div>		
+		<div class="pmain achiev">
+			<h3>{{'_AchievL_' | i18n}}</h3>
+			<!--
+			<strong><img src="../images/ach.png"></strong>
+			<strong><img src="../images/ach.png"></strong>
+			<strong><img src="../images/ach.png"></strong>
+			<strong><img src="../images/ach.png"></strong>
+			<strong><img src="../images/ach.png"></strong>
+			-->
 		</div>
 	</div>
+</div>
 
-	<div class="crits" ng-controller="NeedsAndGoalsController" ng-init="currentUserId=routeUserId;isUpdateCriteria=true">
-		<ul> 
-			<li ng-repeat="(needKey, needItem) in needs | orderBy:'position'">
-				<div class="cr" ng-click="onShowGoals($event)">
-					<p>{{needItem.name}}</p>
+<div class="crits" ng-controller="NeedsAndGoalsController" ng-init="currentUserId=routeUserId;isUpdateCriteria=true">
+	<ul> 
+		<li ng-repeat="(needKey, needItem) in needs | orderBy:'position'">
+			<div class="cr" ng-click="onShowGoals($event)">
+				<p>{{needItem.name}}</p>
+				<strong>
+					<b>{{needItem.current_value}} / {{needItem.points_summary}}</b>
+					<span class="current_position" style="width: {{(needItem.current_value / (needItem.points_summary ))*100}}%;"></span>
+				</strong>
+			</div> 
+			<ul>
+				<li ng-repeat="(goalKey,goalItem) in needItem.goals | orderBy:'position'" >
+					<span><img src="../images/point.png"></span>
+					<a ng-click="openCriteriumList($event, needItem, goalItem)">{{goalItem.name}}</a>					
 					<strong>
-						<b>{{needItem.current_value}} / {{needItem.points_summary}}</b>
-						<span class="current_position" style="width: {{(needItem.current_value / (needItem.points_summary ))*100}}%;"></span>
+						<b>{{goalItem.current_value}} / {{goalItem.points_summary}}</b>
+						<span class="current_position" style="width: {{(goalItem.current_value / (goalItem.points_summary ))*100}}%;"></span>
 					</strong>
-				</div> 
-				<ul>
-					<li ng-repeat="(goalKey,goalItem) in needItem.goals | orderBy:'position'" >
-						<span><img src="../images/point.png"></span>
-						<a ng-click="openCriteriumList($event, needItem, goalItem)">{{goalItem.name}}</a>					
-						<strong>
-							<b>{{goalItem.current_value}} / {{goalItem.points_summary}}</b>
-							<span class="current_position" style="width: {{(goalItem.current_value / (goalItem.points_summary ))*100}}%;"></span>
-						</strong>
-						<ul class="criterion">
-							<li data-id="{{crItem.sguid}}" ng-repeat="crItem in goalItem.criteriums | orderBy:'position'" >
-								<p>{{crItem.name}}</p>
-								<ul class="crp">
-									<div class="tab">
-										<li data-id="{{value.sguid}}"  
-											ng-repeat="value in crItem.criteria_values | orderBy:'position'"  
-											class="{{value.user_criteria}} position_{{value.position}}" ng-click="onCriteriaSelect(value, crItem, $event, needItem, goalItem)">
-											<i ng-if="value.sguid != 'none'">{{value.name}}</i>
-											<i ng-if="value.sguid == 'none'" class="null_criteria"></i>
-										</li>
-										<span>
-											<img src="../images/ar.png">
-										</span>
-									</div>
-								</ul>
-							</li>
-						</ul>
-					</li>
-					
-				</ul>
-			</li>
-		</ul>
-	</div>
-</section>
-
-<section class="pronear">
-	
-</section>
+					<ul class="criterion">
+						<li data-id="{{crItem.sguid}}" ng-repeat="crItem in goalItem.criteriums | orderBy:'position'" >
+							<p>{{crItem.name}}</p>
+							<ul class="crp">
+								<div class="tab">
+									<li data-id="{{value.sguid}}"  
+										ng-repeat="value in crItem.criteria_values | orderBy:'position'"  
+										class="{{value.user_criteria}} position_{{value.position}}" ng-click="onCriteriaSelect(value, crItem, $event, needItem, goalItem)">
+										<i ng-if="value.sguid != 'none'">{{value.name}}</i>
+										<i ng-if="value.sguid == 'none'" class="null_criteria"></i>
+									</li>
+									<span>
+										<img src="../images/ar.png">
+									</span>
+								</div>
+							</ul>
+						</li>
+					</ul>
+				</li>
+				
+			</ul>
+		</li>
+	</ul>
+</div>
