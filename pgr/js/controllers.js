@@ -104,7 +104,7 @@ function ProfileController($scope, $routeParams, AuthUser) {
  * @param {type} States
  * @returns {undefined}
  */
-function UserController($scope, $route, $routeParams, User, Needs, Professions, States, $http, NeedsByUser, $rootScope, GoalsByUser, AuthUser, Friendships, Leagues, $location) {
+function UserController($scope, $route, $routeParams, User, Needs, Professions, States, $http, NeedsByUser, $rootScope, GoalsByUser, AuthUser, Friendships, Leagues, $location, $window) {
 	$scope.user = null;
 	$scope.newImage = null;
 	$scope.professions = Professions.query();
@@ -227,6 +227,10 @@ function UserController($scope, $route, $routeParams, User, Needs, Professions, 
 
 	$scope.onCompare = function(id) {
 		$location.path('/compare/'+id);
+	}
+
+	$scope.onBack = function($event) {
+		$window.history.back();
 	}
 
     /**

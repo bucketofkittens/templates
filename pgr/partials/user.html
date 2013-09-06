@@ -26,7 +26,7 @@
 				<button ng-if="authUserId != currentUserId">
 					{{'_AddFrend_' | i18n}}
 				</button>
-				<button class="color2" ng-if="!isEdit && authUserId == currentUserId">
+				<button class="color2" ng-if="!isEdit && authUserId == currentUserId" ng-click="onBack($event)">
 					Back
 				</button>
 			</p>
