@@ -77,10 +77,11 @@ function navCtrl($scope, localize, $location, AuthUser, $rootScope, $route) {
  * Контроллер страницы профиля
  * @param {[type]} $scope [description]
  */
-function ProfileController($scope, $routeParams, AuthUser) {
-	$scope.routeUserId = $routeParams.userId;
+function ProfileController($scope, $routeParams, AuthUser, $route, $rootScope) {
 	$scope.authUserId = AuthUser.get();
+	
 	$scope.currentUserEditStatus = true;
+	
 
 	$scope.templates = {
 		user: "partials/compare.html",
@@ -88,12 +89,20 @@ function ProfileController($scope, $routeParams, AuthUser) {
 	}
 	$scope.rightTemplate = '';
 
-	if($scope.authUserId != $scope.routeUserId) {
+	
+
+	$scope.updateRouteUser = function(userId) {
+		$scope.routeUserId = userId;
+		if($scope.authUserId != $scope.routeUserId) {
 		$scope.rightTemplate = $scope.templates.user;
-		$scope.currentUserEditStatus = false;
-	} else {
-		$scope.rightTemplate = $scope.templates.neighbours;
+			$scope.currentUserEditStatus = false;
+		} else {
+			$scope.rightTemplate = $scope.templates.neighbours;
+			$scope.currentUserEditStatus = true;
+		}
 	}
+
+	$scope.updateRouteUser($routeParams.userId);
 }
 
 /**
@@ -164,18 +173,25 @@ function UserController($scope, $route, $routeParams, User, Needs, Professions, 
 			});	
 		}
 	});
-	
 
-	/**
-	 * Отправляет запрос изменение лиги на сервер
-	 * @return {[type]} [description]
-	 */
 	$scope.$on('updateLegue', function() {
 		User.update_legue({id: AuthUser.get()}, {
 			points: $scope.user.points
 		}, function(data) {
 			$rootScope.$broadcast('updateUserLegueAndPoints');
 		});
+	});
+	
+
+	/**
+	 * Отправляет запрос изменение лиги на сервер
+	 * @return {[type]} [description]
+	 */
+	$scope.$on('updateUserState', function($event, message) {
+		console.log(message);
+		if($scope.currentUserId == message.userId) {
+			$scope.currentUserId.userId = message.params.userId;
+		}
 	});
 
 	/**
@@ -966,6 +982,13 @@ function GraphsController($scope, $rootScope, $route, $location, Leagues, User) 
 	})
 }
 
+function NeighboursCtrl($scope, $location) {
+	$scope.onChangeUser = function(userId) {
+		console.log(userId);
+		$location.search("userId", userId);
+	}
+}
+
 /** Контроллер сравнений */
 function CompareController($scope, $location, User, $routeParams, AuthUser, Needs, $rootScope) {	
 	$scope.user = false;
@@ -991,7 +1014,9 @@ function CompareController($scope, $location, User, $routeParams, AuthUser, Need
 		});
 	}
 	$scope.getUserInfo();
-	$scope.getUseriInfo()
+	$scope.getUseriInfo();
+
+	
 }
 
 function LogoutController($scope, AuthUser, $location, $rootScope) {
