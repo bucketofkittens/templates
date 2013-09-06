@@ -533,6 +533,8 @@ body {
     /** NEIGHBOURS **/
     .nearblock {
         width: 100%;
+        display: block;
+        margin-top: 0.5%;
         .lnbl {
             display: block;
             border-top: 3px solid #cccccc;
@@ -540,13 +542,13 @@ body {
             height: 30%;
             position: relative;
             h4 {                
-                font-size: 130%;
+                font-size: 100%;
                 color: #000000;
                 text-align: left;
                 display: block;
                 position: absolute;
-                left: 4%;
-                top: 1.5%;
+                right: 10%;
+                top: 3%;
             }
             a {
                 width: 20%;
@@ -564,9 +566,9 @@ body {
             top: 25%;
             text-align: center;
             transform: skewX(angle);
-            font-size: 100%;
+            font-size: 90%;
             color: #ffffff;
-            padding: 3%;
+            padding: 2%;
             background: #028dda;
             border-top: 1px solid #ffffff;
             border-left: 1px solid #ffffff; 
@@ -584,6 +586,11 @@ body {
         }
         .full {
             display: none;
+            h4 {      
+                right: auto;
+                left: 3%;
+                top: 1%;
+            }
         }
     }
 
