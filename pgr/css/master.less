@@ -318,12 +318,11 @@ body {
             text-align: center;
             position: relative;
             margin: 0% auto;
-            position: relative;
-            overflow: hidden;
             li {
                 margin: 1% auto;
                 width: 96%;
                 cursor: pointer;
+                position: relative;
                 .cr {
                     background: rgb(117,159,210);
                     background: -moz-linear-gradient(left, rgb(117,159,210) 0%, rgb(55,55,75) 100%, rgb(125,185,232) 100%);
@@ -334,6 +333,7 @@ body {
                     background: linear-gradient(to right, rgb(117,159,210) 0%,rgb(55,55,75) 100%,rgb(125,185,232) 100%);
                     line-height: 250%;
                     cursor: pointer;
+                    position: relative;
                     p {
                         font-size: 130%;
                         color: #ffffff;
@@ -371,23 +371,21 @@ body {
                 }
                 ul {
                     vertical-align: top;
-                    overflow: hidden;
-                    transition: all 1s ease-out;
-                    -webkit-transition: all 1s ease-out;
                     position: relative;
-                    max-height: 0;
-                    opacity: 0;
+                    display: none;
                     margin: 0%;
                     padding: 0%;
                     &.show {
-                        max-height: 100%;
-                        opacity: 1;
+                        display: block;
                         margin: 0.5% auto;
                     }
                     li {
                         display: block;
                         width: 100%;
                         margin: 1% auto;
+                        h5 {
+                            position: relative;
+                        }
                         a {
                             font-size: 120%;
                             color: #000000;
@@ -402,6 +400,10 @@ body {
                             vertical-align: middle;
                             transition: all 0.5s ease;
                             margin-right: 1%;
+                            position: relative;
+                            sup, sub {
+                                margin-left: -300%;
+                            }
                         }
                         strong {
                             background: #ffffff;
@@ -432,16 +434,11 @@ body {
                         }
                         /** criterion **/
                         .criterion {
-                            transition: all 1s ease-out;
-                            -webkit-transition: all 1s ease-out;
                             overflow: hidden;
                             margin: 0%;
                             max-height:0px;
-                            opacity: 0;
-
                             &.show {
                                 max-height: 100%;
-                                opacity: 1;
                                 margin: 0% auto;
                             }
                             li {
@@ -535,11 +532,12 @@ body {
 
     /** COMPARE **/
     sub.du, sup.du {
-        margin-left: -3%;
+        margin-left: -4%;
         z-index: 7;
         position: absolute;
         left: 0%;
-        top: 55%;
+        top: 50%;
+        margin-top: -7px;
         display: block;
         width: 0px;
         height: 0px;
@@ -548,7 +546,6 @@ body {
         border-color: transparent transparent transparent #1ca315;        
     }
     sub.du {
-        top: 65%;
         border-width: 7.5px 15px 7.5px 0;
         border-color: transparent #bd1b1b transparent transparent;
         }

@@ -363,12 +363,20 @@ function NeedsAndGoalsController($scope, Goals, Criterion, AuthUser, UserCriteri
      */
     $scope.getCurrentUserData = function() {
 		User.needs_points({id: $scope.currentUserId}, {}, function(needsData) {
+			$rootScope.$broadcast('needUserValueLoaded', {
+				needsValues: needsData,
+				userId: $scope.currentUserId
+			});
 			User.goals_points({id: $scope.currentUserId}, {}, function(goalsData) {
 				angular.forEach($scope.needs, function(needItem, needKey) {
 					needItem.current_value = needsData[needItem.sguid];
 					angular.forEach(needItem.goals, function(goalItem, goalKey){
 						goalItem.current_value = goalsData[goalItem.sguid];
 					});
+				});
+				$rootScope.$broadcast('goalUserValueLoaded', {
+					goalsValues: goalsData,
+					userId: $scope.currentUserId
 				});
 			});
 		});
@@ -971,5 +979,41 @@ function LogoutController($scope, AuthUser, $location, $rootScope) {
 }
 
 function CompareController($scope) {
+	var needsCountLoaded = 0;
+	var needsValues = {};
 
+	var goalsCountLoaded = 0;
+	var goalsValues = {};
+
+	$scope.$on('needUserValueLoaded', function($event, message) {
+		needsCountLoaded += 1;
+		needsValues[message.userId] = message.needsValues;
+		if(needsCountLoaded == 2) {
+			angular.forEach(needsValues[$scope.routeUserId], function(value, key){
+				if(value < needsValues[$scope.authUserId][key]) {
+					$("li[data-needId='"+key+"'] .cr", $("#compare")).append('<sup class="du"></sup>');
+				} else {
+					$("li[data-needId='"+key+"'] .cr", $("#compare")).append('<sub class="du"></sub>');
+				}
+			});
+		}
+	});
+
+	$scope.$on('goalUserValueLoaded', function($event, message) {
+		goalsCountLoaded += 1;
+		goalsValues[message.userId] = message.goalsValues;
+		if(goalsCountLoaded == 2) {
+			angular.forEach(goalsValues[$scope.routeUserId], function(value, key){
+				console.log(value);
+				console.log(goalsValues[$scope.authUserId][key]);
+				if(value < goalsValues[$scope.authUserId][key]) {
+					$("li[data-goalid='"+key+"'] > h5", $("#compare")).append('<sup class="du"></sup>');
+				} else {
+					$("li[data-goalid='"+key+"'] > h5", $("#compare")).append('<sub class="du"></sub>');
+				}
+			});
+		}
+	});
+
+	
 }
