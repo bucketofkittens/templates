@@ -499,30 +499,80 @@ function NeedsAndGoalsController($scope, Goals, Criterion, AuthUser, UserCriteri
 	 * @return {[type]}          [description]
 	 */
 	$scope.onCriteriaSelect = function(criteriaValue, criteria, $event, needItem, goalItem) {
-		if($scope.isUpdateCriteria && !$($event.target).hasClass("current") && $scope.isEdit) {
-			if(criteriaValue.sguid !== "none") {
-				UserCriteriaValue.create({}, $.param({
-					"user_guid": AuthUser.get(),
-					"criteria_guid": criteria.sguid,
-					"criteria_value_guid": criteriaValue.sguid
-				}), function(data) {
-					criteria.user_criteria_id = data.message.sguid;
-					$rootScope.$broadcast('userCriteriaUpdate');
-				});
-			} else {
-				if(criteria.user_criteria_id) {
-					UserCriteriaValue.del({id: criteria.user_criteria_id}, {}, function(data) {
+		console.log($event);
+		if(!$($event.target).hasClass("current")) {
+			if($scope.isUpdateCriteria && $scope.isEdit) {
+				if(criteriaValue.sguid !== "none") {
+					UserCriteriaValue.create({}, $.param({
+						"user_guid": AuthUser.get(),
+						"criteria_guid": criteria.sguid,
+						"criteria_value_guid": criteriaValue.sguid
+					}), function(data) {
+						criteria.user_criteria_id = data.message.sguid;
 						$rootScope.$broadcast('userCriteriaUpdate');
-					});	
+					});
 				} else {
-					$rootScope.$broadcast('userCriteriaUpdate');
+					if(criteria.user_criteria_id) {
+						UserCriteriaValue.del({id: criteria.user_criteria_id}, {}, function(data) {
+							$rootScope.$broadcast('userCriteriaUpdate');
+						});	
+					} else {
+						$rootScope.$broadcast('userCriteriaUpdate');
+					}
 				}
-			}
 
-			var target = $event.target.tagName == "LI" ? $($event.target) : $($event.target).parent();
-			$scope.setCriteriaPosition(target);
-			$scope.updateNeedsAndAreaPoints(criteriaValue, criteria, needItem, goalItem);
+				var target = $event.target.tagName == "LI" ? $($event.target) : $($event.target).parent();
+				$scope.setCriteriaPosition(target);
+				$scope.updateNeedsAndAreaPoints(criteriaValue, criteria, needItem, goalItem);
+			}
 		}
+		
+	}
+
+	/**
+	 * 
+	 * @param  {[type]} criteria [description]
+	 * @return {[type]}          [description]
+	 */
+	$scope.onPointsSet = function(currentValue, criteriaValue, needItem, goalItem) {
+		if(currentValue != criteriaValue) {
+			if(currentValue > criteriaValue) {
+				needItem.current_value -= (currentValue - criteriaValue);
+				goalItem.current_value -= (currentValue - criteriaValue);
+			} else {
+				needItem.current_value += (criteriaValue - currentValue);
+				goalItem.current_value += (criteriaValue - currentValue);
+			}
+		}
+	}
+
+	/**
+	 * 
+	 * @param  {[type]} criteria [description]
+	 * @return {[type]}          [description]
+	 */
+	$scope.getAffects = function(depend_guids, goalItem, old_user_criteria_sguid) {
+		var criteriums = 1;
+		angular.forEach(depend_guids, function(value, key){
+			var sguid = value;
+
+			var fsCriterium = goalItem.criteriums.filter(function (criterium) { 
+				return criterium.sguid == sguid;
+			})[0];
+			var fsCriteriumValue = fsCriterium.criteria_values.filter(function(value) {
+				if(old_user_criteria_sguid) {
+					return value.sguid == old_user_criteria_sguid;
+				} else {
+					return value.sguid == fsCriterium.user_criteria_sguid;
+				}
+				
+			})[0];
+
+			criteriums = fsCriteriumValue ? fsCriteriumValue.value * criteriums :  criteriums;
+
+		});
+		console.log(criteriums+"-"+old_user_criteria_sguid);
+		return criteriums;
 	}
 
 	/**
@@ -533,33 +583,54 @@ function NeedsAndGoalsController($scope, Goals, Criterion, AuthUser, UserCriteri
 	 * @param  {[type]} goalItem      [description]
 	 * @return {[type]}               [description]
 	 */
-	$scope.updateNeedsAndAreaPoints = function(criteriaValue, criteria, needItem, goalItem) {
+	$scope.updateNeedsAndAreaPoints = function(criteriaValue, criteria, needItem, goalItem, old_user_criteria_sguid) {
+		
 		var fCriterium = goalItem.criteriums.filter(function (criterium) { 
 			return criterium.sguid == criteria.sguid;
 		});
 
 		var currentValue = 0;
-
+		console.log(fCriterium);
 		if(fCriterium[0].user_criteria_sguid) {
 			var fCriteriumValue = fCriterium[0].criteria_values.filter(function(value) {
 				return value.sguid == fCriterium[0].user_criteria_sguid;
 			});
-		
-			currentValue = fCriteriumValue[0].value;	
-		} 
-
-		if(currentValue != criteriaValue.value) {
-			if(currentValue > criteriaValue.value) {
-				needItem.current_value -= (currentValue - criteriaValue.value);
-				goalItem.current_value -= (currentValue - criteriaValue.value);
+			
+			if(criteria["depend_guids"].length == 0) {
+				currentValue = fCriteriumValue[0].value;
 			} else {
-				needItem.current_value += (criteriaValue.value - currentValue);
-				goalItem.current_value += (criteriaValue.value - currentValue);
+				var criteriums = $scope.getAffects(criteria["depend_guids"], goalItem, old_user_criteria_sguid);
+				currentValue = fCriteriumValue[0].value*criteriums;
 			}
 		}
 
+		if(!criteria["affects?"]) {
+			if(criteria["depend_guids"].length == 0) {
+				$scope.onPointsSet(currentValue, criteriaValue.value, needItem, goalItem);
+			} else {
+				var criteriums = $scope.getAffects(criteria["depend_guids"], goalItem);
+				$scope.onPointsSet(currentValue, criteriaValue.value*criteriums, needItem, goalItem);
+			}
+		}
+		var old_user_criteria_sguids = fCriterium[0].user_criteria_sguid;
 		fCriterium[0].user_criteria_sguid = criteriaValue.sguid;
-		
+
+
+		if(criteria["affects?"]) {
+			angular.forEach(criteria["affect_guids"], function(value, key){
+				var sguid = value;
+
+				var fsCriterium = goalItem.criteriums.filter(function (criterium) { 
+					return criterium.sguid == sguid;
+				})[0];
+				
+				var fsCriteriumValue = fsCriterium.criteria_values.filter(function(value) {
+					return value.sguid == fsCriterium.user_criteria_sguid;
+				})[0];
+
+				$scope.updateNeedsAndAreaPoints(fsCriteriumValue, fsCriterium, needItem, goalItem, old_user_criteria_sguids);
+			});
+		}
 	}
 
 	/**
