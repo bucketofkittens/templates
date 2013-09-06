@@ -98,5 +98,25 @@
     {
         "key":"_Compare_",
         "value": "Compare"
+    },
+    {
+        "key":"_moreL_",
+        "value": "Show more"
+    },
+    {
+        "key":"_lessL_",
+        "value": "Show less"
+    },
+    {
+        "key":"_topL_",
+        "value": "Top"
+    },
+    {
+        "key":"_flwL_",
+        "value": "Fellows"
+    },
+    {
+        "key":"_neighL_",
+        "value": "Neighbours"
     }
 ]

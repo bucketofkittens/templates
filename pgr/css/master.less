@@ -530,6 +530,63 @@ body {
     }
 
 
+    /** NEIGHBOURS **/
+    .nearblock {
+        width: 100%;
+        .lnbl {
+            display: block;
+            border-top: 3px solid #cccccc;
+            width: 100%;
+            height: 30%;
+            position: relative;
+            h4 {                
+                font-size: 130%;
+                color: #000000;
+                text-align: left;
+                display: block;
+                position: absolute;
+                left: 4%;
+                top: 1.5%;
+            }
+            a {
+                width: 20%;
+                margin: 2%;
+                vertical-align: top;
+                display: inline-block;
+                img {
+
+                }
+            }
+        }
+        .more, .less {
+            position: absolute;
+            right: 10%;
+            top: 25%;
+            text-align: center;
+            transform: skewX(angle);
+            font-size: 100%;
+            color: #ffffff;
+            padding: 3%;
+            background: #028dda;
+            border-top: 1px solid #ffffff;
+            border-left: 1px solid #ffffff; 
+            border-right: 1px solid #cccccc; 
+            border-bottom: 1px solid #cccccc; 
+            width: 10%;
+            display: inline-block;
+        }
+        .less {                
+            position: fixed;
+            right: 0%;
+            top: 20%;
+            padding: 0%;
+            width: 3%;
+        }
+        .full {
+            display: none;
+        }
+    }
+
     /** COMPARE **/
     sub.du, sup.du {
         margin-left: -4%;
