@@ -982,11 +982,68 @@ function GraphsController($scope, $rootScope, $route, $location, Leagues, User) 
 	})
 }
 
-function NeighboursCtrl($scope, $location) {
+function NeighboursCtrl($scope, $location, localize, User, AuthUser, Leagues, $rootScope) {
 	$scope.onChangeUser = function(userId) {
-		console.log(userId);
 		$location.search("userId", userId);
 	}
+
+	$scope.topL = localize.getLocalizedString('_topL_');
+	$scope.flwL = localize.getLocalizedString('_flwL_');
+	$scope.neighL = localize.getLocalizedString('_neighL_');
+
+	User.get_friends({id: AuthUser.get()}, function(data) {
+	 	$rootScope.$broadcast('usersLoaded', {
+	 		id: 'follow',
+	 		users: data.friends
+	 	});
+	});
+
+	User.get_all({}, {}, function(data) {
+	 	$rootScope.$broadcast('usersLoaded', {
+	 		id: 'neigh',
+	 		users: data
+	 	});
+	});
+
+
+	/**
+	 * Забираем запросом список лиг.
+	 * @param  {[type]} data [description]
+	 * @return {[type]}      [description]
+	 */
+	Leagues.query({}, {}, function(data) {
+		/**
+		 * Сортируем лиги по убыванию
+		 * @param  {[type]} a [description]
+		 * @param  {[type]} b [description]
+		 * @return {[type]}   [description]
+		 */
+		data.sort(function(a,b) {
+		    return a.league.position + b.league.position;
+		});
+
+		/**
+		 * Получаем 3 наикрутейшие лиги
+		 * @type {[type]}
+		 */
+		$scope.leagues = data.splice(0,1);
+		$scope.viewedUsers = [];
+
+		/**
+		 * Проходимся по оплучившемуся массиву лиг и получаем список пользователей
+		 * @param  {[type]} value [description]
+		 * @param  {[type]} key   [description]
+		 * @return {[type]}       [description]
+		 */
+		angular.forEach($scope.leagues, function(value, key){
+			User.by_league({league_guid: value.league.sguid}, {}, function(userData) {
+				$rootScope.$broadcast('usersLoaded', {
+			 		id: 'top',
+			 		users: userData
+			 	});
+			});
+		});
+	})
 }
 
 /** Контроллер сравнений */
@@ -1065,4 +1122,35 @@ function CompareController($scope) {
 		
 	});
 	
+}
+
+function GalleryController($scope, localize, Leagues, User, AuthUser) {
+	$scope.stateView = 0;
+	$scope.stateViewClass = "";
+	$scope.viewedUsers = [];
+	$scope.users = [];
+
+	$scope.$on('usersLoaded', function($event, message) {
+		
+		if(message.id == $scope.id) {
+			$scope.users = message.users;
+			$scope.updateViewUsers();
+		}
+	});
+
+	$scope.updateViewUsers = function() {
+		if($scope.users) {
+			if(!$scope.stateView) {
+				$scope.viewedUsers = $scope.users.splice(0, 3);
+			} else {
+				$scope.viewedUsers = $scope.users;
+			}
+		}
+	}
+
+	$scope.onChangeState = function() {
+		$scope.stateView = $scope.stateView == 1 ? 0 : 1;
+		$scope.stateViewClass = $scope.stateView == 1 ? "fulls" : "";
+		$scope.updateViewUsers();
+	}
 }

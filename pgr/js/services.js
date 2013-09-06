@@ -66,6 +66,11 @@ pgrModule.factory('User', function ($resource) {
             "goals_points": {
                 method: 'GET',
                 url: host+"/users/:id/goals_points"
+            },
+            "get_friends": {
+                method: 'GET',
+                isArray: true,
+                url: host+"/users/:id/friends"
             }
         }
     );
