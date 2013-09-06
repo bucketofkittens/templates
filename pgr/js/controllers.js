@@ -445,13 +445,33 @@ function NeedsAndGoalsController($scope, Goals, Criterion, AuthUser, UserCriteri
      * @param  {[type]} goalId [description]
      * @return {[type]}        [description]
      */
-	$scope.openCriteriumList = function ($event, need, goal) {
-		if(!goal.criteriums) {
-			$scope.getCriteriumByGoal(goal);
+	$scope.openCriteriumList = function ($event, need, goal, currentUserId) {
+		var fNeed = $scope.needs.filter(function (needValue) { 
+			return needValue.sguid == need.sguid;
+		})[0];
+		var fGoal = fNeed.goals.filter(function (goalValue) { 
+			return goalValue.sguid == goal.sguid;
+		})[0];
+		if(!fGoal.criteriums) {
+			$scope.getCriteriumByGoal(fGoal);
 		}
 
+		if(!currentUserId) {
+			$rootScope.$broadcast('openCriteriumList', {
+				goal: goal,
+				need: need,
+				event: $event,
+				currentUserId: $scope.currentUserId
+			});
+		}
 		$("li[data-goalid='"+goal.sguid+"'] .criterion", $($element)).toggleClass("show");
 	};
+
+	$scope.$on('openCriteriumList', function($event, message) {
+		if(message.currentUserId != $scope.currentUserId) {
+			$scope.openCriteriumList(message.event, message.need, message.goal, message.currentUserId);
+		}
+	});
 
 
 	/**
@@ -1004,8 +1024,6 @@ function CompareController($scope) {
 		goalsValues[message.userId] = message.goalsValues;
 		if(goalsCountLoaded == 2) {
 			angular.forEach(goalsValues[$scope.routeUserId], function(value, key){
-				console.log(value);
-				console.log(goalsValues[$scope.authUserId][key]);
 				if(value < goalsValues[$scope.authUserId][key]) {
 					$("li[data-goalid='"+key+"'] > h5", $("#compare")).append('<sup class="du"></sup>');
 				} else {
@@ -1015,5 +1033,8 @@ function CompareController($scope) {
 		}
 	});
 
+	$scope.$on('openCriteriumList', function($event, message) {
+		
+	});
 	
 }
