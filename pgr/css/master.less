@@ -353,7 +353,7 @@ body {
                             color: #000000;
                             text-align: center;
                             display: block;
-                            margin-top: 1%;
+                            margin-top: 2%;
                             position: relative;
                             z-index: 5;
                         }
@@ -416,7 +416,7 @@ body {
                                 color: #000000;
                                 text-align: center;
                                 display: block;
-                                margin-top: 1%;
+                                margin-top: 2%;
                                 position: relative;
                                 z-index: 5;
                             }
@@ -533,30 +533,24 @@ body {
 
 
     /** COMPARE **/
-    .du {
-        width: 3%;
-        height: 100%;
-        position: absolute;
+    sub.du, sup.du {
         margin-left: -3%;
         z-index: 7;
-        border: 1px solid #cccccc; 
-        sup, sub {
-            position: absolute;
-            left: 0%;
-            top: 55%;
-            display: block;
-            width: 0px;
-            height: 0px;
-            border-style: solid;
-            border-width: 7.5px 0 7.5px 15px;
-            border-color: transparent transparent transparent #1ca315;
-        }
-        sub {
-            top: 65%;
-            border-width: 7.5px 15px 7.5px 0;
-            border-color: transparent #bd1b1b transparent transparent;
-        }
+        position: absolute;
+        left: 0%;
+        top: 55%;
+        display: block;
+        width: 0px;
+        height: 0px;
+        border-style: solid;
+        border-width: 7.5px 0 7.5px 15px;
+        border-color: transparent transparent transparent #1ca315;        
     }
+    sub.du {
+        top: 65%;
+        border-width: 7.5px 15px 7.5px 0;
+        border-color: transparent #bd1b1b transparent transparent;
+        }
     .comp {
         width: 100%;
         background: #f8f8f8;
