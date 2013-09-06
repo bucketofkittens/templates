@@ -236,28 +236,23 @@ function UserController($scope, $route, $routeParams, User, Needs, Professions, 
      * @returns {undefined}
      */
 	$scope.onEditActivate = function($event, elementId) {
-		if($scope.isCurrentUser) {
-			angular.element(".form-control").attr("disabled", "disabled");
-		
-			var elm = angular.element("#"+elementId)[0];
-			if(elm.getAttribute("disabled")) {
-				elm.removeAttribute("disabled");
-				elm.focus();
-			} else {
-				elm.setAttribute("disabled", "disabled");
-			}	
-		}
-		
+		angular.element(".form-control").attr("disabled", "disabled");
+	
+		var elm = angular.element("#"+elementId)[0];
+		if(elm.getAttribute("disabled")) {
+			elm.removeAttribute("disabled");
+			elm.focus();
+		} else {
+			elm.setAttribute("disabled", "disabled");
+		}	
 	};
 
 
 	$scope.onElementClick = function($event) {
-		if($scope.isCurrentUser) {
-			var elm = $($event.target);
-			$("input[type='text'], input[type='email'], select", ".pmpar").attr("readonly", "readonly");
-			$(elm).attr("readonly", false);
-			$(elm).focus();
-		}
+		var elm = $($event.target);
+		$("input[type='text'], input[type='email'], select", ".pmpar").attr("readonly", "readonly");
+		$(elm).attr("readonly", false);
+		$(elm).focus();
 	};
 	
 
