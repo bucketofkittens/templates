@@ -1,0 +1,8 @@
+<div class="gallery {{stateViewClass}}" ng-if="viewedUsers.length > 0">
+	<h4>{{title}}</h4>
+	<a href="#/profile/{{userItem.user.sguid}}"  ng-repeat="(userKey, userItem) in viewedUsers">
+		<img ng-src="{{userItem.user.avatar.full_path}}" err-src="/images/unknown-person.png" />
+	</a>
+	<button ng-if="!stateView" ng-click="onChangeState()" class="more">{{'_moreL_' | i18n}}</button>
+	<button ng-if="stateView" ng-click="onChangeState()" class="less">{{'_lessL_' | i18n}}</button>
+</div>

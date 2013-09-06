@@ -35,7 +35,20 @@ pgrModule.factory('User', function ($resource) {
             },
             'get_all': {
                 method: 'GET',
-                isArray: true
+                isArray: true,
+                transformResponse: function (data) {
+                    if(data) {
+                        var users = angular.fromJson(data);
+
+                        angular.forEach(users, function(value, key){
+                            if(users[key].user.avatar) {
+                                users[key].user.avatar.full_path = createImageFullPath(users[key].user.avatar);
+                            }
+                        });
+
+                        return users; 
+                    }
+                }
             },
             "by_league": {
                 method: 'GET',
