@@ -83,13 +83,16 @@ function ProfileController($scope, $routeParams, AuthUser) {
 	$scope.currentUserEditStatus = true;
 
 	$scope.templates = {
-		user: "partials/compare.html"
+		user: "partials/compare.html",
+		neighbours: "partials/neighbours.html"
 	}
 	$scope.rightTemplate = '';
 
 	if($scope.authUserId != $scope.routeUserId) {
 		$scope.rightTemplate = $scope.templates.user;
 		$scope.currentUserEditStatus = false;
+	} else {
+		$scope.rightTemplate = $scope.templates.neighbours;
 	}
 }
 
