@@ -447,9 +447,15 @@ function NeedsAndGoalsController($scope, Goals, Criterion, AuthUser, UserCriteri
 				var fCriteria = goal.criteriums.filter(function(value) {
 					return value.sguid == userCriteriaItem.criteria_sguid;
 				})[0];
+				
 				if(fCriteria) {
 					fCriteria.user_criteria_sguid = userCriteriaItem.criteria_value_sguid;
 					fCriteria.user_criteria_id = userCriteriaItem.sguid;
+
+					$rootScope.$broadcast('criteriaUserValueLoaded', {
+						fCriteria: fCriteria,
+						userId: $scope.currentUserId
+					});
 
 					var currentElement = $('li[data-id="'+fCriteria.sguid+'"] li[data-id="'+userCriteriaItem.criteria_value_sguid+'"]', $($element));
 					$scope.setCriteriaPosition(currentElement);
@@ -1181,6 +1187,10 @@ function CompareController($scope) {
 	var goalsCountLoaded = 0;
 	var goalsValues = {};
 
+	var crtiterias = {};
+
+	
+
 	$scope.$on('needUserValueLoaded', function($event, message) {
 		needsCountLoaded += 1;
 		needsValues[message.userId] = message.needsValues;
@@ -1192,6 +1202,29 @@ function CompareController($scope) {
 					$("li[data-needId='"+key+"'] .cr", $("#compare")).append('<sub class="du"></sub>');
 				}
 			});
+		}
+	});
+
+	$scope.$on('criteriaUserValueLoaded', function($event, message) {
+		if(!crtiterias[message.fCriteria.sguid]) {
+			crtiterias[message.fCriteria.sguid] = {};
+		}
+		var fCriterium = message.fCriteria;
+		var fCriteriumValue = fCriterium.criteria_values.filter(function(value) {
+			return value.sguid == fCriterium.user_criteria_sguid;
+		})[0];
+
+		crtiterias[message.fCriteria.sguid][message.userId] = fCriteriumValue;
+		
+		if(crtiterias[message.fCriteria.sguid][$scope.routeUserId] && crtiterias[message.fCriteria.sguid][$scope.authUserId]) {
+			var rootCriteria = crtiterias[message.fCriteria.sguid][$scope.routeUserId];
+			var authCriteria = crtiterias[message.fCriteria.sguid][$scope.authUserId];
+
+			if(rootCriteria.value < authCriteria.value) {
+				$("li[data-id='"+fCriterium.sguid+"']", $("#compare")).append('<sup class="du"></sup>');
+			} else {
+				$("li[data-id='"+fCriterium.sguid+"']", $("#compare")).append('<sub class="du"></sub>');
+			}
 		}
 	});
 
