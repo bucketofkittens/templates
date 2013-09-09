@@ -347,7 +347,7 @@ function UserController($scope, $route, $routeParams, User, Needs, Professions, 
 			}
 		);
 	}
-
+	
 	$scope.onMoveUserClick = function($event, nextUser) {
 		AuthUser.set(nextUser.user.sguid);
 		$rootScope.$broadcast('login');
