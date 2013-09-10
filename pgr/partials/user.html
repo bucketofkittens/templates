@@ -21,11 +21,22 @@
 						<span ng-switch-when="0">
 							{{'_PublishL_' | i18n}}
 						</span>
-					</span>	
+					</span>
 				</button>
-				<button ng-if="authUserId != currentUserId">
-					{{'_AddFrend_' | i18n}}
-				</button>
+				<span ng-if="authUserId != currentUserId">
+					<span ng-switch on="isFollow" >
+						<span ng-switch-when="false">
+							<button ng-click="onFollow()">
+								{{'_AddFrend_' | i18n}}
+							</button>
+						</span>
+						<span ng-switch-when="true">
+							<button class="unfollow" ng-click="onUnFollow()">
+								{{'_RemoveFrend_' | i18n}}
+							</button>
+						</span>
+					</span>
+				</span>
 				<button class="color2" ng-if="!isEdit && authUserId == currentUserId" ng-click="onBack($event)">
 					Back
 				</button>

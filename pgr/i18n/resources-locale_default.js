@@ -89,7 +89,7 @@
     },
     {
         "key":"_RemoveFrend_",
-        "value": "Remove Frend"
+        "value": "Unfollow"
     },
     {
         "key":"_GRAPHS_",

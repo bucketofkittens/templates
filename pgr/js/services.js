@@ -82,8 +82,31 @@ pgrModule.factory('User', function ($resource) {
             },
             "get_friends": {
                 method: 'GET',
+                url: host+"/users/:id/friends",
                 isArray: true,
+                transformResponse: function (data) {
+                    if(data) {
+                        var users = angular.fromJson(data);
+
+                        angular.forEach(users, function(value, key){
+                            console.log(value);
+                            if(users[key].friendship.user.avatar) {
+                                users[key].friendship.user.avatar.full_path = createImageFullPath(users[key].friendship.user.avatar);
+                            }
+                            users[key].user = users[key].friendship.user;
+                        });
+
+                        return users; 
+                    }
+                }
+            },
+            "create_friendship": {
+                method: "POST",
                 url: host+"/users/:id/friends"
+            },
+            "destroy_friendship": {
+                method: "DELETE",
+                url: host+"/users/:id/friends/:friendId"
             }
         }
     );

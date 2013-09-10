@@ -122,12 +122,15 @@ function UserController($scope, $route, $routeParams, User, Needs, Professions, 
 	$scope.professions = Professions.query();
 	$scope.states = States.query();
 	$scope.authUserId = AuthUser.get();
+	$scope.isFollow = false;
 
 	$scope.$watch($scope.currentUserId, function (newVal, oldVal, scope) {
 	    if($scope.currentUserId) {
 	    	$scope.getUserInfo();
 	    }
 	});
+
+	
 
 	/**
 	 * Информация по пользователю
@@ -136,16 +139,26 @@ function UserController($scope, $route, $routeParams, User, Needs, Professions, 
 	$scope.getUserInfo = function() {
 
 		User.query({id: $scope.currentUserId}, function(data) {
+			
 		 	$scope.user = data;
+		 	
 			if($scope.user.league) {
 				User.by_league({league_guid: $scope.user.league.sguid}, {}, function(data) {
 					$scope.user.league.users = data;
 				});
 			}
+			$scope.getUserAuthInfo();
 		});
 	}
 
-	
+
+
+	$scope.getUserAuthInfo = function() {
+		User.query({id: AuthUser.get()}, function(data) {
+		 	$scope.authUser = data;
+		 	$scope.testFollow();
+		});
+	}
 
 	/**
 	 * получаем список всех пользователей если надо
@@ -188,11 +201,22 @@ function UserController($scope, $route, $routeParams, User, Needs, Professions, 
 	 * @return {[type]} [description]
 	 */
 	$scope.$on('updateUserState', function($event, message) {
-		console.log(message);
 		if($scope.currentUserId == message.userId) {
 			$scope.currentUserId.userId = message.params.userId;
 		}
 	});
+
+	$scope.testFollow = function() {
+		var item = $scope.authUser.friends_guids.filter(function(item) {
+			if(item == $scope.currentUserId) { return item; }
+		});
+		console.log(item);
+		if(item && item.length > 0) {
+			$scope.isFollow = true;
+		} else {
+			$scope.isFollow = false;
+		}
+	}
 
 	/**
 	 * Событие обновления лиги у пользователя
@@ -223,6 +247,25 @@ function UserController($scope, $route, $routeParams, User, Needs, Professions, 
 	$scope.$on('updateUser', function() {
 		$scope.getUserInfo();
 	});
+
+
+	$scope.onFollow = function() {
+		User.create_friendship({id: AuthUser.get()}, {
+			friend_guid: $scope.currentUserId
+		}, $.proxy($scope.onFollowCallback_, $.scope));
+	}
+
+	$scope.onFollowCallback_ = function(data) {
+		$rootScope.$broadcast('updateUser');
+	}
+
+	$scope.onUnFollow = function() {
+		User.destroy_friendship({id: AuthUser.get(), friendId: $scope.currentUserId}, { }, $.proxy($scope.onUnFollowCallback_, $.scope));
+	}
+
+	$scope.onUnFollowCallback_ = function(data) {
+		$rootScope.$broadcast('updateUser');
+	}
 
 	/**
 	 * Список годов
@@ -1091,15 +1134,26 @@ function NeighboursCtrl($scope, $location, localize, User, AuthUser, Leagues, $r
 	User.get_friends({id: AuthUser.get()}, function(data) {
 	 	$rootScope.$broadcast('usersLoaded', {
 	 		id: 'follow',
-	 		users: data.friends
+	 		users: data
 	 	});
 	});
 
 	User.get_all({}, {}, function(data) {
-	 	$rootScope.$broadcast('usersLoaded', {
-	 		id: 'neigh',
-	 		users: data
-	 	});
+		User.query({id: AuthUser.get()},{ }, function(currentUser) {
+			var newUsers = [];
+			angular.forEach(data, function(value, key) {
+				if(value.user.points < currentUser.points+10000 && value.user.points > currentUser.points-10000) {
+					if(value.user.sguid != currentUser.sguid && value.user.published) {
+						newUsers.push(value);
+					}
+				}
+			});
+		 	$rootScope.$broadcast('usersLoaded', {
+		 		id: 'neigh',
+		 		users: newUsers
+		 	});
+		});
+		
 	});
 
 
@@ -1189,8 +1243,6 @@ function CompareController($scope) {
 
 	var crtiterias = {};
 
-	
-
 	$scope.$on('needUserValueLoaded', function($event, message) {
 		needsCountLoaded += 1;
 		needsValues[message.userId] = message.needsValues;
@@ -1248,33 +1300,28 @@ function CompareController($scope) {
 	
 }
 
-function GalleryController($scope, localize, Leagues, User, AuthUser) {
+function GalleryController($scope, localize, Leagues, User, AuthUser, $element) {
 	$scope.stateView = 0;
 	$scope.stateViewClass = "";
-	$scope.viewedUsers = [];
 	$scope.users = [];
+	$scope.limit = 3;
 
 	$scope.$on('usersLoaded', function($event, message) {
-		
 		if(message.id == $scope.id) {
 			$scope.users = message.users;
-			$scope.updateViewUsers();
 		}
 	});
-
-	$scope.updateViewUsers = function() {
-		if($scope.users) {
-			if(!$scope.stateView) {
-				$scope.viewedUsers = $scope.users.splice(0, 3);
-			} else {
-				$scope.viewedUsers = $scope.users;
-			}
-		}
-	}
 
 	$scope.onChangeState = function() {
 		$scope.stateView = $scope.stateView == 1 ? 0 : 1;
 		$scope.stateViewClass = $scope.stateView == 1 ? "fulls" : "";
-		$scope.updateViewUsers();
+		$scope.limit = $scope.stateView == 1 ? 999 : 3;
+
+		if($scope.stateView == 1) {
+			$(".lnbl").hide();
+			$($element).next().show();
+		} else {
+			$(".lnbl").show();
+		}
 	}
 }
