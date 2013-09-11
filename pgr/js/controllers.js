@@ -124,6 +124,9 @@ function UserController($scope, $route, $routeParams, User, Needs, Professions, 
 	$scope.authUserId = AuthUser.get();
 	$scope.isFollow = false;
 
+	$scope.currentUserId = '';
+	$scope.allUser = '';
+
 	$scope.$watch($scope.currentUserId, function (newVal, oldVal, scope) {
 	    if($scope.currentUserId) {
 	    	$scope.getUserInfo();
@@ -210,7 +213,7 @@ function UserController($scope, $route, $routeParams, User, Needs, Professions, 
 		var item = $scope.authUser.friends_guids.filter(function(item) {
 			if(item == $scope.currentUserId) { return item; }
 		});
-		console.log(item);
+
 		if(item && item.length > 0) {
 			$scope.isFollow = true;
 		} else {
@@ -256,7 +259,7 @@ function UserController($scope, $route, $routeParams, User, Needs, Professions, 
 	}
 
 	$scope.onFollowCallback_ = function(data) {
-		$rootScope.$broadcast('updateUser');
+		$scope.isFollow = true;
 	}
 
 	$scope.onUnFollow = function() {
@@ -264,7 +267,7 @@ function UserController($scope, $route, $routeParams, User, Needs, Professions, 
 	}
 
 	$scope.onUnFollowCallback_ = function(data) {
-		$rootScope.$broadcast('updateUser');
+		$scope.isFollow = false;
 	}
 
 	/**
@@ -583,16 +586,10 @@ function NeedsAndGoalsController($scope, Goals, Criterion, AuthUser, UserCriteri
 	 * @return {[type]}          [description]
 	 */
 	$scope.onPointsSet = function(currentValue, criteriaValue, needItem, goalItem) {
-		console.log("onPointsSet");
 		if(currentValue != criteriaValue) {
 			var delta = criteriaValue - currentValue;
-			console.log("delta-"+delta);
-			console.log("oldCValue-"+currentValue);
-			console.log("bewCValue-"+criteriaValue);
-			console.log("old-"+goalItem.current_value);
 			needItem.current_value = parseInt(needItem.current_value) + parseInt(delta);
 			goalItem.current_value = parseInt(goalItem.current_value) + parseInt(delta);
-			console.log("new-"+goalItem.current_value);
 		}
 	}
 
