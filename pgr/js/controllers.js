@@ -705,7 +705,7 @@ function NeedsAndGoalsController($scope, Goals, Criterion, AuthUser, UserCriteri
 	$scope.setCriteriaPosition = function(elm) {
 		var parentLi  = elm,
 			parentUl  = parentLi.parent(),
-		    slider = parentUl.find("span");
+		    slider = parentUl.parent().find("span");
 
 		parentUl.find("li").removeClass("current");
 		parentLi.addClass("current");
@@ -738,7 +738,7 @@ function NeedsAndGoalsController($scope, Goals, Criterion, AuthUser, UserCriteri
 	$scope.setCriteriaPositionNull = function(elm) {
 		var parentLi  = elm.parent(),
 			parentUl  = parentLi.parent(),
-		    slider = parentUl.find("span");
+		    slider = parentUl.parent().find("span");
 
 		parentUl.find("li").removeClass("current").removeClass("white-text");
 		parentUl.find("li:eq(0)").addClass("current");
