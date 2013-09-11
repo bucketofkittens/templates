@@ -478,6 +478,7 @@ body {
                                     .tab {
                                         display: table;
                                         width: 100%;
+                                        table-layout: fixed;
                                         li {
                                             display: table-cell;
                                             color: #000000;
@@ -489,15 +490,16 @@ body {
                                             position: relative;
                                             padding: 2% 0%;
                                             border: 0px;
-                                            text-align: left;
+                                            text-align: center;
                                             &.white-text, &.current {
                                                 color: #ffffff;
                                             }
                                             i {
                                                 display: block;
                                                 cursor: pointer;
+                                                word-break: break-all;
                                                 &.null_criteria {
-                                                    width: 50px;
+                                                    width: 20px;
                                                     height: 100%;
                                                 }
                                             }
