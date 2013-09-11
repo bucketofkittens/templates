@@ -89,7 +89,6 @@ pgrModule.factory('User', function ($resource) {
                         var users = angular.fromJson(data);
 
                         angular.forEach(users, function(value, key){
-                            console.log(value);
                             if(users[key].friendship.user.avatar) {
                                 users[key].friendship.user.avatar.full_path = createImageFullPath(users[key].friendship.user.avatar);
                             }

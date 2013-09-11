@@ -844,7 +844,7 @@ function RegController($scope, $location, User, AuthUser, $rootScope) {
  * [LoginController description]
  * @param {[type]} $scope [description]
  */
-function LoginController($scope, Sessions, $rootScope, AuthUser) {
+function LoginController($scope, Sessions, $rootScope, AuthUser, User, $store) {
 	$scope.authUser = AuthUser.get();
 	/**
 	 * Поле логина
@@ -878,6 +878,12 @@ function LoginController($scope, Sessions, $rootScope, AuthUser) {
 		$(".modal-backdrop").remove();
 	});
 
+	$scope.$on('openLoginModal', function() {
+		$scope.shouldBeOpen = true;
+	});
+
+	
+
 	/**
 	 * Вызывается при нажатии ok в форме авторизации
 	 * @param  {[type]} $event [description]
@@ -890,8 +896,13 @@ function LoginController($scope, Sessions, $rootScope, AuthUser) {
 		}), function(data) {
 			if(data.success) {
 				AuthUser.set(data.guid);
-				$scope.shouldBeOpen = false;
-				$rootScope.$broadcast('login');
+				User.query({id: data.guid}, function(data) {
+					$rootScope.$broadcast('login');
+				 	$rootScope.authUser = data;
+				 	console.log(data);
+				 	$store.set('authUser', JSON.stringify(data));
+				 	$scope.shouldBeOpen = false;
+				});
 			} else {
 				$scope.error = data.message;
 			}
@@ -965,7 +976,7 @@ function ContentController($scope, $rootScope, $route, $location) {
  * @param {[type]} $scope  [description]
  * @param {[type]} Leagues [description]
  */
-function MainController($scope, Leagues, User, AuthUser, $rootScope, Friendships) {
+function MainController($scope, Leagues, User, AuthUser, $rootScope) {
 
 	/**
 	 * Массив лиг
@@ -978,35 +989,80 @@ function MainController($scope, Leagues, User, AuthUser, $rootScope, Friendships
 	 * @type {Number}
 	 */
 	$scope.maxLeaguesView = 3;
+	$scope.cellStep = 10;
+	$scope.isAuth = $rootScope.authUser ? true : false;
+	$scope.rootUser = $rootScope.authUser ? $rootScope.authUser : false;
 
-	/**
-	 * Массив ячеек
-	 * @type {type}
-	 */
-	$scope.cells = {id: "test"};
-	$scope.isAuth = false;
+	$scope.placeUser = function(user) {
+		var i = getRandomInt(0, $scope.cellStep);
+		var j = getRandomInt(0, $scope.cellStep);
 
-	$scope.loadUser = function() {
-		$scope.authUser = AuthUser.get();
-		if($scope.authUser) {
-			$scope.isAuth = true;
-			User.query({id: $scope.authUser}, function(data) {
-			 	$scope.authUserData = data;
-			});	
+		if(!$scope.cells[i]) {
+			console.log($scope.cells[i]);
+		} 
+		if(!$scope.cells[i][j]) {
+			$scope.cells[i][j] = user;
 		} else {
-			$scope.isAuth = false;
+			$scope.placeUser(user);
 		}
 	}
 
-	
-	$scope.authUserData = null;
-	$scope.loadUser();
-	$scope.viewedUsers = [];
 
-	
-	$scope.$on('login', function() {
-		$scope.loadUser();
+	$scope.onOpenLogin = function() {
+		$rootScope.$broadcast('openLoginModal');
+	}
+
+	$scope.$watch($rootScope.authUser, function(newValue, oldValue, scope) {
+		if($rootScope.authUser) {
+			$scope.isAuth = true;
+			$scope.rootUser = $rootScope.authUser;
+		} else {
+			$scope.isAuth = false;
+		}
 	});
+	
+	
+	$scope.viewedUsers = [];
+	$scope.cells = [];
+
+	$scope.genereteCells = function() {
+		var i = 0;
+		var j = 0;
+		for(i = 0; i < 10; i++) {
+			var cell = [];
+			for(j = 0; j < 10; j++) {
+				cell.push(null);
+			}
+			$scope.cells.push(cell);
+		}
+	}
+
+	$scope.clearUsers = function() {
+		var i = 0;
+		var j = 0;
+		for(i = 0; i < 10; i++) {
+			for(j = 0; j < 10; j++) {
+				$scope.cells[i][j] = null;
+			}
+		}
+	}
+
+	$scope.genereteCells();
+
+	$scope.$on('login', function() {
+		$scope.isAuth = true;
+		$scope.rootUser = $rootScope.authUser;
+	});
+
+	$scope.$on('logout', function() {
+		$scope.isAuth = false;
+	});
+
+	$scope.updateMainView = function() {
+		angular.forEach($scope.viewedUsers, function(value, key){
+			$scope.placeUser(value);
+		});
+	}
 
 	$scope.setCurrentElementNav = function($event) {
 		var el = $($event);
@@ -1017,8 +1073,10 @@ function MainController($scope, Leagues, User, AuthUser, $rootScope, Friendships
 	}
 
 	$scope.onFellows = function($event) {
-		User.get_friends({id: $scope.authUser}, {}, function(data) {
+		User.get_friends({id: $rootScope.authUser.sguid}, {}, function(data) {
 			$scope.viewedUsers = data;
+			$scope.clearUsers();
+			$scope.updateMainView();
 		});
 		$scope.setCurrentElementNav($event);
 	}
@@ -1049,6 +1107,9 @@ function MainController($scope, Leagues, User, AuthUser, $rootScope, Friendships
 			$scope.leagues = data.splice(0,$scope.maxLeaguesView);
 			$scope.viewedUsers = [];
 
+			var maxLoad = 1;
+			var dataLoaded = [];
+
 			/**
 			 * Проходимся по оплучившемуся массиву лиг и получаем список пользователей
 			 * @param  {[type]} value [description]
@@ -1056,8 +1117,25 @@ function MainController($scope, Leagues, User, AuthUser, $rootScope, Friendships
 			 * @return {[type]}       [description]
 			 */
 			angular.forEach($scope.leagues, function(value, key){
+				
+
 				User.by_league({league_guid: value.league.sguid}, {}, function(userData) {
-					$scope.viewedUsers = $scope.viewedUsers.concat(userData);
+					userData = userData.filter(function(data) {
+						if(data.user.published) {
+							return data;
+						}
+					});
+					
+					
+					dataLoaded = dataLoaded.concat(userData);
+					if($scope.maxLeaguesView == maxLoad) {
+						console.log(dataLoaded);
+						$scope.viewedUsers = dataLoaded;
+						$scope.clearUsers();
+						$scope.updateMainView();
+					}
+
+					maxLoad += 1;
 				});
 			});
 		})
@@ -1224,11 +1302,12 @@ function CompareController($scope, $location, User, $routeParams, AuthUser, Need
 	
 }
 
-function LogoutController($scope, AuthUser, $location, $rootScope) {
+function LogoutController($scope, AuthUser, $location, $rootScope, $store) {
     AuthUser.logout();
-    
-    $location.path("/");
+    $store.remove('authUser');
+    $rootScope.authUser = null;
     $rootScope.$broadcast('logout');
+    $location.path("/");
 }
 
 function CompareController($scope) {
@@ -1321,4 +1400,13 @@ function GalleryController($scope, localize, Leagues, User, AuthUser, $element) 
 			$(".lnbl").show();
 		}
 	}
+}
+
+function getRandomInt(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+function RootController($scope, AuthUser, User, $rootScope, $store) {
+	$rootScope.authUserId = AuthUser.get();
+	$rootScope.authUser = angular.fromJson($store.get('authUser'));
 }
