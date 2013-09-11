@@ -106,6 +106,42 @@ pgrModule.factory('User', function ($resource) {
             "destroy_friendship": {
                 method: "DELETE",
                 url: host+"/users/:id/friends/:friendId"
+            },
+            "by_state": {
+                method: "GET",
+                isArray: true,
+                url: host+"/users/by_state/:state_guid",
+                transformResponse: function (data) {
+                    if(data) {
+                        var users = angular.fromJson(data);
+
+                        angular.forEach(users, function(value, key){
+                            if(users[key].user.avatar) {
+                                users[key].user.avatar.full_path = createImageFullPath(users[key].user.avatar);
+                            }
+                        });
+
+                        return users; 
+                    }
+                }
+            },
+            "by_profession": {
+                method: "GET",
+                isArray: true,
+                url: host+"/users/by_profession/:profession_guid",
+                transformResponse: function (data) {
+                    if(data) {
+                        var users = angular.fromJson(data);
+
+                        angular.forEach(users, function(value, key){
+                            if(users[key].user.avatar) {
+                                users[key].user.avatar.full_path = createImageFullPath(users[key].user.avatar);
+                            }
+                        });
+
+                        return users; 
+                    }
+                }
             }
         }
     );

@@ -89,7 +89,6 @@ function ProfileController($scope, $routeParams, AuthUser, $route, $rootScope) {
 	}
 	$scope.rightTemplate = '';
 
-	
 
 	$scope.updateRouteUser = function(userId) {
 		$scope.routeUserId = userId;
@@ -128,12 +127,14 @@ function UserController($scope, $route, $routeParams, User, Needs, Professions, 
 	$scope.allUser = '';
 
 	$scope.$watch($scope.currentUserId, function (newVal, oldVal, scope) {
-	    if($scope.currentUserId) {
-	    	$scope.getUserInfo();
-	    }
+		if($rootScope.authUserId == $scope.currentUserId) {
+			$scope.user = $rootScope.authUser;
+		} else {
+			if($scope.currentUserId) {
+		    	$scope.getUserInfo();
+		    }	
+		}
 	});
-
-	
 
 	/**
 	 * Информация по пользователю
@@ -157,10 +158,8 @@ function UserController($scope, $route, $routeParams, User, Needs, Professions, 
 
 
 	$scope.getUserAuthInfo = function() {
-		User.query({id: AuthUser.get()}, function(data) {
-		 	$scope.authUser = data;
-		 	$scope.testFollow();
-		});
+		$scope.authUser = $rootScope.authUser;
+		$scope.testFollow();
 	}
 
 	/**
@@ -997,10 +996,7 @@ function MainController($scope, Leagues, User, AuthUser, $rootScope) {
 		var i = getRandomInt(0, $scope.cellStep);
 		var j = getRandomInt(0, $scope.cellStep);
 
-		if(!$scope.cells[i]) {
-			console.log($scope.cells[i]);
-		} 
-		if(!$scope.cells[i][j]) {
+		if($scope.cells[i] && !$scope.cells[i][j]) {
 			$scope.cells[i][j] = user;
 		} else {
 			$scope.placeUser(user);
@@ -1070,6 +1066,35 @@ function MainController($scope, Leagues, User, AuthUser, $rootScope) {
 		if(el[0]) {
 			$(el[0].target).parent().addClass("current");
 		}
+	}
+
+	$scope.onNeighbours = function($event) {
+		User.by_state({state_guid: $rootScope.authUser.state.sguid}, {}, function(data) {
+			data = data.filter(function(data) {
+				if(data.user.published && data.user.avatar) {
+					return data;
+				}
+			});
+			$scope.viewedUsers = data;
+			$scope.clearUsers();
+			$scope.updateMainView();
+		});
+		$scope.setCurrentElementNav($event);
+	}
+
+	$scope.onColleagues = function($event) {
+		User.by_profession({profession_guid: $rootScope.authUser.profession.sguid}, {}, function(data) {
+			data = data.filter(function(data) {
+				if(data.user.published && data.user.avatar) {
+					return data;
+				}
+			});
+			console.log(data);
+			$scope.viewedUsers = data;
+			$scope.clearUsers();
+			$scope.updateMainView();
+		});
+		$scope.setCurrentElementNav($event);
 	}
 
 	$scope.onFellows = function($event) {
