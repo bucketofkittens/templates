@@ -115,7 +115,7 @@ function ProfileController($scope, $routeParams, AuthUser, $route, $rootScope) {
  * @param {type} States
  * @returns {undefined}
  */
-function UserController($scope, $route, $routeParams, User, Needs, Professions, States, $http, NeedsByUser, $rootScope, GoalsByUser, AuthUser, Friendships, Leagues, $location, $window) {
+function UserController($scope, $route, $routeParams, User, Needs, Professions, States, $http, NeedsByUser, $rootScope, GoalsByUser, AuthUser, Friendships, Leagues, $location, $window, $store) {
 	$scope.user = null;
 	$scope.newImage = null;
 	$scope.professions = Professions.query();
@@ -126,8 +126,10 @@ function UserController($scope, $route, $routeParams, User, Needs, Professions, 
 	$scope.currentUserId = '';
 	$scope.allUser = '';
 
+
 	$scope.$watch($scope.currentUserId, function (newVal, oldVal, scope) {
 		if($rootScope.authUserId == $scope.currentUserId) {
+			console.log($rootScope.authUser);
 			$scope.user = $rootScope.authUser;
 		} else {
 			if($scope.currentUserId) {
@@ -141,7 +143,7 @@ function UserController($scope, $route, $routeParams, User, Needs, Professions, 
 	 * @return {[type]} [description]
 	 */
 	$scope.getUserInfo = function() {
-
+		console.log($scope.currentUserId);
 		User.query({id: $scope.currentUserId}, function(data) {
 			
 		 	$scope.user = data;
@@ -151,10 +153,14 @@ function UserController($scope, $route, $routeParams, User, Needs, Professions, 
 					$scope.user.league.users = data;
 				});
 			}
+			if($rootScope.authUserId == data.sguid) {
+				$rootScope.authUser = data;
+				$store.set('authUser', JSON.stringify($rootScope.authUser));
+			}
+
 			$scope.getUserAuthInfo();
 		});
 	}
-
 
 
 	$scope.getUserAuthInfo = function() {
@@ -234,8 +240,13 @@ function UserController($scope, $route, $routeParams, User, Needs, Professions, 
 	 * @return {[type]}      [description]
 	 */
 	$scope.userLegueAndPointsUpdate_ = function(data) {
-		$scope.user.league = data.league;	
+		$scope.user.league = data.league;
 		$scope.user.points = data.points;
+
+		$rootScope.authUser.league = data.league;
+		$rootScope.authUser.points = data.points;
+
+		$store.set('authUser', JSON.stringify($rootScope.authUser));
 	}
 
 	/**
@@ -386,6 +397,7 @@ function UserController($scope, $route, $routeParams, User, Needs, Professions, 
 				"state": $scope.user.state ? $scope.user.state.sguid : null,
 				"published": 1
 			})}, function(data) {
+				$scope.getUserInfo();
 				$rootScope.$broadcast('loaderHide');
 				$rootScope.$broadcast('updateUser');
 				$("input[type='text'], input[type='email'], select", ".pmpar").attr("readonly", "readonly");

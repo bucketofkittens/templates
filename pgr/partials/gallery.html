@@ -2,6 +2,7 @@
 	<h4>{{title}}</h4>
 	<a href="#/profile/{{userItem.user.sguid}}"  ng-repeat="(userKey, userItem) in users | limitTo:limit ">
 		<img ng-src="{{userItem.user.avatar.full_path}}" err-src="/images/unknown-person.png" />
+		<span>{{userItem.user.points}}</span>
 	</a>
 	<button ng-if="!stateView" ng-click="onChangeState()" class="more">{{'_moreL_' | i18n}}</button>
 	<button ng-if="stateView" ng-click="onChangeState()" class="less">{{'_lessL_' | i18n}}</button>

@@ -12,12 +12,14 @@
 				<td ng-repeat="userItem in cellItem track by $index" class="{{userItem.user.sguid}}">
 					<a ng-if="userItem.user" href="#/profile/{{userItem.user.sguid}}" >
 						<img ng-src="{{userItem.user.avatar.full_path}}" alt="" />
+						<span>{{userItem.user.points}}</span>
 					</a>
 				</td>
 			</tr>
 		</tbody>
 	</table>
 </section>
+
 <ul id="main_nav" ng-if="isAuth">
 	<li class="current"><i class="icon top"></i><a ng-click="onTop($event)">TOP</a></li>
 	<li><i class="icon fellows"></i><a ng-click="onFellows($event)">Fellows</a></li>
