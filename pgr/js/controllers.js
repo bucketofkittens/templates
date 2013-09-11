@@ -1017,7 +1017,7 @@ function MainController($scope, Leagues, User, AuthUser, $rootScope, Friendships
 	}
 
 	$scope.onFellows = function($event) {
-		Friendships.by_user({user_guid: $scope.authUser}, {}, function(data) {
+		User.get_friends({id: $scope.authUser}, {}, function(data) {
 			$scope.viewedUsers = data;
 		});
 		$scope.setCurrentElementNav($event);
