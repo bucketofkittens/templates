@@ -1024,7 +1024,7 @@ function MainController($scope, Leagues, User, AuthUser, $rootScope) {
 		if($rootScope.authUser) {
 			$scope.isAuth = true;
 			$scope.rootUser = $rootScope.authUser;
-		} else {
+		} else {	
 			$scope.isAuth = false;
 		}
 	});
@@ -1072,113 +1072,15 @@ function MainController($scope, Leagues, User, AuthUser, $rootScope) {
 		});
 	}
 
-	$scope.setCurrentElementNav = function($event) {
-		var el = $($event);
-		$("#main_nav li").removeClass("current");
-		if(el[0]) {
-			$(el[0].target).parent().addClass("current");
-		}
-	}
-
-	$scope.onNeighbours = function($event) {
-		User.by_state({state_guid: $rootScope.authUser.state.sguid}, {}, function(data) {
-			data = data.filter(function(data) {
-				if(data.user.published && data.user.avatar) {
-					return data;
-				}
-			});
+	$scope.getAllUser = function($event) {
+		User.get_all({}, {}, function(data) {
 			$scope.viewedUsers = data;
 			$scope.clearUsers();
 			$scope.updateMainView();
 		});
-		$scope.setCurrentElementNav($event);
-	}
-
-	$scope.onColleagues = function($event) {
-		User.by_profession({profession_guid: $rootScope.authUser.profession.sguid}, {}, function(data) {
-			data = data.filter(function(data) {
-				if(data.user.published && data.user.avatar) {
-					return data;
-				}
-			});
-			console.log(data);
-			$scope.viewedUsers = data;
-			$scope.clearUsers();
-			$scope.updateMainView();
-		});
-		$scope.setCurrentElementNav($event);
-	}
-
-	$scope.onFellows = function($event) {
-		User.get_friends({id: $rootScope.authUser.sguid}, {}, function(data) {
-			$scope.viewedUsers = data;
-			$scope.clearUsers();
-			$scope.updateMainView();
-		});
-		$scope.setCurrentElementNav($event);
-	}
-
-	$scope.onTop = function($event) {
-		$scope.setCurrentElementNav($event);
-
-		/**
-		 * Забираем запросом список лиг.
-		 * @param  {[type]} data [description]
-		 * @return {[type]}      [description]
-		 */
-		Leagues.query({}, {}, function(data) {
-			/**
-			 * Сортируем лиги по убыванию
-			 * @param  {[type]} a [description]
-			 * @param  {[type]} b [description]
-			 * @return {[type]}   [description]
-			 */
-			data.sort(function(a,b) {
-			    return a.league.position + b.league.position;
-			});
-
-			/**
-			 * Получаем 3 наикрутейшие лиги
-			 * @type {[type]}
-			 */
-			$scope.leagues = data.splice(0,$scope.maxLeaguesView);
-			$scope.viewedUsers = [];
-
-			var maxLoad = 1;
-			var dataLoaded = [];
-
-			/**
-			 * Проходимся по оплучившемуся массиву лиг и получаем список пользователей
-			 * @param  {[type]} value [description]
-			 * @param  {[type]} key   [description]
-			 * @return {[type]}       [description]
-			 */
-			angular.forEach($scope.leagues, function(value, key){
-				
-
-				User.by_league({league_guid: value.league.sguid}, {}, function(userData) {
-					userData = userData.filter(function(data) {
-						if(data.user.published) {
-							return data;
-						}
-					});
-					
-					
-					dataLoaded = dataLoaded.concat(userData);
-					if($scope.maxLeaguesView == maxLoad) {
-						console.log(dataLoaded);
-						$scope.viewedUsers = dataLoaded;
-						$scope.clearUsers();
-						$scope.updateMainView();
-					}
-
-					maxLoad += 1;
-				});
-			});
-		})
 	}
 	
-	$scope.onTop();
+	$scope.getAllUser();
 }
 
 /** Контроллер графика */
@@ -1446,4 +1348,8 @@ function getRandomInt(min, max) {
 function RootController($scope, AuthUser, User, $rootScope, $store) {
 	$rootScope.authUserId = AuthUser.get();
 	$rootScope.authUser = angular.fromJson($store.get('authUser'));
+}
+
+function LeaguesController($scope) {
+	
 }

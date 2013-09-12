@@ -20,13 +20,6 @@
 	</table>
 </section>
 
-<ul id="main_nav" ng-if="isAuth">
-	<li class="current"><i class="icon top"></i><a ng-click="onTop($event)">TOP</a></li>
-	<li><i class="icon fellows"></i><a ng-click="onFellows($event)">Fellows</a></li>
-	<li><i class="icon neighbours"></i><a ng-click="onNeighbours($event)">Neighbours</a></li>
-	<li><i class="icon colleagues"></i><a ng-click="onColleagues($event)">Colleagues</a></li>
-</ul>
-
 <div ng-controller="RegController">
 	<div modal="shouldBeOpen" close="close()" options="opts">
 		<div class="modal-body">
