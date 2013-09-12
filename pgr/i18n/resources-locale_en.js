@@ -105,7 +105,7 @@
     },
     {
         "key":"_lessL_",
-        "value": "Show less"
+        "value": "Back"
     },
     {
         "key":"_topL_",
