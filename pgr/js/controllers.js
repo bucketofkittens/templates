@@ -1010,21 +1010,6 @@ function MainController($scope, Leagues, User, AuthUser, $rootScope) {
     
     
     $scope.viewedUsers = [];
-    $scope.cells = [];
-
-    $scope.genereteCells = function() {
-        var i = 0;
-        var j = 0;
-        for(i = 0; i < 10; i++) {
-            var cell = [];
-            for(j = 0; j < 10; j++) {
-                cell.push(null);
-            }
-            $scope.cells.push(cell);
-        }
-    }
-
-    $scope.genereteCells();
 
     $scope.$on('login', function() {
         $scope.isAuth = true;
@@ -1035,24 +1020,14 @@ function MainController($scope, Leagues, User, AuthUser, $rootScope) {
         $scope.isAuth = false;
     });
 
-    $scope.updateMainView = function() {
-        var i = 0;
-        var j = 0;
-        var z = 0;
-        for(i = 0; i < 10; i++) {
-            var cell = [];
-            for(j = 0; j < 10; j++) {
-                z += 1;
-                cell.push($scope.viewedUsers[z]);
-            }
-            $scope.cells.push(cell);
-        }
-    }
-
     $scope.getAllUser = function($event) {
         User.get_all({}, {}, function(data) {
+            data = data.filter(function(item) {
+                if(item.user.published && item.user.avatar) {
+                    return item;
+                }
+            });
             $scope.viewedUsers = data.shuffle();
-            $scope.updateMainView();
         });
     }
     

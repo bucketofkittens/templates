@@ -6,18 +6,14 @@
 		<img ng-src="{{rootUser.avatar.full_path}}" err-src="/images/unknown-person.png" />
 	</a>
 
-	<table>
-		<tbody>
-			<tr ng-repeat="cellItem in cells">
-				<td ng-repeat="userItem in cellItem track by $index" class="{{userItem.user.sguid}}">
-					<a ng-if="userItem.user" href="#/profile/{{userItem.user.sguid}}" >
-						<img ng-src="{{userItem.user.avatar.full_path}}" alt="" />
-						<span>{{userItem.user.points}}</span>
-					</a>
-				</td>
-			</tr>
-		</tbody>
-	</table>
+	<ul>
+		<li ng-repeat="userItem in viewedUsers" class="{{userItem.user.sguid}}">
+			<a ng-if="userItem.user" href="#/profile/{{userItem.user.sguid}}" >
+				<img ng-src="{{userItem.user.avatar.full_path}}" alt="" />
+				<span>{{userItem.user.points}}</span>
+			</a>
+		</li>
+	</ul>
 </section>
 
 <div ng-controller="RegController">

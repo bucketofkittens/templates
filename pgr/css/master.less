@@ -765,22 +765,19 @@ body {
 
 /** main_leagues **/
 #main_leagues {
-    ul {
-        li {
-            a {
-                img {
-                    position: absolute;
-                    left: 50%;
-                    top: 50%;
-                }
-            }
-        }
+    > img {
+        position: absolute;
+        left: 50%;
+        top: 50%;
     }
-    table {
+    ul {
         width: 100%;
-        td {
-            height: 10%;
-            width: 10%;
+        li {
+            height: 8%;
+            width: 8%;
+            display: inline-block;
+            overflow: hidden;
+            position: relative;
         }
         a {
             position: relative;
