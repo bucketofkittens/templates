@@ -1032,6 +1032,14 @@ function MainController($scope, Leagues, User, AuthUser, $rootScope) {
     }
     
     $scope.getAllUser();
+
+    $scope.onMouseEnterUser = function(user) {
+        user.showHint = true;
+    }
+
+    $scope.onMouseLeaveUser = function(user) {
+        user.showHint = false;
+    }
 }
 
 /** Контроллер графика */

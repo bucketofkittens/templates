@@ -8,9 +8,9 @@
 
 	<ul>
 		<li ng-repeat="userItem in viewedUsers" class="{{userItem.user.sguid}}">
-			<a ng-if="userItem.user" href="#/profile/{{userItem.user.sguid}}" >
+			<a ng-if="userItem.user" href="#/profile/{{userItem.user.sguid}}" ng-mouseleave="onMouseLeaveUser(userItem.user)" ng-mouseenter="onMouseEnterUser(userItem.user)" >
 				<img ng-src="{{userItem.user.avatar.full_path}}" alt="" />
-				<span>{{userItem.user.points}}</span>
+				<span>{{userItem.user.points}}<i ng-class="{show: userItem.user.showHint}">{{userItem.user.name}} {{userItem.user.profession.name}}</i></span>
 			</a>
 		</li>
 	</ul>
