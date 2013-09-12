@@ -107,6 +107,42 @@ function ProfileController($scope, $routeParams, AuthUser, $route, $rootScope, $
 }
 
 /**
+ * [QuickUserChangeCtrl description]
+ * @param {[type]} $scope     [description]
+ * @param {[type]} User       [description]
+ * @param {[type]} AuthUser   [description]
+ * @param {[type]} $rootScope [description]
+ * @param {[type]} $store     [description]
+ * @param {[type]} $location  [description]
+ */
+function QuickUserChangeCtrl($scope, User, AuthUser, $rootScope, $store, $location) {
+    $scope.users = [];
+
+    $scope.onMoveUserClick = function($event, nextUser) {
+        AuthUser.set(nextUser.user.sguid);
+        
+        $rootScope.authUser = nextUser.user;
+        $store.set('authUser', JSON.stringify(nextUser.user));
+        $location.path("/profile/"+nextUser.user.sguid);
+    }
+
+    User.get_all({}, {}, function(data) {
+        data.sort(function(a, b){
+            if(a.user.login < b.user.login) return -1;
+            if(a.user.login > b.user.login) return 1;
+            return 0;
+        })
+        var users = [];
+        angular.forEach(data, function(value, key){
+            if(value.user.published == 1) {
+                users.push(value);
+            }
+        });
+        $scope.users = users;
+    }); 
+}
+
+/**
  * Контроллер  профиля
  * @param {type} $scope
  * @param {type} $route
@@ -126,8 +162,6 @@ function UserController($scope, $route, $routeParams, User, Needs, Professions, 
     $scope.isFollow = false;
 
     $scope.currentUserId = '';
-    $scope.allUser = '';
-
 
     $scope.$watch($scope.currentUserId, function (newVal, oldVal, scope) {
         if($rootScope.authUserId == $scope.currentUserId) {
@@ -145,7 +179,6 @@ function UserController($scope, $route, $routeParams, User, Needs, Professions, 
      */
     $scope.getUserInfo = function() {
         User.query({id: $scope.currentUserId}, function(data) {
-            
             $scope.user = data;
             
             if($scope.user.league) {
@@ -153,48 +186,15 @@ function UserController($scope, $route, $routeParams, User, Needs, Professions, 
                     $scope.user.league.users = data;
                 });
             }
-            /**
-            if($rootScope.authUserId == data.sguid) {
-                $rootScope.authUser = data;
-                $store.set('authUser', JSON.stringify($rootScope.authUser));
-            }**/
-
-            $scope.getUserAuthInfo();
+            $scope.authUser = $rootScope.authUser;
+            $scope.testFollow();
+            $rootScope.$broadcast('getUserInfo', {
+                user: $scope.user,
+                id: $scope.id
+            });
         });
     }
-
-
-    $scope.getUserAuthInfo = function() {
-        $scope.authUser = $rootScope.authUser;
-        $scope.testFollow();
-    }
-
-    /**
-     * получаем список всех пользователей если надо
-     */
-    $scope.$watch($scope.allUser, function (newVal, oldVal, scope) {
-        if($scope.allUser) {
-            /**
-             * список всех пользователей
-             * @param  {[type]} data [description]
-             * @return {[type]}      [description]
-             */
-            User.get_all({}, {}, function(data) {
-                data.sort(function(a, b){
-                    if(a.user.login < b.user.login) return -1;
-                    if(a.user.login > b.user.login) return 1;
-                    return 0;
-                })
-                var users = [];
-                angular.forEach(data, function(value, key){
-                    if(value.user.published == 1) {
-                        users.push(value);
-                    }
-                });
-                $scope.users = users;
-            }); 
-        }
-    });
+    
 
     $scope.$on('updateLegue', function() {
         User.update_legue({id: AuthUser.get()}, {
@@ -297,8 +297,6 @@ function UserController($scope, $route, $routeParams, User, Needs, Professions, 
 
     $scope.ages = this.generateAgesArray(14, 150);
 
-    
-
     $scope.onCompare = function(id) {
         $location.path('/compare/'+id);
     }
@@ -356,7 +354,11 @@ function UserController($scope, $route, $routeParams, User, Needs, Professions, 
                 type: 'PUT'
             }).done(function(data) {
                 $scope.$apply(function(){
-                    $scope.getUserInfo();
+                    if(data.success) {
+                        $scope.user.avatar = data.message;
+                        $scope.user.avatar.full_path = createImageFullPath($scope.user.avatar);
+                        $rootScope.$broadcast('updateUserData', {user: $scope.user});
+                    }
                     $rootScope.$broadcast('loaderHide');
                 });
             });
@@ -402,16 +404,6 @@ function UserController($scope, $route, $routeParams, User, Needs, Professions, 
             }
         );
     }
-
-    $scope.onMoveUserClick = function($event, nextUser) {
-        AuthUser.set(nextUser.user.sguid);
-        
-
-        //$rootScope.$broadcast('login');
-        $rootScope.authUser = nextUser.user;
-        $store.set('authUser', JSON.stringify(nextUser.user));
-        $location.path("/profile/"+nextUser.user.sguid);
-    }
 }
 
 /**
@@ -421,43 +413,56 @@ function UserController($scope, $route, $routeParams, User, Needs, Professions, 
  * @param {[type]} Criterion
  */
 function NeedsAndGoalsController($scope, Goals, Criterion, AuthUser, UserCriteriaValue, $rootScope, CriterionByGoal, UserCriteriaValueByUser, $routeParams, Needs, User, $element) {
-    
-    $scope.$watch($scope.currentUserId, function (newVal, oldVal, scope) {
-        $scope.getCurrentUserData();
-    });
-
-    $scope.$watch($rootScope.needs, function (newVal, oldVal, scope) {
-        $scope.needs = $rootScope.needs;
-    });
 
     $scope.$on('needsLoaded', function($event, message) {
-        $scope.needs = $rootScope.needs;
+        if($scope.user && !$scope.user.needs) {
+            $rootScope.$broadcast('bindUserNeeds', {
+                user: $scope.user
+            });
+        }
     });
 
-    /**
-     * Получаем зачение критериев пользователя
-     * @return {[type]} [description]
-     */
-    $scope.getCurrentUserData = function() {
-        User.needs_points({id: $scope.currentUserId}, {}, function(needsData) {
-            $rootScope.$broadcast('needUserValueLoaded', {
-                needsValues: needsData,
-                userId: $scope.currentUserId
-            });
-            User.goals_points({id: $scope.currentUserId}, {}, function(goalsData) {
-                angular.forEach($scope.needs, function(needItem, needKey) {
-                    needItem.current_value = parseInt(needsData[needItem.sguid]);
-                    angular.forEach(needItem.goals, function(goalItem, goalKey){
-                        goalItem.current_value = parseInt(goalsData[goalItem.sguid]);
-                    });
-                });
-                $rootScope.$broadcast('goalUserValueLoaded', {
-                    goalsValues: goalsData,
-                    userId: $scope.currentUserId
-                });
+    if($scope.user && $scope.user.needs) {
+        var needsData = {};
+        var goalsData = {};
+        angular.forEach($scope.user.needs, function(value, key){
+            needsData[value.sguid] = value.current_value;
+            angular.forEach(value.goals, function(value2, key2){
+                goalsData[value2.sguid] = value2.current_value;
             });
         });
+        $rootScope.$broadcast('needUserValueLoaded', {
+            needsValues: needsData,
+            userId: $scope.user.sguid
+        });
+         $rootScope.$broadcast('goalUserValueLoaded', {
+            goalsValues: goalsData,
+            userId: $scope.user.sguid
+        });
     }
+
+    $scope.$on('getUserInfo', function($event, message) {
+        if(message.id == $scope.id) {
+            $scope.user = message.user;
+            if(!$scope.user.needs) {
+                $rootScope.$broadcast('bindUserNeeds', {
+                    user: $scope.user
+                });
+            }
+        }
+    });
+
+    $scope.$on('bindUserNeedsCallback_', function($event, message) {
+        $rootScope.$broadcast('bindUserNeedsValues', {
+            user: message.user
+        });
+    });
+
+    $scope.$on('bindUserNeedsValuesCallback', function($event, message) {
+        $rootScope.$broadcast('updateUserData', {
+            user: message.user
+        });
+    });
 
     $scope.addEmptyElement = function(goal) {
         angular.forEach(goal.criteriums, function(criteriumsItem, criteriumsKey) {
@@ -529,15 +534,14 @@ function NeedsAndGoalsController($scope, Goals, Criterion, AuthUser, UserCriteri
      * @return {[type]}        [description]
      */
     $scope.openCriteriumList = function ($event, need, goal, currentUserId) {
-        var fNeed = $scope.needs.filter(function (needValue) { 
+        var fNeed = $scope.user.needs.filter(function (needValue) { 
             return needValue.sguid == need.sguid;
         })[0];
         var fGoal = fNeed.goals.filter(function (goalValue) { 
             return goalValue.sguid == goal.sguid;
         })[0];
-        if(!fGoal.criteriums) {
-            $scope.getCriteriumByGoal(fGoal);
-        }
+        
+        $scope.getCriteriumByGoal(fGoal);
 
         if(!currentUserId) {
             $rootScope.$broadcast('openCriteriumList', {
@@ -573,14 +577,23 @@ function NeedsAndGoalsController($scope, Goals, Criterion, AuthUser, UserCriteri
                     }), function(data) {
                         criteria.user_criteria_id = data.message.sguid;
                         $rootScope.$broadcast('userCriteriaUpdate');
+                        $rootScope.$broadcast('updateUserData', {
+                            user: $scope.user
+                        });
                     });
                 } else {
                     if(criteria.user_criteria_id) {
                         UserCriteriaValue.del({id: criteria.user_criteria_id}, {}, function(data) {
                             $rootScope.$broadcast('userCriteriaUpdate');
+                            $rootScope.$broadcast('updateUserData', {
+                                user: $scope.user
+                            });
                         }); 
                     } else {
                         $rootScope.$broadcast('userCriteriaUpdate');
+                        $rootScope.$broadcast('updateUserData', {
+                            user: $scope.user
+                        });
                     }
                 }
 
@@ -994,7 +1007,6 @@ function MainController($scope, Leagues, User, AuthUser, $rootScope) {
     $scope.isAuth = $rootScope.authUser ? true : false;
     $scope.rootUser = $rootScope.authUser ? $rootScope.authUser : false;
 
-
     $scope.onOpenLogin = function() {
         $rootScope.$broadcast('openLoginModal');
     }
@@ -1257,6 +1269,7 @@ function CompareController($scope) {
         goalsValues[message.userId] = message.goalsValues;
         if(goalsCountLoaded == 2) {
             angular.forEach(goalsValues[$scope.routeUserId], function(value, key){
+                console.log(goalsValues);
                 if(value < goalsValues[$scope.authUserId][key]) {
                     $("li[data-goalid='"+key+"'] > h5", $("#compare")).append('<sup class="du"></sup>');
                 } else {
@@ -1306,10 +1319,11 @@ function RootController($scope, AuthUser, User, $rootScope, $store, Needs) {
     $rootScope.authUserId = AuthUser.get();
     $rootScope.authUser = angular.fromJson($store.get('authUser'));
 
-
     Needs.query({}, {}, function(data) {
         $rootScope.needs = data;
-        $rootScope.$broadcast('needsLoaded');
+        $rootScope.$broadcast('needsLoaded', {
+            needs: data
+        });
     });
 
     $scope.$on('updateUserData', function($event, message) {
@@ -1318,6 +1332,42 @@ function RootController($scope, AuthUser, User, $rootScope, $store, Needs) {
             $store.set('authUser', JSON.stringify($rootScope.authUser));
         }
     });
+
+    $scope.$on('bindUserNeeds', function($event, message) {
+        message.user.needs = $rootScope.needs;
+
+        $rootScope.$broadcast('bindUserNeedsCallback_', {
+            user: message.user
+        });
+    });
+
+    $scope.$on('bindUserNeedsValues', function($event, message) {
+        var user = message.user;
+
+        User.needs_points({id: user.sguid}, {}, function(needsData) {
+            $rootScope.$broadcast('needUserValueLoaded', {
+                needsValues: needsData,
+                userId: user.sguid
+            });
+            User.goals_points({id: user.sguid}, {}, function(goalsData) {
+                angular.forEach(user.needs, function(needItem, needKey) {
+                    needItem.current_value = parseInt(needsData[needItem.sguid]);
+                    angular.forEach(needItem.goals, function(goalItem, goalKey){
+                        goalItem.current_value = parseInt(goalsData[goalItem.sguid]);
+                    });
+                });
+                $rootScope.$broadcast('goalUserValueLoaded', {
+                    goalsValues: goalsData,
+                    userId: user.sguid
+                });
+                $rootScope.$broadcast('bindUserNeedsValuesCallback', {
+                    user: user
+                });
+            });
+        });
+    });
+
+    
 
     
 }

@@ -1,4 +1,4 @@
-//var host = "http://192.168.1.176:3000/api/v1";
+var debugHost = "http://192.168.1.176:3000/api/v1";
 var host = "http://xmpp.dev.improva.com:9090/api/v1";
 var hostShort = host.replace("/api/v1", "");
 

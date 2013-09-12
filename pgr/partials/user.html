@@ -10,7 +10,7 @@
 			accept="image/jpeg,image/png,image/gif" />
 		
 		<img class="pp" ng-click="onUpdateFile()" ng-src="{{user.avatar.full_path}}" err-src="/images/unknown-person.png" />
-
+		
 		<div class="publish">
 			<p>
 				<button ng-click="onPublish()" ng-if="authUserId == currentUserId && isEdit">
@@ -72,7 +72,7 @@
 				ng-if="isEdit" />
 				<i ng-if="!isEdit">{{user.email}}</i>
 		</p>
-		<p ng-if="allUser && isEdit">
+		<p ng-if="allUser && isEdit" ng-controller="QuickUserChangeCtrl">
 			<label for="acc_i">{{'_AccL_' | i18n}}:</label>
 			<select 
 				id="acc_i"
@@ -141,9 +141,9 @@
 	</div>
 </div>
 
-<div class="crits" ng-controller="NeedsAndGoalsController" ng-init="currentUserId=currentUserId;isUpdateCriteria=true">
+<div class="crits" ng-controller="NeedsAndGoalsController" ng-init="isUpdateCriteria=true;id=id">
 	<ul> 
-		<li ng-repeat="(needKey, needItem) in needs | orderBy:'position'" data-needId="{{needItem.sguid}}">
+		<li ng-repeat="(needKey, needItem) in user.needs | orderBy:'position'" data-needId="{{needItem.sguid}}">
 			<div class="cr" ng-click="onShowGoals($event, needItem.sguid)">
 				<p>{{needItem.name}}</p>
 				<strong>
