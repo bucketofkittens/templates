@@ -67,7 +67,8 @@ function navCtrl($scope, localize, $location, AuthUser, $rootScope, $route) {
      * @param  {[type]}   current [description]
      * @return {[type]}           [description]
      */
-    $scope.$on('$routeChangeStart', function(event, next, current) { 
+    $scope.$on('$stateChangeStart', function(event, next, current) {
+        console.log("route");
         angular.forEach($scope.navs, function(value, key) {
             $scope.navs[key].activeClass = $scope.navs[key].link.replace("#", "") === $location.path() ? 'current' : '';
         });
@@ -78,7 +79,7 @@ function navCtrl($scope, localize, $location, AuthUser, $rootScope, $route) {
  * Контроллер страницы профиля
  * @param {[type]} $scope [description]
  */
-function ProfileController($scope, $routeParams, AuthUser, $route, $rootScope) {
+function ProfileController($scope, $routeParams, AuthUser, $route, $rootScope, $stateParams) {
     $scope.authUserId = AuthUser.get();
     
     $scope.currentUserEditStatus = true;
@@ -102,7 +103,7 @@ function ProfileController($scope, $routeParams, AuthUser, $route, $rootScope) {
         }
     }
 
-    $scope.updateRouteUser($routeParams.userId);
+    $scope.updateRouteUser($stateParams.userId);
 }
 
 /**
@@ -130,7 +131,6 @@ function UserController($scope, $route, $routeParams, User, Needs, Professions, 
 
     $scope.$watch($scope.currentUserId, function (newVal, oldVal, scope) {
         if($rootScope.authUserId == $scope.currentUserId) {
-            console.log($rootScope.authUser);
             $scope.user = $rootScope.authUser;
         } else {
             if($scope.currentUserId) {
@@ -144,7 +144,6 @@ function UserController($scope, $route, $routeParams, User, Needs, Professions, 
      * @return {[type]} [description]
      */
     $scope.getUserInfo = function() {
-        console.log($scope.currentUserId);
         User.query({id: $scope.currentUserId}, function(data) {
             
             $scope.user = data;
@@ -154,10 +153,11 @@ function UserController($scope, $route, $routeParams, User, Needs, Professions, 
                     $scope.user.league.users = data;
                 });
             }
+            /**
             if($rootScope.authUserId == data.sguid) {
                 $rootScope.authUser = data;
                 $store.set('authUser', JSON.stringify($rootScope.authUser));
-            }
+            }**/
 
             $scope.getUserAuthInfo();
         });
@@ -295,8 +295,6 @@ function UserController($scope, $route, $routeParams, User, Needs, Professions, 
         return ret;
     }
 
-    
-
     $scope.ages = this.generateAgesArray(14, 150);
 
     
@@ -398,9 +396,8 @@ function UserController($scope, $route, $routeParams, User, Needs, Professions, 
                 "state": $scope.user.state ? $scope.user.state.sguid : null,
                 "published": 1
             })}, function(data) {
-                $scope.getUserInfo();
                 $rootScope.$broadcast('loaderHide');
-                $rootScope.$broadcast('updateUser');
+                $rootScope.$broadcast('updateUserData', {user: $scope.user});
                 $("input[type='text'], input[type='email'], select", ".pmpar").attr("readonly", "readonly");
             }
         );
@@ -408,7 +405,11 @@ function UserController($scope, $route, $routeParams, User, Needs, Professions, 
 
     $scope.onMoveUserClick = function($event, nextUser) {
         AuthUser.set(nextUser.user.sguid);
-        $rootScope.$broadcast('login');
+        
+
+        //$rootScope.$broadcast('login');
+        $rootScope.authUser = nextUser.user;
+        $store.set('authUser', JSON.stringify(nextUser.user));
         $location.path("/profile/"+nextUser.user.sguid);
     }
 }
@@ -1087,8 +1088,6 @@ function GraphsController($scope, $rootScope, $route, $location, Leagues, User) 
                 }
                 
                 value.league.users = users;
-                console.log(value.league.users);
-
             })
         });
     })
@@ -1312,6 +1311,15 @@ function RootController($scope, AuthUser, User, $rootScope, $store, Needs) {
         $rootScope.needs = data;
         $rootScope.$broadcast('needsLoaded');
     });
+
+    $scope.$on('updateUserData', function($event, message) {
+        if(message.user.sguid == $rootScope.authUserId) {
+            $rootScope.authUser = message.user;
+            $store.set('authUser', JSON.stringify($rootScope.authUser));
+        }
+    });
+
+    
 }
 
 function LeaguesController($scope) {

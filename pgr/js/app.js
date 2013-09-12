@@ -4,20 +4,22 @@
  * Основной модуль приложения
  * @type {[type]}
  */
-var pgrModule = angular.module('pgrModule', [ "ngRoute", "ngCookies", "ngResource", "ngAnimate", "localization", "ui", "ui.keypress", 'ui.bootstrap', 'localStorage']);
+var pgrModule = angular.module('pgrModule', [ "ngRoute", "ngCookies", "ngResource", "ngAnimate", "localization", "ui", "ui.keypress", 'ui.bootstrap', 'localStorage', 'ui.router']);
 
 /**
  * Роутинг приложения
  * @param  {[type]} $routeProvider [description]
  * @return {[type]}                [description]
  */
-pgrModule.config(['$routeProvider', function($routeProvider) {
-	$routeProvider.when('/profile', {templateUrl: 'views/profile.html', controller: ProfileController});
-	$routeProvider.when('/profile/:userId', {templateUrl: '/views/profile.html', controller: ProfileController, reloadOnPath: false});
-	$routeProvider.when('/logout', {templateUrl: 'views/main.html', controller: LogoutController});
-	$routeProvider.when('/', {templateUrl: 'views/main.html', controller: MainController});
-	$routeProvider.when('/graphs', {templateUrl: 'views/graphs.html', controller: GraphsController});
-	$routeProvider.when('/compare/:id', {templateUrl: 'views/compare.html', controller: CompareController});
-	$routeProvider.when('/leagues/', {templateUrl: 'views/leagues.html', controller: LeaguesController});
-	$routeProvider.otherwise({redirectTo: '/'});
-}]);
+pgrModule.config(function($stateProvider, $urlRouterProvider) {
+	//$stateProvider.state('profile', {irl:'/profile', templateUrl: 'views/profile.html', controller: ProfileController});
+	$stateProvider.state('profile', {url: '/profile/:userId', templateUrl: '/views/profile.html', controller: ProfileController});
+	$stateProvider.state('logout', {url: '/logout', templateUrl: 'views/main.html', controller: LogoutController});
+	$stateProvider.state('main', {url: '/', templateUrl: 'views/main.html', controller: MainController});
+	$stateProvider.state('graphs', {url: '/graphs', templateUrl: 'views/graphs.html', controller: GraphsController});
+	$stateProvider.state('compare', {url: '/compare/:id', templateUrl: 'views/compare.html', controller: CompareController});
+	$stateProvider.state('leagues', {url: '/leagues', templateUrl: 'views/leagues.html', controller: LeaguesController});
+	//$routeProvider.otherwise({redirectTo: '/'});
+
+	$urlRouterProvider.otherwise("/main") ;
+});
