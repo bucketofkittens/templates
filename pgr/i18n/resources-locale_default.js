@@ -118,5 +118,10 @@
     {
         "key":"_neighL_",
         "value": "Neighbours"
+    },
+    {
+        "key":"_LEAGUES_",
+        "value": "Leagues"
     }
+    
 ]
