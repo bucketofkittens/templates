@@ -657,46 +657,68 @@ body {
     /** LEAGUES **/
     .leaglist {
         display: inline-block;
-        width: 15%;
+        width: 14.5%;
         vertical-align: top;
-        margin-left: 5%;
         a {
             display: block;
-            margin-bottom: 4%;
+            margin-bottom: 5%;
             img {
                 display: block;
-                width: 70%;
+                width: 100%;
+                box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.5);
             }
+        }
+        &.hrzt {
+            width: 100%;  
+            margin-left: 5%;
+            display: block;
+            a {
+                display: inline-block;
+                width: 14.5%;
+                margin: 0% 3px 0% 0%;
+            } 
         }
     }
     .infoleag {
         display: inline-block;
         width: 70%;
-        margin-left: 5%;
+        margin: 5% 6% 0% 5%;
         vertical-align: top;
         border: 1px solid #cccccc;
         -webkit-box-shadow: inset 0px 0px 30px 0px rgba(0, 0, 0, 0.5);
         box-shadow: inset 0px 0px 30px 0px rgba(0, 0, 0, 0.5);
         text-align: center;
         position: relative;
-        span {
+        span, sub, sup {
             width: 0px;
             height: 0px;
             border-style: solid;
-            border-width: 20px 30px 20px 0;
+            border-width: 0 30px 30px 0;
             border-color: transparent #b5b5b5 transparent transparent;
             position: absolute;
             vertical-align: middle;
-            left: -30px;
-            top: 17%;
+            top: -10px;
+            right: -10px;
+        }
+        sup {                
+            border-width: 0 15px 20px 15px;
+            border-color: transparent transparent #b5b5b5 transparent;
+            top: -20px;
+            right: 50%;
+        }
+        sub {            
+            border-width: 15px 0 15px 20px;
+            border-color: transparent transparent transparent #b5b5b5;
+            right: -20px;
+            top: 50%;
         }
         .leader {
             display: block;
-            margin: 3% 0%;
+            margin-top: 3%;
             text-align: center;
             a {
                 display: inline-block;
-                width: 30%;
+                width: 20%;
                 margin: 0% 5% 0% 0%;
             }
             .descrip {
@@ -713,8 +735,8 @@ body {
         a {
             display: inline-block;
             vertical-align: top;
-            width: 25%;
-            margin: 3% 3% 5% 3%;
+            width: 20%;
+            margin: 2% 3%;
         }
         button {
             position: relative;
@@ -730,7 +752,7 @@ body {
             border-bottom: 1px solid #cccccc; 
             width: 15%;
             display: inline-block;
-            margin: 10% 8%;
+            margin: 5% 5% 10% 5%;
         }
     }
 
