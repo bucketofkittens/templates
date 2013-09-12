@@ -160,6 +160,9 @@ body {
                     .pp {
                         width: 100%;
                         background: #ffffff;
+                        height: 25%;
+                        min-height: 25%;
+                        max-height: 25%;
                         &.edit {
                             cursor: pointer;
                         }
@@ -883,82 +886,122 @@ body {
         a {
             position: relative;
             display: block;
+            sub {
+                display: none;
+                position: absolute;
+                top: 7px;
+                left: 0px;
+                padding-left: 7px;
+                width: 100%;
+                color: #ffffff;
+                background: rgba(0, 0, 0, 0.5);
+                &.show {
+                    display: block;
+                }
+            }
             span {
                 position: absolute;
                 bottom: 0px;
                 width: 100%;
-                background: rgba(0, 0, 0, 0.6);
                 padding: 3% 0px 2% 0px;
-                color: #ffffff;
-                font-size: 110%;
+                color: #000000;
+                font-size: 90%;
                 text-align: right;
-                i {
-                    display: none;
-                    &.show {
-                        display: block;
-                    }
-                }
+                z-index: 10;
             }
             img {
                 display: block;
+                z-index: 8;
+                width: 100%;
+                height: 20%;
+                min-height: 20%;
+                max-height: 20%;
+            }
+            i {
+                position: absolute;
+                top: 0px;
+                left: 0px;
+                width: 100%;
+                height: 100%;
+                background: url("../images/photo_block.png") left top no-repeat;
+                background-size: cover;
+                z-index: 9;
             }
         }
     }
 }
 
-#main_nav {
-    position: absolute;
-    left: 0px;
-    top: 50%;
-    margin-top: -10%;
-    background: #89b4e8;
-    padding: 1% 0px;
+.tags {
     li {
-        padding-right: 3%;
-        &.current {
-            background-color: #ffffff;
+        height: auto !important;
+        position: absolute !important;
+        &:hover {
+            z-index: 399 !important;
         }
-    }
-    .icon {
-        display: inline-block;
-        width: 65px;
-        height: 62px;
-        background: url("../images/icon1.png") left top no-repeat;
-        &.top {
-            background-position: 0px 5px;
-            height: 56px;
+        span {
+            font-size: 50% !important;
+            line-height: 100% !important;
+            right: 5px;
         }
-        &.classmates {
-            background-position: 0px -50px;
+        &.league_10 {
+            width: 3% !important;
+            z-index: 101;
+            font-size: 110%;
         }
-        &.fellows {
-            background-position: 0px -110px;
-            height: 56px;
+        &.league_9 {
+            width: 4% !important;
+            z-index: 102;
+            font-size: 120%;
         }
-        &.neighbours {
-            background-position: 0px -165px;
-            height: 56px;
+        &.league_8 {
+            width: 5% !important;
+            z-index: 103;
+            font-size: 130%;
         }
-        &.custom {
-            background-position: 0px -215px;
+        &.league_7 {
+            width: 6% !important;
+            z-index: 104;
+            font-size: 140%;
         }
-        &.colleagues {
-            background-position: 0px -280px;
+        &.league_6 {
+            width: 7% !important;
+            z-index: 105;
+            font-size: 150%;
         }
-    }
-    a {
-        display: inline-block;
-        color: #123123;
-        font-size: 150%;
-        font-family: 'Conv_calibri';
-        cursor: pointer;
-    }
-    a, .icon {
-        vertical-align: middle;
+        &.league_5 {
+            width: 8% !important;
+            z-index: 106;
+            font-size: 160%;
+        }
+        &.league_4 {
+            width: 9% !important;
+            z-index: 107;
+            font-size: 170%;
+        }
+        &.league_3 {
+            width: 10% !important;
+            z-index: 108;
+            font-size: 180%;
+        }
+        &.league_2 {
+            width: 11% !important;
+            z-index: 109;
+            font-size: 190%;
+        }
+        &.league_1 {
+            width: 12% !important;
+            z-index: 110;
+            font-size: 200%;
+        }
+        img {
+            height: auto !important;
+            max-height: 0px !important;
+            min-height: 0px !important;
+        }
     }
 }
 
 .who img {
-    z-index: 10;
+    z-index: 310;
     background: #ffffff;
 }

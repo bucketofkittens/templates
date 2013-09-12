@@ -22,67 +22,27 @@ pgrModule.directive('sameAs', [function() {
 
 pgrModule.directive('paralaxImage', function () {
   return {
-    scope: {
-      paralaxValue: '=',
-      paralaxUser: '='
-    },
-    restrict: 'A',
     link: function($scope, element, attrs) {
-      /**
-      $scope.testPosition = function() {
-        var position = {
-          x: $(window).width()/100*parseInt(getRandomInt(20, 70)),
-          y: $(window).height()/100*parseInt(getRandomInt(20, 70))
-        };
+        var elements = $(".tags li");
 
-        var who = {
-          left: $(".who").find("img").position().left,
-          top: $(".who").find("img").position().top,
-          width: $(".who").find("img").width(),
-          height: $(".who").find("img").height()
-        };
+        function setPostion() {
+          var position = {
+            x: parseInt(getRandomInt(10, 70)),
+            y: parseInt(getRandomInt(10, 90))
+          };
 
-        var accept = true;
-        if(!(position.x < who.left && position.x > who.left+who.width && position.y < who.top && position.y < who.top+who.height)) {
-          //accept = false;
+          return position;
         }
-        /*angular.forEach($scope.paralaxValue, function(value, key) {
-          if(value != $scope.paralaxUser) {
-            console.log(value);
-          }
+
+        var position = setPostion();
+
+
+        $(element).animate({
+          "left": position.x+"%",
+          "top": position.y+"%"
+        }, 2000, function() {
+          
         });
-        console.log(accept);
-        if(accept != true) {
-          position = $scope.testPosition();
-        } 
-        
-        $scope.paralaxUser.position = {};
-        $scope.paralaxUser.position.left = position.x;
-        $scope.paralaxUser.position.top = position.y;
-        $scope.paralaxUser.position.width = $(element).width();
-        $scope.paralaxUser.position.height = $(element).height();
-
-        return position;
-      }
-      $scope.$watch('paralaxUser', function(val) {
-        var tmpImg = new Image();
-        tmpImg.onload =  function() {
-          $(element).attr("src", $scope.paralaxUser.user.avatar.full_path);
-          
-          var position = $scope.testPosition();
-
-          $(element).animate({
-            "left": position.x,
-            "top": position.y
-          }, 2000, function() {
-            
-          });
-
-          
-         };
-        tmpImg.src = $scope.paralaxUser.user.avatar.full_path;
-      });
-      */
     }
   } 
 });

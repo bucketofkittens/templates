@@ -1,4 +1,5 @@
-<section id="main_leagues">
+<a ng-click="onState()">Toggle state</a>
+<section ng-if="state" id="main_leagues">
 	<a ng-if="!rootUser" ng-click="onOpenLogin()" class="who" >
 		<img ng-src="/images/unknown-person.png" alt="" />
 	</a>
@@ -10,7 +11,29 @@
 		<li ng-repeat="userItem in viewedUsers" class="{{userItem.user.sguid}}">
 			<a ng-if="userItem.user" href="#/profile/{{userItem.user.sguid}}" ng-mouseleave="onMouseLeaveUser(userItem.user)" ng-mouseenter="onMouseEnterUser(userItem.user)" >
 				<img ng-src="{{userItem.user.avatar.full_path}}" alt="" />
-				<span>{{userItem.user.points}}<i ng-class="{show: userItem.user.showHint}">{{userItem.user.name}} {{userItem.user.profession.name}}</i></span>
+				<span>{{userItem.user.points}}</span>
+				<sub ng-class="{show: userItem.user.showHint}">{{userItem.user.name}} {{userItem.user.profession.name}}</sub>
+				<i></i>
+			</a>
+		</li>
+	</ul>
+</section>
+
+<section ng-if="!state" id="main_leagues" class="tags">
+	<a ng-if="!rootUser" ng-click="onOpenLogin()" class="who" >
+		<img ng-src="/images/unknown-person.png" alt="" />
+	</a>
+	<a ng-if="rootUser" href="#/profile/{{rootUser.sguid}}" class="who">
+		<img ng-src="{{rootUser.avatar.full_path}}" err-src="/images/unknown-person.png" />
+	</a>
+
+	<ul>
+		<li paralax-image ng-repeat="userItem in viewedUsers2" class="{{userItem.user.sguid}} league_{{userItem.user.league.name}}">
+			<a ng-if="userItem.user" href="#/profile/{{userItem.user.sguid}}" ng-mouseleave="onMouseLeaveUser(userItem.user)" ng-mouseenter="onMouseEnterUser(userItem.user)" >
+				<img ng-src="{{userItem.user.avatar.full_path}}" alt="" />
+				<span>{{userItem.user.points}}</span>
+				<sub ng-class="{show: userItem.user.showHint}">{{userItem.user.name}} {{userItem.user.profession.name}}</sub>
+				<i></i>
 			</a>
 		</li>
 	</ul>

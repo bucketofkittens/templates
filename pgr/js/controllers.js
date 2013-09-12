@@ -1002,13 +1002,23 @@ function ContentController($scope, $rootScope, $route, $location) {
  * @param {[type]} Leagues [description]
  */
 function MainController($scope, Leagues, User, AuthUser, $rootScope) {
+    $("#main_leagues").css("height", $(window).height()*2);
     $scope.viewedUsers = [];
     $scope.cellStep = 10;
+    $scope.state = 1;
     $scope.isAuth = $rootScope.authUser ? true : false;
     $scope.rootUser = $rootScope.authUser ? $rootScope.authUser : false;
 
     $scope.onOpenLogin = function() {
         $rootScope.$broadcast('openLoginModal');
+    }
+
+    $scope.onState = function() {
+        if($scope.state) {
+            $scope.state = 0;
+        } else {
+            $scope.state = 1;
+        }
     }
 
     $scope.$watch($rootScope.authUser, function(newValue, oldValue, scope) {
@@ -1040,6 +1050,7 @@ function MainController($scope, Leagues, User, AuthUser, $rootScope) {
                 }
             });
             $scope.viewedUsers = data.shuffle();
+            $scope.viewedUsers2 = data.shuffle();
         });
     }
     
