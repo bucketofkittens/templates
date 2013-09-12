@@ -421,17 +421,16 @@ function UserController($scope, $route, $routeParams, User, Needs, Professions, 
  */
 function NeedsAndGoalsController($scope, Goals, Criterion, AuthUser, UserCriteriaValue, $rootScope, CriterionByGoal, UserCriteriaValueByUser, $routeParams, Needs, User, $element) {
     
-    /**
-     * Получаем список needs
-     * @param  {[type]} data [description]
-     * @return {[type]}      [description]
-     */
-    Needs.query({}, {}, function(data) {
-        $scope.needs = data;
-    });
-
     $scope.$watch($scope.currentUserId, function (newVal, oldVal, scope) {
         $scope.getCurrentUserData();
+    });
+
+    $scope.$watch($rootScope.needs, function (newVal, oldVal, scope) {
+        $scope.needs = $rootScope.needs;
+    });
+
+    $scope.$on('needsLoaded', function($event, message) {
+        $scope.needs = $rootScope.needs;
     });
 
     /**
@@ -1304,9 +1303,15 @@ function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-function RootController($scope, AuthUser, User, $rootScope, $store) {
+function RootController($scope, AuthUser, User, $rootScope, $store, Needs) {
     $rootScope.authUserId = AuthUser.get();
     $rootScope.authUser = angular.fromJson($store.get('authUser'));
+
+
+    Needs.query({}, {}, function(data) {
+        $rootScope.needs = data;
+        $rootScope.$broadcast('needsLoaded');
+    });
 }
 
 function LeaguesController($scope) {
