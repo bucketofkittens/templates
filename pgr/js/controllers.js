@@ -992,7 +992,7 @@ function ContentController($scope, $rootScope, $route, $location) {
  * @param {[type]} Leagues [description]
  */
 function MainController($scope, Leagues, User, AuthUser, $rootScope) {
-    $("#main_leagues").css("height", $(window).height()*2);
+    
     $scope.viewedUsers = [];
     $scope.cellStep = 10;
     $scope.state = 1;
@@ -1035,7 +1035,7 @@ function MainController($scope, Leagues, User, AuthUser, $rootScope) {
     $scope.getAllUser = function($event) {
         User.get_all({}, {}, function(data) {
             data = data.filter(function(item) {
-                if(item.user.published && item.user.avatar) {
+                if(item.user.published) {
                     return item;
                 }
             });
