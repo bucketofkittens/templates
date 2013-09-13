@@ -141,9 +141,9 @@
 	</div>
 </div>
 
-<div class="crits" ng-controller="NeedsAndGoalsController" ng-init="isUpdateCriteria=true;id=id">
+<div class="crits" ng-controller="NeedsAndGoalsController" ng-init="isUpdateCriteria=true;id=id;user=user">
 	<ul> 
-		<li ng-repeat="(needKey, needItem) in user.needs | orderBy:'position'" data-needId="{{needItem.sguid}}">
+		<li ng-repeat="(needKey, needItem) in needs | orderBy:'position'" data-needId="{{needItem.sguid}}">
 			<div class="cr" ng-click="onShowGoals($event, needItem.sguid)">
 				<p>{{needItem.name}}</p>
 				<strong>
