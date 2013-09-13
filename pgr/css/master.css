@@ -96,3 +96,4 @@ body header .social a:last-child{background-position:100% 0}
 .tags li.league_2{width:11% !important;z-index:109;font-size:190%}
 .tags li.league_1{width:12% !important;z-index:110;font-size:200%}
 .who img{z-index:310;background:#fff}
+#loosers li{display:inline-block;width:3%}

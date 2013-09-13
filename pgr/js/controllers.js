@@ -992,7 +992,7 @@ function ContentController($scope, $rootScope, $route, $location) {
  * @param {[type]} Leagues [description]
  */
 function MainController($scope, Leagues, User, AuthUser, $rootScope) {
-    
+
     $scope.viewedUsers = [];
     $scope.cellStep = 10;
     $scope.state = 1;
@@ -1080,6 +1080,8 @@ function GraphsController($scope, $rootScope, $route, $location, Leagues, User) 
         })
     }, 100);
 
+
+
     Leagues.query({}, {}, function(data){
         $scope.leagues = data;
 
@@ -1103,7 +1105,16 @@ function GraphsController($scope, $rootScope, $route, $location, Leagues, User) 
                 value.league.users = users;
             })
         });
+
     })
+
+    User.get_all({}, {}, function(datas) {
+        $scope.looserUser = datas.filter(function(item) {
+            if(!item.user.league) {
+                return item;
+            }
+        });
+    });
 }
 
 function NeighboursCtrl($scope, $location, localize, User, AuthUser, Leagues, $rootScope) {

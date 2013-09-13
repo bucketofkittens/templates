@@ -49,3 +49,12 @@
 		</tr>
 	</tbody>
 </table>
+
+<ul id="loosers">
+	<li ng-repeat="(uKey,uItem) in looserUser">
+		<a ng-if="uItem.user" href="#/profile/{{uItem.user.sguid}}">
+			<img ng-if="uItem.user.avatar.full_path" src="{{uItem.user.avatar.full_path}}" />
+			<img ng-if="!uItem.user.avatar.full_path" src="./images/unknown-person.png" />	
+		</a>
+	</li>
+</ul>
