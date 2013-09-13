@@ -681,11 +681,28 @@ body {
         a {
             display: block;
             margin-bottom: 5%;
+            border-radius: 5px;
             img {
                 display: block;
                 width: 100%;
-                box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.5);
-                border-radius: 5px;
+            }
+            &:first-child {
+                box-shadow: 0px 0px 3px 2px rgba(127,178,240, 1);
+            }
+            &:nth-child(2) {
+                box-shadow: 0px 0px 3px 2px rgba(4,81,140, 1);
+            }
+            &:nth-child(3) {
+                box-shadow: 0px 0px 3px 2px rgba(85,50,133, 1);
+            }
+            &:nth-child(4) {
+                box-shadow: 0px 0px 3px 2px rgba(199,3,159, 1);
+            }
+            &:nth-child(5) {
+                box-shadow: 0px 0px 3px 2px rgba(118,84,50, 1);
+            }
+            &:last-child {
+                box-shadow: 0px 0px 3px 2px rgba(102,102,102, 1);
             }
         }
         &.hrzt {
@@ -696,6 +713,18 @@ body {
                 display: inline-block;
                 width: 14.5%;
                 margin: 0% 3px 0% 0%;
+                &:first-child {
+                    box-shadow: 0px 0px 3px 2px rgba(191,22,22, 1);
+                }
+                &:nth-child(2) {
+                    box-shadow: 0px 0px 3px 2px rgba(255,127,0, 1);
+                }
+                &:nth-child(3) {
+                    box-shadow: 0px 0px 3px 2px rgba(237,233,45, 1);
+                }
+                &:last-child {
+                    box-shadow: 0px 0px 3px 2px rgba(22,128,57, 1);
+                }
             } 
         }
     }
