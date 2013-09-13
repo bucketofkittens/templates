@@ -452,17 +452,7 @@ function NeedsAndGoalsController($scope, Goals, Criterion, AuthUser, UserCriteri
         }
     });
 
-    $scope.$on('bindUserNeedsCallback_', function($event, message) {
-        $rootScope.$broadcast('bindUserNeedsValues', {
-            user: message.user
-        });
-    });
-
-    $scope.$on('bindUserNeedsValuesCallback', function($event, message) {
-        $rootScope.$broadcast('updateUserData', {
-            user: message.user
-        });
-    });
+    
 
     $scope.addEmptyElement = function(goal) {
         angular.forEach(goal.criteriums, function(criteriumsItem, criteriumsKey) {
@@ -1348,6 +1338,18 @@ function RootController($scope, AuthUser, User, $rootScope, $store, Needs) {
         message.user.needs = $rootScope.needs;
 
         $rootScope.$broadcast('bindUserNeedsCallback_', {
+            user: message.user
+        });
+    });
+
+    $scope.$on('bindUserNeedsCallback_', function($event, message) {
+        $rootScope.$broadcast('bindUserNeedsValues', {
+            user: message.user
+        });
+    });
+
+    $scope.$on('bindUserNeedsValuesCallback', function($event, message) {
+        $rootScope.$broadcast('updateUserData', {
             user: message.user
         });
     });
