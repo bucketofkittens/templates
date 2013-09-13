@@ -340,6 +340,9 @@ function UserController($scope, $route, $routeParams, User, Needs, Professions, 
      */
     $scope.onReadFile = function($event) {
         if($scope.user.sguid == $scope.authUserId) {
+
+            $rootScope.$broadcast('cropImage', {user: $scope.user});
+            /**
             $rootScope.$broadcast('loaderShow');
 
             var data = new FormData();
@@ -363,6 +366,7 @@ function UserController($scope, $route, $routeParams, User, Needs, Professions, 
                     $rootScope.$broadcast('loaderHide');
                 });
             });
+            **/
         }
     }
 
@@ -372,8 +376,34 @@ function UserController($scope, $route, $routeParams, User, Needs, Professions, 
      * @return {[type]}
      */
     $scope.onUpdateFile = function($event) {
-        if($scope.user.sguid == $scope.authUserId && $scope.isEdit) {
-            $("#photo").click();
+        if($scope.user.sguid == $scope.authUserId) {
+
+            $rootScope.$broadcast('cropImage', {image: document.getElementById("photo").files[0]});
+            /**
+            $rootScope.$broadcast('loaderShow');
+
+            var data = new FormData();
+            data.append("picture", document.getElementById("photo").files[0]);
+            data.append("owner_type", 0);
+
+            $.ajax({
+                url: host+'/pictures/'+$scope.user.sguid,
+                data: data,
+                cache: false,
+                contentType: false,
+                processData: false,
+                type: 'PUT'
+            }).done(function(data) {
+                $scope.$apply(function(){
+                    if(data.success) {
+                        $scope.user.avatar = data.message;
+                        $scope.user.avatar.full_path = createImageFullPath($scope.user.avatar);
+                        $rootScope.$broadcast('updateUserData', {user: $scope.user});
+                    }
+                    $rootScope.$broadcast('loaderHide');
+                });
+            });
+            **/
         }
     }
 
@@ -1338,16 +1368,93 @@ function getRandomInt(min, max) {
 function RootController($scope, AuthUser, User, $rootScope, $store, Needs) {
     $rootScope.authUserId = AuthUser.get();
     $rootScope.authUser = angular.fromJson($store.get('authUser'));
-
-    
-
-    
-
     
 }
 
 function LeaguesController($scope) {
     
+}
+
+function CropImageController($scope) {
+    $scope.shouldBeOpen = false;
+    $scope.user = [];
+    $scope.positions = [];
+    $scope.imageData = '';
+
+    $scope.$on('cropImage', function($event, message) {
+        $scope.user = message.user;
+        $scope.shouldBeOpen = true;
+    });
+
+    $scope.close = function() {
+       $scope.shouldBeOpen = false; 
+    }
+
+    $scope.onSend = function() {
+        var crop_img = $("#crop_img");
+        var canvas = document.getElementById("image_canvas");
+        $(canvas).width($scope.positions.w);
+        $(canvas).height($scope.positions.h);
+        var ctx = canvas.getContext("2d");
+        var image = new Image();
+        image.src = $scope.imageData;
+        image.onload = function() {
+            ctx.drawImage(image, 0, 0,image.width, image.height);
+            var img = canvas.toDataURL("image/png");
+            $(crop_img).attr("src", img);
+            //ctx.drawImage(image, $scope.positions.x, $scope.positions.y, $scope.positions.w, $scope.positions.h, 0 , 0, $scope.positions.w, $scope.positions.h);
+            //console.log([image, $scope.positions.x, $scope.positions.y, $scope.positions.w, $scope.positions.h, 0 , 0, $scope.positions.w, $scope.positions.h]);
+        };
+        console.log($scope.positions);
+       //$scope.shouldBeOpen = false; 
+    }
+
+    
+
+    /**
+     * [onReadFile description]
+     * @param  {[type]} $event
+     * @return {[type]}
+     */
+    $scope.onReadFile = function($event) {
+        var file = document.getElementById("photo_crop").files[0];
+        var reader = new FileReader();
+        var positions = [];
+        
+        reader.onload = function(data) {
+            var crop_img = $("#crop_img");
+            $scope.imageData = data.target.result;
+            $(crop_img).attr("src", data.target.result);
+            crop_img.Jcrop({minSize: [200, 200], aspectRatio: 1, setSelect: [0, 0, 200, 200], onChange: function(data) {
+                $scope.positions = data;
+            }});
+        };
+        reader.readAsDataURL(file);
+            //$rootScope.$broadcast('loaderShow');
+            /*
+            var data = new FormData();
+            data.append("picture", document.getElementById("photo_crop").files[0]);
+            data.append("owner_type", 0);
+
+            $.ajax({
+                url: host+'/pictures/'+$scope.user.sguid,
+                data: data,
+                cache: false,
+                contentType: false,
+                processData: false,
+                type: 'PUT'
+            }).done(function(data) {
+                $scope.$apply(function(){
+                    if(data.success) {
+                        $scope.user.avatar = data.message;
+                        $scope.user.avatar.full_path = createImageFullPath($scope.user.avatar);
+                        $rootScope.$broadcast('updateUserData', {user: $scope.user});
+                    }
+                    $rootScope.$broadcast('loaderHide');
+                });
+            });
+            **/
+    }
 }
 
 Array.prototype.shuffle = function(b) {

@@ -8,7 +8,7 @@
 	</a>
 
 	<ul>
-		<li ng-repeat="userItem in viewedUsers" class="{{userItem.user.sguid}}">
+		<li ng-repeat="userItem in viewedUsers" class="{{userItem.user.sguid}} league_{{userItem.user.league.name}}">
 			<a ng-if="userItem.user" href="#/profile/{{userItem.user.sguid}}" ng-mouseleave="onMouseLeaveUser(userItem.user)" ng-mouseenter="onMouseEnterUser(userItem.user)" >
 				<img ng-src="{{userItem.user.avatar.full_path}}" alt="" err-src="/images/unknown-person.png" />
 				<span>{{userItem.user.points}}</span>

@@ -7,7 +7,8 @@ body header ul a{color:#fff;text-decoration:none;font-family:'Helvetica Neue';fo
 body header ul a.current{color:#028dda}
 body header .social{width:12%;height:50%;vertical-align:top;display:inline-block;position:absolute;top:10%;right:0;text-decoration:none}body header .social a{background:url("../images/icons.png") center center no-repeat;width:15%;height:100%;margin:5% 7%;display:inline-block;overflow:hidden;background-position:50% 0;background-size:500% 65%}body header .social a:first-child{background-position:0 0}
 body header .social a:last-child{background-position:100% 0}
-#content{position:relative;width:100%;background:#f8f8f8;padding-top:6%;min-height:88%;overflow:hidden;}#content .who img{max-width:15%;height:auto;border:1px solid #000;display:inline-block;position:fixed;top:50%;left:50%;margin:-7% 0 0 -7%;cursor:pointer;box-shadow:0 0 30px 1px rgba(0,0,0,0.3);border:1px solid #666}
+#content{position:relative;width:100%;background:#f8f8f8;padding-top:6%;min-height:88%;overflow:hidden;}#content .viewch{text-align:center;transform:skewX(angle);font-size:80%;color:#fff;padding:8px 5px 2px 5px;background:#028dda;border-top:1px solid #fff;border-left:1px solid #fff;border-right:1px solid #ccc;border-bottom:1px solid #ccc;position:absolute;top:7%;right:0;z-index:10}
+#content .who img{max-width:15%;height:auto;border:1px solid #000;display:inline-block;position:fixed;top:50%;left:50%;margin:-7% 0 0 -7%;cursor:pointer;box-shadow:0 0 30px 1px rgba(0,0,0,0.3);border:1px solid #666}
 #content .scroll{font-size:100%;color:#5e5c5d;text-decoration:none;position:absolute;bottom:3%;left:50%;margin-left:-3%;z-index:5;line-height:150%}
 #content .promain{margin-left:1%;width:48%;background:#fff;border:1px solid #ccc;border-bottom:none;box-shadow: 0 0 30px 1px rgba(0,0,0,0.3);z-index:3;position:relative;display:inline-block}
 #content .hidden{display:none}
@@ -55,7 +56,7 @@ body header .social a:last-child{background-position:100% 0}
 #content sub.du{border-width:7.5px 15px 7.5px 0;border-color:transparent #bd1b1b transparent transparent}
 #content span.du{width:15px;height:15px;border-radius:100%;border-width:none;background:#028dda}
 #content .comp{width:100%;background:#f8f8f8;border:none;box-shadow:none}#content .comp .crits{background:#f8f8f8}
-#content .leaglist{display:inline-block;width:14.5%;vertical-align:top}#content .leaglist a{display:block;margin-bottom:5%}#content .leaglist a img{display:block;width:100%;box-shadow:0 0 10px 1px rgba(0,0,0,0.5)}
+#content .leaglist{display:inline-block;width:14.5%;vertical-align:top}#content .leaglist a{display:block;margin-bottom:5%}#content .leaglist a img{display:block;width:100%;box-shadow:0 0 10px 1px rgba(0,0,0,0.5);border-radius:5px}
 #content .leaglist.hrzt{width:100%;margin-left:5%;display:block}#content .leaglist.hrzt a{display:inline-block;width:14.5%;margin:0 3px 0 0}
 #content .infoleag{display:inline-block;width:70%;margin:5% 6% 0 5%;vertical-align:top;border:1px solid #ccc;-webkit-box-shadow:inset 0 0 30px 0 rgba(0,0,0,0.5);box-shadow:inset 0 0 30px 0 rgba(0,0,0,0.5);text-align:center;position:relative}#content .infoleag span,#content .infoleag sub,#content .infoleag sup{width:0;height:0;border-style:solid;border-width:0 30px 30px 0;border-color:transparent #b5b5b5 transparent transparent;position:absolute;vertical-align:middle;top:-10px;right:-10px}
 #content .infoleag sup{border-width:0 15px 20px 15px;border-color:transparent transparent #b5b5b5 transparent;top:-20px;right:50%}
@@ -82,7 +83,7 @@ body header .social a:last-child{background-position:100% 0}
 #main_leagues ul a span{position:absolute;bottom:0;width:100%;padding:3% 0 2% 0;color:#000;font-size:90%;text-align:right;z-index:10}
 #main_leagues ul a img{display:block;z-index:8;width:100%;height:auto}
 #main_leagues ul a i{position:absolute;top:0;left:0;width:100%;height:100%;background:url("../images/photo_block.png") left top no-repeat;background-size:cover;z-index:9}
-.tags li{height:auto !important;position:absolute !important}.tags li:hover{z-index:399 !important}
+.tags li{height:auto !important;position:absolute !important;left:50%;top:50%}.tags li:hover{z-index:399 !important}
 .tags li span{font-size:50% !important;line-height:100% !important;right:5px}
 .tags li.league_{width:2% !important;z-index:100;font-size:80%}
 .tags li.league_10{width:3% !important;z-index:101;font-size:110%}
@@ -97,3 +98,9 @@ body header .social a:last-child{background-position:100% 0}
 .tags li.league_1{width:12% !important;z-index:110;font-size:200%}
 .who img{z-index:310;background:#fff}
 #loosers li{display:inline-block;width:3%}
+.image_box{position:relative}.image_box span{position:absolute;left:0;top:0;width:100%;height:100%;z-index:10;display:none}
+.image_box a{display:none;position:absolute;z-index:12;font-size:120%;color:#fff;bottom:20px;width:100%;text-align:center;cursor:pointer}
+.image_box img{position:relative;z-index:9}
+.image_box.updated:hover span{display:block;background:rgba(0,0,0,0.5)}
+.image_box.updated:hover a{display:block}
+#image_canvas{display:none}
