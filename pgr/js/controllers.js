@@ -1261,68 +1261,76 @@ function LogoutController($scope, AuthUser, $location, $rootScope, $store) {
 }
 
 function CompareController($scope) {
-    var needsCountLoaded = 0;
-    var needsValues = {};
+	var needsCountLoaded = 0;
+	var needsValues = {};
 
-    var goalsCountLoaded = 0;
-    var goalsValues = {};
+	var goalsCountLoaded = 0;
+	var goalsValues = {};
 
-    var crtiterias = {};
+	var crtiterias = {};
 
-    $scope.$on('needUserValueLoaded', function($event, message) {
-        needsCountLoaded += 1;
-        needsValues[message.userId] = message.needsValues;
-        if(needsCountLoaded == 2) {
-            angular.forEach(needsValues[$scope.routeUserId], function(value, key){
-                if(value < needsValues[$scope.authUserId][key]) {
-                    $("li[data-needId='"+key+"'] .cr", $("#compare")).append('<sup class="du"></sup>');
-                } else {
-                    $("li[data-needId='"+key+"'] .cr", $("#compare")).append('<sub class="du"></sub>');
-                }
-            });
-        }
-    });
+	$scope.$on('needUserValueLoaded', function($event, message) {
+	  needsCountLoaded += 1;
+	  needsValues[message.userId] = message.needsValues;
+	  if(needsCountLoaded == 2) {
+	      angular.forEach(needsValues[$scope.routeUserId], function(value, key){
+	          if(value < needsValues[$scope.authUserId][key]) {
+	              $("li[data-needId='"+key+"'] .cr", $("#compare")).append('<sup class="du"></sup>');
+	          } else {
+	              $("li[data-needId='"+key+"'] .cr", $("#compare")).append('<sub class="du"></sub>');
+	          }
+	      });
+	  }
+	});
 
-    $scope.$on('criteriaUserValueLoaded', function($event, message) {
-        if(!crtiterias[message.fCriteria.sguid]) {
-            crtiterias[message.fCriteria.sguid] = {};
-        }
-        var fCriterium = message.fCriteria;
-        var fCriteriumValue = fCriterium.criteria_values.filter(function(value) {
-            return value.sguid == fCriterium.user_criteria_sguid;
-        })[0];
+	$scope.$on('criteriaUserValueLoaded', function($event, message) {
+	  if(!crtiterias[message.fCriteria.sguid]) {
+	      crtiterias[message.fCriteria.sguid] = {};
+	  }
+	  var fCriterium = message.fCriteria;
+	  var fCriteriumValue = fCriterium.criteria_values.filter(function(value) {
+	      return value.sguid == fCriterium.user_criteria_sguid;
+	  })[0];
 
-        crtiterias[message.fCriteria.sguid][message.userId] = fCriteriumValue;
-        
-        if(crtiterias[message.fCriteria.sguid][$scope.routeUserId] && crtiterias[message.fCriteria.sguid][$scope.authUserId]) {
-            var rootCriteria = crtiterias[message.fCriteria.sguid][$scope.routeUserId];
-            var authCriteria = crtiterias[message.fCriteria.sguid][$scope.authUserId];
+	  crtiterias[message.fCriteria.sguid][message.userId] = fCriteriumValue;
+	  
+	  if(crtiterias[message.fCriteria.sguid][$scope.routeUserId] && crtiterias[message.fCriteria.sguid][$scope.authUserId]) {
+	      var rootCriteria = crtiterias[message.fCriteria.sguid][$scope.routeUserId];
+	      var authCriteria = crtiterias[message.fCriteria.sguid][$scope.authUserId];
 
-            if(rootCriteria.value < authCriteria.value) {
-                $("li[data-id='"+fCriterium.sguid+"']", $("#compare")).append('<sup class="du"></sup>');
-            } else {
-                $("li[data-id='"+fCriterium.sguid+"']", $("#compare")).append('<sub class="du"></sub>');
-            }
-        }
-    });
+	      if(rootCriteria.value < authCriteria.value) {
+	         $("li[data-id='"+fCriterium.sguid+"']", $("#compare")).append('<sup class="du"></sup>');
+	      }
+	      if(rootCriteria.value > authCriteria.value) {
+	         $("li[data-id='"+fCriterium.sguid+"']", $("#compare")).append('<sub class="du"></sub>');
+	      }
+	      if(rootCriteria.value == authCriteria.value) {
+	         $("li[data-id='"+fCriterium.sguid+"']", $("#compare")).append('<s class="du"></s>');
+	      }
+	  }
+	});
 
-    $scope.$on('goalUserValueLoaded', function($event, message) {
-        goalsCountLoaded += 1;
-        goalsValues[message.userId] = message.goalsValues;
-        if(goalsCountLoaded == 2) {
-            angular.forEach(goalsValues[$scope.routeUserId], function(value, key) {
-                if(value < goalsValues[$scope.authUserId][key]) {
-                    $("li[data-goalid='"+key+"'] > h5", $("#compare")).append('<sup class="du"></sup>');
-                } else {
-                    $("li[data-goalid='"+key+"'] > h5", $("#compare")).append('<sub class="du"></sub>');
-                }
-            });
-        }
-    });
+	$scope.$on('goalUserValueLoaded', function($event, message) {
+		goalsCountLoaded += 1;
+		goalsValues[message.userId] = message.goalsValues;
+		if(goalsCountLoaded == 2) {
+	      angular.forEach(goalsValues[$scope.routeUserId], function(value, key) {
+	         if(value < goalsValues[$scope.authUserId][key]) {
+	            $("li[data-goalid='"+key+"'] > h5", $("#compare")).append('<sup class="du"></sup>');
+	         } 
+         	if(value > goalsValues[$scope.authUserId][key]) {
+	            $("li[data-goalid='"+key+"'] > h5", $("#compare")).append('<sub class="du"></sub>');
+	         } 
+	         if(value == goalsValues[$scope.authUserId][key]) {
+	            $("li[data-goalid='"+key+"'] > h5", $("#compare")).append('<s class="du"></s>');
+	         } 
+	      });
+	  }
+	});
 
-    $scope.$on('openCriteriumList', function($event, message) {
-        
-    });
+	$scope.$on('openCriteriumList', function($event, message) {
+	  
+	});
     
 }
 
