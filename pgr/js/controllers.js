@@ -1389,20 +1389,31 @@ function CropImageController($scope, $rootScope) {
     }
 
     $scope.onSend = function() {
-        console.log($scope.user);
         $rootScope.$broadcast('loaderShow');
         var crop_img = $("#crop_img");
         var canvas = document.getElementById("image_canvas");
-        //$(canvas).width($scope.positions.w);
-        //$(canvas).height($scope.positions.h);
+        
         var ctx = canvas.getContext("2d");
         var image = new Image();
         image.src = $scope.imageData;
         image.onload = function() {
+            var naturalWidth = image.width;
+            var naturalHeight = image.height;
+            var cropWidth = crop_img.width();
+            var cropHeight = crop_img.height();
+
+
+            $scope.positions.x = naturalWidth/cropWidth*$scope.positions.x;
+            $scope.positions.y = naturalHeight/cropHeight*$scope.positions.y;
+            $scope.positions.w = naturalWidth/cropWidth*$scope.positions.w;
+            $scope.positions.h = naturalHeight/cropHeight*$scope.positions.h;
+
+            $(canvas).attr("width",$scope.positions.w);
+            $(canvas).attr("height",$scope.positions.h);
+            console.log($scope.positions.x);
+
             ctx.drawImage(image, $scope.positions.x, $scope.positions.y, $scope.positions.w, $scope.positions.h, 0 , 0, $scope.positions.w, $scope.positions.h);
-            console.log([image, $scope.positions.x, $scope.positions.y, $scope.positions.w, $scope.positions.h, 0 , 0, $scope.positions.w, $scope.positions.h]);
             var img = canvas.toDataURL("image/png");
-            //$(crop_img).attr("src", img);
 
             var data = new FormData();
             data.append("picture", img);
