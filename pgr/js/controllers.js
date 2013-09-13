@@ -378,7 +378,7 @@ function UserController($scope, $route, $routeParams, User, Needs, Professions, 
     $scope.onUpdateFile = function($event) {
         if($scope.user.sguid == $scope.authUserId) {
 
-            $rootScope.$broadcast('cropImage', {image: document.getElementById("photo").files[0]});
+            $rootScope.$broadcast('cropImage', {user: $scope.user});
             /**
             $rootScope.$broadcast('loaderShow');
 
@@ -603,23 +603,14 @@ function NeedsAndGoalsController($scope, Goals, Criterion, AuthUser, UserCriteri
                     }), function(data) {
                         criteria.user_criteria_id = data.message.sguid;
                         $rootScope.$broadcast('userCriteriaUpdate');
-                        $rootScope.$broadcast('updateUserData', {
-                            user: $scope.user
-                        });
                     });
                 } else {
                     if(criteria.user_criteria_id) {
                         UserCriteriaValue.del({id: criteria.user_criteria_id}, {}, function(data) {
                             $rootScope.$broadcast('userCriteriaUpdate');
-                            $rootScope.$broadcast('updateUserData', {
-                                user: $scope.user
-                            });
                         }); 
                     } else {
                         $rootScope.$broadcast('userCriteriaUpdate');
-                        $rootScope.$broadcast('updateUserData', {
-                            user: $scope.user
-                        });
                     }
                 }
 
@@ -1368,6 +1359,13 @@ function getRandomInt(min, max) {
 function RootController($scope, AuthUser, User, $rootScope, $store, Needs) {
     $rootScope.authUserId = AuthUser.get();
     $rootScope.authUser = angular.fromJson($store.get('authUser'));
+
+    $scope.$on('updateUserData', function($event, message) {
+        if(message.user.sguid == $rootScope.authUserId) {
+            $rootScope.authUser = message.user;
+            $store.set('authUser', JSON.stringify($rootScope.authUser));
+        }
+    });
     
 }
 
@@ -1375,7 +1373,7 @@ function LeaguesController($scope) {
     
 }
 
-function CropImageController($scope) {
+function CropImageController($scope, $rootScope) {
     $scope.shouldBeOpen = false;
     $scope.user = [];
     $scope.positions = [];
@@ -1391,17 +1389,43 @@ function CropImageController($scope) {
     }
 
     $scope.onSend = function() {
+        console.log($scope.user);
+        $rootScope.$broadcast('loaderShow');
         var crop_img = $("#crop_img");
         var canvas = document.getElementById("image_canvas");
-        $(canvas).width($scope.positions.w);
-        $(canvas).height($scope.positions.h);
+        //$(canvas).width($scope.positions.w);
+        //$(canvas).height($scope.positions.h);
         var ctx = canvas.getContext("2d");
         var image = new Image();
         image.src = $scope.imageData;
         image.onload = function() {
-            ctx.drawImage(image, 0, 0,image.width, image.height);
+            ctx.drawImage(image, $scope.positions.x, $scope.positions.y, $scope.positions.w, $scope.positions.h, 0 , 0, $scope.positions.w, $scope.positions.h);
+            console.log([image, $scope.positions.x, $scope.positions.y, $scope.positions.w, $scope.positions.h, 0 , 0, $scope.positions.w, $scope.positions.h]);
             var img = canvas.toDataURL("image/png");
-            $(crop_img).attr("src", img);
+            //$(crop_img).attr("src", img);
+
+            var data = new FormData();
+            data.append("picture", img);
+            data.append("owner_type", 0);
+
+            $.ajax({
+                url: host+'/pictures/'+$scope.user.sguid,
+                data: data,
+                cache: false,
+                contentType: false,
+                processData: false,
+                type: 'PUT'
+            }).done(function(data) {
+                $scope.$apply(function(){
+                    if(data.success) {
+                        $scope.user.avatar = data.message;
+                        $scope.user.avatar.full_path = createImageFullPath($scope.user.avatar);
+                        $rootScope.$broadcast('updateUserData', {user: $scope.user});
+                    }
+                    $rootScope.$broadcast('loaderHide');
+                    $scope.shouldBeOpen = false; 
+                });
+            });
             //ctx.drawImage(image, $scope.positions.x, $scope.positions.y, $scope.positions.w, $scope.positions.h, 0 , 0, $scope.positions.w, $scope.positions.h);
             //console.log([image, $scope.positions.x, $scope.positions.y, $scope.positions.w, $scope.positions.h, 0 , 0, $scope.positions.w, $scope.positions.h]);
         };
