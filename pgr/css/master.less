@@ -899,47 +899,101 @@ body {
             overflow: hidden;
             position: relative;
             line-height: 100%;
-        }
-        a {
-            position: relative;
-            display: block;
-            sub {
-                display: none;
-                position: absolute;
-                top: 0%;
-                left: 0%;
-                padding: 8% 0% 0% 7%;
-                width: 100%;
-                color: #ffffff;
-                background: rgba(0, 0, 0, 0.5);
-                &.show {
+            a {
+                position: relative;
+                display: block;
+                sub {
+                    display: none;
+                    position: absolute;
+                    top: 0%;
+                    left: 0%;
+                    padding: 8% 0% 0% 7%;
+                    width: 100%;
+                    color: #ffffff;
+                    background: rgba(0, 0, 0, 0.5);
+                    &.show {
+                        display: block;
+                    }
+                }
+                span {
+                    position: absolute;
+                    bottom: 0px;
+                    width: 100%;
+                    color: #000000;
+                    font-size: 90%;
+                    text-align: right;
+                    z-index: 10;
+                }
+                img {
                     display: block;
+                    z-index: 8;
+                    width: 100%;
+                    height: auto;
+                }
+                i {
+                    position: absolute;
+                    top: 0%;
+                    left: 0%;
+                    width: 100%;
+                    height: 100%;
+                    background-size: cover !important;
+                    z-index: 9;
                 }
             }
-            span {
-                position: absolute;
-                bottom: 0px;
-                width: 100%;
-                color: #000000;
-                font-size: 90%;
-                text-align: right;
-                z-index: 10;
+            &.league_ {
+                i {
+                    background: url("../images/L-gray.png") left top no-repeat;
+                }
             }
-            img {
-                display: block;
-                z-index: 8;
-                width: 100%;
-                height: auto;
+            &.league_10 {
+                i {
+                    background: url("../images/L-gray.png") left top no-repeat;
+                }
             }
-            i {
-                position: absolute;
-                top: 0%;
-                left: 0%;
-                width: 100%;
-                height: 100%;
-                background: url("../images/photo_block.png") left top no-repeat;
-                background-size: cover;
-                z-index: 9;
+            &.league_9 {
+                i {
+                    background: url("../images/L-brown.png") left top no-repeat;
+                }
+            }
+            &.league_8 {
+                i {
+                    background: url("../images/L-pink.png") left top no-repeat;
+                }
+            }
+            &.league_7 {
+                i {
+                    background: url("../images/L-purple.png") left top no-repeat;
+                }
+            }
+            &.league_6 {
+                i {
+                    background: url("../images/L-blue.png") left top no-repeat;
+                }
+            }
+            &.league_5 {
+                i {
+                    background: url("../images/L-azure.png") left top no-repeat;
+                }
+            }
+            &.league_4 {
+                i {
+                    background: url("../images/L-green.png") left top no-repeat;
+                }
+            }
+            &.league_3 {
+               i {                
+                    background: url("../images/L-yellow.png") left top no-repeat;
+                }
+            }
+            &.league_2 {
+                i {
+                    background: url("../images/L-orange.png") left top no-repeat;
+                }
+            }
+            &.league_1 {
+                i {
+                    background: url("../images/L-red.png") left top no-repeat;
+                }
             }
         }
     }
