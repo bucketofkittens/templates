@@ -441,6 +441,12 @@ function NeedsAndGoalsController($scope, Goals, Criterion, AuthUser, UserCriteri
         });
     }
 
+    if($scope.user && !$scope.user.needs) {
+        $rootScope.$broadcast('bindUserNeeds', {
+            user: $scope.user
+        });
+    }
+
     $scope.$on('getUserInfo', function($event, message) {
         if(message.id == $scope.id) {
             $scope.user = message.user;
@@ -1280,8 +1286,7 @@ function CompareController($scope) {
         goalsCountLoaded += 1;
         goalsValues[message.userId] = message.goalsValues;
         if(goalsCountLoaded == 2) {
-            angular.forEach(goalsValues[$scope.routeUserId], function(value, key){
-                console.log(goalsValues);
+            angular.forEach(goalsValues[$scope.routeUserId], function(value, key) {
                 if(value < goalsValues[$scope.authUserId][key]) {
                     $("li[data-goalid='"+key+"'] > h5", $("#compare")).append('<sup class="du"></sup>');
                 } else {
