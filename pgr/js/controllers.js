@@ -1402,7 +1402,6 @@ function CropImageController($scope, $rootScope) {
             var cropWidth = crop_img.width();
             var cropHeight = crop_img.height();
 
-
             $scope.positions.x = naturalWidth/cropWidth*$scope.positions.x;
             $scope.positions.y = naturalHeight/cropHeight*$scope.positions.y;
             $scope.positions.w = naturalWidth/cropWidth*$scope.positions.w;
@@ -1410,7 +1409,6 @@ function CropImageController($scope, $rootScope) {
 
             $(canvas).attr("width",$scope.positions.w);
             $(canvas).attr("height",$scope.positions.h);
-            console.log($scope.positions.x);
 
             ctx.drawImage(image, $scope.positions.x, $scope.positions.y, $scope.positions.w, $scope.positions.h, 0 , 0, $scope.positions.w, $scope.positions.h);
             var img = canvas.toDataURL("image/png");
@@ -1437,11 +1435,7 @@ function CropImageController($scope, $rootScope) {
                     $scope.shouldBeOpen = false; 
                 });
             });
-            //ctx.drawImage(image, $scope.positions.x, $scope.positions.y, $scope.positions.w, $scope.positions.h, 0 , 0, $scope.positions.w, $scope.positions.h);
-            //console.log([image, $scope.positions.x, $scope.positions.y, $scope.positions.w, $scope.positions.h, 0 , 0, $scope.positions.w, $scope.positions.h]);
         };
-        console.log($scope.positions);
-       //$scope.shouldBeOpen = false; 
     }
 
     
@@ -1460,9 +1454,15 @@ function CropImageController($scope, $rootScope) {
             var crop_img = $("#crop_img");
             $scope.imageData = data.target.result;
             $(crop_img).attr("src", data.target.result);
-            crop_img.Jcrop({minSize: [200, 200], aspectRatio: 1, setSelect: [0, 0, 200, 200], onChange: function(data) {
-                $scope.positions = data;
-            }});
+            if($(crop_img).width() > 199 && $(crop_img).width() > 199) {
+                crop_img.Jcrop({minSize: [200, 200], aspectRatio: 1, setSelect: [0, 0, 200, 200], onChange: function(data) {
+                    $scope.positions = data;
+                }});   
+            } else {
+                $(crop_img).attr("src", false);
+                alert("Размер аватарки должен быть не меньше 200x200.");
+            }
+            
         };
         reader.readAsDataURL(file);
             //$rootScope.$broadcast('loaderShow');
