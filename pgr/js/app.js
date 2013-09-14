@@ -21,5 +21,5 @@ pgrModule.config(function($stateProvider, $urlRouterProvider) {
 	$stateProvider.state('leagues', {url: '/leagues', templateUrl: 'views/leagues.html', controller: LeaguesController});
 	//$routeProvider.otherwise({redirectTo: '/'});
 
-	$urlRouterProvider.otherwise("/main") ;
+	$urlRouterProvider.otherwise("/") ;
 });
