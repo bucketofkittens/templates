@@ -81,20 +81,19 @@ function ProfileController($scope, $routeParams, AuthUser, $route, $rootScope, $
     $scope.userId1 = $routeParams.userId1;
     $scope.userId2 = $routeParams.userId2;
     $scope.currentUserEditStatus = !$scope.userId2 ? true : false;
-    console.log($scope.currentUserEditStatus);
 
     $scope.$on('routeSegmentChange', function(data, d2) {
         $scope.userId1 = $routeParams.userId1;
         $scope.userId2 = $routeParams.userId2;
-
-        if($routeParams.userId1 != $scope.userId1) {
+        console.log($routeParams.userId1);
+        if($routeParams.userId1) {
             $rootScope.$broadcast('updateUserControllerId', {
                 userId: $scope.userId1,
                 id: "leftUser"
             });    
         }
 
-        if($routeParams.userId2 != $scope.userId2) {
+        if($routeParams.userId2) {
             $rootScope.$broadcast('updateUserControllerId', {
                 isEdit: false,
                 id: "leftUser"
@@ -103,13 +102,13 @@ function ProfileController($scope, $routeParams, AuthUser, $route, $rootScope, $
                 userId: $scope.userId2,
                 id: "rightUser"
             });
-        }
-        console.log($routeParams.userId2);
-        if(!$routeParams.userId2) {
-            $rootScope.$broadcast('updateUserControllerId', {
-                isEdit: true,
-                id: "leftUser"
-            });
+        } else {
+            if(!$routeParams.userId2) {
+                $rootScope.$broadcast('updateUserControllerId', {
+                    isEdit: true,
+                    id: "leftUser"
+                });
+            }    
         }
         
     });
@@ -173,13 +172,7 @@ function UserController($scope, $route, $routeParams, User, Needs, Professions, 
     $scope.currentUserId = '';
 
     $scope.$watch($scope.currentUserId, function (newVal, oldVal, scope) {
-        if($rootScope.authUserId == $scope.currentUserId) {
-            $scope.user = $rootScope.authUser;
-        } else {
-            if($scope.currentUserId) {
-                $scope.getUserInfo();
-            }   
-        }
+        $scope.getUserInfo();
     });
 
     /**
@@ -210,10 +203,10 @@ function UserController($scope, $route, $routeParams, User, Needs, Professions, 
         if(message.id == $scope.id) {
             if(message.userId) {
                 $scope.currentUserId = message.userId;
-                $scope.getUserInfo();    
+                $scope.getUserInfo();
             }
-            if(message.isEdit) {
-                console.log($scope.isEdit);
+
+            if(!angular.isUndefined(message.isEdit)) {
                 $scope.isEdit = message.isEdit;
             }
         }
@@ -410,7 +403,6 @@ function NeedsAndGoalsController($scope, Goals, Criterion, AuthUser, UserCriteri
     $scope.needs = [];
 
     $scope.$on('getUserInfoToNeeds', function($event, message) {
-
         if(!$scope.user && message.id == $scope.id) {
             $scope.user = message.user;
             $scope.getNeeds();
@@ -429,6 +421,7 @@ function NeedsAndGoalsController($scope, Goals, Criterion, AuthUser, UserCriteri
     }
     
     $scope.bindUserNeedsValues = function() {
+
         User.needs_points({id: $scope.user.sguid}, {}, function(needsData) {
             $rootScope.$broadcast('needUserValueLoaded', {
                 needsValues: needsData,
@@ -618,7 +611,6 @@ function NeedsAndGoalsController($scope, Goals, Criterion, AuthUser, UserCriteri
             })[0];
 
             if(fsCriteriumValue && fsCriteriumValue.value) {
-                //console.log(fsCriteriumValue.value);
                 criteriums *= fsCriteriumValue.value;
             }
 
@@ -662,8 +654,6 @@ function NeedsAndGoalsController($scope, Goals, Criterion, AuthUser, UserCriteri
                 $scope.onPointsSet(currentValue, criteriaValue.value, needItem, goalItem);
             } else {
                 var criteriums = $scope.getAffects(criteria["depend_guids"], goalItem);
-                console.log(criteriaValue.value*criteriums);
-                console.log(currentValue);
                 $scope.onPointsSet(currentValue, criteriaValue.value*criteriums, needItem, goalItem);
             }
         }
@@ -1188,35 +1178,6 @@ function NeighboursCtrl($scope, $location, localize, User, AuthUser, Leagues, $r
     })
 }
 
-/** Контроллер сравнений */
-function CompareController($scope, $location, User, $routeParams, AuthUser, Needs, $rootScope) {    
-    $scope.user = false;
-    $scope.useri = false;
-    $scope.userId = AuthUser.get();
-    $scope.getUserInfo = function() {
-        User.query({id: $routeParams.id}, function(data) {
-            $scope.user = data;         
-        });
-    }
-    $scope.getUseriInfo = function() {
-        User.query({id: AuthUser.get()}, function(data) {
-            $scope.useri = data;
-            if($scope.useri.league) {
-                User.by_league({league_guid: $scope.useri.league.sguid}, {}, function(data) {
-                    $scope.useri.league.users = data;
-                    if($scope.useri.league.users.length > 0) {
-                        $scope.useri.league.isUser = true;
-                    }
-                });
-            }
-        });
-    }
-    $scope.getUserInfo();
-    $scope.getUseriInfo();
-
-    
-}
-
 function LogoutController($scope, AuthUser, $location, $rootScope, $store) {
     AuthUser.logout();
     $store.remove('authUser');
@@ -1228,18 +1189,16 @@ function LogoutController($scope, AuthUser, $location, $rootScope, $store) {
 function CompareController($scope) {
 	var needsCountLoaded = 0;
 	var needsValues = {};
-
 	var goalsCountLoaded = 0;
 	var goalsValues = {};
-
 	var crtiterias = {};
 
 	$scope.$on('needUserValueLoaded', function($event, message) {
 	  needsCountLoaded += 1;
 	  needsValues[message.userId] = message.needsValues;
 	  if(needsCountLoaded == 2) {
-	      angular.forEach(needsValues[$scope.routeUserId], function(value, key){
-	          if(value < needsValues[$scope.authUserId][key]) {
+	      angular.forEach(needsValues[$scope.userId2], function(value, key){
+	          if(value < needsValues[$scope.userId1][key]) {
 	              $("li[data-needId='"+key+"'] .cr", $("#compare")).append('<sup class="du"></sup>');
 	          } else {
 	              $("li[data-needId='"+key+"'] .cr", $("#compare")).append('<sub class="du"></sub>');
@@ -1259,9 +1218,9 @@ function CompareController($scope) {
 
 	  crtiterias[message.fCriteria.sguid][message.userId] = fCriteriumValue;
 	  
-	  if(crtiterias[message.fCriteria.sguid][$scope.routeUserId] && crtiterias[message.fCriteria.sguid][$scope.authUserId]) {
-	      var rootCriteria = crtiterias[message.fCriteria.sguid][$scope.routeUserId];
-	      var authCriteria = crtiterias[message.fCriteria.sguid][$scope.authUserId];
+	  if(crtiterias[message.fCriteria.sguid][$scope.userId2] && crtiterias[message.fCriteria.sguid][$scope.userId1]) {
+	      var rootCriteria = crtiterias[message.fCriteria.sguid][$scope.userId2];
+	      var authCriteria = crtiterias[message.fCriteria.sguid][$scope.userId1];
 
 	      if(rootCriteria.value < authCriteria.value) {
 	         $("li[data-id='"+fCriterium.sguid+"']", $("#compare")).append('<sup class="du"></sup>');
@@ -1279,7 +1238,7 @@ function CompareController($scope) {
 		goalsCountLoaded += 1;
 		goalsValues[message.userId] = message.goalsValues;
 		if(goalsCountLoaded == 2) {
-	      angular.forEach(goalsValues[$scope.routeUserId], function(value, key) {
+	      angular.forEach(goalsValues[$scope.userId2], function(value, key) {
 	         if(value < goalsValues[$scope.authUserId][key]) {
 	            $("li[data-goalid='"+key+"'] > h5", $("#compare")).append('<sup class="du"></sup>');
 	         } 
@@ -1291,10 +1250,6 @@ function CompareController($scope) {
 	         } 
 	      });
 	  }
-	});
-
-	$scope.$on('openCriteriumList', function($event, message) {
-	  
 	});
     
 }

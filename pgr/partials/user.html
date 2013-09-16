@@ -98,7 +98,7 @@
 				ng-if="isEdit" />
 				<i ng-if="!isEdit">{{user.email}}</i>
 		</p>
-		<p ng-if="allUser && isEdit" ng-controller="QuickUserChangeCtrl">
+		<p ng-if="isEdit" ng-controller="QuickUserChangeCtrl">
 			<label for="acc_i">{{'_AccL_' | i18n}}:</label>
 			<select 
 				id="acc_i"
