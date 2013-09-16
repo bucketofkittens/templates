@@ -8,13 +8,13 @@
 	</a>
 
 	<ul>
-		<li ng-repeat="userItem in viewedUsers" class="{{userItem.user.sguid}} league_{{userItem.user.league.name}}">
+		<li ng-class="{showMenu: userItem.user.showHint}" ng-repeat="userItem in viewedUsers" class="{{userItem.user.sguid}} league_{{userItem.user.league.name}}">
 			<a ng-if="userItem.user" ng-click="onMoveToUser(userItem)" ng-mouseleave="onMouseLeaveUser(userItem.user)" ng-mouseenter="onMouseEnterUser(userItem.user)" >
 				<img ng-src="{{userItem.user.avatar.full_path}}" alt="" err-src="/images/unknown-person.png" />
 				<span>{{userItem.user.points}}</span>
 				<sub ng-class="{show: userItem.user.showHint}">{{userItem.user.name}} {{userItem.user.profession.name}}</sub>
 				<i></i>
-				<div class="fallout">
+				<div class="fallout" ng-class="{show: userItem.user.showMenu}">
 					<b>ggggg</b>
 					<b>ggggg</b>
 					<b>ggggg</b>
@@ -33,13 +33,13 @@
 	</a>
 
 	<ul>
-		<li paralax-image ng-repeat="userItem in viewedUsers2" class="{{userItem.user.sguid}} league_{{userItem.user.league.name}}">
+		<li ng-class="{showMenu: userItem.user.showHint}" ng-repeat="userItem in viewedUsers" class="{{userItem.user.sguid}} league_{{userItem.user.league.name}}" paralax-image ng-repeat="userItem in viewedUsers2" class="{{userItem.user.sguid}} league_{{userItem.user.league.name}}">
 			<a ng-if="userItem.user" ng-click="onMoveToUser(userItem)" ng-mouseleave="onMouseLeaveUser(userItem.user)" ng-mouseenter="onMouseEnterUser(userItem.user)" >
 				<img ng-src="{{userItem.user.avatar.full_path}}" alt="" err-src="/images/unknown-person.png" />
 				<span>{{userItem.user.points}}</span>
 				<sub ng-class="{show: userItem.user.showHint}">{{userItem.user.name}} {{userItem.user.profession.name}}</sub>
 				<i></i>
-				<div class="fallout">
+				<div class="fallout" ng-class="{show: userItem.user.showMenu}">
 					<b>ggggg</b>
 					<b>ggggg</b>
 					<b>ggggg</b>

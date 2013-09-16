@@ -967,7 +967,7 @@ function ContentController($scope, $rootScope, $route, $location) {
  * @param {[type]} $scope  [description]
  * @param {[type]} Leagues [description]
  */
-function MainController($scope, Leagues, User, AuthUser, $rootScope, $location) {
+function MainController($scope, Leagues, User, AuthUser, $rootScope, $location, $timeout) {
 
     $scope.viewedUsers = [];
     $scope.cellStep = 10;
@@ -1026,10 +1026,20 @@ function MainController($scope, Leagues, User, AuthUser, $rootScope, $location) 
 
     $scope.onMouseEnterUser = function(user) {
         user.showHint = true;
+        user.isLeave = false;
+
+        $timeout(function() {
+            if(!user.isLeave) {
+                user.showMenu = true;   
+            }
+        }, 2000);
+        
     }
 
     $scope.onMouseLeaveUser = function(user) {
         user.showHint = false;
+        user.isLeave = true;
+        user.showMenu = false;
     }
 
     $scope.onMoveToUser = function(user) {
