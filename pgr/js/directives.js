@@ -23,6 +23,9 @@ pgrModule.directive('sameAs', [function() {
 pgrModule.directive('paralaxImage', function () {
   return {
     link: function($scope, element, attrs) {
+      
+      attrs.$observe('paralaxEnable', function (v) {
+      if(attrs.paralaxEnable == "true") {
         var elements = $(".tags li");
 
         function setPostion() {
@@ -36,13 +39,13 @@ pgrModule.directive('paralaxImage', function () {
 
         var position = setPostion();
 
-
-        $(element).animate({
-          "left": position.x+"%",
-          "top": position.y+"%"
-        }, 2000, function() {
-          
-        });
+        $(element).css("left", position.x+"%");
+        $(element).css("top", position.y+"%");
+      } else {
+        $(element).css("left", "0%");
+        $(element).css("top", "0%");
+      }
+      });
     }
   } 
 });

@@ -7,7 +7,7 @@ body header ul a{color:#fff;text-decoration:none;font-family:'Helvetica Neue';fo
 body header ul a.current{color:#028dda}
 body header .social{width:12%;height:50%;vertical-align:top;display:inline-block;position:absolute;top:10%;right:0;text-decoration:none}body header .social a{background:url("../images/icons.png") center center no-repeat;width:15%;height:100%;margin:5% 7%;display:inline-block;overflow:hidden;background-position:50% 0;background-size:500% 65%}body header .social a:first-child{background-position:0 0}
 body header .social a:last-child{background-position:100% 0}
-#content{position:relative;width:100%;background:#f8f8f8;padding-top:6%;min-height:88%;overflow:hidden;}#content .viewch{text-align:center;transform:skewX(angle);font-size:80%;color:#fff;padding:8px 5px 2px 5px;background:#028dda;border-top:1px solid #fff;border-left:1px solid #fff;border-right:1px solid #ccc;border-bottom:1px solid #ccc;position:absolute;top:8%;right:0;z-index:10}
+#content{position:relative;width:100%;background:#f8f8f8;padding-top:6%;min-height:88%;overflow:hidden;}#content .viewch{text-align:center;transform:skewX(angle);font-size:80%;color:#fff;padding:8px 5px 2px 5px;background:#028dda;border-top:1px solid #fff;border-left:1px solid #fff;border-right:1px solid #ccc;border-bottom:1px solid #ccc;position:absolute;top:8%;right:0;z-index:310}
 #content .who img{max-width:15%;height:auto;border:1px solid #000;display:inline-block;position:fixed;top:50%;left:50%;margin:-7% 0 0 -7%;cursor:pointer;box-shadow:0 0 30px 1px #000;border:1px solid #666}
 #content .scroll{font-size:100%;color:#5e5c5d;text-decoration:none;position:fixed;bottom:3%;left:50%;margin-left:-3%;z-index:5;line-height:150%}
 #content .promain{margin-left:1%;width:48%;background:#fff;border:1px solid #ccc;border-bottom:none;box-shadow: 0 0 30px 1px rgba(0,0,0,0.3);z-index:3;position:relative;display:inline-block}
@@ -78,14 +78,13 @@ body header .social a:last-child{background-position:100% 0}
 #modal-shadow{position:absolute;left:0;top:0;width:100%;height:100%;background:rgba(0,0,0,0.5);display:none;z-index:2500;text-align:center}#modal-shadow.show{display:block}
 #modal-shadow img{display:inline-block;position:relative;top:50%}
 #main_leagues>img{position:absolute;left:50%;top:50%}
-#main_leagues ul{width:100%}#main_leagues ul li{height:8%;width:8%;display:inline-block;position:relative;line-height:100%}#main_leagues ul li.showMenu{z-index:99}
+#main_leagues ul{width:100%}#main_leagues ul li{height:8%;width:8%;display:inline-block;position:relative;line-height:100%;transition:all .5s ease-out;-webkit-transition:all .5s ease-out}#main_leagues ul li.showMenu{z-index:99}
 #main_leagues ul li a{position:relative;display:block}#main_leagues ul li a sub{display:none;position:absolute;top:0;left:0;padding:8% 0 0 7%;width:93%;height:92%;color:#fff;background:rgba(0,0,0,0.5)}#main_leagues ul li a sub.show{display:block}
 #main_leagues ul li a span{position:absolute;bottom:0;width:100%;color:#000;font-size:90%;text-align:right;z-index:10}
 #main_leagues ul li a img{display:block;z-index:8;width:100%;height:auto}
 #main_leagues ul li a i{position:absolute;top:0;left:0;width:100%;height:100%;background-size:cover !important;z-index:9}
 #main_leagues ul li a .fallout{vertical-align:middle;text-align:center;border-radius:100%;background:rgba(0,0,0,0.5);position:absolute;top:50%;left:50%;width:0;height:0;transition:all .5s ease-out;-webkit-transition:all .5s ease-out;overflow:hidden}#main_leagues ul li a .fallout.show{width:200%;height:200%;top:-50%;left:-50%}
-#main_leagues ul li a .fallout b{color:#fff;font-size:90%;display:block;position:absolute;top:10%;left:40%}#main_leagues ul li a .fallout b:first-child{top:80%}
-#main_leagues ul li a .fallout b:last-child{top:45%;right:-45%}
+#main_leagues ul li a .fallout b{color:#fff;font-size:90%;display:block;position:absolute;top:10%;left:40%}#main_leagues ul li a .fallout b:first-child{top:85%}
 #main_leagues ul li.league_ i{background:url("../images/L-gray.png") left top no-repeat}
 #main_leagues ul li.league_10 i{background:url("../images/L-gray.png") left top no-repeat}
 #main_leagues ul li.league_9 i{background:url("../images/L-brown.png") left top no-repeat}

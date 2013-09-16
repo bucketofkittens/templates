@@ -1,5 +1,6 @@
 <a ng-click="onState()" class="viewch">Облако</a>
-<section ng-if="state" id="main_leagues">
+
+<section id="main_leagues" ng-class="{tags: !state}">
 	<a ng-if="!rootUser" ng-click="onOpenLogin()" class="who" >
 		<img ng-src="/images/unknown-person.png" alt="" />
 	</a>
@@ -8,38 +9,14 @@
 	</a>
 
 	<ul>
-		<li ng-class="{showMenu: userItem.user.showHint}" ng-repeat="userItem in viewedUsers" class="{{userItem.user.sguid}} league_{{userItem.user.league.name}}">
+		<li paralax-enable="{{!state}}" paralax-image ng-class="{showMenu: userItem.user.showHint}" ng-repeat="userItem in viewedUsers" class="{{userItem.user.sguid}} league_{{userItem.user.league.name}}">
 			<a ng-if="userItem.user" ng-click="onMoveToUser(userItem)" ng-mouseleave="onMouseLeaveUser(userItem.user)" ng-mouseenter="onMouseEnterUser(userItem.user)" >
 				<img ng-src="{{userItem.user.avatar.full_path}}" alt="" err-src="/images/unknown-person.png" />
 				<span>{{userItem.user.points}}</span>
 				<sub ng-class="{show: userItem.user.showHint}">{{userItem.user.name}} {{userItem.user.profession.name}}</sub>
 				<i></i>
 				<div class="fallout" ng-class="{show: userItem.user.showMenu}">
-					<b>Compare</b>
-					<b>Follow</b>
-				</div>
-			</a>
-		</li>
-	</ul>
-</section>
-
-<section ng-if="!state" id="main_leagues" class="tags">
-	<a ng-if="!rootUser" ng-click="onOpenLogin()" class="who" >
-		<img ng-src="/images/unknown-person.png" alt="" />
-	</a>
-	<a ng-if="rootUser" href="#/profile/{{rootUser.sguid}}" class="who">
-		<img ng-src="{{rootUser.avatar.full_path}}" err-src="/images/unknown-person.png" />
-	</a>
-
-	<ul>
-		<li ng-class="{showMenu: userItem.user.showHint}" ng-repeat="userItem in viewedUsers" class="{{userItem.user.sguid}} league_{{userItem.user.league.name}}" paralax-image ng-repeat="userItem in viewedUsers2" class="{{userItem.user.sguid}} league_{{userItem.user.league.name}}">
-			<a ng-if="userItem.user" ng-click="onMoveToUser(userItem)" ng-mouseleave="onMouseLeaveUser(userItem.user)" ng-mouseenter="onMouseEnterUser(userItem.user)" >
-				<img ng-src="{{userItem.user.avatar.full_path}}" alt="" err-src="/images/unknown-person.png" />
-				<span>{{userItem.user.points}}</span>
-				<sub ng-class="{show: userItem.user.showHint}">{{userItem.user.name}} {{userItem.user.profession.name}}</sub>
-				<i></i>
-				<div class="fallout" ng-class="{show: userItem.user.showMenu}">
-					<b>Compare</b>
+					<b ng-click="onMoveToUser(userItem)">Compare</b>
 					<b>Follow</b>
 				</div>
 			</a>

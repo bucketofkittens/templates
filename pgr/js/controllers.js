@@ -968,9 +968,7 @@ function ContentController($scope, $rootScope, $route, $location) {
  * @param {[type]} Leagues [description]
  */
 function MainController($scope, Leagues, User, AuthUser, $rootScope, $location, $timeout) {
-
     $scope.viewedUsers = [];
-    $scope.cellStep = 10;
     $scope.state = 1;
     $scope.stateText = 'Облако';
     $scope.isAuth = $rootScope.authUser ? true : false;
@@ -998,9 +996,6 @@ function MainController($scope, Leagues, User, AuthUser, $rootScope, $location, 
             $scope.isAuth = false;
         }
     });
-    
-    
-    $scope.viewedUsers = [];
 
     $scope.$on('login', function() {
         $scope.rootUser = $rootScope.authUser;
@@ -1018,7 +1013,6 @@ function MainController($scope, Leagues, User, AuthUser, $rootScope, $location, 
                 }
             });
             $scope.viewedUsers = data.shuffle();
-            $scope.viewedUsers2 = data.shuffle();
         });
     }
     
@@ -1048,6 +1042,24 @@ function MainController($scope, Leagues, User, AuthUser, $rootScope, $location, 
         } else {
             $location.path("/profile/"+user.user.sguid);
         }
+    }
+
+    $scope.onFollow = function(user) {
+        User.create_friendship({id: AuthUser.get()}, {
+            friend_guid: user.user.sguid
+        }, $.proxy($scope.onFollowCallback_, $.scope));
+    }
+
+    $scope.onFollowCallback_ = function(data) {
+        $scope.isFollow = true;
+    }
+
+    $scope.onUnFollow = function(user) {
+        User.destroy_friendship({id: AuthUser.get(), friendId: user.user.sguid}, { }, $.proxy($scope.onUnFollowCallback_, $.scope));
+    }
+
+    $scope.onUnFollowCallback_ = function(data) {
+        $scope.isFollow = false;
     }
 }
 
