@@ -139,7 +139,7 @@ body {
         font-size: 100%;
         color: #5e5c5d;
         text-decoration: none;
-        position: absolute;
+        position: fixed;
         bottom: 3%;
         left: 50%;
         margin-left: -3%;
@@ -895,7 +895,6 @@ body {
             height: 8%;
             width: 8%;
             display: inline-block;
-            overflow: hidden;
             position: relative;
             line-height: 100%;
             a {
@@ -907,7 +906,8 @@ body {
                     top: 0%;
                     left: 0%;
                     padding: 8% 0% 0% 7%;
-                    width: 100%;
+                    width: 93%;
+                    height: 92%;
                     color: #ffffff;
                     background: rgba(0, 0, 0, 0.5);
                     &.show {
@@ -937,6 +937,36 @@ body {
                     height: 100%;
                     background-size: cover !important;
                     z-index: 9;
+                }
+                .fallout {
+                    vertical-align: middle;
+                    text-align: center;
+                    width: 200%;
+                    height: 200%;
+                    border-radius: 100%;
+                    background: rgba(0, 0, 0, 0.5);
+                    position: absolute;
+                    display: none;
+                    top: -50%;
+                    left: -50%;
+                    &:hover {
+                        display: block;
+                    }
+                    b {
+                        color: #ffffff;
+                        font-size: 90%;
+                        display: block;
+                        position: absolute;
+                        top: 10%;
+                        left: 40%;
+                        &:first-child {
+                            top: 80%;
+                        }
+                        &:last-child {
+                            top: 45%;
+                            right: -45%;
+                        }
+                    }
                 }
             }
             &.league_ {
