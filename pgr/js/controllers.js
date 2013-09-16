@@ -51,9 +51,7 @@ function navCtrl($scope, localize, $location, AuthUser, $rootScope, $route) {
 
     $scope.generateNav = function() {
         $scope.navs = [
-            //{name: localize.getLocalizedString("_ABOUT_"), link: '#', activeClass: ''},
-            //{name: localize.getLocalizedString("_LEAGUES_"), link: '#', activeClass: ''},
-            {name: localize.getLocalizedString("_PROFILE_"), link: $scope.authUser ? '#/profile/'+$scope.authUser : '#/profile/', activeClass: '', show: $scope.authUser ? true : false},
+            {name: localize.getLocalizedString("_PROFILE_"), link: $scope.authUser ? '#/profile/'+$scope.authUser: '#/profile/', activeClass: '', show: $scope.authUser ? true : false},
             {name: localize.getLocalizedString("_LEAGUES_"), link: '#/leagues', activeClass: '', show: $scope.authUser ? true : false},
             {name: localize.getLocalizedString("_GRAPHS_"), link: '#/graphs', activeClass: '', show: $scope.authUser ? true : false},
             {name: localize.getLocalizedString("_LogoutL_"), link: '#/logout', activeClass: '', show: $scope.authUser ? true : false}
@@ -68,7 +66,6 @@ function navCtrl($scope, localize, $location, AuthUser, $rootScope, $route) {
      * @return {[type]}           [description]
      */
     $scope.$on('$stateChangeStart', function(event, next, current) {
-        console.log("route");
         angular.forEach($scope.navs, function(value, key) {
             $scope.navs[key].activeClass = $scope.navs[key].link.replace("#", "") === $location.path() ? 'current' : '';
         });
@@ -79,31 +76,43 @@ function navCtrl($scope, localize, $location, AuthUser, $rootScope, $route) {
  * Контроллер страницы профиля
  * @param {[type]} $scope [description]
  */
-function ProfileController($scope, $routeParams, AuthUser, $route, $rootScope, $stateParams) {
+function ProfileController($scope, $routeParams, AuthUser, $route, $rootScope, $location) {
     $scope.authUserId = AuthUser.get();
-    
-    $scope.currentUserEditStatus = true;
-    
+    $scope.userId1 = $routeParams.userId1;
+    $scope.userId2 = $routeParams.userId2;
+    $scope.currentUserEditStatus = !$scope.userId2 ? true : false;
+    console.log($scope.currentUserEditStatus);
 
-    $scope.templates = {
-        user: "partials/compare.html",
-        neighbours: "partials/neighbours.html"
-    }
-    $scope.rightTemplate = '';
+    $scope.$on('routeSegmentChange', function(data, d2) {
+        $scope.userId1 = $routeParams.userId1;
+        $scope.userId2 = $routeParams.userId2;
 
-
-    $scope.updateRouteUser = function(userId) {
-        $scope.routeUserId = userId;
-        if($scope.authUserId != $scope.routeUserId) {
-        $scope.rightTemplate = $scope.templates.user;
-            $scope.currentUserEditStatus = false;
-        } else {
-            $scope.rightTemplate = $scope.templates.neighbours;
-            $scope.currentUserEditStatus = true;
+        if($routeParams.userId1 != $scope.userId1) {
+            $rootScope.$broadcast('updateUserControllerId', {
+                userId: $scope.userId1,
+                id: "leftUser"
+            });    
         }
-    }
 
-    $scope.updateRouteUser($stateParams.userId);
+        if($routeParams.userId2 != $scope.userId2) {
+            $rootScope.$broadcast('updateUserControllerId', {
+                isEdit: false,
+                id: "leftUser"
+            });
+            $rootScope.$broadcast('updateUserControllerId', {
+                userId: $scope.userId2,
+                id: "rightUser"
+            });
+        }
+        console.log($routeParams.userId2);
+        if(!$routeParams.userId2) {
+            $rootScope.$broadcast('updateUserControllerId', {
+                isEdit: true,
+                id: "leftUser"
+            });
+        }
+        
+    });
 }
 
 /**
@@ -179,7 +188,6 @@ function UserController($scope, $route, $routeParams, User, Needs, Professions, 
      */
     $scope.getUserInfo = function() {
         User.query({id: $scope.currentUserId}, function(data) {
-            console.log(data);
             $scope.user = data;
             
             if($scope.user.league) {
@@ -188,13 +196,28 @@ function UserController($scope, $route, $routeParams, User, Needs, Professions, 
                 });
             }
             $scope.authUser = $rootScope.authUser;
-            $scope.testFollow();
+            if($scope.authUser) {
+                $scope.testFollow();
+            }
             $rootScope.$broadcast('getUserInfoToNeeds', {
                 user: $scope.user,
                 id: $scope.id
             });
         });
     }
+
+    $scope.$on('updateUserControllerId', function($event, message) {
+        if(message.id == $scope.id) {
+            if(message.userId) {
+                $scope.currentUserId = message.userId;
+                $scope.getUserInfo();    
+            }
+            if(message.isEdit) {
+                console.log($scope.isEdit);
+                $scope.isEdit = message.isEdit;
+            }
+        }
+    });
     
 
     $scope.$on('updateLegue', function() {
@@ -205,16 +228,6 @@ function UserController($scope, $route, $routeParams, User, Needs, Professions, 
         });
     });
     
-
-    /**
-     * Отправляет запрос изменение лиги на сервер
-     * @return {[type]} [description]
-     */
-    $scope.$on('updateUserState', function($event, message) {
-        if($scope.currentUserId == message.userId) {
-            $scope.currentUserId.userId = message.params.userId;
-        }
-    });
 
     $scope.testFollow = function() {
         var item = $scope.authUser.friends_guids.filter(function(item) {
@@ -342,31 +355,6 @@ function UserController($scope, $route, $routeParams, User, Needs, Professions, 
         if($scope.user.sguid == $scope.authUserId) {
 
             $rootScope.$broadcast('cropImage', {user: $scope.user});
-            /**
-            $rootScope.$broadcast('loaderShow');
-
-            var data = new FormData();
-            data.append("picture", document.getElementById("photo").files[0]);
-            data.append("owner_type", 0);
-
-            $.ajax({
-                url: host+'/pictures/'+$scope.user.sguid,
-                data: data,
-                cache: false,
-                contentType: false,
-                processData: false,
-                type: 'PUT'
-            }).done(function(data) {
-                $scope.$apply(function(){
-                    if(data.success) {
-                        $scope.user.avatar = data.message;
-                        $scope.user.avatar.full_path = createImageFullPath($scope.user.avatar);
-                        $rootScope.$broadcast('updateUserData', {user: $scope.user});
-                    }
-                    $rootScope.$broadcast('loaderHide');
-                });
-            });
-            **/
         }
     }
 
@@ -379,31 +367,6 @@ function UserController($scope, $route, $routeParams, User, Needs, Professions, 
         if($scope.user.sguid == $scope.authUserId) {
 
             $rootScope.$broadcast('cropImage', {user: $scope.user});
-            /**
-            $rootScope.$broadcast('loaderShow');
-
-            var data = new FormData();
-            data.append("picture", document.getElementById("photo").files[0]);
-            data.append("owner_type", 0);
-
-            $.ajax({
-                url: host+'/pictures/'+$scope.user.sguid,
-                data: data,
-                cache: false,
-                contentType: false,
-                processData: false,
-                type: 'PUT'
-            }).done(function(data) {
-                $scope.$apply(function(){
-                    if(data.success) {
-                        $scope.user.avatar = data.message;
-                        $scope.user.avatar.full_path = createImageFullPath($scope.user.avatar);
-                        $rootScope.$broadcast('updateUserData', {user: $scope.user});
-                    }
-                    $rootScope.$broadcast('loaderHide');
-                });
-            });
-            **/
         }
     }
 
@@ -445,8 +408,6 @@ function UserController($scope, $route, $routeParams, User, Needs, Professions, 
  */
 function NeedsAndGoalsController($scope, Goals, Criterion, AuthUser, UserCriteriaValue, $rootScope, CriterionByGoal, UserCriteriaValueByUser, $routeParams, Needs, User, $element) {
     $scope.needs = [];
-
-    
 
     $scope.$on('getUserInfoToNeeds', function($event, message) {
 
@@ -593,31 +554,29 @@ function NeedsAndGoalsController($scope, Goals, Criterion, AuthUser, UserCriteri
      * @return {[type]}          [description]
      */
     $scope.onCriteriaSelect = function(criteriaValue, criteria, $event, needItem, goalItem) {
-        if(!$($event.target).hasClass("current")) {
-            if($scope.isUpdateCriteria && $scope.isEdit) {
-                if(criteriaValue.sguid !== "none") {
-                    UserCriteriaValue.create({}, $.param({
-                        "user_guid": AuthUser.get(),
-                        "criteria_guid": criteria.sguid,
-                        "criteria_value_guid": criteriaValue.sguid
-                    }), function(data) {
-                        criteria.user_criteria_id = data.message.sguid;
+        if(!$($event.target).hasClass("current") && $scope.user.sguid == AuthUser.get()) {
+            if(criteriaValue.sguid !== "none") {
+                UserCriteriaValue.create({}, $.param({
+                    "user_guid": AuthUser.get(),
+                    "criteria_guid": criteria.sguid,
+                    "criteria_value_guid": criteriaValue.sguid
+                }), function(data) {
+                    criteria.user_criteria_id = data.message.sguid;
+                    $rootScope.$broadcast('userCriteriaUpdate');
+                });
+            } else {
+                if(criteria.user_criteria_id) {
+                    UserCriteriaValue.del({id: criteria.user_criteria_id}, {}, function(data) {
                         $rootScope.$broadcast('userCriteriaUpdate');
-                    });
+                    }); 
                 } else {
-                    if(criteria.user_criteria_id) {
-                        UserCriteriaValue.del({id: criteria.user_criteria_id}, {}, function(data) {
-                            $rootScope.$broadcast('userCriteriaUpdate');
-                        }); 
-                    } else {
-                        $rootScope.$broadcast('userCriteriaUpdate');
-                    }
+                    $rootScope.$broadcast('userCriteriaUpdate');
                 }
-
-                var target = $event.target.tagName == "LI" ? $($event.target) : $($event.target).parent();
-                $scope.setCriteriaPosition(target);
-                $scope.updateNeedsAndAreaPoints(criteriaValue, criteria, needItem, goalItem, true);
             }
+
+            var target = $event.target.tagName == "LI" ? $($event.target) : $($event.target).parent();
+            $scope.setCriteriaPosition(target);
+            $scope.updateNeedsAndAreaPoints(criteriaValue, criteria, needItem, goalItem, true);
         }
         
     }
@@ -941,7 +900,6 @@ function LoginController($scope, Sessions, $rootScope, AuthUser, User, $store) {
                 User.query({id: data.guid}, function(data) {
                     $rootScope.$broadcast('login');
                     $rootScope.authUser = data;
-                    console.log(data);
                     $store.set('authUser', JSON.stringify(data));
                     $scope.shouldBeOpen = false;
                 });
@@ -1018,7 +976,7 @@ function ContentController($scope, $rootScope, $route, $location) {
  * @param {[type]} $scope  [description]
  * @param {[type]} Leagues [description]
  */
-function MainController($scope, Leagues, User, AuthUser, $rootScope) {
+function MainController($scope, Leagues, User, AuthUser, $rootScope, $location) {
 
     $scope.viewedUsers = [];
     $scope.cellStep = 10;
@@ -1082,6 +1040,14 @@ function MainController($scope, Leagues, User, AuthUser, $rootScope) {
 
     $scope.onMouseLeaveUser = function(user) {
         user.showHint = false;
+    }
+
+    $scope.onMoveToUser = function(user) {
+        if($scope.rootUser.sguid) {
+            $location.path("/profile/"+$scope.rootUser.sguid+"/"+user.user.sguid);
+        } else {
+            $location.path("/profile/"+user.user.sguid);
+        }
     }
 }
 
@@ -1235,7 +1201,6 @@ function CompareController($scope, $location, User, $routeParams, AuthUser, Need
     $scope.getUseriInfo = function() {
         User.query({id: AuthUser.get()}, function(data) {
             $scope.useri = data;
-            console.log($scope.useri);
             if($scope.useri.league) {
                 User.by_league({league_guid: $scope.useri.league.sguid}, {}, function(data) {
                     $scope.useri.league.users = data;
@@ -1334,11 +1299,12 @@ function CompareController($scope) {
     
 }
 
-function GalleryController($scope, localize, Leagues, User, AuthUser, $element) {
+function GalleryController($scope, localize, Leagues, User, AuthUser, $element, $location) {
     $scope.stateView = 0;
     $scope.stateViewClass = "";
     $scope.users = [];
     $scope.limit = 3;
+    $scope.authUserId = AuthUser.get();
 
     $scope.$on('usersLoaded', function($event, message) {
         if(message.id == $scope.id) {
@@ -1356,6 +1322,14 @@ function GalleryController($scope, localize, Leagues, User, AuthUser, $element) 
             $($element).next().show();
         } else {
             $(".lnbl").show();
+        }
+    }
+
+    $scope.onMoveToUser = function(user) {
+        if($scope.authUserId) {
+            $location.path("/profile/"+$scope.authUserId+"/"+user.user.sguid);
+        } else {
+            $location.path("/profile/"+user.user.sguid);
         }
     }
 }

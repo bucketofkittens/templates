@@ -49,7 +49,7 @@
 						</span>
 					</span>
 				</button>
-				<span ng-if="authUserId != currentUserId">
+				<span ng-if="authUserId && authUserId != currentUserId">
 					<span ng-switch on="isFollow" >
 						<span ng-switch-when="false">
 							<button ng-click="onFollow()">

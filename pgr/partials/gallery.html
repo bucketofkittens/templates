@@ -1,6 +1,6 @@
 <div class="gallery {{stateViewClass}}" ng-if="users.length > 0">
 	<h4>{{title}}</h4>
-	<a href="#/profile/{{userItem.user.sguid}}"  ng-repeat="(userKey, userItem) in users | limitTo:limit ">
+	<a ng-click="onMoveToUser(userItem)" ng-repeat="(userKey, userItem) in users | limitTo:limit ">
 		<img ng-src="{{userItem.user.avatar.full_path}}" err-src="/images/unknown-person.png" />
 		<span>{{userItem.user.points}}</span>
 	</a>
