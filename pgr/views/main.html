@@ -1,4 +1,4 @@
-<a ng-click="onState()" class="viewch">Облако</a>
+<a ng-click="onState()" class="viewch">{{stateText}}</a>
 
 <section id="main_leagues" ng-class="{tags: !state}">
 	<a ng-if="!rootUser" ng-click="onOpenLogin()" class="who" >
@@ -17,7 +17,8 @@
 				<i></i>
 				<div class="fallout" ng-class="{show: userItem.user.showMenu}">
 					<b ng-click="onMoveToUser(userItem)">Compare</b>
-					<b>Follow</b>
+					<b ng-click="onFollow($event, userItem)" ng-if="rootUser && !userItem.user.isFrend">Follow</b>
+					<b ng-click="onUnFollow($event, userItem)" ng-if="rootUser && userItem.user.isFrend">Unfollow</b>
 				</div>
 			</a>
 		</li>

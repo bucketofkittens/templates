@@ -971,7 +971,6 @@ function MainController($scope, Leagues, User, AuthUser, $rootScope, $location, 
     $scope.viewedUsers = [];
     $scope.state = 1;
     $scope.stateText = 'Облако';
-    $scope.isAuth = $rootScope.authUser ? true : false;
     $scope.rootUser = $rootScope.authUser ? $rootScope.authUser : false;
 
     $scope.onOpenLogin = function() {
@@ -990,10 +989,9 @@ function MainController($scope, Leagues, User, AuthUser, $rootScope, $location, 
 
     $scope.$watch($rootScope.authUser, function(newValue, oldValue, scope) {
         if($rootScope.authUser) {
-            $scope.isAuth = true;
             $scope.rootUser = $rootScope.authUser;
         } else {    
-            $scope.isAuth = false;
+            $scope.rootUser = false;
         }
     });
 
@@ -1012,6 +1010,19 @@ function MainController($scope, Leagues, User, AuthUser, $rootScope, $location, 
                     return item;
                 }
             });
+            if($scope.rootUser) {
+                angular.forEach($scope.rootUser.friends_guids, function(value, key){
+                    angular.forEach(data, function(v2, k2){
+                        if(v2.user.sguid == value) {
+                            v2.user.isFrend = true;
+                        } else {
+                            if(v2.user.isFrend != true) {
+                                v2.user.isFrend = false;   
+                            }
+                        }
+                    });
+                });
+            }
             $scope.viewedUsers = data.shuffle();
         });
     }
@@ -1044,23 +1055,18 @@ function MainController($scope, Leagues, User, AuthUser, $rootScope, $location, 
         }
     }
 
-    $scope.onFollow = function(user) {
+    $scope.onFollow = function($event, user) {
         User.create_friendship({id: AuthUser.get()}, {
             friend_guid: user.user.sguid
-        }, $.proxy($scope.onFollowCallback_, $.scope));
+        }, function() { user.user.isFrend = true; });
+        $event.stopPropagation();
     }
 
-    $scope.onFollowCallback_ = function(data) {
-        $scope.isFollow = true;
+    $scope.onUnFollow = function($event, user) {
+        User.destroy_friendship({id: AuthUser.get(), friendId: user.user.sguid}, { }, function() { user.user.isFrend = false; });
+        $event.stopPropagation();
     }
 
-    $scope.onUnFollow = function(user) {
-        User.destroy_friendship({id: AuthUser.get(), friendId: user.user.sguid}, { }, $.proxy($scope.onUnFollowCallback_, $.scope));
-    }
-
-    $scope.onUnFollowCallback_ = function(data) {
-        $scope.isFollow = false;
-    }
 }
 
 /** Контроллер графика */
