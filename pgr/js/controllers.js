@@ -83,10 +83,8 @@ function ProfileController($scope, $routeParams, AuthUser, $route, $rootScope, $
     $scope.currentUserEditStatus = !$scope.userId2 ? true : false;
 
     $scope.$on('routeSegmentChange', function(data, d2) {
-        $scope.userId1 = $routeParams.userId1;
-        $scope.userId2 = $routeParams.userId2;
-        console.log($routeParams.userId1);
-        if($routeParams.userId1) {
+        
+        if($routeParams.userId1 && $routeParams.userId1 != $routeParams.userId1) {
             $rootScope.$broadcast('updateUserControllerId', {
                 userId: $scope.userId1,
                 id: "leftUser"
@@ -110,6 +108,9 @@ function ProfileController($scope, $routeParams, AuthUser, $route, $rootScope, $
                 });
             }    
         }
+
+        $scope.userId1 = $routeParams.userId1;
+        $scope.userId2 = $routeParams.userId2;
         
     });
 }
@@ -1065,8 +1066,6 @@ function GraphsController($scope, $rootScope, $route, $location, Leagues, User) 
         })
     }, 100);
 
-
-
     Leagues.query({}, {}, function(data){
         $scope.leagues = data;
 
@@ -1203,6 +1202,7 @@ function CompareController($scope) {
 	              $("li[data-needId='"+key+"'] .cr", $("#compare")).append('<sub class="du"></sub>');
 	          }
 	      });
+          needsCountLoaded = 1;
 	  }
 	});
 
@@ -1248,6 +1248,7 @@ function CompareController($scope) {
 	            $("li[data-goalid='"+key+"'] > h5", $("#compare")).append('<s class="du"></s>');
 	         } 
 	      });
+          goalsCountLoaded = 1;
 	  }
 	});
     
