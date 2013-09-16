@@ -888,10 +888,10 @@ function LoginController($scope, Sessions, $rootScope, AuthUser, User, $store) {
             if(data.success) {
                 AuthUser.set(data.guid);
                 User.query({id: data.guid}, function(data) {
-                    $rootScope.$broadcast('login');
                     $rootScope.authUser = data;
                     $store.set('authUser', JSON.stringify(data));
                     $scope.shouldBeOpen = false;
+                    $rootScope.$broadcast('login');
                 });
             } else {
                 $scope.error = data.message;
@@ -1002,12 +1002,11 @@ function MainController($scope, Leagues, User, AuthUser, $rootScope, $location) 
     $scope.viewedUsers = [];
 
     $scope.$on('login', function() {
-        $scope.isAuth = true;
         $scope.rootUser = $rootScope.authUser;
     });
 
     $scope.$on('logout', function() {
-        $scope.isAuth = false;
+        $scope.rootUser = null;
     });
 
     $scope.getAllUser = function($event) {
