@@ -1047,9 +1047,11 @@ function MainController($scope, Leagues, User, AuthUser, $rootScope, $location, 
         var dropId =  $(src).attr("id");
         var droppedId =  $(e.delegateTarget).attr("id");
         
-        $scope.$apply(function() {
-            $location.path("/profile/"+dropId+"/"+droppedId);   
-        })
+        if(dropId != droppedId) {
+            $scope.$apply(function() {
+                $location.path("/profile/"+droppedId+"/"+dropId);   
+            })
+        }
         
     }
 

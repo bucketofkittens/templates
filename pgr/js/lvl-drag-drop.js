@@ -47,12 +47,12 @@ module.directive('lvlDropTarget', ['$rootScope', 'uuid', function($rootScope, uu
 	            
 	            el.bind("dragenter", function(e) {
 	              // this / e.target is the current hover target.
-	              angular.element(e.target.parentNode.parentNode).addClass('lvl-over');
+	              angular.element(e.target).addClass('lvl-over');
 	            });
 
 	            
 	            el.bind("dragleave", function(e) {
-	              angular.element(e.target.parentNode.parentNode).removeClass('lvl-over');  // this / e.target is previous target element.
+	              angular.element(e.target).removeClass('lvl-over');  // this / e.target is previous target element.
 	            });
 	            
 	            el.bind("drop", function(e) {

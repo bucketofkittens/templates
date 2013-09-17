@@ -4,7 +4,7 @@
 	<a ng-if="!rootUser" ng-click="onOpenLogin()" class="who" >
 		<img ng-src="/images/unknown-person.png" alt="" />
 	</a>
-	<a ng-if="rootUser" href="#/profile/{{rootUser.sguid}}" class="who">
+	<a ng-if="rootUser" x-lvl-drop-target="true" id="{{rootUser.sguid}}" href="#/profile/{{rootUser.sguid}}" class="who">
 		<img ng-src="{{rootUser.avatar.full_path}}" err-src="/images/unknown-person.png" />
 	</a>
 
