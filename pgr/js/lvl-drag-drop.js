@@ -69,6 +69,8 @@ module.directive('lvlDropTarget', ['$rootScope', 'uuid', function($rootScope, uu
 	            	
 	                var dest = document.getElementById(id);
 	                var src = document.getElementById(data);
+
+	                angular.element(e.target).removeClass('lvl-over');
 	                
 	                scope.onDrop(e, src);
 	            });
