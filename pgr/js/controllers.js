@@ -121,17 +121,15 @@ function ProfileController($scope, $routeParams, AuthUser, $route, $rootScope, $
  * @param {[type]} User       [description]
  * @param {[type]} AuthUser   [description]
  * @param {[type]} $rootScope [description]
- * @param {[type]} $store     [description]
  * @param {[type]} $location  [description]
  */
-function QuickUserChangeCtrl($scope, User, AuthUser, $rootScope, $store, $location) {
+function QuickUserChangeCtrl($scope, User, AuthUser, $rootScope, $location) {
     $scope.users = [];
 
     $scope.onMoveUserClick = function($event, nextUser) {
         AuthUser.set(nextUser.user.sguid);
         
         $rootScope.authUser = nextUser.user;
-        $store.set('authUser', JSON.stringify(nextUser.user));
         $location.path("/profile/"+nextUser.user.sguid);
     }
 
@@ -162,7 +160,7 @@ function QuickUserChangeCtrl($scope, User, AuthUser, $rootScope, $store, $locati
  * @param {type} States
  * @returns {undefined}
  */
-function UserController($scope, $route, $routeParams, User, Needs, Professions, States, $http, NeedsByUser, $rootScope, GoalsByUser, AuthUser, Friendships, Leagues, $location, $window, $store) {
+function UserController($scope, $route, $routeParams, User, Needs, Professions, States, $http, NeedsByUser, $rootScope, GoalsByUser, AuthUser, Friendships, Leagues, $location, $window) {
     $scope.user = null;
     $scope.newImage = null;
     $scope.professions = Professions.query();
@@ -254,8 +252,6 @@ function UserController($scope, $route, $routeParams, User, Needs, Professions, 
 
         $rootScope.authUser.league = data.league;
         $rootScope.authUser.points = data.points;
-
-        $store.set('authUser', JSON.stringify($rootScope.authUser));
     }
 
     /**
@@ -836,7 +832,7 @@ function RegController($scope, $location, User, AuthUser, $rootScope) {
  * [LoginController description]
  * @param {[type]} $scope [description]
  */
-function LoginController($scope, Sessions, $rootScope, AuthUser, User, $store) {
+function LoginController($scope, Sessions, $rootScope, AuthUser, User) {
     $scope.authUser = AuthUser.get();
     /**
      * Поле логина
@@ -890,7 +886,6 @@ function LoginController($scope, Sessions, $rootScope, AuthUser, User, $store) {
                 AuthUser.set(data.guid);
                 User.query({id: data.guid}, function(data) {
                     $rootScope.authUser = data;
-                    $store.set('authUser', JSON.stringify(data));
                     $scope.shouldBeOpen = false;
                     $rootScope.$broadcast('login');
                 });
@@ -1212,9 +1207,8 @@ function NeighboursCtrl($scope, $location, localize, User, AuthUser, Leagues, $r
     })
 }
 
-function LogoutController($scope, AuthUser, $location, $rootScope, $store) {
+function LogoutController($scope, AuthUser, $location, $rootScope) {
     AuthUser.logout();
-    $store.remove('authUser');
     $rootScope.authUser = null;
     $rootScope.$broadcast('logout');
     $location.path("/");
@@ -1343,14 +1337,12 @@ function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-function RootController($scope, AuthUser, User, $rootScope, $store, Needs) {
+function RootController($scope, AuthUser, User, $rootScope, Needs) {
     $rootScope.authUserId = AuthUser.get();
-    $rootScope.authUser = angular.fromJson($store.get('authUser'));
 
     $scope.$on('updateUserData', function($event, message) {
         if(message.user.sguid == $rootScope.authUserId) {
             $rootScope.authUser = message.user;
-            $store.set('authUser', JSON.stringify($rootScope.authUser));
         }
     });
     

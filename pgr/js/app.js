@@ -4,7 +4,7 @@
  * Основной модуль приложения
  * @type {[type]}
  */
-var pgrModule = angular.module('pgrModule', [ "ngRoute", "ngCookies", "ngResource", "ngAnimate", "localization", "ui", "ui.keypress", 'ui.bootstrap', 'localStorage', 'route-segment', 'view-segment', 'lvl.directives.dragdrop', 'ngTouch']);
+var pgrModule = angular.module('pgrModule', [ "ngRoute", "ngCookies", "ngResource", "ngAnimate", "localization", "ui", "ui.keypress", 'ui.bootstrap', 'route-segment', 'view-segment', 'lvl.directives.dragdrop', 'ngTouch']);
 
 /**
  * Роутинг приложения

@@ -5,7 +5,7 @@
 				<div id='cropContainer'>
 			      <div class="cropper">
 			        <div class="file-input">
-			        	<input id="photo_crop" onchange="angular.element(this).scope().onReadFile()" type="file" accept="image/*" />
+			        	<input id="photo_crop" onchange="angular.element(this).scope().onReadFile()" capture="camera" type="file" accept="image/*" />
 			        </div>
 			        <div class="preview-container">
 			        	<img src="" id="crop_img" alt="" />
