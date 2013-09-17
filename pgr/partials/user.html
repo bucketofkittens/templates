@@ -1,17 +1,19 @@
 <div ng-controller="CropImageController">
 	<div modal="shouldBeOpen" close="close()" options="opts">
 		<div class="modal-body">
-			<div id='cropContainer'>
-		      <div class="cropper">
-		        <div class="file-input">
-		        	<input id="photo_crop" onchange="angular.element(this).scope().onReadFile()" type="file" accept="image/*" />
-		        </div>
-		        <div class="preview-container">
-		        	<img src="" id="crop_img" alt="" />
-		        	<canvas id="image_canvas"></canvas>
-		        </div>
-		      </div>
-		    </div>
+			<form action="" method="get" accept-charset="utf-8">
+				<div id='cropContainer'>
+			      <div class="cropper">
+			        <div class="file-input">
+			        	<input id="photo_crop" onchange="angular.element(this).scope().onReadFile()" type="file" accept="image/*" />
+			        </div>
+			        <div class="preview-container">
+			        	<img src="" id="crop_img" alt="" />
+			        	<canvas id="image_canvas"></canvas>
+			        </div>
+			      </div>
+			    </div>
+		    </form>
 		</div>
 		<div class="modal-footer">
 			<button class="btn btn-success" ng-click="onSend()" ng-disabled="form.$invalid || isUnchanged(user)">Ok</button>
