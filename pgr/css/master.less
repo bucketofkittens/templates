@@ -1180,12 +1180,16 @@ body {
 
 
 .lvl-over {
-    box-shadow:0px 0px 30px 1px rgba(0, 0, 0, 1);
+    box-shadow: 0px 0px 2px 3px rgba(80, 80, 80, 0.5);
 }
-
 .lvl-target {
-    background-color: #ddd;
-    opacity: .5;
+    /* 
+    applied to all drop targets when a drag operation begins 
+    removed when the drag operation ends
+    used to indicate drop targets on a page 
+    */
+    background-color: #dddddd;
+    opacity: 0.5;
 }
 
 [draggable] {
