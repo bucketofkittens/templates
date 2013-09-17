@@ -1029,26 +1029,6 @@ function MainController($scope, Leagues, User, AuthUser, $rootScope, $location, 
     
     $scope.getAllUser();
 
-    /*
-    $scope.onMouseEnterUser = function(user) {
-        if(!user.dragged) {
-            user.showHint = true;
-            user.isLeave = false;
-
-            $timeout(function() {
-                if(!user.isLeave) {
-                    user.showMenu = true;   
-                }
-            }, 2000);   
-        }
-    }
-
-    $scope.onMouseLeaveUser = function(user) {
-        user.showHint = false;
-        user.isLeave = true;
-        user.showMenu = false;
-    }*/
-
     $scope.onDragStart = function(user) {
         user.isLeave = true;
         user.dragged = true;
@@ -1063,28 +1043,14 @@ function MainController($scope, Leagues, User, AuthUser, $rootScope, $location, 
         //userItem.user.drag = false;
     }
 
-    $scope.onDrop = function(dragEl, dropEl) {
-        console.log(dragEl);
-        //this is application logic, for the demo we just want to color the grid squares
-        //the directive provides a native dom object, wrap with jqlite
-        var drop = angular.element(dropEl);
-        var drag = angular.element(dragEl);
-    
-        //clear the previously applied color, if it exists
-        var bgClass = drop.attr('data-color');
-        if (bgClass) {
-            drop.removeClass(bgClass);
-        }
-
-        //add the dragged color
-        bgClass = drag.attr("data-color");
-        drop.addClass(bgClass);
-        drop.attr('data-color', bgClass);
-
-        //if element has been dragged from the grid, clear dragged color
-        if (drag.attr("x-lvl-drop-target")) {
-            drag.removeClass(bgClass);
-        }
+    $scope.onDrop = function(e, src) {
+        var dropId =  $(src).attr("id");
+        var droppedId =  $(e.delegateTarget).attr("id");
+        
+        $scope.$apply(function() {
+            $location.path("/profile/"+dropId+"/"+droppedId);   
+        })
+        
     }
 
     $scope.onMoveToUser = function(user) {
