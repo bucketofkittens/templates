@@ -13,10 +13,12 @@ module.directive('lvlDraggable', ['$rootScope', 'uuid', function($rootScope, uui
 		                e.originalEvent.dataTransfer.setData('text', id);
 
 		                $rootScope.$emit("LVL-DRAG-START");
+		                angular.element(el).addClass("lvl-target");
 		            });
 		            
 		            el.bind("dragend", function(e) {
 		                $rootScope.$emit("LVL-DRAG-END");
+		                angular.element(el).removeClass("lvl-target");
 		            });
 			      }
 			   });
@@ -41,7 +43,7 @@ module.directive('lvlDropTarget', ['$rootScope', 'uuid', function($rootScope, uu
 	                e.preventDefault(); // Necessary. Allows us to drop.
 	              }
 	              
-	              e.originalEvent.dataTransfer.dropEffect = 'move';  // See the section on the DataTransfer object.
+	              e.originalEvent.dataTransfer.dropEffect = 'all';  // See the section on the DataTransfer object.
 	              return false;
 	            });
 	            

@@ -118,6 +118,6 @@ body header .social a:last-child{background-position:100% 0}
 .image_box.updated:hover span{display:block;background:rgba(0,0,0,0.5)}
 .image_box.updated:hover a{display:block}
 #image_canvas{display:none}
-.lvl-over{box-shadow:0 0 30px 1px #000}
-.lvl-target{background-color:#ddd;opacity:.5}
+.lvl-over{box-shadow:0 0 2px 3px rgba(80,80,80,0.5)}
+.lvl-target{opacity:0 !important}
 [draggable]{-moz-user-select:none;-khtml-user-select:none;-webkit-user-select:none;user-select:none;cursor:move}
