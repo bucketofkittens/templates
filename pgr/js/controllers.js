@@ -65,9 +65,9 @@ function navCtrl($scope, localize, $location, AuthUser, $rootScope, $route) {
      * @param  {[type]}   current [description]
      * @return {[type]}           [description]
      */
-    $scope.$on('$stateChangeStart', function(event, next, current) {
+    $scope.$on('$routeChangeSuccess', function(event, next, current) {
         angular.forEach($scope.navs, function(value, key) {
-            $scope.navs[key].activeClass = $scope.navs[key].link.replace("#", "") === $location.path() ? 'current' : '';
+            $scope.navs[key].activeClass = $scope.navs[key].link.split("/")[1] === $location.path().split("/")[1] ? 'current' : '';
         });
     });
 }
