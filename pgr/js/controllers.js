@@ -25,7 +25,7 @@ function navCtrl($scope, localize, $location, AuthUser, $rootScope, $route) {
         $scope.generateNav();
 
         angular.forEach($scope.navs, function(value, key) {
-            if($location.path() == value.link.replace("#", "")) {
+            if($location.path().split("/")[1] == value.link.split("/")[1]) {
                 $scope.navs[key].activeClass = 'current';
             } 
         });
