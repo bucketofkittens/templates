@@ -50,6 +50,16 @@ pgrModule.directive('paralaxImage', function () {
   } 
 });
 
+pgrModule.directive('leaguePosition', function () {
+  return {
+    link: function($scope, element, attrs) {
+      attrs.$observe('selectedLeague', function (v) {
+        console.log(attrs.selectedLeague);
+      });
+    }
+  } 
+});
+
 pgrModule.directive('errSrc', function() {
   return {
     link: function(scope, element, attrs) {

@@ -9,8 +9,16 @@
 	</a>
 
 	<ul>
-		<li paralax-enable="{{!state}}" paralax-image ng-class="{showMenu: userItem.user.showHint}" ng-repeat="userItem in viewedUsers" class="{{userItem.user.sguid}} league_{{userItem.user.league.name}}">
-			<a ng-if="userItem.user" ng-click="onMoveToUser(userItem)" ng-mouseleave="onMouseLeaveUser(userItem.user)" ng-mouseenter="onMouseEnterUser(userItem.user)" >
+		<li 
+			x-lvl-draggable="true"
+			x-lvl-drop-target="true" 
+			x-on-drop="dropped(dragEl, dropEl)"
+			paralax-enable="{{!state}}" 
+			paralax-image 
+			id="{{userItem.user.sguid}}"
+			ng-repeat="userItem in viewedUsers"
+			class="league_{{userItem.user.league.name}}">
+			<a ng-if="userItem.user"  >
 				<img ng-src="{{userItem.user.avatar.full_path}}" alt="" err-src="/images/unknown-person.png" />
 				<span>{{userItem.user.points}}</span>
 				<sub ng-class="{show: userItem.user.showHint}">{{userItem.user.name}} {{userItem.user.profession.name}}</sub>

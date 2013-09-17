@@ -1029,22 +1029,62 @@ function MainController($scope, Leagues, User, AuthUser, $rootScope, $location, 
     
     $scope.getAllUser();
 
+    /*
     $scope.onMouseEnterUser = function(user) {
-        user.showHint = true;
-        user.isLeave = false;
+        if(!user.dragged) {
+            user.showHint = true;
+            user.isLeave = false;
 
-        $timeout(function() {
-            if(!user.isLeave) {
-                user.showMenu = true;   
-            }
-        }, 2000);
-        
+            $timeout(function() {
+                if(!user.isLeave) {
+                    user.showMenu = true;   
+                }
+            }, 2000);   
+        }
     }
 
     $scope.onMouseLeaveUser = function(user) {
         user.showHint = false;
         user.isLeave = true;
         user.showMenu = false;
+    }*/
+
+    $scope.onDragStart = function(user) {
+        user.isLeave = true;
+        user.dragged = true;
+    }
+
+    $scope.onDragOver = function(userItem) {
+        userItem.user.drag = true;
+        
+    }
+
+    $scope.onDragOut = function(userItem) {
+        //userItem.user.drag = false;
+    }
+
+    $scope.onDrop = function(dragEl, dropEl) {
+        console.log(dragEl);
+        //this is application logic, for the demo we just want to color the grid squares
+        //the directive provides a native dom object, wrap with jqlite
+        var drop = angular.element(dropEl);
+        var drag = angular.element(dragEl);
+    
+        //clear the previously applied color, if it exists
+        var bgClass = drop.attr('data-color');
+        if (bgClass) {
+            drop.removeClass(bgClass);
+        }
+
+        //add the dragged color
+        bgClass = drag.attr("data-color");
+        drop.addClass(bgClass);
+        drop.attr('data-color', bgClass);
+
+        //if element has been dragged from the grid, clear dragged color
+        if (drag.attr("x-lvl-drop-target")) {
+            drag.removeClass(bgClass);
+        }
     }
 
     $scope.onMoveToUser = function(user) {
@@ -1212,6 +1252,10 @@ function LogoutController($scope, AuthUser, $location, $rootScope, $store) {
     $location.path("/");
 }
 
+/**
+ * 
+ * @param {[type]} $scope [description]
+ */
 function CompareController($scope) {
 	var needsCountLoaded = 0;
 	var needsValues = {};
@@ -1282,6 +1326,16 @@ function CompareController($scope) {
     
 }
 
+/**
+ * Универсальная галлерея
+ * @param {[type]} $scope    [description]
+ * @param {[type]} localize  [description]
+ * @param {[type]} Leagues   [description]
+ * @param {[type]} User      [description]
+ * @param {[type]} AuthUser  [description]
+ * @param {[type]} $element  [description]
+ * @param {[type]} $location [description]
+ */
 function GalleryController($scope, localize, Leagues, User, AuthUser, $element, $location) {
     $scope.stateView = 0;
     $scope.stateViewClass = "";
@@ -1334,10 +1388,54 @@ function RootController($scope, AuthUser, User, $rootScope, $store, Needs) {
     
 }
 
-function LeaguesController($scope) {
-    
+function LeaguesController($scope, Leagues) {
+    $scope.currentLeague = 0;
+    $scope.leagues = [];
+
+    /**
+    * Забираем запросом список лиг.
+    * @param  {[type]} data [description]
+    * @return {[type]}      [description]
+    */
+    Leagues.query({}, {}, function(data) {
+        /**
+         * Сортируем лиги по убыванию
+         * @param  {[type]} a [description]
+         * @param  {[type]} b [description]
+         * @return {[type]}   [description]
+         */
+        data.sort(function(a,b) {
+            return a.league.position + b.league.position;
+        });
+
+        /**
+         * Получаем 3 наикрутейшие лиги
+         * @type {[type]}
+         */
+        $scope.leaguesTop = data.splice(0,6);
+        $scope.leaguesRight = data.splice(6,9);
+
+        $scope.leaguesTop[0].currentLeague = true;
+
+        /**
+         * Проходимся по оплучившемуся массиву лиг и получаем список пользователей
+         * @param  {[type]} value [description]
+         * @param  {[type]} key   [description]
+         * @return {[type]}       [description]
+         */
+        angular.forEach($scope.leagues, function(value, key){
+            User.by_league({league_guid: value.league.sguid}, {}, function(userData) {
+                
+            });
+        });
+    })
 }
 
+/**
+ * Костратолка картинок
+ * @param {[type]} $scope     [description]
+ * @param {[type]} $rootScope [description]
+ */
 function CropImageController($scope, $rootScope) {
     $scope.shouldBeOpen = false;
     $scope.user = [];
@@ -1430,30 +1528,6 @@ function CropImageController($scope, $rootScope) {
             
         };
         reader.readAsDataURL(file);
-            //$rootScope.$broadcast('loaderShow');
-            /*
-            var data = new FormData();
-            data.append("picture", document.getElementById("photo_crop").files[0]);
-            data.append("owner_type", 0);
-
-            $.ajax({
-                url: host+'/pictures/'+$scope.user.sguid,
-                data: data,
-                cache: false,
-                contentType: false,
-                processData: false,
-                type: 'PUT'
-            }).done(function(data) {
-                $scope.$apply(function(){
-                    if(data.success) {
-                        $scope.user.avatar = data.message;
-                        $scope.user.avatar.full_path = createImageFullPath($scope.user.avatar);
-                        $rootScope.$broadcast('updateUserData', {user: $scope.user});
-                    }
-                    $rootScope.$broadcast('loaderHide');
-                });
-            });
-            **/
     }
 }
 
