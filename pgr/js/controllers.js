@@ -1051,6 +1051,7 @@ function MainController($scope, Leagues, User, AuthUser, $rootScope, $location, 
     $scope.stateText = 'Tag';
     $scope.rootUser = $rootScope.authUser ? $rootScope.authUser : false;
     $scope.tmpFollow = [];
+    //$rootScope.authUser = '';
 
     $scope.onOpenLogin = function() {
         $rootScope.$broadcast('openLoginModal');

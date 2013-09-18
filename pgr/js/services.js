@@ -3,7 +3,7 @@ var host = "http://xmpp.dev.improva.com:9090/api/v1";
 var hostShort = host.replace("/api/v1", "");
 
 function createImageFullPath(obj) {
-    return obj.scheme+"://"+obj.host+":"+obj.port+obj.path+"?"+obj.query;
+    return obj.scheme+"://"+obj.host+":"+obj.port+obj.path;
 }
 
 /**
@@ -23,6 +23,7 @@ pgrModule.factory('User', function ($resource) {
             	transformResponse: function (data) {
                     if(data) {
                         var user = angular.fromJson(data)[0].user;
+                        console.log(user.avatar);
                         if(user.avatar) {
                             user.avatar.full_path = createImageFullPath(user.avatar);    
                         }
