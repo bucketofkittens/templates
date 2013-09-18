@@ -1212,7 +1212,7 @@ body {
             }
             img {
                 height: auto;
-                display: inline-block;
+                display: block;
             }
             sub {
                 display: none;
@@ -1221,17 +1221,19 @@ body {
                 left: 0%;
                 padding: 8% 0% 0% 7%;
                 width: 100%;
-                height: 100%;
                 color: #ffffff;
+                bottom: -2%;
                 background: rgba(0, 0, 0, 0.5);
             }
             &.show {
                 sub {
                     display: block;
                     a {
+                        padding: 2%;
                         color: #ffffff;
                         position: relative;
                         top: 10%;
+                        border: 0px !important;
                     }
                 }
             }

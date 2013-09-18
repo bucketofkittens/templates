@@ -122,7 +122,7 @@ body header .social a:last-child{background-position:100% 0}
 .lvl-target{opacity:0 !important}
 [draggable]{-moz-user-select:none;-khtml-user-select:none;-webkit-user-select:none;user-select:none;cursor:move}
 #follow_tab{position:fixed;background:#fff;margin:-1% 2% 0 2%;box-shadow:0 0 15px 3px rgba(0,0,0,0.5);width:40%;right:0;top:10%;z-index:100}#follow_tab ul{margin:1%;padding:.1%}#follow_tab ul li{display:inline-block;width:10%;margin:.1%;position:relative;overflow:hidden}#follow_tab ul li:first-child{margin:0 1.5% 0 .5%;box-shadow:0 0 3px 2px rgba(0,0,0,0.3)}
-#follow_tab ul li img{height:auto;display:inline-block}
-#follow_tab ul li sub{display:none;position:absolute;top:0;left:0;padding:8% 0 0 7%;width:100%;height:100%;color:#fff;background:rgba(0,0,0,0.5)}
-#follow_tab ul li.show sub{display:block}#follow_tab ul li.show sub a{color:#fff;position:relative;top:10%}
+#follow_tab ul li img{height:auto;display:block}
+#follow_tab ul li sub{display:none;position:absolute;top:0;left:0;padding:8% 0 0 7%;width:100%;color:#fff;bottom:-2%;background:rgba(0,0,0,0.5)}
+#follow_tab ul li.show sub{display:block}#follow_tab ul li.show sub a{padding:2%;color:#fff;position:relative;top:10%;border:0 !important}
 #follow_tab a{position:absolute;top:40%;right:1%;cursor:pointer;width:0;height:0;border-style:solid;border-width:10px 0 10px 20px;border-color:transparent transparent transparent #028eda}

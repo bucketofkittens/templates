@@ -1006,7 +1006,6 @@ function FollowController($scope, $rootScope, User, $location, $routeParams, Aut
                 return data;
             }
         });
-        console.log($scope.userFrends);
         $rootScope.$broadcast('removeToFollowOnTop', {follows: $scope.userFrends});
     });
 
@@ -1070,7 +1069,7 @@ function MainController($scope, Leagues, User, AuthUser, $rootScope, $location, 
 
     $scope.$on('followsGet', function($event, message) {
         if($scope.viewedUsers.length > 0) {
-            scope.testFollow(message.follows);
+            $scope.testFollow(message.follows);
         } else {
            $scope.tmpFollow = message.follows;
         }
