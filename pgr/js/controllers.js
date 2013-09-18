@@ -1337,6 +1337,7 @@ function CompareController($scope) {
 	$scope.$on('needUserValueLoaded', function($event, message) {
 	  needsCountLoaded += 1;
 	  needsValues[message.userId] = message.needsValues;
+      console.log(needsCountLoaded);
 	  if(needsCountLoaded == 2) {
 	      angular.forEach(needsValues[$scope.userId2], function(value, key){
 	          if(value < needsValues[$scope.userId1][key]) {
@@ -1381,13 +1382,13 @@ function CompareController($scope) {
 		goalsValues[message.userId] = message.goalsValues;
 		if(goalsCountLoaded == 2) {
 	      angular.forEach(goalsValues[$scope.userId2], function(value, key) {
-	         if(value < goalsValues[$scope.authUserId][key]) {
+	         if(value < goalsValues[$scope.userId1][key]) {
 	            $("li[data-goalid='"+key+"'] > h5", $("#compare")).append('<sup class="du"></sup>');
 	         } 
-         	if(value > goalsValues[$scope.authUserId][key]) {
+         	if(value > goalsValues[$scope.userId1][key]) {
 	            $("li[data-goalid='"+key+"'] > h5", $("#compare")).append('<sub class="du"></sub>');
 	         } 
-	         if(value == goalsValues[$scope.authUserId][key]) {
+	         if(value == goalsValues[$scope.userId1][key]) {
 	            $("li[data-goalid='"+key+"'] > h5", $("#compare")).append('<s class="du"></s>');
 	         } 
 	      });
