@@ -892,6 +892,7 @@ body {
     }
     ul {
         width: 100%;
+        text-align: center;
         li {
             height: 8%;
             width: 8%;
@@ -926,7 +927,8 @@ body {
                 }
                 span {
                     position: absolute;
-                    bottom: 0px;
+                    bottom: 0%;
+                    right: 0%;
                     width: 100%;
                     color: #000000;
                     font-size: 90%;
@@ -1187,19 +1189,24 @@ body {
 }
 
 #follow_tab {
-    position: relative;
+    position: fixed;
     background: #ffffff;
     margin: -1% 2% 0% 2%;
     box-shadow: 0px 0px 15px 3px rgba(0, 0, 0, 0.5);
+    width: 40%;
+    right: 0%;
+    top: 10%;
+    z-index: 100;
     ul {
         margin: 1%;
-        padding: 0.5%;
+        padding: 0.1%;
         li {
             display: inline-block;
-            width: 5%;
+            width: 10%;
+            margin: 0.1%;
             &:first-child {
-                margin-right: 1.5%;
-                box-shadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.3);
+                margin: 0% 1.5% 0% 0.5%;
+                box-shadow: 0px 0px 3px 2px rgba(0, 0, 0, 0.3);
             }
             img {
                 height: auto;
