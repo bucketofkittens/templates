@@ -1,4 +1,4 @@
-<section id="follow_tab" ng-if="rootUser" >
+<section id="follow_tab" ng-if="rootUser" ng-class="{relative: onRelative}" >
 	<ul>
 		<li>
 			<img ng-click="onCompare(rootUser)" ng-src="{{rootUser.avatar.full_path}}" err-src="/images/unknown-person.png" />
