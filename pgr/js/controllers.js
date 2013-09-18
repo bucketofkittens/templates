@@ -835,7 +835,7 @@ function RegController($scope, $location, User, AuthUser, $rootScope) {
  * [LoginController description]
  * @param {[type]} $scope [description]
  */
-function LoginController($scope, Sessions, $rootScope, AuthUser, User) {
+function LoginController($scope, Sessions, $rootScope, AuthUser, User, Social) {
     $scope.authUser = AuthUser.get();
     /**
      * Поле логина
@@ -928,6 +928,12 @@ function LoginController($scope, Sessions, $rootScope, AuthUser, User) {
     $scope.close = function () {
         $scope.shouldBeOpen = false;
     };
+
+    $scope.socialLogin = function(provider) {
+        Social.login({provider: provider}, {}, function(data) {
+            console.log(data);
+        });
+    }
 
     /**
      * Параметры попапа
@@ -1094,6 +1100,7 @@ function MainController($scope, Leagues, User, AuthUser, $rootScope, $location, 
     }
 
     $scope.$on('authUserGetData', function() {
+        console.log($scope.rootUser);
         $scope.rootUser = $rootScope.authUser;
     });
 
@@ -1468,10 +1475,12 @@ function RootController($scope, AuthUser, User, $rootScope, Needs) {
     $rootScope.authUserId = AuthUser.get();
 
     $scope.getUserInfo = function() {
-        User.query({id: $rootScope.authUserId}, function(data) {
-            $rootScope.authUser = data;
-            $rootScope.$broadcast('authUserGetData');
-        });
+        if($rootScope.authUserId) {
+            User.query({id: $rootScope.authUserId}, function(data) {
+                $rootScope.authUser = data;
+                $rootScope.$broadcast('authUserGetData');
+            });    
+        }
     }
 
     $scope.getUserInfo();

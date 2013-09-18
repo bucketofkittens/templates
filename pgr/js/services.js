@@ -428,3 +428,17 @@ pgrModule.factory('Leagues', function ($resource) {
         {id:'@id'}
     );
 });
+
+pgrModule.factory('Social', function ($resource) {
+    return $resource(
+        host+'/auth/:provider/callback', 
+        {provider:'@provider'},
+        {
+            "login": {
+                method: 'GET'
+            }
+            
+        }
+    );
+});
+
