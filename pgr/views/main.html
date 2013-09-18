@@ -21,7 +21,7 @@
 			ng-class="{showMenu: userItem.user.showMenu}"
 			class="league_{{userItem.user.league.name}}">
 			<a ng-if="userItem.user" ng-click="onMoveToUser(userItem)" ng-mouseleave="onMouseLeaveUser(userItem.user)" ng-mouseenter="onMouseEnterUser(userItem.user)" >
-				<img ng-src="{{userItem.user.avatar}}" alt="" err-src="/images/unknown-person.png" />
+				<img class="repeat-item" ng-src="{{userItem.user.avatar}}" alt="" err-src="/images/unknown-person.png" />
 				<span>{{userItem.user.points}}</span>
 				<sub ng-class="{show: userItem.user.showHint}">{{userItem.user.name}} {{userItem.user.profession.name}}</sub>
 				<i></i>

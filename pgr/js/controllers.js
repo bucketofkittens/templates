@@ -1051,7 +1051,6 @@ function MainController($scope, Leagues, User, AuthUser, $rootScope, $location, 
     $scope.stateText = 'Tag';
     $scope.rootUser = $rootScope.authUser ? $rootScope.authUser : false;
     $scope.tmpFollow = [];
-    //$rootScope.authUser = '';
 
     $scope.onOpenLogin = function() {
         $rootScope.$broadcast('openLoginModal');
@@ -1117,7 +1116,6 @@ function MainController($scope, Leagues, User, AuthUser, $rootScope, $location, 
     $scope.getAllUser = function($event) {
         User.for_main({}, {}, function(data) {
             $scope.viewedUsers = data.shuffle();
-            console.log($scope.viewedUsers);
             if($scope.tmpFollow.length > 0) {
                 $scope.testFollow($scope.tmpFollow);
             }

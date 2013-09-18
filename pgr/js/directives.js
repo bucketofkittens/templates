@@ -25,26 +25,27 @@ pgrModule.directive('paralaxImage', function () {
     link: function($scope, element, attrs) {
       
       attrs.$observe('paralaxEnable', function (v) {
-      if(attrs.paralaxEnable == "true") {
-        var elements = $(".tags li");
+        if(attrs.paralaxEnable == "true") {
+          var elements = $(".tags li");
 
-        function setPostion() {
-          var position = {
-            x: parseInt(getRandomInt(0, 90)),
-            y: parseInt(getRandomInt(10, 90))
-          };
+          function setPostion() {
+            var position = {
+              x: parseInt(getRandomInt(0, 90)),
+              y: parseInt(getRandomInt(10, 90))
+            };
 
-          return position;
+            return position;
+          }
+
+          var position = setPostion();
+
+          $(element).css("left", position.x+"%");
+          $(element).css("top", position.y+"%");
+        } else {
+          
+          $(element).css("left", "0%");
+          $(element).css("top", "0%");
         }
-
-        var position = setPostion();
-
-        $(element).css("left", position.x+"%");
-        $(element).css("top", position.y+"%");
-      } else {
-        $(element).css("left", "0%");
-        $(element).css("top", "0%");
-      }
       });
     }
   } 
