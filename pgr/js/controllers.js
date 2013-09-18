@@ -270,19 +270,18 @@ function UserController($scope, $route, $routeParams, User, Needs, Professions, 
     $scope.onFollow = function() {
         User.create_friendship({id: AuthUser.get()}, {
             friend_guid: $scope.currentUserId
-        }, $.proxy($scope.onFollowCallback_, $.scope));
-    }
-
-    $scope.onFollowCallback_ = function(data) {
-        $scope.isFollow = true;
+        }, function() {
+            $scope.isFollow = true;
+            console.log($scope.user);
+            $rootScope.$broadcast('addToFollow', {user: { user: $scope.user}});
+        });
     }
 
     $scope.onUnFollow = function() {
-        User.destroy_friendship({id: AuthUser.get(), friendId: $scope.currentUserId}, { }, $.proxy($scope.onUnFollowCallback_, $.scope));
-    }
-
-    $scope.onUnFollowCallback_ = function(data) {
-        $scope.isFollow = false;
+        User.destroy_friendship({id: AuthUser.get(), friendId: $scope.currentUserId}, { }, function() {
+            $scope.isFollow = false;
+            $rootScope.$broadcast('removeToFollow', {user: { user: $scope.user}});
+        });
     }
 
     /**
@@ -960,7 +959,7 @@ function ContentController($scope, $rootScope, $route, $location) {
     });
 }
 
-function FollowController($scope, $rootScope, User, $location, $routeParams) {
+function FollowController($scope, $rootScope, User, $location, $routeParams, AuthUser) {
     $scope.rootUser = $rootScope.authUser ? $rootScope.authUser : false;
     $scope.compareState = 1;
     
@@ -975,6 +974,14 @@ function FollowController($scope, $rootScope, User, $location, $routeParams) {
                 $scope.compareState = 1;
             }
         }
+    }
+
+    $scope.onMouseEnterUser = function(user) {
+        user.show = true;
+    }
+
+    $scope.onMouseLeaveUser = function(user) {
+        user.show = false;
     }
 
     $scope.$on('login', function() {
@@ -999,7 +1006,16 @@ function FollowController($scope, $rootScope, User, $location, $routeParams) {
                 return data;
             }
         });
+        console.log($scope.userFrends);
+        $rootScope.$broadcast('removeToFollowOnTop', {follows: $scope.userFrends});
     });
+
+    $scope.onUnfollow = function(user) {
+        User.destroy_friendship({id: AuthUser.get(), friendId: user.user.sguid}, { }, function() { 
+            user.user.isFrend = false;
+            $rootScope.$broadcast('removeToFollow', {user: user});
+        });
+    }
 
     if($rootScope.authUserId) {
         User.get_friends({id: $rootScope.authUserId}, {}, function(data) {
@@ -1058,7 +1074,10 @@ function MainController($scope, Leagues, User, AuthUser, $rootScope, $location, 
         } else {
            $scope.tmpFollow = message.follows;
         }
-        
+    });
+
+    $scope.$on('removeToFollowOnTop', function($event, message) {
+        $scope.testFollow(message.follows);
     });
 
     $scope.testFollow = function(follows) {
@@ -1174,7 +1193,6 @@ function MainController($scope, Leagues, User, AuthUser, $rootScope, $location, 
         User.destroy_friendship({id: AuthUser.get(), friendId: user.user.sguid}, { }, function() { 
             user.user.isFrend = false;
             $rootScope.$broadcast('removeToFollow', {user: user});
-            
         });
         $event.stopPropagation();
     }
