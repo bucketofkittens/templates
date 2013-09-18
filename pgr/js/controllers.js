@@ -889,6 +889,7 @@ function LoginController($scope, Sessions, $rootScope, AuthUser, User, Social) {
                 AuthUser.set(data.guid);
                 User.query({id: data.guid}, function(data) {
                     $rootScope.authUser = data;
+                    $rootScope.authUserId = data.sguid;
                     $scope.shouldBeOpen = false;
                     $rootScope.$broadcast('login');
                 });
@@ -992,6 +993,10 @@ function FollowController($scope, $rootScope, User, $location, $routeParams, Aut
 
     $scope.$on('login', function() {
         $scope.rootUser = $rootScope.authUser;
+        User.get_friends({id: $rootScope.authUserId}, {}, function(data) {
+            $scope.userFrends = data;
+            $rootScope.$broadcast('followsGet', { follows: data});
+        });
     });
 
     $scope.$on('authUserGetData', function() {
