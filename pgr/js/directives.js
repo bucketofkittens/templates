@@ -31,7 +31,7 @@ pgrModule.directive('paralaxImage', function () {
         function setPostion() {
           var position = {
             x: parseInt(getRandomInt(0, 90)),
-            y: parseInt(getRandomInt(30, 90))
+            y: parseInt(getRandomInt(10, 90))
           };
 
           return position;
