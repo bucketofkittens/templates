@@ -83,10 +83,10 @@ function ProfileController($scope, $routeParams, AuthUser, $route, $rootScope, $
     $scope.currentUserEditStatus = !$scope.userId2 ? true : false;
 
     $scope.$on('routeSegmentChange', function(data, d2) {
-        
-        if($routeParams.userId1 && $routeParams.userId1 != $routeParams.userId1) {
+        console.log($routeParams);
+        if($routeParams.userId1) {
             $rootScope.$broadcast('updateUserControllerId', {
-                userId: $scope.userId1,
+                userId: $routeParams.userId1,
                 id: "leftUser"
             });    
         }
@@ -97,7 +97,7 @@ function ProfileController($scope, $routeParams, AuthUser, $route, $rootScope, $
                 id: "leftUser"
             });
             $rootScope.$broadcast('updateUserControllerId', {
-                userId: $scope.userId2,
+                userId: $routeParams.userId2,
                 id: "rightUser"
             });
         } else {
@@ -401,6 +401,10 @@ function NeedsAndGoalsController($scope, Goals, Criterion, AuthUser, UserCriteri
 
     $scope.$on('getUserInfoToNeeds', function($event, message) {
         if(!$scope.user && message.id == $scope.id) {
+            $scope.user = message.user;
+            $scope.getNeeds();
+        }
+        if($scope.user && message.user && $scope.user.sguid != message.user.sguid  && message.id == $scope.id) {
             $scope.user = message.user;
             $scope.getNeeds();
         }
@@ -956,6 +960,59 @@ function ContentController($scope, $rootScope, $route, $location) {
     });
 }
 
+function FollowController($scope, $rootScope, User, $location, $routeParams) {
+    $scope.rootUser = $rootScope.authUser ? $rootScope.authUser : false;
+    $scope.compareState = 1;
+    
+    $scope.onCompare = function(user) {
+        if($scope.onClickCompare == true) {
+            console.log($scope.compareState);
+            if($scope.compareState == 1) {
+                $location.path("/profile/"+$routeParams.userId1+"/"+user.user.sguid+"/");
+                $scope.compareState = 0;
+            } else {
+                $location.path("/profile/"+user.user.sguid+"/"+$routeParams.userId2+"/");
+                $scope.compareState = 1;
+            }
+        }
+    }
+
+    $scope.$on('login', function() {
+        $scope.rootUser = $rootScope.authUser;
+    });
+
+    $scope.$on('authUserGetData', function() {
+        $scope.rootUser = $rootScope.authUser;
+    });
+
+    $scope.$on('logout', function() {
+        $scope.rootUser = null;
+    });
+
+    $scope.$on('addToFollow', function($event, message) {
+        $scope.userFrends.push(message.user);
+    });
+
+    $scope.$on('removeToFollow', function($event, message) {
+        angular.forEach($scope.userFrends, function(value, key) {
+            if(value.user.sguid == message.user.user.sguid) {
+                $scope.userFrends.splice(key, 1);
+            }
+        });
+    });
+
+    if($rootScope.authUserId) {
+        User.get_friends({id: $rootScope.authUserId}, {}, function(data) {
+            $scope.userFrends = data;
+            $rootScope.$broadcast('followsGet', { follows: data});
+        });
+    }
+
+    $scope.onMoveToUser = function() {
+        $location.path("/profile/"+$rootScope.authUserId+"/compare/");
+    }    
+}
+
 
 /**
  * Контроллер главной страницыMainC
@@ -967,6 +1024,7 @@ function MainController($scope, Leagues, User, AuthUser, $rootScope, $location, 
     $scope.state = 1;
     $scope.stateText = 'Tag';
     $scope.rootUser = $rootScope.authUser ? $rootScope.authUser : false;
+    $scope.tmpFollow = [];
 
     $scope.onOpenLogin = function() {
         $rootScope.$broadcast('openLoginModal');
@@ -985,9 +1043,6 @@ function MainController($scope, Leagues, User, AuthUser, $rootScope, $location, 
     $scope.$watch($rootScope.authUser, function(newValue, oldValue, scope) {
         if($rootScope.authUser) {
             $scope.rootUser = $rootScope.authUser;
-            if($scope.rootUser && $scope.viewedUsers,length > 0 ) {
-                $scope.testUserFollow();
-            }
         } else {    
             $scope.rootUser = false;
         }
@@ -995,16 +1050,33 @@ function MainController($scope, Leagues, User, AuthUser, $rootScope, $location, 
 
     $scope.$on('login', function() {
         $scope.rootUser = $rootScope.authUser;
-        if($scope.rootUser && $scope.viewedUsers.length > 0 ) {
-            $scope.testUserFollow();
-        }
     });
+
+    $scope.$on('followsGet', function($event, message) {
+        if($scope.viewedUsers.length > 0) {
+            scope.testFollow(message.follows);
+        } else {
+           $scope.tmpFollow = message.follows;
+        }
+        
+    });
+
+    $scope.testFollow = function(follows) {
+        angular.forEach(follows, function(value, key) {
+            angular.forEach($scope.viewedUsers, function(v2, k2) {
+                if(v2.user.sguid == value.user.sguid) {
+                    v2.user.isFrend = true;
+                } else {
+                    if(v2.user.isFrend != true) {
+                        v2.user.isFrend = false;   
+                    }
+                }
+            });
+        });
+    }
 
     $scope.$on('authUserGetData', function() {
         $scope.rootUser = $rootScope.authUser;
-        if($scope.rootUser && $scope.viewedUsers.length > 0 ) {
-            $scope.testUserFollow();
-        }
     });
 
     $scope.$on('logout', function() {
@@ -1018,28 +1090,16 @@ function MainController($scope, Leagues, User, AuthUser, $rootScope, $location, 
                     return item;
                 }
             });
+
             $scope.viewedUsers = data.shuffle();
-            if($scope.rootUser && $scope.viewedUsers.length > 0 ) {
-                $scope.testUserFollow();
+
+            if($scope.tmpFollow.length > 0) {
+                $scope.testFollow($scope.tmpFollow);
             }
         });
     }
     
     $scope.getAllUser();
-
-    $scope.testUserFollow = function() {
-        angular.forEach($scope.rootUser.friends_guids, function(value, key){
-            angular.forEach($scope.viewedUsers, function(v2, k2){
-                if(v2.user.sguid == value) {
-                    v2.user.isFrend = true;
-                } else {
-                    if(v2.user.isFrend != true) {
-                        v2.user.isFrend = false;   
-                    }
-                }
-            });
-        });
-    }
 
     $scope.onDragStart = function(user) {
         user.isLeave = true;
@@ -1097,12 +1157,25 @@ function MainController($scope, Leagues, User, AuthUser, $rootScope, $location, 
     $scope.onFollow = function($event, user) {
         User.create_friendship({id: AuthUser.get()}, {
             friend_guid: user.user.sguid
-        }, function() { user.user.isFrend = true; });
+        }, function() { 
+            user.user.isFrend = true; 
+            $rootScope.$broadcast('addToFollow', {user: user});
+        });
         $event.stopPropagation();
     }
 
+    /**
+     * Удаление нужно будет доделать
+     * @param  {[type]} $event [description]
+     * @param  {[type]} user   [description]
+     * @return {[type]}        [description]
+     */
     $scope.onUnFollow = function($event, user) {
-        User.destroy_friendship({id: AuthUser.get(), friendId: user.user.sguid}, { }, function() { user.user.isFrend = false; });
+        User.destroy_friendship({id: AuthUser.get(), friendId: user.user.sguid}, { }, function() { 
+            user.user.isFrend = false;
+            $rootScope.$broadcast('removeToFollow', {user: user});
+            
+        });
         $event.stopPropagation();
     }
 
@@ -1546,4 +1619,10 @@ Array.prototype.shuffle = function(b) {
     }
 
     return this;
+};
+
+Array.prototype.remove = function(from, to) {
+    var rest = this.slice((to || from) + 1 || this.length);
+      this.length = from < 0 ? this.length + from : from;
+      return this.push.apply(this, rest);
 };

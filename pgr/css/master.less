@@ -1185,3 +1185,36 @@ body {
     user-select: none;
     cursor: move;
 }
+
+#follow_tab {
+    position: relative;
+    background: #ffffff;
+    margin: -1% 2% 0% 2%;
+    box-shadow: 0px 0px 15px 3px rgba(0, 0, 0, 0.5);
+    ul {
+        margin: 1%;
+        li {
+            display: inline-block;
+            width: 5%;
+            img {
+                height: auto;
+            }
+        }
+    }
+    a {
+        color:#028dda;
+        font-size: 100%;
+        position: absolute;
+        bottom: 1%;
+        right: 1%;
+        cursor: pointer;
+        s {
+            width: 0px;
+            height: 0px;
+            border-style: solid;
+            border-width: 7.5px 0 7.5px 15px;
+            border-color: transparent transparent transparent #028eda;
+            display: inline-block;
+        }
+    }
+}
