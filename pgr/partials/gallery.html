@@ -1,7 +1,7 @@
 <div class="gallery {{stateViewClass}}" ng-if="users.length > 0">
 	<h4>{{title}}</h4>
 	<a ng-click="onMoveToUser(userItem)" ng-repeat="(userKey, userItem) in users | limitTo:limit ">
-		<img ng-src="{{userItem.user.avatar.full_path}}" err-src="/images/unknown-person.png" />
+		<img ng-src="{{userItem.user.avatar}}" err-src="/images/unknown-person.png" />
 		<span>{{userItem.user.points}}</span>
 	</a>
 	<button ng-if="!stateView" ng-click="onChangeState()" class="more">{{'_moreL_' | i18n}}</button>

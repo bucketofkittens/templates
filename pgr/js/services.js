@@ -23,51 +23,23 @@ pgrModule.factory('User', function ($resource) {
             	transformResponse: function (data) {
                     if(data) {
                         var user = angular.fromJson(data)[0].user;
-                        console.log(user.avatar);
-                        if(user.avatar) {
-                            user.avatar.full_path = createImageFullPath(user.avatar);    
-                        }
-                        if(user.league && user.league.icon) {
-                             user.league.icon.full_path = createImageFullPath(user.league.icon);
-                        }
                         return user;    
                     }
             	}
             },
             'get_all': {
                 method: 'GET',
+                isArray: true
+            },
+            'for_main': {
+                method: 'GET',
                 isArray: true,
-                transformResponse: function (data) {
-                    if(data) {
-                        var users = angular.fromJson(data);
-
-                        angular.forEach(users, function(value, key){
-                            if(users[key].user.avatar) {
-                                users[key].user.avatar.full_path = createImageFullPath(users[key].user.avatar);
-                            }
-                        });
-
-                        return users; 
-                    }
-                }
+                url: host+"/users/for/main/"
             },
             "by_league": {
                 method: 'GET',
                 isArray: true,
-                url: host+"/users/by_league/:league_guid",
-                transformResponse: function (data) {
-                    if(data) {
-                        var users = angular.fromJson(data);
-
-                        angular.forEach(users, function(value, key){
-                            if(users[key].user.avatar) {
-                                users[key].user.avatar.full_path = createImageFullPath(users[key].user.avatar);
-                            }
-                        });
-
-                        return users; 
-                    }
-                }
+                url: host+"/users/by_league/:league_guid"
             },
             "update_legue": {
                 url: host+"/users/:id/league",
@@ -90,9 +62,6 @@ pgrModule.factory('User', function ($resource) {
                         var users = angular.fromJson(data);
 
                         angular.forEach(users, function(value, key){
-                            if(users[key].friendship.user.avatar) {
-                                users[key].friendship.user.avatar.full_path = createImageFullPath(users[key].friendship.user.avatar);
-                            }
                             users[key].user = users[key].friendship.user;
                         });
 
@@ -111,38 +80,12 @@ pgrModule.factory('User', function ($resource) {
             "by_state": {
                 method: "GET",
                 isArray: true,
-                url: host+"/users/by_state/:state_guid",
-                transformResponse: function (data) {
-                    if(data) {
-                        var users = angular.fromJson(data);
-
-                        angular.forEach(users, function(value, key){
-                            if(users[key].user.avatar) {
-                                users[key].user.avatar.full_path = createImageFullPath(users[key].user.avatar);
-                            }
-                        });
-
-                        return users; 
-                    }
-                }
+                url: host+"/users/by_state/:state_guid"
             },
             "by_profession": {
                 method: "GET",
                 isArray: true,
-                url: host+"/users/by_profession/:profession_guid",
-                transformResponse: function (data) {
-                    if(data) {
-                        var users = angular.fromJson(data);
-
-                        angular.forEach(users, function(value, key){
-                            if(users[key].user.avatar) {
-                                users[key].user.avatar.full_path = createImageFullPath(users[key].user.avatar);
-                            }
-                        });
-
-                        return users; 
-                    }
-                }
+                url: host+"/users/by_profession/:profession_guid"
             }
         }
     );

@@ -7,7 +7,7 @@
 		<img ng-src="/images/unknown-person.png" alt="" />
 	</a>
 	<a ng-if="rootUser" x-lvl-drop-target="true" id="{{rootUser.sguid}}" href="#/profile/{{rootUser.sguid}}" class="who">
-		<img ng-src="{{rootUser.avatar.full_path}}" err-src="/images/unknown-person.png" />
+		<img ng-src="{{rootUser.avatar}}" err-src="/images/unknown-person.png" />
 	</a>
 
 	<ul>
@@ -21,7 +21,7 @@
 			ng-class="{showMenu: userItem.user.showMenu}"
 			class="league_{{userItem.user.league.name}}">
 			<a ng-if="userItem.user" ng-click="onMoveToUser(userItem)" ng-mouseleave="onMouseLeaveUser(userItem.user)" ng-mouseenter="onMouseEnterUser(userItem.user)" >
-				<img ng-src="{{userItem.user.avatar.full_path}}" alt="" err-src="/images/unknown-person.png" />
+				<img ng-src="{{userItem.user.avatar}}" alt="" err-src="/images/unknown-person.png" />
 				<span>{{userItem.user.points}}</span>
 				<sub ng-class="{show: userItem.user.showHint}">{{userItem.user.name}} {{userItem.user.profession.name}}</sub>
 				<i></i>

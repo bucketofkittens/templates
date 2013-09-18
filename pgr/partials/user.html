@@ -34,7 +34,7 @@
 			accept="image/jpeg,image/png,image/gif" />
 		
 		<div class="image_box" ng-class="{updated: user.sguid == authUserId && isEdit}">
-			<img class="pp" ng-src="{{user.avatar.full_path}}" err-src="/images/unknown-person.png" />
+			<img class="pp" ng-src="{{user.avatar}}" err-src="/images/unknown-person.png" />
 			<a ng-click="onUpdateFile()" title="">Update image</a>
 			<span></span>
 		</div>

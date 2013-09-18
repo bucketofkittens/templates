@@ -1115,15 +1115,9 @@ function MainController($scope, Leagues, User, AuthUser, $rootScope, $location, 
     });
 
     $scope.getAllUser = function($event) {
-        User.get_all({}, {}, function(data) {
-            data = data.filter(function(item) {
-                if(item.user.published) {
-                    return item;
-                }
-            });
-
+        User.for_main({}, {}, function(data) {
             $scope.viewedUsers = data.shuffle();
-
+            console.log($scope.viewedUsers);
             if($scope.tmpFollow.length > 0) {
                 $scope.testFollow($scope.tmpFollow);
             }

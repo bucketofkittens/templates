@@ -1,10 +1,10 @@
 <section id="follow_tab" ng-if="rootUser" ng-class="{relative: onRelative}" >
 	<ul>
 		<li>
-			<img ng-click="onCompare(rootUser)" ng-src="{{rootUser.avatar.full_path}}" err-src="/images/unknown-person.png" />
+			<img ng-click="onCompare(rootUser)" ng-src="{{rootUser.avatar}}" err-src="/images/unknown-person.png" />
 		</li>
 		<li ng-class="{show: userItem.user.show}" ng-mouseleave="onMouseLeaveUser(userItem.user)" ng-mouseenter="onMouseEnterUser(userItem.user)" ng-repeat="userItem in userFrends">
-			<img ng-click="onCompare(userItem)" ng-src="{{userItem.user.avatar.full_path}}" alt="" err-src="/images/unknown-person.png" />
+			<img ng-click="onCompare(userItem)" ng-src="{{userItem.user.avatar}}" alt="" err-src="/images/unknown-person.png" />
 			<sub ng-if="onTips != false" ng-click="onCompare(userItem)"><a ng-click="onUnfollow(userItem)">Unfollow</a></sub>
 		</li>
 	</ul>
