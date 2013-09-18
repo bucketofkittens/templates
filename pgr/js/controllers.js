@@ -1493,9 +1493,14 @@ function RootController($scope, AuthUser, User, $rootScope, Needs) {
     
 }
 
-function LeaguesController($scope, Leagues) {
+function LeaguesController($scope, Leagues, User) {
     $scope.currentLeague = 0;
     $scope.leagues = [];
+    $scope.limit = 5;
+
+    $scope.onLeagUser = function(item){
+    	$scope.currentLeague = item;
+    }
 
     /**
     * Забираем запросом список лиг.
@@ -1518,9 +1523,7 @@ function LeaguesController($scope, Leagues) {
          * @type {[type]}
          */
         $scope.leaguesTop = data.splice(0,6);
-        $scope.leaguesRight = data.splice(6,9);
-
-        $scope.leaguesTop[0].currentLeague = true;
+        $scope.leaguesRight = data;
 
         /**
          * Проходимся по оплучившемуся массиву лиг и получаем список пользователей
@@ -1528,9 +1531,17 @@ function LeaguesController($scope, Leagues) {
          * @param  {[type]} key   [description]
          * @return {[type]}       [description]
          */
-        angular.forEach($scope.leagues, function(value, key){
+        angular.forEach($scope.leaguesTop, function(value, key){
             User.by_league({league_guid: value.league.sguid}, {}, function(userData) {
-                
+					value.league.users = userData;
+         		if (key == 0){
+         			$scope.currentLeague = value;
+         		}
+            });
+        });
+        angular.forEach($scope.leaguesRight, function(value, key){
+            User.by_league({league_guid: value.league.sguid}, {}, function(userData) {
+					value.league.users = userData;
             });
         });
     })

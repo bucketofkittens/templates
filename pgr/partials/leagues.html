@@ -1,5 +1,5 @@
 <section class="leaglist hrzt">
-	<a href="#" ng-repeat="(key, item) in leaguesTop">
+	<a ng-click="onLeagUser(item)" ng-repeat="(key, item) in leaguesTop">
 		<img ng-if="key == 0" src="/images/I.png" />
 		<img ng-if="key == 1" src="/images/II.png" />
 		<img ng-if="key == 2" src="/images/III.png" />
@@ -21,22 +21,14 @@
 			<i>New persons: 20</i>
 		</div>
 	</div>
-	<a href="#"><img src="/images/user.png"></a>
-	<a href="#"><img src="/images/user.png"></a>
-	<a href="#"><img src="/images/user.png"></a>
-	<a href="#"><img src="/images/user.png"></a>
-	<a href="#"><img src="/images/user.png"></a>
+	<a href="#" ng-repeat="(key, item) in currentLeague.league.users | limitTo:limit"><img src="{{item.user.avatar}}"></a>
 	<button>{{'_moreL_' | i18n}}</button>
 </section>
 <section class="leaglist">
-	<a href="#" ng-repeat="(key, item) in leaguesRight">
-		<img ng-if="key == 6" src="/images/VII.png" />
-		<img ng-if="key == 7" src="/images/VIII.png" />
-		<img ng-if="key == 8" src="/images/IX.png" />
-		<img ng-if="key == 9" src="/images/X.png" />
+	<a ng-click="onLeagUser(item)" ng-repeat="(key, item) in leaguesRight">
+		<img ng-if="key == 0" src="/images/VII.png" />
+		<img ng-if="key == 1" src="/images/VIII.png" />
+		<img ng-if="key == 2" src="/images/IX.png" />
+		<img ng-if="key == 3" src="/images/X.png" />
 	</a>
-	<a href="#"><img src="/images/VII.png"></a>
-	<a href="#"><img src="/images/VIII.png"></a>
-	<a href="#"><img src="/images/IX.png"></a>
-	<a href="#"><img src="/images/X.png"></a>
 </section>
