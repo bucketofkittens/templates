@@ -994,9 +994,9 @@ function FollowController($scope, $rootScope, User, $location, $routeParams) {
     });
 
     $scope.$on('removeToFollow', function($event, message) {
-        angular.forEach($scope.userFrends, function(value, key) {
-            if(value.user.sguid == message.user.user.sguid) {
-                $scope.userFrends.splice(key, 1);
+        $scope.userFrends = $scope.userFrends.filter(function(data) {
+            if(data.user.sguid != message.user.user.sguid) {
+                return data;
             }
         });
     });
