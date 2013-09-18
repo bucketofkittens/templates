@@ -16,8 +16,9 @@
 			paralax-image 
 			id="{{userItem.user.sguid}}"
 			ng-repeat="userItem in viewedUsers"
+			ng-class="{showMenu: userItem.user.showMenu}"
 			class="league_{{userItem.user.league.name}}">
-			<a ng-if="userItem.user" ng-click="onMoveToUser(userItem)" >
+			<a ng-if="userItem.user" ng-click="onMoveToUser(userItem)" ng-mouseleave="onMouseLeaveUser(userItem.user)" ng-mouseenter="onMouseEnterUser(userItem.user)" >
 				<img ng-src="{{userItem.user.avatar.full_path}}" alt="" err-src="/images/unknown-person.png" />
 				<span>{{userItem.user.points}}</span>
 				<sub ng-class="{show: userItem.user.showHint}">{{userItem.user.name}} {{userItem.user.profession.name}}</sub>

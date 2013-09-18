@@ -958,14 +958,14 @@ function ContentController($scope, $rootScope, $route, $location) {
 
 
 /**
- * Контроллер главной страницы
+ * Контроллер главной страницыMainC
  * @param {[type]} $scope  [description]
  * @param {[type]} Leagues [description]
  */
 function MainController($scope, Leagues, User, AuthUser, $rootScope, $location, $timeout) {
     $scope.viewedUsers = [];
     $scope.state = 1;
-    $scope.stateText = 'Облако';
+    $scope.stateText = 'Tag';
     $scope.rootUser = $rootScope.authUser ? $rootScope.authUser : false;
 
     $scope.onOpenLogin = function() {
@@ -975,16 +975,19 @@ function MainController($scope, Leagues, User, AuthUser, $rootScope, $location, 
     $scope.onState = function() {
         if($scope.state) {
             $scope.state = 0;
-            $scope.stateText = 'Плитка';
+            $scope.stateText = 'Tile';
         } else {
             $scope.state = 1;
-            $scope.stateText = 'Облако';
+            $scope.stateText = 'Tag';
         }
     }
 
     $scope.$watch($rootScope.authUser, function(newValue, oldValue, scope) {
         if($rootScope.authUser) {
             $scope.rootUser = $rootScope.authUser;
+            if($scope.rootUser && $scope.viewedUsers,length > 0 ) {
+                $scope.testUserFollow();
+            }
         } else {    
             $scope.rootUser = false;
         }
@@ -992,6 +995,16 @@ function MainController($scope, Leagues, User, AuthUser, $rootScope, $location, 
 
     $scope.$on('login', function() {
         $scope.rootUser = $rootScope.authUser;
+        if($scope.rootUser && $scope.viewedUsers.length > 0 ) {
+            $scope.testUserFollow();
+        }
+    });
+
+    $scope.$on('authUserGetData', function() {
+        $scope.rootUser = $rootScope.authUser;
+        if($scope.rootUser && $scope.viewedUsers.length > 0 ) {
+            $scope.testUserFollow();
+        }
     });
 
     $scope.$on('logout', function() {
@@ -1005,24 +1018,28 @@ function MainController($scope, Leagues, User, AuthUser, $rootScope, $location, 
                     return item;
                 }
             });
-            if($scope.rootUser) {
-                angular.forEach($scope.rootUser.friends_guids, function(value, key){
-                    angular.forEach(data, function(v2, k2){
-                        if(v2.user.sguid == value) {
-                            v2.user.isFrend = true;
-                        } else {
-                            if(v2.user.isFrend != true) {
-                                v2.user.isFrend = false;   
-                            }
-                        }
-                    });
-                });
-            }
             $scope.viewedUsers = data.shuffle();
+            if($scope.rootUser && $scope.viewedUsers.length > 0 ) {
+                $scope.testUserFollow();
+            }
         });
     }
     
     $scope.getAllUser();
+
+    $scope.testUserFollow = function() {
+        angular.forEach($scope.rootUser.friends_guids, function(value, key){
+            angular.forEach($scope.viewedUsers, function(v2, k2){
+                if(v2.user.sguid == value) {
+                    v2.user.isFrend = true;
+                } else {
+                    if(v2.user.isFrend != true) {
+                        v2.user.isFrend = false;   
+                    }
+                }
+            });
+        });
+    }
 
     $scope.onDragStart = function(user) {
         user.isLeave = true;
@@ -1056,6 +1073,25 @@ function MainController($scope, Leagues, User, AuthUser, $rootScope, $location, 
         } else {
             $location.path("/profile/"+user.user.sguid);
         }
+    }
+
+    $scope.onMouseEnterUser = function(user) {
+        if(!user.dragged) {
+            user.showHint = true;
+            user.isLeave = false;
+
+            $timeout(function() {
+                if(!user.isLeave) {
+                    user.showMenu = true;   
+                }
+            }, 2000);   
+        }
+    }
+
+    $scope.onMouseLeaveUser = function(user) {
+        user.showHint = false;
+        user.isLeave = true;
+        user.showMenu = false;
     }
 
     $scope.onFollow = function($event, user) {
@@ -1339,6 +1375,15 @@ function getRandomInt(min, max) {
 
 function RootController($scope, AuthUser, User, $rootScope, Needs) {
     $rootScope.authUserId = AuthUser.get();
+
+    $scope.getUserInfo = function() {
+        User.query({id: $rootScope.authUserId}, function(data) {
+            $rootScope.authUser = data;
+            $rootScope.$broadcast('authUserGetData');
+        });
+    }
+
+    $scope.getUserInfo();
 
     $scope.$on('updateUserData', function($event, message) {
         if(message.user.sguid == $rootScope.authUserId) {
