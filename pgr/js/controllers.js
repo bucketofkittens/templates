@@ -1169,9 +1169,9 @@ function MainController($scope, Leagues, User, AuthUser, $rootScope, $location, 
 
     $scope.onMoveToUser = function(user) {
         if($scope.rootUser.sguid) {
-            $location.path("/profile/"+$scope.rootUser.sguid+"/"+user.user.sguid);
+            $location.path("/profile/"+$scope.rootUser.sguid+"/"+user.sguid);
         } else {
-            $location.path("/profile/"+user.user.sguid);
+            $location.path("/profile/"+user.sguid);
         }
     }
 
