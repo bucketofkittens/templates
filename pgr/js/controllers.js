@@ -83,15 +83,14 @@ function ProfileController($scope, $routeParams, AuthUser, $route, $rootScope, $
     $scope.currentUserEditStatus = !$scope.userId2 ? true : false;
 
     $scope.$on('routeSegmentChange', function(data, d2) {
-        console.log($routeParams);
-        if($routeParams.userId1) {
+        if($routeParams.userId1 && $routeParams.userId1 != $scope.userId1) {
             $rootScope.$broadcast('updateUserControllerId', {
                 userId: $routeParams.userId1,
                 id: "leftUser"
             });    
         }
 
-        if($routeParams.userId2) {
+        if($routeParams.userId2 && $routeParams.userId2 != $scope.userId2) {
             $rootScope.$broadcast('updateUserControllerId', {
                 isEdit: false,
                 id: "leftUser"
@@ -410,6 +409,7 @@ function NeedsAndGoalsController($scope, Goals, Criterion, AuthUser, UserCriteri
     });
 
     $scope.getNeeds = function() {
+        $("#content .crits ul li ul.show").removeClass("show");
         Needs.query({}, {}, function(data) {
             $scope.needs = data;
             $scope.bindUserNeedsValues();
@@ -421,7 +421,6 @@ function NeedsAndGoalsController($scope, Goals, Criterion, AuthUser, UserCriteri
     }
     
     $scope.bindUserNeedsValues = function() {
-
         User.needs_points({id: $scope.user.sguid}, {}, function(needsData) {
             $rootScope.$broadcast('needUserValueLoaded', {
                 needsValues: needsData,
