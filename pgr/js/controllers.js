@@ -1073,6 +1073,10 @@ function MainController($scope, Leagues, User, AuthUser, $rootScope, $location, 
             $scope.state = 1;
             $scope.stateText = 'Tag';
         }
+
+        $scope.viewedUsers.currentIndex = 0;
+        $scope.viewedUsers.cols = 0;
+        $scope.viewedUsers.calc = 0;
     }
 
     $scope.$watch($rootScope.authUser, function(newValue, oldValue, scope) {
