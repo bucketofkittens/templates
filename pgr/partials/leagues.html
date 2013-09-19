@@ -9,9 +9,9 @@
 	</a>
 </section>
 <section class="infoleag">
-	<sup class="l_{{currentLeague.league.name}}" ng-if="currentLeague.league.name < 6"></sup>
-	<sub class="l_{{currentLeague.league.name}}" ng-if="currentLeague.league.name > 6"></sub>
-	<span class="l_{{currentLeague.league.name}}" ng-if="currentLeague.league.name == 6"></span>
+	<sup class="l_{{currentLeague.name}}" ng-if="currentLeague.name < 6"></sup>
+	<sub class="l_{{currentLeague.name}}" ng-if="currentLeague.name > 6"></sub>
+	<span class="l_{{currentLeague.name}}" ng-if="currentLeague.name == 6"></span>
 	<div class="leader">
 		<a href="#"><img src="/images/unknown-person.png"></a>
 		<div class="descrip">
@@ -21,7 +21,7 @@
 			<i>New persons: 20</i>
 		</div>
 	</div>
-	<a href="#" ng-repeat="(key, item) in currentLeague.league.users | limitTo:limit"><img src="{{item.user.avatar}}"></a>
+	<a href="#" ng-repeat="(key, item) in currentLeague.users | limitTo:limit"><img src="{{item.avatar}}"></a>
 	<button>{{'_moreL_' | i18n}}</button>
 </section>
 <section class="leaglist">

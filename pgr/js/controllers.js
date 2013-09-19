@@ -134,13 +134,13 @@ function QuickUserChangeCtrl($scope, User, AuthUser, $rootScope, $location) {
 
     User.get_all({}, {}, function(data) {
         data.sort(function(a, b){
-            if(a.user.login < b.user.login) return -1;
-            if(a.user.login > b.user.login) return 1;
+            if(a.login < b.login) return -1;
+            if(a.login > b.login) return 1;
             return 0;
         })
         var users = [];
         angular.forEach(data, function(value, key){
-            if(value.user.published == 1) {
+            if(value.published == 1) {
                 users.push(value);
             }
         });
@@ -179,6 +179,7 @@ function UserController($scope, $route, $routeParams, User, Needs, Professions, 
      */
     $scope.getUserInfo = function() {
         User.query({id: $scope.currentUserId}, function(data) {
+            console.log(data);
             $scope.user = data;
             
             if($scope.user.league) {
@@ -271,7 +272,6 @@ function UserController($scope, $route, $routeParams, User, Needs, Professions, 
             friend_guid: $scope.currentUserId
         }, function() {
             $scope.isFollow = true;
-            console.log($scope.user);
             $rootScope.$broadcast('addToFollow', {user: { user: $scope.user}});
         });
     }
@@ -982,7 +982,6 @@ function FollowController($scope, $rootScope, User, $location, $routeParams, Aut
     
     $scope.onCompare = function(user) {
         if($scope.onClickCompare == true) {
-            console.log($scope.compareState);
             if($scope.compareState == 1) {
                 $location.path("/profile/"+$routeParams.userId1+"/"+user.user.sguid+"/");
                 $scope.compareState = 0;
@@ -1023,7 +1022,7 @@ function FollowController($scope, $rootScope, User, $location, $routeParams, Aut
 
     $scope.$on('removeToFollow', function($event, message) {
         $scope.userFrends = $scope.userFrends.filter(function(data) {
-            if(data.user.sguid != message.user.user.sguid) {
+            if(data.user.sguid != message.user.sguid) {
                 return data;
             }
         });
@@ -1031,8 +1030,8 @@ function FollowController($scope, $rootScope, User, $location, $routeParams, Aut
     });
 
     $scope.onUnfollow = function(user) {
-        User.destroy_friendship({id: AuthUser.get(), friendId: user.user.sguid}, { }, function() { 
-            user.user.isFrend = false;
+        User.destroy_friendship({id: AuthUser.get(), friendId: user.sguid}, { }, function() { 
+            user.isFrend = false;
             $rootScope.$broadcast('removeToFollow', {user: user});
         });
     }
@@ -1103,11 +1102,11 @@ function MainController($scope, Leagues, User, AuthUser, $rootScope, $location, 
     $scope.testFollow = function(follows) {
         angular.forEach(follows, function(value, key) {
             angular.forEach($scope.viewedUsers, function(v2, k2) {
-                if(v2.user.sguid == value.user.sguid) {
-                    v2.user.isFrend = true;
+                if(v2.sguid == value.sguid) {
+                    v2.isFrend = true;
                 } else {
-                    if(v2.user.isFrend != true) {
-                        v2.user.isFrend = false;   
+                    if(v2.isFrend != true) {
+                        v2.isFrend = false;   
                     }
                 }
             });
@@ -1115,7 +1114,6 @@ function MainController($scope, Leagues, User, AuthUser, $rootScope, $location, 
     }
 
     $scope.$on('authUserGetData', function() {
-        console.log($scope.rootUser);
         $scope.rootUser = $rootScope.authUser;
     });
 
@@ -1142,10 +1140,6 @@ function MainController($scope, Leagues, User, AuthUser, $rootScope, $location, 
     $scope.onDragOver = function(userItem) {
         userItem.user.drag = true;
         
-    }
-
-    $scope.onDragOut = function(userItem) {
-        //userItem.user.drag = false;
     }
 
     $scope.onDrop = function(e, src) {
@@ -1189,9 +1183,9 @@ function MainController($scope, Leagues, User, AuthUser, $rootScope, $location, 
 
     $scope.onFollow = function($event, user) {
         User.create_friendship({id: AuthUser.get()}, {
-            friend_guid: user.user.sguid
+            friend_guid: user.sguid
         }, function() { 
-            user.user.isFrend = true; 
+            user.isFrend = true; 
             $rootScope.$broadcast('addToFollow', {user: user});
         });
         $event.stopPropagation();
@@ -1204,8 +1198,8 @@ function MainController($scope, Leagues, User, AuthUser, $rootScope, $location, 
      * @return {[type]}        [description]
      */
     $scope.onUnFollow = function($event, user) {
-        User.destroy_friendship({id: AuthUser.get(), friendId: user.user.sguid}, { }, function() { 
-            user.user.isFrend = false;
+        User.destroy_friendship({id: AuthUser.get(), friendId: user.sguid}, { }, function() { 
+            user.isFrend = false;
             $rootScope.$broadcast('removeToFollow', {user: user});
         });
         $event.stopPropagation();
@@ -1293,8 +1287,8 @@ function NeighboursCtrl($scope, $location, localize, User, AuthUser, Leagues, $r
         User.query({id: AuthUser.get()},{ }, function(currentUser) {
             var newUsers = [];
             angular.forEach(data, function(value, key) {
-                if(value.user.points < currentUser.points+10000 && value.user.points > currentUser.points-10000) {
-                    if(value.user.sguid != currentUser.sguid && value.user.published) {
+                if(value.points < currentUser.points+10000 && value.points > currentUser.points-10000) {
+                    if(value.sguid != currentUser.sguid && value.published) {
                         newUsers.push(value);
                     }
                 }
@@ -1321,7 +1315,7 @@ function NeighboursCtrl($scope, $location, localize, User, AuthUser, Leagues, $r
          * @return {[type]}   [description]
          */
         data.sort(function(a,b) {
-            return a.league.position + b.league.position;
+            return a.position + b.position;
         });
 
         /**
@@ -1337,8 +1331,8 @@ function NeighboursCtrl($scope, $location, localize, User, AuthUser, Leagues, $r
          * @param  {[type]} key   [description]
          * @return {[type]}       [description]
          */
-        angular.forEach($scope.leagues, function(value, key){
-            User.by_league({league_guid: value.league.sguid}, {}, function(userData) {
+        angular.forEach($scope.leagues, function(value, key) {
+            User.by_league({league_guid: value.sguid}, {}, function(userData) {
                 $rootScope.$broadcast('usersLoaded', {
                     id: 'top',
                     users: userData
@@ -1369,7 +1363,6 @@ function CompareController($scope) {
 	$scope.$on('needUserValueLoaded', function($event, message) {
 	  needsCountLoaded += 1;
 	  needsValues[message.userId] = message.needsValues;
-      console.log(needsCountLoaded);
 	  if(needsCountLoaded == 2) {
 	      angular.forEach(needsValues[$scope.userId2], function(value, key){
 	          if(value < needsValues[$scope.userId1][key]) {
@@ -1508,7 +1501,7 @@ function LeaguesController($scope, Leagues, User) {
 
 	$scope.onLeagUser = function(item){
 		$scope.currentLeague = item;
-
+        console.log(item);
 	   angular.forEach($scope.leaguesTop, function(value, key){
 	      value.curleag = false;
 	   });
@@ -1531,7 +1524,7 @@ function LeaguesController($scope, Leagues, User) {
 	   * @return {[type]}   [description]
 	   */
 	   data.sort(function(a,b) {
-	      return a.league.position + b.league.position;
+	      return a.position + b.position;
 	   });
 
 	   /**
@@ -1548,16 +1541,16 @@ function LeaguesController($scope, Leagues, User) {
 	   * @return {[type]}       [description]
 	   */
 	   angular.forEach($scope.leaguesTop, function(value, key){
-	      User.by_league({league_guid: value.league.sguid}, {}, function(userData) {
-				value.league.users = userData;
+	      User.by_league({league_guid: value.sguid}, {}, function(userData) {
+				value.users = userData;
 	   		if (key == 0){
 	   			$scope.currentLeague = value;
 	   		}
 	      });
 	   });
 	   angular.forEach($scope.leaguesRight, function(value, key){
-	      User.by_league({league_guid: value.league.sguid}, {}, function(userData) {
-				value.league.users = userData;
+	      User.by_league({league_guid: value.sguid}, {}, function(userData) {
+				value.users = userData;
 	      });
 	  });
 	})

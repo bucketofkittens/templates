@@ -22,7 +22,7 @@ pgrModule.factory('User', function ($resource) {
             	method: 'GET', 
             	transformResponse: function (data) {
                     if(data) {
-                        var user = angular.fromJson(data)[0].user;
+                        var user = angular.fromJson(data)[0];
                         return user;    
                     }
             	}
@@ -56,18 +56,7 @@ pgrModule.factory('User', function ($resource) {
             "get_friends": {
                 method: 'GET',
                 url: host+"/users/:id/friends",
-                isArray: true,
-                transformResponse: function (data) {
-                    if(data) {
-                        var users = angular.fromJson(data);
-
-                        angular.forEach(users, function(value, key){
-                            users[key].user = users[key].friendship.user;
-                        });
-
-                        return users; 
-                    }
-                }
+                isArray: true
             },
             "create_friendship": {
                 method: "POST",
@@ -122,26 +111,7 @@ pgrModule.factory('Needs', function ($resource) {
             create: {method: 'POST'},
             query: {
                 method: 'GET',
-                isArray: true,
-                /**
-                 * упрощаем массив с данными
-                 * @param  {[type]} data [description]
-                 * @return {[type]}      [description]
-                 */
-                transformResponse: function (data) {
-                    var rawNeeds = angular.fromJson(data);
-                    rawNeeds = rawNeeds.sort(function(a,b) {
-                        return a.need.position - b.need.position;
-                    });
-                    angular.forEach(rawNeeds, function(value, key){
-                        angular.forEach(value.need.goals, function(g_value, g_key) {
-                            rawNeeds[key].need.goals[g_key] = g_value.goal;
-                        });
-                        rawNeeds[key] = value.need;
-                    });
-                    
-                    return rawNeeds;
-                }
+                isArray: true
             }
         }
     );
@@ -243,21 +213,7 @@ pgrModule.factory('CriterionByGoal', function ($resource) {
         {
             query: {
                 method: 'GET',
-                isArray: true,
-                transformResponse: function (data) {
-                    var rawCriterions = angular.fromJson(data);
-                    rawCriterions = rawCriterions.sort(function(a,b) {
-                        return a.criterium.position - b.criterium.position;
-                    });
-                    angular.forEach(rawCriterions, function(value, key){
-                        angular.forEach(value.criterium.criteria_values, function(c_value, c_key) {
-                            rawCriterions[key].criterium.criteria_values[c_key] = c_value.criteria_value;
-                        });
-                        rawCriterions[key] = value.criterium;
-                    });
-                    
-                    return rawCriterions;
-                }
+                isArray: true
             }
         }
     );

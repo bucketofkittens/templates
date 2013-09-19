@@ -1,6 +1,5 @@
 <a ng-click="onState()" class="viewch">{{stateText}}</a>
 
-
 <div class="lnbl" ng-include src="'partials/follow.html'" ng-controller="FollowController" ng-init="onMove=true; onClickCompare=false; onTips=true; onRelative=false;" ></div>
 
 <section id="main_leagues" ng-class="{tags: !state}">
@@ -17,19 +16,19 @@
 			x-lvl-drop-target="true" 
 			paralax-enable="{{!state}}" 
 			paralax-image 
-			id="{{userItem.user.sguid}}"
+			id="{{userItem.sguid}}"
 			ng-repeat="userItem in viewedUsers"
-			ng-class="{showMenu: userItem.user.showMenu}"
-			class="league_{{userItem.user.league.name}}">
-			<a ng-if="userItem.user" ng-click="onMoveToUser(userItem)" ng-mouseleave="onMouseLeaveUser(userItem.user)" ng-mouseenter="onMouseEnterUser(userItem.user)" >
-				<img class="repeat-item" ng-src="{{userItem.user.avatar}}" alt="" err-src="/images/unknown-person.png" />
+			ng-class="{showMenu: userItem.showMenu}"
+			class="league_{{userItem.league.name}}">
+			<a ng-if="userItem" ng-click="onMoveToUser(userItem)" ng-mouseleave="onMouseLeaveUser(userItem)" ng-mouseenter="onMouseEnterUser(userItem)" >
+				<img class="repeat-item" ng-src="{{userItem.avatar}}" alt="" err-src="/images/unknown-person.png" />
 				<span>{{userItem.user.points}}</span>
 				<sub ng-class="{show: userItem.user.showHint}">{{userItem.user.name}} {{userItem.user.profession.name}}</sub>
 				<i></i>
-				<div class="fallout" ng-class="{show: userItem.user.showMenu}">
+				<div class="fallout" ng-class="{show: userItem.showMenu}">
 					<b ng-click="onMoveToUser(userItem)">Compare</b>
-					<b ng-click="onFollow($event, userItem)" ng-if="rootUser && !userItem.user.isFrend">Follow</b>
-					<b ng-click="onUnFollow($event, userItem)" ng-if="rootUser && userItem.user.isFrend">Unfollow</b>
+					<b ng-click="onFollow($event, userItem)" ng-if="rootUser && !userItem.isFrend">Follow</b>
+					<b ng-click="onUnFollow($event, userItem)" ng-if="rootUser && userItem.isFrend">Unfollow</b>
 				</div>
 			</a>
 		</li>

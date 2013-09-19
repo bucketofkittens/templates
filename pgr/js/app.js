@@ -84,7 +84,7 @@ function signinCallback(authResult) {
       gapi.client.load('oauth2', 'v2', function() {
 		  gapi.client.oauth2.userinfo.get().execute(function(resp) {
 		    // Shows user email
-		    console.log(resp.email);
+		    console.log(resp);
 		  })
 		});
 

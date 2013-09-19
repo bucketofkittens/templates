@@ -23,7 +23,10 @@ pgrModule.directive('sameAs', [function() {
 pgrModule.directive('paralaxImage', function () {
   return {
     link: function($scope, element, attrs) {
-      
+      var userLength = $scope.viewedUsers.length;
+      var cellsCount = 10;
+
+      $("#main_leagues ul").css("height", $(window).height()).css("width", $(window).height());
       attrs.$observe('paralaxEnable', function (v) {
         if(attrs.paralaxEnable == "true") {
           var elements = $(".tags li");
@@ -42,9 +45,38 @@ pgrModule.directive('paralaxImage', function () {
           $(element).css("left", position.x+"%");
           $(element).css("top", position.y+"%");
         } else {
+          if(!$scope.viewedUsers.currentIndex) {
+            $scope.viewedUsers.currentIndex = 0;
+          }
+          if(!$scope.viewedUsers.cols) {
+            $scope.viewedUsers.cols = 0;
+          }
+          if(!$scope.viewedUsers.calc) {
+            $scope.viewedUsers.calc = 0;
+          }
           
-          $(element).css("left", "0%");
-          $(element).css("top", "0%");
+          var position = {
+              x: $scope.viewedUsers.calc*cellsCount,
+              y: $scope.viewedUsers.cols*cellsCount
+          };
+          
+
+          $(element).css("left", position.x+"%");
+          $(element).css("top", position.y+"%");
+
+          $scope.viewedUsers.currentIndex += 1;
+          $scope.viewedUsers.calc += 1;
+
+          if($scope.viewedUsers.calc == cellsCount) {
+            $scope.viewedUsers.calc = 0;
+            $scope.viewedUsers.cols += 1;
+          }
+
+          if($scope.viewedUsers.currentIndex == userLength) {
+            $scope.viewedUsers.currentIndex = 0;
+            $scope.viewedUsers.cols = 0;
+            $scope.viewedUsers.calc = 0;
+          }
         }
       });
     }
