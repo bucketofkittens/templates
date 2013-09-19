@@ -1503,57 +1503,65 @@ function RootController($scope, AuthUser, User, $rootScope, Needs) {
 }
 
 function LeaguesController($scope, Leagues, User) {
-    $scope.currentLeague = 0;
-    $scope.leagues = [];
-    $scope.limit = 5;
+	$scope.currentLeague = 0;
+	$scope.leagues = [];
+	$scope.limit = 5;
 
-    $scope.onLeagUser = function(item){
-    	$scope.currentLeague = item;
-    }
+	$scope.onLeagUser = function(item){
+		$scope.currentLeague = item;
 
-    /**
-    * Забираем запросом список лиг.
-    * @param  {[type]} data [description]
-    * @return {[type]}      [description]
-    */
-    Leagues.query({}, {}, function(data) {
-        /**
-         * Сортируем лиги по убыванию
-         * @param  {[type]} a [description]
-         * @param  {[type]} b [description]
-         * @return {[type]}   [description]
-         */
-        data.sort(function(a,b) {
-            return a.league.position + b.league.position;
-        });
+	   angular.forEach($scope.leaguesTop, function(value, key){
+	      value.curleag = false;
+	   });
+	   angular.forEach($scope.leaguesRight, function(value, key){
+	      value.curleag = false;
+	   });
+		item.curleag = true;
+	}
 
-        /**
-         * Получаем 3 наикрутейшие лиги
-         * @type {[type]}
-         */
-        $scope.leaguesTop = data.splice(0,6);
-        $scope.leaguesRight = data;
+	/**
+	* Забираем запросом список лиг.
+	* @param  {[type]} data [description]
+	* @return {[type]}      [description]
+	*/
+	Leagues.query({}, {}, function(data) {
+	   /**
+	   * Сортируем лиги по убыванию
+	   * @param  {[type]} a [description]
+	   * @param  {[type]} b [description]
+	   * @return {[type]}   [description]
+	   */
+	   data.sort(function(a,b) {
+	      return a.league.position + b.league.position;
+	   });
 
-        /**
-         * Проходимся по оплучившемуся массиву лиг и получаем список пользователей
-         * @param  {[type]} value [description]
-         * @param  {[type]} key   [description]
-         * @return {[type]}       [description]
-         */
-        angular.forEach($scope.leaguesTop, function(value, key){
-            User.by_league({league_guid: value.league.sguid}, {}, function(userData) {
-					value.league.users = userData;
-         		if (key == 0){
-         			$scope.currentLeague = value;
-         		}
-            });
-        });
-        angular.forEach($scope.leaguesRight, function(value, key){
-            User.by_league({league_guid: value.league.sguid}, {}, function(userData) {
-					value.league.users = userData;
-            });
-        });
-    })
+	   /**
+	   * Получаем 3 наикрутейшие лиги
+	   * @type {[type]}
+	   */
+	   $scope.leaguesTop = data.splice(0,6);
+	   $scope.leaguesRight = data;
+
+	   /**
+	   * Проходимся по оплучившемуся массиву лиг и получаем список пользователей
+	   * @param  {[type]} value [description]
+	   * @param  {[type]} key   [description]
+	   * @return {[type]}       [description]
+	   */
+	   angular.forEach($scope.leaguesTop, function(value, key){
+	      User.by_league({league_guid: value.league.sguid}, {}, function(userData) {
+				value.league.users = userData;
+	   		if (key == 0){
+	   			$scope.currentLeague = value;
+	   		}
+	      });
+	   });
+	   angular.forEach($scope.leaguesRight, function(value, key){
+	      User.by_league({league_guid: value.league.sguid}, {}, function(userData) {
+				value.league.users = userData;
+	      });
+	  });
+	})
 }
 
 /**

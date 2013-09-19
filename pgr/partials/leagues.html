@@ -1,5 +1,5 @@
 <section class="leaglist hrzt">
-	<a ng-click="onLeagUser(item)" ng-repeat="(key, item) in leaguesTop">
+	<a ng-click="onLeagUser(item)" ng-class="{curleag:item.curleag}" ng-repeat="(key, item) in leaguesTop">
 		<img ng-if="key == 0" src="/images/I.png" />
 		<img ng-if="key == 1" src="/images/II.png" />
 		<img ng-if="key == 2" src="/images/III.png" />
@@ -9,9 +9,9 @@
 	</a>
 </section>
 <section class="infoleag">
-	<sup leaguePosition selectedLeague="{{currentLeague}}" ng-if="currentLeague < 6"></sup>
-	<sub leaguePosition selectedLeague="{{currentLeague}}" ng-if="currentLeague > 6"></sub>
-	<span leaguePosition selectedLeague="{{currentLeague}}" ng-if="currentLeague == 6"></span>
+	<sup class="l_{{currentLeague.league.name}}" ng-if="currentLeague.league.name < 6"></sup>
+	<sub class="l_{{currentLeague.league.name}}" ng-if="currentLeague.league.name > 6"></sub>
+	<span class="l_{{currentLeague.league.name}}" ng-if="currentLeague.league.name == 6"></span>
 	<div class="leader">
 		<a href="#"><img src="/images/unknown-person.png"></a>
 		<div class="descrip">
@@ -25,7 +25,7 @@
 	<button>{{'_moreL_' | i18n}}</button>
 </section>
 <section class="leaglist">
-	<a ng-click="onLeagUser(item)" ng-repeat="(key, item) in leaguesRight">
+	<a ng-click="onLeagUser(item)" ng-class="{curleag:item.curleag}" ng-repeat="(key, item) in leaguesRight">
 		<img ng-if="key == 0" src="/images/VII.png" />
 		<img ng-if="key == 1" src="/images/VIII.png" />
 		<img ng-if="key == 2" src="/images/IX.png" />
