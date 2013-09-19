@@ -333,7 +333,7 @@ pgrModule.factory('Social', function ($resource) {
         {},
         {
             "login": {
-                method: 'POST',  headers : {'Content-Type': 'application/x-www-form-urlencoded'}
+                method: 'POST'
             }
             
         }

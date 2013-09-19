@@ -1655,14 +1655,9 @@ function CropImageController($scope, $rootScope) {
             var crop_img = $("#crop_img");
             $scope.imageData = data.target.result;
             $(crop_img).attr("src", data.target.result);
-            if($(crop_img).width() > 199 && $(crop_img).width() > 199) {
-                crop_img.Jcrop({minSize: [200, 200], aspectRatio: 1, setSelect: [0, 0, 200, 200], onChange: function(data) {
-                    $scope.positions = data;
-                }});   
-            } else {
-                $(crop_img).attr("src", false);
-                alert("Размер аватарки должен быть не меньше 200x200.");
-            }
+            crop_img.Jcrop({minSize: [200, 200], aspectRatio: 1, setSelect: [0, 0, 200, 200], onChange: function(data) {
+                $scope.positions = data;
+            }}); 
             
         };
         reader.readAsDataURL(file);
