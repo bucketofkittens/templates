@@ -329,11 +329,11 @@ pgrModule.factory('Leagues', function ($resource) {
 
 pgrModule.factory('Social', function ($resource) {
     return $resource(
-        host+'/auth/:provider/callback', 
-        {provider:'@provider'},
+        hostShort+'/signin/oauth2', 
+        {},
         {
             "login": {
-                method: 'GET'
+                method: 'POST',  headers : {'Content-Type': 'application/x-www-form-urlencoded'}
             }
             
         }

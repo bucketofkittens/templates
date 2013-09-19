@@ -935,13 +935,17 @@ function LoginController($scope, Sessions, $rootScope, AuthUser, User, Social, $
     }
 
     $scope.$on('fb.auth.login', function(data) {
-        console.log(data);
+        /*Social.login({}, {email: data.email}, function(data) {
+            console.log(data);
+        });*/
     });
 
     $scope.$on('fb.auth.authResponseChange', function(data, d) {
         console.log(d);
         FB.api('/me', function(response) {
-           console.log(response);
+            Social.login({}, {email: response.email}, function(data) {
+                console.log(data);
+            });
         });
     })
     
@@ -1127,15 +1131,10 @@ function MainController($scope, Leagues, User, AuthUser, $rootScope, $location, 
 
     $scope.getAllUser = function($event) {
         User.only_published({}, {}, function(data) {
-            $scope.viewedUsers = data.shuffle();
+            data = data.shuffle();
             angular.forEach(data, function(value, key) {
                 User.query({id: value.sguid}, {}, function(userData) {
-                    $scope.viewedUsers.filter(function(data) {
-                        if(data.sguid == userData.sguid) {
-                            $scope.viewedUsers[$scope.viewedUsers.indexOf(data)] = userData;
-                        }
-                    })   
-                    
+                    $scope.viewedUsers.push(userData);
                 });
             });
             /*

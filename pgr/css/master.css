@@ -92,7 +92,7 @@ body header .social a:last-child{background-position:100% 0}
 #main_leagues ul li.ui-draggable-dragging{height:10%;width:10%}
 #main_leagues ul li a{position:relative;display:block}#main_leagues ul li a sub{display:none;position:absolute;top:0;left:0;padding:8% 0 0 7%;width:93%;height:92%;color:#fff;background:rgba(0,0,0,0.5)}#main_leagues ul li a sub.show{display:block}
 #main_leagues ul li a span{position:absolute;bottom:0;right:0;width:100%;color:#000;font-size:90%;text-align:right;z-index:10}
-#main_leagues ul li a img{display:block;z-index:8;width:100%;height:auto}
+#main_leagues ul li a img{display:block;z-index:8;width:100%;height:auto;transition:all 2s ease-out;-webkit-transition:all 2s ease-out}
 #main_leagues ul li a i{position:absolute;top:0;left:0;width:100%;height:100%;background-size:cover !important;z-index:9;transition:all .5s ease-out;-webkit-transition:all .5s ease-out}
 #main_leagues ul li a .fallout{vertical-align:middle;text-align:center;border-radius:100%;background:rgba(0,0,0,0.7);position:absolute;top:50%;left:50%;width:0;height:0;transition:all .5s ease-out;-webkit-transition:all .5s ease-out;overflow:hidden}#main_leagues ul li a .fallout.show{width:200%;height:200%;top:-50%;left:-50%}
 #main_leagues ul li a .fallout b{color:#fff;text-shadow:0 0 5px #000;font-size:80%;font-weight:bold;display:block;position:absolute;cursor:pointer;top:10%;left:40%}#main_leagues ul li a .fallout b:first-child{top:85%}
