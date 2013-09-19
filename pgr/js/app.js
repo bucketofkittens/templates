@@ -4,7 +4,7 @@
  * Основной модуль приложения
  * @type {[type]}
  */
-var pgrModule = angular.module('pgrModule', [ "ngRoute", "ngCookies", "ngResource", "ngAnimate", "localization", "ui", "ui.keypress", 'ui.bootstrap', 'route-segment', 'view-segment', 'lvl.directives.dragdrop', 'ngTouch']);
+var pgrModule = angular.module('pgrModule', [ "ngRoute", "ngCookies", "ngResource", "ngAnimate", "localization", "ui", "ui.keypress", 'ui.bootstrap', 'route-segment', 'view-segment', 'lvl.directives.dragdrop', 'ngTouch', 'ngFacebook', 'directive.g+signin']);
 
 /**
  * Роутинг приложения
@@ -62,3 +62,33 @@ pgrModule.config(function($routeSegmentProvider, $routeProvider) {
 
 	$routeProvider.otherwise({ redirectTo: '/' });
 });
+pgrModule.config(function($facebookProvider) {
+	$facebookProvider.setPermissions("email");
+	$facebookProvider.setAppId(205232122986999);
+});
+
+pgrModule.run(function() {
+	(function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/en_US/all.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));	
+})
+
+
+function signinCallback(authResult) {
+	console.log(authResult);
+    if (authResult['access_token']) {
+      gapi.client.load('oauth2', 'v2', function() {
+		  gapi.client.oauth2.userinfo.get().execute(function(resp) {
+		    // Shows user email
+		    console.log(resp.email);
+		  })
+		});
+
+    } else if (authResult['error']) {
+      // User has not authorized the G+ App!
+    }
+}

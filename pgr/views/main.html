@@ -1,4 +1,5 @@
 <a ng-click="onState()" class="viewch">{{stateText}}</a>
+<g+signin clientid="339940198985" style="display: none;"></g+signin>
 
 <div class="lnbl" ng-include src="'partials/follow.html'" ng-controller="FollowController" ng-init="onMove=true; onClickCompare=false; onTips=true; onRelative=false;" ></div>
 
@@ -121,9 +122,8 @@
 						ng-minlength="6" /> 
 				</p>
 				<p><a ng-click="regiostrationOpen()">Registration</a></p>
-				<p><a ng-click="socialLogin('facebook')">Facebook</a></p>
-				<p><a ng-click="socialLogin('twitter')">twitter</a></p>
-				<p><a ng-click="socialLogin('google')">google</a></p>
+				<p><a ng-click="socialLogin()"><img src="/images/fb.jpg" width="200px" alt=""></a></p>
+				<p><g+signin clientid="339940198985"></g+signin></p>
 				<p id="errors">{{error}}</p>
 			</form>
 		</div>

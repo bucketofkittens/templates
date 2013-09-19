@@ -835,7 +835,7 @@ function RegController($scope, $location, User, AuthUser, $rootScope) {
  * [LoginController description]
  * @param {[type]} $scope [description]
  */
-function LoginController($scope, Sessions, $rootScope, AuthUser, User, Social) {
+function LoginController($scope, Sessions, $rootScope, AuthUser, User, Social, $facebook) {
     $scope.authUser = AuthUser.get();
     /**
      * Поле логина
@@ -930,11 +930,22 @@ function LoginController($scope, Sessions, $rootScope, AuthUser, User, Social) {
         $scope.shouldBeOpen = false;
     };
 
-    $scope.socialLogin = function(provider) {
-        Social.login({provider: provider}, {}, function(data) {
-            console.log(data);
-        });
+    $scope.socialLogin = function() {
+        console.log($facebook);
+        $facebook.login();
     }
+
+    $scope.$on('fb.auth.login', function(data) {
+        console.log(data);
+    });
+
+    $scope.$on('fb.auth.authResponseChange', function(data, d) {
+        console.log(d);
+        FB.api('/me', function(response) {
+           console.log(response);
+        });
+    })
+    
 
     /**
      * Параметры попапа
