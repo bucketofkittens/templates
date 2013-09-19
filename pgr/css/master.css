@@ -1,5 +1,5 @@
 @import "reset.css";
-@-webkit-keyframes rotate{from{-webkit-transform:rotateY(0deg)} to{-webkit-transform:rotateY(360deg)}}select,textarea,input{padding:0 !important}
+@-webkit-keyframes rotate{from{-webkit-transform:rotateY(180deg);width:0;height:0;margin-top:5%;margin-left:5%;opacity:0} to{-webkit-transform:rotateY(0deg);width:10%;height:10%;margin-top:0;margin-left:0;opacity:1}}select,textarea,input{padding:0 !important}
 body{width:100%;height:100%;font-family:'Helvetica Neue Light';-moz-font-smoothing:antialiased;-webkit-font-smoothing:antialiased}body .shadow{background:rgba(0,0,0,0.5);z-index:10;position:absolute;width:100%;height:100%;display:none}
 body header{height:8%;width:100%;background:#000;position:absolute;top:0;z-index:5;overflow:hidden}body header .logo{width:30%;height:100%;margin:0 12% 0 3%;position:relative;display:inline-block}body header .logo img{position:absolute;height:90%;display:inline-block}
 body header ul{display:inline-block;vertical-align:top;position:relative;right:0;width:42%;text-align:right}body header ul li{margin:3%;display:inline-block;vertical-align:top}
@@ -7,7 +7,7 @@ body header ul a{color:#fff;text-decoration:none;font-family:'Helvetica Neue';fo
 body header ul a.current{color:#028dda}
 body header .social{width:12%;height:50%;vertical-align:top;display:inline-block;position:absolute;top:10%;right:0;text-decoration:none}body header .social a{background:url("../images/icons.png") center center no-repeat;width:15%;height:100%;margin:5% 7%;display:inline-block;overflow:hidden;background-position:50% 0;background-size:500% 65%}body header .social a:first-child{background-position:0 0}
 body header .social a:last-child{background-position:100% 0}
-#content{position:relative;width:100%;background:#f8f8f8;padding-top:6%;min-height:88%;overflow:hidden;}#content .viewch{text-align:center;transform:skewX(angle);font-size:80%;color:#fff;padding:8px 5px 2px 5px;background:#028dda;border-top:1px solid #fff;border-left:1px solid #fff;border-right:1px solid #ccc;border-bottom:1px solid #ccc;position:fixed;top:8%;right:0;z-index:310}
+#content{position:relative;width:100%;background:#f8f8f8;padding-top:5%;min-height:88%;overflow:hidden;}#content .viewch{text-align:center;transform:skewX(angle);font-size:80%;color:#fff;padding:8px 5px 2px 5px;background:#028dda;border-top:1px solid #fff;border-left:1px solid #fff;border-right:1px solid #ccc;border-bottom:1px solid #ccc;position:fixed;top:8%;right:0;z-index:310}
 #content .who img{max-width:15%;height:auto;border:1px solid #000;display:inline-block;position:fixed;top:50%;left:50%;margin:-7% 0 0 -7%;cursor:pointer;box-shadow:0 0 30px 1px #000;border:1px solid #666}
 #content .scroll{font-size:100%;color:#333;text-decoration:none;position:fixed;bottom:3%;left:50%;margin-left:-3%;z-index:110;line-height:150%;text-shadow:0 0 2px #fff}
 #content .promain{margin-left:1%;width:48%;background:#fff;border:1px solid #ccc;border-bottom:none;box-shadow: 0 0 30px 1px rgba(0,0,0,0.3);z-index:3;position:relative;display:inline-block}
@@ -86,7 +86,8 @@ body header .social a:last-child{background-position:100% 0}
 #modal-shadow{position:absolute;left:0;top:0;width:100%;height:100%;background:rgba(0,0,0,0.5);display:none;z-index:2500;text-align:center}#modal-shadow.show{display:block}
 #modal-shadow img{display:inline-block;position:relative;top:50%}
 #main_leagues>img{position:absolute;left:50%;top:50%}
-#main_leagues ul{width:100%;text-align:center;position:relative;margin:0 auto}#main_leagues ul li{height:7%;width:10%;display:inline-block;position:absolute;line-height:100%;transition:all 2s ease-out;-webkit-transition:all 2s ease-out;-webkit-animation:rotate 2s linear 0 infinite normal;-moz-animation:rotate 2s linear 0 infinite normal;-o-animation:rotate 2s linear 0 infinite normal;-ms-animation:rotate 2s linear 0 infinite normal;animation:rotate 2s linear 0 infinite normal}#main_leagues ul li.showMenu{z-index:499 !important}
+#main_leagues ul{width:100%;text-align:center;position:relative;margin:0 auto}#main_leagues ul li{height:7%;width:10%;display:inline-block;position:absolute;line-height:100%;transition:all 2s ease-out;-webkit-transition:all 2s ease-out}#main_leagues ul li.showMenu{z-index:499 !important}
+#main_leagues ul li.rotate{-webkit-animation:rotate 2s linear 0 normal;-moz-animation:rotate 2s linear 0 normal;-o-animation:rotate 2s linear 0 normal;-ms-animation:rotate 2s linear 0 normal;animation:rotate 2s linear 0 normal}
 #main_leagues ul li.show{-webkit-transform:rotateY(0deg);-moz-transform:rotateY(0deg);-o-transform:rotateY(0deg);transform:rotateY(0deg)}
 #main_leagues ul li.ui-draggable-dragging{height:10%;width:10%}
 #main_leagues ul li a{position:relative;display:block}#main_leagues ul li a sub{display:none;position:absolute;top:0;left:0;padding:8% 0 0 7%;width:93%;height:92%;color:#fff;background:rgba(0,0,0,0.5)}#main_leagues ul li a sub.show{display:block}
@@ -130,8 +131,8 @@ body header .social a:last-child{background-position:100% 0}
 .lvl-over{box-shadow:0 0 3px 3px #028dda}
 .lvl-target{opacity:0 !important}
 [draggable]{-moz-user-select:none;-khtml-user-select:none;-webkit-user-select:none;user-select:none;cursor:move}
-#follow_tab{position:fixed;background:#fff;margin:-1% 2% 0 2%;box-shadow:0 0 10px 2px rgba(0,0,0,0.5);width:40%;right:0;top:10%;z-index:300}#follow_tab.relative{position:relative;width:98%;margin:-2% 1% 0 1%}#follow_tab.relative li{width:5%}
-#follow_tab ul{margin:0 0 2% 1%;padding-top:.3%}#follow_tab ul li{display:inline-block;width:10%;margin:.1%;position:relative;overflow:hidden}#follow_tab ul li:first-child{margin:0 1.5% 0 .5%;box-shadow:0 0 3px 2px rgba(0,0,0,0.3)}
+#follow_tab{position:fixed;background:#fff;margin:-1% 2% 0 2%;box-shadow:0 0 10px 2px rgba(0,0,0,0.5);width:40%;right:0;top:10%;z-index:300}#follow_tab.relative{position:relative;width:98%;margin:-2% 1% 0 1%}#follow_tab.relative ul{margin-bottom:2%}#follow_tab.relative ul li{width:5%}
+#follow_tab ul{margin-left:1%;padding-top:.3%}#follow_tab ul li{display:inline-block;width:10%;margin:.1%;position:relative;overflow:hidden}#follow_tab ul li:first-child{margin:0 1.5% 0 .5%;box-shadow:0 0 3px 2px rgba(0,0,0,0.3)}
 #follow_tab ul li img{height:auto;display:block}
 #follow_tab ul li sub{display:none;position:absolute;top:0;left:0;padding:8% 0 0 7%;width:100%;color:#fff;bottom:-2%;background:rgba(0,0,0,0.5)}
 #follow_tab ul li.show sub{display:block}#follow_tab ul li.show sub a{padding:2%;color:#fff;position:relative;top:10%;border:0 !important}
