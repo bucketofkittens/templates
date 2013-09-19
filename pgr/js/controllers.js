@@ -1017,7 +1017,7 @@ function FollowController($scope, $rootScope, User, $location, $routeParams, Aut
     });
 
     $scope.$on('addToFollow', function($event, message) {
-        $scope.userFrends.push(message.user);
+        $scope.userFrends.push({user: message.user});
     });
 
     $scope.$on('removeToFollow', function($event, message) {
@@ -1102,7 +1102,7 @@ function MainController($scope, Leagues, User, AuthUser, $rootScope, $location, 
     $scope.testFollow = function(follows) {
         angular.forEach(follows, function(value, key) {
             angular.forEach($scope.viewedUsers, function(v2, k2) {
-                if(v2.sguid == value.sguid) {
+                if(v2.sguid == value.user.sguid) {
                     v2.isFrend = true;
                 } else {
                     if(v2.isFrend != true) {
@@ -1138,8 +1138,7 @@ function MainController($scope, Leagues, User, AuthUser, $rootScope, $location, 
     }
 
     $scope.onDragOver = function(userItem) {
-        userItem.user.drag = true;
-        
+        userItem.drag = true;
     }
 
     $scope.onDrop = function(e, src) {

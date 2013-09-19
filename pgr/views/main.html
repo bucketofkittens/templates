@@ -22,8 +22,8 @@
 			class="league_{{userItem.league.name}}">
 			<a ng-if="userItem" ng-click="onMoveToUser(userItem)" ng-mouseleave="onMouseLeaveUser(userItem)" ng-mouseenter="onMouseEnterUser(userItem)" >
 				<img class="repeat-item" ng-src="{{userItem.avatar}}" alt="" err-src="/images/unknown-person.png" />
-				<span>{{userItem.user.points}}</span>
-				<sub ng-class="{show: userItem.user.showHint}">{{userItem.user.name}} {{userItem.user.profession.name}}</sub>
+				<span>{{userItem.points}}</span>
+				<sub ng-class="{show: userItem.showHint}">{{userItem.name}} {{userItem.profession.name}}</sub>
 				<i></i>
 				<div class="fallout" ng-class="{show: userItem.showMenu}">
 					<b ng-click="onMoveToUser(userItem)">Compare</b>

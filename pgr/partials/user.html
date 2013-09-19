@@ -127,7 +127,7 @@
 		<p>
 			<label for="loc_i">{{'_LocL_' | i18n}}:</label>
 			<select 
-				ng-options="item.state.sguid as item.state.name for item in states" 
+				ng-options="item.sguid as item.name for item in states" 
 				ng-model="user.state.sguid" 
 				readonly="readonly" 
 				id="loc_i"
@@ -138,7 +138,7 @@
 		<p>
 			<label for="pro_i">{{'_ProfL_' | i18n}}:</label>
 			<select 
-				ng-options="item.profession.sguid as item.profession.name for item in professions" 
+				ng-options="item.sguid as item.name for item in professions" 
 				ng-model="user.profession.sguid" 
 				readonly="readonly" 
 				id="pro_i" 

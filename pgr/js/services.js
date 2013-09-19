@@ -308,14 +308,7 @@ pgrModule.factory('UserCriteriaValueByUser', function ($resource) {
         {
             "query": {
                 method: 'GET',
-                isArray: true,
-                transformResponse: function (data) {
-                    var values = angular.fromJson(data);
-                    angular.forEach(values, function(value, key){
-                        values[key] = value.user_criterion_value;
-                    });
-                    return values;
-                }
+                isArray: true
             }
             
         }

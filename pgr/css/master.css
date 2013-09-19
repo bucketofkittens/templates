@@ -56,11 +56,19 @@ body header .social a:last-child{background-position:100% 0}
 #content sub.du{border-width:7.5px 15px 7.5px 0;border-color:transparent #bd1b1b transparent transparent}
 #content s.du{width:15px;height:15px;border-radius:100%;border-width:0;background:#028dda}
 #content .comp{width:100%;background:#f8f8f8;border:none;box-shadow:none}#content .comp .crits{background:#f8f8f8}
-#content .leaglist{display:inline-block;width:14.5%;vertical-align:top}#content .leaglist a{display:block;margin-bottom:5%}#content .leaglist a img{display:block;width:100%;box-shadow:0 0 10px 1px rgba(0,0,0,0.3);border-radius:5px}
+#content .leaglist{display:inline-block;width:14.5%;vertical-align:top}#content .leaglist a{display:block;margin-bottom:5%}#content .leaglist a.curleag img{box-shadow:0 0 20px 10px #fff}
+#content .leaglist a img{display:block;width:100%;box-shadow:0 0 10px 1px rgba(0,0,0,0.3);border-radius:5px}
 #content .leaglist.hrzt{width:100%;margin-left:5%;display:block}#content .leaglist.hrzt a{display:inline-block;width:14.5%;margin:0 .8% 0 0}
 #content .infoleag{display:inline-block;width:70%;margin:5% 5.8% 0 5%;vertical-align:top;border:1px solid #ccc;-webkit-box-shadow:inset 0 0 30px 0 rgba(0,0,0,0.5);box-shadow:inset 0 0 30px 0 rgba(0,0,0,0.5);text-align:center;position:relative}#content .infoleag span,#content .infoleag sub,#content .infoleag sup{width:0;height:0;border-style:solid;border-width:0 30px 30px 0;border-color:transparent #b5b5b5 transparent transparent;position:absolute;vertical-align:middle;top:-10px;right:-10px}
-#content .infoleag sup{border-width:0 15px 20px 15px;border-color:transparent transparent #b5b5b5 transparent;top:-20px;right:50%}
-#content .infoleag sub{border-width:15px 0 15px 20px;border-color:transparent transparent transparent #b5b5b5;right:-20px;top:50%}
+#content .infoleag sup{border-width:0 15px 20px 15px;border-color:transparent transparent #b5b5b5 transparent;top:-20px;right:50%}#content .infoleag sup.l_1{left:7%}
+#content .infoleag sup.l_2{left:28%}
+#content .infoleag sup.l_3{left:50%}
+#content .infoleag sup.l_4{left:72%}
+#content .infoleag sup.l_5{left:auto;right:0}
+#content .infoleag sub{border-width:15px 0 15px 20px;border-color:transparent transparent transparent #b5b5b5;right:-20px;top:50%}#content .infoleag sub.l_7{top:0}
+#content .infoleag sub.l_8{top:25%}
+#content .infoleag sub.l_9{top:auto;bottom:40%}
+#content .infoleag sub.l_10{top:auto;bottom:15%}
 #content .infoleag .leader{display:block;margin-top:3%;text-align:center}#content .infoleag .leader a{display:inline-block;width:20%;margin:0 5% 0 0}
 #content .infoleag .leader .descrip{display:inline-block}#content .infoleag .leader .descrip i{font-size:100%;color:#000;display:block;margin:5% 0;text-align:left}
 #content .infoleag a{display:inline-block;vertical-align:top;width:20%;margin:2% 3%}
