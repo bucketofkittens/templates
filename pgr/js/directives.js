@@ -48,7 +48,7 @@ pgrModule.directive('paralaxImage', function () {
 
           $(element).css("left", position.x+"%");
           $(element).css("top", position.y+"%");
-        } else {
+        } else { 
           if(!$scope.viewedUsers.currentIndex) {
             $scope.viewedUsers.currentIndex = 0;
           }
@@ -64,7 +64,6 @@ pgrModule.directive('paralaxImage', function () {
               y: $scope.viewedUsers.cols*cellsCount
           };
           
-
           $(element).css("left", position.x+"%");
           $(element).css("top", position.y+"%");
 
@@ -76,7 +75,7 @@ pgrModule.directive('paralaxImage', function () {
             $scope.viewedUsers.cols += 1;
           }
 
-          if($scope.viewedUsers.currentIndex == userLength-1) {
+          if($scope.viewedUsers.currentIndex == userLength) {
             $scope.viewedUsers.currentIndex = 0;
             $scope.viewedUsers.cols = 0;
             $scope.viewedUsers.calc = 0;
