@@ -1,5 +1,15 @@
 @import "reset.css";
 
+@-webkit-keyframes rotate {
+  from {
+    -webkit-transform: rotateY(0deg);
+
+  }
+  to { 
+    -webkit-transform: rotateY(360deg);
+  }
+}
+
 select, textarea, input {
     padding: 0px !important;
 }
@@ -937,8 +947,20 @@ body {
             line-height: 100%;
             transition: all 2s ease-out;
             -webkit-transition: all 2s ease-out;
+
+            -webkit-animation: rotate 2s linear 0 infinite normal;
+  -moz-animation: rotate 2s linear 0 infinite normal;
+  -o-animation: rotate 2s linear 0 infinite normal;
+  -ms-animation: rotate 2s linear 0 infinite normal;
+  animation: rotate 2s linear 0 infinite normal;
             &.showMenu {
                 z-index: 499 !important;
+            }
+            &.show {
+               -webkit-transform: rotateY( 0deg );
+             -moz-transform: rotateY( 0deg );
+               -o-transform: rotateY( 0deg );
+                  transform: rotateY( 0deg );
             }
             &.ui-draggable-dragging {
                 height: 10%;

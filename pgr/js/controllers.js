@@ -1122,11 +1122,17 @@ function MainController($scope, Leagues, User, AuthUser, $rootScope, $location, 
     });
 
     $scope.getAllUser = function($event) {
-        User.for_main({}, {}, function(data) {
-            $scope.viewedUsers = data.shuffle();
+        User.only_published({}, {}, function(data) {
+            data = data.shuffle();
+            angular.forEach(data, function(value, key) {
+                User.query({id: value.sguid}, {}, function(userData) {
+                    $scope.viewedUsers.push(userData);
+                });
+            });
+            /*
             if($scope.tmpFollow.length > 0) {
                 $scope.testFollow($scope.tmpFollow);
-            }
+            }*/
         });
     }
     

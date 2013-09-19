@@ -27,6 +27,12 @@ pgrModule.directive('paralaxImage', function () {
       var cellsCount = 10;
 
       $("#main_leagues ul").css("height", $(window).height()*2).css("width", $(window).width());
+
+      attrs.$observe('src', function (v) {
+        if(attrs.src) {
+          $(element).addClass("show"); 
+        }
+      });
       attrs.$observe('paralaxEnable', function (v) {
         if(attrs.paralaxEnable == "true") {
           var elements = $(".tags li");

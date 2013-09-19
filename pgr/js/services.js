@@ -31,6 +31,11 @@ pgrModule.factory('User', function ($resource) {
                 method: 'GET',
                 isArray: true
             },
+            'only_published': {
+                method: 'GET',
+                isArray: true,
+                url: host+"/users/only/published"
+            },
             'for_main': {
                 method: 'GET',
                 isArray: true,
