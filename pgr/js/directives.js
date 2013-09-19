@@ -26,7 +26,7 @@ pgrModule.directive('paralaxImage', function () {
       var userLength = $scope.viewedUsers.length;
       var cellsCount = 10;
 
-      $("#main_leagues ul").css("height", $(window).height()).css("width", $(window).height());
+      $("#main_leagues ul").css("height", $(window).height()*2).css("width", $(window).width());
       attrs.$observe('paralaxEnable', function (v) {
         if(attrs.paralaxEnable == "true") {
           var elements = $(".tags li");
@@ -34,7 +34,7 @@ pgrModule.directive('paralaxImage', function () {
           function setPostion() {
             var position = {
               x: parseInt(getRandomInt(0, 90)),
-              y: parseInt(getRandomInt(10, 90))
+              y: parseInt(getRandomInt(0, 90))
             };
 
             return position;
