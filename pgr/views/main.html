@@ -14,7 +14,8 @@
 		<li 
 			x-lvl-draggable="true"
 			x-lvl-drop-target="true" 
-			paralax-enable="{{!state}}" 
+			paralax-enable="{{!state}}"
+			null-image="{{userItem.name}}"
 			paralax-image 
 			id="{{userItem.sguid}}"
 			ng-repeat="userItem in viewedUsers"
@@ -31,7 +32,6 @@
 					<b ng-click="onUnFollow($event, userItem)" ng-if="rootUser && userItem.isFrend">Unfollow</b>
 				</div>
 			</a>
-			<img ng-if="userItem && !userItem.name" ng-src="/images/none.png" />
 		</li>
 	</ul>
 </section>
