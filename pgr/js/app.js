@@ -3,6 +3,7 @@
 var clientId = {"localhost": '339940198985.apps.googleusercontent.com', "xmpp.dev.improva.com": "339940198985-h79e4hvjp9b2658og8o849u3blaootub.apps.googleusercontent.com"};
 var apiKey = 'AIzaSyBUJ3rialFIcJ5QvuWFkvPqmFbTBIZ2Kmo';
 var scopes = ['https://www.googleapis.com/auth/plus.me','https://www.googleapis.com/auth/userinfo.email'];
+var faceBookIds = {"localhost": '173391222849160', "xmpp.dev.improva.com": '173391222849160'};
 
 /**
  * Основной модуль приложения
@@ -68,7 +69,7 @@ pgrModule.config(function($routeSegmentProvider, $routeProvider) {
 });
 pgrModule.config(function($facebookProvider) {
 	$facebookProvider.setPermissions("email");
-	$facebookProvider.setAppId(205232122986999);
+	$facebookProvider.setAppId(faceBookIds[window.location.hostname]);
 });
 
 pgrModule.run(function() {
