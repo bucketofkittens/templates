@@ -82,7 +82,7 @@ function ProfileController($scope, $routeParams, AuthUser, $route, $rootScope, $
     $scope.userId1 = $routeParams.userId1;
     $scope.userId2 = $routeParams.userId2;
     $scope.currentUserEditStatus = !$scope.userId2 ? true : false;
-    console.log($scope.userId1)
+    
 
     $scope.$on('routeSegmentChange', function(data, d2) {
         if($routeParams.userId1 && $routeParams.userId1 != $scope.userId1) {
@@ -1547,9 +1547,9 @@ function GalleryController($scope, localize, Leagues, User, AuthUser, $element, 
 
     $scope.onMoveToUser = function(user) {
         if($scope.authUserId) {
-            $location.path("/profile/"+$scope.authUserId+"/"+user.user.sguid);
+            $location.path("/profile/"+$scope.authUserId+"/"+user.sguid);
         } else {
-            $location.path("/profile/"+user.user.sguid);
+            $location.path("/profile/"+user.sguid);
         }
     }
 }

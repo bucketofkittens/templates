@@ -71,7 +71,6 @@
 			</p>
 		</div>		
 	</div>
-
 	<div class="pmpar">
 		<p>
 			<label for="name_i">{{'_NameL_' | i18n}}:</label> 
@@ -84,8 +83,8 @@
 				required
 				ng-minlength="6"
 				ng-click="onElementClick($event)"
-				ng-if="isEdit" />
-			<i ng-if="!isEdit">{{user.name}}</i>
+				ng-if="isEdit && user.sguid == authUserId" />
+			<i ng-if="!isEdit || user.sguid != authUserId">{{user.name}}</i>
 		</p>
 		<p>
 			<label for="email_i">{{'_EmaiL_' | i18n}}:</label> 
@@ -97,10 +96,10 @@
 				ng-model="user.email"
 				required
 				ng-click="onElementClick($event)"
-				ng-if="isEdit" />
-				<i ng-if="!isEdit">{{user.email}}</i>
+				ng-if="isEdit && user.sguid == authUserId" />
+				<i ng-if="!isEdit || user.sguid != authUserId">{{user.email}}</i>
 		</p>
-		<p ng-if="isEdit" ng-controller="QuickUserChangeCtrl">
+		<p ng-if="isEdit && user.sguid == authUserId" ng-controller="QuickUserChangeCtrl">
 			<label for="acc_i">{{'_AccL_' | i18n}}:</label>
 			<select 
 				id="acc_i"
@@ -110,7 +109,7 @@
 				ng-change="onMoveUserClick($event, nextUser)">
 				<option value="">{{user.login}}</option>
 			</select>
-			<i ng-if="!isEdit">{{user.login}}</i>
+			<i ng-if="!isEdit || user.sguid != authUserId">{{user.login}}</i>
 		</p>
 		<p>
 			<label for="age_i">{{'_AgeL_' | i18n}}:</label>
@@ -120,9 +119,9 @@
 				readonly="readonly"
 				id="age_i"
 				ng-click="onElementClick($event)"
-				ng-if="isEdit">
+				ng-if="isEdit && user.sguid == authUserId">
 			</select>
-			<i ng-if="!isEdit">{{user.age}}</i>
+			<i ng-if="!isEdit || user.sguid != authUserId">{{user.age}}</i>
 		</p>
 		<p>
 			<label for="loc_i">{{'_LocL_' | i18n}}:</label>
@@ -132,9 +131,9 @@
 				readonly="readonly" 
 				id="loc_i"
 				ng-click="onElementClick($event)"
-				ng-if="isEdit">
+				ng-if="isEdit && user.sguid == authUserId">
 			</select>
-			<i ng-if="!isEdit">{{user.state.name}}</i>
+			<i ng-if="!isEdit || user.sguid != authUserId">{{user.state.name}}</i>
 		<p>
 			<label for="pro_i">{{'_ProfL_' | i18n}}:</label>
 			<select 
@@ -143,9 +142,9 @@
 				readonly="readonly" 
 				id="pro_i" 
 				ng-click="onElementClick($event)"
-				ng-if="isEdit">
+				ng-if="isEdit && user.sguid == authUserId">
 			</select>
-			<i ng-if="!isEdit">{{user.profession.name}}</i>
+			<i ng-if="!isEdit || user.sguid != authUserId">{{user.profession.name}}</i>
 		</p>
 
 
