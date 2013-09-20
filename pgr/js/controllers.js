@@ -935,17 +935,18 @@ function LoginController($scope, Sessions, $rootScope, AuthUser, User, Social, $
     }
 
     $scope.$on('fb.auth.login', function(data) {
-        /*Social.login({}, {email: data.email}, function(data) {
+        Social.login({}, {email: data.email}, function(data) {
             console.log(data);
-        });*/
+        });
     });
 
     $scope.$on('fb.auth.authResponseChange', function(data, d) {
         console.log(d);
         FB.api('/me', function(response) {
-            Social.login({}, {email: response.email}, function(data) {
+            Social.login({}, {email: data.email}, function(data) {
                 console.log(data);
             });
+           console.log(response);
         });
     })
     
@@ -987,10 +988,10 @@ function FollowController($scope, $rootScope, User, $location, $routeParams, Aut
     $scope.onCompare = function(user) {
         if($scope.onClickCompare == true) {
             if($scope.compareState == 1) {
-                $location.path("/profile/"+$routeParams.userId1+"/"+user.sguid+"/");
+                $location.path("/profile/"+$routeParams.userId1+"/"+user.user.sguid+"/");
                 $scope.compareState = 0;
             } else {
-                $location.path("/profile/"+user.sguid+"/"+$routeParams.userId2+"/");
+                $location.path("/profile/"+user.user.sguid+"/"+$routeParams.userId2+"/");
                 $scope.compareState = 1;
             }
         }
@@ -1129,14 +1130,21 @@ function MainController($scope, Leagues, User, AuthUser, $rootScope, $location, 
         $scope.rootUser = null;
     });
 
+    $scope.getRandomUser = function(key, max, current, data) {
+        User.query({id: $scope.viewedUsers[key].sguid}, {}, function(userData) {
+            $scope.viewedUsers[key] = userData;
+            current = current + 1;
+            if(key != max - 1) {
+                //$scope.getRandomUser(parseInt(getRandomInt(0, data.length)), data.length, current, data);    
+            }
+        });
+    }
+
     $scope.getAllUser = function($event) {
         User.only_published({}, {}, function(data) {
             data = data.shuffle();
-            angular.forEach(data, function(value, key) {
-                User.query({id: value.sguid}, {}, function(userData) {
-                    $scope.viewedUsers.push(userData);
-                });
-            });
+            $scope.viewedUsers = data;
+            $scope.getRandomUser(parseInt(getRandomInt(0, data.length)), data.length, 0, data); 
             /*
             if($scope.tmpFollow.length > 0) {
                 $scope.testFollow($scope.tmpFollow);
@@ -1169,9 +1177,9 @@ function MainController($scope, Leagues, User, AuthUser, $rootScope, $location, 
 
     $scope.onMoveToUser = function(user) {
         if($scope.rootUser.sguid) {
-            $location.path("/profile/"+$scope.rootUser.sguid+"/"+user.sguid);
+            $location.path("/profile/"+$scope.rootUser.sguid+"/"+user.user.sguid);
         } else {
-            $location.path("/profile/"+user.sguid);
+            $location.path("/profile/"+user.user.sguid);
         }
     }
 
@@ -1655,9 +1663,14 @@ function CropImageController($scope, $rootScope) {
             var crop_img = $("#crop_img");
             $scope.imageData = data.target.result;
             $(crop_img).attr("src", data.target.result);
-            crop_img.Jcrop({minSize: [200, 200], aspectRatio: 1, setSelect: [0, 0, 200, 200], onChange: function(data) {
-                $scope.positions = data;
-            }}); 
+            if($(crop_img).width() > 199 && $(crop_img).width() > 199) {
+                crop_img.Jcrop({minSize: [200, 200], aspectRatio: 1, setSelect: [0, 0, 200, 200], onChange: function(data) {
+                    $scope.positions = data;
+                }});   
+            } else {
+                $(crop_img).attr("src", false);
+                alert("Размер аватарки должен быть не меньше 200x200.");
+            }
             
         };
         reader.readAsDataURL(file);
