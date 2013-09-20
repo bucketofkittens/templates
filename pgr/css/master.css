@@ -107,7 +107,7 @@ body header .social a:last-child{background-position:100% 0}
 #main_leagues ul li.league_3{opacity:.9}#main_leagues ul li.league_3 i{background:url("../images/L-yellow.png") left top no-repeat}
 #main_leagues ul li.league_2{opacity:1}#main_leagues ul li.league_2 i{background:url("../images/L-orange.png") left top no-repeat}
 #main_leagues ul li.league_1{opacity:1}#main_leagues ul li.league_1 i{background:url("../images/L-red.png") left top no-repeat}
-.tags li{height:auto !important;position:absolute !important;left:50%;top:50%;box-shadow:0 0 10px 0 rgba(0,0,0,0.5)}.tags li:hover{z-index:399 !important}
+.tags li{height:auto !important;position:absolute !important;left:50%;top:50%;box-shadow:0 0 10px 0 rgba(0,0,0,0.5);min-width:1% !important}.tags li:hover{z-index:399 !important}
 .tags li span{line-height:100% !important;right:5px}
 .tags li.league_{width:2% !important;z-index:100;font-size:70%}
 .tags li.league_10{width:3% !important;z-index:101;font-size:80%}
