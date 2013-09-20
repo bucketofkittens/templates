@@ -962,8 +962,7 @@ body {
                   -ms-animation: rotate 2s linear 0 normal;
                   animation: rotate 2s linear 0 normal;
                   -webkit-backface-visibility: hidden;
-                    -webkit-perspective: 1000;
-                  
+                  -webkit-perspective: 1000;
                   img {
                     opacity: 1;
                   }
@@ -983,18 +982,22 @@ body {
                 display: block;
                 -webkit-transform: translateZ(0);
                 sub {
-                    display: none;
                     position: absolute;
                     top: 0%;
                     left: 0%;
                     padding: 8% 0% 0% 7%;
                     width: 93%;
-                    height: 92%;
+                    height: 0%;
                     color: #ffffff;
                     background: rgba(0, 0, 0, 0.3);
                     -webkit-transform: translateZ(0);
+                    transition: all 0.5s ease-out;
+                    -webkit-transition: all 0.5s ease-out;
+                    oveflow: hidden;
+                    opacity: 0;
                     &.show {
-                        display: block;
+                        height: 92%;
+                        opacity: 1;
                     }
                 }
                 span {
