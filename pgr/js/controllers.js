@@ -82,6 +82,7 @@ function ProfileController($scope, $routeParams, AuthUser, $route, $rootScope, $
     $scope.userId1 = $routeParams.userId1;
     $scope.userId2 = $routeParams.userId2;
     $scope.currentUserEditStatus = !$scope.userId2 ? true : false;
+    console.log($scope.userId1)
 
     $scope.$on('routeSegmentChange', function(data, d2) {
         if($routeParams.userId1 && $routeParams.userId1 != $scope.userId1) {
@@ -1323,78 +1324,91 @@ function GraphsController($scope, $rootScope, $route, $location, Leagues, User) 
 }
 
 function NeighboursCtrl($scope, $location, localize, User, AuthUser, Leagues, $rootScope) {
-    $scope.onChangeUser = function(userId) {
-        $location.search("userId", userId);
-    }
 
     $scope.topL = localize.getLocalizedString('_topL_');
     $scope.flwL = localize.getLocalizedString('_flwL_');
     $scope.neighL = localize.getLocalizedString('_neighL_');
 
-    User.get_friends({id: AuthUser.get()}, function(data) {
-        $rootScope.$broadcast('usersLoaded', {
-            id: 'follow',
-            users: data
-        });
-    });
-
-    User.get_all({}, {}, function(data) {
-        User.query({id: AuthUser.get()},{ }, function(currentUser) {
-            var newUsers = [];
-            angular.forEach(data, function(value, key) {
-                if(value.points < currentUser.points+10000 && value.points > currentUser.points-10000) {
-                    if(value.sguid != currentUser.sguid && value.published) {
-                        newUsers.push(value);
-                    }
-                }
+    $scope.getDatas = function() {
+        User.get_friends({id: $scope.userId1}, function(data) {
+            angular.forEach(data, function(value, key){
+                data[key] = value.user;
             });
+            console.log(data);
             $rootScope.$broadcast('usersLoaded', {
-                id: 'neigh',
-                users: newUsers
+                id: 'follow',
+                users: data
             });
         });
-        
-    });
 
-
-    /**
-     * Забираем запросом список лиг.
-     * @param  {[type]} data [description]
-     * @return {[type]}      [description]
-     */
-    Leagues.query({}, {}, function(data) {
-        /**
-         * Сортируем лиги по убыванию
-         * @param  {[type]} a [description]
-         * @param  {[type]} b [description]
-         * @return {[type]}   [description]
-         */
-        data.sort(function(a,b) {
-            return a.position + b.position;
-        });
-
-        /**
-         * Получаем 3 наикрутейшие лиги
-         * @type {[type]}
-         */
-        $scope.leagues = data.splice(0,1);
-        $scope.viewedUsers = [];
-
-        /**
-         * Проходимся по оплучившемуся массиву лиг и получаем список пользователей
-         * @param  {[type]} value [description]
-         * @param  {[type]} key   [description]
-         * @return {[type]}       [description]
-         */
-        angular.forEach($scope.leagues, function(value, key) {
-            User.by_league({league_guid: value.sguid}, {}, function(userData) {
+        User.get_all({}, {}, function(data) {
+            User.query({id: $scope.userId1},{ }, function(currentUser) {
+                var newUsers = [];
+                angular.forEach(data, function(value, key) {
+                    if(value.points < currentUser.points+10000 && value.points > currentUser.points-10000) {
+                        if(value.sguid != currentUser.sguid && value.published) {
+                            newUsers.push(value);
+                        }
+                    }
+                });
                 $rootScope.$broadcast('usersLoaded', {
-                    id: 'top',
-                    users: userData
+                    id: 'neigh',
+                    users: newUsers
                 });
             });
+            
         });
-    })
+
+
+        /**
+         * Забираем запросом список лиг.
+         * @param  {[type]} data [description]
+         * @return {[type]}      [description]
+         */
+        Leagues.query({}, {}, function(data) {
+            /**
+             * Сортируем лиги по убыванию
+             * @param  {[type]} a [description]
+             * @param  {[type]} b [description]
+             * @return {[type]}   [description]
+             */
+            data.sort(function(a,b) {
+                return a.position + b.position;
+            });
+
+            /**
+             * Получаем 3 наикрутейшие лиги
+             * @type {[type]}
+             */
+            $scope.leagues = data.splice(0,1);
+            $scope.viewedUsers = [];
+
+            /**
+             * Проходимся по оплучившемуся массиву лиг и получаем список пользователей
+             * @param  {[type]} value [description]
+             * @param  {[type]} key   [description]
+             * @return {[type]}       [description]
+             */
+            angular.forEach($scope.leagues, function(value, key) {
+                User.by_league({league_guid: value.sguid}, {}, function(userData) {
+                    $rootScope.$broadcast('usersLoaded', {
+                        id: 'top',
+                        users: userData
+                    });
+                });
+            });
+        })
+    }
+
+    $scope.getDatas();
+
+    $scope.$on('updateUserControllerId', function($event, message) {
+        if(message.id == $scope.id) {
+            $scope.userId1 = mesaage.id;
+        }
+    });
+
+    
 }
 
 function LogoutController($scope, AuthUser, $location, $rootScope, $facebook) {
