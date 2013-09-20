@@ -90,7 +90,6 @@ pgrModule.run(function() {
 
 
 function onSignInCallback(authResult) {
-
     if (authResult['access_token']) {
       	gapi.client.load('oauth2', 'v2', function() {
 		  gapi.client.oauth2.userinfo.get().execute(function(resp) {
