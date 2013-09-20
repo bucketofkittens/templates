@@ -75,9 +75,6 @@ pgrModule.directive('paralaxImage', function () {
             $scope.viewedUsers.cols += 1;
           }
 
-          console.log($scope.viewedUsers.currentIndex);
-          console.log();
-
           if($scope.viewedUsers.currentIndex == userLength-1) {
             $scope.viewedUsers.currentIndex = 0;
             $scope.viewedUsers.cols = 0;

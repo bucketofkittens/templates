@@ -1135,7 +1135,7 @@ function MainController($scope, Leagues, User, AuthUser, $rootScope, $location, 
             $scope.viewedUsers[key] = userData;
             current = current + 1;
             if(key != max - 1) {
-                $scope.getRandomUser(parseInt(getRandomInt(0, data.length)), data.length, current, data);    
+                //$scope.getRandomUser(parseInt(getRandomInt(0, data.length)), data.length, current, data);    
             }
         });
     }
@@ -1143,14 +1143,12 @@ function MainController($scope, Leagues, User, AuthUser, $rootScope, $location, 
     $scope.getAllUser = function($event) {
         User.only_published({}, {}, function(data) {
             data = data.shuffle();
-            //$scope.viewedUsers = data;
-            //$scope.getRandomUser(parseInt(getRandomInt(0, data.length)), data.length, 0, data);
-            angular.forEach(data, function(value, key){
-                User.query({id: value.sguid}, {}, function(userData) {
-                    $scope.viewedUsers.push(userData);
-                });   
-            });
-            
+            $scope.viewedUsers = data;
+            $scope.getRandomUser(parseInt(getRandomInt(0, data.length)), data.length, 0, data); 
+            /*
+            if($scope.tmpFollow.length > 0) {
+                $scope.testFollow($scope.tmpFollow);
+            }*/
         });
     }
     
@@ -1179,9 +1177,9 @@ function MainController($scope, Leagues, User, AuthUser, $rootScope, $location, 
 
     $scope.onMoveToUser = function(user) {
         if($scope.rootUser.sguid) {
-            $location.path("/profile/"+$scope.rootUser.sguid+"/"+user.sguid);
+            $location.path("/profile/"+$scope.rootUser.sguid+"/"+user.user.sguid);
         } else {
-            $location.path("/profile/"+user.sguid);
+            $location.path("/profile/"+user.user.sguid);
         }
     }
 
