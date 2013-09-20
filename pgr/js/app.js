@@ -131,8 +131,12 @@ function checkAuth() {
 }
 
 function handleAuthResult(authResult) {
+	console.log(authResult);
 	if (authResult && !authResult.error) {
 	  makeApiCall();
+	} else {
+		var scope = angular.element($("body")).scope();
+	    scope.gplusFalse();
 	}
 }
 

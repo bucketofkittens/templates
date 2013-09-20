@@ -931,7 +931,13 @@ function LoginController($scope, Sessions, $rootScope, AuthUser, User, Social, $
 
     $scope.socialFacebookLogin = function() {
         $rootScope.$broadcast('loaderShow');
-        $facebook.login();
+        FB.login(function(response) {
+            if(!response.authResponse) {
+                $scope.$apply(function() {
+                    $rootScope.$broadcast('loaderHide');
+                });
+            }
+        });
     }
 
     $scope.socialGooglePlusLogin = function() {
@@ -939,11 +945,12 @@ function LoginController($scope, Sessions, $rootScope, AuthUser, User, Social, $
         gapi.auth.authorize({
             client_id: socialsAccess.googlePlus.applicationId[window.location.hostname], 
             scope: socialsAccess.googlePlus.scopes, 
-            immediate: true
+            immediate: false
         }, handleAuthResult);
     }
 
     $scope.$on('fb.auth.authResponseChange', function(data, d) {
+        console.log(d);
         FB.api('/me', function(response) {
             Social.login({}, {email: response.email}, function(data) {
                 AuthUser.set(data.guid);
@@ -1552,6 +1559,10 @@ function RootController($scope, AuthUser, User, $rootScope, Needs, Social) {
                 $rootScope.$broadcast('loaderHide');
             });
         });
+    }
+
+    $scope.gplusFalse = function() {
+        $rootScope.$broadcast('loaderHide');
     }
 }
 
