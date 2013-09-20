@@ -1,14 +1,14 @@
 <table id="graphs">
 	<tbody>
 	
-		<tr ng-repeat="(lKey,lItem) in leagues | orderBy:'league.position':true"	>
+		<tr ng-repeat="(lKey,lItem) in leagues | orderBy:'position':true"	>
 			<th>
-				{{(lItem.league.position+1)*10000}}
+				{{(lItem.position+1)*10000}}
 			</th>
-			<td ng-repeat="(uKey,uItem) in lItem.league.users" points" data-points="{{uItem.user.points}}" data-step="{{lItem.league.position+1}}">
-				<a ng-if="uItem.user" href="#/profile/{{uItem.user.sguid}}">
-					<img ng-if="uItem.user.avatar.full_path" src="{{uItem.user.avatar.full_path}}" />
-					<img ng-if="!uItem.user.avatar.full_path" src="./images/unknown-person.png" />	
+			<td ng-repeat="(uKey,uItem) in lItem.users" points" data-points="{{uItem.points}}" data-step="{{lItem.position+1}}">
+				<a ng-if="uItem.name" href="#/profile/{{uItem.sguid}}">
+					<img ng-if="uItem.avatar" ng-src="{{uItem.avatar}}" />
+					<img ng-if="!uItem.avatar" src="./images/unknown-person.png" />	
 				</a>
 			</td>
 		</tr>
@@ -52,9 +52,9 @@
 
 <ul id="loosers">
 	<li ng-repeat="(uKey,uItem) in looserUser">
-		<a ng-if="uItem.user" href="#/profile/{{uItem.user.sguid}}">
-			<img ng-if="uItem.user.avatar.full_path" src="{{uItem.user.avatar.full_path}}" />
-			<img ng-if="!uItem.user.avatar.full_path" src="./images/unknown-person.png" />	
+		<a ng-if="uItem" href="#/profile/{{uItem.sguid}}">
+			<img ng-if="uItem.avatar" src="{{uItem.avatar}}" />
+			<img ng-if="!uItem.avatar" src="./images/unknown-person.png" />	
 		</a>
 	</li>
 </ul>

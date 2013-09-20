@@ -1268,10 +1268,10 @@ function GraphsController($scope, $rootScope, $route, $location, Leagues, User) 
         $scope.leagues = data;
 
         angular.forEach($scope.leagues, function(value, key){
-            User.by_league({league_guid:value.league.sguid}, {}, function(v2, k2){
+            User.by_league({league_guid:value.sguid}, {}, function(v2, k2){
                 var user2 = [];
                 angular.forEach(v2, function(value, key){
-                    if(value.user.published == 1) {
+                    if(value.published == 1) {
                         user2.push(value);
                     }
                 });
@@ -1284,7 +1284,7 @@ function GraphsController($scope, $rootScope, $route, $location, Leagues, User) 
                     }
                 }
                 
-                value.league.users = users;
+                value.users = users;
             })
         });
 
@@ -1292,7 +1292,7 @@ function GraphsController($scope, $rootScope, $route, $location, Leagues, User) 
 
     User.get_all({}, {}, function(datas) {
         $scope.looserUser = datas.filter(function(item) {
-            if(!item.user.league) {
+            if(!item.league) {
                 return item;
             }
         });
