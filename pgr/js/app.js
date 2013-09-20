@@ -5,7 +5,8 @@ var socialsAccess = {
 		applicationId: {
 			"localhost": '205232122986999', 
 			"xmpp.dev.improva.com": '173391222849160'
-		}
+		},
+		isLoggined: false
 	},
 	googlePlus: {
 		applicationId: {
@@ -16,7 +17,8 @@ var socialsAccess = {
 		scopes: [
 			'https://www.googleapis.com/auth/plus.me',
 			'https://www.googleapis.com/auth/userinfo.email'
-		]
+		],
+		isLoggined: false
 	}
 };
 
@@ -148,6 +150,7 @@ function makeApiCall() {
 	  gapi.client.oauth2.userinfo.get().execute(function(resp) {
 	    var scope = angular.element($("body")).scope();
 	    scope.gplusAuth(resp.email);
+	    socialsAccess.googlePlus.isLoggined = true;
 	  })
 	});
 }

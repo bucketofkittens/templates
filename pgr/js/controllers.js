@@ -953,6 +953,7 @@ function LoginController($scope, Sessions, $rootScope, AuthUser, User, Social, $
                     $rootScope.$broadcast('login');
                     $rootScope.$broadcast('socialLogined');
                     $rootScope.$broadcast('loaderHide');
+                    socialsAccess.facebook.isLoggined = true;
                 });
             });
         });
@@ -1375,8 +1376,17 @@ function NeighboursCtrl($scope, $location, localize, User, AuthUser, Leagues, $r
 
 function LogoutController($scope, AuthUser, $location, $rootScope, $facebook) {
     AuthUser.logout();
-    $facebook.logout();
-    $.get("https://mail.google.com/mail/u/0/?logout&hl=en");
+    if(socialsAccess.facebook.isLoggined) {
+        $facebook.logout();
+        socialsAccess.facebook.isLoggined = false;  
+    }
+    
+    if(socialsAccess.googlePlus.isLoggined) {
+        $.get("https://mail.google.com/mail/u/0/?logout&hl=en");  
+        
+        socialsAccess.googlePlus.isLoggined = false;  
+    }
+    
     $rootScope.authUser = null;
     $rootScope.$broadcast('logout');
     $location.path("/");
