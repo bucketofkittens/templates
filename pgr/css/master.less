@@ -1062,12 +1062,12 @@ body {
                         right: 0%;
                         padding: 10%;
                         -webkit-transform: translateZ(0);
-                        &:first-child {
+                        &:nth-child(3) {
                             top: 75%;
                             right: auto;
                             left: 30%;
                         }
-                        &:nth-child(2) {
+                        &:first-child {
                             top: 18%;
                             right: auto;
                             left: 17%;
@@ -1076,7 +1076,7 @@ body {
                             font-weight: normal;
                             text-align: left;
                         }
-                        &:nth-child(3) {
+                        &:nth-child(2) {
                             right: auto;
                             left: 0%;
                         }
@@ -1381,14 +1381,18 @@ body {
             &.show {
                 sub {
                     display: block;
+                    height: 100%;
                     a {
                         font-size: 80%;
-                        padding: 2%;
                         color: #ffffff;
-                        position: relative;
+                        position: absolute;
                         top: 10%;
                         left: 5%;
                         border: 0px !important;
+                        &.compare {
+                            bottom: 25%;
+                            top: auto !important;
+                        }
                     }
                 }
             }

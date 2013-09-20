@@ -1202,12 +1202,13 @@ function MainController($scope, Leagues, User, AuthUser, $rootScope, $location, 
     }
 
     $scope.onMoveToUser = function(user) {
-        if($scope.rootUser.sguid) {
-            $location.path("/profile/"+$scope.rootUser.sguid+"/"+user.sguid);
-        } else {
-            $location.path("/profile/"+user.sguid);
-        }
+        $location.path("/profile/"+user.sguid);
     }
+
+    $scope.onCompareToUser = function(user) {
+        $location.path("/profile/"+$scope.rootUser.sguid+"/"+user.sguid);
+    }
+
 
     $scope.onMouseEnterUser = function(user) {
         if(!user.dragged) {
