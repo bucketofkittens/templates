@@ -24,10 +24,11 @@
 			<a ng-if="userItem && userItem.name" ng-click="onUserTouch(userItem)" ng-mouseleave="onMouseLeaveUser(userItem)" ng-mouseenter="onMouseEnterUser(userItem)" >
 				<img class="repeat-item" ng-src="{{userItem.avatar}}" alt="" err-src="/images/unknown-person.png" />
 				<span>{{userItem.points}}</span>
-				<sub ng-class="{show: userItem.showHint}">{{userItem.name}} {{userItem.profession.name}}</sub>
 				<i></i>
 				<div class="fallout" ng-class="{show: userItem.showMenu}">
 					<b ng-click="onMoveToUser(userItem)">Compare</b>
+					<b>{{userItem.name}}<br />{{userItem.profession.name}}</b>
+					<b ng-click="">View</b>
 					<b ng-click="onFollow($event, userItem)" ng-if="rootUser && !userItem.isFrend">Follow</b>
 					<b ng-click="onUnFollow($event, userItem)" ng-if="rootUser && userItem.isFrend">Unfollow</b>
 				</div>

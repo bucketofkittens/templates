@@ -1032,7 +1032,6 @@ body {
                 }
                 .fallout {
                     vertical-align: middle;
-                    text-align: center;
                     border-radius: 100%;
                     background: rgba(0, 0, 0, 0.7);
                     position: absolute;
@@ -1059,12 +1058,27 @@ body {
                         display: block;
                         position: absolute;
                         cursor: pointer;
-                        top: 5%;
-                        left: 33%;
+                        top: 40%;
+                        right: 0%;
                         padding: 10%;
                         -webkit-transform: translateZ(0);
                         &:first-child {
                             top: 75%;
+                            right: auto;
+                            left: 30%;
+                        }
+                        &:nth-child(2) {
+                            top: 18%;
+                            right: auto;
+                            left: 17%;
+                            text-shadow: none;
+                            font-size: 90%;
+                            font-weight: normal;
+                            text-align: left;
+                        }
+                        &:nth-child(3) {
+                            right: auto;
+                            left: 0%;
                         }
                     }
                 }
