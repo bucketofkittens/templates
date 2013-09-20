@@ -950,7 +950,6 @@ body {
         position: relative;
         margin: 0px auto;
         li {
-            height: 7%;
             width: 10%;
             display: inline-block;
             position: absolute;
@@ -958,7 +957,6 @@ body {
             transition: all 2s ease-out;
             -webkit-transition: all 2s ease-out;
             min-width: 10%;
-            max-height: 7%;
             &.showMenu {
                 z-index: 499 !important;
             }
@@ -974,7 +972,7 @@ body {
             }
             &.show {
                -webkit-transform: rotateY( 0deg );
-             -moz-transform: rotateY( 0deg );
+               -moz-transform: rotateY( 0deg );
                -o-transform: rotateY( 0deg );
                   transform: rotateY( 0deg );
             }
@@ -1013,9 +1011,10 @@ body {
                     opacity: 0;
                     z-index: 8;
                     width: 100%;
-                    height: auto;
+                    height: 100%;
                     transition: all 2s ease-out;
                     -webkit-transition: all 2s ease-out;
+                    display: block;
                 }
                 i {
                     position: absolute;

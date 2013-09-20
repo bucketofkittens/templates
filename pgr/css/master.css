@@ -86,13 +86,13 @@ body header .social a:last-child{background-position:100% 0}
 #modal-shadow{position:absolute;left:0;top:0;width:100%;height:100%;background:rgba(0,0,0,0.5);display:none;z-index:2500;text-align:center}#modal-shadow.show{display:block}
 #modal-shadow img{display:inline-block;position:relative;top:50%}
 #main_leagues>img{position:absolute;left:50%;top:50%}
-#main_leagues ul{width:100%;text-align:center;position:relative;margin:0 auto}#main_leagues ul li{height:7%;width:10%;display:inline-block;position:absolute;line-height:100%;transition:all 2s ease-out;-webkit-transition:all 2s ease-out;min-width:10%;max-height:7%}#main_leagues ul li.showMenu{z-index:499 !important}
+#main_leagues ul{width:100%;text-align:center;position:relative;margin:0 auto}#main_leagues ul li{width:10%;display:inline-block;position:absolute;line-height:100%;transition:all 2s ease-out;-webkit-transition:all 2s ease-out;min-width:10%}#main_leagues ul li.showMenu{z-index:499 !important}
 #main_leagues ul li.rotate{-webkit-animation:rotate 2s linear 0 normal;-moz-animation:rotate 2s linear 0 normal;-o-animation:rotate 2s linear 0 normal;-ms-animation:rotate 2s linear 0 normal;animation:rotate 2s linear 0 normal}#main_leagues ul li.rotate img{opacity:1}
 #main_leagues ul li.show{-webkit-transform:rotateY(0deg);-moz-transform:rotateY(0deg);-o-transform:rotateY(0deg);transform:rotateY(0deg)}
 #main_leagues ul li.ui-draggable-dragging{height:10%;width:10%}
 #main_leagues ul li a{position:relative;display:block}#main_leagues ul li a sub{display:none;position:absolute;top:0;left:0;padding:8% 0 0 7%;width:93%;height:92%;color:#fff;background:rgba(0,0,0,0.3)}#main_leagues ul li a sub.show{display:block}
 #main_leagues ul li a span{position:absolute;bottom:0;right:0;width:100%;color:#000;font-size:90%;text-align:right;z-index:10}
-#main_leagues ul li a img{opacity:0;z-index:8;width:100%;height:auto;transition:all 2s ease-out;-webkit-transition:all 2s ease-out}
+#main_leagues ul li a img{opacity:0;z-index:8;width:100%;height:100%;transition:all 2s ease-out;-webkit-transition:all 2s ease-out;display:block}
 #main_leagues ul li a i{position:absolute;top:0;left:0;width:100%;height:100%;background-size:cover !important;z-index:9;transition:all .5s ease-out;-webkit-transition:all .5s ease-out}
 #main_leagues ul li a .fallout{vertical-align:middle;text-align:center;border-radius:100%;background:rgba(0,0,0,0.7);position:absolute;top:50%;left:50%;width:0;height:0;transition:all .5s ease-out;-webkit-transition:all .5s ease-out;overflow:hidden;z-index:10}#main_leagues ul li a .fallout.show{width:200%;height:200%;top:-50%;left:-50%}
 #main_leagues ul li a .fallout b{color:#fff;text-shadow:0 0 5px #000;font-size:80%;font-weight:bold;display:block;position:absolute;cursor:pointer;top:10%;left:40%}#main_leagues ul li a .fallout b:first-child{top:85%}
