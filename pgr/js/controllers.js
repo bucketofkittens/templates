@@ -179,7 +179,6 @@ function UserController($scope, $route, $routeParams, User, Needs, Professions, 
      */
     $scope.getUserInfo = function() {
         User.query({id: $scope.currentUserId}, function(data) {
-            console.log(data);
             $scope.user = data;
             
             if($scope.user.league) {
@@ -359,7 +358,7 @@ function UserController($scope, $route, $routeParams, User, Needs, Professions, 
     }
 
     /**
-     * Публикая профиля
+     * Публикация профиля
      * Пока не работает нет backend
      * @param  {[type]} $event [description]
      * @return {[type]}        [description]
@@ -930,23 +929,20 @@ function LoginController($scope, Sessions, $rootScope, AuthUser, User, Social, $
     };
 
     $scope.socialLogin = function() {
-        console.log($facebook);
         $facebook.login();
     }
 
     $scope.$on('fb.auth.login', function(data) {
         Social.login({}, {email: data.email}, function(data) {
-            console.log(data);
         });
+        /*Social.login({}, {email: data.email}, function(data) {
+        });*/
     });
 
     $scope.$on('fb.auth.authResponseChange', function(data, d) {
-        console.log(d);
         FB.api('/me', function(response) {
-            Social.login({}, {email: data.email}, function(data) {
-                console.log(data);
+            Social.login({}, {email: response.email}, function(data) {
             });
-           console.log(response);
         });
     })
     
@@ -1388,11 +1384,17 @@ function CompareController($scope) {
 	  needsValues[message.userId] = message.needsValues;
 	  if(needsCountLoaded == 2) {
 	      angular.forEach(needsValues[$scope.userId2], function(value, key){
-	          if(value < needsValues[$scope.userId1][key]) {
-	              $("li[data-needId='"+key+"'] .cr", $("#compare")).append('<sup class="du"></sup>');
-	          } else {
-	              $("li[data-needId='"+key+"'] .cr", $("#compare")).append('<sub class="du"></sub>');
-	          }
+
+				if(value < needsValues[$scope.userId1][key]) {
+				  $("li[data-needId='"+key+"'] .cr", $("#compare")).append('<sup class="du"></sup>');
+				} 
+				if(value > needsValues[$scope.userId1][key]) {
+				  $("li[data-needId='"+key+"'] .cr", $("#compare")).append('<sub class="du"></sub>');
+				} 
+				if(value == needsValues[$scope.userId1][key]) {
+				  $("li[data-needId='"+key+"'] .cr", $("#compare")).append('<s class="du"></s>');
+				} 
+
 	      });
           needsCountLoaded = 1;
 	  }
@@ -1524,7 +1526,6 @@ function LeaguesController($scope, Leagues, User) {
 
 	$scope.onLeagUser = function(item){
 		$scope.currentLeague = item;
-        console.log(item);
 	   angular.forEach($scope.leaguesTop, function(value, key){
 	      value.curleag = false;
 	   });
