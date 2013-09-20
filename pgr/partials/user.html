@@ -88,20 +88,6 @@
 			<i ng-if="!isEdit">{{user.name}}</i>
 		</p>
 		<p>
-			<label for="name_i">{{'_NameL_' | i18n}}:</label> 
-			<input 
-				type="text" 
-				id="name_i" 
-				class="clean form-control" 
-				ng-model="user.name"
-				readonly="readonly"
-				required
-				ng-minlength="6"
-				ng-click="onElementClick($event)"
-				ng-if="isEdit" />
-			<i ng-if="!isEdit">{{user.login}}</i>
-		</p>
-		<p>
 			<label for="email_i">{{'_EmaiL_' | i18n}}:</label> 
 			<input 
 				type="email" 
