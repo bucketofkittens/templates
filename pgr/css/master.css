@@ -90,12 +90,12 @@ body header .social a:last-child{background-position:100% 0}
 #main_leagues ul li.rotate{-webkit-animation:rotate 2s linear 0 normal;-moz-animation:rotate 2s linear 0 normal;-o-animation:rotate 2s linear 0 normal;-ms-animation:rotate 2s linear 0 normal;animation:rotate 2s linear 0 normal;-webkit-backface-visibility:hidden;-webkit-perspective:1000}#main_leagues ul li.rotate img{opacity:1}
 #main_leagues ul li.show{-webkit-transform:rotateY(0deg);-moz-transform:rotateY(0deg);-o-transform:rotateY(0deg);transform:rotateY(0deg)}
 #main_leagues ul li.ui-draggable-dragging{height:10%;width:10%}
-#main_leagues ul li a{position:relative;display:block;-webkit-transform:translateZ(0)}#main_leagues ul li a sub{position:absolute;top:0;left:0;padding:8% 0 0 7%;width:93%;height:0;color:#fff;background:rgba(0,0,0,0.3);-webkit-transform:translateZ(0);transition:all .5s ease-out;-webkit-transition:all .5s ease-out;oveflow:hidden;opacity:0}#main_leagues ul li a sub.show{height:90%;opacity:1}
+#main_leagues ul li a{position:relative;display:block;-webkit-transform:translateZ(0)}#main_leagues ul li a sub{position:absolute;top:0;left:0;padding:5% 0 0 7%;width:93%;height:0;color:#fff;background:rgba(0,0,0,0.3);-webkit-transform:translateZ(0);transition:all .5s ease-out;-webkit-transition:all .5s ease-out;oveflow:hidden;opacity:0}#main_leagues ul li a sub.show{height:90%;opacity:1}
 #main_leagues ul li a span{position:absolute;bottom:5%;right:3%;width:100%;color:#000;font-size:90%;text-align:right;z-index:10;-webkit-transform:translateZ(0)}
 #main_leagues ul li a img{opacity:0;z-index:8;width:100%;height:auto;-webkit-transform:translateZ(0)}
 #main_leagues ul li a i{position:absolute;top:0;left:0;width:100%;height:96.5%;background-size:cover !important;z-index:9;transition:all .5s ease-out;-webkit-transition:all .5s ease-out;-webkit-transform:translateZ(0)}
 #main_leagues ul li a .fallout{vertical-align:middle;text-align:center;border-radius:100%;background:rgba(0,0,0,0.7);position:absolute;top:50%;left:50%;width:0;height:0;transition:all .5s ease-out;-webkit-transition:all .5s ease-out;overflow:hidden;z-index:10;-webkit-transform:translateZ(0)}#main_leagues ul li a .fallout.show{width:200%;height:200%;top:-50%;left:-50%}
-#main_leagues ul li a .fallout b{color:#fff;text-shadow:0 0 5px #000;font-size:80%;font-weight:bold;display:block;position:absolute;cursor:pointer;top:10%;left:40%;padding:10%;-webkit-transform:translateZ(0)}#main_leagues ul li a .fallout b:first-child{top:85%}
+#main_leagues ul li a .fallout b{color:#fff;text-shadow:0 0 5px #000;font-size:80%;font-weight:bold;display:block;position:absolute;cursor:pointer;top:5%;left:33%;padding:10%;-webkit-transform:translateZ(0)}#main_leagues ul li a .fallout b:first-child{top:75%}
 #main_leagues ul li.league_ img{opacity:.5}
 #main_leagues ul li.league_ i{background:none}
 #main_leagues ul li.league_10 img{opacity:.6}
@@ -152,5 +152,5 @@ body header .social a:last-child{background-position:100% 0}
 #follow_tab ul{margin-left:1%;padding-top:.3%}#follow_tab ul li{display:inline-block;width:10%;margin:.1%;position:relative;overflow:hidden}#follow_tab ul li:first-child{margin:0 1.5% 0 .5%;box-shadow:0 0 3px 2px rgba(0,0,0,0.3)}
 #follow_tab ul li img{height:auto;display:block}
 #follow_tab ul li sub{display:none;position:absolute;top:0;left:0;padding:8% 0 0 7%;width:100%;color:#fff;bottom:-2%;background:rgba(0,0,0,0.5)}
-#follow_tab ul li.show sub{display:block}#follow_tab ul li.show sub a{padding:2%;color:#fff;position:relative;top:10%;border:0 !important}
+#follow_tab ul li.show sub{display:block}#follow_tab ul li.show sub a{font-size:80%;padding:2%;color:#fff;position:relative;top:10%;left:5%;border:0 !important}
 #follow_tab a{position:absolute;top:40%;right:1%;cursor:pointer;width:0;height:0;border-style:solid;border-width:10px 0 10px 20px;border-color:transparent transparent transparent #028eda}

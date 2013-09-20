@@ -3,9 +3,12 @@
 		<li>
 			<img ng-click="onCompare(rootUser)" ng-src="{{rootUser.avatar}}" err-src="/images/unknown-person.png" />
 		</li>
-		<li ng-class="{show: userItem.user.show}" ng-mouseleave="onMouseLeaveUser(userItem.user)" ng-mouseenter="onMouseEnterUser(userItem.user)" ng-repeat="userItem in userFrends">
+		<li ng-class="{show: userItem.user.show}" ng-mouseleave="onMouseLeaveUser(userItem.user)" ng-click="onMouseEnterUser(userItem.user)" ng-mouseenter="onMouseEnterUser(userItem.user)" ng-repeat="userItem in userFrends">
 			<img ng-click="onCompare(userItem.user)" ng-src="{{userItem.user.avatar}}" alt="" err-src="/images/unknown-person.png" />
-			<sub ng-if="onTips != false" ng-click="onCompare(userItem.user)"><a ng-click="onUnfollow(userItem.user)">Unfollow</a></sub>
+			<sub ng-if="onTips != false">
+				<a ng-click="onUnfollow(userItem.user)">Unfollow</a>
+				<a ng-click="onCompare(userItem.user)">Compare</a>
+			</sub>
 		</li>
 	</ul>
 	<a ng-if="onMove != false" ng-click="onMoveToUser()"></a>

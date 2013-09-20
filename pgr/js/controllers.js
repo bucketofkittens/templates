@@ -1057,6 +1057,14 @@ function FollowController($scope, $rootScope, User, $location, $routeParams, Aut
         });
     }
 
+    $scope.onCompare = function(user) {
+        if($scope.rootUser.sguid) {
+            $location.path("/profile/"+$scope.rootUser.sguid+"/"+user.sguid);
+        } else {
+            $location.path("/profile/"+user.sguid);
+        }
+    }
+
     if($rootScope.authUserId) {
         User.get_friends({id: $rootScope.authUserId}, {}, function(data) {
             $scope.userFrends = data;
@@ -1191,7 +1199,6 @@ function MainController($scope, Leagues, User, AuthUser, $rootScope, $location, 
                 $location.path("/profile/"+droppedId+"/"+dropId);   
             })
         }
-        
     }
 
     $scope.onMoveToUser = function(user) {
@@ -1213,6 +1220,13 @@ function MainController($scope, Leagues, User, AuthUser, $rootScope, $location, 
                 }
             }, 2000);   
         }
+    }
+
+    $scope.onUserTouch = function(user) {
+        angular.forEach($scope.viewedUsers, function(value, key) {
+            value.showMenu = false;
+        });
+        user.showMenu = user.showMenu == true ? false : true;
     }
 
     $scope.onMouseLeaveUser = function(user) {

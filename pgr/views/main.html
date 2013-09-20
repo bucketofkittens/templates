@@ -21,7 +21,7 @@
 			ng-repeat="userItem in viewedUsers"
 			ng-class="{showMenu: userItem.showMenu}"
 			class="league_{{userItem.league.name}}">
-			<a ng-if="userItem && userItem.name" ng-mouseleave="onMouseLeaveUser(userItem)" ng-mouseenter="onMouseEnterUser(userItem)" >
+			<a ng-if="userItem && userItem.name" ng-click="onUserTouch(userItem)" ng-mouseleave="onMouseLeaveUser(userItem)" ng-mouseenter="onMouseEnterUser(userItem)" >
 				<img class="repeat-item" ng-src="{{userItem.avatar}}" alt="" err-src="/images/unknown-person.png" />
 				<span>{{userItem.points}}</span>
 				<sub ng-class="{show: userItem.showHint}">{{userItem.name}} {{userItem.profession.name}}</sub>
