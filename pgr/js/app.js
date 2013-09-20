@@ -121,7 +121,6 @@ function handleAuthResult(authResult) {
 }
 
 function handleAuthClick(event) {
-	console.log(clientId[window.location.hostname]);
 	gapi.auth.authorize({client_id: clientId[window.location.hostname], scope: scopes, immediate: false}, handleAuthResult);
 	return false;
 }
@@ -130,7 +129,6 @@ function makeApiCall() {
 
 	gapi.client.load('oauth2', 'v2', function() {
 	  gapi.client.oauth2.userinfo.get().execute(function(resp) {
-	  	console.log(resp);
 	    var scope = angular.element($("body")).scope();
 	    scope.gplusAuth(resp.email);
 	  })
