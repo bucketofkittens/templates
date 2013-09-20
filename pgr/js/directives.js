@@ -25,8 +25,11 @@ pgrModule.directive('paralaxImage', function () {
     link: function($scope, element, attrs) {
       var userLength = $scope.viewedUsers.length;
       var cellsCount = 10;
-
-      $("#main_leagues ul").css("height", $(window).height()*2).css("width", $(window).width());
+      var step = 2;
+      if($(window).width() < 1100) {
+        step = 1.5;
+      }
+      $("#main_leagues ul").css("height", $(window).height()*step).css("width", $(window).width());
 
       attrs.$observe('src', function (v) {
           $(element).addClass("rotate"); 
