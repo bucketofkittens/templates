@@ -3,7 +3,7 @@
 body{width:100%;height:100%;font-family:'Helvetica Neue Light';-moz-font-smoothing:antialiased;-webkit-font-smoothing:antialiased}body .shadow{background:rgba(0,0,0,0.5);z-index:10;position:absolute;width:100%;height:100%;display:none}
 body header{height:8%;width:100%;background:#000;position:absolute;top:0;z-index:5;overflow:hidden}body header .logo{width:30%;height:100%;margin:0 12% 0 3%;position:relative;display:inline-block}body header .logo img{position:absolute;height:90%;display:inline-block}
 body header ul{display:inline-block;vertical-align:top;position:relative;right:0;width:42%;text-align:right}body header ul li{margin:3%;display:inline-block;vertical-align:top}
-body header ul a{color:#fff;text-decoration:none;font-family:'Helvetica Neue';font-size:140%;text-transform:uppercase}body header ul a:hover{color:#fff}
+body header ul a{color:#fff;text-decoration:none;font-family:'Helvetica Neue';font-size:120%;text-transform:uppercase}body header ul a:hover{color:#fff}
 body header ul a.current{color:#028dda}
 body header .social{width:12%;height:50%;vertical-align:top;display:inline-block;position:absolute;top:10%;right:0;text-decoration:none}body header .social a{background:url("../images/icons.png") center center no-repeat;width:15%;height:100%;margin:5% 7%;display:inline-block;overflow:hidden;background-position:50% 0;background-size:500% 65%}body header .social a:first-child{background-position:0 0}
 body header .social a:last-child{background-position:100% 0}
@@ -83,8 +83,8 @@ body header .social a:last-child{background-position:100% 0}
 .registration.modal .modal-body form,.login.modal .modal-body form{width:100%}.registration.modal .modal-body form p,.login.modal .modal-body form p{margin:5% 20%;font-size:100%}
 .registration.modal .modal-body input.ng-invalid:not(.ng-pristine),.login.modal .modal-body input.ng-invalid:not(.ng-pristine){color:#b94a48;border-color:#ee5f5b;border-color:#e9322d !important;-webkit-box-shadow:0 0 6px #f8b9b7 !important;-moz-box-shadow:0 0 6px #f8b9b7 !important;box-shadow:0 0 6px #f8b9b7 !important}
 .login.modal{top:30% !important}
-#modal-shadow{position:absolute;left:0;top:0;width:100%;height:100%;background:rgba(0,0,0,0.5);display:none;z-index:2500;text-align:center}#modal-shadow.show{display:block}
-#modal-shadow img{display:inline-block;position:relative;top:50%}
+#modal-shadow{position:fixed;left:0;top:0;width:100%;height:100%;background:rgba(0,0,0,0.5);display:none;z-index:2500;text-align:center}#modal-shadow.show{display:block}
+#modal-shadow img{display:inline-block;position:relative;z-index:9999;margin-top:20%}
 #main_leagues>img{position:absolute;left:50%;top:50%}
 #main_leagues ul{width:100%;text-align:center;position:relative;margin:0 auto}#main_leagues ul li{width:10%;display:inline-block;position:absolute;line-height:100%;transition:all 2s ease-out;-webkit-transition:all 2s ease-out;min-width:10%;max-height:10%;-webkit-transform:translateZ(0)}#main_leagues ul li.showMenu{z-index:499 !important}
 #main_leagues ul li.rotate{-webkit-animation:rotate 2s linear 0 normal;-moz-animation:rotate 2s linear 0 normal;-o-animation:rotate 2s linear 0 normal;-ms-animation:rotate 2s linear 0 normal;animation:rotate 2s linear 0 normal}#main_leagues ul li.rotate img{opacity:1}
@@ -93,7 +93,7 @@ body header .social a:last-child{background-position:100% 0}
 #main_leagues ul li a{position:relative;display:block}#main_leagues ul li a sub{display:none;position:absolute;top:0;left:0;padding:8% 0 0 7%;width:93%;height:92%;color:#fff;background:rgba(0,0,0,0.3)}#main_leagues ul li a sub.show{display:block}
 #main_leagues ul li a span{position:absolute;bottom:0;right:0;width:100%;color:#000;font-size:90%;text-align:right;z-index:10}
 #main_leagues ul li a img{opacity:0;z-index:8;width:100%;height:auto;transition:all 2s ease-out;-webkit-transition:all 2s ease-out;-webkit-transform:translateZ(0)}
-#main_leagues ul li a i{position:absolute;top:0;left:0;width:100%;height:100%;background-size:cover !important;z-index:9;transition:all .5s ease-out;-webkit-transition:all .5s ease-out}
+#main_leagues ul li a i{position:absolute;top:0;left:0;width:100%;height:96.5%;background-size:cover !important;z-index:9;transition:all .5s ease-out;-webkit-transition:all .5s ease-out}
 #main_leagues ul li a .fallout{vertical-align:middle;text-align:center;border-radius:100%;background:rgba(0,0,0,0.7);position:absolute;top:50%;left:50%;width:0;height:0;transition:all .5s ease-out;-webkit-transition:all .5s ease-out;overflow:hidden;z-index:10}#main_leagues ul li a .fallout.show{width:200%;height:200%;top:-50%;left:-50%}
 #main_leagues ul li a .fallout b{color:#fff;text-shadow:0 0 5px #000;font-size:80%;font-weight:bold;display:block;position:absolute;cursor:pointer;top:10%;left:40%;padding:10%;background:#000;border-radius:100%}#main_leagues ul li a .fallout b:first-child{top:85%}
 #main_leagues ul li.league_{opacity:.5}#main_leagues ul li.league_ i{background:none}

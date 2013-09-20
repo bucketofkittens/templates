@@ -1,9 +1,24 @@
 'use strict';
 
-var clientId = {"localhost": '339940198985.apps.googleusercontent.com', "xmpp.dev.improva.com": "339940198985-h79e4hvjp9b2658og8o849u3blaootub.apps.googleusercontent.com"};
-var apiKey = 'AIzaSyBUJ3rialFIcJ5QvuWFkvPqmFbTBIZ2Kmo';
-var scopes = ['https://www.googleapis.com/auth/plus.me','https://www.googleapis.com/auth/userinfo.email'];
-var faceBookIds = {"localhost": '173391222849160', "xmpp.dev.improva.com": '173391222849160'};
+var socialsAccess = {
+	facebook: {
+		applicationId: {
+			"localhost": '205232122986999', 
+			"xmpp.dev.improva.com": '173391222849160'
+		}
+	},
+	googlePlus: {
+		applicationId: {
+			"localhost": '339940198985.apps.googleusercontent.com', 
+			"xmpp.dev.improva.com": "339940198985-h79e4hvjp9b2658og8o849u3blaootub.apps.googleusercontent.com"
+		},
+		apiKey: 'AIzaSyBUJ3rialFIcJ5QvuWFkvPqmFbTBIZ2Kmo',
+		scopes: [
+			'https://www.googleapis.com/auth/plus.me',
+			'https://www.googleapis.com/auth/userinfo.email'
+		]
+	}
+};
 
 /**
  * Основной модуль приложения
@@ -69,24 +84,23 @@ pgrModule.config(function($routeSegmentProvider, $routeProvider) {
 });
 pgrModule.config(function($facebookProvider) {
 	$facebookProvider.setPermissions("email");
-	$facebookProvider.setAppId(faceBookIds[window.location.hostname]);
+	$facebookProvider.setAppId(socialsAccess.facebook.applicationId[window.location.hostname]);
 });
 
 pgrModule.run(function() {
 	(function(d, s, id){
-     var js, fjs = d.getElementsByTagName(s)[0];
-     if (d.getElementById(id)) {return;}
-     js = d.createElement(s); js.id = id;
-     js.src = "//connect.facebook.net/en_US/all.js";
-     fjs.parentNode.insertBefore(js, fjs);
-   }(document, 'script', 'facebook-jssdk'));
+	 var js, fjs = d.getElementsByTagName(s)[0];
+	 if (d.getElementById(id)) {return;}
+	 js = d.createElement(s); js.id = id;
+	 js.src = "//connect.facebook.net/en_US/all.js";
+	 fjs.parentNode.insertBefore(js, fjs);
+	}(document, 'script', 'facebook-jssdk'));
 
-   // Asynchronously load the G+ SDK.
-    (function() {
-      var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
-      po.src = 'https://apis.google.com/js/client:plusone.js';
-      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
-    })();
+	(function() {
+	  var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+	  po.src = 'https://apis.google.com/js/client:plusone.js';
+	  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+	})();
 })
 
 
@@ -98,9 +112,6 @@ function onSignInCallback(authResult) {
 		    scope.gplusAuth(resp.email);
 		  })
 		});
-
-    } else if (authResult['error']) {
-      // User has not authorized the G+ App!
     }
 }
 
@@ -110,23 +121,29 @@ function handleClientLoad() {
 }
 
 function checkAuth() {
-	gapi.auth.authorize({client_id: clientId[window.location.hostname], scope: scopes, immediate: true}, handleAuthResult);
+	gapi.auth.authorize({
+		client_id: socialsAccess.googlePlus.applicationId[window.location.hostname], 
+		scope: socialsAccess.googlePlus.scopes, 
+		immediate: true
+	}, handleAuthResult);
 }
 
 function handleAuthResult(authResult) {
-	var authorizeButton = document.getElementById('authorize-button');
 	if (authResult && !authResult.error) {
 	  makeApiCall();
 	}
 }
 
 function handleAuthClick(event) {
-	gapi.auth.authorize({client_id: clientId[window.location.hostname], scope: scopes, immediate: false}, handleAuthResult);
+	gapi.auth.authorize({
+		client_id: socialsAccess.googlePlus.applicationId[window.location.hostname], 
+		scope: socialsAccess.googlePlus.scopes, 
+		immediate: true
+	}, handleAuthResult);
 	return false;
 }
 
 function makeApiCall() {
-
 	gapi.client.load('oauth2', 'v2', function() {
 	  gapi.client.oauth2.userinfo.get().execute(function(resp) {
 	    var scope = angular.element($("body")).scope();

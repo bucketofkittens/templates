@@ -930,20 +930,18 @@ function LoginController($scope, Sessions, $rootScope, AuthUser, User, Social, $
     };
 
     $scope.socialFacebookLogin = function() {
+        $rootScope.$broadcast('loaderShow');
         $facebook.login();
     }
 
     $scope.socialGooglePlusLogin = function() {
-        gapi.auth.authorize({client_id: clientId[window.location.hostname], scope: scopes, immediate: false}, handleAuthResult);
+        $rootScope.$broadcast('loaderShow');
+        gapi.auth.authorize({
+            client_id: socialsAccess.googlePlus.applicationId[window.location.hostname], 
+            scope: socialsAccess.googlePlus.scopes, 
+            immediate: true
+        }, handleAuthResult);
     }
-
-
-    $scope.$on('fb.auth.login', function(data) {
-        Social.login({}, {email: data.email}, function(data) {
-        });
-        /*Social.login({}, {email: data.email}, function(data) {
-        });*/
-    });
 
     $scope.$on('fb.auth.authResponseChange', function(data, d) {
         FB.api('/me', function(response) {
@@ -954,6 +952,7 @@ function LoginController($scope, Sessions, $rootScope, AuthUser, User, Social, $
                     $rootScope.authUserId = userData.sguid;
                     $rootScope.$broadcast('login');
                     $rootScope.$broadcast('socialLogined');
+                    $rootScope.$broadcast('loaderHide');
                 });
             });
         });
@@ -1540,6 +1539,7 @@ function RootController($scope, AuthUser, User, $rootScope, Needs, Social) {
                 $rootScope.authUserId = userData.sguid;
                 $rootScope.$broadcast('login');
                 $rootScope.$broadcast('socialLogined');
+                $rootScope.$broadcast('loaderHide');
             });
         });
     }
