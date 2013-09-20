@@ -1,6 +1,6 @@
 'use strict';
 
-var clientId = '339940198985.apps.googleusercontent.com';
+var clientId = {"localhost": '339940198985.apps.googleusercontent.com', "xmpp.dev.improva.com": "339940198985-h79e4hvjp9b2658og8o849u3blaootub.apps.googleusercontent.com"};
 var apiKey = 'AIzaSyBUJ3rialFIcJ5QvuWFkvPqmFbTBIZ2Kmo';
 var scopes = ['https://www.googleapis.com/auth/plus.me','https://www.googleapis.com/auth/userinfo.email'];
 
@@ -109,7 +109,7 @@ function handleClientLoad() {
 }
 
 function checkAuth() {
-	gapi.auth.authorize({client_id: clientId, scope: scopes, immediate: true}, handleAuthResult);
+	gapi.auth.authorize({client_id: clientId[window.location.hostname], scope: scopes, immediate: true}, handleAuthResult);
 }
 
 function handleAuthResult(authResult) {
@@ -120,7 +120,8 @@ function handleAuthResult(authResult) {
 }
 
 function handleAuthClick(event) {
-	gapi.auth.authorize({client_id: clientId, scope: scopes, immediate: false}, handleAuthResult);
+	console.log(clientId[window.location.hostname]);
+	gapi.auth.authorize({client_id: clientId[window.location.hostname], scope: scopes, immediate: false}, handleAuthResult);
 	return false;
 }
 

@@ -934,7 +934,7 @@ function LoginController($scope, Sessions, $rootScope, AuthUser, User, Social, $
     }
 
     $scope.socialGooglePlusLogin = function() {
-        gapi.auth.authorize({client_id: clientId, scope: scopes, immediate: false}, handleAuthResult);
+        gapi.auth.authorize({client_id: clientId[window.location.hostname], scope: scopes, immediate: false}, handleAuthResult);
     }
 
 
