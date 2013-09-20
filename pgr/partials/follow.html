@@ -7,7 +7,7 @@
 			<img ng-click="onCompare(userItem.user)" ng-src="{{userItem.user.avatar}}" alt="" err-src="/images/unknown-person.png" />
 			<sub ng-if="onTips != false">
 				<a ng-click="onUnfollow(userItem.user)">Unfollow</a>
-				<a class="compare" ng-click="onCompare(userItem.user)">Compare</a>
+				<a class="compare" ng-click="onCompareToMain(userItem.user)">Compare</a>
 			</sub>
 		</li>
 	</ul>

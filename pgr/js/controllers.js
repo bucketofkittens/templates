@@ -1005,11 +1005,13 @@ function FollowController($scope, $rootScope, User, $location, $routeParams, Aut
     $scope.onCompare = function(user) {
         if($scope.onClickCompare == true) {
             if($scope.compareState == 1) {
-                $location.path("/profile/"+$routeParams.userId1+"/"+user.user.sguid+"/");
-                $scope.compareState = 0;
+                if($routeParams.userId1 != user.sguid) {
+                    $location.path("/profile/"+$routeParams.userId1+"/"+user.sguid+"/");
+                    $scope.compareState = 0;
+                }
             } else {
-                $location.path("/profile/"+user.user.sguid+"/"+$routeParams.userId2+"/");
-                $scope.compareState = 1;
+                $location.path("/profile/"+user.sguid+"/"+$routeParams.userId2+"/");
+                $scope.compareState = 1;    
             }
         }
     }
@@ -1058,7 +1060,7 @@ function FollowController($scope, $rootScope, User, $location, $routeParams, Aut
         });
     }
 
-    $scope.onCompare = function(user) {
+    $scope.onCompareToMain = function(user) {
         if($scope.rootUser.sguid) {
             $location.path("/profile/"+$scope.rootUser.sguid+"/"+user.sguid);
         } else {
