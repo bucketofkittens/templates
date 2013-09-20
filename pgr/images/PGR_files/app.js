@@ -1,14 +1,10 @@
 'use strict';
 
-var clientId = '339940198985.apps.googleusercontent.com';
-var apiKey = 'AIzaSyBUJ3rialFIcJ5QvuWFkvPqmFbTBIZ2Kmo';
-var scopes = ['https://www.googleapis.com/auth/plus.me','https://www.googleapis.com/auth/userinfo.email'];
-
 /**
  * Основной модуль приложения
  * @type {[type]}
  */
-var pgrModule = angular.module('pgrModule', [ "ngRoute", "ngCookies", "ngResource", "ngAnimate", "localization", "ui", "ui.keypress", 'ui.bootstrap', 'route-segment', 'view-segment', 'lvl.directives.dragdrop', 'ngTouch', 'ngFacebook']);
+var pgrModule = angular.module('pgrModule', [ "ngRoute", "ngCookies", "ngResource", "ngAnimate", "localization", "ui", "ui.keypress", 'ui.bootstrap', 'route-segment', 'view-segment', 'lvl.directives.dragdrop', 'ngTouch', 'ngFacebook', 'directive.g+signin']);
 
 /**
  * Роутинг приложения
@@ -78,60 +74,21 @@ pgrModule.run(function() {
      js = d.createElement(s); js.id = id;
      js.src = "//connect.facebook.net/en_US/all.js";
      fjs.parentNode.insertBefore(js, fjs);
-   }(document, 'script', 'facebook-jssdk'));
-
-   // Asynchronously load the G+ SDK.
-    (function() {
-      var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
-      po.src = 'https://apis.google.com/js/client:plusone.js';
-      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
-    })();
+   }(document, 'script', 'facebook-jssdk'));	
 })
 
 
-function onSignInCallback(authResult) {
-
+function signinCallback(authResult) {
+	console.log(authResult);
     if (authResult['access_token']) {
-      	gapi.client.load('oauth2', 'v2', function() {
+      gapi.client.load('oauth2', 'v2', function() {
 		  gapi.client.oauth2.userinfo.get().execute(function(resp) {
-		    var scope = angular.element($("body")).scope();
-		    scope.gplusAuth(resp.email);
+		    // Shows user email
+		    console.log(resp);
 		  })
 		});
 
     } else if (authResult['error']) {
       // User has not authorized the G+ App!
     }
-}
-
-function handleClientLoad() {
-	gapi.client.setApiKey(apiKey);
-	window.setTimeout(checkAuth,1);
-}
-
-function checkAuth() {
-	gapi.auth.authorize({client_id: clientId, scope: scopes, immediate: true}, handleAuthResult);
-}
-
-function handleAuthResult(authResult) {
-	var authorizeButton = document.getElementById('authorize-button');
-	if (authResult && !authResult.error) {
-	  makeApiCall();
-	}
-}
-
-function handleAuthClick(event) {
-	gapi.auth.authorize({client_id: clientId, scope: scopes, immediate: false}, handleAuthResult);
-	return false;
-}
-
-function makeApiCall() {
-
-	gapi.client.load('oauth2', 'v2', function() {
-	  gapi.client.oauth2.userinfo.get().execute(function(resp) {
-	  	console.log(resp);
-	    var scope = angular.element($("body")).scope();
-	    scope.gplusAuth(resp.email);
-	  })
-	});
 }

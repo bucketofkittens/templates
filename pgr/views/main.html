@@ -122,8 +122,12 @@
 						ng-minlength="6" /> 
 				</p>
 				<p><a ng-click="regiostrationOpen()">Registration</a></p>
-				<p><a ng-click="socialLogin()"><img style="border-radius: 5px" src="/images/fb.jpg" width="200px" alt=""></a></p>
-				<p><g+signin clientid="339940198985"></g+signin></p>
+				<p><a ng-click="socialFacebookLogin()">Facebook</a></p>
+				<p><a ng-click="socialGooglePlusLogin()">Google Plus</a></p>
+				<p><script type="in/Login">
+Hello, <?js= firstName ?> <?js= lastName ?>.
+</script>
+</p>
 				<p id="errors">{{error}}</p>
 			</form>
 		</div>

@@ -957,6 +957,8 @@ body {
             transition: all 2s ease-out;
             -webkit-transition: all 2s ease-out;
             min-width: 10%;
+            max-height: 10%;
+            -webkit-transform: translateZ(0);
             &.showMenu {
                 z-index: 499 !important;
             }
@@ -966,6 +968,7 @@ body {
                   -o-animation: rotate 2s linear 0 normal;
                   -ms-animation: rotate 2s linear 0 normal;
                   animation: rotate 2s linear 0 normal;
+                  
                   img {
                     opacity: 1;
                   }
@@ -1011,10 +1014,10 @@ body {
                     opacity: 0;
                     z-index: 8;
                     width: 100%;
-                    height: 100%;
+                    height: auto;
                     transition: all 2s ease-out;
                     -webkit-transition: all 2s ease-out;
-                    display: block;
+                    -webkit-transform: translateZ(0);
                 }
                 i {
                     position: absolute;
@@ -1057,6 +1060,9 @@ body {
                         cursor: pointer;
                         top: 10%;
                         left: 40%;
+                        padding: 10%;
+                        background: #000000;
+                        border-radius: 100%;
                         &:first-child {
                             top: 85%;
                         }

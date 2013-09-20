@@ -46,7 +46,6 @@ function navCtrl($scope, localize, $location, AuthUser, $rootScope, $route) {
      */
     $scope.$on('login', function() {
         $scope.authUser = AuthUser.get();
-        console.log($scope.authUser);
         $scope.generateNav();
     });
 
@@ -180,6 +179,7 @@ function UserController($scope, $route, $routeParams, User, Needs, Professions, 
      */
     $scope.getUserInfo = function() {
         User.query({id: $scope.currentUserId}, function(data) {
+            console.log(data);
             $scope.user = data;
             
             if($scope.user.league) {
@@ -359,7 +359,7 @@ function UserController($scope, $route, $routeParams, User, Needs, Professions, 
     }
 
     /**
-     * Публикация профиля
+     * Публикая профиля
      * Пока не работает нет backend
      * @param  {[type]} $event [description]
      * @return {[type]}        [description]
@@ -486,9 +486,12 @@ function NeedsAndGoalsController($scope, Goals, Criterion, AuthUser, UserCriteri
         UserCriteriaValueByUser.query({id: $scope.currentUserId}, {}, function(d) {
 
             angular.forEach(d, function(userCriteriaItem, userCriteriaKey) {
+                console.log(goal);
                 var fCriteria = goal.criteriums.filter(function(value) {
                     return value.sguid == userCriteriaItem.criteria_sguid;
                 })[0];
+
+
                 
                 if(fCriteria) {
                     fCriteria.user_criteria_sguid = userCriteriaItem.criteria_value_sguid;
@@ -860,6 +863,8 @@ function LoginController($scope, Sessions, $rootScope, AuthUser, User, Social, $
      */
     $scope.shouldBeOpen = false;
 
+
+
     $scope.$on('registered', function() {
         $scope.shouldBeOpen = false;
 
@@ -870,9 +875,7 @@ function LoginController($scope, Sessions, $rootScope, AuthUser, User, Social, $
         $scope.shouldBeOpen = true;
     });
 
-    $scope.$on('socialLogined', function() {
-        $scope.shouldBeOpen = false;
-    });
+    
 
     /**
      * Вызывается при нажатии ok в форме авторизации
@@ -929,33 +932,19 @@ function LoginController($scope, Sessions, $rootScope, AuthUser, User, Social, $
         $scope.shouldBeOpen = false;
     };
 
-    $scope.socialFacebookLogin = function() {
+    $scope.socialLogin = function() {
+        console.log($facebook);
         $facebook.login();
     }
 
-    $scope.socialGooglePlusLogin = function() {
-        gapi.auth.authorize({client_id: clientId, scope: scopes, immediate: false}, handleAuthResult);
-    }
-
-
     $scope.$on('fb.auth.login', function(data) {
-        Social.login({}, {email: data.email}, function(data) {
-        });
-        /*Social.login({}, {email: data.email}, function(data) {
-        });*/
+        console.log(data);
     });
 
     $scope.$on('fb.auth.authResponseChange', function(data, d) {
+        console.log(d);
         FB.api('/me', function(response) {
-            Social.login({}, {email: response.email}, function(data) {
-                AuthUser.set(data.guid);
-                User.query({id: data.guid}, function(userData) {
-                    $rootScope.authUser = userData;
-                    $rootScope.authUserId = userData.sguid;
-                    $rootScope.$broadcast('login');
-                    $rootScope.$broadcast('socialLogined');
-                });
-            });
+           console.log(response);
         });
     })
     
@@ -1087,10 +1076,6 @@ function MainController($scope, Leagues, User, AuthUser, $rootScope, $location, 
             $scope.state = 1;
             $scope.stateText = 'Tag';
         }
-
-        $scope.viewedUsers.currentIndex = 0;
-        $scope.viewedUsers.cols = 0;
-        $scope.viewedUsers.calc = 0;
     }
 
     $scope.$watch($rootScope.authUser, function(newValue, oldValue, scope) {
@@ -1139,27 +1124,12 @@ function MainController($scope, Leagues, User, AuthUser, $rootScope, $location, 
         $scope.rootUser = null;
     });
 
-    $scope.getRandomUser = function(key, max, current, data) {
-        User.query({id: $scope.viewedUsers[key].sguid}, {}, function(userData) {
-            $scope.viewedUsers[key] = userData;
-            current = current + 1;
-            if(key != max - 1) {
-                $scope.getRandomUser(parseInt(getRandomInt(0, data.length)), data.length, current, data);    
-            }
-        });
-    }
-
     $scope.getAllUser = function($event) {
-        User.only_published({}, {}, function(data) {
-            data = data.shuffle();
-            //$scope.viewedUsers = data;
-            //$scope.getRandomUser(parseInt(getRandomInt(0, data.length)), data.length, 0, data);
-            angular.forEach(data, function(value, key){
-                User.query({id: value.sguid}, {}, function(userData) {
-                    $scope.viewedUsers.push(userData);
-                });   
-            });
-            
+        User.for_main({}, {}, function(data) {
+            $scope.viewedUsers = data.shuffle();
+            if($scope.tmpFollow.length > 0) {
+                $scope.testFollow($scope.tmpFollow);
+            }
         });
     }
     
@@ -1188,9 +1158,9 @@ function MainController($scope, Leagues, User, AuthUser, $rootScope, $location, 
 
     $scope.onMoveToUser = function(user) {
         if($scope.rootUser.sguid) {
-            $location.path("/profile/"+$scope.rootUser.sguid+"/"+user.sguid);
+            $location.path("/profile/"+$scope.rootUser.sguid+"/"+user.user.sguid);
         } else {
-            $location.path("/profile/"+user.sguid);
+            $location.path("/profile/"+user.user.sguid);
         }
     }
 
@@ -1374,10 +1344,8 @@ function NeighboursCtrl($scope, $location, localize, User, AuthUser, Leagues, $r
     })
 }
 
-function LogoutController($scope, AuthUser, $location, $rootScope, $facebook) {
+function LogoutController($scope, AuthUser, $location, $rootScope) {
     AuthUser.logout();
-    $facebook.logout();
-    $.get("https://mail.google.com/mail/u/0/?logout&hl=en");
     $rootScope.authUser = null;
     $rootScope.$broadcast('logout');
     $location.path("/");
@@ -1399,17 +1367,11 @@ function CompareController($scope) {
 	  needsValues[message.userId] = message.needsValues;
 	  if(needsCountLoaded == 2) {
 	      angular.forEach(needsValues[$scope.userId2], function(value, key){
-
-				if(value < needsValues[$scope.userId1][key]) {
-				  $("li[data-needId='"+key+"'] .cr", $("#compare")).append('<sup class="du"></sup>');
-				} 
-				if(value > needsValues[$scope.userId1][key]) {
-				  $("li[data-needId='"+key+"'] .cr", $("#compare")).append('<sub class="du"></sub>');
-				} 
-				if(value == needsValues[$scope.userId1][key]) {
-				  $("li[data-needId='"+key+"'] .cr", $("#compare")).append('<s class="du"></s>');
-				} 
-
+	          if(value < needsValues[$scope.userId1][key]) {
+	              $("li[data-needId='"+key+"'] .cr", $("#compare")).append('<sup class="du"></sup>');
+	          } else {
+	              $("li[data-needId='"+key+"'] .cr", $("#compare")).append('<sub class="du"></sub>');
+	          }
 	      });
           needsCountLoaded = 1;
 	  }
@@ -1512,7 +1474,7 @@ function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-function RootController($scope, AuthUser, User, $rootScope, Needs, Social) {
+function RootController($scope, AuthUser, User, $rootScope, Needs) {
     $rootScope.authUserId = AuthUser.get();
 
     $scope.getUserInfo = function() {
@@ -1532,17 +1494,6 @@ function RootController($scope, AuthUser, User, $rootScope, Needs, Social) {
         }
     });
     
-    $scope.gplusAuth = function(email) {
-        Social.login({}, {email: email}, function(data) {
-            AuthUser.set(data.guid);
-            User.query({id: data.guid}, function(userData) {
-                $rootScope.authUser = userData;
-                $rootScope.authUserId = userData.sguid;
-                $rootScope.$broadcast('login');
-                $rootScope.$broadcast('socialLogined');
-            });
-        });
-    }
 }
 
 function LeaguesController($scope, Leagues, User) {
@@ -1552,6 +1503,7 @@ function LeaguesController($scope, Leagues, User) {
 
 	$scope.onLeagUser = function(item){
 		$scope.currentLeague = item;
+        console.log(item);
 	   angular.forEach($scope.leaguesTop, function(value, key){
 	      value.curleag = false;
 	   });
