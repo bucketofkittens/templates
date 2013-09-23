@@ -166,12 +166,13 @@ function UserController($scope, $route, $routeParams, User, Needs, Professions, 
     $scope.newImage = null;
     
     $scope.authUserId = AuthUser.get();
-    $scope.isFollow = false;
 
     $scope.currentUserId = '';
 
     $scope.states = $rootScope.workspace.states;
     $scope.professions = $rootScope.workspace.professions;
+
+    
 
     $scope.$on('statesGet', function() {
         $scope.states = $rootScope.workspace.states;
@@ -239,8 +240,7 @@ function UserController($scope, $route, $routeParams, User, Needs, Professions, 
         var item = $rootScope.workspace.user.frends.filter(function(item) {
             if(item.user.sguid == $scope.currentUserId) { return item; }
         });
-
-        if(item && item.length > 0) {
+        if(item.length > 0) {
             $scope.isFollow = true;
         } else {
             $scope.isFollow = false;
@@ -392,6 +392,11 @@ function UserController($scope, $route, $routeParams, User, Needs, Professions, 
                 $("input[type='text'], input[type='email'], select", ".pmpar").attr("readonly", "readonly");
             }
         );
+    }
+
+    if($rootScope.workspace.user) {
+        $scope.authUser = $rootScope.workspace.user;
+        $scope.testFollow();
     }
 }
 
@@ -1134,7 +1139,6 @@ function MainController($scope, Leagues, User, AuthUser, $rootScope, $location, 
                     return data;
                 }
             });
-            
             if(frend.length > 0) {
                 user.isFrend = true;
             } else {
@@ -1154,6 +1158,30 @@ function MainController($scope, Leagues, User, AuthUser, $rootScope, $location, 
         $scope.rootUser = null;
     });
 
+    $scope.$on('unfollowCallback', function($event, message) {
+        var user = $scope.viewedUsers.filter(function(data) {
+            if(data.sguid == message.frendId) {
+                return data;
+            }
+        });
+        if(user.length > 0) {
+            $scope.testUser(user[0]);
+        }
+    });
+
+    $scope.$on('followCallback', function($event, message) {
+        var user = $scope.viewedUsers.filter(function(data) {
+            if(data.sguid == message.frendId) {
+                return data;
+            }
+        });
+        if(user.length > 0) {
+            $scope.testUser(user[0]);
+        }
+    });
+
+    
+
     $scope.getPublishedUser = function() {
         User.only_published({}, {}, function(data) {
             data = data.shuffle();
@@ -1162,7 +1190,9 @@ function MainController($scope, Leagues, User, AuthUser, $rootScope, $location, 
                     if(userData.points) {
                         userData.points = parseInt(userData.points);    
                     }
-                    userData = $scope.testUser(userData);
+                    if($rootScope.workspace.user && $rootScope.workspace.user.frends) {
+                        userData = $scope.testUser(userData);    
+                    }
                     $scope.viewedUsers.push(userData);
                 });   
             });
@@ -1229,7 +1259,6 @@ function MainController($scope, Leagues, User, AuthUser, $rootScope, $location, 
 
     $scope.onFollow = function($event, user) {
         $rootScope.$broadcast('follow', {userId: AuthUser.get(), frendId: user.sguid, user: user});
-        user.isFrend = true;
     }
 
     /**
@@ -1240,7 +1269,6 @@ function MainController($scope, Leagues, User, AuthUser, $rootScope, $location, 
      */
     $scope.onUnFollow = function($event, user) {
         $rootScope.$broadcast('unfollow', {userId: AuthUser.get(), frendId: user.sguid});
-        user.isFrend = false;
     }
 
 }
@@ -1595,7 +1623,7 @@ function RootController($scope, AuthUser, User, $rootScope, Needs, Social, $cook
             var index = $rootScope.workspace.user.frends.indexOf(frend);
             $rootScope.workspace.user.frends.splice(index, 1);
 
-            $rootScope.$broadcast('unfollowCallback');
+            $rootScope.$broadcast('unfollowCallback', {frendId: message.frendId});
         });
     });
 
@@ -1604,8 +1632,8 @@ function RootController($scope, AuthUser, User, $rootScope, Needs, Social, $cook
             friend_guid: message.frendId
         }, function(response) { 
             if(response.success) {
-                $rootScope.$broadcast('followCallback');
-                $rootScope.workspace.user.frends.push({sguid: response.message.guid, user: message.user});    
+                $rootScope.workspace.user.frends.push({sguid: response.message.guid, user: message.user});
+                $rootScope.$broadcast('followCallback', {frendId: message.frendId});
             }
         });
     });
