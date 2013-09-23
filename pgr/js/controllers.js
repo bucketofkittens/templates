@@ -1671,6 +1671,7 @@ function LeaguesController($scope, Leagues, User) {
         angular.forEach($scope.leaguesRight, function(value, key){
           value.curleag = false;
         });
+        console.log(item);
         item.curleag = true;
 	}
 
@@ -1693,6 +1694,7 @@ function LeaguesController($scope, Leagues, User) {
 	* @return {[type]}      [description]
 	*/
 	Leagues.query({}, {}, function(data) {
+        data = data.reverse(); 
 
 	   /**
 	   * Получаем 3 наикрутейшие лиги

@@ -60,15 +60,15 @@ body header .social a:last-child{background-position:100% 0}
 #content .leaglist a img{display:block;width:100%;box-shadow:0 0 10px 1px rgba(0,0,0,0.3);border-radius:5px}
 #content .leaglist.hrzt{width:100%;margin-left:5%;display:block}#content .leaglist.hrzt a{display:inline-block;width:14.5%;margin:0 .8% 0 0}
 #content .infoleag{display:inline-block;width:70%;margin:5% 5.8% 1% 5%;vertical-align:top;border:1px solid #ccc;-webkit-box-shadow:inset 0 0 30px 0 rgba(0,0,0,0.5);box-shadow:inset 0 0 30px 0 rgba(0,0,0,0.5);text-align:center;position:relative}#content .infoleag span,#content .infoleag sub,#content .infoleag sup{width:0;height:0;border-style:solid;border-width:0 30px 30px 0;border-color:transparent #b5b5b5 transparent transparent;position:absolute;vertical-align:middle;top:-10px;right:-10px}
-#content .infoleag sup{border-width:0 15px 20px 15px;border-color:transparent transparent #b5b5b5 transparent;top:-20px;right:50%}#content .infoleag sup.l_1{left:7%}
-#content .infoleag sup.l_2{left:28%}
-#content .infoleag sup.l_3{left:50%}
-#content .infoleag sup.l_4{left:72%}
-#content .infoleag sup.l_5{left:auto;right:0}
-#content .infoleag sub{border-width:15px 0 15px 20px;border-color:transparent transparent transparent #b5b5b5;right:-20px;top:50%}#content .infoleag sub.l_7{top:0}
-#content .infoleag sub.l_8{top:25%}
-#content .infoleag sub.l_9{top:auto;bottom:40%}
-#content .infoleag sub.l_10{top:auto;bottom:15%}
+#content .infoleag sup{border-width:0 15px 20px 15px;border-color:transparent transparent #b5b5b5 transparent;top:-20px;right:50%}#content .infoleag sup.l_10{left:7%}
+#content .infoleag sup.l_9{left:28%}
+#content .infoleag sup.l_8{left:50%}
+#content .infoleag sup.l_7{left:72%}
+#content .infoleag sup.l_6{left:auto;right:0}
+#content .infoleag sub{border-width:15px 0 15px 20px;border-color:transparent transparent transparent #b5b5b5;right:-20px;top:50%}#content .infoleag sub.l_4{top:0}
+#content .infoleag sub.l_3{top:25%}
+#content .infoleag sub.l_2{top:auto;bottom:40%}
+#content .infoleag sub.l_1{top:auto;bottom:15%}
 #content .infoleag .leader{display:block;margin-top:3%;text-align:center}#content .infoleag .leader a{display:inline-block;width:20%;margin:0 5% 0 0}
 #content .infoleag .leader .descrip{display:inline-block}#content .infoleag .leader .descrip i{font-size:100%;color:#000;display:block;margin:5% 0;text-align:left}
 #content .infoleag a{display:inline-block;vertical-align:top;width:20%;margin:2% 3%}
@@ -94,9 +94,9 @@ body header .social a:last-child{background-position:100% 0}
 #main_leagues ul li a span{position:absolute;bottom:5%;right:3%;width:100%;color:#000;font-size:90%;text-align:right;z-index:10;-webkit-transform:translateZ(0)}
 #main_leagues ul li a img{opacity:0;z-index:8;width:100%;height:auto;-webkit-transform:translateZ(0)}
 #main_leagues ul li a i{position:absolute;top:0;left:0;width:100%;height:96.5%;background-size:cover !important;z-index:9;transition:all .5s ease-out;-webkit-transition:all .5s ease-out;-webkit-transform:translateZ(0)}
-#main_leagues ul li a .fallout{vertical-align:middle;border-radius:100%;background:rgba(0,0,0,0.7);position:absolute;top:50%;left:50%;width:0;height:0;transition:all .5s ease-out;-webkit-transition:all .5s ease-out;overflow:hidden;z-index:10;-webkit-transform:translateZ(0)}#main_leagues ul li a .fallout.show{width:200%;height:200%;top:-50%;left:-50%}
-#main_leagues ul li a .fallout b{color:#fff;text-shadow:0 0 5px #000;font-size:80%;font-weight:bold;display:block;position:absolute;cursor:pointer;top:40%;right:-5%;padding:10%;-webkit-transform:translateZ(0)}#main_leagues ul li a .fallout b:nth-child(3){top:70%;right:auto;left:30%}
-#main_leagues ul li a .fallout b:first-child{top:17%;right:auto;left:17%;text-shadow:none;font-size:90%;font-weight:normal;text-align:left}
+#main_leagues ul li a .fallout{vertical-align:middle;border-radius:100%;background:rgba(0,0,0,0.7);position:absolute;top:50%;left:50%;width:0;height:0;transition:all .5s ease-out;-webkit-transition:all .5s ease-out;overflow:hidden;z-index:10;-webkit-transform:translateZ(0);text-align:center}#main_leagues ul li a .fallout.show{width:200%;height:200%;top:-50%;left:-50%}
+#main_leagues ul li a .fallout b{color:#fff;text-shadow:0 0 5px #000;font-size:80%;font-weight:bold;display:block;position:absolute;cursor:pointer;top:40%;right:-5%;padding:10%;-webkit-transform:translateZ(0)}#main_leagues ul li a .fallout b:nth-child(3){top:70%;right:auto;width:80%}
+#main_leagues ul li a .fallout b:first-child{top:17%;right:auto;left:17%;text-shadow:none;font-size:90%;font-weight:normal;text-align:left;cursor:move}
 #main_leagues ul li a .fallout b:nth-child(2){right:auto;left:-3%}
 #main_leagues ul li.league_ img{opacity:.5}
 #main_leagues ul li.league_ i{background:none}
