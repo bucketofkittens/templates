@@ -29,7 +29,7 @@ pgrModule.directive('paralaxImage', function () {
       if($(window).width() < 1100) {
         step = 1.5;
       }
-      //$("#main_leagues ul").css("height", $(window).height()*step).css("width", $(window).width());
+      
 
       attrs.$observe('src', function (v) {
           $(element).addClass("rotate"); 
@@ -51,6 +51,8 @@ pgrModule.directive('paralaxImage', function () {
 
           $(element).css("left", position.x+"%");
           $(element).css("top", position.y+"%");
+
+          $("#main_leagues ul").css("height", $(window).height()*step).css("width", $(window).width());
         } else { 
           /*
           if(!$scope.viewedUsers.currentIndex) {
@@ -87,6 +89,10 @@ pgrModule.directive('paralaxImage', function () {
           */
           $(element).css("left", "0%");
           $(element).css("top", "0%");
+
+          $("#main_leagues ul").css("height", 'auto').css("width", $(window).width());
+
+          
         }
       });
     }
