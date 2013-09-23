@@ -130,7 +130,7 @@ function QuickUserChangeCtrl($scope, User, AuthUser, $rootScope, $location) {
     $scope.onMoveUserClick = function($event, nextUser) {
         AuthUser.set(nextUser.user.sguid);
         
-        $rootScope.authUser = nextUser.user;
+        $rootScope.workspace.user = nextUser.user;
         $location.path("/profile/"+nextUser.user.sguid);
     }
 
@@ -200,7 +200,7 @@ function UserController($scope, $route, $routeParams, User, Needs, Professions, 
                     $scope.user.league.users = data;
                 });
             }
-            $scope.authUser = $rootScope.authUser;
+            $scope.authUser = $rootScope.workspace.user;
             if($scope.authUser) {
                 $scope.testFollow();
             }
@@ -263,8 +263,8 @@ function UserController($scope, $route, $routeParams, User, Needs, Professions, 
         $scope.user.league = data.league;
         $scope.user.points = data.points;
 
-        $rootScope.authUser.league = data.league;
-        $rootScope.authUser.points = data.points;
+        $rootScope.workspace.user.league = data.league;
+        $rootScope.workspace.user.points = data.points;
     }
 
     /**
@@ -898,13 +898,8 @@ function LoginController($scope, Sessions, $rootScope, AuthUser, User, Social, $
             "password": $scope.password
         }), function(data) {
             if(data.success) {
-                AuthUser.set(data.guid);
-                User.query({id: data.guid}, function(data) {
-                    $rootScope.authUser = data;
-                    $rootScope.authUserId = data.sguid;
-                    $scope.shouldBeOpen = false;
-                    $rootScope.$broadcast('login');
-                });
+                $rootScope.$broadcast('onSignin', {guid: data.guid, isSocial: true});
+                $scope.shouldBeOpen = false;
             } else {
                 $scope.error = data.message;
             }
@@ -966,15 +961,8 @@ function LoginController($scope, Sessions, $rootScope, AuthUser, User, Social, $
         console.log(d);
         FB.api('/me', function(response) {
             Social.login({}, {email: response.email}, function(data) {
-                AuthUser.set(data.guid);
-                User.query({id: data.guid}, function(userData) {
-                    $rootScope.authUser = userData;
-                    $rootScope.authUserId = userData.sguid;
-                    $rootScope.$broadcast('login');
-                    $rootScope.$broadcast('socialLogined');
-                    $rootScope.$broadcast('loaderHide');
-                    socialsAccess.facebook.isLoggined = true;
-                });
+                $rootScope.$broadcast('onSignin', {guid: data.guid, isSocial: true});
+                socialsAccess.facebook.isLoggined = true;
             });
         });
     })
@@ -1011,7 +999,6 @@ function ContentController($scope, $rootScope, $route, $location) {
 }
 
 function FollowController($scope, $rootScope, User, $location, $routeParams, AuthUser) {
-    $scope.rootUser = $rootScope.authUser ? $rootScope.authUser : false;
     $scope.compareState = 1;
     
     $scope.onCompare = function(user) {
@@ -1028,6 +1015,19 @@ function FollowController($scope, $rootScope, User, $location, $routeParams, Aut
         }
     }
 
+    $scope.setAuthUserData = function() {
+        $scope.isAuth = $rootScope.workspace.user && $rootScope.workspace.user.sguid ? true : false;
+        if($scope.isAuth) {
+            $scope.rootUser = {
+                sguid: $rootScope.workspace.user.sguid,
+                avatar: $rootScope.workspace.user.avatar
+            };
+            $scope.frends = $rootScope.workspace.user.frends;
+        } else {
+            $scope.frends = false;
+        }
+    }
+
     $scope.onMouseEnterUser = function(user) {
         user.show = true;
     }
@@ -1037,32 +1037,29 @@ function FollowController($scope, $rootScope, User, $location, $routeParams, Aut
     }
 
     $scope.$on('login', function() {
-        $scope.rootUser = $rootScope.authUser;
-        User.get_friends({id: $rootScope.authUserId}, {}, function(data) {
-            $scope.userFrends = data;
-            $rootScope.$broadcast('followsGet', { follows: data});
-        });
+        $scope.setAuthUserData();
     });
 
     $scope.$on('authUserGetData', function() {
-        $scope.rootUser = $rootScope.authUser;
+        $scope.setAuthUserData();
     });
 
     $scope.$on('logout', function() {
         $scope.rootUser = null;
+        $scope.isAuth = false;
     });
 
     $scope.$on('addToFollow', function($event, message) {
-        $scope.userFrends.push({user: message.user});
+        $scope.frends.push({user: message.user});
     });
 
     $scope.$on('removeToFollow', function($event, message) {
-        $scope.userFrends = $scope.userFrends.filter(function(data) {
+        $scope.frends = $scope.frends.filter(function(data) {
             if(data.user.sguid != message.user.sguid) {
                 return data;
             }
         });
-        $rootScope.$broadcast('removeToFollowOnTop', {follows: $scope.userFrends});
+        $rootScope.$broadcast('removeToFollowOnTop', {follows: $scope.frends});
     });
 
     $scope.onUnfollow = function(user) {
@@ -1080,16 +1077,11 @@ function FollowController($scope, $rootScope, User, $location, $routeParams, Aut
         }
     }
 
-    if($rootScope.authUserId) {
-        User.get_friends({id: $rootScope.authUserId}, {}, function(data) {
-            $scope.userFrends = data;
-            $rootScope.$broadcast('followsGet', { follows: data});
-        });
-    }
-
     $scope.onMoveToUser = function() {
         $location.path("/profile/"+$rootScope.authUserId+"/compare/");
-    }    
+    }
+
+    $scope.setAuthUserData();
 }
 
 
@@ -1102,7 +1094,7 @@ function MainController($scope, Leagues, User, AuthUser, $rootScope, $location, 
     $scope.viewedUsers = [];
     $scope.state = 1;
     $scope.stateText = 'Tag';
-    $scope.rootUser = $rootScope.authUser ? $rootScope.authUser : false;
+    $scope.rootUser = $rootScope.workspace.user ? $rootScope.workspace.user : false;
     $scope.tmpFollow = [];
 
 
@@ -1132,16 +1124,16 @@ function MainController($scope, Leagues, User, AuthUser, $rootScope, $location, 
         $scope.viewedUsers.calc = 0;
     }
 
-    $scope.$watch($rootScope.authUser, function(newValue, oldValue, scope) {
-        if($rootScope.authUser) {
-            $scope.rootUser = $rootScope.authUser;
+    $scope.$watch($rootScope.workspace.user, function(newValue, oldValue, scope) {
+        if($rootScope.workspace.user) {
+            $scope.rootUser = $rootScope.workspace.user;
         } else {    
             $scope.rootUser = false;
         }
     });
 
     $scope.$on('login', function() {
-        $scope.rootUser = $rootScope.authUser;
+        $scope.rootUser = $rootScope.workspace.user;
     });
 
     $scope.$on('followsGet', function($event, message) {
@@ -1171,7 +1163,7 @@ function MainController($scope, Leagues, User, AuthUser, $rootScope, $location, 
     }
 
     $scope.$on('authUserGetData', function() {
-        $scope.rootUser = $rootScope.authUser;
+        $scope.rootUser = $rootScope.workspace.user;
     });
 
     $scope.$on('logout', function() {
@@ -1428,7 +1420,7 @@ function LogoutController($scope, AuthUser, $location, $rootScope, $facebook) {
         socialsAccess.googlePlus.isLoggined = false;  
     }
     
-    $rootScope.authUser = null;
+    $rootScope.workspace.user = null;
     $rootScope.$broadcast('logout');
     $location.path("/");
 }
@@ -1565,15 +1557,16 @@ function getRandomInt(min, max) {
 function RootController($scope, AuthUser, User, $rootScope, Needs, Social, $cookieStore, States, Professions) {
     $rootScope.authUserId = AuthUser.get();
     $rootScope.workspace = {};
-    $rootScope.workspace.states = {};
-    $rootScope.workspace.profession = {};
 
     $scope.getUserInfo = function() {
         if($rootScope.authUserId) {
             User.query({id: $rootScope.authUserId}, function(data) {
-                $rootScope.authUser = data;
-                $rootScope.$broadcast('authUserGetData');
-            });    
+                $rootScope.workspace.user = data;
+                User.get_friends({id: $rootScope.authUserId}, {}, function(frends) {
+                   $rootScope.workspace.user.frends = frends;
+                   $rootScope.$broadcast('authUserGetData');
+                })
+            });
         }
     }
 
@@ -1611,20 +1604,33 @@ function RootController($scope, AuthUser, User, $rootScope, Needs, Social, $cook
 
     $scope.$on('updateUserData', function($event, message) {
         if(message.user.sguid == $rootScope.authUserId) {
-            $rootScope.authUser = message.user;
+            $rootScope.workspace.user = message.user;
         }
+    });
+
+    $scope.$on('onSignin', function($event, message) {
+        User.query({id: message.guid}, function(data) {
+            $rootScope.workspace.user = data;
+            User.get_friends({id: message.guid}, function(frends) {
+                AuthUser.set(message.guid);
+                
+                $rootScope.workspace.user.frends = frends;
+                $rootScope.authUserId = data.sguid;
+
+                $rootScope.$broadcast('login');
+                $rootScope.$broadcast('loaderHide');
+
+                if(message.isSocial) {
+                    $rootScope.$broadcast('socialLogined');
+                }
+            });
+            
+        });
     });
     
     $scope.gplusAuth = function(email) {
         Social.login({}, {email: email}, function(data) {
-            AuthUser.set(data.guid);
-            User.query({id: data.guid}, function(userData) {
-                $rootScope.authUser = userData;
-                $rootScope.authUserId = userData.sguid;
-                $rootScope.$broadcast('login');
-                $rootScope.$broadcast('socialLogined');
-                $rootScope.$broadcast('loaderHide');
-            });
+            $rootScope.$broadcast('onSignin', {guid: data.guid, isSocial: true});
         });
     }
 
