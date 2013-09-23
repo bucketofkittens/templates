@@ -165,11 +165,15 @@ function UserController($scope, $route, $routeParams, User, Needs, Professions, 
     $scope.user = null;
     $scope.newImage = null;
     $scope.professions = Professions.query();
-    $scope.states = States.query();
     $scope.authUserId = AuthUser.get();
     $scope.isFollow = false;
 
     $scope.currentUserId = '';
+
+    $scope.states = $rootScope.workspace.states;
+    $scope.$on('statesGet', function() {
+        $scope.states = $rootScope.workspace.states;
+    });
 
     $scope.$watch($scope.currentUserId, function (newVal, oldVal, scope) {
         $scope.getUserInfo();
@@ -1093,6 +1097,7 @@ function MainController($scope, Leagues, User, AuthUser, $rootScope, $location, 
     $scope.rootUser = $rootScope.authUser ? $rootScope.authUser : false;
     $scope.tmpFollow = [];
 
+
     /**
      * Открывает окно авторизации
      * @return {[type]} [description]
@@ -1334,7 +1339,6 @@ function NeighboursCtrl($scope, $location, localize, User, AuthUser, Leagues, $r
             angular.forEach(data, function(value, key){
                 data[key] = value.user;
             });
-            console.log(data);
             $rootScope.$broadcast('usersLoaded', {
                 id: 'follow',
                 users: data
@@ -1558,8 +1562,10 @@ function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-function RootController($scope, AuthUser, User, $rootScope, Needs, Social) {
+function RootController($scope, AuthUser, User, $rootScope, Needs, Social, $cookieStore, States) {
     $rootScope.authUserId = AuthUser.get();
+    $rootScope.workspace = {};
+    $rootScope.workspace.states = {};
 
     $scope.getUserInfo = function() {
         if($rootScope.authUserId) {
@@ -1570,6 +1576,21 @@ function RootController($scope, AuthUser, User, $rootScope, Needs, Social) {
         }
     }
 
+    $scope.getState = function() {
+        var states = $cookieStore.get("states");
+        if(states) {
+            $rootScope.workspace.states = angular.fromJson(states);
+            $rootScope.$broadcast('statesGet');
+        } else {
+            States.query({}, {}, function(data) {
+                $rootScope.workspace.states = data;
+                $cookieStore.put("states", angular.toJson(data));
+                $rootScope.$broadcast('statesGet');
+            });
+        }
+    }
+
+    $scope.getState();
     $scope.getUserInfo();
 
     $scope.$on('updateUserData', function($event, message) {
