@@ -940,7 +940,6 @@ body {
 /** main_leagues **/
 #main_leagues {
     > img {
-        position: absolute;
         left: 50%;
         top: 50%;
     }
@@ -952,7 +951,7 @@ body {
         li {
             width: 10%;
             display: inline-block;
-            position: absolute;
+            position: relative;
             line-height: 100%;
             transition: all 2s ease-out;
             -webkit-transition: all 2s ease-out;
@@ -1204,7 +1203,10 @@ body {
 
 .tags {
     li {
-        
+        position: absolute !important;
+        img {
+            display: block;
+        }
         &:hover {
             z-index: 399 !important;
         }

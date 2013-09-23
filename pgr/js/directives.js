@@ -52,6 +52,7 @@ pgrModule.directive('paralaxImage', function () {
           $(element).css("left", position.x+"%");
           $(element).css("top", position.y+"%");
         } else { 
+          /*
           if(!$scope.viewedUsers.currentIndex) {
             $scope.viewedUsers.currentIndex = 0;
           }
@@ -83,6 +84,9 @@ pgrModule.directive('paralaxImage', function () {
             $scope.viewedUsers.cols = 0;
             $scope.viewedUsers.calc = 0;
           }
+          */
+          $(element).css("left", "0%");
+          $(element).css("top", "0%");
         }
       });
     }
