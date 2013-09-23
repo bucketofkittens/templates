@@ -164,16 +164,24 @@ function QuickUserChangeCtrl($scope, User, AuthUser, $rootScope, $location) {
 function UserController($scope, $route, $routeParams, User, Needs, Professions, States, $http, NeedsByUser, $rootScope, GoalsByUser, AuthUser, Friendships, Leagues, $location, $window) {
     $scope.user = null;
     $scope.newImage = null;
-    $scope.professions = Professions.query();
+    
     $scope.authUserId = AuthUser.get();
     $scope.isFollow = false;
 
     $scope.currentUserId = '';
 
     $scope.states = $rootScope.workspace.states;
+    $scope.professions = $rootScope.workspace.professions;
+
     $scope.$on('statesGet', function() {
         $scope.states = $rootScope.workspace.states;
     });
+    
+    $scope.$on('professionsGet', function() {
+        $scope.professions = $rootScope.workspace.professions;
+    });
+
+    
 
     $scope.$watch($scope.currentUserId, function (newVal, oldVal, scope) {
         $scope.getUserInfo();
@@ -1554,10 +1562,11 @@ function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-function RootController($scope, AuthUser, User, $rootScope, Needs, Social, $cookieStore, States) {
+function RootController($scope, AuthUser, User, $rootScope, Needs, Social, $cookieStore, States, Professions) {
     $rootScope.authUserId = AuthUser.get();
     $rootScope.workspace = {};
     $rootScope.workspace.states = {};
+    $rootScope.workspace.profession = {};
 
     $scope.getUserInfo = function() {
         if($rootScope.authUserId) {
@@ -1582,6 +1591,21 @@ function RootController($scope, AuthUser, User, $rootScope, Needs, Social, $cook
         }
     }
 
+    $scope.getProfessions = function() {
+        var professions = $cookieStore.get("professions");
+        if(professions) {
+            $rootScope.workspace.professions = angular.fromJson(professions);
+            $rootScope.$broadcast('professionsGet');
+        } else {
+            Professions.query({}, {}, function(data) {
+                $rootScope.workspace.professions = data;
+                $cookieStore.put("professions", angular.toJson(data));
+                $rootScope.$broadcast('professionsGet');
+            });
+        }
+    }
+
+    $scope.getProfessions();
     $scope.getState();
     $scope.getUserInfo();
 
