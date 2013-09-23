@@ -31,6 +31,11 @@ pgrModule.factory('User', function ($resource) {
                 method: 'GET',
                 url: host+"/users/:id/light"
             },
+            'get_from_to_points': {
+                method: 'GET',
+                url: host+"/users/by_points/from/:from/to/:to",
+                isArray: true
+            },
             'get_all': {
                 method: 'GET',
                 isArray: true

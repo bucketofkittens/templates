@@ -1344,24 +1344,16 @@ function NeighboursCtrl($scope, $location, localize, User, AuthUser, Leagues, $r
                 users: data
             });
         });
-
-        User.get_all({}, {}, function(data) {
-            User.query({id: $scope.userId1},{ }, function(currentUser) {
-                var newUsers = [];
-                angular.forEach(data, function(value, key) {
-                    if(value.points < currentUser.points+10000 && value.points > currentUser.points-10000) {
-                        if(value.sguid != currentUser.sguid && value.published) {
-                            newUsers.push(value);
-                        }
-                    }
-                });
+        
+        User.get_short({id: $scope.userId1}, {}, function(userData) {
+            User.get_from_to_points({from: userData.points-10000, to: userData.points+10000}, {}, function(newUsers) {
                 $rootScope.$broadcast('usersLoaded', {
                     id: 'neigh',
                     users: newUsers
                 });
             });
-            
-        });
+        })
+        
 
 
         /**
