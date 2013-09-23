@@ -1606,6 +1606,9 @@ function LeaguesController($scope, Leagues, User) {
 	$scope.onLeagUser = function(item){
         $scope.currentLeague = item;
         $scope.users = item.users;
+        $scope.stateView = 0;
+        $scope.limit = 5;
+
         angular.forEach($scope.leaguesTop, function(value, key){
           value.curleag = false;
         });
