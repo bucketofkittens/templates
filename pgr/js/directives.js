@@ -29,7 +29,7 @@ pgrModule.directive('paralaxImage', function () {
       if($(window).width() < 1100) {
         step = 1.5;
       }
-      $("#main_leagues ul").css("height", $(window).height()*step).css("width", $(window).width());
+      //$("#main_leagues ul").css("height", $(window).height()*step).css("width", $(window).width());
 
       attrs.$observe('src', function (v) {
           $(element).addClass("rotate"); 
