@@ -172,8 +172,6 @@ function UserController($scope, $route, $routeParams, User, Needs, Professions, 
     $scope.states = $rootScope.workspace.states;
     $scope.professions = $rootScope.workspace.professions;
 
-    
-
     $scope.$on('statesGet', function() {
         $scope.states = $rootScope.workspace.states;
     });
@@ -184,6 +182,7 @@ function UserController($scope, $route, $routeParams, User, Needs, Professions, 
 
     $scope.$watch($scope.currentUserId, function (newVal, oldVal, scope) {
         $scope.getUserInfo();
+        $scope.testFollow();
     });
 
     $scope.$on('authUserGetData', function() {
@@ -237,13 +236,15 @@ function UserController($scope, $route, $routeParams, User, Needs, Professions, 
     
 
     $scope.testFollow = function() {
-        var item = $rootScope.workspace.user.frends.filter(function(item) {
-            if(item.user.sguid == $scope.currentUserId) { return item; }
-        });
-        if(item.length > 0) {
-            $scope.isFollow = true;
-        } else {
-            $scope.isFollow = false;
+        if($scope.currentUserId) {
+            var item = $rootScope.workspace.user.frends.filter(function(item) {
+                if(item.user.sguid == $scope.currentUserId) { return item; }
+            });
+            if(item.length > 0) {
+                $scope.isFollow = true;
+            } else {
+                $scope.isFollow = false;
+            }
         }
     }
 
