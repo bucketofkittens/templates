@@ -22,7 +22,8 @@
 		</div>
 	</div>
 	<a href="#/profile/{{item.sguid}}" ng-repeat="(key, item) in users | limitTo:limit"><img ng-src="{{item.avatar}}"  err-src="/images/unknown-person.png"></a>
-	<button>{{'_moreL_' | i18n}}</button>
+	<button ng-if="!stateView" ng-click="onChangeState()" class="more">{{'_moreL_' | i18n}}</button>
+	<button ng-if="stateView" ng-click="onChangeState()" class="less">{{'_lessL_' | i18n}}</button>
 </section>
 <section class="leaglist">
 	<a ng-click="onLeagUser(item)" ng-class="{curleag:item.curleag}" ng-repeat="(key, item) in leaguesRight">

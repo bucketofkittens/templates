@@ -1603,6 +1603,7 @@ function LeaguesController($scope, Leagues, User) {
 	$scope.leagues = [];
 	$scope.limit = 5;
     $scope.users = [];
+    $scope.stateView = 0;
 
 	$scope.onLeagUser = function(item){
         $scope.currentLeague = item;
@@ -1615,6 +1616,19 @@ function LeaguesController($scope, Leagues, User) {
         });
         item.curleag = true;
 	}
+
+    $scope.onChangeState = function() {
+        $scope.stateView = $scope.stateView == 1 ? 0 : 1;
+        $scope.stateViewClass = $scope.stateView == 1 ? "fulls" : "";
+        $scope.limit = $scope.stateView == 1 ? 999 : 5;
+
+        if($scope.stateView == 1) {
+            $(".lnbl").hide();
+            //$($element).next().show();
+        } else {
+            $(".lnbl").show();
+        }
+    }
 
 	/**
 	* Забираем запросом список лиг.
