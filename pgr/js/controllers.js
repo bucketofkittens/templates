@@ -196,20 +196,32 @@ function UserController($scope, $route, $routeParams, User, Needs, Professions, 
      * @return {[type]} [description]
      */
     $scope.getUserInfo = function() {
+        $scope.getUserByServer();
+    }
+
+    $scope.getUserByServer = function() {
         User.query({id: $scope.currentUserId}, function(data) {
             $scope.user = data;
-            
-            if($scope.user.league) {
-                User.by_league({league_guid: $scope.user.league.sguid}, {}, function(data) {
-                    $scope.user.league.users = data;
-                });
-            }
+
+            $scope.getLegueUsers();
             
             $rootScope.$broadcast('getUserInfoToNeeds', {
                 user: $scope.user,
                 id: $scope.id
             });
+
+            $rootScope.$broadcast('getSelectedUserData', {
+                user: $scope.user
+            });
         });
+    }
+
+    $scope.getLegueUsers = function() {
+        if($scope.user.league) {
+            User.by_league({league_guid: $scope.user.league.sguid}, {}, function(data) {
+                $scope.user.league.users = data;
+            });
+        }
     }
 
     $scope.$on('updateUserControllerId', function($event, message) {
@@ -1340,7 +1352,7 @@ function NeighboursCtrl($scope, $location, localize, User, AuthUser, Leagues, $r
     $scope.flwL = localize.getLocalizedString('_flwL_');
     $scope.neighL = localize.getLocalizedString('_neighL_');
 
-    $scope.getDatas = function() {
+    $scope.getDatas = function(user) {
         User.get_friends({id: $scope.userId1}, function(data) {
             angular.forEach(data, function(value, key){
                 data[key] = value.user;
@@ -1351,58 +1363,28 @@ function NeighboursCtrl($scope, $location, localize, User, AuthUser, Leagues, $r
             });
         });
         
-        User.get_short({id: $scope.userId1}, {}, function(userData) {
-            User.get_from_to_points({from: userData.points-10000, to: userData.points+10000}, {}, function(newUsers) {
+        User.get_from_to_points({from: parseInt(user.points-10000), to: parseInt(user.points+10000)}, {}, function(newUsers) {
+            $rootScope.$broadcast('usersLoaded', {
+                id: 'neigh',
+                users: newUsers
+            });
+        });
+
+        Leagues.by_position({position: 9}, {}, function(league) {
+            User.by_league({league_guid: league.sguid}, {}, function(userData) {
                 $rootScope.$broadcast('usersLoaded', {
-                    id: 'neigh',
-                    users: newUsers
+                    id: 'top',
+                    users: userData
                 });
             });
         })
         
-
-
-        /**
-         * Забираем запросом список лиг.
-         * @param  {[type]} data [description]
-         * @return {[type]}      [description]
-         */
-        Leagues.query({}, {}, function(data) {
-            /**
-             * Сортируем лиги по убыванию
-             * @param  {[type]} a [description]
-             * @param  {[type]} b [description]
-             * @return {[type]}   [description]
-             */
-            data.sort(function(a,b) {
-                return a.position + b.position;
-            });
-
-            /**
-             * Получаем 3 наикрутейшие лиги
-             * @type {[type]}
-             */
-            $scope.leagues = data.splice(0,1);
-            $scope.viewedUsers = [];
-
-            /**
-             * Проходимся по оплучившемуся массиву лиг и получаем список пользователей
-             * @param  {[type]} value [description]
-             * @param  {[type]} key   [description]
-             * @return {[type]}       [description]
-             */
-            angular.forEach($scope.leagues, function(value, key) {
-                User.by_league({league_guid: value.sguid}, {}, function(userData) {
-                    $rootScope.$broadcast('usersLoaded', {
-                        id: 'top',
-                        users: userData
-                    });
-                });
-            });
-        })
     }
 
-    $scope.getDatas();
+    $scope.$on('getSelectedUserData', function($event, message) {
+        $scope.getDatas(message.user);
+    });
+    
 
     $scope.$on('updateUserControllerId', function($event, message) {
         if(message.id == $scope.id) {

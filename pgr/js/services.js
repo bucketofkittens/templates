@@ -333,7 +333,13 @@ pgrModule.factory('UserCriteriaValueByUser', function ($resource) {
 pgrModule.factory('Leagues', function ($resource) {
     return $resource(
         host+'/leagues/:id', 
-        {id:'@id'}
+        {id:'@id'}, 
+        {
+            "by_position": {
+                method: 'GET',
+                url: host+"/leagues/by_position/:position"
+            }
+        }
     );
 });
 
