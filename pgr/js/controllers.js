@@ -181,11 +181,15 @@ function UserController($scope, $route, $routeParams, User, Needs, Professions, 
         $scope.professions = $rootScope.workspace.professions;
     });
 
-    
-
     $scope.$watch($scope.currentUserId, function (newVal, oldVal, scope) {
+        //$scope.testFollow();
         $scope.getUserInfo();
     });
+
+    $scope.$on('authUserGetData', function() {
+        $scope.testFollow();
+    });
+
 
     /**
      * Информация по пользователю
@@ -201,9 +205,6 @@ function UserController($scope, $route, $routeParams, User, Needs, Professions, 
                 });
             }
             $scope.authUser = $rootScope.workspace.user;
-            if($scope.authUser) {
-                $scope.testFollow();
-            }
             $rootScope.$broadcast('getUserInfoToNeeds', {
                 user: $scope.user,
                 id: $scope.id
@@ -235,8 +236,8 @@ function UserController($scope, $route, $routeParams, User, Needs, Professions, 
     
 
     $scope.testFollow = function() {
-        var item = $scope.authUser.friends_guids.filter(function(item) {
-            if(item == $scope.currentUserId) { return item; }
+        var item = $rootScope.workspace.user.frends.filter(function(item) {
+            if(item.user.sguid == $scope.currentUserId) { return item; }
         });
 
         if(item && item.length > 0) {
@@ -1049,24 +1050,8 @@ function FollowController($scope, $rootScope, User, $location, $routeParams, Aut
         $scope.isAuth = false;
     });
 
-    $scope.$on('addToFollow', function($event, message) {
-        $scope.frends.push({user: message.user});
-    });
-
-    $scope.$on('removeToFollow', function($event, message) {
-        $scope.frends = $scope.frends.filter(function(data) {
-            if(data.user.sguid != message.user.sguid) {
-                return data;
-            }
-        });
-        $rootScope.$broadcast('removeToFollowOnTop', {follows: $scope.frends});
-    });
-
     $scope.onUnfollow = function(user) {
-        User.destroy_friendship({id: AuthUser.get(), friendId: user.sguid}, { }, function() { 
-            user.isFrend = false;
-            $rootScope.$broadcast('removeToFollow', {user: user});
-        });
+        $rootScope.$broadcast('unfollow', {userId: AuthUser.get(), frendId: user.sguid});
     }
 
     $scope.onCompareToMain = function(user) {
@@ -1095,7 +1080,6 @@ function MainController($scope, Leagues, User, AuthUser, $rootScope, $location, 
     $scope.state = 1;
     $scope.stateText = 'Tag';
     $scope.rootUser = $rootScope.workspace.user ? $rootScope.workspace.user : false;
-    $scope.tmpFollow = [];
 
 
     /**
@@ -1136,20 +1120,8 @@ function MainController($scope, Leagues, User, AuthUser, $rootScope, $location, 
         $scope.rootUser = $rootScope.workspace.user;
     });
 
-    $scope.$on('followsGet', function($event, message) {
-        if($scope.viewedUsers.length > 0) {
-            $scope.testFollow(message.follows);
-        } else {
-           $scope.tmpFollow = message.follows;
-        }
-    });
-
-    $scope.$on('removeToFollowOnTop', function($event, message) {
-        $scope.testFollow(message.follows);
-    });
-
-    $scope.testFollow = function(follows) {
-        angular.forEach(follows, function(value, key) {
+    $scope.testFollow = function() {
+        angular.forEach($rootScope.workspace.user.frends, function(value, key) {
             angular.forEach($scope.viewedUsers, function(v2, k2) {
                 if(v2.sguid == value.user.sguid) {
                     v2.isFrend = true;
@@ -1162,15 +1134,34 @@ function MainController($scope, Leagues, User, AuthUser, $rootScope, $location, 
         });
     }
 
+    $scope.testUser = function(user) {
+        if($rootScope.workspace.user) {
+            var frend = $rootScope.workspace.user.frends.filter(function(data) {
+                if(data.user.sguid == user.sguid) {
+                    return data;
+                }
+            });
+            
+            if(frend.length > 0) {
+                user.isFrend = true;
+            } else {
+                user.isFrend = false;
+            }
+
+            return user;
+        }
+    }
+
     $scope.$on('authUserGetData', function() {
         $scope.rootUser = $rootScope.workspace.user;
+        $scope.testFollow();
     });
 
     $scope.$on('logout', function() {
         $scope.rootUser = null;
     });
 
-    $scope.getAllUser = function($event) {
+    $scope.getPublishedUser = function() {
         User.only_published({}, {}, function(data) {
             data = data.shuffle();
             angular.forEach(data, function(value, key){
@@ -1178,14 +1169,16 @@ function MainController($scope, Leagues, User, AuthUser, $rootScope, $location, 
                     if(userData.points) {
                         userData.points = parseInt(userData.points);    
                     }
+                    userData = $scope.testUser(userData);
                     $scope.viewedUsers.push(userData);
                 });   
             });
             
         });
     }
+
+    $scope.getPublishedUser();
     
-    $scope.getAllUser();
 
     $scope.onDragStart = function(user) {
         user.isLeave = true;
@@ -1215,7 +1208,6 @@ function MainController($scope, Leagues, User, AuthUser, $rootScope, $location, 
         $location.path("/profile/"+$scope.rootUser.sguid+"/"+user.sguid);
     }
 
-
     $scope.onMouseEnterUser = function(user) {
         if(!user.dragged) {
             user.showHint = true;
@@ -1243,27 +1235,19 @@ function MainController($scope, Leagues, User, AuthUser, $rootScope, $location, 
     }
 
     $scope.onFollow = function($event, user) {
-        User.create_friendship({id: AuthUser.get()}, {
-            friend_guid: user.sguid
-        }, function() { 
-            user.isFrend = true; 
-            $rootScope.$broadcast('addToFollow', {user: user});
-        });
-        $event.stopPropagation();
+        $rootScope.$broadcast('follow', {userId: AuthUser.get(), frendId: user.sguid, user: user});
+        user.isFrend = true;
     }
 
     /**
-     * Удаление нужно будет доделать
+     * 
      * @param  {[type]} $event [description]
      * @param  {[type]} user   [description]
      * @return {[type]}        [description]
      */
     $scope.onUnFollow = function($event, user) {
-        User.destroy_friendship({id: AuthUser.get(), friendId: user.sguid}, { }, function() { 
-            user.isFrend = false;
-            $rootScope.$broadcast('removeToFollow', {user: user});
-        });
-        $event.stopPropagation();
+        $rootScope.$broadcast('unfollow', {userId: AuthUser.get(), frendId: user.sguid});
+        user.isFrend = false;
     }
 
 }
@@ -1606,6 +1590,31 @@ function RootController($scope, AuthUser, User, $rootScope, Needs, Social, $cook
         if(message.user.sguid == $rootScope.authUserId) {
             $rootScope.workspace.user = message.user;
         }
+    });
+
+    $scope.$on('unfollow', function($event, message) {
+        User.destroy_friendship({id: message.userId, friendId: message.frendId}, { }, function() {
+            var frend = $rootScope.workspace.user.frends.filter(function(data) {
+                if(data.user.sguid == message.frendId) {
+                    return data;
+                }
+            })[0];
+            var index = $rootScope.workspace.user.frends.indexOf(frend);
+            $rootScope.workspace.user.frends.splice(index, 1);
+
+            $rootScope.$broadcast('unfollowCallback');
+        });
+    });
+
+    $scope.$on('follow', function($event, message) {
+        User.create_friendship({id: message.userId}, {
+            friend_guid: message.frendId
+        }, function(response) { 
+            if(response.success) {
+                $rootScope.$broadcast('followCallback');
+                $rootScope.workspace.user.frends.push({sguid: response.message.guid, user: message.user});    
+            }
+        });
     });
 
     $scope.$on('onSignin', function($event, message) {
