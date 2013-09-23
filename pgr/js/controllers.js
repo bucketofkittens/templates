@@ -1578,28 +1578,28 @@ function RootController($scope, AuthUser, User, $rootScope, Needs, Social, $cook
     }
 
     $scope.getState = function() {
-        var states = $cookieStore.get("states");
+        var states = localStorage.getItem("states");
         if(states) {
             $rootScope.workspace.states = angular.fromJson(states);
             $rootScope.$broadcast('statesGet');
         } else {
             States.query({}, {}, function(data) {
                 $rootScope.workspace.states = data;
-                $cookieStore.put("states", angular.toJson(data));
+                localStorage.setItem("states", angular.toJson(data));
                 $rootScope.$broadcast('statesGet');
             });
         }
     }
 
     $scope.getProfessions = function() {
-        var professions = $cookieStore.get("professions");
+        var professions = localStorage.getItem("professions");
         if(professions) {
             $rootScope.workspace.professions = angular.fromJson(professions);
             $rootScope.$broadcast('professionsGet');
         } else {
             Professions.query({}, {}, function(data) {
                 $rootScope.workspace.professions = data;
-                $cookieStore.put("professions", angular.toJson(data));
+                localStorage.setItem("professions", angular.toJson(data));
                 $rootScope.$broadcast('professionsGet');
             });
         }
@@ -1634,17 +1634,17 @@ function RootController($scope, AuthUser, User, $rootScope, Needs, Social, $cook
 }
 
 function LeaguesController($scope, Leagues, User) {
-	$scope.currentLeague = 0;
 	$scope.leagues = [];
 	$scope.limit = 5;
     $scope.users = [];
     $scope.stateView = 0;
+    $scope.currentLeagueNumber = 0;
 
 	$scope.onLeagUser = function(item){
-        $scope.currentLeague = item;
         $scope.users = item.users;
         $scope.stateView = 0;
         $scope.limit = 5;
+        $scope.currentLeagueNumber = parseInt(item.position)+1;
 
         angular.forEach($scope.leaguesTop, function(value, key){
           value.curleag = false;
@@ -1674,15 +1674,6 @@ function LeaguesController($scope, Leagues, User) {
 	* @return {[type]}      [description]
 	*/
 	Leagues.query({}, {}, function(data) {
-	   /**
-	   * Сортируем лиги по убыванию
-	   * @param  {[type]} a [description]
-	   * @param  {[type]} b [description]
-	   * @return {[type]}   [description]
-	   */
-	   data.sort(function(a,b) {
-	      return a.position + b.position;
-	   });
 
 	   /**
 	   * Получаем 3 наикрутейшие лиги
@@ -1701,8 +1692,8 @@ function LeaguesController($scope, Leagues, User) {
 	      User.by_league({league_guid: value.sguid}, {}, function(userData) {
 			value.users = userData;
 	   		if (key == 0){
-	   			$scope.currentLeague = value;
                 $scope.users = value.users;
+                $scope.currentLeagueNumber = 0;
 	   		}
 	      });
 	   });
