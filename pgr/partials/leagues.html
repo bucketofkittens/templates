@@ -21,7 +21,7 @@
 			<i>New persons: 20</i>
 		</div>
 	</div>
-	<a href="#/profile/{{item.sguid}}" ng-repeat="(key, item) in currentLeague.users | limitTo:limit"><img ng-src="{{item.avatar}}"  err-src="/images/unknown-person.png"></a>
+	<a href="#/profile/{{item.sguid}}" ng-repeat="(key, item) in users | limitTo:limit"><img ng-src="{{item.avatar}}"  err-src="/images/unknown-person.png"></a>
 	<button>{{'_moreL_' | i18n}}</button>
 </section>
 <section class="leaglist">

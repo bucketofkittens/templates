@@ -1602,16 +1602,18 @@ function LeaguesController($scope, Leagues, User) {
 	$scope.currentLeague = 0;
 	$scope.leagues = [];
 	$scope.limit = 5;
+    $scope.users = [];
 
 	$scope.onLeagUser = function(item){
-		$scope.currentLeague = item;
-	   angular.forEach($scope.leaguesTop, function(value, key){
-	      value.curleag = false;
-	   });
-	   angular.forEach($scope.leaguesRight, function(value, key){
-	      value.curleag = false;
-	   });
-		item.curleag = true;
+        $scope.currentLeague = item;
+        $scope.users = item.users;
+        angular.forEach($scope.leaguesTop, function(value, key){
+          value.curleag = false;
+        });
+        angular.forEach($scope.leaguesRight, function(value, key){
+          value.curleag = false;
+        });
+        item.curleag = true;
 	}
 
 	/**
@@ -1645,9 +1647,10 @@ function LeaguesController($scope, Leagues, User) {
 	   */
 	   angular.forEach($scope.leaguesTop, function(value, key){
 	      User.by_league({league_guid: value.sguid}, {}, function(userData) {
-				value.users = userData;
+			value.users = userData;
 	   		if (key == 0){
 	   			$scope.currentLeague = value;
+                $scope.users = value.users;
 	   		}
 	      });
 	   });
