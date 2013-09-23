@@ -27,6 +27,10 @@ pgrModule.factory('User', function ($resource) {
                     }
             	}
             },
+            'get_short': {
+                method: 'GET',
+                url: host+"/users/:id/light"
+            },
             'get_all': {
                 method: 'GET',
                 isArray: true

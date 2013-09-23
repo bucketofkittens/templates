@@ -1093,10 +1093,18 @@ function MainController($scope, Leagues, User, AuthUser, $rootScope, $location, 
     $scope.rootUser = $rootScope.authUser ? $rootScope.authUser : false;
     $scope.tmpFollow = [];
 
+    /**
+     * Открывает окно авторизации
+     * @return {[type]} [description]
+     */
     $scope.onOpenLogin = function() {
         $rootScope.$broadcast('openLoginModal');
     }
 
+    /**
+     * Меняем состояние на облако и наоборот
+     * @return {[type]} [description]
+     */
     $scope.onState = function() {
         if($scope.state) {
             $scope.state = 0;
@@ -1157,21 +1165,11 @@ function MainController($scope, Leagues, User, AuthUser, $rootScope, $location, 
         $scope.rootUser = null;
     });
 
-    $scope.getRandomUser = function(key, max, current, data) {
-        User.query({id: $scope.viewedUsers[key].sguid}, {}, function(userData) {
-            $scope.viewedUsers[key] = userData;
-            current = current + 1;
-            if(key != max - 1) {
-                $scope.getRandomUser(parseInt(getRandomInt(0, data.length)), data.length, current, data);    
-            }
-        });
-    }
-
     $scope.getAllUser = function($event) {
         User.only_published({}, {}, function(data) {
             data = data.shuffle();
             angular.forEach(data, function(value, key){
-                User.query({id: value.sguid}, {}, function(userData) {
+                User.get_short({id: value.sguid}, {}, function(userData) {
                     if(userData.points) {
                         userData.points = parseInt(userData.points);    
                     }
