@@ -182,11 +182,11 @@ function UserController($scope, $route, $routeParams, User, Needs, Professions, 
     });
 
     $scope.$watch($scope.currentUserId, function (newVal, oldVal, scope) {
-        //$scope.testFollow();
         $scope.getUserInfo();
     });
 
     $scope.$on('authUserGetData', function() {
+        $scope.authUser = $rootScope.workspace.user;
         $scope.testFollow();
     });
 
@@ -204,7 +204,7 @@ function UserController($scope, $route, $routeParams, User, Needs, Professions, 
                     $scope.user.league.users = data;
                 });
             }
-            $scope.authUser = $rootScope.workspace.user;
+            
             $rootScope.$broadcast('getUserInfoToNeeds', {
                 user: $scope.user,
                 id: $scope.id
@@ -280,21 +280,14 @@ function UserController($scope, $route, $routeParams, User, Needs, Professions, 
         $scope.getUserInfo();
     });
 
-
-    $scope.onFollow = function() {
-        User.create_friendship({id: AuthUser.get()}, {
-            friend_guid: $scope.currentUserId
-        }, function() {
-            $scope.isFollow = true;
-            $rootScope.$broadcast('addToFollow', {user: { user: $scope.user}});
-        });
+    $scope.onFollow = function($event, user) {
+        $rootScope.$broadcast('follow', {userId: AuthUser.get(), frendId: $scope.currentUserId, user: $scope.user});
+        $scope.isFollow = true;
     }
 
-    $scope.onUnFollow = function() {
-        User.destroy_friendship({id: AuthUser.get(), friendId: $scope.currentUserId}, { }, function() {
-            $scope.isFollow = false;
-            $rootScope.$broadcast('removeToFollow', {user: { user: $scope.user}});
-        });
+    $scope.onUnFollow = function($event, user) {
+        $rootScope.$broadcast('unfollow', {userId: AuthUser.get(), frendId: $scope.currentUserId});
+        $scope.isFollow = false;
     }
 
     /**
