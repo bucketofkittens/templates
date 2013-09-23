@@ -236,7 +236,7 @@ function UserController($scope, $route, $routeParams, User, Needs, Professions, 
     
 
     $scope.testFollow = function() {
-        if($scope.currentUserId) {
+        if($scope.currentUserId && $rootScope.workspace.user) {
             var item = $rootScope.workspace.user.frends.filter(function(item) {
                 if(item.user.sguid == $scope.currentUserId) { return item; }
             });

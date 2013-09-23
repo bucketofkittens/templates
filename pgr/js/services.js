@@ -29,7 +29,8 @@ pgrModule.factory('User', function ($resource) {
             },
             'get_short': {
                 method: 'GET',
-                url: host+"/users/:id/light"
+                url: host+"/users/:id/light",
+                cache: true
             },
             'get_from_to_points': {
                 method: 'GET',
