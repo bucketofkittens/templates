@@ -1210,6 +1210,7 @@ function MainController($scope, Leagues, User, AuthUser, $rootScope, $location, 
     $scope.getPublishedUser = function() {
         User.only_published({}, {}, function(data) {
             data = data.shuffle();
+            var iOS = ( navigator.userAgent.match(/(iPad|iPhone|iPod)/g) ? true : false );
             angular.forEach(data, function(value, key){
                 User.get_short({id: value.sguid}, {}, function(userData) {
                     if(userData.points) {
@@ -1218,7 +1219,9 @@ function MainController($scope, Leagues, User, AuthUser, $rootScope, $location, 
                     if($rootScope.workspace.user && $rootScope.workspace.user.frends) {
                         userData = $scope.testUser(userData);    
                     }
-                    $scope.viewedUsers.push(userData);
+                    
+                    $scope.viewedUsers.push(userData);  
+                    
                 });   
             });
             
