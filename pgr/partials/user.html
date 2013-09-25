@@ -103,7 +103,7 @@
 			<label for="acc_i">{{'_AccL_' | i18n}}:</label>
 			<select 
 				id="acc_i"
-				ng-options="item.user.login for item in users" 
+				ng-options="item.login for item in users" 
 				ng-model="nextUser" 
 				readonly="readonly"
 				ng-change="onMoveUserClick($event, nextUser)">

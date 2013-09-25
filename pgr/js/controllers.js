@@ -128,10 +128,13 @@ function QuickUserChangeCtrl($scope, User, AuthUser, $rootScope, $location) {
     $scope.users = [];
 
     $scope.onMoveUserClick = function($event, nextUser) {
-        AuthUser.set(nextUser.user.sguid);
+        AuthUser.set(nextUser.sguid);
         
-        $rootScope.workspace.user = nextUser.user;
-        $location.path("/profile/"+nextUser.user.sguid);
+        $rootScope.workspace.user = nextUser;
+        $rootScope.authUserId = nextUser.sguid;
+        $location.path("/profile/"+nextUser.sguid);
+
+        $rootScope.$broadcast('authUserIdChange');
     }
 
     User.get_all({}, {}, function(data) {
@@ -178,6 +181,10 @@ function UserController($scope, $route, $routeParams, User, Needs, Professions, 
     
     $scope.$on('professionsGet', function() {
         $scope.professions = $rootScope.workspace.professions;
+    });
+
+    $scope.$on('authUserIdChange', function() {
+        $scope.authUserId = AuthUser.get();
     });
 
     $scope.$watch($scope.currentUserId, function (newVal, oldVal, scope) {
