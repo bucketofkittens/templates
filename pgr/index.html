@@ -48,20 +48,13 @@
 		        		<li ng-repeat="nav in navs">
 		        			<span ng-switch on="nav.show" >
 						        <span ng-switch-when="true">
-						        	<a href="{{nav.link}}" class="{{nav.activeClass}}" ng-click="onNavClick($event, nav.name)">{{nav.name}}</a>
+						        	<a class="{{nav.activeClass}}" ng-click="onNavClick($event, nav)">{{nav.name}}</a>
 						        </span>
 						    </span>
 		        		</li>
 		         </div>
 			    </div>
 			</ul>
-			<!--
-			<b class="social">
-				<a href="#"></a>
-				<a href="#"></a>
-				<a href="#"></a>
-			</b>
-			-->
 		</header>
 		<div id="content" class="controller_{{controller}}" ng-controller="ContentController">
 			<div app-view-segment="0" class="view-example"></div>

@@ -6,12 +6,24 @@ function navCtrl($scope, localize, $location, AuthUser, $rootScope, $route) {
      * @type {Boolean}
      */
     $scope.hidden = false;
-    
+
+    $scope.onNavClick = function($event, nav) {
+        if(nav.link) {
+            $location.path(nav.link.replace('#', ''));
+        }
+        else {
+            nav.onClick();
+        }
+    };
 
     /**
-     * 
-     * @type {[type]}
+     * Открывает окно авторизации
+     * @return {[type]} [description]
      */
+    $scope.onOpenLogin = function() {
+        $rootScope.$broadcast('openLoginModal');
+    }
+
     $scope.authUser = AuthUser.get();
 
     $rootScope.controller = $route.controller;
@@ -25,7 +37,7 @@ function navCtrl($scope, localize, $location, AuthUser, $rootScope, $route) {
         $scope.generateNav();
 
         angular.forEach($scope.navs, function(value, key) {
-            if($location.path().split("/")[1] == value.link.split("/")[1]) {
+            if(value.link && $location.path().split("/")[1] == value.link.split("/")[1]) {
                 $scope.navs[key].activeClass = 'current';
             } 
         });
@@ -46,7 +58,6 @@ function navCtrl($scope, localize, $location, AuthUser, $rootScope, $route) {
      */
     $scope.$on('login', function() {
         $scope.authUser = AuthUser.get();
-        console.log($scope.authUser);
         $scope.generateNav();
     });
 
@@ -55,7 +66,8 @@ function navCtrl($scope, localize, $location, AuthUser, $rootScope, $route) {
             {name: localize.getLocalizedString("_PROFILE_"), link: $scope.authUser ? '#/profile/'+$scope.authUser: '#/profile/', activeClass: '', show: $scope.authUser ? true : false},
             {name: localize.getLocalizedString("_LEAGUES_"), link: '#/leagues', activeClass: '', show: $scope.authUser ? true : false},
             {name: localize.getLocalizedString("_GRAPHS_"), link: '#/graphs', activeClass: '', show: $scope.authUser ? true : false},
-            {name: localize.getLocalizedString("_LogoutL_"), link: '#/logout', activeClass: '', show: $scope.authUser ? true : false}
+            {name: localize.getLocalizedString("_LogoutL_"), link: '#/logout', activeClass: '', show: $scope.authUser ? true : false},
+            {name: localize.getLocalizedString("_LoginL_"), onClick: $scope.onOpenLogin, activeClass: '', show: $scope.authUser ? false : true}
         ];
     };
 
@@ -68,7 +80,9 @@ function navCtrl($scope, localize, $location, AuthUser, $rootScope, $route) {
      */
     $scope.$on('$routeChangeSuccess', function(event, next, current) {
         angular.forEach($scope.navs, function(value, key) {
-            $scope.navs[key].activeClass = $scope.navs[key].link.split("/")[1] === $location.path().split("/")[1] ? 'current' : '';
+            if($scope.navs[key].link) {
+                $scope.navs[key].activeClass = $scope.navs[key].link.split("/")[1] === $location.path().split("/")[1] ? 'current' : '';
+            }
         });
     });
 }
@@ -1098,15 +1112,6 @@ function MainController($scope, Leagues, User, AuthUser, $rootScope, $location, 
     $scope.state = 1;
     $scope.stateText = 'Tag';
     $scope.rootUser = $rootScope.workspace.user ? $rootScope.workspace.user : false;
-
-
-    /**
-     * Открывает окно авторизации
-     * @return {[type]} [description]
-     */
-    $scope.onOpenLogin = function() {
-        $rootScope.$broadcast('openLoginModal');
-    }
 
     /**
      * Меняем состояние на облако и наоборот

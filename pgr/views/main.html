@@ -3,12 +3,7 @@
 <div class="lnbl" ng-include src="'partials/follow.html'" ng-controller="FollowController" ng-init="onMove=true; onClickCompare=false; onTips=true; onRelative=false;" ></div>
 
 <section id="main_leagues" ng-class="{tags: !state}">
-	<a ng-if="!rootUser" ng-click="onOpenLogin()" class="who" >
-		<img ng-src="/images/unknown-person.png" alt="" />
-	</a>
-	<a ng-if="rootUser" x-lvl-drop-target="true" id="{{rootUser.sguid}}" href="#/profile/{{rootUser.sguid}}" class="who">
-		<img ng-src="{{rootUser.avatar}}" err-src="/images/unknown-person.png" />
-	</a>
+	
 
 	<ul>
 		<li 
