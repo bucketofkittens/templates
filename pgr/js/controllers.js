@@ -1590,6 +1590,10 @@ function RootController($scope, AuthUser, User, $rootScope, Needs, Social, $cook
                 localStorage.setItem("professions", angular.toJson(data));
                 $rootScope.$broadcast('professionsGet');
             });
+            Professions.query({id: '1223'}, {}, function(data) {
+                $scope.proff = data;
+                {{proff}}
+            });
         }
     }
 
@@ -1792,8 +1796,7 @@ function CropImageController($scope, $rootScope) {
             }).done(function(data) {
                 $scope.$apply(function(){
                     if(data.success) {
-                        $scope.user.avatar = data.message;
-                        $scope.user.avatar.full_path = createImageFullPath($scope.user.avatar);
+                        $scope.user.avatar = createImageFullPath(data.message);
                         $rootScope.$broadcast('updateUserData', {user: $scope.user});
                     }
                     $rootScope.$broadcast('loaderHide');
