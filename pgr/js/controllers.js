@@ -1110,27 +1110,7 @@ function FollowController($scope, $rootScope, User, $location, $routeParams, Aut
  */
 function MainController($scope, Leagues, User, AuthUser, $rootScope, $location, $timeout) {
     $scope.viewedUsers = [];
-    $scope.state = 2;
-    $scope.stateText = 'Tag';
     $scope.rootUser = $rootScope.workspace.user ? $rootScope.workspace.user : false;
-
-    /**
-     * Меняем состояние на облако и наоборот
-     * @return {[type]} [description]
-     */
-    $scope.onState = function() {
-        if($scope.state) {
-            $scope.state = 0;
-            $scope.stateText = 'Tile';
-        } else {
-            $scope.state = 1;
-            $scope.stateText = 'Tag';
-        }
-
-        $scope.viewedUsers.currentIndex = 0;
-        $scope.viewedUsers.cols = 0;
-        $scope.viewedUsers.calc = 0;
-    }
 
     $scope.$watch($rootScope.workspace.user, function(newValue, oldValue, scope) {
         if($rootScope.workspace.user) {
