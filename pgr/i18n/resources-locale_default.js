@@ -32,6 +32,10 @@
         "value":"Age"
     },
     {
+        "key":"_BirthdayL_",
+        "value":"Birthday"
+    },
+    {
         "key":"_LocL_",
         "value":"Location"
     },
