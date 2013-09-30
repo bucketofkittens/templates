@@ -1,35 +1,14 @@
-<section class="leaglist hrzt">
-	<a ng-click="onLeagUser(item)" ng-class="{curleag:item.curleag}" ng-repeat="(key, item) in leaguesTop">
+<section class="leaglist">
+	<a ng-click="onLeagUser(item)" ng-class="{curleag:item.curleag}" ng-repeat="(key, item) in leagues">
 		<img ng-if="key == 0" src="/images/I.png" />
 		<img ng-if="key == 1" src="/images/II.png" />
 		<img ng-if="key == 2" src="/images/III.png" />
 		<img ng-if="key == 3" src="/images/IV.png" />
 		<img ng-if="key == 4" src="/images/V.png" />
 		<img ng-if="key == 5" src="/images/VI.png" />
-	</a>
-</section>
-<section class="infoleag">
-	<sup class="l_{{currentLeagueNumber}}" ng-if="currentLeagueNumber > 5"></sup>
-	<sub class="l_{{currentLeagueNumber}}" ng-if="currentLeagueNumber < 5"></sub>
-	<span class="l_{{currentLeagueNumber}}" ng-if="currentLeagueNumber == 5"></span>
-	<div class="leader">
-		<a href="#"><img src="/images/unknown-person.png"></a>
-		<div class="descrip">
-			<i>Best growth: PersonName</i>
-			<i>Average growth rate: 15</i>
-			<i>Number of persons: 125</i>
-			<i>New persons: 20</i>
-		</div>
-	</div>
-	<a href="#/profile/{{item.sguid}}" ng-repeat="(key, item) in users | limitTo:limit"><img ng-src="{{item.avatar}}"  err-src="/images/unknown-person.png"></a>
-	<button ng-if="!stateView" ng-click="onChangeState()" class="more">{{'_moreL_' | i18n}}</button>
-	<button ng-if="stateView" ng-click="onChangeState()" class="less">{{'_lessL_' | i18n}}</button>
-</section>
-<section class="leaglist">
-	<a ng-click="onLeagUser(item)" ng-class="{curleag:item.curleag}" ng-repeat="(key, item) in leaguesRight">
-		<img ng-if="key == 0" src="/images/VII.png" />
-		<img ng-if="key == 1" src="/images/VIII.png" />
-		<img ng-if="key == 2" src="/images/IX.png" />
-		<img ng-if="key == 3" src="/images/X.png" />
+		<img ng-if="key == 6" src="/images/VII.png" />
+		<img ng-if="key == 7" src="/images/VIII.png" />
+		<img ng-if="key == 8" src="/images/IX.png" />
+		<img ng-if="key == 9" src="/images/X.png" />
 	</a>
 </section>

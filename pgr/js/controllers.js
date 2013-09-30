@@ -1692,39 +1692,6 @@ function RootController($scope, AuthUser, User, $rootScope, Needs, Social, $cook
 
 function LeaguesController($scope, Leagues, User) {
 	$scope.leagues = [];
-	$scope.limit = 5;
-    $scope.users = [];
-    $scope.stateView = 0;
-    $scope.currentLeagueNumber = 0;
-
-	$scope.onLeagUser = function(item){
-        $scope.users = item.users;
-        $scope.stateView = 0;
-        $scope.limit = 5;
-        $scope.currentLeagueNumber = parseInt(item.position)+1;
-
-        angular.forEach($scope.leaguesTop, function(value, key){
-          value.curleag = false;
-        });
-        angular.forEach($scope.leaguesRight, function(value, key){
-          value.curleag = false;
-        });
-        console.log(item);
-        item.curleag = true;
-	}
-
-    $scope.onChangeState = function() {
-        $scope.stateView = $scope.stateView == 1 ? 0 : 1;
-        $scope.stateViewClass = $scope.stateView == 1 ? "fulls" : "";
-        $scope.limit = $scope.stateView == 1 ? 999 : 5;
-
-        if($scope.stateView == 1) {
-            $(".lnbl").hide();
-            //$($element).next().show();
-        } else {
-            $(".lnbl").show();
-        }
-    }
 
 	/**
 	* Забираем запросом список лиг.
@@ -1738,29 +1705,7 @@ function LeaguesController($scope, Leagues, User) {
 	   * Получаем 3 наикрутейшие лиги
 	   * @type {[type]}
 	   */
-	   $scope.leaguesTop = data.splice(0,6);
-	   $scope.leaguesRight = data;
-
-	   /**
-	   * Проходимся по оплучившемуся массиву лиг и получаем список пользователей
-	   * @param  {[type]} value [description]
-	   * @param  {[type]} key   [description]
-	   * @return {[type]}       [description]
-	   */
-	   angular.forEach($scope.leaguesTop, function(value, key){
-	      User.by_league({league_guid: value.sguid}, {}, function(userData) {
-			value.users = userData;
-	   		if (key == 0){
-                $scope.users = value.users;
-                $scope.currentLeagueNumber = 0;
-	   		}
-	      });
-	   });
-	   angular.forEach($scope.leaguesRight, function(value, key){
-	      User.by_league({league_guid: value.sguid}, {}, function(userData) {
-				value.users = userData;
-	      });
-	  });
+	   $scope.leagues = data;
 	})
 }
 
