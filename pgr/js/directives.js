@@ -43,8 +43,7 @@ pgrModule.directive('paralaxImage', function () {
             y: parseInt(getRandomInt(0, 90))
           };
 
-          $scope.enteredPosition.x = position.x;
-          $scope.enteredPosition.y = position.y;
+          $scope.enteredPosition.push(position);
 
           return position;
         }

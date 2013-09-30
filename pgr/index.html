@@ -61,6 +61,9 @@
 			    </div>
 			</ul>
 		</header>
+		
+		<div class="lnbl" ng-include src="'partials/follow.html'" ng-controller="FollowController" ng-init="onMove=true; onClickCompare=false; onTips=true; onRelative=false;" ></div>
+
 		<div id="content" class="controller_{{controller}}" ng-controller="ContentController">
 			<div app-view-segment="0" class="view-example content-inner anim"></div>
 		</div>

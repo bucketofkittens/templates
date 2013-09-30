@@ -1162,7 +1162,7 @@ function MainController($scope, Leagues, User, AuthUser, $rootScope, $location, 
         $scope.rootUser = $rootScope.workspace.user;
     });
 
-    $scope.enteredPosition = {x: [], y: []};
+    $scope.enteredPosition = [];
 
     $scope.testFollow = function() {
         angular.forEach($rootScope.workspace.user.frends, function(value, key) {
