@@ -706,6 +706,9 @@ body {
             display: block;
             width: 100%;
             margin: 0% auto;
+            &:hover sub, &:hover sup {
+                display: block;
+            }
             a {
                 width: 8%;
                 display: inline-block;
@@ -718,6 +721,7 @@ body {
                 display: inline-block;
                 width: 90%;
                 margin-left: 1%;
+                position: relative;
                 text-align: center;
                 a {
                     display: inline-block;
@@ -725,6 +729,20 @@ body {
                     img {
                         border-radius: 0px;
                     }
+                }
+                sub, sup {
+                    position: absolute;
+                    display: none;
+                    width: 5%;
+                    height: 50%;
+                    top: 25%;
+                    left: -3%;
+                    background: url("../images/left.png") center center no-repeat;
+                }
+                sup {
+                    left: auto;
+                    right: -3%;
+                    background: url("../images/right.png") center center no-repeat; 
                 }
             }
         }
