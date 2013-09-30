@@ -1043,11 +1043,7 @@ function LoaderController($scope) {
 }
 
 function ContentController($scope, $rootScope, $route, $location) {
-    $scope.controller = $location.path().split("/").join("_");
-
-    $scope.$on('$routeChangeStart', function(event, next, current) { 
-        $scope.controller = $location.path().split("/").join("_");
-    });
+    
 }
 
 function FollowController($scope, $rootScope, User, $location, $routeParams, AuthUser) {
@@ -1556,9 +1552,15 @@ function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-function RootController($scope, AuthUser, User, $rootScope, Needs, Social, $cookieStore, States, Professions) {
+function RootController($scope, AuthUser, User, $rootScope, Needs, Social, $cookieStore, States, Professions, $location) {
     $rootScope.authUserId = AuthUser.get();
     $rootScope.workspace = {};
+
+    $scope.controller = $location.path().split("/").join("_");
+
+    $scope.$on('$routeChangeStart', function(event, next, current) { 
+        $scope.controller = $location.path().split("/").join("_");
+    });
 
     $scope.getUserInfo = function() {
         if($rootScope.authUserId) {

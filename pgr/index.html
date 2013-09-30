@@ -40,7 +40,7 @@
 	</head>
 	<body ng-controller="RootController">
 		<div class="shadow"></div>
-		<header>
+		<header ng-class="{fixed: controller == '_'}">
 			<a href="#/" class="logo"><img src="./images/logo.png" alt="PERSON GROWTH RANKING"></a>
 			<ul ng-controller="navCtrl">
 				<div ng-switch on="hidden" >
