@@ -1,10 +1,6 @@
-<a ng-click="onState()" class="viewch">{{stateText}}</a>
-
 <div class="lnbl" ng-include src="'partials/follow.html'" ng-controller="FollowController" ng-init="onMove=true; onClickCompare=false; onTips=true; onRelative=false;" ></div>
 
-<section id="main_leagues" ng-class="{tags: !state}">
-	
-
+<section id="main_leagues" class="tags">
 	<ul>
 		<li 
 			x-lvl-draggable="true"

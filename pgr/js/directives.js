@@ -35,65 +35,23 @@ pgrModule.directive('paralaxImage', function () {
           $(element).addClass("rotate"); 
       });
       attrs.$observe('paralaxEnable', function (v) {
-        if(attrs.paralaxEnable == "true") {
-          var elements = $(".tags li");
+        var elements = $(".tags li");
 
-          function setPostion() {
-            var position = {
-              x: parseInt(getRandomInt(0, 90)),
-              y: parseInt(getRandomInt(0, 90))
-            };
-
-            return position;
-          }
-
-          var position = setPostion();
-
-          $(element).css("left", position.x+"%");
-          $(element).css("top", position.y+"%");
-
-          $("#main_leagues ul").css("height", $(window).height()*step).css("width", $(window).width());
-        } else { 
-          /*
-          if(!$scope.viewedUsers.currentIndex) {
-            $scope.viewedUsers.currentIndex = 0;
-          }
-          if(!$scope.viewedUsers.cols) {
-            $scope.viewedUsers.cols = 0;
-          }
-          if(!$scope.viewedUsers.calc) {
-            $scope.viewedUsers.calc = 0;
-          }
-          
+        function setPostion() {
           var position = {
-              x: $scope.viewedUsers.calc*cellsCount,
-              y: $scope.viewedUsers.cols*cellsCount
+            x: parseInt(getRandomInt(0, 90)),
+            y: parseInt(getRandomInt(0, 90))
           };
-          
-          $(element).css("left", position.x+"%");
-          $(element).css("top", position.y+"%");
 
-          $scope.viewedUsers.currentIndex += 1;
-          $scope.viewedUsers.calc += 1;
-
-          if($scope.viewedUsers.calc == cellsCount) {
-            $scope.viewedUsers.calc = 0;
-            $scope.viewedUsers.cols += 1;
-          }
-
-          if($scope.viewedUsers.currentIndex == userLength-1) {
-            $scope.viewedUsers.currentIndex = 0;
-            $scope.viewedUsers.cols = 0;
-            $scope.viewedUsers.calc = 0;
-          }
-          */
-          $(element).css("left", "0%");
-          $(element).css("top", "0%");
-
-          $("#main_leagues ul").css("height", 'auto').css("width", $(window).width());
-
-          
+          return position;
         }
+
+        var position = setPostion();
+
+        $(element).css("left", position.x+"%");
+        $(element).css("top", position.y+"%");
+
+        $("#main_leagues ul").css("height", $(window).height()*step).css("width", $(window).width());
       });
     }
   } 

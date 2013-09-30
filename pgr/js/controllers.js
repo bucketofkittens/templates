@@ -8,6 +8,7 @@ function navCtrl($scope, localize, $location, AuthUser, $rootScope, $route) {
     $scope.hidden = false;
 
     $scope.onNavClick = function($event, nav) {
+        console.log(nav);
         if(nav.link) {
             $location.path(nav.link.replace('#', ''));
         }
@@ -1109,7 +1110,7 @@ function FollowController($scope, $rootScope, User, $location, $routeParams, Aut
  */
 function MainController($scope, Leagues, User, AuthUser, $rootScope, $location, $timeout) {
     $scope.viewedUsers = [];
-    $scope.state = 1;
+    $scope.state = 2;
     $scope.stateText = 'Tag';
     $scope.rootUser = $rootScope.workspace.user ? $rootScope.workspace.user : false;
 
