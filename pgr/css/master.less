@@ -33,7 +33,13 @@ body {
     header {
         height: 8%;
         width: 100%;
-        background: #000000;
+        background: #759fd2;
+        background: -moz-linear-gradient(left, #759fd2 0%, #37374b 100%, #7db9e8 100%);
+        background: -webkit-gradient(linear, left top, right top, color-stop(0%, #759fd2), color-stop(100%, #37374b), color-stop(100%, #7db9e8));
+        background: -webkit-linear-gradient(left, #759fd2 0%, #37374b 100%, #7db9e8 100%);
+        background: -o-linear-gradient(left, #759fd2 0%, #37374b 100%, #7db9e8 100%);
+        background: -ms-linear-gradient(left, #759fd2 0%, #37374b 100%, #7db9e8 100%);
+        background: linear-gradient(to right, #759fd2 0%, #37374b 100%, #7db9e8 100%);
         position: absolute;
         top: 0%;
         z-index: 5;
@@ -73,7 +79,8 @@ body {
                     color: #ffffff;
                 }
                 &.current {
-                    color: #028dda;
+                    color: #000000;
+                    text-shadow: 0px 0px 10px #ffffff;
                 }
             }
         }
@@ -1040,7 +1047,7 @@ body {
                 .fallout {
                     vertical-align: middle;
                     border-radius: 100%;
-                    background: rgba(0, 0, 0, 0.7);
+                    background: rgba(2, 141, 218, 0.3);
                     position: absolute;
                     top: 50%;
                     left: 50%;
@@ -1055,12 +1062,12 @@ body {
                     &.show {
                         width: 250%;
                         height: 250%;
-                        top: -80%;
-                        left: -80%;
+                        top: -75%;
+                        left: -75%;
                     }
                     b {
-                        color: #ffffff;
-                        text-shadow: 0px 0px 5px rgba(0, 0, 0, 1);
+                        color: #000000;
+                        text-shadow: 0px 0px 5px rgba(255, 255, 255, 1);
                         font-size: 80%;
                         font-weight: bold;
                         display: block;
