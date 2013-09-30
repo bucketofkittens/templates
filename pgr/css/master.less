@@ -1347,35 +1347,3 @@ body {
 .content-inner {
     
 }
-.content-inner.ng-enter, .content-inner.ng-leave {
-  -webkit-transition:1s linear all;
-  -moz-transition:1s linear all;
-  -o-transition:1s linear all;
-  transition:1s linear all;
-
-  position:absolute;
-  top:0;
-  left:0;
-  right:0;
-  height:600px;
-}
-
-.content-inner.ng-enter {
-  z-index:100;
-  top:600px;
-  opacity:0;
-}
-.content-inner.ng-enter.ng-enter-active {
-  top:0;
-  opacity:1;
-}
-
-.content-inner.ng-leave {
-  z-index:101;
-  top:0;
-  opacity:1;
-}
-.content-inner.ng-leave.ng-leave-active {
-  top:-600px;
-  opacity:0;
-}

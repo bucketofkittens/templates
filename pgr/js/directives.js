@@ -26,11 +26,11 @@ pgrModule.directive('paralaxImage', function () {
       var userLength = $scope.viewedUsers.length;
       var cellsCount = 10;
       var step = 2;
+
       if($(window).width() < 1100) {
         step = 1.5;
       }
       
-
       attrs.$observe('src', function (v) {
           $(element).addClass("rotate"); 
       });
@@ -42,6 +42,9 @@ pgrModule.directive('paralaxImage', function () {
             x: parseInt(getRandomInt(0, 90)),
             y: parseInt(getRandomInt(0, 90))
           };
+
+          $scope.enteredPosition.x = position.x;
+          $scope.enteredPosition.y = position.y;
 
           return position;
         }

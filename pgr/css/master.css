@@ -58,23 +58,8 @@ body header .social a:last-child{background-position:100% 0}
 #content sub.du{border-width:7.5px 15px 7.5px 0;border-color:transparent #bd1b1b transparent transparent}
 #content s.du{width:15px;height:15px;border-radius:100%;border-width:0;background:#028dda}
 #content .comp{width:100%;background:#f9f9f9;border:none;box-shadow:none}#content .comp .crits{background:#f9f9f9}
-#content .leaglist{display:inline-block;width:14.5%;vertical-align:top}#content .leaglist a{display:block;margin-bottom:5%}#content .leaglist a.curleag img{box-shadow:0 0 20px 10px #fff}
-#content .leaglist a img{display:block;width:100%;box-shadow:0 0 10px 1px rgba(0,0,0,0.3);border-radius:5px}
-#content .leaglist.hrzt{width:100%;margin-left:5%;display:block}#content .leaglist.hrzt a{display:inline-block;width:14.5%;margin:0 .8% 0 0}
-#content .infoleag{display:inline-block;width:70%;margin:5% 5.8% 1% 5%;vertical-align:top;border:1px solid #ccc;-webkit-box-shadow:inset 0 0 30px 0 rgba(0,0,0,0.5);box-shadow:inset 0 0 30px 0 rgba(0,0,0,0.5);text-align:center;position:relative}#content .infoleag span,#content .infoleag sub,#content .infoleag sup{width:0;height:0;border-style:solid;border-width:0 30px 30px 0;border-color:transparent #b5b5b5 transparent transparent;position:absolute;vertical-align:middle;top:-10px;right:-10px}
-#content .infoleag sup{border-width:0 15px 20px 15px;border-color:transparent transparent #b5b5b5 transparent;top:-20px;right:50%}#content .infoleag sup.l_10{left:7%}
-#content .infoleag sup.l_9{left:28%}
-#content .infoleag sup.l_8{left:50%}
-#content .infoleag sup.l_7{left:72%}
-#content .infoleag sup.l_6{left:auto;right:0}
-#content .infoleag sub{border-width:15px 0 15px 20px;border-color:transparent transparent transparent #b5b5b5;right:-20px;top:50%}#content .infoleag sub.l_4{top:0}
-#content .infoleag sub.l_3{top:25%}
-#content .infoleag sub.l_2{top:auto;bottom:40%}
-#content .infoleag sub.l_1{top:auto;bottom:15%}
-#content .infoleag .leader{display:block;margin-top:3%;text-align:center}#content .infoleag .leader a{display:inline-block;width:20%;margin:0 5% 0 0}
-#content .infoleag .leader .descrip{display:inline-block}#content .infoleag .leader .descrip i{font-size:100%;color:#000;display:block;margin:5% 0;text-align:left}
-#content .infoleag a{display:inline-block;vertical-align:top;width:20%;margin:2% 3%}
-#content .infoleag button{position:relative;text-align:center;transform:skewX(angle);font-size:80%;color:#fff;padding:2.5%;background:#759fd2;border-top:1px solid #fff;border-left:1px solid #fff;border-right:1px solid #ccc;border-bottom:1px solid #ccc;width:15%;display:inline-block;margin:5% 5% 10% 5%}#content .infoleag button.less{position:fixed;right:7.5%;top:35%;padding:.5% 3% .5% 1px;width:3%}
+#content .leaglist{display:block;width:95%;margin:0 auto 1% auto}#content .leaglist article{display:block;width:100%;margin:0 auto}#content .leaglist article a{width:8%;display:inline-block;margin:.2%}#content .leaglist article a img{border-radius:5px}
+#content .leaglist article div{display:inline-block;width:90%;margin-left:1%;text-align:center}#content .leaglist article div a{display:inline-block;width:8%}#content .leaglist article div a img{border-radius:0}
 #content table#graphs{height:90%;width:90%;margin:0 auto;position:relative;table-layout:fixed}#content table#graphs tr{height:9%}#content table#graphs tr td,#content table#graphs tr th{vertical-align:top;text-align:center;border-top:1px solid #ccc;height:200px}#content table#graphs tr td img,#content table#graphs tr th img{width:90%;position:relative}
 #content table#graphs tr td a,#content table#graphs tr th a{display:block;position:relative}
 #content table#graphs tr th{border-top:none;border-right:1px solid #000;line-height:50% !important;width:10%}
@@ -161,8 +146,3 @@ body header .social a:last-child{background-position:100% 0}
 #follow_tab a{position:absolute;top:30%;right:1%;cursor:pointer;width:0;height:0;border-style:solid;border-width:10px 0 10px 20px;border-color:transparent transparent transparent #fff}
 .dropdown-menu li>a strong{font-weight:bold}
 .datepicker td,.datepicker th{font-family:Arial}
-.content-inner.ng-enter,.content-inner.ng-leave{-webkit-transition:1s linear all;-moz-transition:1s linear all;-o-transition:1s linear all;transition:1s linear all;position:absolute;top:0;left:0;right:0;height:600px}
-.content-inner.ng-enter{z-index:100;top:600px;opacity:0}
-.content-inner.ng-enter.ng-enter-active{top:0;opacity:1}
-.content-inner.ng-leave{z-index:101;top:0;opacity:1}
-.content-inner.ng-leave.ng-leave-active{top:-600px;opacity:0}
