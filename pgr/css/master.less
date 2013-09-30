@@ -734,8 +734,9 @@ body {
                     position: absolute;
                     display: none;
                     width: 5%;
-                    height: 50%;
-                    top: 25%;
+                    height: 60%;
+                    cursor: pointer;
+                    top: 20%;
                     left: -3%;
                     background: url("../images/left.png") center center no-repeat;
                 }
@@ -1271,22 +1272,19 @@ body {
     left: 30%;
     top: 0%;
     z-index: 300;
+    overflow: hidden;
     &.fixed {
         position: fixed;
     }
     ul {
         margin-left: 1%;
-        padding-top: 0.3%;
         li {
             display: inline-block;
-            margin: 0.1%;
+            margin: 0.3%;
             position: relative;
             overflow: hidden;
             &:first-child {
-                margin: 0% 2% 0% 0.5%;
-                img {
-                    max-height: 98%;                    
-                }
+                margin: 0.3% 2% 0.3% 0.5%;
             }
             img {
                 height: auto;
