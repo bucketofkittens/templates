@@ -26,7 +26,7 @@ var socialsAccess = {
  * Основной модуль приложения
  * @type {[type]}
  */
-var pgrModule = angular.module('pgrModule', [ "ngRoute", "ngCookies", "ngResource", "ngAnimate", "localization", "ui", "ui.keypress", 'ui.bootstrap', 'route-segment', 'view-segment', 'lvl.directives.dragdrop', 'ngTouch', 'ngFacebook']);
+var pgrModule = angular.module('pgrModule', [ "ngRoute", "ngCookies", "ngResource", "ngAnimate", "localization", "ui", "ui.keypress", 'ui.bootstrap', 'route-segment', 'view-segment', 'lvl.directives.dragdrop', 'ngTouch', 'ngFacebook', '$strap.directives']);
 
 /**
  * Роутинг приложения
@@ -90,6 +90,8 @@ pgrModule.config(function($facebookProvider) {
 });
 
 pgrModule.run(function() {
+	localStorage.clear();
+	
 	(function(d, s, id){
 	 var js, fjs = d.getElementsByTagName(s)[0];
 	 if (d.getElementById(id)) {return;}

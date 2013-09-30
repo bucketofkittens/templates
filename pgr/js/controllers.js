@@ -212,6 +212,11 @@ function UserController($scope, $route, $routeParams, User, Needs, Professions, 
         $scope.testFollow();
     });
 
+    $scope.professionFn = function(query) {
+        return $.map($scope.professions, function(profession) {
+            return profession.name;
+        });
+    }
 
     /**
      * Информация по пользователю
@@ -223,8 +228,9 @@ function UserController($scope, $route, $routeParams, User, Needs, Professions, 
 
     $scope.getUserByServer = function() {
         User.query({id: $scope.currentUserId}, function(data) {
+            console.log(data);
             $scope.user = data;
-
+            console.log($scope.user);
             $scope.getLegueUsers();
             
             $rootScope.$broadcast('getUserInfoToNeeds', {
@@ -383,7 +389,6 @@ function UserController($scope, $route, $routeParams, User, Needs, Professions, 
      */
     $scope.onReadFile = function($event) {
         if($scope.user.sguid == $scope.authUserId) {
-
             $rootScope.$broadcast('cropImage', {user: $scope.user});
         }
     }
@@ -418,6 +423,16 @@ function UserController($scope, $route, $routeParams, User, Needs, Professions, 
             });
     }
 
+    $scope.getProfessionByName = function(name) {
+        var filtered = $scope.professions.filter(function(value) {
+            if(value.name == name) {
+                return value;
+            }
+        });
+
+        return filtered;
+    }
+
     /**
      * Публикация профиля
      * Пока не работает нет backend
@@ -431,11 +446,14 @@ function UserController($scope, $route, $routeParams, User, Needs, Professions, 
             $scope.user.published = 0;
         }
 
+        if($scope.user.profession && $scope.user.profession.name) {
+            $scope.user.profession = $scope.getProfessionByName($scope.user.profession.name)[0];
+        }
+
         User.updateUser({"id": $scope.user.sguid},  {user: JSON.stringify({
                 "login": $scope.user.login,
                 "name": $scope.user.name,
                 "email": $scope.user.email,
-                "age": $scope.user.age,
                 "profession": $scope.user.profession ? $scope.user.profession.sguid : null ,
                 "state": $scope.user.state ? $scope.user.state.sguid : null,
                 "published": 1

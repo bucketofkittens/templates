@@ -159,3 +159,4 @@ body header .social a:last-child{background-position:100% 0}
 #follow_tab ul li sub{display:none;position:absolute;top:0;left:0;padding:8% 0 0 7%;width:100%;color:#fff;bottom:-2%;background:rgba(0,0,0,0.5)}
 #follow_tab ul li.show sub{display:block;height:100%}#follow_tab ul li.show sub a{font-size:80%;color:#fff;position:absolute;top:10%;left:5%;border:0 !important}#follow_tab ul li.show sub a.compare{bottom:25%;top:auto !important}
 #follow_tab a{position:absolute;top:20%;right:1%;cursor:pointer;width:0;height:0;border-style:solid;border-width:10px 0 10px 20px;border-color:transparent transparent transparent #fff}
+.dropdown-menu li>a strong{font-weight:bold}
