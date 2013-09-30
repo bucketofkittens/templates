@@ -23,6 +23,14 @@
 </div>
 
 <div class="pmain pro" ng-if="user">
+	<!--
+	<form action="" method="get" accept-charset="utf-8">
+		<input id="goal_id" type="text" />
+		<input id="goal_image" capture="camera" type="file" accept="image/*" />
+		<a ng-click="onUpdateGoalImage()" title="">Update goalImage</a>
+		<span id="goal_done"></span>
+	</form>
+	-->
 	<div class="block">
 		<input 
 			class="hidden" 
@@ -181,7 +189,7 @@
 			<ul>
 				<li ng-repeat="(goalKey,goalItem) in needItem.goals | orderBy:'position'" data-goalid="{{goalItem.sguid}}" >
 					<h5>
-						<span><img src="../images/point.png"></span>
+						<span><img ng-src="{{goalItem.icon}}" alt="" title="{{goalItem.name}}" /></span>
 						<a ng-click="openCriteriumList($event, needItem, goalItem)">{{goalItem.name}}</a>					
 						<strong>
 							<b>{{goalItem.current_value}} / {{goalItem.points_summary}}</b>

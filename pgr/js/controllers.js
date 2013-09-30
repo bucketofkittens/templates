@@ -400,6 +400,24 @@ function UserController($scope, $route, $routeParams, User, Needs, Professions, 
         }
     }
 
+    $scope.onUpdateGoalImage = function($event) {
+        $("#goal_done").html("");
+        var data = new FormData();
+            data.append("picture", $("#goal_image")[0].files[0]);
+            data.append("owner_type", 3);
+
+            $.ajax({
+                url: host+'/pictures/'+$("#goal_id").val(),
+                data: data,
+                cache: false,
+                contentType: false,
+                processData: false,
+                type: 'PUT'
+            }).done(function(data) {
+                $("#goal_done").html("done");
+            });
+    }
+
     /**
      * Публикация профиля
      * Пока не работает нет backend
