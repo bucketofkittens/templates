@@ -228,9 +228,11 @@ function UserController($scope, $route, $routeParams, User, Needs, Professions, 
 
     $scope.getUserByServer = function() {
         User.query({id: $scope.currentUserId}, function(data) {
-            console.log(data);
             $scope.user = data;
-            console.log($scope.user);
+            if($scope.user.birthday) {
+                var dayWrapper = moment($scope.user.birthday);
+                $scope.user.birthday = dayWrapper.format("DD/MM/YYYY");
+            }
             $scope.getLegueUsers();
             
             $rootScope.$broadcast('getUserInfoToNeeds', {
@@ -449,11 +451,15 @@ function UserController($scope, $route, $routeParams, User, Needs, Professions, 
         if($scope.user.profession && $scope.user.profession.name) {
             $scope.user.profession = $scope.getProfessionByName($scope.user.profession.name)[0];
         }
-
+        if($scope.user.birthday) {
+            var dayWrapper = moment($scope.user.birthday);
+            $scope.user.birthday = dayWrapper.format("DD/MM/YYYY");
+        }
         User.updateUser({"id": $scope.user.sguid},  {user: JSON.stringify({
                 "login": $scope.user.login,
                 "name": $scope.user.name,
                 "email": $scope.user.email,
+                "birthday": $scope.user.birthday,
                 "profession": $scope.user.profession ? $scope.user.profession.sguid : null ,
                 "state": $scope.user.state ? $scope.user.state.sguid : null,
                 "published": 1

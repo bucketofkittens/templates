@@ -121,9 +121,16 @@
 		</p>
 		<p>
 			<label for="age_i">{{'_BirthdayL_' | i18n}}:</label>
-			<input type="text" ng-model="user.age" data-date-format="dd%mm%yyyy" bs-datepicker />
-  			<button type="button" class="btn" data-toggle="datepicker"><i class="icon-calendar"></i></button>
-			<i ng-if="!isEdit || user.sguid != authUserId">{{user.age}}</i>
+			<input 
+				type="text" 
+				ng-model="user.birthday" 
+				data-date-format="dd/mm/yyyy" 
+				bs-datepicker
+				readonly="readonly"
+				class="clean form-control" 
+				id="age_i"
+				ng-click="onElementClick($event)" />
+			<i ng-if="!isEdit || user.sguid != authUserId">{{user.birthday}}</i>
 		</p>
 		<p>
 			<label for="loc_i">{{'_LocL_' | i18n}}:</label>
@@ -144,6 +151,7 @@
 				ng-model="user.profession.name" 
 				type="text" 
 				bs-typeahead="professionFn"
+				readonly="readonly"
 				ng-click="onElementClick($event)" />
 			<i ng-if="!isEdit || user.sguid != authUserId">{{user.profession.name}}</i>
 		</p>

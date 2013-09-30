@@ -328,6 +328,7 @@ angular.module('$strap.directives').directive('bsDatepicker', [
             }
           });
           controller.$render = function ngModelRender() {
+            console.log(format);
             if (isAppleTouch) {
               var date = controller.$viewValue ? $.fn.datepicker.DPGlobal.formatDate(controller.$viewValue, $.fn.datepicker.DPGlobal.parseFormat(format), language) : '';
               element.val(date);
