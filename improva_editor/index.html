@@ -25,6 +25,15 @@
 		<script src="./js/services.js"></script>
 	</head>
 	<body ng-controller="RootController">
-		test
+		<header>
+			<ul ng-controller="navCtrl">
+        		<li ng-repeat="nav in navs">
+	        		<a class="{{nav.activeClass}}" ng-click="onNavClick($event, nav)">{{nav.name}}</a>
+        		</li>
+			</ul>
+		</header>
+		<div id="content">
+			<div app-view-segment="0" class="view-example content-inner anim"></div>
+		</div>
 	</body>
 </html>
