@@ -39,19 +39,35 @@ pgrModule.directive('paralaxImage', function () {
 
         function setPostion() {
           var position = {
-            x: parseInt(getRandomInt(0, 90)),
-            y: parseInt(getRandomInt(0, 90))
+            x: parseInt(getRandomInt(0, $(window).width()-100)),
+            y: parseInt(getRandomInt(0, $(window).height()*2-100))
           };
 
-          $scope.enteredPosition.push(position);
+          var isset = $scope.enteredPosition.filter(function(item) {
+            if(item.x == position.x && item.y == position.y) {
+              return item;
+            }
+          });
 
-          return position;
+          if(isset && isset[0]) {
+            return setPostion();
+          } else {
+            var decr = 5;
+            var i = position.x-decr, j = position.y-decr;
+
+            for(i = position.x-decr; i < position.x + decr; i++) {
+              $scope.enteredPosition.push({x: i, y: position.y});
+            }
+            for(j = position.y-decr; j < position.y + decr; j++) {
+              $scope.enteredPosition.push({x: position.x, y: j});
+            }
+            return position;
+          }
         }
 
-        var position = setPostion();
-
-        $(element).css("left", position.x+"%");
-        $(element).css("top", position.y+"%");
+        var position = setPostion(0);
+        $(element).css("left", position.x+"px");
+        $(element).css("top", position.y+"px");
 
         $("#main_leagues ul").css("height", $(window).height()*step).css("width", $(window).width());
       });

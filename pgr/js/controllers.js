@@ -976,6 +976,7 @@ function LoginController($scope, Sessions, $rootScope, AuthUser, User, Social, $
             if(data.success) {
                 $rootScope.$broadcast('onSignin', {guid: data.guid, isSocial: true});
                 $scope.shouldBeOpen = false;
+                $location.path("/");
             } else {
                 $scope.error = data.message;
             }
