@@ -30,6 +30,10 @@ body {
                     cursor: pointer;
                 }
             }
+            .current {
+                color: #46496b;
+                cursor: default;
+            }
         }
     }
 }
@@ -74,6 +78,7 @@ body {
             height: auto;
             display: inline-block;
             vertical-align: middle;
+            margin-right: 5%;
             &:hover {
                 box-shadow: inset 0px 0px 30px 1px rgba(70, 73, 107, 0.5);
             }
@@ -82,8 +87,33 @@ body {
             height: 700px;
             width: 98%;
             margin: 1% auto;
-            .ngRowCountPicker {
-                visibility: hidden;
+            .ngHeaderCell {
+                color: #46496b;
+                .ngHeaderText {
+                    text-align: center;
+                }
+            }
+            .ngCellText {
+                margin-left: 10px;
+            }
+            .ngFooterPanel {
+                color: #46496b;
+                .ngTotalSelectContainer {
+                    margin-left: 15px;
+                }
+                .ngPagerContainer {
+                    float: none;
+                    position: absolute;
+                    right: 0%;
+                    top: 0%;
+                    margin-right: 5%;
+                    .ngRowCountPicker {
+                        display: none;
+                    }
+                    .ngPagerControl {
+                        width: 120%;
+                    }
+                }
             }
         }
     }

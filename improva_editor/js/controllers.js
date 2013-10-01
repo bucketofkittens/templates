@@ -46,7 +46,6 @@ function MainController($scope) {
 
 function UsersController($scope, Userlist) {
 	$scope.pagingOptions = {
-		pageSizes: [20, 50, 100],
 		pageSize: 20,
 		currentPage: 1
    };
@@ -72,22 +71,26 @@ function UsersController($scope, Userlist) {
 		})});
 	});
 
+	$scope.removeRow = function(row) {
+		var index = $scope.myData.indexOf(row.entity);
+		$scope.gridOptions.selectItem(index, false);
+		$scope.myData.splice(index, 1);
+	};
    
 	$scope.usertable = {
 		data: 'userlist', 
 		columnDefs: [
 			{field:'login', displayName:'Login'}, 
 			{field:'name', displayName:'Name'}, 
-			{field:'email', displayName:'E-mail'}, 
-			{field:'', displayName:'Delete'}
+			{field:'email', displayName:'E-mail'}
 		],
 		enablePaging: true,
 		showFooter: true,
 		pagingOptions: $scope.pagingOptions,
 		totalServerItems: 'totalServerItems',
-		enableCellSelection: true,
-		enableRowSelection: false,
-		enableCellEditOnFocus: true,
+		enableCellSelection: false,
+		enableRowSelection: true,
+		enableCellEdit: true,
 	};
 	Userlist.query({}, {}, function(data) {
 		$scope.userlistall = data;
