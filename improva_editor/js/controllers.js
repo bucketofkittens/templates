@@ -62,6 +62,7 @@ function UsersController($scope, Userlist) {
 	   }
 	}, true);
 
+	/** редактирование юзера */
 	$scope.$on('ngGridEventEndCellEdit', function(evt){
 		var user = evt.targetScope.row.entity;
 		Userlist.updateUser({"id": user.sguid},  {user: JSON.stringify({
@@ -71,12 +72,17 @@ function UsersController($scope, Userlist) {
 		})});
 	});
 
-	$scope.removeRow = function(row) {
-		var index = $scope.myData.indexOf(row.entity);
-		$scope.gridOptions.selectItem(index, false);
-		$scope.myData.splice(index, 1);
+	/** удаление юзера */
+	$scope.onDelete = function(){
+		angular.forEach($scope.usertable.selectedItems, function(value, key) {
+			var index = $scope.userlistall.indexOf(value);
+			$scope.userlistall.splice(index, 1);
+			$scope.setPagingData($scope.userlistall, $scope.pagingOptions.currentPage, $scope.pagingOptions.pageSize);
+			Userlist.delUser({"id": value.sguid})
+		});
 	};
    
+	/** таблица юзеров */
 	$scope.usertable = {
 		data: 'userlist', 
 		columnDefs: [
@@ -91,6 +97,7 @@ function UsersController($scope, Userlist) {
 		enableCellSelection: false,
 		enableRowSelection: true,
 		enableCellEdit: true,
+		selectedItems: []
 	};
 	Userlist.query({}, {}, function(data) {
 		$scope.userlistall = data;
