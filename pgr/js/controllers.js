@@ -8,7 +8,6 @@ function navCtrl($scope, localize, $location, AuthUser, $rootScope, $route) {
     $scope.hidden = false;
 
     $scope.onNavClick = function($event, nav) {
-        console.log(nav);
         if(nav.link) {
             $location.path(nav.link.replace('#', ''));
         }

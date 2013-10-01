@@ -44,8 +44,56 @@ function MainController($scope) {
 
 }
 
-function UsersController($scope) {
+function UsersController($scope, Userlist) {
+	$scope.pagingOptions = {
+		pageSizes: [20, 50, 100],
+		pageSize: 20,
+		currentPage: 1
+   };
+   $scope.setPagingData = function(data, page, pageSize){	
+		var pagedData = data.slice((page - 1) * pageSize, page * pageSize);
+		$scope.userlist = pagedData;
+		if (!$scope.$$phase) {
+		   $scope.$apply();
+		}
+   };
+	$scope.$watch('pagingOptions', function (newVal, oldVal) {
+	   if (newVal !== oldVal && newVal.currentPage !== oldVal.currentPage) {
+	   	$scope.setPagingData($scope.userlistall, $scope.pagingOptions.currentPage, $scope.pagingOptions.pageSize);
+	   }
+	}, true);
 
+	$scope.$on('ngGridEventEndCellEdit', function(evt){
+		var user = evt.targetScope.row.entity;
+		Userlist.updateUser({"id": user.sguid},  {user: JSON.stringify({
+			"login": user.login,
+			"name": user.name,
+			"email": user.email
+		})});
+	});
+
+   
+	$scope.usertable = {
+		data: 'userlist', 
+		columnDefs: [
+			{field:'login', displayName:'Login'}, 
+			{field:'name', displayName:'Name'}, 
+			{field:'email', displayName:'E-mail'}, 
+			{field:'', displayName:'Delete'}
+		],
+		enablePaging: true,
+		showFooter: true,
+		pagingOptions: $scope.pagingOptions,
+		totalServerItems: 'totalServerItems',
+		enableCellSelection: true,
+		enableRowSelection: false,
+		enableCellEditOnFocus: true,
+	};
+	Userlist.query({}, {}, function(data) {
+		$scope.userlistall = data;
+		$scope.totalServerItems = data.length;
+		$scope.setPagingData($scope.userlistall, $scope.pagingOptions.currentPage, $scope.pagingOptions.pageSize);
+	});
 }
 
 function ProvidersController($scope) {

@@ -1,7 +1,7 @@
 'use strict';
 
 /** Основной модуль приложения */
-var editorModule = angular.module('editorModule', [ "ngRoute", "ngCookies", "ngResource", "ngAnimate", 'route-segment', 'view-segment']);
+var editorModule = angular.module('editorModule', [ "ngRoute", "ngCookies", "ngResource", "ngAnimate", 'route-segment', 'view-segment', 'ngGrid']);
 
 /** Роутинг приложения */
 editorModule.config(function($routeSegmentProvider, $routeProvider) {
