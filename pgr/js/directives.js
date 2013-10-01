@@ -42,27 +42,7 @@ pgrModule.directive('paralaxImage', function () {
             x: parseInt(getRandomInt(0, $(window).width()-100)),
             y: parseInt(getRandomInt(0, $(window).height()*2-100))
           };
-
-          var isset = $scope.enteredPosition.filter(function(item) {
-            if(item.x == position.x && item.y == position.y) {
-              return item;
-            }
-          });
-
-          if(isset && isset[0]) {
-            return setPostion();
-          } else {
-            var decr = 5;
-            var i = position.x-decr, j = position.y-decr;
-
-            for(i = position.x-decr; i < position.x + decr; i++) {
-              $scope.enteredPosition.push({x: i, y: position.y});
-            }
-            for(j = position.y-decr; j < position.y + decr; j++) {
-              $scope.enteredPosition.push({x: position.x, y: j});
-            }
-            return position;
-          }
+           return position;
         }
 
         var position = setPostion(0);
