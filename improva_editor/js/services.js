@@ -1,6 +1,6 @@
 var host = "http://dev.api.improva.com/api/v1";
 
-/** получаем список юзеров */
+/** страница юзеров */
 editorModule.factory('Userlist', function ($resource) {
    return $resource(
 		host+'/users/:id', 
@@ -10,4 +10,12 @@ editorModule.factory('Userlist', function ($resource) {
 		   updateUser: {method: 'PUT'}
 	   }
    );
+});
+
+/** нидсы для профиля */
+editorModule.factory('Needslist', function ($resource) {
+   return $resource(
+		host+'/needs/:id', 
+		{id:'@id'}
+   )
 });

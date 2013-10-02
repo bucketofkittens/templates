@@ -1,5 +1,5 @@
 <accordion close-others="oneAtATime" ng-controller="NeedsController">
-   <accordion-group heading="{{group.title}}" ng-repeat="group in groups">
-      {{group.content}}
+   <accordion-group heading="{{needs.name}}" ng-repeat="needs in needslist">
+      <a href="#" ng-repeat="goals in needs.goals">{{goals.name}}</a>
    </accordion-group>
 </accordion>

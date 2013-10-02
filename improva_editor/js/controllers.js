@@ -95,9 +95,9 @@ function UsersController($scope, Userlist, $rootScope) {
 		data: 'userlist', 
 		columnDefs: [
 			{field:'sguid', visible: false},
-			{field:'login', displayName:'Login', cellTemplate:'<div class="ngCellText" ng-class="col.colIndex()"><a class="links" href="#/userprofile/{{row.getProperty(\'sguid\')}}" ng-cell-text>{{COL_FIELD}}</a></div>'}, 
-			{field:'name', displayName:'Name', cellTemplate:'<div class="ngCellText" ng-class="col.colIndex()"><a class="links" href="#/userprofile/{{row.getProperty(\'sguid\')}}" ng-cell-text>{{COL_FIELD}}</a></div>'}, 
-			{field:'email', displayName:'E-mail', cellTemplate:'<div class="ngCellText" ng-class="col.colIndex()"><a class="links" href="#/userprofile/{{row.getProperty(\'sguid\')}}" ng-cell-text>{{COL_FIELD}}</a></div>'}
+			{field:'login', displayName:'Login', cellTemplate:'<div class="ngCellText" ng-class="col.colIndex()"><a href="#/userprofile/{{row.getProperty(\'sguid\')}}" ng-cell-text>{{COL_FIELD}}</a></div>'}, 
+			{field:'name', displayName:'Name', cellTemplate:'<div class="ngCellText" ng-class="col.colIndex()"><a href="#/userprofile/{{row.getProperty(\'sguid\')}}" ng-cell-text>{{COL_FIELD}}</a></div>'}, 
+			{field:'email', displayName:'E-mail', cellTemplate:'<div class="ngCellText" ng-class="col.colIndex()"><a href="#/userprofile/{{row.getProperty(\'sguid\')}}" ng-cell-text>{{COL_FIELD}}</a></div>'}
 		],
 		enablePaging: true,
 		showFooter: true,
@@ -116,10 +116,6 @@ function UsersController($scope, Userlist, $rootScope) {
 		})
 	};
 	$scope.getUsers();
-
-	/** профиль юзера */
-   
-   
 }
 
 /** добавление юзера */
@@ -181,12 +177,19 @@ function UserprofileController($scope) {
 }
 
 /** аккордион нидсов */
-function NeedsController($scope) {
+function NeedsController($scope, Needslist) {
    $scope.oneAtATime = true;
 	$scope.groups = [{
 	   title: "Dynamic Group Header - 1",
 	   content: "Dynamic Group Body - 1"
 	}];
+	$scope.getNeeds = function(){
+		Needslist.query({}, {}, function(data) {
+			$scope.needslist = data;
+			console.log(data)
+		})
+	}
+	$scope.getNeeds();
 }
 
 /** страница провайдеров */

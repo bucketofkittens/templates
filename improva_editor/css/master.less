@@ -10,9 +10,17 @@ body {
     height: 100%;
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     font-size: 100%;
-    color: #5387BC;
+    color: #46496b;
     -moz-font-smoothing:antialiased;
     -webkit-font-smoothing:antialiased;
+    a {
+        color: #5387BC;
+        text-decoration: none;
+        cursor: pointer !important;
+        &:hover {
+            text-decoration: underline;
+        }
+    }
     header {
         height: 7%;
         width: 100%;
@@ -93,15 +101,7 @@ body {
                 }
             }
             .ngCellText {
-                margin-left: 10px;
-                .links {
-                    color: #5387BC;
-                    text-decoration: none;
-                    cursor: pointer !important;
-                    &:hover {
-                        text-decoration: underline;
-                    }
-                }
+                margin-left: 10px;                
             }
             .ngFooterPanel {
                 color: #46496b;
@@ -121,6 +121,25 @@ body {
                         width: 120%;
                     }
                 }
+            }
+        }
+    }
+
+    /** user profile page **/
+    .accordion {
+        width: 15%;
+        margin: 1%;
+        .accordion-heading {
+            background: rgba(153, 200, 224, 0.5);
+            line-height: 150%;
+            padding-left: 10%;
+        }
+        .accordion-body {
+            background: rgba(209, 230, 241, 0.3);
+            padding-left: 10%;
+            a {
+                display: block;
+                line-height: 200%;
             }
         }
     }
@@ -164,7 +183,7 @@ body {
 }
 
 
-/** providers page **/
+/** modal window **/
 .modal {
     top: 30%;
     p {
