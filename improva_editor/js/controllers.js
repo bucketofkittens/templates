@@ -94,9 +94,10 @@ function UsersController($scope, Userlist, $rootScope) {
 	$scope.usertable = {
 		data: 'userlist', 
 		columnDefs: [
-			{field:'login', displayName:'Login', cellTemplate:'<div class="ngCellText" ng-class="col.colIndex()"><a class="links" href="#" ng-cell-text>{{COL_FIELD}}</a></div>'}, 
-			{field:'name', displayName:'Name', cellTemplate:'<div class="ngCellText" ng-class="col.colIndex()"><a class="links" href="#" ng-cell-text>{{COL_FIELD}}</a></div>'}, 
-			{field:'email', displayName:'E-mail', cellTemplate:'<div class="ngCellText" ng-class="col.colIndex()"><a class="links" href="#" ng-cell-text>{{COL_FIELD}}</a></div>'}
+			{field:'sguid', visible: false},
+			{field:'login', displayName:'Login', cellTemplate:'<div class="ngCellText" ng-class="col.colIndex()"><a class="links" href="#/userprofile/{{row.getProperty(\'sguid\')}}" ng-cell-text>{{COL_FIELD}}</a></div>'}, 
+			{field:'name', displayName:'Name', cellTemplate:'<div class="ngCellText" ng-class="col.colIndex()"><a class="links" href="#/userprofile/{{row.getProperty(\'sguid\')}}" ng-cell-text>{{COL_FIELD}}</a></div>'}, 
+			{field:'email', displayName:'E-mail', cellTemplate:'<div class="ngCellText" ng-class="col.colIndex()"><a class="links" href="#/userprofile/{{row.getProperty(\'sguid\')}}" ng-cell-text>{{COL_FIELD}}</a></div>'}
 		],
 		enablePaging: true,
 		showFooter: true,
@@ -173,6 +174,11 @@ function CreateController($scope, $location, Userlist, $rootScope) {
 		);
    };
 };
+
+/** профиль юзера */
+function UserprofileController($scope) {
+
+}
 
 /** страница провайдеров */
 function ProvidersController($scope) {

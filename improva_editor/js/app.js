@@ -9,9 +9,9 @@ editorModule.config(function($routeSegmentProvider, $routeProvider) {
 
 	$routeSegmentProvider
     
-        .when('/users', 'users')
-        .when('/users/:id', 'userInfo')
         .when('/', 'main')
+        .when('/users', 'users')
+        .when('/userprofile/:id', 'userprofile')
         
         .segment('main', {
             templateUrl: 'views/home.html',
@@ -20,6 +20,10 @@ editorModule.config(function($routeSegmentProvider, $routeProvider) {
         .segment('users', {
             templateUrl: 'views/users.html',
             controller: UsersController})
+
+        .segment('userprofile', {
+            templateUrl: 'views/userprofile.html',
+            controller: UserprofileController})
 
         .segment('providers', {
             templateUrl: 'views/providers.html',
