@@ -1,4 +1,4 @@
-<section id="follow_tab" ng-class="{relative: onRelative, fixed: controller == '_'}" >
+<section id="follow_tab" ng-if="frends.length > 0" ng-class="{relative: onRelative, fixed: controller == '_'}" >
 	<ul>
 		<li ng-if="isAuth">
 			<img ng-click="onCompare(rootUser)" ng-src="{{rootUser.avatar}}" err-src="/images/unknown-person.png" />

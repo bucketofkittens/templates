@@ -1074,16 +1074,14 @@ function FollowController($scope, $rootScope, User, $location, $routeParams, Aut
     $scope.compareState = 1;
     
     $scope.onCompare = function(user) {
-        if($scope.onClickCompare == true) {
-            if($scope.compareState == 1) {
-                if($routeParams.userId1 != user.sguid) {
-                    $location.path("/profile/"+$routeParams.userId1+"/"+user.sguid+"/");
-                    $scope.compareState = 0;
-                }
-            } else {
-                $location.path("/profile/"+user.sguid+"/"+$routeParams.userId2+"/");
-                $scope.compareState = 1;    
+        if($scope.compareState == 1) {
+            if($routeParams.userId1 != user.sguid) {
+                $location.path("/profile/"+$routeParams.userId1+"/"+user.sguid+"/");
+                $scope.compareState = 0;
             }
+        } else {
+            $location.path("/profile/"+user.sguid+"/"+$routeParams.userId2+"/");
+            $scope.compareState = 1;    
         }
     }
 
@@ -1135,7 +1133,12 @@ function FollowController($scope, $rootScope, User, $location, $routeParams, Aut
     }
 
     $scope.onMoveToUser = function() {
-        $location.path("/profile/"+$rootScope.authUserId+"/compare/");
+        if($rootScope.authUserId) {
+            $location.path("/profile/"+$rootScope.authUserId+"/compare/");
+        } else {
+            $location.path("/profile/"+$scope.frends[0].user.sguid+"/compare/");
+        }
+        
     }
 
     $scope.setAuthUserData();
@@ -1186,14 +1189,21 @@ function MainController($scope, Leagues, User, AuthUser, $rootScope, $location, 
                     return data;
                 }
             });
-            if(frend.length > 0) {
-                user.isFrend = true;
-            } else {
-                user.isFrend = false;
-            }
-
-            return user;
+        } else {
+            var frend = $rootScope.tmpFollows.filter(function(data) {
+                if(data.user.sguid == user.sguid) {
+                    return data;
+                }
+            });
         }
+            
+        if(frend.length > 0) {
+            user.isFrend = true;
+        } else {
+            user.isFrend = false;
+        }
+
+        return user;
     }
 
     $scope.$on('authUserGetData', function() {
@@ -1603,35 +1613,17 @@ function RootController($scope, AuthUser, User, $rootScope, Needs, Social, $cook
     }
 
     $scope.getState = function() {
-        var states = localStorage.getItem("states");
-        if(states) {
-            $rootScope.workspace.states = angular.fromJson(states);
+        States.query({}, {}, function(data) {
+            $rootScope.workspace.states = data;
             $rootScope.$broadcast('statesGet');
-        } else {
-            States.query({}, {}, function(data) {
-                $rootScope.workspace.states = data;
-                localStorage.setItem("states", angular.toJson(data));
-                $rootScope.$broadcast('statesGet');
-            });
-        }
+        });
     }
 
     $scope.getProfessions = function() {
-        var professions = localStorage.getItem("professions");
-        if(professions) {
-            $rootScope.workspace.professions = angular.fromJson(professions);
+        Professions.query({}, {}, function(data) {
+            $rootScope.workspace.professions = data;
             $rootScope.$broadcast('professionsGet');
-        } else {
-            Professions.query({}, {}, function(data) {
-                $rootScope.workspace.professions = data;
-                localStorage.setItem("professions", angular.toJson(data));
-                $rootScope.$broadcast('professionsGet');
-            });
-            Professions.query({id: '1223'}, {}, function(data) {
-                $scope.proff = data;
-                {{proff}}
-            });
-        }
+        });
     }
 
     $scope.getProfessions();

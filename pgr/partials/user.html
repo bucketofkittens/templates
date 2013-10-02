@@ -129,7 +129,8 @@
 				readonly="readonly"
 				class="clean form-control" 
 				id="age_i"
-				ng-click="onElementClick($event)" />
+				ng-click="onElementClick($event)"
+				ng-if="isEdit && user.sguid == authUserId" />
 			<i ng-if="!isEdit || user.sguid != authUserId">{{user.birthday}}</i>
 		</p>
 		<p>
