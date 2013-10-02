@@ -78,7 +78,6 @@ body {
             height: auto;
             display: inline-block;
             vertical-align: middle;
-            margin-right: 5%;
             &:hover {
                 box-shadow: inset 0px 0px 30px 1px rgba(70, 73, 107, 0.5);
             }
@@ -95,6 +94,14 @@ body {
             }
             .ngCellText {
                 margin-left: 10px;
+                .links {
+                    color: #5387BC;
+                    text-decoration: none;
+                    cursor: pointer !important;
+                    &:hover {
+                        text-decoration: underline;
+                    }
+                }
             }
             .ngFooterPanel {
                 color: #46496b;
@@ -154,4 +161,33 @@ body {
         
     }
 
+}
+
+
+/** providers page **/
+.modal {
+    top: 30%;
+    p {
+        margin-left: 30%;
+        display: block;
+        label {
+            margin-bottom: 2%;
+        }
+    }
+    .btn-success {
+    background-color: #447FBA;
+    background-image: -moz-linear-gradient(top, #99c8e0, #447FBA);
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#99c8e0), to(#447FBA));
+    background-image: -webkit-linear-gradient(top, #99c8e0, #447FBA);
+    background-image: -o-linear-gradient(top, #99c8e0, #447FBA);
+    background-image: linear-gradient(to bottom, #99c8e0, #447FBA);
+    }
+    .btn-danger {
+    background-color: #46496b;
+    background-image: -moz-linear-gradient(top, #7E83BC, #46496b);
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#7E83BC), to(#46496b));
+    background-image: -webkit-linear-gradient(top, #7E83BC, #46496b);
+    background-image: -o-linear-gradient(top, #7E83BC, #46496b);
+    background-image: linear-gradient(to bottom, #7E83BC, #46496b);
+    }
 }

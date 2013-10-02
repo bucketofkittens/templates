@@ -40,15 +40,20 @@ function navCtrl($scope, $location, $rootScope, $route) {
 	});
 }
 
+
+/** главная страница */
 function MainController($scope) {
 
 }
 
-function UsersController($scope, Userlist) {
+/** страница юзеров */
+function UsersController($scope, Userlist, $rootScope) {
+	/** опции пагинации */
 	$scope.pagingOptions = {
 		pageSize: 20,
 		currentPage: 1
    };
+   /** текущая страница */
    $scope.setPagingData = function(data, page, pageSize){	
 		var pagedData = data.slice((page - 1) * pageSize, page * pageSize);
 		$scope.userlist = pagedData;
@@ -56,6 +61,7 @@ function UsersController($scope, Userlist) {
 		   $scope.$apply();
 		}
    };
+   /** переключение страницы */
 	$scope.$watch('pagingOptions', function (newVal, oldVal) {
 	   if (newVal !== oldVal && newVal.currentPage !== oldVal.currentPage) {
 	   	$scope.setPagingData($scope.userlistall, $scope.pagingOptions.currentPage, $scope.pagingOptions.pageSize);
@@ -72,23 +78,25 @@ function UsersController($scope, Userlist) {
 		})});
 	});
 
-	/** удаление юзера */
-	$scope.onDelete = function(){
-		angular.forEach($scope.usertable.selectedItems, function(value, key) {
-			var index = $scope.userlistall.indexOf(value);
-			$scope.userlistall.splice(index, 1);
-			$scope.setPagingData($scope.userlistall, $scope.pagingOptions.currentPage, $scope.pagingOptions.pageSize);
-			Userlist.delUser({"id": value.sguid})
-		});
-	};
-   
+
+	/** открывание мордала */
+   $scope.onOpenCreate = function() {
+		$rootScope.$broadcast('openCreateModal');
+	}
+
+	/** добавляем нового в таблицу */
+   $scope.$on('created', function() {      
+		$scope.getUsers();
+   });
+
+
 	/** таблица юзеров */
 	$scope.usertable = {
 		data: 'userlist', 
 		columnDefs: [
-			{field:'login', displayName:'Login'}, 
-			{field:'name', displayName:'Name'}, 
-			{field:'email', displayName:'E-mail'}
+			{field:'login', displayName:'Login', cellTemplate:'<div class="ngCellText" ng-class="col.colIndex()"><a class="links" href="#" ng-cell-text>{{COL_FIELD}}</a></div>'}, 
+			{field:'name', displayName:'Name', cellTemplate:'<div class="ngCellText" ng-class="col.colIndex()"><a class="links" href="#" ng-cell-text>{{COL_FIELD}}</a></div>'}, 
+			{field:'email', displayName:'E-mail', cellTemplate:'<div class="ngCellText" ng-class="col.colIndex()"><a class="links" href="#" ng-cell-text>{{COL_FIELD}}</a></div>'}
 		],
 		enablePaging: true,
 		showFooter: true,
@@ -99,37 +107,104 @@ function UsersController($scope, Userlist) {
 		enableCellEdit: true,
 		selectedItems: []
 	};
-	Userlist.query({}, {}, function(data) {
-		$scope.userlistall = data;
-		$scope.totalServerItems = data.length;
-		$scope.setPagingData($scope.userlistall, $scope.pagingOptions.currentPage, $scope.pagingOptions.pageSize);
-	});
+	$scope.getUsers = function(){
+		Userlist.query({}, {}, function(data) {
+			$scope.userlistall = data;
+			$scope.totalServerItems = data.length;
+			$scope.setPagingData($scope.userlistall, $scope.pagingOptions.currentPage, $scope.pagingOptions.pageSize);
+		})
+	};
+	$scope.getUsers();
+
+	/** профиль юзера */
+   
+   
 }
 
+/** добавление юзера */
+function CreateController($scope, $location, Userlist, $rootScope) {
+	/** объект нового юзера */
+	$scope.user = {
+	   login: "",
+	   name: "",
+	   email: "",
+	   password: "",
+	   repassword: ""
+	};
+
+   /** строка ошибок */
+   $scope.errors = "";
+    
+   /** открывание окна */
+   $scope.open = function () {
+      $scope.shouldBeOpen = true;
+   };
+    
+   /** закрывание окна */
+   $scope.close = function () {
+      $scope.shouldBeOpen = false;
+   };
+
+   /** ловим событие мордала */
+   $scope.$on('openCreateModal', function() {
+      $scope.shouldBeOpen = true;
+   });
+
+   /** создаем юзера */
+   $scope.onCreate = function ($event) {
+		Userlist.create(
+		   {user: JSON.stringify({
+		      "login": $scope.user.login,
+		      "name": $scope.user.name,
+		      "email": $scope.user.email,
+		      "password": $scope.user.password,
+		      "confirmed": 1
+		   })}
+		   ,function(data) {
+		      if(!data.success) {
+	            angular.forEach(data.errors, function(value, key) {
+	               $scope.errors += value;
+	            });
+		      } else {
+	            $scope.shouldBeOpen = false;
+	            $rootScope.$broadcast('created');
+		      }
+		   }
+		);
+   };
+};
+
+/** страница провайдеров */
 function ProvidersController($scope) {
     
 }
 
+/** страница целей */
 function GoalslibController($scope) {
 
 }
 
+/** страница резактора nsi */
 function NsieditController($scope) {
     
 }
 
+/** страница дерева */
 function MindmapsController($scope) {
 
 }
 
+/** страница графиков */
 function ChartsController($scope) {
     
 }
 
+/** страница тьютеров */
 function TutorsController($scope) {
 
 }
 
+/**  */
 function RootController($scope) {
 
 }
