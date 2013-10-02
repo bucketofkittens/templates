@@ -172,8 +172,15 @@ function CreateController($scope, $location, Userlist, $rootScope) {
 };
 
 /** профиль юзера */
-function UserprofileController($scope) {
-	
+function UserprofileController($scope, Userlist, $routeParams) {
+	/** имя юзера */
+	$scope.getUser = function(){
+		Userlist.getOne({id:$routeParams.id}, {}, function(data) {
+			$scope.user = data;
+			console.log(data)
+		})
+	};
+	$scope.getUser();
 }
 
 /** аккордион нидсов */
@@ -186,7 +193,6 @@ function NeedsController($scope, Needslist) {
 	$scope.getNeeds = function(){
 		Needslist.query({}, {}, function(data) {
 			$scope.needslist = data;
-			console.log(data)
 		})
 	}
 	$scope.getNeeds();

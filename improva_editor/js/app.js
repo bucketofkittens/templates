@@ -23,7 +23,8 @@ editorModule.config(function($routeSegmentProvider, $routeProvider) {
 
         .segment('userprofile', {
             templateUrl: 'views/userprofile.html',
-            controller: UserprofileController})
+            controller: UserprofileController,
+            dependencies: ['id']})
 
         .segment('providers', {
             templateUrl: 'views/providers.html',

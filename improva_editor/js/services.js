@@ -7,7 +7,11 @@ editorModule.factory('Userlist', function ($resource) {
 		{id:'@id'}, 
 		{
 		   create: {method: 'POST'},
-		   updateUser: {method: 'PUT'}
+		   updateUser: {method: 'PUT'},
+		   "getOne": {
+				method: 'GET',
+				isArray: false
+			}
 	   }
    );
 });

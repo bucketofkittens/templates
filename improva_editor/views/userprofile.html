@@ -1,3 +1,4 @@
+<h2>{{user.name}} profile</h2>
 <accordion close-others="oneAtATime" ng-controller="NeedsController">
    <accordion-group heading="{{needs.name}}" ng-repeat="needs in needslist">
       <a href="#" ng-repeat="goals in needs.goals">{{goals.name}}</a>
