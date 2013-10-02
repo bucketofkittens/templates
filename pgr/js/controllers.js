@@ -1736,13 +1736,19 @@ function LeaguesController($scope, Leagues, User) {
 	* @return {[type]}      [description]
 	*/
 	Leagues.query({}, {}, function(data) {
-        data = data.reverse(); 
+        data = data.reverse();
 
-	   /**
-	   * Получаем 3 наикрутейшие лиги
-	   * @type {[type]}
-	   */
-	   $scope.leagues = data;
+        $scope.leagues = data;
+        angular.forEach($scope.leagues, function(value, key){
+           User.by_league({league_guid: value.sguid}, {}, function(v2, k2) {
+                v2 = v2.filter(function(value) {
+                    if(value.published == 1) {
+                        return value;
+                    }
+                });
+                value.users = v2;
+            })
+        });
 	})
 }
 
