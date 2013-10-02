@@ -18,8 +18,8 @@
 					<b>{{userItem.name}}<br />{{userItem.profession.name}}</b>
 					<b ng-click="onMoveToUser(userItem)">View</b>
 					<b ng-if="rootUser" ng-click="onCompareToUser(userItem)">Compare</b>
-					<b ng-click="onFollow($event, userItem)" ng-if="rootUser && !userItem.isFrend">Follow</b>
-					<b ng-click="onUnFollow($event, userItem)" ng-if="rootUser && userItem.isFrend">Unfollow</b>
+					<b ng-click="onFollow($event, userItem)" ng-if="!userItem.isFrend">Follow</b>
+					<b ng-click="onUnFollow($event, userItem)" ng-if="userItem.isFrend">Unfollow</b>
 				</div>
 			</a>
 		</li>

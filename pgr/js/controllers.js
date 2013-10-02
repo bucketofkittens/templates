@@ -1096,7 +1096,7 @@ function FollowController($scope, $rootScope, User, $location, $routeParams, Aut
             };
             $scope.frends = $rootScope.workspace.user.frends;
         } else {
-            $scope.frends = false;
+            $scope.frends = $rootScope.tmpFollows;
         }
     }
 
@@ -1119,6 +1119,7 @@ function FollowController($scope, $rootScope, User, $location, $routeParams, Aut
     $scope.$on('logout', function() {
         $scope.rootUser = null;
         $scope.isAuth = false;
+        $scope.frends = [];
     });
 
     $scope.onUnfollow = function(user) {
@@ -1581,6 +1582,7 @@ function getRandomInt(min, max) {
 function RootController($scope, AuthUser, User, $rootScope, Needs, Social, $cookieStore, States, Professions, $location) {
     $rootScope.authUserId = AuthUser.get();
     $rootScope.workspace = {};
+    $rootScope.tmpFollows = [];
 
     $scope.controller = $location.path().split("/").join("_");
 
@@ -1643,6 +1645,38 @@ function RootController($scope, AuthUser, User, $rootScope, Needs, Social, $cook
     });
 
     $scope.$on('unfollow', function($event, message) {
+        if($rootScope.authUserId) {
+            $scope.authUnFollow(message);
+        } else {
+            $scope.guestUnFollow(message);
+        }
+    });
+
+    $scope.$on('follow', function($event, message) {
+        if($rootScope.authUserId) {
+            $scope.authFollow(message);
+        } else {
+            $scope.guestFollow(message);
+        }
+    });
+
+    $scope.authFollow = function(message) {
+        User.create_friendship({id: message.userId}, {
+            friend_guid: message.frendId
+        }, function(response) { 
+            if(response.success) {
+                $rootScope.workspace.user.frends.push({sguid: response.message.guid, user: message.user});
+                $rootScope.$broadcast('followCallback', {frendId: message.frendId});
+            }
+        });
+    }
+
+    $scope.guestFollow = function(message) {
+        $rootScope.tmpFollows.push({sguid: null, user: message.user});
+        $rootScope.$broadcast('followCallback', {frendId: message.frendId});
+    }
+
+    $scope.authUnFollow = function(message) {
         User.destroy_friendship({id: message.userId, friendId: message.frendId}, { }, function() {
             var frend = $rootScope.workspace.user.frends.filter(function(data) {
                 if(data.user.sguid == message.frendId) {
@@ -1654,18 +1688,19 @@ function RootController($scope, AuthUser, User, $rootScope, Needs, Social, $cook
 
             $rootScope.$broadcast('unfollowCallback', {frendId: message.frendId});
         });
-    });
+    }
 
-    $scope.$on('follow', function($event, message) {
-        User.create_friendship({id: message.userId}, {
-            friend_guid: message.frendId
-        }, function(response) { 
-            if(response.success) {
-                $rootScope.workspace.user.frends.push({sguid: response.message.guid, user: message.user});
-                $rootScope.$broadcast('followCallback', {frendId: message.frendId});
+    $scope.guestUnFollow = function(message) {
+        var frend = $rootScope.tmpFollows.filter(function(data) {
+            if(data.user.sguid == message.frendId) {
+                return data;
             }
-        });
-    });
+        })[0];
+        var index = $rootScope.tmpFollows.indexOf(frend);
+        $rootScope.tmpFollows.splice(index, 1);
+
+        $rootScope.$broadcast('unfollowCallback', {frendId: message.frendId});
+    }
 
     $scope.$on('onSignin', function($event, message) {
         User.query({id: message.guid}, function(data) {
