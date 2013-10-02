@@ -1,0 +1,57 @@
+<section id="users">
+	<h1>USERS</h1>
+	<button ng-click="onOpenCreate()">Create</button>
+	<div ng-grid="usertable" class="height"></div>
+</section>
+
+<div ng-controller="CreateController">
+	<div modal="shouldBeOpen" close="close()" options="opts">
+		<div class="modal-body">
+			<form id="create_form" name="form" novalidate class="css-form myForm"  ui-keypress="{13:'onSubmit($event)'}">
+				<p>
+					<label for="login_i">Login:</label> 
+					<input 
+						type="text" 
+						id="login_i" 
+						class="form-control"
+						ng-model="user.login"
+						required  />
+				</p>
+				<p>
+					<label for="name_i">Name:</label> 
+					<input 
+						type="text" 
+						id="name_i" 
+						class="form-control"
+						ng-model="user.name"
+						required  />
+				</p>
+				<p>
+					<label for="email_i">E-mail:</label> 
+					<input 
+						type="email" 
+						id="email_i" 
+						class="form-control"
+						ng-model="user.email"
+						required  />
+				</p>
+				<p>
+					<label for="passw_i">Password:</label> 
+					<input 
+						type="password" 
+						id="passw_i"
+						name="password"
+						class="form-control"
+						ng-model="user.password" 
+						required 
+						ng-minlength="6" /> 
+				</p>						
+				<p id="errors">{{errors}}</p>
+			</form>
+		</div>
+		<div class="modal-footer">
+			<button class="btn btn-success" ng-click="onCreate()" ng-disabled="form.$invalid || isUnchanged(user)">Ok</button>
+		   <button class="btn btn-danger cancel" ng-click="close()">Cancel</button>
+		</div>
+	</div>
+</div>

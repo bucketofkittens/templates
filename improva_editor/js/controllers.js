@@ -177,7 +177,16 @@ function CreateController($scope, $location, Userlist, $rootScope) {
 
 /** профиль юзера */
 function UserprofileController($scope) {
+	
+}
 
+/** аккордион нидсов */
+function NeedsController($scope) {
+   $scope.oneAtATime = true;
+	$scope.groups = [{
+	   title: "Dynamic Group Header - 1",
+	   content: "Dynamic Group Body - 1"
+	}];
 }
 
 /** страница провайдеров */
