@@ -226,23 +226,25 @@ function UserController($scope, $route, $routeParams, User, Needs, Professions, 
     }
 
     $scope.getUserByServer = function() {
-        User.query({id: $scope.currentUserId}, function(data) {
-            $scope.user = data;
-            if($scope.user.birthday) {
-                var dayWrapper = moment($scope.user.birthday);
-                $scope.user.birthday = dayWrapper.format("DD/MM/YYYY");
-            }
-            $scope.getLegueUsers();
-            
-            $rootScope.$broadcast('getUserInfoToNeeds', {
-                user: $scope.user,
-                id: $scope.id
-            });
+        if(!isNaN(parseInt($scope.currentUserId))) {
+            User.query({id: $scope.currentUserId}, function(data) {
+                $scope.user = data;
+                if($scope.user.birthday) {
+                    var dayWrapper = moment($scope.user.birthday);
+                    $scope.user.birthday = dayWrapper.format("DD/MM/YYYY");
+                }
+                $scope.getLegueUsers();
+                
+                $rootScope.$broadcast('getUserInfoToNeeds', {
+                    user: $scope.user,
+                    id: $scope.id
+                });
 
-            $rootScope.$broadcast('getSelectedUserData', {
-                user: $scope.user
+                $rootScope.$broadcast('getSelectedUserData', {
+                    user: $scope.user
+                });
             });
-        });
+        }
     }
 
     $scope.getLegueUsers = function() {
