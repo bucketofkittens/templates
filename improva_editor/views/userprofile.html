@@ -1,6 +1,16 @@
 <h2>{{user.name}} profile</h2>
 <accordion close-others="oneAtATime" ng-controller="NeedsController">
    <accordion-group heading="{{needs.name}}" ng-repeat="needs in needslist">
-      <a href="#" ng-repeat="goals in needs.goals">{{goals.name}}</a>
+      <a ng-click="onGoal(goals, needslist)" class="{{goals.addClass}}" ng-repeat="goals in needs.goals">{{goals.name}}</a>
    </accordion-group>
 </accordion>
+<section class="kolbas">
+	<h3>{{goals.name}}</h3>
+	<div ng-repeat="criteria in goals.criteria">
+		<h4>{{criteria.name}}</h4>
+		<p>
+			<b><i ng-repeat="criterion_value in criteria.criterion_values">{{criterion_value.name}}</i></b>
+			<strong></strong>
+		</p>
+	</div>
+</section>

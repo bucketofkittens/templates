@@ -177,19 +177,25 @@ function UserprofileController($scope, Userlist, $routeParams) {
 	$scope.getUser = function(){
 		Userlist.getOne({id:$routeParams.id}, {}, function(data) {
 			$scope.user = data;
-			console.log(data)
 		})
 	};
 	$scope.getUser();
+
+	/** определение выбранного гоалса */
+	$scope.onGoal = function (goals, needslist) {
+		$scope.goals = goals;
+		angular.forEach(needslist, function(nds) {
+			angular.forEach(nds.goals, function(gls) {
+				gls.addClass = "";
+			})
+		})
+		$scope.goals.addClass = "current";
+   };
 }
 
 /** аккордион нидсов */
 function NeedsController($scope, Needslist) {
    $scope.oneAtATime = true;
-	$scope.groups = [{
-	   title: "Dynamic Group Header - 1",
-	   content: "Dynamic Group Body - 1"
-	}];
 	$scope.getNeeds = function(){
 		Needslist.query({}, {}, function(data) {
 			$scope.needslist = data;
