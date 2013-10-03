@@ -1333,6 +1333,52 @@ function MainController($scope, Leagues, User, AuthUser, $rootScope, $location, 
         $rootScope.$broadcast('unfollow', {userId: AuthUser.get(), frendId: user.sguid});
     }
 
+    $scope.oldScroll = $(window).scrollTop();
+
+    $(window).bind("scroll", function(evt) {
+        var delta = $scope.oldScroll-$(window).scrollTop();
+        var step = 1;
+
+        $scope.oldScroll = $(window).scrollTop();
+        var elements = $("#main_leagues ul li");
+        angular.forEach(elements, function(value, key){
+            if($(value).hasClass("league_10")) {
+                step = 5;
+            }
+            if($(value).hasClass("league_9")) {
+                step = 4.5;
+            }
+            if($(value).hasClass("league_8")) {
+                step = 4;
+            }
+            if($(value).hasClass("league_7")) {
+                step = 3.5;
+            }
+            if($(value).hasClass("league_6")) {
+                step = 3;
+            }
+            if($(value).hasClass("league_5")) {
+                step = 2.5;
+            }
+            if($(value).hasClass("league_4")) {
+                step = 2;
+            }
+            if($(value).hasClass("league_3")) {
+                step = 1.5;
+            }
+            if($(value).hasClass("league_2")) {
+                step = 1;
+            }
+            if($(value).hasClass("league_1")) {
+                step = 0.7;
+            }
+            if($(value).hasClass("league_")) {
+                step = 0.5;
+            }
+            $(value).css("top", parseInt($(value).css("top").replace("px",""))+delta*step);
+        });
+    });
+
 }
 
 /** Контроллер графика */
