@@ -1105,7 +1105,7 @@ function FollowController($scope, $rootScope, User, $location, $routeParams, Aut
     }
 
     $scope.onMouseLeaveUser = function(user) {
-        user.show = false;
+        //user.show = false;
     }
 
     $scope.$on('login', function() {
@@ -1242,24 +1242,50 @@ function MainController($scope, Leagues, User, AuthUser, $rootScope, $location, 
     
 
     $scope.getPublishedUser = function() {
-        User.only_published({}, {}, function(data) {
-            data = data.shuffle();
-            var iOS = ( navigator.userAgent.match(/(iPad|iPhone|iPod)/g) ? true : false );
-            angular.forEach(data, function(value, key){
-                User.get_short({id: value.sguid}, {}, function(userData) {
-                    if(userData.points) {
-                        userData.points = parseInt(userData.points);    
-                    }
-                    if($rootScope.workspace.user && $rootScope.workspace.user.frends) {
-                        userData = $scope.testUser(userData);    
-                    }
-                    
-                    $scope.viewedUsers.push(userData);  
-                    
-                });   
+        Leagues.query({}, {}, function(data) {
+            $scope.leagues = data;
+            $scope.leagues.push({sguid: "null", name: "null"});
+
+            User.only_published({}, {}, function(data) {
+                data = data.shuffle();
+
+                angular.forEach(data, function(value, key){
+                    User.get_short({id: value.sguid}, {}, function(userData) {
+                        if(userData.points) {
+                            userData.points = parseInt(userData.points);    
+                        }
+                        if($rootScope.workspace.user && $rootScope.workspace.user.frends) {
+                            userData = $scope.testUser(userData);    
+                        }
+                        if(userData.league) {
+                            var currentLeague = $scope.leagues.filter(function(fl) {
+                                if(fl.sguid == userData.league.sguid) {
+                                    return fl;
+                                }
+                            })[0];
+
+                            if(!currentLeague.users) {
+                                currentLeague.users = [];
+                            }
+                            currentLeague.users.push(userData);
+                        } else {
+                            var currentLeague = $scope.leagues.filter(function(fl) {
+                                if(fl.sguid == "null") {
+                                    return fl;
+                                }
+                            })[0];
+
+                            if(!currentLeague.users) {
+                                currentLeague.users = [];
+                            }
+                            currentLeague.users.push(userData);
+                        }  
+                    });   
+                });
+                
             });
-            
         });
+        
     }
 
     $scope.getPublishedUser();
@@ -1333,52 +1359,78 @@ function MainController($scope, Leagues, User, AuthUser, $rootScope, $location, 
         $rootScope.$broadcast('unfollow', {userId: AuthUser.get(), frendId: user.sguid});
     }
 
-    $scope.oldScroll = $(window).scrollTop();
+    this.oldScroll = window.scrollY;
+    $scope.IS_IPAD = navigator.userAgent.match(/iPad/i) != null;
 
-    $(window).bind("scroll", function(evt) {
-        var delta = $scope.oldScroll-$(window).scrollTop();
+    this.paralax = function(evt) {
+        if(evt.wheelDelta) {
+            var delta = evt.wheelDelta;
+        } else {
+            var delta = this.y - event.touches[0].pageY;
+            this.y = event.touches[0].pageY;
+        }
+
         var step = 1;
 
-        $scope.oldScroll = $(window).scrollTop();
-        var elements = $("#main_leagues ul li");
-        angular.forEach(elements, function(value, key){
-            if($(value).hasClass("league_10")) {
-                step = 5;
-            }
-            if($(value).hasClass("league_9")) {
-                step = 4.5;
-            }
-            if($(value).hasClass("league_8")) {
-                step = 4;
-            }
-            if($(value).hasClass("league_7")) {
-                step = 3.5;
-            }
-            if($(value).hasClass("league_6")) {
-                step = 3;
-            }
-            if($(value).hasClass("league_5")) {
-                step = 2.5;
-            }
-            if($(value).hasClass("league_4")) {
-                step = 2;
-            }
-            if($(value).hasClass("league_3")) {
-                step = 1.5;
-            }
-            if($(value).hasClass("league_2")) {
-                step = 1;
-            }
-            if($(value).hasClass("league_1")) {
-                step = 0.7;
-            }
-            if($(value).hasClass("league_")) {
-                step = 0.5;
-            }
-            $(value).css("top", parseInt($(value).css("top").replace("px",""))+delta*step);
-        });
-    });
+        this.oldScroll = delta;
 
+        var element =  document.getElementsByClassName('league_numer_1')[0];
+        $(element).css("top", parseInt($(element).css("top").replace("px",""))+delta*5);
+
+        var element =  document.getElementsByClassName('league_numer_2')[0];
+        $(element).css("top", parseInt($(element).css("top").replace("px",""))+delta*4.5);
+
+        var element =  document.getElementsByClassName('league_numer_3')[0];
+        $(element).css("top", parseInt($(element).css("top").replace("px",""))+delta*4);
+
+        var element =  document.getElementsByClassName('league_numer_4')[0];
+        $(element).css("top", parseInt($(element).css("top").replace("px",""))+delta*3.5);
+
+        var element =  document.getElementsByClassName('league_numer_5')[0];
+        $(element).css("top", parseInt($(element).css("top").replace("px",""))+delta*3);
+
+        var element =  document.getElementsByClassName('league_numer_6')[0];
+        $(element).css("top", parseInt($(element).css("top").replace("px",""))+delta*2.5);
+
+        var element =  document.getElementsByClassName('league_numer_7')[0];
+        $(element).css("top", parseInt($(element).css("top").replace("px",""))+delta*2);
+
+        var element =  document.getElementsByClassName('league_numer_8')[0];
+        $(element).css("top", parseInt($(element).css("top").replace("px",""))+delta*1.5);
+
+        var element =  document.getElementsByClassName('league_numer_9')[0];
+        $(element).css("top", parseInt($(element).css("top").replace("px",""))+delta*1);
+
+        var element =  document.getElementsByClassName('league_numer_10')[0];
+        $(element).css("top", parseInt($(element).css("top").replace("px",""))+delta*0.7);
+
+        var element =  document.getElementsByClassName('league_numer_null')[0];
+        $(element).css("top", parseInt($(element).css("top").replace("px",""))+delta*0.5);
+    }
+
+    window.addEventListener('mousewheel', $.proxy(function(e) {
+        this.paralax(e);
+        e.preventDefault();
+        return false;
+    }, this), false);
+
+    document.addEventListener('touchmove', $.proxy(function(e) {
+        this.paralax(e);
+        e.preventDefault();
+        return false;
+    }, this), false);
+
+    document.addEventListener("touchstart", $.proxy(function() {
+        this.y = event.touches[0].pageY;
+    }, this), false);
+
+
+    var step = 2;
+
+    if($(window).width() < 1100) {
+        step = 1.5;
+    }
+    $("#main_leagues ul").css("height", $(window).height()*step).css("width", $(window).width());
 }
 
 /** Контроллер графика */

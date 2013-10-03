@@ -1,5 +1,5 @@
 <section id="main_leagues" class="tags">
-	<ul>
+	<ul ng-repeat="league in leagues" class="league league_numer_{{league.name}}">
 		<li 
 			x-lvl-draggable="true"
 			x-lvl-drop-target="true" 
@@ -7,9 +7,9 @@
 			null-image="{{userItem.name}}"
 			paralax-image 
 			id="{{userItem.sguid}}"
-			ng-repeat="userItem in viewedUsers"
-			ng-class="{showMenu: userItem.showMenu}"
-			class="league_{{userItem.league.name}}">
+			ng-repeat="userItem in league.users"
+			ng-class="{showMenu: userItem.showMenu, rotate: !IS_IPAD}"
+			class="user league_{{userItem.league.name}}">
 			<a ng-if="userItem && userItem.name" ng-click="onUserTouch(userItem)" ng-mouseleave="onMouseLeaveUser(userItem)" ng-mouseenter="onMouseEnterUser(userItem)" >
 				<img class="repeat-item" ng-src="{{userItem.avatar}}" alt="" err-src="/images/unknown-person.png" />
 				<span>{{userItem.points}}</span>

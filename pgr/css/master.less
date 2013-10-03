@@ -874,22 +874,22 @@ body {
         text-align: center;
         position: relative;
         margin: 0px auto;
+        top: 0px;
+        transition: top 0.1s ease-out;
+        -webkit-transition: top 0.1s ease-out;
         li {
             width: 10%;
             display: inline-block;
             position: relative;
             line-height: 100%;
-            transition: top 0.2s ease-out;
-            -webkit-transition: top 0.2s ease-out;
             max-height: 10%;
             min-width: 1% !important;
-            -webkit-transform: translateZ(0);
             left: 50%;
             top: 50%;
             &.showMenu {
                 z-index: 499 !important;
             }
-            &.rotate {
+            &.rotate1 {
                  -webkit-animation: rotate 2s linear 0 normal;
                   -moz-animation: rotate 2s linear 0 normal;
                   -o-animation: rotate 2s linear 0 normal;
@@ -914,7 +914,6 @@ body {
             a {
                 position: relative;
                 display: block;
-                -webkit-transform: translateZ(0);
                 sub {
                     position: absolute;
                     top: 0%;
@@ -924,7 +923,6 @@ body {
                     height: 0%;
                     color: #ffffff;
                     background: rgba(0, 0, 0, 0.3);
-                    -webkit-transform: translateZ(0);
                     transition: all 0.5s ease-out;
                     -webkit-transition: all 0.5s ease-out;
                     oveflow: hidden;
@@ -943,14 +941,12 @@ body {
                     font-size: 90%;
                     text-align: right;
                     z-index: 10;
-                    -webkit-transform: translateZ(0);
                 }
                 img {
                     opacity: 0;
                     z-index: 8;
                     width: 100%;
                     height: auto;
-                    -webkit-transform: translateZ(0);
                     display: block;
                 }
                 i {
@@ -963,7 +959,6 @@ body {
                     z-index: 9;
                     transition: all 0.5s ease-out;
                     -webkit-transition: all 0.5s ease-out;
-                    -webkit-transform: translateZ(0);
                 }
                 .fallout {
                     vertical-align: middle;
@@ -978,7 +973,6 @@ body {
                     -webkit-transition: all 0.5s ease-out;
                     overflow: hidden;
                     z-index: 125;
-                    -webkit-transform: translateZ(0);
                     text-align: center;
                     &.show {
                         width: 250%;
@@ -997,7 +991,6 @@ body {
                         top: 40%;
                         right: -5%;
                         padding: 10%;
-                        -webkit-transform: translateZ(0);
                         &:nth-child(3) {
                             top: 70%;
                             right: auto;
@@ -1350,4 +1343,7 @@ body {
 
 .content-inner {
     
+}
+.hiddenScroll {
+    overflow: hidden;
 }

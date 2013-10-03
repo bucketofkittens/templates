@@ -25,15 +25,7 @@ pgrModule.directive('paralaxImage', function () {
     link: function($scope, element, attrs) {
       var userLength = $scope.viewedUsers.length;
       var cellsCount = 10;
-      var step = 2;
-
-      if($(window).width() < 1100) {
-        step = 1.5;
-      }
       
-      attrs.$observe('src', function (v) {
-          $(element).addClass("rotate"); 
-      });
       attrs.$observe('paralaxEnable', function (v) {
         var elements = $(".tags li");
 
@@ -49,7 +41,7 @@ pgrModule.directive('paralaxImage', function () {
         $(element).css("left", position.x+"px");
         $(element).css("top", position.y+"px");
 
-        $("#main_leagues ul").css("height", $(window).height()*step).css("width", $(window).width());
+        
       });
     }
   } 
