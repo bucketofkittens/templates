@@ -40,7 +40,6 @@ pgrModule.directive('paralaxImage', function () {
         var position = setPostion(0);
         $(element).css("left", position.x+"px");
         $(element).css("top", position.y+"px");
-
         
       });
     }
@@ -64,3 +63,5 @@ pgrModule.directive('errSrc', function() {
 function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
+
+

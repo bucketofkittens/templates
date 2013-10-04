@@ -1146,6 +1146,16 @@ function FollowController($scope, $rootScope, User, $location, $routeParams, Aut
     $scope.setAuthUserData();
 }
 
+function objToString (obj) {
+    var tabjson=[];
+    for (var p in obj) {
+        if (obj.hasOwnProperty(p)) {
+            tabjson.push('"'+p +'"'+ ':' + obj[p]);
+        }
+    }  tabjson.push()
+    return '{'+tabjson.join(',')+'}';
+}
+
 
 /**
  * Контроллер главной страницыMainC
@@ -1359,20 +1369,25 @@ function MainController($scope, Leagues, User, AuthUser, $rootScope, $location, 
         $rootScope.$broadcast('unfollow', {userId: AuthUser.get(), frendId: user.sguid});
     }
 
-    this.oldScroll = window.scrollY;
-    $scope.IS_IPAD = navigator.userAgent.match(/iPad/i) != null;
+    this.oldScroll = 0;
 
-    this.paralax = function(evt) {
-        if(evt.wheelDelta) {
-            var delta = evt.wheelDelta;
-        } else {
-            var delta = this.y - event.touches[0].pageY;
-            this.y = event.touches[0].pageY;
+    this.paralax = function(evt, data) {
+        if(evt.originalEvent && evt.originalEvent.wheelDeltaY) {
+            var delta = evt.originalEvent.wheelDeltaY;
         }
 
-        var step = 1;
+        if(evt.originalEvent && evt.originalEvent.touches) {
+            var y = evt.originalEvent.touches[0].pageY;
+            var delta = this.oldScroll - y;
+            this.oldScroll = y;
+        }
 
-        this.oldScroll = delta;
+        if(!evt.originalEvent.wheelDeltaY && !evt.originalEvent.touches) {
+            var y = $(window).scrollTop();
+            var delta = this.oldScroll - y;
+            this.oldScroll = y;
+            console.log(delta);
+        }
 
         var element =  document.getElementsByClassName('league_numer_1')[0];
         $(element).css("top", parseInt($(element).css("top").replace("px",""))+delta*5);
@@ -1408,21 +1423,22 @@ function MainController($scope, Leagues, User, AuthUser, $rootScope, $location, 
         $(element).css("top", parseInt($(element).css("top").replace("px",""))+delta*0.5);
     }
 
-    window.addEventListener('mousewheel', $.proxy(function(e) {
+    $(window).on('mousewheel', $.proxy(function(e) {
+        this.paralax(e);
+        e.preventDefault();
+    }, this));
+
+    $(window).on('scroll', $.proxy(function(e) {
         this.paralax(e);
         e.preventDefault();
         return false;
-    }, this), false);
+    }, this));
 
-    document.addEventListener('touchmove', $.proxy(function(e) {
+    $(document).bind("touchstart touchmove", $.proxy(function(e) { 
         this.paralax(e);
         e.preventDefault();
         return false;
-    }, this), false);
-
-    document.addEventListener("touchstart", $.proxy(function() {
-        this.y = event.touches[0].pageY;
-    }, this), false);
+    }, this));
 
 
     var step = 2;
@@ -1430,7 +1446,7 @@ function MainController($scope, Leagues, User, AuthUser, $rootScope, $location, 
     if($(window).width() < 1100) {
         step = 1.5;
     }
-    $("#main_leagues ul").css("height", $(window).height()*step).css("width", $(window).width());
+    $("#main_leagues").css("height", $(window).height()*step).css("width", $(window).width());
 }
 
 /** Контроллер графика */
