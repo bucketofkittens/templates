@@ -1373,7 +1373,7 @@ function MainController($scope, Leagues, User, AuthUser, $rootScope, $location, 
 
     this.paralax = function(evt, data) {
         if(evt.originalEvent && evt.originalEvent.wheelDeltaY) {
-            var delta = evt.originalEvent.wheelDeltaY;
+            var delta = evt.originalEvent.wheelDeltaY/3;
         }
 
         if(evt.originalEvent && evt.originalEvent.touches) {
@@ -1386,38 +1386,37 @@ function MainController($scope, Leagues, User, AuthUser, $rootScope, $location, 
             var y = $(window).scrollTop();
             var delta = this.oldScroll - y;
             this.oldScroll = y;
-            console.log(delta);
         }
 
         var element =  document.getElementsByClassName('league_numer_1')[0];
-        $(element).css("top", parseInt($(element).css("top").replace("px",""))+delta*5);
-
-        var element =  document.getElementsByClassName('league_numer_2')[0];
-        $(element).css("top", parseInt($(element).css("top").replace("px",""))+delta*4.5);
-
-        var element =  document.getElementsByClassName('league_numer_3')[0];
-        $(element).css("top", parseInt($(element).css("top").replace("px",""))+delta*4);
-
-        var element =  document.getElementsByClassName('league_numer_4')[0];
-        $(element).css("top", parseInt($(element).css("top").replace("px",""))+delta*3.5);
-
-        var element =  document.getElementsByClassName('league_numer_5')[0];
-        $(element).css("top", parseInt($(element).css("top").replace("px",""))+delta*3);
-
-        var element =  document.getElementsByClassName('league_numer_6')[0];
-        $(element).css("top", parseInt($(element).css("top").replace("px",""))+delta*2.5);
-
-        var element =  document.getElementsByClassName('league_numer_7')[0];
         $(element).css("top", parseInt($(element).css("top").replace("px",""))+delta*2);
 
-        var element =  document.getElementsByClassName('league_numer_8')[0];
+        var element =  document.getElementsByClassName('league_numer_2')[0];
+        $(element).css("top", parseInt($(element).css("top").replace("px",""))+delta*1.9);
+
+        var element =  document.getElementsByClassName('league_numer_3')[0];
+        $(element).css("top", parseInt($(element).css("top").replace("px",""))+delta*1.7);
+
+        var element =  document.getElementsByClassName('league_numer_4')[0];
         $(element).css("top", parseInt($(element).css("top").replace("px",""))+delta*1.5);
 
+        var element =  document.getElementsByClassName('league_numer_5')[0];
+        $(element).css("top", parseInt($(element).css("top").replace("px",""))+delta*1.3);
+
+        var element =  document.getElementsByClassName('league_numer_6')[0];
+        $(element).css("top", parseInt($(element).css("top").replace("px",""))+delta*1.1);
+
+        var element =  document.getElementsByClassName('league_numer_7')[0];
+        $(element).css("top", parseInt($(element).css("top").replace("px",""))+delta*0.9);
+
+        var element =  document.getElementsByClassName('league_numer_8')[0];
+        $(element).css("top", parseInt($(element).css("top").replace("px",""))+delta*0.7);
+
         var element =  document.getElementsByClassName('league_numer_9')[0];
-        $(element).css("top", parseInt($(element).css("top").replace("px",""))+delta*1);
+        $(element).css("top", parseInt($(element).css("top").replace("px",""))+delta*0.5);
 
         var element =  document.getElementsByClassName('league_numer_10')[0];
-        $(element).css("top", parseInt($(element).css("top").replace("px",""))+delta*0.7);
+        $(element).css("top", parseInt($(element).css("top").replace("px",""))+delta*0.3);
 
         var element =  document.getElementsByClassName('league_numer_null')[0];
         $(element).css("top", parseInt($(element).css("top").replace("px",""))+delta*0.5);
@@ -1434,7 +1433,7 @@ function MainController($scope, Leagues, User, AuthUser, $rootScope, $location, 
         return false;
     }, this));
 
-    $(document).bind("touchstart touchmove", $.proxy(function(e) { 
+    $(document).bind("touchmove", $.proxy(function(e) { 
         this.paralax(e);
         e.preventDefault();
         return false;
