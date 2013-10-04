@@ -184,7 +184,7 @@ function CreateController($scope, $location, Userlist, $rootScope) {
 };
 
 /** профиль юзера */
-function UserprofileController($scope, Userlist, $routeParams) {
+function UserprofileController($scope, Userlist, $routeParams, $timeout) {
 	/** имя юзера */
 	$scope.getUser = function(){
 		Userlist.getOne({id:$routeParams.id}, {}, function(data) {
@@ -205,7 +205,9 @@ function UserprofileController($scope, Userlist, $routeParams) {
 					}
 				});
 				angular.forEach(fildcrits, function(ficuva) {
-					$scope.curvapos(ficuva);
+					$timeout(function() {
+						$scope.curvapos(ficuva);
+					}, 0);
 				})
 			})
 		})
