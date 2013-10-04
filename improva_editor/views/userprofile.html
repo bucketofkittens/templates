@@ -6,10 +6,10 @@
 </accordion>
 <section class="kolbas">
 	<h3>{{goals.name}}</h3>
-	<div ng-repeat="criteria in goals.criteria">
+	<div ng-repeat="criteria in goals.criteria" crit="{{criteria.sguid}}">
 		<h4>{{criteria.name}}</h4>
 		<p>
-			<b><i ng-repeat="criterion_value in criteria.criterion_values">{{criterion_value.name}}</i></b>
+			<b><i ng-repeat="criterion_value in criteria.criterion_values" curva="{{criterion_value.sguid}}">{{criterion_value.name}}</i></b>
 			<strong></strong>
 		</p>
 	</div>

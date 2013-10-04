@@ -30,6 +30,7 @@
 		<script src="./js/services.js"></script>
 	</head>
 	<body ng-controller="RootController">
+		<div id="preload" ng-class="{show: show}" ng-controller="preloadController"><img src="./images/r.gif" /></div>
 		<header>
 			<ul ng-controller="navCtrl">
         		<li ng-repeat="nav in navs">

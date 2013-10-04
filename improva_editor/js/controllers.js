@@ -1,3 +1,15 @@
+/** preloader */
+function preloadController($scope) {
+	$scope.show = false;
+	$scope.$on('preloadshow', function(evt){
+		$scope.show = true;
+	});
+	$scope.$on('preloadhide', function(evt){
+		$scope.show = false;
+	});
+}
+
+
 function navCtrl($scope, $location, $rootScope, $route) {
 	
 	$scope.hidden = false;
@@ -187,18 +199,64 @@ function UserprofileController($scope, Userlist, $routeParams) {
 		angular.forEach(needslist, function(nds) {
 			angular.forEach(nds.goals, function(gls) {
 				gls.addClass = "";
+				var fildcrits = gls.criteria.filter(function(criteria) {
+					if (criteria.curval) {
+						return criteria;
+					}
+				});
+				angular.forEach(fildcrits, function(ficuva) {
+					$scope.curvapos(ficuva);
+				})
 			})
 		})
 		$scope.goals.addClass = "current";
    };
+
+	/** красим колбасы */
+	$scope.curvapos = function(filcrit) {
+		var valpos = $('div[crit="'+filcrit.sguid+'"]');
+		var colorpos = $(valpos).find("strong");
+		var summ = true;
+		$(colorpos).width(0);
+		angular.forEach(valpos.find("i"), function(kolcol) {
+			if (summ == true) {
+				$(colorpos).width($(colorpos).width() + $(kolcol).width());
+				console.log($(colorpos).width());
+			}
+			if ($(kolcol).attr("curva") == filcrit.curval) {
+				summ = false;
+			}
+		})
+	}
 }
 
-/** аккордион нидсов */
-function NeedsController($scope, Needslist) {
+/** аккордион нидсов + колбасы */
+function NeedsController($scope, Needslist, $routeParams, Userlist, $rootScope) {
+	$rootScope.$broadcast('preloadshow');
+	/** аккордион */
    $scope.oneAtATime = true;
 	$scope.getNeeds = function(){
 		Needslist.query({}, {}, function(data) {
 			$scope.needslist = data;
+			$rootScope.$broadcast('preloadhide');
+			/** считаем колбасы */
+			Userlist.getCritVal({user_guid:$routeParams.id}, {}, function(vals) {
+				angular.forEach($scope.needslist, function(nds) {
+					angular.forEach(nds.goals, function(gls) {
+						angular.forEach(vals, function(val) {
+							var filcrit = gls.criteria.filter(function(criteria) {
+								if (criteria.sguid == val.criteria.sguid) {
+									return criteria;
+								}
+							})[0];
+							if (filcrit) {
+								filcrit.curval = val.criterion_value.sguid;
+								$scope.curvapos(filcrit);
+							}
+						})
+					})
+				})
+			})
 		})
 	}
 	$scope.getNeeds();

@@ -11,7 +11,12 @@ editorModule.factory('Userlist', function ($resource) {
 		   "getOne": {
 				method: 'GET',
 				isArray: false
-			}
+			},
+         "getCritVal": {
+            method: 'GET',
+            url: host+"/user_criterion_values/by_user/:user_guid",
+				isArray: true
+         }
 	   }
    );
 });
