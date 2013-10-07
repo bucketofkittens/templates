@@ -250,15 +250,17 @@ function NeedsController($scope, Needslist, $routeParams, Userlist, $rootScope, 
 				angular.forEach($scope.needslist, function(nds) {
 					angular.forEach(nds.goals, function(gls) {
 						angular.forEach(vals, function(val) {
-							var filcrit = gls.criteria.filter(function(criteria) {
-								if (criteria.sguid == val.criteria.sguid) {
-									return criteria;
-								}
-							})[0];
-							if (filcrit) {
-								filcrit.curval = val.criterion_value.sguid;
-								$scope.curvapos(filcrit);
-							}
+                            if(val && val.criteria) {
+                                    var filcrit = gls.criteria.filter(function(criteria) {
+                                    if (criteria.sguid == val.criteria.sguid) {
+                                        return criteria;
+                                    }
+                                })[0];
+                                if (filcrit) {
+                                    filcrit.curval = val.criterion_value.sguid;
+                                    $scope.curvapos(filcrit);
+                                }    
+                            }
 						})
 					})
 				})
