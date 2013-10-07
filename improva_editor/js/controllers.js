@@ -193,6 +193,10 @@ function UserprofileController($scope, Userlist, $routeParams, $timeout) {
 	};
 	$scope.getUser();
 
+	$scope.$on('CriteriaUpdateDraw', function(event, message) {      
+		$scope.curvapos(message.criteria);
+   });
+
 	/** определение выбранного гоалса */
 	$scope.onGoal = function (goals, needslist) {
 		$scope.goals = goals;
@@ -233,7 +237,7 @@ function UserprofileController($scope, Userlist, $routeParams, $timeout) {
 }
 
 /** аккордион нидсов + колбасы */
-function NeedsController($scope, Needslist, $routeParams, Userlist, $rootScope) {
+function NeedsController($scope, Needslist, $routeParams, Userlist, $rootScope, UserCriteria_value) {
 	$rootScope.$broadcast('preloadshow');
 	/** аккордион */
    $scope.oneAtATime = true;
@@ -262,6 +266,30 @@ function NeedsController($scope, Needslist, $routeParams, Userlist, $rootScope) 
 		})
 	}
 	$scope.getNeeds();
+   /** пересчет колбас */
+  	$scope.onCriteriaSelect = function(criteria_value, criteria, $event) {
+  		if(criteria.curval != criteria_value.sguid) {
+			if(criteria_value.sguid !== "none") {
+			   UserCriteria_value.create({}, $.param({
+		         "criteria_guid": criteria.sguid,
+		         "criteria_value_guid": criteria_value.sguid
+			   }), function(data) {
+		         criteria.curval = data.message.sguid;
+		         $rootScope.$broadcast('userCriteriaUpdate');
+			   });
+			} else {
+			   if(criteria.curval) {
+			      UserCriteria_value.del({id: criteria.curval}, {}, function(data) {
+		            $rootScope.$broadcast('userCriteriaUpdate');
+			      }); 
+			   } else {
+		        $rootScope.$broadcast('userCriteriaUpdate');
+			   }
+			}
+			criteria.curval = criteria_value.sguid;
+			$rootScope.$broadcast('CriteriaUpdateDraw', {criteria: criteria});
+		}
+  	}
 }
 
 /** страница провайдеров */

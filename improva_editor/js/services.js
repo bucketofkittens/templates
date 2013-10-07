@@ -28,3 +28,15 @@ editorModule.factory('Needslist', function ($resource) {
 		{id:'@id'}
    )
 });
+
+/** пересчет колбас */
+editorModule.factory('UserCriteria_value', function ($resource) {
+    return $resource(
+        host+'/user_criterion_values/:id', 
+        {id:'@id'}, 
+        {
+            create: {method: 'POST',  headers : {'Content-Type': 'application/x-www-form-urlencoded'}},
+            del: {method: "DELETE"}
+        }
+    );
+});
