@@ -9,7 +9,7 @@
 	<div ng-repeat="criteria in goals.criteria" crit="{{criteria.sguid}}">
 		<h4>{{criteria.name}}</h4>
 		<p>
-			<b><i ng-repeat="criterion_value in criteria.criterion_values" curva="{{criterion_value.sguid}}" ng-click="onCriteriaSelect(criteria_value, criteria, $event)">{{criterion_value.name}}</i></b>
+			<b><i ng-repeat="criterion_value in criteria.criterion_values" curva="{{criterion_value.sguid}}" ng-click="onCriteriaSelect(criterion_value, criteria, $event)">{{criterion_value.name}}</i></b>
 			<strong></strong>
 		</p>
 	</div>
