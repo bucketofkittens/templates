@@ -227,7 +227,10 @@ function UserprofileController($scope, Userlist, $routeParams, $timeout) {
 		angular.forEach(valpos.find("i"), function(kolcol) {
 			if (summ == true) {
 				$(colorpos).width($(colorpos).width() + $(kolcol).width());
-				console.log($(colorpos).width());
+				$(kolcol).addClass("curwhi");
+			}
+			else {
+				$(kolcol).removeClass("curwhi");
 			}
 			if ($(kolcol).attr("curva") == filcrit.curval) {
 				summ = false;
@@ -249,18 +252,19 @@ function NeedsController($scope, Needslist, $routeParams, Userlist, $rootScope, 
 			Userlist.getCritVal({user_guid:$routeParams.id}, {}, function(vals) {
 				angular.forEach($scope.needslist, function(nds) {
 					angular.forEach(nds.goals, function(gls) {
+						$scope.addEmptyElement(gls);
 						angular.forEach(vals, function(val) {
-                            if(val && val.criteria) {
-                                    var filcrit = gls.criteria.filter(function(criteria) {
-                                    if (criteria.sguid == val.criteria.sguid) {
-                                        return criteria;
-                                    }
-                                })[0];
-                                if (filcrit) {
-                                    filcrit.curval = val.criterion_value.sguid;
-                                    $scope.curvapos(filcrit);
-                                }    
-                            }
+                     if(val && val.criteria) {
+                        var filcrit = gls.criteria.filter(function(criteria) {
+	                        if (criteria.sguid == val.criteria.sguid) {
+	                           return criteria;
+	                        }
+	                     })[0];
+	                     if (filcrit) {
+	                        filcrit.curval = val.criterion_value.sguid;
+	                        $scope.curvapos(filcrit);
+	                     }    
+                     }
 						})
 					})
 				})
@@ -273,6 +277,7 @@ function NeedsController($scope, Needslist, $routeParams, Userlist, $rootScope, 
   		if(criteria.curval != criteria_value.sguid) {
 			if(criteria_value.sguid !== "none") {
 			   UserCriteria_value.create({}, $.param({
+		         "user_guid": $scope.user.sguid,
 		         "criteria_guid": criteria.sguid,
 		         "criteria_value_guid": criteria_value.sguid
 			   }), function(data) {
@@ -292,6 +297,19 @@ function NeedsController($scope, Needslist, $routeParams, Userlist, $rootScope, 
 			$rootScope.$broadcast('CriteriaUpdateDraw', {criteria: criteria});
 		}
   	}
+  	$scope.addEmptyElement = function(gls) {
+      angular.forEach(gls.criteria, function(criteriaItem, criteriaKey) {
+      	console.log(criteriaItem);
+         if(criteriaItem.criterion_values) {
+            criteriaItem.criterion_values.splice(0, 0, {
+               name: "none",
+               position: 0,
+               sguid: "none",
+               value: 0,
+            }); 
+         }
+      });
+   }
 }
 
 /** страница провайдеров */

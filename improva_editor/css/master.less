@@ -265,14 +265,21 @@ h2 {
             table-layout: fixed;
             i {
                 font-size: 80%; 
-                color: #cccccc;
+                color: #000000;
                 display: table-cell; 
                 cursor: pointer;
+                &.curwhi {
+                    color: #ffffff;
+                }
+                &[curva='none'] {
+                    font-size: 0px;
+                    width: 15px;
+                }
             }
         }
         strong {
             position: absolute;
-            width: 0%;
+            width: 15px;
             height: 300%;
             left: 0%;
             top: -70%;
