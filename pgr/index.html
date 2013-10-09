@@ -49,7 +49,10 @@
 		<div class="shadow"></div>
 		<header ng-class="{fixed: controller == '_'}">
 			<a href="#/" class="logo"><img src="./images/logo1.png" alt="PERSON GROWTH RANKING"></a>
-
+			<div id="search">
+				<input type="text" placeholder="Search people" class="search" />
+				<input type="submit" class="searcher" />
+         </div>
 			<ul ng-controller="navCtrl">
 				<li ng-repeat="nav in navs">
 				    <a ng-if="nav.show" class="{{nav.activeClass}} {{nav.className}}" ng-click="onNavClick($event, nav)">

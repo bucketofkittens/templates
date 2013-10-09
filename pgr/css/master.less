@@ -57,6 +57,39 @@ body {
                 height: 90%;
             }
         }
+        #search  {
+            position: absolute;
+            right: 40%;
+            top: 20%;
+            width: 15%;
+            background: #ffffff;
+            height: 60%;
+            .search {
+            font-size: 100%;
+            color: #666666;
+            border: none;
+            float: left;
+            display: block;
+            position: relative;
+            margin: 3% 0% 0% 5%;
+            position: relative;
+            line-height: 150%;
+            border: none;
+            }
+            .searcher {
+                background: url("../images/search.png") left top no-repeat;
+                width: 7%;
+                border: none;
+                cursor: pointer;
+                display: block;
+                padding: 0px;
+                text-indent: -999px;
+                position: relative;
+                top: 20%;
+                right: -7%;
+                background-size: 100%;
+            }
+        }
         ul {
             display: inline-block;
             vertical-align: top;
@@ -1282,16 +1315,20 @@ body {
         display: inline-block;
         margin-left: 5%;
         height: 100%;
+        vertical-align: top;
         img {
             display: inline-block;
             height: 60%;
             margin-top: 10%;
+            vertical-align: top;
         }
     }
     .fuck {
         display: inline-block;
         margin-left: 5%;
-        height: 60%;
+        height: 50%;
+        vertical-align: top;
+        margin-top: 1%;
     }
     #follow_tab {
         background: rgba(255, 255, 255, 0.05);
