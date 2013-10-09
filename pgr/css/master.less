@@ -33,13 +33,7 @@ body {
     header {
         height: 8%;
         width: 100%;
-        background: #759fd2;
-        background: -moz-linear-gradient(left, #759fd2 0%, #37374b 100%, #7db9e8 100%);
-        background: -webkit-gradient(linear, left top, right top, color-stop(0%, #759fd2), color-stop(100%, #37374b), color-stop(100%, #7db9e8));
-        background: -webkit-linear-gradient(left, #759fd2 0%, #37374b 100%, #7db9e8 100%);
-        background: -o-linear-gradient(left, #759fd2 0%, #37374b 100%, #7db9e8 100%);
-        background: -ms-linear-gradient(left, #759fd2 0%, #37374b 100%, #7db9e8 100%);
-        background: linear-gradient(to right, #759fd2 0%, #37374b 100%, #7db9e8 100%);
+        background: #36374b;
         position: absolute;
         top: 0%;
         z-index: 120;
@@ -48,15 +42,19 @@ body {
             position: fixed;
         }
         .logo {
-            width: 25%;
+            background: url("../images/logobg.png") left top repeat-x;
+            background-size: contain;
+            width: 30%;
             height: 100%;
-            margin: 0% 12% 0% 3%;
+            margin: 0.01% 12% 0% 0%;
             position: relative;
             display: inline-block;
             img {
                 position: absolute;
-                height: 80%;
                 display: inline-block;
+                right: 3%;
+                top: 5%;
+                height: 90%;
             }
         }
         ul {
@@ -1263,76 +1261,88 @@ body {
     cursor: move;
 }
 
-#follow_tab {
-    position: absolute;
-    background: rgba(255, 255, 255, 0.3);
-    width: 30%;
+
+.footer {    
+    position: fixed;
+    left: 0%;
+    bottom: 0%;
     height: 8%;
-    left: 30%;
-    top: 0%;
-    z-index: 300;
+    width: 100%;
+    background: #36374b;
+    z-index: 120;
     overflow: hidden;
-    &.fixed {
-        position: fixed;
+    .sexual {
+        height: 80%;
+        display: inline-block;
+        position: absolute;
+        top: 10%;
+        left: 2%;
     }
-    ul {
-        margin-left: 1%;
-        li {
-            display: inline-block;
-            margin: 0.3%;
-            position: relative;
-            overflow: hidden;
-            &:first-child {
-                margin: 0.3% 2% 0.3% 0.5%;
-            }
-            img {
-                height: auto;
-                display: block;
-                max-height: 96%;
-            }
-            sub {
-                display: none;
-                position: absolute;
-                top: 0%;
-                left: 0%;
-                padding: 8% 0% 0% 7%;
-                width: 100%;
-                color: #ffffff;
-                bottom: -2%;
-                background: rgba(0, 0, 0, 0.5);
-            }
-            &.show {
-                sub {
+    .xyz {
+        display: inline-block;
+        position: absolute;
+        left: 15%;
+        top: 10%;
+        height: 80%;
+    }
+    #follow_tab {
+        background: rgba(255, 255, 255, 0.3);
+        width: 60%;
+        height: 100%;
+        right: 3%;
+        top: 0%;
+        z-index: 300;
+        overflow: hidden;
+        position: absolute;
+        ul {
+            margin-left: 1%;
+            li {
+                display: inline-block;
+                margin: 0.3%;
+                position: relative;
+                overflow: hidden;
+                &:first-child {
+                    margin: 0.3% 2% 0.3% 0.5%;
+                }
+                img {
+                    height: auto;
                     display: block;
-                    height: 100%;
-                    a {
-                        font-size: 80%;
-                        color: #ffffff;
-                        position: absolute;
-                        top: 10%;
-                        left: 5%;
-                        border: 0px !important;
-                        &.compare {
-                            bottom: 25%;
-                            top: auto !important;
+                    max-height: 96%;
+                }
+                sub {
+                    display: none;
+                    position: absolute;
+                    top: 0%;
+                    left: 0%;
+                    padding: 8% 0% 0% 7%;
+                    width: 100%;
+                    color: #ffffff;
+                    bottom: -2%;
+                    background: rgba(0, 0, 0, 0.5);
+                }
+                &.show {
+                    sub {
+                        display: block;
+                        height: 100%;
+                        a {
+                            font-size: 80%;
+                            color: #ffffff;
+                            position: absolute;
+                            top: 10%;
+                            left: 5%;
+                            border: 0px !important;
+                            &.compare {
+                                bottom: 25%;
+                                top: auto !important;
+                            }
                         }
                     }
                 }
             }
         }
     }
-    a {
-        position: absolute;
-        top: 30%;
-        right: 1%;
-        cursor: pointer;
-        width: 0px;
-        height: 0px;
-        border-style: solid;
-        border-width: 10px 0 10px 20px;
-        border-color: transparent transparent transparent #ffffff;
-    }
 }
+
 
 .dropdown-menu li > a strong {
     font-weight: bold;

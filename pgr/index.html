@@ -48,7 +48,7 @@
 	<body ng-controller="RootController" ng-class="{hiddenScroll: controller == '_'}">
 		<div class="shadow"></div>
 		<header ng-class="{fixed: controller == '_'}">
-			<a href="#/" class="logo"><img src="./images/logo.png" alt="PERSON GROWTH RANKING"></a>
+			<a href="#/" class="logo"><img src="./images/logo1.png" alt="PERSON GROWTH RANKING"></a>
 			<ul ng-controller="navCtrl">
 				<div ng-switch on="hidden" >
 		         <div ng-switch-when="false">
@@ -64,7 +64,13 @@
 			</ul>
 		</header>
 		
-		<div class="lnbl" ng-include src="'partials/follow.html'" ng-controller="FollowController" ng-init="" ></div>
+		<div class="footer">
+			<div class="sexual">
+				<img src="./images/sex.png">
+			</div>
+			<img class="xyz" src="./images/f.png">
+			<div class="lnbl" ng-include src="'partials/follow.html'" ng-controller="FollowController" ng-init="" ></div>
+		</div>
 
 		<div id="content" class="controller_{{controller}}" ng-controller="ContentController">
 			<div app-view-segment="0" class="view-example content-inner anim"></div>

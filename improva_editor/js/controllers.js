@@ -316,7 +316,21 @@ function NeedsController($scope, Needslist, $routeParams, Userlist, $rootScope, 
 
 /** страница провайдеров */
 function ProvidersController($scope) {
-	
+	/** определение выбранного гоалса */
+	$scope.onGoal = function (goals, needslist) {
+		$scope.goals = goals;
+		angular.forEach(needslist, function(nds) {
+			angular.forEach(nds.goals, function(gls) {
+				gls.addClass = "";
+				var fildcrits = gls.criteria.filter(function(criteria) {
+					if (criteria.curval) {
+						return criteria;
+					}
+				});
+			})
+		})
+		$scope.goals.addClass = "current";
+   };
 }
 
 /** страница целей */
