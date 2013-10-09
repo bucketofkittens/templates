@@ -249,26 +249,28 @@ function NeedsController($scope, Needslist, $routeParams, Userlist, $rootScope, 
 			$scope.needslist = data;
 			$rootScope.$broadcast('preloadhide');
 			/** считаем колбасы */
-			Userlist.getCritVal({user_guid:$routeParams.id}, {}, function(vals) {
-				angular.forEach($scope.needslist, function(nds) {
-					angular.forEach(nds.goals, function(gls) {
-						$scope.addEmptyElement(gls);
-						angular.forEach(vals, function(val) {
-                     if(val && val.criteria) {
-                        var filcrit = gls.criteria.filter(function(criteria) {
-	                        if (criteria.sguid == val.criteria.sguid) {
-	                           return criteria;
-	                        }
-	                     })[0];
-	                     if (filcrit) {
-	                        filcrit.curval = val.criterion_value.sguid;
-	                        $scope.curvapos(filcrit);
-	                     }    
-                     }
+			if($routeParams.id){
+				Userlist.getCritVal({user_guid:$routeParams.id}, {}, function(vals) {
+					angular.forEach($scope.needslist, function(nds) {
+						angular.forEach(nds.goals, function(gls) {
+							$scope.addEmptyElement(gls);
+							angular.forEach(vals, function(val) {
+	                     if(val && val.criteria) {
+	                        var filcrit = gls.criteria.filter(function(criteria) {
+		                        if (criteria.sguid == val.criteria.sguid) {
+		                           return criteria;
+		                        }
+		                     })[0];
+		                     if (filcrit) {
+		                        filcrit.curval = val.criterion_value.sguid;
+		                        $scope.curvapos(filcrit);
+		                     }    
+	                     }
+							})
 						})
 					})
 				})
-			})
+			}
 		})
 	}
 	$scope.getNeeds();
