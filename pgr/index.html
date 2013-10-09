@@ -49,19 +49,16 @@
 		<div class="shadow"></div>
 		<header ng-class="{fixed: controller == '_'}">
 			<a href="#/" class="logo"><img src="./images/logo1.png" alt="PERSON GROWTH RANKING"></a>
+
 			<ul ng-controller="navCtrl">
-				<div ng-switch on="hidden" >
-		         <div ng-switch-when="false">
-		        		<li ng-repeat="nav in navs">
-		        			<span ng-switch on="nav.show" >
-						        <span ng-switch-when="true">
-						        	<a class="{{nav.activeClass}}" ng-click="onNavClick($event, nav)">{{nav.name}}</a>
-						        </span>
-						    </span>
-		        		</li>
-		         </div>
-			    </div>
+				<li ng-repeat="nav in navs">
+				    <a ng-if="nav.show" class="{{nav.activeClass}} {{nav.className}}" ng-click="onNavClick($event, nav)">
+				    	<span ng-if="!nav.img">{{nav.name}}</span>
+				    	<img ng-src="{{nav.img}}" ng-if="nav.img" alt="" />
+				    </a>
+				</li>
 			</ul>
+
 		</header>
 		
 		<div class="footer">

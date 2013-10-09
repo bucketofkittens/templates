@@ -63,11 +63,37 @@ function navCtrl($scope, localize, $location, AuthUser, $rootScope, $route) {
 
     $scope.generateNav = function() {
         $scope.navs = [
-            {name: localize.getLocalizedString("_PROFILE_"), link: $scope.authUser ? '#/profile/'+$scope.authUser: '#/profile/', activeClass: '', show: $scope.authUser ? true : false},
-            {name: localize.getLocalizedString("_LEAGUES_"), link: '#/leagues', activeClass: '', show: $scope.authUser ? true : false},
-            {name: localize.getLocalizedString("_GRAPHS_"), link: '#/graphs', activeClass: '', show: $scope.authUser ? true : false},
-            {name: localize.getLocalizedString("_LogoutL_"), link: '#/logout', activeClass: '', show: $scope.authUser ? true : false},
-            {name: localize.getLocalizedString("_LoginL_"), onClick: $scope.onOpenLogin, activeClass: '', show: $scope.authUser ? false : true}
+            {
+                name: localize.getLocalizedString("_PROFILE_"), 
+                link: $scope.authUser ? '#/profile/'+$scope.authUser: '#/profile/', 
+                activeClass: '', 
+                show: $scope.authUser ? true : false
+            },
+            {
+                name: localize.getLocalizedString("_LEAGUES_"), 
+                link: '#/leagues', 
+                activeClass: '', 
+                show: $scope.authUser ? true : false
+            },
+            {
+                name: localize.getLocalizedString("_GRAPHS_"), 
+                link: '#/graphs', 
+                activeClass: '', 
+                show: $scope.authUser ? true : false
+            },
+            {
+                name: localize.getLocalizedString("_LogoutL_"), 
+                link: '#/logout', activeClass: '', 
+                show: $scope.authUser ? true : false
+            },
+            {
+                name: localize.getLocalizedString("_LoginL_"), 
+                img: "/images/anon.png",  
+                className: "login", 
+                onClick: $scope.onOpenLogin,
+                activeClass: '', 
+                show: $scope.authUser ? false : true
+            }
         ];
     };
 
