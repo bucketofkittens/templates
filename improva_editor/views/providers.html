@@ -1,3 +1,14 @@
 <section id="providers">
-	this is home page
+	<accordion close-others="oneAtATime" ng-controller="NeedsController">
+	   <accordion-group heading="{{needs.name}}" ng-repeat="needs in needslist">
+	      <a ng-click="onGoal(goals, needslist)" class="{{goals.addClass}}" ng-repeat="goals in needs.goals">{{goals.name}}</a>
+	   </accordion-group>
+	</accordion>
+	<section class="kolbas">
+		<h3>{{goals.name}}</h3>
+		<div ng-repeat="criteria in goals.criteria" crit="{{criteria.sguid}}">
+			<h4>{{criteria.name}}</h4>
+			<div ng-grid="providtable" class="height"></div>
+		</div>
+	</section>
 </section>

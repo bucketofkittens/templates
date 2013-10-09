@@ -40,3 +40,15 @@ editorModule.factory('UserCriteria_value', function ($resource) {
         }
     );
 });
+
+
+/** страница провайдеров */
+editorModule.factory('Providlist', function ($resource) {
+   return $resource(
+		host+'/providers',
+		{
+		   create: {method: 'POST'},
+		   updateProvid: {method: 'PUT'},
+	   }
+   );
+});
