@@ -12,6 +12,7 @@ editorModule.config(function($routeSegmentProvider, $routeProvider) {
         .when('/', 'main')
         .when('/users', 'users')
         .when('/userprofile/:id', 'userprofile')
+        .when('/providers', 'providers')
         
         .segment('main', {
             templateUrl: 'views/home.html',
