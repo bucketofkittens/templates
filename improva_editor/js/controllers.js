@@ -299,7 +299,6 @@ function NeedsController($scope, Needslist, $routeParams, Userlist, $rootScope, 
   	}
   	$scope.addEmptyElement = function(gls) {
       angular.forEach(gls.criteria, function(criteriaItem, criteriaKey) {
-      	console.log(criteriaItem);
          if(criteriaItem.criterion_values) {
             criteriaItem.criterion_values.splice(0, 0, {
                name: "none",
@@ -315,26 +314,7 @@ function NeedsController($scope, Needslist, $routeParams, Userlist, $rootScope, 
 
 /** страница провайдеров */
 function ProvidersController($scope) {
-	/** определение выбранного гоалса */
-	$scope.onGoal = function (goals, needslist) {
-		$scope.goals = goals;
-		angular.forEach(needslist, function(nds) {
-			angular.forEach(nds.goals, function(gls) {
-				gls.addClass = "";
-				var fildcrits = gls.criteria.filter(function(criteria) {
-					if (criteria.curval) {
-						return criteria;
-					}
-				});
-				angular.forEach(fildcrits, function(ficuva) {
-					$timeout(function() {
-						$scope.curvapos(ficuva);
-					}, 0);
-				})
-			})
-		})
-		$scope.goals.addClass = "current";
-   };
+	
 }
 
 /** страница целей */
