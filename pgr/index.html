@@ -10,10 +10,9 @@
 		<link rel="stylesheet" href="./css/bootstrap.css" />
 		<link rel="stylesheet" href="./css/bootstrap-datepicker.css" />
 		<link rel="stylesheet" href="./css/jquery.Jcrop.min.css" />
-		<link rel="stylesheet/less" href="./css/master.less" />
+		<link rel="stylesheet" href="./css/master.css" />
 		<link rel="stylesheet" href="./css/fonts.css" />
         
-        <script src="./js/less-1.4.1.min.js" type="text/javascript"></script>
 	</head>
 	<body ng-controller="RootController" ng-class="{hiddenScroll: controller === '_'}">
 		<div class="shadow"></div>
@@ -24,6 +23,18 @@
                 <img src="./images/logo1.png" alt="PERSON GROWTH RANKING">
             </a>
             
+            <!-- Аватар -->
+			<section id="avatar" ng-cloak ng-controller="AvatarCtrl">
+                <p ng-if="!workspace.user">
+                    <img ng-click="onLogin()" ng-src="/images/anon.png" alt="" />
+                    <span ng-click="onLogin()">Sign in</span>
+                </p>
+                <p ng-if="workspace.user">
+                    <img ng-src="{{workspace.user.avatar}}" alt="{{workspace.user.name}}" />
+                    <span ng-click="onLogout()">Sign out</span>
+                </p>
+			</section>
+            
             <!-- Поиск -->
             <div id="search">
                 <input type="text" placeholder="Search people" class="search" />
@@ -31,15 +42,14 @@
             </div>
             
             <!-- Навигация -->
-			<ul ng-cloak ng-controller="navCtrl">
-				<li ng-repeat="nav in navs | filter:{show: true}">
-				    <a ng-class="{current: nav.current}" class="{{nav.className}}" ng-click="onNavClick($event, nav)">
-				    	<span ng-if="!nav.img">{{nav.name}}</span>
-				    	<img ng-src="{{nav.img}}" ng-if="nav.img" alt="" />
+			<ul ng-if="workspace.user" ng-cloak ng-controller="NavCtrl">
+				<li ng-repeat="nav in navs">
+				    <a ng-class="{current: nav.current}" ng-click="onNavClick($event, nav)">
+				    	{{nav.name}}
 				    </a>
 				</li>
 			</ul>
-
+            
 		</header>
 		
 		<div class="footer">
@@ -51,14 +61,12 @@
 		</div>
 
 		<div id="content" class="controller_{{controller}}" ng-controller="ContentController">
-			<div app-view-segment="0" class="view-example content-inner anim"></div>
+			<div app-view-segment="0"></div>
 		</div>
         
-        <section ng-include src="'partials/loader.html'" ng-controller="LoaderController" ></section>
-        
-        <section ng-include src="'partials/login.html'" ng-controller="LoginController" ></section>
-        
-        <section ng-include src="'partials/registration.html'" ng-controller="RegController" ></section>
+        <section ng-include src="'partials/loader.html'"></section>
+        <section ng-include src="'partials/login.html'"></section>
+        <section ng-include src="'partials/registration.html'"></section>
         
         <script src="./js/jquery-2.0.3.min.js" type="text/javascript"></script>
 		<script src="./js/jquery.mousewheel.js" type="text/javascript"></script>

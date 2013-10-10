@@ -26,6 +26,26 @@ body {
         top: 0%;
         z-index: 120;
         overflow: hidden;
+        #avatar {
+            float: right;
+            height: 100%;
+            margin-right: 3%;
+            img {
+                max-height:80%;
+                position: relative;
+                top: 15%;
+                display: block;
+                cursor: pointer;
+            }
+            span {
+                color: #ffffff;
+                text-decoration: none;
+                font-family: 'Helvetica Neue';
+                font-size: 70%;
+                text-transform: uppercase;
+                cursor: pointer;
+            }
+        }
         &.fixed {
             position: fixed;
         }
@@ -46,28 +66,29 @@ body {
             }
         }
         #search  {
-            position: absolute;
-            right: 40%;
-            top: 25%;
+            float: right;
             width: 15%;
+            margin-right: 5%;
+            margin-top: 1%;
             background: #ffffff;
             height: 50%;
             overflow: hidden;
+            position: relative;
             .search {
-            font-size: 100%;
-            color: #666666;
-            border: none;
-            float: left;
-            display: block;
-            position: relative;
-            margin: 1% 0% 0% 5%;
-            position: relative;
-            line-height: 150%;
-            border: none;
+                font-size: 100%;
+                color: #666666;
+                border: none;
+                float: left;
+                display: block;
+                position: relative;
+                margin: 1% 0% 0% 5%;
+                position: relative;
+                line-height: 150%;
+                border: none;
             }
             .searcher {
                 background: url("../images/search.png") left top no-repeat;
-                width: 7%;
+                width: 10%;
                 border: none;
                 cursor: pointer;
                 display: block;
@@ -80,40 +101,33 @@ body {
             }
         }
         ul {
-            display: table;
-            vertical-align: top;
-            position: absolute;
-            right: 2%;
+            float: right;
+            margin-right: 4%;
             height: 100%;
             text-align: right;
-            top: 0%;
+            width: 20%;
+            display: table;
+            position: relative;
+            top: 3%;
             li {
-                padding: 0% 3%;
                 display: table-cell;
-                vertical-align: top;
                 height: 100%;
                 vertical-align: middle;
-            }
-            a {
-                color: #ffffff;
-                text-decoration: none;
-                font-family: 'Helvetica Neue';
-                font-size: 100%;
-                text-transform: uppercase;
-                cursor: pointer;
-                line-height: 120%;
-                &.login {
-                    img {
-                        max-height: 40%;
-                        display: block;
-                    }
-                    
-                }
-                &:hover {
+                a {
                     color: #ffffff;
-                }
-                &.current {
-                    color: #86b3ef;
+                    text-decoration: none;
+                    font-family: 'Helvetica Neue';
+                    font-size: 100%;
+                    text-transform: uppercase;
+                    cursor: pointer;
+                    position: relative;
+                    height: 100%;
+                    &:hover {
+                        color: #ffffff;
+                    }
+                    &.current {
+                        color: #86b3ef;
+                    }
                 }
             }
         }
@@ -1397,4 +1411,8 @@ body {
 
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
   display: none !important;
+}
+
+input[type="text"], input[type="password"], textarea, select { 
+    outline: none;
 }
