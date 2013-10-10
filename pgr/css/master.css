@@ -143,15 +143,12 @@ body header .social a:last-child{background-position:100% 0}
 .image_box.updated:hover span{display:block;background:rgba(0,0,0,0.5)}
 .image_box.updated:hover a{display:block}
 #image_canvas{display:none}
-.lvl-over{box-shadow:0 0 3px 3px #028dda}
-.lvl-target{opacity:0 !important}
-[draggable]{-moz-user-select:none;-khtml-user-select:none;-webkit-user-select:none;user-select:none;cursor:move}
-.footer{position:fixed;left:0;bottom:0;height:8%;width:100%;background:#36374b;z-index:120;overflow:hidden}.footer .sexual{display:inline-block;margin-left:5%;height:100%;vertical-align:top}.footer .sexual img{display:inline-block;height:60%;margin-top:10%;vertical-align:top}
-.footer #follow_tab{background:rgba(255,255,255,0.05);width:60%;height:80%;left:20%;top:10%;z-index:300;overflow:hidden;position:absolute;border:1px solid rgba(200,200,200,0.3);vertical-align:middle}.footer #follow_tab img{display:inline-block;max-height:100%;margin-left:3%;margin-right:2%;height:50%;vertical-align:middle;position:relative;top:-10%}
-.footer #follow_tab ul{display:inline-block;vertical-align:middle}.footer #follow_tab ul li{display:inline-block;position:relative;overflow:hidden}.footer #follow_tab ul li img{height:auto;display:block;max-height:100%}
-.footer #follow_tab ul li sub{display:none;position:absolute;top:0;left:0;padding:8% 0 0 7%;width:100%;color:#fff;background:rgba(0,0,0,0.5)}
-.footer #follow_tab ul li.show sub{display:block;height:100%}.footer #follow_tab ul li.show sub a{font-size:80%;color:#fff;position:absolute;top:10%;left:5%;border:0 !important}.footer #follow_tab ul li.show sub a.compare{bottom:25%;top:auto !important}
-.footer #follow_tab a{position:absolute;top:30%;right:1%;cursor:pointer;width:0;height:0;border-style:solid;border-width:10px 0 10px 20px;border-color:transparent transparent transparent #fff}
+footer{position:fixed;left:0;bottom:0;height:8%;width:100%;background:#36374b;z-index:120;overflow:hidden}footer .sexual{display:inline-block;margin-left:5%;height:100%;vertical-align:top}footer .sexual img{display:inline-block;height:60%;margin-top:10%;vertical-align:top}
+footer #follow_tab{background:rgba(255,255,255,0.05);width:60%;height:80%;left:20%;top:10%;z-index:300;overflow:hidden;position:absolute;border:1px solid rgba(200,200,200,0.3);vertical-align:middle}footer #follow_tab img{display:inline-block;max-height:100%;margin-left:3%;margin-right:2%;height:50%;vertical-align:middle;position:relative;top:-10%}
+footer #follow_tab ul{display:inline-block;vertical-align:middle}footer #follow_tab ul li{display:inline-block;position:relative;overflow:hidden}footer #follow_tab ul li img{height:auto;display:block;max-height:100%}
+footer #follow_tab ul li sub{display:none;position:absolute;top:0;left:0;padding:8% 0 0 7%;width:100%;color:#fff;background:rgba(0,0,0,0.5)}
+footer #follow_tab ul li.show sub{display:block;height:100%}footer #follow_tab ul li.show sub a{font-size:80%;color:#fff;position:absolute;top:10%;left:5%;border:0 !important}footer #follow_tab ul li.show sub a.compare{bottom:25%;top:auto !important}
+footer #follow_tab a{position:absolute;top:30%;right:1%;cursor:pointer;width:0;height:0;border-style:solid;border-width:10px 0 10px 20px;border-color:transparent transparent transparent #fff}
 .dropdown-menu li>a strong{font-weight:bold}
 .datepicker td,.datepicker th{font-family:Arial}
 [ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak{display:none !important}

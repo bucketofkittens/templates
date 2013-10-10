@@ -219,15 +219,15 @@ function UserController($scope, $route, $routeParams, User, Needs, Professions, 
 
     $scope.currentUserId = '';
 
-    $scope.states = $rootScope.workspace.states;
-    $scope.professions = $rootScope.workspace.professions;
+    $scope.states = $scope.workspace.states;
+    $scope.professions = $scope.workspace.professions;
 
     $scope.$on('statesGet', function() {
-        $scope.states = $rootScope.workspace.states;
+        $scope.states = $scope.workspace.states;
     });
     
     $scope.$on('professionsGet', function() {
-        $scope.professions = $rootScope.workspace.professions;
+        $scope.professions = $scope.workspace.professions;
     });
 
     $scope.$on('authUserIdChange', function() {
