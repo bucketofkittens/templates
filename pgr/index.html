@@ -53,9 +53,11 @@
 				<input type="text" placeholder="Search people" class="search" />
 				<input type="submit" class="searcher" />
          </div>
+            
+            <!-- Навигация -->
 			<ul ng-controller="navCtrl">
-				<li ng-repeat="nav in navs">
-				    <a ng-if="nav.show" class="{{nav.activeClass}} {{nav.className}}" ng-click="onNavClick($event, nav)">
+				<li ng-repeat="nav in navs | filter:{show: true}">
+				    <a ng-class="{current: nav.current}" class="{{nav.className}}" ng-click="onNavClick($event, nav)">
 				    	<span ng-if="!nav.img">{{nav.name}}</span>
 				    	<img ng-src="{{nav.img}}" ng-if="nav.img" alt="" />
 				    </a>
@@ -66,9 +68,9 @@
 		
 		<div class="footer">
 			<div class="sexual">
-				<img src="/images/sex.png" src="" />
+				<img src="/images/sex.png" alt="" />
 			</div>
-			<img class="fuck" src="/images/f.png" />
+			<img class="fuck" src="/images/f.png" alt="" />
 			<div class="lnbl" ng-include src="'partials/follow.html'" ng-controller="FollowController" ng-init="" ></div>
 		</div>
 

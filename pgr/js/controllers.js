@@ -22,7 +22,7 @@ function navCtrl($scope, localize, $location, AuthUser, $rootScope, $route) {
      */
     $scope.onOpenLogin = function() {
         $rootScope.$broadcast('openLoginModal');
-    }
+    };
 
     $scope.authUser = AuthUser.get();
 
@@ -37,8 +37,8 @@ function navCtrl($scope, localize, $location, AuthUser, $rootScope, $route) {
         $scope.generateNav();
 
         angular.forEach($scope.navs, function(value, key) {
-            if(value.link && $location.path().split("/")[1] == value.link.split("/")[1]) {
-                $scope.navs[key].activeClass = 'current';
+            if(value.link && $location.path().split("/")[1] === value.link.split("/")[1]) {
+                $scope.navs[key].current = true;
             } 
         });
     });
@@ -66,24 +66,25 @@ function navCtrl($scope, localize, $location, AuthUser, $rootScope, $route) {
             {
                 name: localize.getLocalizedString("_PROFILE_"), 
                 link: $scope.authUser ? '#/profile/'+$scope.authUser: '#/profile/', 
-                activeClass: '', 
+                current: false, 
                 show: $scope.authUser ? true : false
             },
             {
                 name: localize.getLocalizedString("_LEAGUES_"), 
                 link: '#/leagues', 
-                activeClass: '', 
+                current: false,
                 show: $scope.authUser ? true : false
             },
             {
                 name: localize.getLocalizedString("_GRAPHS_"), 
                 link: '#/graphs', 
-                activeClass: '', 
+                current: false,
                 show: $scope.authUser ? true : false
             },
             {
                 name: localize.getLocalizedString("_LogoutL_"), 
-                link: '#/logout', activeClass: '', 
+                link: '#/logout', 
+                current: false,
                 show: $scope.authUser ? true : false
             },
             {
@@ -91,7 +92,7 @@ function navCtrl($scope, localize, $location, AuthUser, $rootScope, $route) {
                 img: "/images/anon.png",  
                 className: "login", 
                 onClick: $scope.onOpenLogin,
-                activeClass: '', 
+                current: false, 
                 show: $scope.authUser ? false : true
             }
         ];
@@ -107,7 +108,7 @@ function navCtrl($scope, localize, $location, AuthUser, $rootScope, $route) {
     $scope.$on('$routeChangeSuccess', function(event, next, current) {
         angular.forEach($scope.navs, function(value, key) {
             if($scope.navs[key].link) {
-                $scope.navs[key].activeClass = $scope.navs[key].link.split("/")[1] === $location.path().split("/")[1] ? 'current' : '';
+                $scope.navs[key].current = $scope.navs[key].link.split("/")[1] === $location.path().split("/")[1] ? true : false;
             }
         });
     });
