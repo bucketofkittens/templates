@@ -12,47 +12,21 @@
 		<link rel="stylesheet" href="./css/jquery.Jcrop.min.css" />
 		<link rel="stylesheet/less" href="./css/master.less" />
 		<link rel="stylesheet" href="./css/fonts.css" />
-		
-		<script src="./js/jquery-2.0.3.min.js" type="text/javascript"></script>
-		<script src="./js/jquery.mousewheel.js" type="text/javascript"></script>
-		<script src="./js/jquery.mobile-events.min.js" type="text/javascript"></script>
-		<script src="./js/less-1.4.1.min.js" type="text/javascript"></script>
-		<script src="./js/bootstrap.min.js" type="text/javascript"></script>
-		<script src="./js/bootstrap-datepicker.js" type="text/javascript"></script>
-		<script src="./js/angular.min.js"></script>
-		<script src="./js/angular-route.min.js"></script>
-		<script src="./js/angular-resource.min.js"></script>
-		<script src="./js/angular-cookies.min.js"></script>
-		<script src="./js/angular-animate.min.js"></script>
-		<script src="./js/angular-touch.js"></script>
-		<script src="./js/angular-route-segment.min.js"></script>
-		<script src="./js/moment+langs.min.js"></script>
-		<script src="./js/ngFacebook.js"></script>
-		<script src="./js/google-plus-signin.js"></script>
-		<script src="./js/lvl-uuid.js"></script>
-		<script src="./js/lvl-drag-drop.js"></script>
-		<script src="./js/localize.js"></script>
-		<script src="./js/angular-ui.min.js"></script>
-		<script src="./js/angular-strap.js"></script>
-		<script src="./js/localStorage.js"></script>
-		<script src="./js/ui-bootstrap-0.5.0.min.js"></script>
-		<script src="./js/jquery.Jcrop.min.js"></script>
-		<script src="./js/lodash.js"></script>
-		<script src="./js/keypress.js"></script>
-		<script src="./js/app.js"></script>
-		<script src="./js/controllers.js"></script>
-		<script src="./js/resources.js"></script>
-		<script src="./js/directives.js"></script>
-		<script src="./js/services.js"></script>
 	</head>
-	<body ng-controller="RootController" ng-class="{hiddenScroll: controller == '_'}">
+	<body ng-controller="RootController" ng-class="{hiddenScroll: controller === '_'}">
 		<div class="shadow"></div>
-		<header ng-class="{fixed: controller == '_'}">
-			<a href="#/" class="logo"><img src="./images/logo1.png" alt="PERSON GROWTH RANKING"></a>
-			<div id="search">
-				<input type="text" placeholder="Search people" class="search" />
-				<input type="submit" class="searcher" />
-         </div>
+		<header ng-class="{fixed: controller === '_'}">
+			
+            <!-- Логотип -->
+            <a href="#/" class="logo">
+                <img src="./images/logo1.png" alt="PERSON GROWTH RANKING">
+            </a>
+            
+            <!-- Поиск -->
+            <div id="search">
+                    <input type="text" placeholder="Search people" class="search" />
+                    <input type="submit" class="searcher" />
+            </div>
             
             <!-- Навигация -->
 			<ul ng-controller="navCtrl">
@@ -182,5 +156,37 @@
 				</div>
 			</div>
 		</div>
+        
+        <script src="./js/jquery-2.0.3.min.js" type="text/javascript"></script>
+		<script src="./js/jquery.mousewheel.js" type="text/javascript"></script>
+		<script src="./js/jquery.mobile-events.min.js" type="text/javascript"></script>
+		<script src="./js/less-1.4.1.min.js" type="text/javascript"></script>
+		<script src="./js/bootstrap.min.js" type="text/javascript"></script>
+		<script src="./js/bootstrap-datepicker.js" type="text/javascript"></script>
+		<script src="./js/angular.min.js"></script>
+		<script src="./js/angular-route.min.js"></script>
+		<script src="./js/angular-resource.min.js"></script>
+		<script src="./js/angular-cookies.min.js"></script>
+		<script src="./js/angular-animate.min.js"></script>
+		<script src="./js/angular-touch.js"></script>
+		<script src="./js/angular-route-segment.min.js"></script>
+		<script src="./js/moment+langs.min.js"></script>
+		<script src="./js/ngFacebook.js"></script>
+		<script src="./js/google-plus-signin.js"></script>
+		<script src="./js/lvl-uuid.js"></script>
+		<script src="./js/lvl-drag-drop.js"></script>
+		<script src="./js/localize.js"></script>
+		<script src="./js/angular-ui.min.js"></script>
+		<script src="./js/angular-strap.js"></script>
+		<script src="./js/localStorage.js"></script>
+		<script src="./js/ui-bootstrap-0.5.0.min.js"></script>
+		<script src="./js/jquery.Jcrop.min.js"></script>
+		<script src="./js/lodash.js"></script>
+		<script src="./js/keypress.js"></script>
+		<script src="./js/app.js"></script>
+		<script src="./js/controllers.js"></script>
+		<script src="./js/resources.js"></script>
+		<script src="./js/directives.js"></script>
+		<script src="./js/services.js"></script>
 	</body>
 </html>

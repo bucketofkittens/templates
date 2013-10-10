@@ -109,16 +109,17 @@ body header ul {
   width: 40%;
   height: 100%;
   text-align: right;
+  top: 0%;
 }
-/* line 90, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\0000390}}
+/* line 91, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\0000391}}
 body header ul li {
   margin: 0% 3%;
   display: inline-block;
   vertical-align: top;
 }
-/* line 95, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\0000395}}
+/* line 96, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\0000396}}
 body header ul a {
   color: #ffffff;
   text-decoration: none;
@@ -127,30 +128,30 @@ body header ul a {
   text-transform: uppercase;
   cursor: pointer;
 }
-/* line 102, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003102}}
+/* line 103, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003103}}
 body header ul a.login {
   margin-top: 10%;
   display: block;
 }
-/* line 105, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003105}}
+/* line 106, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003106}}
 body header ul a.login img {
   max-height: 80%;
   display: block;
 }
-/* line 111, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003111}}
+/* line 112, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003112}}
 body header ul a:hover {
   color: #ffffff;
 }
-/* line 114, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003114}}
+/* line 115, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003115}}
 body header ul a.current {
   color: #86b3ef;
 }
-/* line 119, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003119}}
+/* line 120, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003120}}
 body header .social {
   width: 12%;
   height: 50%;
@@ -161,8 +162,8 @@ body header .social {
   right: 0%;
   text-decoration: none;
 }
-/* line 128, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003128}}
+/* line 129, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003129}}
 body header .social a {
   background: url("../images/icons.png") center center no-repeat;
   width: 15%;
@@ -173,18 +174,18 @@ body header .social a {
   background-position: 50% 0%;
   background-size: 500% 65%;
 }
-/* line 137, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003137}}
+/* line 138, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003138}}
 body header .social a:first-child {
   background-position: 0% 0%;
 }
-/* line 140, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003140}}
+/* line 141, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003141}}
 body header .social a:last-child {
   background-position: 100% 0%;
 }
-/* line 150, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003150}}
+/* line 151, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003151}}
 #content {
   position: relative;
   width: 100%;
@@ -207,8 +208,8 @@ body header .social a:last-child {
   /** GRAPHS **/
 
 }
-/* line 158, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003158}}
+/* line 159, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003159}}
 #content .viewch {
   text-align: center;
   transform: skewX(angle);
@@ -225,8 +226,8 @@ body header .social a:last-child {
   right: 0%;
   z-index: 310;
 }
-/* line 175, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003175}}
+/* line 176, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003176}}
 #content .who img {
   max-width: 15%;
   height: auto;
@@ -240,8 +241,8 @@ body header .social a:last-child {
   box-shadow: 0px 0px 30px 1px #000000;
   border: 1px solid #666666;
 }
-/* line 189, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003189}}
+/* line 190, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003190}}
 #content .scroll {
   font-size: 100%;
   color: #333333;
@@ -254,8 +255,8 @@ body header .social a:last-child {
   line-height: 150%;
   text-shadow: 0px 0px 2px #ffffff;
 }
-/* line 203, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003203}}
+/* line 204, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003204}}
 #content .promain {
   margin-left: 1%;
   width: 48%;
@@ -267,25 +268,25 @@ body header .social a:last-child {
   position: relative;
   display: inline-block;
 }
-/* line 214, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003214}}
+/* line 215, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003215}}
 #content .hidden {
   display: none;
 }
-/* line 217, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003217}}
+/* line 218, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003218}}
 #content .pmain {
   display: inline-block;
   vertical-align: top;
   width: 100%;
 }
-/* line 221, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003221}}
+/* line 222, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003222}}
 #content .pmain.pro {
   padding: 2%;
 }
-/* line 223, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003223}}
+/* line 224, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003224}}
 #content .pmain.pro .block {
   display: inline-block;
   width: 30%;
@@ -293,35 +294,35 @@ body header .social a:last-child {
   margin-right: 3%;
   max-width: 300px;
 }
-/* line 229, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003229}}
+/* line 230, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003230}}
 #content .pmain.pro .block .pp {
   width: 100%;
   background: #ffffff;
   height: auto;
   max-width: 300px;
 }
-/* line 234, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003234}}
+/* line 235, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003235}}
 #content .pmain.pro .block .pp.edit {
   cursor: pointer;
 }
-/* line 238, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003238}}
+/* line 239, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003239}}
 #content .pmain.pro .block .publish {
   display: block;
   text-align: center;
   position: relative;
 }
-/* line 242, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003242}}
+/* line 243, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003243}}
 #content .pmain.pro .block .publish p {
   display: inline-block;
   margin: 1% auto;
   width: 100%;
 }
-/* line 246, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003246}}
+/* line 247, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003247}}
 #content .pmain.pro .block .publish p button {
   text-align: center;
   transform: skewX(angle);
@@ -336,46 +337,46 @@ body header .social a:last-child {
   width: 100%;
   display: inline-block;
 }
-/* line 259, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003259}}
+/* line 260, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003260}}
 #content .pmain.pro .block .publish p button.color2 {
   background: #f9f9f9;
   color: #666666;
   -webkit-box-shadow: inset 0px 0px 30px 1px #cccccc;
   box-shadow: inset 0px 0px 30px 1px #cccccc;
 }
-/* line 265, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003265}}
+/* line 266, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003266}}
 #content .pmain.pro .block .publish p button.unfollow {
   color: #000000;
   background: #ffffff;
   -webkit-box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.4);
   box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.4);
 }
-/* line 275, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003275}}
+/* line 276, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003276}}
 #content .pmain.pro .pmpar {
   display: inline-block;
   vertical-align: top;
   width: 65%;
 }
-/* line 279, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003279}}
+/* line 280, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003280}}
 #content .pmain.pro .pmpar p {
   font-size: 110%;
   color: #969696;
   line-height: 130%;
 }
-/* line 284, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003284}}
+/* line 285, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003285}}
 #content .pmain.pro .pmpar label {
   display: inline-block;
   width: 35%;
   vertical-align: middle;
   cursor: pointer;
 }
-/* line 290, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003290}}
+/* line 291, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003291}}
 #content .pmain.pro .pmpar select,
 #content .pmain.pro .pmpar input {
   width: 55%;
@@ -387,101 +388,101 @@ body header .social a:last-child {
   padding-bottom: 1.3% !important;
   cursor: pointer;
 }
-/* line 300, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003300}}
+/* line 301, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003301}}
 #content .pmain.pro .pmpar .form-control {
   display: inline-block;
   width: 50%;
   vertical-align: bottom;
   font-size: 100%;
 }
-/* line 306, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003306}}
+/* line 307, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003307}}
 #content .pmain.pro .pmpar .form-control[readonly="readonly"] {
   background: transparent;
   border-color: transparent;
   box-shadow: none;
 }
-/* line 311, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003311}}
+/* line 312, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003312}}
 #content .pmain.pro .pmpar .ng-pristine {
   vertical-align: bottom;
   font-size: 100%;
   width: 50%;
 }
-/* line 316, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003316}}
+/* line 317, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003317}}
 #content .pmain.pro .pmpar .ng-pristine[readonly="readonly"] {
   background: transparent;
   border-color: transparent;
   box-shadow: none;
 }
-/* line 321, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003321}}
+/* line 322, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003322}}
 #content .pmain.pro .pmpar select[readonly="readonly"] {
   background: transparent;
   border-color: transparent;
   box-shadow: none;
 }
-/* line 326, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003326}}
+/* line 327, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003327}}
 #content .pmain.pro .pmpar img {
   width: 5%;
   height: 8%;
   vertical-align: middle;
 }
-/* line 334, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003334}}
+/* line 335, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003335}}
 #content .pmain.league {
   text-align: center;
   margin: 3% 0% 0% 0%;
   width: 45%;
   display: inline-block;
 }
-/* line 339, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003339}}
+/* line 340, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003340}}
 #content .pmain.league img {
   border-radius: 13% 13% 30% 30%;
   width: 80%;
 }
-/* line 343, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003343}}
+/* line 344, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003344}}
 #content .pmain.league i {
   font-size: 120%;
   color: #000000;
   margin-top: 5%;
   display: block;
 }
-/* line 349, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003349}}
+/* line 350, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003350}}
 #content .pmain.league p {
   font-size: 130% !important;
   color: #000000 !important;
 }
-/* line 352, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003352}}
+/* line 353, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003353}}
 #content .pmain.league p.small {
   font-size: 120% !important;
   line-height: 130%;
 }
-/* line 359, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003359}}
+/* line 360, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003360}}
 #content .pmain.achiev {
   margin-top: 3%;
   width: 45%;
   text-align: center;
   display: inline-block;
 }
-/* line 364, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003364}}
+/* line 365, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003365}}
 #content .pmain.achiev h3 {
   color: #000000;
   font-size: 120%;
   text-align: center;
   line-height: 130%;
 }
-/* line 370, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003370}}
+/* line 371, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003371}}
 #content .pmain.achiev strong {
   display: inline-block;
   width: 20%;
@@ -489,8 +490,8 @@ body header .social a:last-child {
   vertical-align: middle;
   margin: 3%;
 }
-/* line 381, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003381}}
+/* line 382, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003382}}
 #content .crits {
   display: block;
   width: 100%;
@@ -502,23 +503,23 @@ body header .social a:last-child {
   -webkit-transition: all 0.5s ease-out;
   padding-bottom: 1%;
 }
-/* line 392, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003392}}
+/* line 393, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003393}}
 #content .crits ul {
   text-align: center;
   position: relative;
   margin: 0% auto;
 }
-/* line 396, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003396}}
+/* line 397, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003397}}
 #content .crits ul li {
   margin: 1% auto;
   width: 96%;
   cursor: pointer;
   position: relative;
 }
-/* line 401, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003401}}
+/* line 402, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003402}}
 #content .crits ul li .cr {
   background: #759fd2;
   background: -moz-linear-gradient(left, #759fd2 0%, #37374b 100%, #7db9e8 100%);
@@ -531,8 +532,8 @@ body header .social a:last-child {
   cursor: pointer;
   position: relative;
 }
-/* line 412, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003412}}
+/* line 413, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003413}}
 #content .crits ul li .cr p {
   font-size: 130%;
   color: #ffffff;
@@ -541,8 +542,8 @@ body header .social a:last-child {
   width: 20%;
   text-align: left;
 }
-/* line 420, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003420}}
+/* line 421, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003421}}
 #content .crits ul li .cr strong {
   background: #ffffff;
   display: inline-block;
@@ -551,8 +552,8 @@ body header .social a:last-child {
   position: relative;
   overflow: hidden;
 }
-/* line 427, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003427}}
+/* line 428, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003428}}
 #content .crits ul li .cr strong b {
   font-size: 100%;
   color: #000000;
@@ -562,8 +563,8 @@ body header .social a:last-child {
   position: relative;
   z-index: 5;
 }
-/* line 436, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003436}}
+/* line 437, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003437}}
 #content .crits ul li .cr strong span {
   position: absolute;
   left: 0%;
@@ -573,8 +574,8 @@ body header .social a:last-child {
   background: #759fd2;
   transition: all 0.5s ease;
 }
-/* line 447, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003447}}
+/* line 448, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003448}}
 #content .crits ul li ul {
   vertical-align: top;
   position: relative;
@@ -582,14 +583,14 @@ body header .social a:last-child {
   margin: 0%;
   padding: 0%;
 }
-/* line 453, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003453}}
+/* line 454, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003454}}
 #content .crits ul li ul.show {
   display: block;
   margin: 0.5% auto;
 }
-/* line 457, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003457}}
+/* line 458, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003458}}
 #content .crits ul li ul li {
   display: block;
   width: 100%;
@@ -597,13 +598,13 @@ body header .social a:last-child {
   /** criterion **/
 
 }
-/* line 461, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003461}}
+/* line 462, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003462}}
 #content .crits ul li ul li h5 {
   position: relative;
 }
-/* line 464, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003464}}
+/* line 465, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003465}}
 #content .crits ul li ul li a {
   font-size: 120%;
   color: #000000;
@@ -613,8 +614,8 @@ body header .social a:last-child {
   vertical-align: middle;
   text-align: left;
 }
-/* line 473, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003473}}
+/* line 474, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003474}}
 #content .crits ul li ul li span {
   display: inline-block;
   vertical-align: middle;
@@ -623,19 +624,19 @@ body header .social a:last-child {
   position: relative;
   width: 3%;
 }
-/* line 480, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003480}}
+/* line 481, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003481}}
 #content .crits ul li ul li span img {
   max-width: 100%;
 }
-/* line 483, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003483}}
+/* line 484, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003484}}
 #content .crits ul li ul li span sup,
 #content .crits ul li ul li span sub {
   margin-left: -300%;
 }
-/* line 487, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003487}}
+/* line 488, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003488}}
 #content .crits ul li ul li strong {
   background: #ffffff;
   border: 1px solid #cccccc;
@@ -646,8 +647,8 @@ body header .social a:last-child {
   overflow: hidden;
   margin-left: -1%;
 }
-/* line 496, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003496}}
+/* line 497, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003497}}
 #content .crits ul li ul li strong b {
   font-size: 100%;
   color: #000000;
@@ -657,8 +658,8 @@ body header .social a:last-child {
   position: relative;
   z-index: 5;
 }
-/* line 505, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003505}}
+/* line 506, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003506}}
 #content .crits ul li ul li strong span {
   position: absolute;
   left: 0%;
@@ -667,31 +668,31 @@ body header .social a:last-child {
   display: block;
   background: #759fd2;
 }
-/* line 515, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003515}}
+/* line 516, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003516}}
 #content .crits ul li ul li .criterion {
   margin: 0%;
   max-height: 0px;
 }
-/* line 518, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003518}}
+/* line 519, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003519}}
 #content .crits ul li ul li .criterion.show {
   max-height: 100%;
   margin: 0% auto;
 }
-/* line 522, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003522}}
+/* line 523, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003523}}
 #content .crits ul li ul li .criterion li {
   margin: 1% auto;
 }
-/* line 524, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003524}}
+/* line 525, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003525}}
 #content .crits ul li ul li .criterion li sub.du,
 #content .crits ul li ul li .criterion li sup.du {
   margin-left: -4%;
 }
-/* line 527, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003527}}
+/* line 528, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003528}}
 #content .crits ul li ul li .criterion li p {
   color: #000000;
   font-size: 100%;
@@ -700,8 +701,8 @@ body header .social a:last-child {
   text-align: left;
   vertical-align: middle;
 }
-/* line 535, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003535}}
+/* line 536, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003536}}
 #content .crits ul li ul li .criterion li .crp {
   display: inline-block;
   cursor: pointer;
@@ -719,15 +720,15 @@ body header .social a:last-child {
   max-height: 100%;
   opacity: 1;
 }
-/* line 551, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003551}}
+/* line 552, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003552}}
 #content .crits ul li ul li .criterion li .crp .tab {
   display: table;
   width: 100%;
   table-layout: fixed;
 }
-/* line 555, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003555}}
+/* line 556, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003556}}
 #content .crits ul li ul li .criterion li .crp .tab li {
   display: table-cell;
   color: #000000;
@@ -741,27 +742,27 @@ body header .social a:last-child {
   border: 0px;
   text-align: center;
 }
-/* line 567, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003567}}
+/* line 568, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003568}}
 #content .crits ul li ul li .criterion li .crp .tab li.white-text,
 #content .crits ul li ul li .criterion li .crp .tab li.current {
   color: #ffffff;
 }
-/* line 570, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003570}}
+/* line 571, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003571}}
 #content .crits ul li ul li .criterion li .crp .tab li i {
   display: block;
   cursor: pointer;
   word-break: break-all;
 }
-/* line 574, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003574}}
+/* line 575, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003575}}
 #content .crits ul li ul li .criterion li .crp .tab li i.null_criteria {
   width: 20px;
   height: 100%;
 }
-/* line 581, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003581}}
+/* line 582, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003582}}
 #content .crits ul li ul li .criterion li .crp span {
   position: absolute;
   right: -1%;
@@ -771,8 +772,8 @@ body header .social a:last-child {
   background: #ffffff;
   width: 95%;
 }
-/* line 589, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003589}}
+/* line 590, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003590}}
 #content .crits ul li ul li .criterion li .crp span img {
   position: absolute;
   left: -5%;
@@ -780,8 +781,8 @@ body header .social a:last-child {
   height: 100%;
   width: 5%;
 }
-/* line 606, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003606}}
+/* line 607, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003607}}
 #content .pronear {
   width: 48%;
   height: auto;
@@ -790,28 +791,28 @@ body header .social a:last-child {
   margin-left: 2%;
   vertical-align: top;
 }
-/* line 617, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003617}}
+/* line 618, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003618}}
 #content .nearblock {
   width: 100%;
   display: block;
   margin-top: 0.5%;
 }
-/* line 621, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003621}}
+/* line 622, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003622}}
 #content .nearblock .lnbl {
   display: block;
   width: 100%;
   height: 30%;
   position: relative;
 }
-/* line 626, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003626}}
+/* line 627, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003627}}
 #content .nearblock .lnbl .gallery {
   border-top: 3px solid #cccccc;
 }
-/* line 628, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003628}}
+/* line 629, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003629}}
 #content .nearblock .lnbl .gallery h4 {
   font-size: 100%;
   color: #000000;
@@ -821,21 +822,21 @@ body header .social a:last-child {
   right: 10%;
   top: 3%;
 }
-/* line 637, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003637}}
+/* line 638, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003638}}
 #content .nearblock .lnbl .gallery a {
   width: 20%;
   margin: 2%;
   vertical-align: top;
   display: inline-block;
 }
-/* line 643, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003643}}
+/* line 644, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003644}}
 #content .nearblock .lnbl .gallery a {
   position: relative;
 }
-/* line 645, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003645}}
+/* line 646, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003646}}
 #content .nearblock .lnbl .gallery a span {
   position: absolute;
   bottom: 0px;
@@ -845,13 +846,13 @@ body header .social a:last-child {
   color: #ffffff;
   font-size: 120%;
 }
-/* line 654, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003654}}
+/* line 655, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003655}}
 #content .nearblock .lnbl .gallery a img {
   display: block;
 }
-/* line 659, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003659}}
+/* line 660, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003660}}
 #content .nearblock .lnbl .more,
 #content .nearblock .lnbl .less {
   position: absolute;
@@ -870,8 +871,8 @@ body header .social a:last-child {
   width: 10%;
   display: inline-block;
 }
-/* line 676, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003676}}
+/* line 677, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003677}}
 #content .nearblock .lnbl .less {
   position: fixed;
   right: 0%;
@@ -879,15 +880,15 @@ body header .social a:last-child {
   padding: 0.5% 3% 0.5% 1px;
   width: 3%;
 }
-/* line 684, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003684}}
+/* line 685, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003685}}
 #content .nearblock .lnbl .fulls h4 {
   right: auto;
   left: 2%;
   top: 3px;
 }
-/* line 694, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003694}}
+/* line 695, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003695}}
 #content sub.du,
 #content sup.du,
 #content s.du {
@@ -904,14 +905,14 @@ body header .social a:last-child {
   border-width: 7.5px 0 7.5px 15px;
   border-color: transparent transparent transparent #1ca315;
 }
-/* line 708, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003708}}
+/* line 709, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003709}}
 #content sub.du {
   border-width: 7.5px 15px 7.5px 0;
   border-color: transparent #bd1b1b transparent transparent;
 }
-/* line 712, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003712}}
+/* line 713, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003713}}
 #content s.du {
   width: 15px;
   height: 15px;
@@ -919,53 +920,53 @@ body header .social a:last-child {
   border-width: 0px;
   background: #028dda;
 }
-/* line 719, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003719}}
+/* line 720, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003720}}
 #content .comp {
   width: 100%;
   background: #f9f9f9;
   border: none;
   box-shadow: none;
 }
-/* line 724, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003724}}
+/* line 725, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003725}}
 #content .comp .crits {
   background: #f9f9f9;
 }
-/* line 731, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003731}}
+/* line 732, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003732}}
 #content .leaglist {
   display: block;
   width: 95%;
   margin: 0% auto 1% auto;
 }
-/* line 735, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003735}}
+/* line 736, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003736}}
 #content .leaglist article {
   display: block;
   width: 100%;
   margin: 0% auto;
 }
-/* line 739, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003739}}
+/* line 740, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003740}}
 #content .leaglist article:hover sub,
 #content .leaglist article:hover sup {
   display: block;
 }
-/* line 742, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003742}}
+/* line 743, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003743}}
 #content .leaglist article a {
   width: 8%;
   display: inline-block;
   margin: 0.2%;
 }
-/* line 746, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003746}}
+/* line 747, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003747}}
 #content .leaglist article a img {
   border-radius: 5px;
 }
-/* line 750, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003750}}
+/* line 751, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003751}}
 #content .leaglist article div {
   display: inline-block;
   width: 90%;
@@ -973,27 +974,27 @@ body header .social a:last-child {
   position: relative;
   text-align: center;
 }
-/* line 756, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003756}}
+/* line 757, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003757}}
 #content .leaglist article div p {
   white-space: nowrap;
   margin-right: 2%;
   overflow: hidden;
   text-align: left;
 }
-/* line 762, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003762}}
+/* line 763, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003763}}
 #content .leaglist article div a {
   display: inline-block;
   width: 8%;
 }
-/* line 765, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003765}}
+/* line 766, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003766}}
 #content .leaglist article div a img {
   border-radius: 0px;
 }
-/* line 769, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003769}}
+/* line 770, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003770}}
 #content .leaglist article div sub,
 #content .leaglist article div sup {
   position: absolute;
@@ -1005,15 +1006,15 @@ body header .social a:last-child {
   left: -3%;
   background: url("../images/left.png") center center no-repeat;
 }
-/* line 779, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003779}}
+/* line 780, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003780}}
 #content .leaglist article div sup {
   left: auto;
   right: -3%;
   background: url("../images/right.png") center center no-repeat;
 }
-/* line 790, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003790}}
+/* line 791, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003791}}
 #content table#graphs {
   height: 90%;
   width: 90%;
@@ -1021,13 +1022,13 @@ body header .social a:last-child {
   position: relative;
   table-layout: fixed;
 }
-/* line 796, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003796}}
+/* line 797, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003797}}
 #content table#graphs tr {
   height: 9%;
 }
-/* line 798, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003798}}
+/* line 799, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003799}}
 #content table#graphs tr td,
 #content table#graphs tr th {
   vertical-align: top;
@@ -1035,47 +1036,47 @@ body header .social a:last-child {
   border-top: 1px solid #cccccc;
   height: 200px;
 }
-/* line 804, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003804}}
+/* line 805, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003805}}
 #content table#graphs tr td img,
 #content table#graphs tr th img {
   width: 90%;
   position: relative;
 }
-/* line 808, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003808}}
+/* line 809, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003809}}
 #content table#graphs tr td a,
 #content table#graphs tr th a {
   display: block;
   position: relative;
 }
-/* line 813, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003813}}
+/* line 814, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003814}}
 #content table#graphs tr th {
   border-top: none;
   border-right: 1px solid #000000;
   line-height: 50% !important;
   width: 10%;
 }
-/* line 819, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003819}}
+/* line 820, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003820}}
 #content table#graphs tr:last-child th {
   border-right: none;
 }
-/* line 822, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003822}}
+/* line 823, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003823}}
 #content table#graphs tr:first-child td,
 #content table#graphs tr:first-child th {
   border-top: none;
 }
-/* line 825, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003825}}
+/* line 826, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003826}}
 #content table#graphs tr:last-child td {
   border-top: none;
 }
 /** registration.modal **/
-/* line 836, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003836}}
+/* line 837, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003837}}
 .registration.modal,
 .login.modal {
   width: 30%;
@@ -1084,36 +1085,36 @@ body header .social a:last-child {
   margin: 0% auto;
   height: auto;
 }
-/* line 842, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003842}}
+/* line 843, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003843}}
 .registration.modal .modal-body,
 .login.modal .modal-body {
   height: auto;
   max-height: 100%;
 }
-/* line 845, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003845}}
+/* line 846, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003846}}
 .registration.modal .modal-body h4,
 .login.modal .modal-body h4 {
   font-size: 130%;
   text-align: center;
   margin: 5% 0px;
 }
-/* line 850, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003850}}
+/* line 851, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003851}}
 .registration.modal .modal-body form,
 .login.modal .modal-body form {
   width: 100%;
 }
-/* line 852, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003852}}
+/* line 853, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003853}}
 .registration.modal .modal-body form p,
 .login.modal .modal-body form p {
   margin: 5% 20%;
   font-size: 100%;
 }
-/* line 857, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003857}}
+/* line 858, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003858}}
 .registration.modal .modal-body input.ng-invalid:not(.ng-pristine),
 .login.modal .modal-body input.ng-invalid:not(.ng-pristine) {
   color: #b94a48;
@@ -1123,13 +1124,13 @@ body header .social a:last-child {
   -moz-box-shadow: 0 0 6px #f8b9b7 !important;
   box-shadow: 0 0 6px #f8b9b7 !important;
 }
-/* line 869, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003869}}
+/* line 870, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003870}}
 .login.modal {
   top: 30% !important;
 }
-/* line 875, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003875}}
+/* line 876, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003876}}
 #modal-shadow {
   position: fixed;
   left: 0px;
@@ -1141,13 +1142,13 @@ body header .social a:last-child {
   z-index: 2500;
   text-align: center;
 }
-/* line 885, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003885}}
+/* line 886, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003886}}
 #modal-shadow.show {
   display: block;
 }
-/* line 888, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003888}}
+/* line 889, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003889}}
 #modal-shadow img {
   display: inline-block;
   position: relative;
@@ -1155,14 +1156,14 @@ body header .social a:last-child {
   margin-top: 20%;
 }
 /** main_leagues **/
-/* line 898, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003898}}
+/* line 899, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003899}}
 #main_leagues > img {
   left: 50%;
   top: 50%;
 }
-/* line 902, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003902}}
+/* line 903, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003903}}
 #main_leagues ul {
   width: 100%;
   text-align: center;
@@ -1172,8 +1173,8 @@ body header .social a:last-child {
   transit1ion: top 0.1s linear;
   -webkit-transi1tion: top 0.1s linear;
 }
-/* line 910, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003910}}
+/* line 911, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003911}}
 #main_leagues ul li {
   width: 10%;
   display: inline-block;
@@ -1184,13 +1185,13 @@ body header .social a:last-child {
   left: 50%;
   top: 50%;
 }
-/* line 919, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003919}}
+/* line 920, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003920}}
 #main_leagues ul li.showMenu {
   z-index: 499 !important;
 }
-/* line 922, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003922}}
+/* line 923, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003923}}
 #main_leagues ul li.rotate1 {
   -webkit-animation: rotate 2s linear 0 normal;
   -moz-animation: rotate 2s linear 0 normal;
@@ -1200,33 +1201,33 @@ body header .social a:last-child {
   -webkit-backface-visibility: hidden;
   -webkit-perspective: 1000;
 }
-/* line 930, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003930}}
+/* line 931, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003931}}
 #main_leagues ul li.rotate1 img {
   opacity: 1;
 }
-/* line 934, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003934}}
+/* line 935, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003935}}
 #main_leagues ul li.show {
   -webkit-transform: rotateY(0deg);
   -moz-transform: rotateY(0deg);
   -o-transform: rotateY(0deg);
   transform: rotateY(0deg);
 }
-/* line 940, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003940}}
+/* line 941, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003941}}
 #main_leagues ul li.ui-draggable-dragging {
   height: 10%;
   width: 10%;
 }
-/* line 944, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003944}}
+/* line 945, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003945}}
 #main_leagues ul li a {
   position: relative;
   display: block;
 }
-/* line 947, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003947}}
+/* line 948, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003948}}
 #main_leagues ul li a sub {
   position: absolute;
   top: 0%;
@@ -1241,14 +1242,14 @@ body header .social a:last-child {
   oveflow: hidden;
   opacity: 0;
 }
-/* line 960, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003960}}
+/* line 961, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003961}}
 #main_leagues ul li a sub.show {
   height: 90%;
   opacity: 1;
 }
-/* line 965, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003965}}
+/* line 966, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003966}}
 #main_leagues ul li a span {
   position: absolute;
   bottom: 0%;
@@ -1259,8 +1260,8 @@ body header .social a:last-child {
   text-align: right;
   z-index: 10;
 }
-/* line 975, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003975}}
+/* line 976, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003976}}
 #main_leagues ul li a img {
   opacity: 0;
   z-index: 8;
@@ -1268,8 +1269,8 @@ body header .social a:last-child {
   height: auto;
   display: block;
 }
-/* line 982, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003982}}
+/* line 983, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003983}}
 #main_leagues ul li a i {
   position: absolute;
   top: 0%;
@@ -1281,8 +1282,8 @@ body header .social a:last-child {
   transition: all 0.5s ease-out;
   -webkit-transition: all 0.5s ease-out;
 }
-/* line 993, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003993}}
+/* line 994, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003994}}
 #main_leagues ul li a .fallout {
   vertical-align: middle;
   border-radius: 100%;
@@ -1298,16 +1299,16 @@ body header .social a:last-child {
   z-index: 125;
   text-align: center;
 }
-/* line 1007, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031007}}
+/* line 1008, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031008}}
 #main_leagues ul li a .fallout.show {
   width: 250%;
   height: 250%;
   top: -75%;
   left: -75%;
 }
-/* line 1013, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031013}}
+/* line 1014, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031014}}
 #main_leagues ul li a .fallout b {
   color: #000000;
   text-shadow: 0px 0px 5px #ffffff;
@@ -1320,15 +1321,15 @@ body header .social a:last-child {
   right: -5%;
   padding: 10%;
 }
-/* line 1024, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031024}}
+/* line 1025, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031025}}
 #main_leagues ul li a .fallout b:nth-child(3) {
   top: 70%;
   right: auto;
   width: 80%;
 }
-/* line 1029, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031029}}
+/* line 1030, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031030}}
 #main_leagues ul li a .fallout b:first-child {
   top: 22%;
   right: auto;
@@ -1339,269 +1340,269 @@ body header .social a:last-child {
   text-align: left;
   cursor: move;
 }
-/* line 1039, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031039}}
+/* line 1040, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031040}}
 #main_leagues ul li a .fallout b:nth-child(2) {
   right: auto;
   left: -3%;
 }
-/* line 1047, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031047}}
+/* line 1048, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031048}}
 #main_leagues ul li.league_ img {
   opacity: 0.5;
 }
-/* line 1050, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031050}}
+/* line 1051, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031051}}
 #main_leagues ul li.league_ i {
   background: none;
 }
-/* line 1055, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031055}}
+/* line 1056, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031056}}
 #main_leagues ul li.league_10 img {
   opacity: 0.6;
 }
-/* line 1058, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031058}}
+/* line 1059, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031059}}
 #main_leagues ul li.league_10 i {
   background: url("../images/L-gray.png") left top no-repeat;
 }
-/* line 1061, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031061}}
+/* line 1062, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031062}}
 #main_leagues ul li.league_10 span {
   color: #ffffff;
 }
-/* line 1066, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031066}}
+/* line 1067, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031067}}
 #main_leagues ul li.league_9 img {
   opacity: 0.6;
 }
-/* line 1069, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031069}}
+/* line 1070, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031070}}
 #main_leagues ul li.league_9 i {
   background: url("../images/L-brown.png") left top no-repeat;
 }
-/* line 1072, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031072}}
+/* line 1073, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031073}}
 #main_leagues ul li.league_9 span {
   color: #ffffff;
 }
-/* line 1077, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031077}}
+/* line 1078, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031078}}
 #main_leagues ul li.league_8 img {
   opacity: 0.7;
 }
-/* line 1080, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031080}}
+/* line 1081, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031081}}
 #main_leagues ul li.league_8 i {
   background: url("../images/L-pink.png") left top no-repeat;
 }
-/* line 1083, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031083}}
+/* line 1084, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031084}}
 #main_leagues ul li.league_8 span {
   color: #ffffff;
 }
-/* line 1088, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031088}}
+/* line 1089, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031089}}
 #main_leagues ul li.league_7 img {
   opacity: 0.7;
 }
-/* line 1091, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031091}}
+/* line 1092, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031092}}
 #main_leagues ul li.league_7 i {
   background: url("../images/L-purple.png") left top no-repeat;
 }
-/* line 1094, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031094}}
+/* line 1095, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031095}}
 #main_leagues ul li.league_7 span {
   color: #ffffff;
 }
-/* line 1099, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031099}}
+/* line 1100, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031100}}
 #main_leagues ul li.league_6 img {
   opacity: 0.8;
 }
-/* line 1102, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031102}}
+/* line 1103, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031103}}
 #main_leagues ul li.league_6 i {
   background: url("../images/L-blue.png") left top no-repeat;
 }
-/* line 1105, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031105}}
+/* line 1106, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031106}}
 #main_leagues ul li.league_6 span {
   color: #ffffff;
 }
-/* line 1110, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031110}}
+/* line 1111, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031111}}
 #main_leagues ul li.league_5 img {
   opacity: 0.8;
 }
-/* line 1113, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031113}}
+/* line 1114, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031114}}
 #main_leagues ul li.league_5 i {
   background: url("../images/L-azure.png") left top no-repeat;
 }
-/* line 1118, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031118}}
+/* line 1119, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031119}}
 #main_leagues ul li.league_4 img {
   opacity: 0.9;
 }
-/* line 1121, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031121}}
+/* line 1122, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031122}}
 #main_leagues ul li.league_4 i {
   background: url("../images/L-green.png") left top no-repeat;
 }
-/* line 1124, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031124}}
+/* line 1125, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031125}}
 #main_leagues ul li.league_4 span {
   color: #ffffff;
 }
-/* line 1129, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031129}}
+/* line 1130, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031130}}
 #main_leagues ul li.league_3 img {
   opacity: 0.9;
 }
-/* line 1132, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031132}}
+/* line 1133, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031133}}
 #main_leagues ul li.league_3 i {
   background: url("../images/L-yellow.png") left top no-repeat;
 }
-/* line 1137, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031137}}
+/* line 1138, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031138}}
 #main_leagues ul li.league_2 img {
   opacity: 1;
 }
-/* line 1140, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031140}}
+/* line 1141, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031141}}
 #main_leagues ul li.league_2 i {
   background: url("../images/L-orange.png") left top no-repeat;
 }
-/* line 1145, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031145}}
+/* line 1146, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031146}}
 #main_leagues ul li.league_1 img {
   opacity: 1;
 }
-/* line 1148, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031148}}
+/* line 1149, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031149}}
 #main_leagues ul li.league_1 i {
   background: url("../images/L-red.png") left top no-repeat;
 }
-/* line 1157, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031157}}
+/* line 1158, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031158}}
 .tags li {
   position: absolute !important;
 }
-/* line 1159, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031159}}
+/* line 1160, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031160}}
 .tags li img {
   display: block;
 }
-/* line 1162, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031162}}
+/* line 1163, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031163}}
 .tags li:hover {
   z-index: 399 !important;
 }
-/* line 1165, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031165}}
+/* line 1166, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031166}}
 .tags li span {
   line-height: 100% !important;
   right: 5px;
 }
-/* line 1169, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031169}}
+/* line 1170, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031170}}
 .tags li.league_ {
   width: 3% !important;
   z-index: 100;
   font-size: 70%;
 }
-/* line 1174, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031174}}
+/* line 1175, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031175}}
 .tags li.league_10 {
   width: 4% !important;
   z-index: 101;
   font-size: 80%;
 }
-/* line 1179, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031179}}
+/* line 1180, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031180}}
 .tags li.league_9 {
   width: 5% !important;
   z-index: 102;
   font-size: 80%;
 }
-/* line 1184, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031184}}
+/* line 1185, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031185}}
 .tags li.league_8 {
   width: 6% !important;
   z-index: 103;
   font-size: 80%;
 }
-/* line 1189, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031189}}
+/* line 1190, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031190}}
 .tags li.league_7 {
   width: 7% !important;
   z-index: 104;
   font-size: 90%;
 }
-/* line 1194, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031194}}
+/* line 1195, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031195}}
 .tags li.league_6 {
   width: 8% !important;
   z-index: 105;
   font-size: 100%;
 }
-/* line 1199, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031199}}
+/* line 1200, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031200}}
 .tags li.league_5 {
   width: 9% !important;
   z-index: 106;
   font-size: 100%;
 }
-/* line 1204, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031204}}
+/* line 1205, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031205}}
 .tags li.league_4 {
   width: 10% !important;
   z-index: 107;
   font-size: 110%;
 }
-/* line 1209, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031209}}
+/* line 1210, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031210}}
 .tags li.league_3 {
   width: 11% !important;
   z-index: 108;
   font-size: 110%;
 }
-/* line 1214, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031214}}
+/* line 1215, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031215}}
 .tags li.league_2 {
   width: 12% !important;
   z-index: 109;
   font-size: 120%;
 }
-/* line 1219, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031219}}
+/* line 1220, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031220}}
 .tags li.league_1 {
   width: 13% !important;
   z-index: 110;
   font-size: 120%;
 }
-/* line 1227, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031227}}
+/* line 1228, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031228}}
 .who img {
   z-index: 310;
   background: #ffffff;
 }
-/* line 1233, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031233}}
+/* line 1234, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031234}}
 #loosers li {
   display: inline-block;
   width: 3%;
 }
-/* line 1239, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031239}}
+/* line 1240, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031240}}
 .image_box {
   position: relative;
 }
-/* line 1241, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031241}}
+/* line 1242, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031242}}
 .image_box span {
   position: absolute;
   left: 0px;
@@ -1611,8 +1612,8 @@ body header .social a:last-child {
   z-index: 10;
   display: none;
 }
-/* line 1250, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031250}}
+/* line 1251, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031251}}
 .image_box a {
   display: none;
   position: absolute;
@@ -1624,40 +1625,40 @@ body header .social a:last-child {
   text-align: center;
   cursor: pointer;
 }
-/* line 1261, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031261}}
+/* line 1262, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031262}}
 .image_box img {
   position: relative;
   z-index: 9;
 }
-/* line 1266, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031266}}
+/* line 1267, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031267}}
 .image_box.updated:hover span {
   display: block;
   background: rgba(0, 0, 0, 0.5);
 }
-/* line 1270, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031270}}
+/* line 1271, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031271}}
 .image_box.updated:hover a {
   display: block;
 }
-/* line 1276, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031276}}
+/* line 1277, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031277}}
 #image_canvas {
   display: none;
 }
-/* line 1281, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031281}}
+/* line 1282, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031282}}
 .lvl-over {
   box-shadow: 0px 0px 3px 3px #028dda;
 }
-/* line 1284, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031284}}
+/* line 1285, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031285}}
 .lvl-target {
   opacity: 0 !important;
 }
-/* line 1288, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031288}}
+/* line 1289, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031289}}
 [draggable] {
   -moz-user-select: none;
   -khtml-user-select: none;
@@ -1665,8 +1666,8 @@ body header .social a:last-child {
   user-select: none;
   cursor: move;
 }
-/* line 1297, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031297}}
+/* line 1298, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031298}}
 .footer {
   position: fixed;
   left: 0%;
@@ -1677,24 +1678,24 @@ body header .social a:last-child {
   z-index: 120;
   overflow: hidden;
 }
-/* line 1306, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031306}}
+/* line 1307, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031307}}
 .footer .sexual {
   display: inline-block;
   margin-left: 5%;
   height: 100%;
   vertical-align: top;
 }
-/* line 1311, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031311}}
+/* line 1312, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031312}}
 .footer .sexual img {
   display: inline-block;
   height: 60%;
   margin-top: 10%;
   vertical-align: top;
 }
-/* line 1318, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031318}}
+/* line 1319, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031319}}
 .footer .fuck {
   display: inline-block;
   margin-left: 5%;
@@ -1702,8 +1703,8 @@ body header .social a:last-child {
   vertical-align: top;
   margin-top: 1%;
 }
-/* line 1325, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031325}}
+/* line 1326, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031326}}
 .footer #follow_tab {
   background: rgba(255, 255, 255, 0.05);
   width: 60%;
@@ -1715,22 +1716,22 @@ body header .social a:last-child {
   position: absolute;
   border: 1px solid rgba(200, 200, 200, 0.3);
 }
-/* line 1336, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031336}}
+/* line 1337, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031337}}
 .footer #follow_tab ul li {
   display: inline-block;
   position: relative;
   overflow: hidden;
 }
-/* line 1340, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031340}}
+/* line 1341, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031341}}
 .footer #follow_tab ul li img {
   height: auto;
   display: block;
   max-height: 100%;
 }
-/* line 1345, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031345}}
+/* line 1346, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031346}}
 .footer #follow_tab ul li sub {
   display: none;
   position: absolute;
@@ -1741,14 +1742,14 @@ body header .social a:last-child {
   color: #ffffff;
   background: rgba(0, 0, 0, 0.5);
 }
-/* line 1356, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031356}}
+/* line 1357, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031357}}
 .footer #follow_tab ul li.show sub {
   display: block;
   height: 100%;
 }
-/* line 1359, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031359}}
+/* line 1360, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031360}}
 .footer #follow_tab ul li.show sub a {
   font-size: 80%;
   color: #ffffff;
@@ -1757,14 +1758,14 @@ body header .social a:last-child {
   left: 5%;
   border: 0px !important;
 }
-/* line 1366, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031366}}
+/* line 1367, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031367}}
 .footer #follow_tab ul li.show sub a.compare {
   bottom: 25%;
   top: auto !important;
 }
-/* line 1375, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031375}}
+/* line 1376, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031376}}
 .footer #follow_tab a {
   position: absolute;
   top: 30%;
@@ -1776,13 +1777,13 @@ body header .social a:last-child {
   border-width: 10px 0 10px 20px;
   border-color: transparent transparent transparent #ffffff;
 }
-/* line 1390, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031390}}
+/* line 1391, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031391}}
 .dropdown-menu li > a strong {
   font-weight: bold;
 }
-/* line 1393, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031393}}
+/* line 1394, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031394}}
 .datepicker td,
 .datepicker th {
   font-family: Arial;

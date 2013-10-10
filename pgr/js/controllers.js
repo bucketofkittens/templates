@@ -116,7 +116,13 @@ function navCtrl($scope, localize, $location, AuthUser, $rootScope, $route) {
 
 /**
  * Контроллер страницы профиля
- * @param {[type]} $scope [description]
+ * @param {type} $scope
+ * @param {type} $routeParams
+ * @param {type} AuthUser
+ * @param {type} $route
+ * @param {type} $rootScope
+ * @param {type} $location
+ * @returns {undefined}
  */
 function ProfileController($scope, $routeParams, AuthUser, $route, $rootScope, $location) {
     $scope.authUserId = AuthUser.get();
@@ -124,7 +130,6 @@ function ProfileController($scope, $routeParams, AuthUser, $route, $rootScope, $
     $scope.userId2 = $routeParams.userId2;
     $scope.currentUserEditStatus = !$scope.userId2 ? true : false;
     
-
     $scope.$on('routeSegmentChange', function(data, d2) {
         if($routeParams.userId1 && $routeParams.userId1 != $scope.userId1) {
             $rootScope.$broadcast('updateUserControllerId', {
@@ -1186,13 +1191,19 @@ function objToString (obj) {
 
 /**
  * Контроллер главной страницыMainC
- * @param {[type]} $scope  [description]
- * @param {[type]} Leagues [description]
+ * @param {type} $scope
+ * @param {type} Leagues
+ * @param {type} User
+ * @param {type} AuthUser
+ * @param {type} $rootScope
+ * @param {type} $location
+ * @param {type} $timeout
+ * @returns {MainController}
  */
 function MainController($scope, Leagues, User, AuthUser, $rootScope, $location, $timeout) {
     $scope.viewedUsers = [];
     $scope.rootUser = $rootScope.workspace.user ? $rootScope.workspace.user : false;
-
+    
     $scope.$watch($rootScope.workspace.user, function(newValue, oldValue, scope) {
         if($rootScope.workspace.user) {
             $scope.rootUser = $rootScope.workspace.user;
