@@ -21,7 +21,15 @@ function AvatarCtrl($scope, $rootScope, $location) {
      * @returns {undefined}
      */
     $scope.onLogout = function() {
-        $location.path("/logout");  
+        $location.path("/logout");
+    };
+
+    /**
+     * Переход на страницу профиля
+     * @return {undefined}
+     */
+    $scope.onOpenProfileAuthUser = function() {
+        $location.path("/profile/" + $scope.workspace.user.sguid);
     };
 }
 
@@ -1318,26 +1326,6 @@ function MainController($scope, Leagues, User, AuthUser, $rootScope, $location, 
 
     $scope.getPublishedUser();
     
-
-    $scope.onDragStart = function(user) {
-        user.isLeave = true;
-        user.dragged = true;
-    }
-
-    $scope.onDragOver = function(userItem) {
-        userItem.drag = true;
-    }
-
-    $scope.onDrop = function(e, src) {
-        var dropId =  $(src).attr("id");
-        var droppedId =  $(e.delegateTarget).attr("id");
-        
-        if(dropId != droppedId) {
-            $scope.$apply(function() {
-                $location.path("/profile/"+droppedId+"/"+dropId);   
-            })
-        }
-    }
 
     $scope.onMoveToUser = function(user) {
         $location.path("/profile/"+user.sguid);

@@ -30,7 +30,7 @@
                     <span ng-click="onLogin()">Sign in</span>
                 </p>
                 <p ng-if="workspace.user">
-                    <img ng-src="{{workspace.user.avatar}}" alt="{{workspace.user.name}}" />
+                    <img ng-click="onOpenProfileAuthUser()" ng-src="{{workspace.user.avatar}}" alt="{{workspace.user.name}}" />
                     <span ng-click="onLogout()">Sign out</span>
                 </p>
 			</section>
@@ -56,8 +56,13 @@
 			<div class="sexual">
 				<img src="/images/sex.png" alt="" />
 			</div>
-			<img class="fuck" src="/images/f.png" alt="" />
-			<div class="lnbl" ng-include src="'partials/follow.html'" ng-controller="FollowController" ng-init="" ></div>
+			
+			<div 
+				class="lnbl" 
+				ng-include 
+				src="'partials/follow.html'" 
+				ng-controller="FollowController" >
+			</div>
 		</div>
 
 		<div id="content" class="controller_{{controller}}" ng-controller="ContentController">
@@ -67,6 +72,8 @@
         <section ng-include src="'partials/loader.html'"></section>
         <section ng-include src="'partials/login.html'"></section>
         <section ng-include src="'partials/registration.html'"></section>
+
+        <div id="fb-root"></div>
         
         <script src="./js/jquery-2.0.3.min.js" type="text/javascript"></script>
 		<script src="./js/jquery.mousewheel.js" type="text/javascript"></script>
@@ -84,8 +91,6 @@
 		<script src="./js/moment+langs.min.js"></script>
 		<script src="./js/ngFacebook.js"></script>
 		<script src="./js/google-plus-signin.js"></script>
-		<script src="./js/lvl-uuid.js"></script>
-		<script src="./js/lvl-drag-drop.js"></script>
 		<script src="./js/localize.js"></script>
 		<script src="./js/angular-ui.min.js"></script>
 		<script src="./js/angular-strap.js"></script>

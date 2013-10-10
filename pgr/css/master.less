@@ -3,6 +3,11 @@
 select, textarea, input {
     padding: 0px !important;
 }
+ 
+img {
+    image-rendering: optimizeQuality; 
+    -ms-interpolation-mode: bicubic;
+}
 
 body {
     width: 100%;
@@ -41,7 +46,7 @@ body {
                 color: #ffffff;
                 text-decoration: none;
                 font-family: 'Helvetica Neue';
-                font-size: 70%;
+                font-size: 55%;
                 text-transform: uppercase;
                 cursor: pointer;
             }
@@ -58,7 +63,7 @@ body {
             position: relative;
             display: inline-block;
             img {
-                position: absolute;
+                position: absolute; 
                 display: inline-block;
                 right: 3%;
                 top: 5%;
@@ -1330,24 +1335,30 @@ body {
             vertical-align: top;
         }
     }
-    .fuck {
-        display: inline-block;
-        margin-left: 5%;
-        height: 50%;
-        vertical-align: top;
-        margin-top: 1%;
-    }
     #follow_tab {
         background: rgba(255, 255, 255, 0.05);
         width: 60%;
         height: 80%;
-        right: 3%;
+        left: 20%;
         top: 10%;
         z-index: 300;
         overflow: hidden;
         position: absolute;
         border: 1px solid rgba(200, 200, 200, 0.3);
-        ul {            
+        vertical-align: middle;
+        img {
+            display: inline-block;
+            max-height: 100%;
+            margin-left: 3%;
+            margin-right: 2%;
+            height: 50%;
+            vertical-align: middle;
+            position: relative;
+            top: -10%;
+        }
+        ul {
+            display: inline-block;
+            vertical-align: middle;            
             li {
                 display: inline-block;
                 position: relative;
@@ -1411,8 +1422,4 @@ body {
 
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
   display: none !important;
-}
-
-input[type="text"], input[type="password"], textarea, select { 
-    outline: none;
 }

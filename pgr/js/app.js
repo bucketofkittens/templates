@@ -26,7 +26,7 @@ var socialsAccess = {
  * Основной модуль приложения
  * @type {[type]}
  */
-var pgrModule = angular.module('pgrModule', [ "ngRoute", "ngCookies", "ngResource", "ngAnimate", "localization", "ui", "ui.keypress", 'ui.bootstrap', 'route-segment', 'view-segment', 'lvl.directives.dragdrop', 'ngTouch', 'ngFacebook', '$strap.directives']);
+var pgrModule = angular.module('pgrModule', [ "ngRoute", "ngCookies", "ngResource", "ngAnimate", "localization", "ui", "ui.keypress", 'ui.bootstrap', 'route-segment', 'view-segment', 'ngTouch', 'ngFacebook', '$strap.directives']);
 
 /**
  * Роутинг приложения

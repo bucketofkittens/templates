@@ -2,10 +2,7 @@
 <section id="main_leagues" class="tags">
 	<ul ng-repeat="league in leagues" class="league league_numer_{{league.name}}" stellar="1.2" stellar-vert="0">
 		<li 
-			x-lvl-draggable="true"
-			x-lvl-drop-target="true" 
 			paralax-enable="{{!state}}"
-			null-image="{{userItem.name}}"
 			paralax-image 
 			id="{{userItem.sguid}}"
 			ng-repeat="userItem in league.users"
