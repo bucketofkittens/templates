@@ -1,152 +1,1739 @@
 @import "reset.css";
-@-webkit-keyframes rotate{from{-webkit-transform:rotateY(180deg);opacity:0} to{-webkit-transform:rotateY(0deg);opacity:1}}select,textarea,input{padding:0 !important}
-body{width:100%;height:100%;font-family:'Helvetica Neue Light';-moz-font-smoothing:antialiased;-webkit-font-smoothing:antialiased}body .shadow{background:rgba(0,0,0,0.5);z-index:10;position:absolute;width:100%;height:100%;display:none}
-body header{height:8%;width:100%;background:#759fd2;background:-moz-linear-gradient(left, #759fd2 0, #37374b 100%, #7db9e8 100%);background:-webkit-gradient(linear, left top, right top, color-stop(0, #759fd2), color-stop(100%, #37374b), color-stop(100%, #7db9e8));background:-webkit-linear-gradient(left, #759fd2 0, #37374b 100%, #7db9e8 100%);background:-o-linear-gradient(left, #759fd2 0, #37374b 100%, #7db9e8 100%);background:-ms-linear-gradient(left, #759fd2 0, #37374b 100%, #7db9e8 100%);background:linear-gradient(to right, #759fd2 0, #37374b 100%, #7db9e8 100%);position:absolute;top:0;z-index:120;overflow:hidden}body header.fixed{position:fixed}
-body header .logo{width:25%;height:100%;margin:0 12% 0 3%;position:relative;display:inline-block}body header .logo img{position:absolute;height:80%;display:inline-block}
-body header ul{display:inline-block;vertical-align:top;position:absolute;right:0;width:40%;text-align:right}body header ul li{margin:3%;display:inline-block;vertical-align:top}
-body header ul a{color:#fff;text-decoration:none;font-family:'Helvetica Neue';font-size:100%;text-transform:uppercase}body header ul a:hover{color:#fff}
-body header ul a.current{color:#86b3ef}
-body header .social{width:12%;height:50%;vertical-align:top;display:inline-block;position:absolute;top:10%;right:0;text-decoration:none}body header .social a{background:url("../images/icons.png") center center no-repeat;width:15%;height:100%;margin:5% 7%;display:inline-block;overflow:hidden;background-position:50% 0;background-size:500% 65%}body header .social a:first-child{background-position:0 0}
-body header .social a:last-child{background-position:100% 0}
-#content{position:relative;width:100%;background:#f9f9f9;padding-top:6%;min-height:88%;overflow:hidden;}#content .viewch{text-align:center;transform:skewX(angle);font-size:80%;color:#fff;padding:8px 5px 2px 5px;background:#028dda;border-top:1px solid #fff;border-left:1px solid #fff;border-right:1px solid #ccc;border-bottom:1px solid #ccc;position:fixed;top:8%;right:0;z-index:310}
-#content .who img{max-width:15%;height:auto;border:1px solid #000;display:inline-block;position:fixed;top:50%;left:50%;margin:-7% 0 0 -7%;cursor:pointer;box-shadow:0 0 30px 1px #000;border:1px solid #666}
-#content .scroll{font-size:100%;color:#333;text-decoration:none;position:fixed;bottom:3%;left:50%;margin-left:-3%;z-index:110;line-height:150%;text-shadow:0 0 2px #fff}
-#content .promain{margin-left:1%;width:48%;background:#fff;border:1px solid #ccc;border-bottom:none;box-shadow: 0 0 30px 1px rgba(0,0,0,0.3);z-index:3;position:relative;display:inline-block}
-#content .hidden{display:none}
-#content .pmain{display:inline-block;vertical-align:top;width:100%}#content .pmain.pro{padding:2%}#content .pmain.pro .block{display:inline-block;width:30%;vertical-align:middle;margin-right:3%;max-width:300px}#content .pmain.pro .block .pp{width:100%;background:#fff;height:auto;max-width:300px}#content .pmain.pro .block .pp.edit{cursor:pointer}
-#content .pmain.pro .block .publish{display:block;text-align:center;position:relative}#content .pmain.pro .block .publish p{display:inline-block;margin:1% auto;width:100%}#content .pmain.pro .block .publish p button{text-align:center;transform:skewX(angle);font-size:120%;color:#fff;padding:3%;background:#759fd2;border-top:1px solid #fff;border-left:1px solid #fff;border-right:1px solid #ccc;border-bottom:1px solid #ccc;width:100%;display:inline-block}#content .pmain.pro .block .publish p button.color2{background:#f9f9f9;color:#666;-webkit-box-shadow:inset 0 0 30px 1px #ccc;box-shadow:inset 0 0 30px 1px #ccc}
-#content .pmain.pro .block .publish p button.unfollow{color:#000;background:#fff;-webkit-box-shadow:0 0 30px 0 rgba(0,0,0,0.4);box-shadow:0 0 30px 0 rgba(0,0,0,0.4)}
-#content .pmain.pro .pmpar{display:inline-block;vertical-align:top;width:65%}#content .pmain.pro .pmpar p{font-size:110%;color:#969696;line-height:130%}
-#content .pmain.pro .pmpar label{display:inline-block;width:35%;vertical-align:middle;cursor:pointer}
-#content .pmain.pro .pmpar select,#content .pmain.pro .pmpar input{width:55%;height:100%;line-height:100%;margin:0;vertical-align:middle !important;display:inline-block;padding-bottom:1.3% !important;cursor:pointer}
-#content .pmain.pro .pmpar .form-control{display:inline-block;width:50%;vertical-align:bottom;font-size:100%}
-#content .pmain.pro .pmpar .form-control[readonly="readonly"]{background:transparent;border-color:transparent;box-shadow:none}
-#content .pmain.pro .pmpar .ng-pristine{vertical-align:bottom;font-size:100%;width:50%}
-#content .pmain.pro .pmpar .ng-pristine[readonly="readonly"]{background:transparent;border-color:transparent;box-shadow:none}
-#content .pmain.pro .pmpar select[readonly="readonly"]{background:transparent;border-color:transparent;box-shadow:none}
-#content .pmain.pro .pmpar img{width:5%;height:8%;vertical-align:middle}
-#content .pmain.league{text-align:center;margin:3% 0 0 0;width:45%;display:inline-block}#content .pmain.league img{border-radius:13% 13% 30% 30%;width:80%}
-#content .pmain.league i{font-size:120%;color:#000;margin-top:5%;display:block}
-#content .pmain.league p{font-size:130% !important;color:#000 !important}#content .pmain.league p.small{font-size:120% !important;line-height:130%}
-#content .pmain.achiev{margin-top:3%;width:45%;text-align:center;display:inline-block}#content .pmain.achiev h3{color:#000;font-size:120%;text-align:center;line-height:130%}
-#content .pmain.achiev strong{display:inline-block;width:20%;text-align:center;vertical-align:middle;margin:3%}
-#content .crits{display:block;width:100%;height:100%;z-index:5;height:auto;position:relative;transition:all .5s ease-out;-webkit-transition:all .5s ease-out;padding-bottom:1%}#content .crits ul{text-align:center;position:relative;margin:0 auto}#content .crits ul li{margin:1% auto;width:96%;cursor:pointer;position:relative}#content .crits ul li .cr{background:#759fd2;background:-moz-linear-gradient(left, #759fd2 0, #37374b 100%, #7db9e8 100%);background:-webkit-gradient(linear, left top, right top, color-stop(0, #759fd2), color-stop(100%, #37374b), color-stop(100%, #7db9e8));background:-webkit-linear-gradient(left, #759fd2 0, #37374b 100%, #7db9e8 100%);background:-o-linear-gradient(left, #759fd2 0, #37374b 100%, #7db9e8 100%);background:-ms-linear-gradient(left, #759fd2 0, #37374b 100%, #7db9e8 100%);background:linear-gradient(to right, #759fd2 0, #37374b 100%, #7db9e8 100%);line-height:250%;cursor:pointer;position:relative}#content .crits ul li .cr p{font-size:130%;color:#fff;display:inline-block;margin-top:1%;width:20%;text-align:left}
-#content .crits ul li .cr strong{background:#fff;display:inline-block;line-height:100%;width:65%;position:relative;overflow:hidden}#content .crits ul li .cr strong b{font-size:100%;color:#000;text-align:center;display:block;margin-top:2%;position:relative;z-index:5}
-#content .crits ul li .cr strong span{position:absolute;left:0;top:0;height:100%;display:block;background:#759fd2;transition:all .5s ease}
-#content .crits ul li ul{vertical-align:top;position:relative;display:none;margin:0;padding:0}#content .crits ul li ul.show{display:block;margin:.5% auto}
-#content .crits ul li ul li{display:block;width:100%;margin:1% auto;}#content .crits ul li ul li h5{position:relative}
-#content .crits ul li ul li a{font-size:120%;color:#000;text-decoration:none;display:inline-block;width:17%;vertical-align:middle;text-align:left}
-#content .crits ul li ul li span{display:inline-block;vertical-align:middle;transition:all .5s ease;margin-right:1%;position:relative;width:3%}#content .crits ul li ul li span img{max-width:100%}
-#content .crits ul li ul li span sup,#content .crits ul li ul li span sub{margin-left:-300%}
-#content .crits ul li ul li strong{background:#fff;border:1px solid #ccc;display:inline-block;line-height:100%;width:65%;position:relative;overflow:hidden;margin-left:-1%}#content .crits ul li ul li strong b{font-size:100%;color:#000;text-align:center;display:block;margin-top:2%;position:relative;z-index:5}
-#content .crits ul li ul li strong span{position:absolute;left:0;top:0;height:100%;display:block;background:#759fd2}
-#content .crits ul li ul li .criterion{margin:0;max-height:0}#content .crits ul li ul li .criterion.show{max-height:100%;margin:0 auto}
-#content .crits ul li ul li .criterion li{margin:1% auto}#content .crits ul li ul li .criterion li sub.du,#content .crits ul li ul li .criterion li sup.du{margin-left:-4%}
-#content .crits ul li ul li .criterion li p{color:#000;font-size:100%;display:inline-block;width:20%;text-align:left;vertical-align:middle}
-#content .crits ul li ul li .criterion li .crp{display:inline-block;cursor:pointer;margin:0 auto;background:#759fd2;background:-moz-linear-gradient(left, #759fd2 0, #37374b 100%, #7db9e8 100%);background:-webkit-gradient(linear, left top, right top, color-stop(0, #759fd2), color-stop(100%, #37374b), color-stop(100%, #7db9e8));background:-webkit-linear-gradient(left, #759fd2 0, #37374b 100%, #7db9e8 100%);background:-o-linear-gradient(left, #759fd2 0, #37374b 100%, #7db9e8 100%);background:-ms-linear-gradient(left, #759fd2 0, #37374b 100%, #7db9e8 100%);background:linear-gradient(to right, #759fd2 0, #37374b 100%, #7db9e8 100%);width:65%;vertical-align:middle;overflow:hidden;max-height:100%;opacity:1}#content .crits ul li ul li .criterion li .crp .tab{display:table;width:100%;table-layout:fixed}#content .crits ul li ul li .criterion li .crp .tab li{display:table-cell;color:#000;font-size:80%;width:auto;margin:0 auto;line-height:100%;z-index:7;position:relative;padding:2% 0;border:0;text-align:center}#content .crits ul li ul li .criterion li .crp .tab li.white-text,#content .crits ul li ul li .criterion li .crp .tab li.current{color:#fff}
-#content .crits ul li ul li .criterion li .crp .tab li i{display:block;cursor:pointer;word-break:break-all}#content .crits ul li ul li .criterion li .crp .tab li i.null_criteria{width:20px;height:100%}
-#content .crits ul li ul li .criterion li .crp span{position:absolute;right:-1%;top:0;height:100%;display:block;background:#fff;width:95%}#content .crits ul li ul li .criterion li .crp span img{position:absolute;left:-5%;top:0;height:100%;width:5%}
-#content .pronear{width:48%;height:auto;display:inline-block;position:relative;margin-left:2%;vertical-align:top}
-#content .nearblock{width:100%;display:block;margin-top:.5%}#content .nearblock .lnbl{display:block;width:100%;height:30%;position:relative}#content .nearblock .lnbl .gallery{border-top:3px solid #ccc}#content .nearblock .lnbl .gallery h4{font-size:100%;color:#000;text-align:left;display:block;position:absolute;right:10%;top:3%}
-#content .nearblock .lnbl .gallery a{width:20%;margin:2%;vertical-align:top;display:inline-block}
-#content .nearblock .lnbl .gallery a{position:relative}#content .nearblock .lnbl .gallery a span{position:absolute;bottom:0;width:100%;background:rgba(102,134,177,0.7);padding-top:5%;color:#fff;font-size:120%}
-#content .nearblock .lnbl .gallery a img{display:block}
-#content .nearblock .lnbl .more,#content .nearblock .lnbl .less{position:absolute;right:10%;top:25%;text-align:center;transform:skewX(angle);font-size:80%;color:#fff;padding:2%;background:#759fd2;border-top:1px solid #fff;border-left:1px solid #fff;border-right:1px solid #ccc;border-bottom:1px solid #ccc;width:10%;display:inline-block}
-#content .nearblock .lnbl .less{position:fixed;right:0;top:20%;padding:.5% 3% .5% 1px;width:3%}
-#content .nearblock .lnbl .fulls h4{right:auto;left:2%;top:3px}
-#content sub.du,#content sup.du,#content s.du{margin-left:-4%;z-index:7;position:absolute;left:0;top:50%;margin-top:-7px;display:block;width:0;height:0;border-style:solid;border-width:7.5px 0 7.5px 15px;border-color:transparent transparent transparent #1ca315}
-#content sub.du{border-width:7.5px 15px 7.5px 0;border-color:transparent #bd1b1b transparent transparent}
-#content s.du{width:15px;height:15px;border-radius:100%;border-width:0;background:#028dda}
-#content .comp{width:100%;background:#f9f9f9;border:none;box-shadow:none}#content .comp .crits{background:#f9f9f9}
-#content .leaglist{display:block;width:95%;margin:0 auto 1% auto}#content .leaglist article{display:block;width:100%;margin:0 auto}#content .leaglist article:hover sub,#content .leaglist article:hover sup{display:block}
-#content .leaglist article a{width:8%;display:inline-block;margin:.2%}#content .leaglist article a img{border-radius:5px}
-#content .leaglist article div{display:inline-block;width:90%;margin-left:1%;position:relative;text-align:center}#content .leaglist article div p{white-space:nowrap;margin-right:2%;overflow:hidden;text-align:left}
-#content .leaglist article div a{display:inline-block;width:8%}#content .leaglist article div a img{border-radius:0}
-#content .leaglist article div sub,#content .leaglist article div sup{position:absolute;display:none;width:5%;height:60%;cursor:pointer;top:20%;left:-3%;background:url("../images/left.png") center center no-repeat}
-#content .leaglist article div sup{left:auto;right:-3%;background:url("../images/right.png") center center no-repeat}
-#content table#graphs{height:90%;width:90%;margin:0 auto;position:relative;table-layout:fixed}#content table#graphs tr{height:9%}#content table#graphs tr td,#content table#graphs tr th{vertical-align:top;text-align:center;border-top:1px solid #ccc;height:200px}#content table#graphs tr td img,#content table#graphs tr th img{width:90%;position:relative}
-#content table#graphs tr td a,#content table#graphs tr th a{display:block;position:relative}
-#content table#graphs tr th{border-top:none;border-right:1px solid #000;line-height:50% !important;width:10%}
-#content table#graphs tr:last-child th{border-right:none}
-#content table#graphs tr:first-child td,#content table#graphs tr:first-child th{border-top:none}
-#content table#graphs tr:last-child td{border-top:none}
-.registration.modal,.login.modal{width:30%;left:35%;top:20% !important;margin:0 auto;height:auto}.registration.modal .modal-body,.login.modal .modal-body{height:auto;max-height:100%}.registration.modal .modal-body h4,.login.modal .modal-body h4{font-size:130%;text-align:center;margin:5% 0}
-.registration.modal .modal-body form,.login.modal .modal-body form{width:100%}.registration.modal .modal-body form p,.login.modal .modal-body form p{margin:5% 20%;font-size:100%}
-.registration.modal .modal-body input.ng-invalid:not(.ng-pristine),.login.modal .modal-body input.ng-invalid:not(.ng-pristine){color:#b94a48;border-color:#ee5f5b;border-color:#e9322d !important;-webkit-box-shadow:0 0 6px #f8b9b7 !important;-moz-box-shadow:0 0 6px #f8b9b7 !important;box-shadow:0 0 6px #f8b9b7 !important}
-.login.modal{top:30% !important}
-#modal-shadow{position:fixed;left:0;top:0;width:100%;height:100%;background:rgba(0,0,0,0.5);display:none;z-index:2500;text-align:center}#modal-shadow.show{display:block}
-#modal-shadow img{display:inline-block;position:relative;z-index:9999;margin-top:20%}
-#main_leagues>img{left:50%;top:50%}
-#main_leagues ul{width:100%;text-align:center;position:relative;margin:0 auto;top:0;transit1ion:top .1s linear;-webkit-transi1tion:top .1s linear}#main_leagues ul li{width:10%;display:inline-block;position:relative;line-height:100%;max-height:10%;min-width:1% !important;left:50%;top:50%}#main_leagues ul li.showMenu{z-index:499 !important}
-#main_leagues ul li.rotate1{-webkit-animation:rotate 2s linear 0 normal;-moz-animation:rotate 2s linear 0 normal;-o-animation:rotate 2s linear 0 normal;-ms-animation:rotate 2s linear 0 normal;animation:rotate 2s linear 0 normal;-webkit-backface-visibility:hidden;-webkit-perspective:1000}#main_leagues ul li.rotate1 img{opacity:1}
-#main_leagues ul li.show{-webkit-transform:rotateY(0deg);-moz-transform:rotateY(0deg);-o-transform:rotateY(0deg);transform:rotateY(0deg)}
-#main_leagues ul li.ui-draggable-dragging{height:10%;width:10%}
-#main_leagues ul li a{position:relative;display:block}#main_leagues ul li a sub{position:absolute;top:0;left:0;padding:5% 0 0 7%;width:93%;height:0;color:#fff;background:rgba(0,0,0,0.3);transition:all .5s ease-out;-webkit-transition:all .5s ease-out;oveflow:hidden;opacity:0}#main_leagues ul li a sub.show{height:90%;opacity:1}
-#main_leagues ul li a span{position:absolute;bottom:0;right:3%;width:100%;color:#000;font-size:90%;text-align:right;z-index:10}
-#main_leagues ul li a img{opacity:0;z-index:8;width:100%;height:auto;display:block}
-#main_leagues ul li a i{position:absolute;top:0;left:0;width:100%;height:100%;background-size:cover !important;z-index:9;transition:all .5s ease-out;-webkit-transition:all .5s ease-out}
-#main_leagues ul li a .fallout{vertical-align:middle;border-radius:100%;background:rgba(102,134,177,0.5);position:absolute;top:50%;left:50%;width:0;height:0;transition:all .5s ease-out;-webkit-transition:all .5s ease-out;overflow:hidden;z-index:125;text-align:center}#main_leagues ul li a .fallout.show{width:250%;height:250%;top:-75%;left:-75%}
-#main_leagues ul li a .fallout b{color:#000;text-shadow:0 0 5px #fff;font-size:80%;font-weight:bold;display:block;position:absolute;cursor:pointer;top:40%;right:-5%;padding:10%}#main_leagues ul li a .fallout b:nth-child(3){top:70%;right:auto;width:80%}
-#main_leagues ul li a .fallout b:first-child{top:22%;right:auto;left:22%;text-shadow:none;font-size:90%;font-weight:normal;text-align:left;cursor:move}
-#main_leagues ul li a .fallout b:nth-child(2){right:auto;left:-3%}
-#main_leagues ul li.league_ img{opacity:.5}
-#main_leagues ul li.league_ i{background:none}
-#main_leagues ul li.league_10 img{opacity:.6}
-#main_leagues ul li.league_10 i{background:url("../images/L-gray.png") left top no-repeat}
-#main_leagues ul li.league_10 span{color:#fff}
-#main_leagues ul li.league_9 img{opacity:.6}
-#main_leagues ul li.league_9 i{background:url("../images/L-brown.png") left top no-repeat}
-#main_leagues ul li.league_9 span{color:#fff}
-#main_leagues ul li.league_8 img{opacity:.7}
-#main_leagues ul li.league_8 i{background:url("../images/L-pink.png") left top no-repeat}
-#main_leagues ul li.league_8 span{color:#fff}
-#main_leagues ul li.league_7 img{opacity:.7}
-#main_leagues ul li.league_7 i{background:url("../images/L-purple.png") left top no-repeat}
-#main_leagues ul li.league_7 span{color:#fff}
-#main_leagues ul li.league_6 img{opacity:.8}
-#main_leagues ul li.league_6 i{background:url("../images/L-blue.png") left top no-repeat}
-#main_leagues ul li.league_6 span{color:#fff}
-#main_leagues ul li.league_5 img{opacity:.8}
-#main_leagues ul li.league_5 i{background:url("../images/L-azure.png") left top no-repeat}
-#main_leagues ul li.league_4 img{opacity:.9}
-#main_leagues ul li.league_4 i{background:url("../images/L-green.png") left top no-repeat}
-#main_leagues ul li.league_4 span{color:#fff}
-#main_leagues ul li.league_3 img{opacity:.9}
-#main_leagues ul li.league_3 i{background:url("../images/L-yellow.png") left top no-repeat}
-#main_leagues ul li.league_2 img{opacity:1}
-#main_leagues ul li.league_2 i{background:url("../images/L-orange.png") left top no-repeat}
-#main_leagues ul li.league_1 img{opacity:1}
-#main_leagues ul li.league_1 i{background:url("../images/L-red.png") left top no-repeat}
-.tags li{position:absolute !important}.tags li img{display:block}
-.tags li:hover{z-index:399 !important}
-.tags li span{line-height:100% !important;right:5px}
-.tags li.league_{width:3% !important;z-index:100;font-size:70%}
-.tags li.league_10{width:4% !important;z-index:101;font-size:80%}
-.tags li.league_9{width:5% !important;z-index:102;font-size:80%}
-.tags li.league_8{width:6% !important;z-index:103;font-size:80%}
-.tags li.league_7{width:7% !important;z-index:104;font-size:90%}
-.tags li.league_6{width:8% !important;z-index:105;font-size:100%}
-.tags li.league_5{width:9% !important;z-index:106;font-size:100%}
-.tags li.league_4{width:10% !important;z-index:107;font-size:110%}
-.tags li.league_3{width:11% !important;z-index:108;font-size:110%}
-.tags li.league_2{width:12% !important;z-index:109;font-size:120%}
-.tags li.league_1{width:13% !important;z-index:110;font-size:120%}
-.who img{z-index:310;background:#fff}
-#loosers li{display:inline-block;width:3%}
-.image_box{position:relative}.image_box span{position:absolute;left:0;top:0;width:100%;height:100%;z-index:10;display:none}
-.image_box a{display:none;position:absolute;z-index:12;font-size:120%;color:#fff;bottom:20px;width:100%;text-align:center;cursor:pointer}
-.image_box img{position:relative;z-index:9}
-.image_box.updated:hover span{display:block;background:rgba(0,0,0,0.5)}
-.image_box.updated:hover a{display:block}
-#image_canvas{display:none}
-.lvl-over{box-shadow:0 0 3px 3px #028dda}
-.lvl-target{opacity:0 !important}
-[draggable]{-moz-user-select:none;-khtml-user-select:none;-webkit-user-select:none;user-select:none;cursor:move}
-#follow_tab{position:absolute;background:rgba(255,255,255,0.3);width:30%;height:8%;left:30%;top:0;z-index:300;overflow:hidden}#follow_tab.fixed{position:fixed}
-#follow_tab ul{margin-left:1%}#follow_tab ul li{display:inline-block;margin:.3%;position:relative;overflow:hidden}#follow_tab ul li:first-child{margin:.3% 2% .3% .5%}
-#follow_tab ul li img{height:auto;display:block;max-height:96%}
-#follow_tab ul li sub{display:none;position:absolute;top:0;left:0;padding:8% 0 0 7%;width:100%;color:#fff;bottom:-2%;background:rgba(0,0,0,0.5)}
-#follow_tab ul li.show sub{display:block;height:100%}#follow_tab ul li.show sub a{font-size:80%;color:#fff;position:absolute;top:10%;left:5%;border:0 !important}#follow_tab ul li.show sub a.compare{bottom:25%;top:auto !important}
-#follow_tab a{position:absolute;top:30%;right:1%;cursor:pointer;width:0;height:0;border-style:solid;border-width:10px 0 10px 20px;border-color:transparent transparent transparent #fff}
-.dropdown-menu li>a strong{font-weight:bold}
-.datepicker td,.datepicker th{font-family:Arial}
+/* line 3, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000033}}
+select,
+textarea,
+input {
+  padding: 0px !important;
+}
+/* line 7, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000037}}
+body {
+  width: 100%;
+  height: 100%;
+  font-family: 'Helvetica Neue Light';
+  -moz-font-smoothing: antialiased;
+  -webkit-font-smoothing: antialiased;
+}
+/* line 13, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\0000313}}
+body .shadow {
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 10;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: none;
+}
+/* line 21, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\0000321}}
+body header {
+  height: 8%;
+  width: 100%;
+  background: #36374b;
+  position: absolute;
+  top: 0%;
+  z-index: 120;
+  overflow: hidden;
+}
+/* line 29, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\0000329}}
+body header.fixed {
+  position: fixed;
+}
+/* line 32, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\0000332}}
+body header .logo {
+  background: url("../images/logobg.png") left top repeat-x;
+  background-size: contain;
+  width: 30%;
+  height: 100%;
+  margin: 0.01% 12% 0% 0%;
+  position: relative;
+  display: inline-block;
+}
+/* line 40, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\0000340}}
+body header .logo img {
+  position: absolute;
+  display: inline-block;
+  right: 3%;
+  top: 5%;
+  height: 90%;
+}
+/* line 48, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\0000348}}
+body header ul {
+  display: inline-block;
+  vertical-align: top;
+  position: absolute;
+  right: 0%;
+  width: 40%;
+  text-align: right;
+}
+/* line 55, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\0000355}}
+body header ul li {
+  margin: 0% 3%;
+  display: inline-block;
+  vertical-align: top;
+}
+/* line 60, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\0000360}}
+body header ul a {
+  color: #ffffff;
+  text-decoration: none;
+  font-family: 'Helvetica Neue';
+  font-size: 100%;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+/* line 68, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\0000368}}
+body header ul a.login img {
+  max-height: 50%;
+}
+/* line 74, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\0000374}}
+body header ul a:hover {
+  color: #ffffff;
+}
+/* line 77, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\0000377}}
+body header ul a.current {
+  color: #86b3ef;
+}
+/* line 82, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\0000382}}
+body header .social {
+  width: 12%;
+  height: 50%;
+  vertical-align: top;
+  display: inline-block;
+  position: absolute;
+  top: 10%;
+  right: 0%;
+  text-decoration: none;
+}
+/* line 91, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\0000391}}
+body header .social a {
+  background: url("../images/icons.png") center center no-repeat;
+  width: 15%;
+  height: 100%;
+  margin: 5% 7%;
+  display: inline-block;
+  overflow: hidden;
+  background-position: 50% 0%;
+  background-size: 500% 65%;
+}
+/* line 100, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003100}}
+body header .social a:first-child {
+  background-position: 0% 0%;
+}
+/* line 103, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003103}}
+body header .social a:last-child {
+  background-position: 100% 0%;
+}
+/* line 113, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003113}}
+#content {
+  position: relative;
+  width: 100%;
+  background: #f9f9f9;
+  padding-top: 6%;
+  min-height: 88%;
+  overflow: hidden;
+  /** main page **/
+
+  /** profile page **/
+
+  /** CRITERIA **/
+
+  /** NEIGHBOURS **/
+
+  /** COMPARE **/
+
+  /** LEAGUES **/
+
+  /** GRAPHS **/
+
+}
+/* line 121, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003121}}
+#content .viewch {
+  text-align: center;
+  transform: skewX(angle);
+  font-size: 80%;
+  color: #ffffff;
+  padding: 8px 5px 2px 5px;
+  background: #028dda;
+  border-top: 1px solid #ffffff;
+  border-left: 1px solid #ffffff;
+  border-right: 1px solid #cccccc;
+  border-bottom: 1px solid #cccccc;
+  position: fixed;
+  top: 8%;
+  right: 0%;
+  z-index: 310;
+}
+/* line 138, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003138}}
+#content .who img {
+  max-width: 15%;
+  height: auto;
+  border: 1px solid #000000;
+  display: inline-block;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  margin: -7% 0% 0% -7%;
+  cursor: pointer;
+  box-shadow: 0px 0px 30px 1px #000000;
+  border: 1px solid #666666;
+}
+/* line 152, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003152}}
+#content .scroll {
+  font-size: 100%;
+  color: #333333;
+  text-decoration: none;
+  position: fixed;
+  bottom: 3%;
+  left: 50%;
+  margin-left: -3%;
+  z-index: 110;
+  line-height: 150%;
+  text-shadow: 0px 0px 2px #ffffff;
+}
+/* line 166, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003166}}
+#content .promain {
+  margin-left: 1%;
+  width: 48%;
+  background: #ffffff;
+  border: 1px solid #cccccc;
+  border-bottom: none;
+  box-shadow: /** 0px 30px 0px 0px rgba(255, 255, 255, 1), **/ 0px 0px 30px 1px rgba(0, 0, 0, 0.3);
+  z-index: 3;
+  position: relative;
+  display: inline-block;
+}
+/* line 177, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003177}}
+#content .hidden {
+  display: none;
+}
+/* line 180, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003180}}
+#content .pmain {
+  display: inline-block;
+  vertical-align: top;
+  width: 100%;
+}
+/* line 184, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003184}}
+#content .pmain.pro {
+  padding: 2%;
+}
+/* line 186, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003186}}
+#content .pmain.pro .block {
+  display: inline-block;
+  width: 30%;
+  vertical-align: middle;
+  margin-right: 3%;
+  max-width: 300px;
+}
+/* line 192, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003192}}
+#content .pmain.pro .block .pp {
+  width: 100%;
+  background: #ffffff;
+  height: auto;
+  max-width: 300px;
+}
+/* line 197, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003197}}
+#content .pmain.pro .block .pp.edit {
+  cursor: pointer;
+}
+/* line 201, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003201}}
+#content .pmain.pro .block .publish {
+  display: block;
+  text-align: center;
+  position: relative;
+}
+/* line 205, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003205}}
+#content .pmain.pro .block .publish p {
+  display: inline-block;
+  margin: 1% auto;
+  width: 100%;
+}
+/* line 209, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003209}}
+#content .pmain.pro .block .publish p button {
+  text-align: center;
+  transform: skewX(angle);
+  font-size: 120%;
+  color: #ffffff;
+  padding: 3%;
+  background: #759fd2;
+  border-top: 1px solid #ffffff;
+  border-left: 1px solid #ffffff;
+  border-right: 1px solid #cccccc;
+  border-bottom: 1px solid #cccccc;
+  width: 100%;
+  display: inline-block;
+}
+/* line 222, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003222}}
+#content .pmain.pro .block .publish p button.color2 {
+  background: #f9f9f9;
+  color: #666666;
+  -webkit-box-shadow: inset 0px 0px 30px 1px #cccccc;
+  box-shadow: inset 0px 0px 30px 1px #cccccc;
+}
+/* line 228, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003228}}
+#content .pmain.pro .block .publish p button.unfollow {
+  color: #000000;
+  background: #ffffff;
+  -webkit-box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.4);
+  box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.4);
+}
+/* line 238, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003238}}
+#content .pmain.pro .pmpar {
+  display: inline-block;
+  vertical-align: top;
+  width: 65%;
+}
+/* line 242, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003242}}
+#content .pmain.pro .pmpar p {
+  font-size: 110%;
+  color: #969696;
+  line-height: 130%;
+}
+/* line 247, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003247}}
+#content .pmain.pro .pmpar label {
+  display: inline-block;
+  width: 35%;
+  vertical-align: middle;
+  cursor: pointer;
+}
+/* line 253, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003253}}
+#content .pmain.pro .pmpar select,
+#content .pmain.pro .pmpar input {
+  width: 55%;
+  height: 100%;
+  line-height: 100%;
+  margin: 0%;
+  vertical-align: middle !important;
+  display: inline-block;
+  padding-bottom: 1.3% !important;
+  cursor: pointer;
+}
+/* line 263, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003263}}
+#content .pmain.pro .pmpar .form-control {
+  display: inline-block;
+  width: 50%;
+  vertical-align: bottom;
+  font-size: 100%;
+}
+/* line 269, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003269}}
+#content .pmain.pro .pmpar .form-control[readonly="readonly"] {
+  background: transparent;
+  border-color: transparent;
+  box-shadow: none;
+}
+/* line 274, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003274}}
+#content .pmain.pro .pmpar .ng-pristine {
+  vertical-align: bottom;
+  font-size: 100%;
+  width: 50%;
+}
+/* line 279, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003279}}
+#content .pmain.pro .pmpar .ng-pristine[readonly="readonly"] {
+  background: transparent;
+  border-color: transparent;
+  box-shadow: none;
+}
+/* line 284, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003284}}
+#content .pmain.pro .pmpar select[readonly="readonly"] {
+  background: transparent;
+  border-color: transparent;
+  box-shadow: none;
+}
+/* line 289, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003289}}
+#content .pmain.pro .pmpar img {
+  width: 5%;
+  height: 8%;
+  vertical-align: middle;
+}
+/* line 297, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003297}}
+#content .pmain.league {
+  text-align: center;
+  margin: 3% 0% 0% 0%;
+  width: 45%;
+  display: inline-block;
+}
+/* line 302, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003302}}
+#content .pmain.league img {
+  border-radius: 13% 13% 30% 30%;
+  width: 80%;
+}
+/* line 306, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003306}}
+#content .pmain.league i {
+  font-size: 120%;
+  color: #000000;
+  margin-top: 5%;
+  display: block;
+}
+/* line 312, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003312}}
+#content .pmain.league p {
+  font-size: 130% !important;
+  color: #000000 !important;
+}
+/* line 315, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003315}}
+#content .pmain.league p.small {
+  font-size: 120% !important;
+  line-height: 130%;
+}
+/* line 322, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003322}}
+#content .pmain.achiev {
+  margin-top: 3%;
+  width: 45%;
+  text-align: center;
+  display: inline-block;
+}
+/* line 327, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003327}}
+#content .pmain.achiev h3 {
+  color: #000000;
+  font-size: 120%;
+  text-align: center;
+  line-height: 130%;
+}
+/* line 333, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003333}}
+#content .pmain.achiev strong {
+  display: inline-block;
+  width: 20%;
+  text-align: center;
+  vertical-align: middle;
+  margin: 3%;
+}
+/* line 344, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003344}}
+#content .crits {
+  display: block;
+  width: 100%;
+  height: 100%;
+  z-index: 5;
+  height: auto;
+  position: relative;
+  transition: all 0.5s ease-out;
+  -webkit-transition: all 0.5s ease-out;
+  padding-bottom: 1%;
+}
+/* line 355, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003355}}
+#content .crits ul {
+  text-align: center;
+  position: relative;
+  margin: 0% auto;
+}
+/* line 359, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003359}}
+#content .crits ul li {
+  margin: 1% auto;
+  width: 96%;
+  cursor: pointer;
+  position: relative;
+}
+/* line 364, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003364}}
+#content .crits ul li .cr {
+  background: #759fd2;
+  background: -moz-linear-gradient(left, #759fd2 0%, #37374b 100%, #7db9e8 100%);
+  background: -webkit-gradient(linear, left top, right top, color-stop(0%, #759fd2), color-stop(100%, #37374b), color-stop(100%, #7db9e8));
+  background: -webkit-linear-gradient(left, #759fd2 0%, #37374b 100%, #7db9e8 100%);
+  background: -o-linear-gradient(left, #759fd2 0%, #37374b 100%, #7db9e8 100%);
+  background: -ms-linear-gradient(left, #759fd2 0%, #37374b 100%, #7db9e8 100%);
+  background: linear-gradient(to right, #759fd2 0%, #37374b 100%, #7db9e8 100%);
+  line-height: 250%;
+  cursor: pointer;
+  position: relative;
+}
+/* line 375, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003375}}
+#content .crits ul li .cr p {
+  font-size: 130%;
+  color: #ffffff;
+  display: inline-block;
+  margin-top: 1%;
+  width: 20%;
+  text-align: left;
+}
+/* line 383, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003383}}
+#content .crits ul li .cr strong {
+  background: #ffffff;
+  display: inline-block;
+  line-height: 100%;
+  width: 65%;
+  position: relative;
+  overflow: hidden;
+}
+/* line 390, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003390}}
+#content .crits ul li .cr strong b {
+  font-size: 100%;
+  color: #000000;
+  text-align: center;
+  display: block;
+  margin-top: 2%;
+  position: relative;
+  z-index: 5;
+}
+/* line 399, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003399}}
+#content .crits ul li .cr strong span {
+  position: absolute;
+  left: 0%;
+  top: 0%;
+  height: 100%;
+  display: block;
+  background: #759fd2;
+  transition: all 0.5s ease;
+}
+/* line 410, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003410}}
+#content .crits ul li ul {
+  vertical-align: top;
+  position: relative;
+  display: none;
+  margin: 0%;
+  padding: 0%;
+}
+/* line 416, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003416}}
+#content .crits ul li ul.show {
+  display: block;
+  margin: 0.5% auto;
+}
+/* line 420, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003420}}
+#content .crits ul li ul li {
+  display: block;
+  width: 100%;
+  margin: 1% auto;
+  /** criterion **/
+
+}
+/* line 424, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003424}}
+#content .crits ul li ul li h5 {
+  position: relative;
+}
+/* line 427, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003427}}
+#content .crits ul li ul li a {
+  font-size: 120%;
+  color: #000000;
+  text-decoration: none;
+  display: inline-block;
+  width: 17%;
+  vertical-align: middle;
+  text-align: left;
+}
+/* line 436, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003436}}
+#content .crits ul li ul li span {
+  display: inline-block;
+  vertical-align: middle;
+  transition: all 0.5s ease;
+  margin-right: 1%;
+  position: relative;
+  width: 3%;
+}
+/* line 443, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003443}}
+#content .crits ul li ul li span img {
+  max-width: 100%;
+}
+/* line 446, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003446}}
+#content .crits ul li ul li span sup,
+#content .crits ul li ul li span sub {
+  margin-left: -300%;
+}
+/* line 450, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003450}}
+#content .crits ul li ul li strong {
+  background: #ffffff;
+  border: 1px solid #cccccc;
+  display: inline-block;
+  line-height: 100%;
+  width: 65%;
+  position: relative;
+  overflow: hidden;
+  margin-left: -1%;
+}
+/* line 459, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003459}}
+#content .crits ul li ul li strong b {
+  font-size: 100%;
+  color: #000000;
+  text-align: center;
+  display: block;
+  margin-top: 2%;
+  position: relative;
+  z-index: 5;
+}
+/* line 468, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003468}}
+#content .crits ul li ul li strong span {
+  position: absolute;
+  left: 0%;
+  top: 0%;
+  height: 100%;
+  display: block;
+  background: #759fd2;
+}
+/* line 478, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003478}}
+#content .crits ul li ul li .criterion {
+  margin: 0%;
+  max-height: 0px;
+}
+/* line 481, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003481}}
+#content .crits ul li ul li .criterion.show {
+  max-height: 100%;
+  margin: 0% auto;
+}
+/* line 485, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003485}}
+#content .crits ul li ul li .criterion li {
+  margin: 1% auto;
+}
+/* line 487, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003487}}
+#content .crits ul li ul li .criterion li sub.du,
+#content .crits ul li ul li .criterion li sup.du {
+  margin-left: -4%;
+}
+/* line 490, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003490}}
+#content .crits ul li ul li .criterion li p {
+  color: #000000;
+  font-size: 100%;
+  display: inline-block;
+  width: 20%;
+  text-align: left;
+  vertical-align: middle;
+}
+/* line 498, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003498}}
+#content .crits ul li ul li .criterion li .crp {
+  display: inline-block;
+  cursor: pointer;
+  margin: 0% auto;
+  background: #759fd2;
+  background: -moz-linear-gradient(left, #759fd2 0%, #37374b 100%, #7db9e8 100%);
+  background: -webkit-gradient(linear, left top, right top, color-stop(0%, #759fd2), color-stop(100%, #37374b), color-stop(100%, #7db9e8));
+  background: -webkit-linear-gradient(left, #759fd2 0%, #37374b 100%, #7db9e8 100%);
+  background: -o-linear-gradient(left, #759fd2 0%, #37374b 100%, #7db9e8 100%);
+  background: -ms-linear-gradient(left, #759fd2 0%, #37374b 100%, #7db9e8 100%);
+  background: linear-gradient(to right, #759fd2 0%, #37374b 100%, #7db9e8 100%);
+  width: 65%;
+  vertical-align: middle;
+  overflow: hidden;
+  max-height: 100%;
+  opacity: 1;
+}
+/* line 514, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003514}}
+#content .crits ul li ul li .criterion li .crp .tab {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
+/* line 518, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003518}}
+#content .crits ul li ul li .criterion li .crp .tab li {
+  display: table-cell;
+  color: #000000;
+  font-size: 80%;
+  width: auto;
+  margin: 0% auto;
+  line-height: 100%;
+  z-index: 7;
+  position: relative;
+  padding: 2% 0%;
+  border: 0px;
+  text-align: center;
+}
+/* line 530, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003530}}
+#content .crits ul li ul li .criterion li .crp .tab li.white-text,
+#content .crits ul li ul li .criterion li .crp .tab li.current {
+  color: #ffffff;
+}
+/* line 533, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003533}}
+#content .crits ul li ul li .criterion li .crp .tab li i {
+  display: block;
+  cursor: pointer;
+  word-break: break-all;
+}
+/* line 537, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003537}}
+#content .crits ul li ul li .criterion li .crp .tab li i.null_criteria {
+  width: 20px;
+  height: 100%;
+}
+/* line 544, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003544}}
+#content .crits ul li ul li .criterion li .crp span {
+  position: absolute;
+  right: -1%;
+  top: 0%;
+  height: 100%;
+  display: block;
+  background: #ffffff;
+  width: 95%;
+}
+/* line 552, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003552}}
+#content .crits ul li ul li .criterion li .crp span img {
+  position: absolute;
+  left: -5%;
+  top: 0%;
+  height: 100%;
+  width: 5%;
+}
+/* line 569, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003569}}
+#content .pronear {
+  width: 48%;
+  height: auto;
+  display: inline-block;
+  position: relative;
+  margin-left: 2%;
+  vertical-align: top;
+}
+/* line 580, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003580}}
+#content .nearblock {
+  width: 100%;
+  display: block;
+  margin-top: 0.5%;
+}
+/* line 584, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003584}}
+#content .nearblock .lnbl {
+  display: block;
+  width: 100%;
+  height: 30%;
+  position: relative;
+}
+/* line 589, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003589}}
+#content .nearblock .lnbl .gallery {
+  border-top: 3px solid #cccccc;
+}
+/* line 591, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003591}}
+#content .nearblock .lnbl .gallery h4 {
+  font-size: 100%;
+  color: #000000;
+  text-align: left;
+  display: block;
+  position: absolute;
+  right: 10%;
+  top: 3%;
+}
+/* line 600, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003600}}
+#content .nearblock .lnbl .gallery a {
+  width: 20%;
+  margin: 2%;
+  vertical-align: top;
+  display: inline-block;
+}
+/* line 606, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003606}}
+#content .nearblock .lnbl .gallery a {
+  position: relative;
+}
+/* line 608, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003608}}
+#content .nearblock .lnbl .gallery a span {
+  position: absolute;
+  bottom: 0px;
+  width: 100%;
+  background: rgba(102, 134, 177, 0.7);
+  padding-top: 5%;
+  color: #ffffff;
+  font-size: 120%;
+}
+/* line 617, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003617}}
+#content .nearblock .lnbl .gallery a img {
+  display: block;
+}
+/* line 622, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003622}}
+#content .nearblock .lnbl .more,
+#content .nearblock .lnbl .less {
+  position: absolute;
+  right: 10%;
+  top: 25%;
+  text-align: center;
+  transform: skewX(angle);
+  font-size: 80%;
+  color: #ffffff;
+  padding: 2%;
+  background: #759fd2;
+  border-top: 1px solid #ffffff;
+  border-left: 1px solid #ffffff;
+  border-right: 1px solid #cccccc;
+  border-bottom: 1px solid #cccccc;
+  width: 10%;
+  display: inline-block;
+}
+/* line 639, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003639}}
+#content .nearblock .lnbl .less {
+  position: fixed;
+  right: 0%;
+  top: 20%;
+  padding: 0.5% 3% 0.5% 1px;
+  width: 3%;
+}
+/* line 647, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003647}}
+#content .nearblock .lnbl .fulls h4 {
+  right: auto;
+  left: 2%;
+  top: 3px;
+}
+/* line 657, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003657}}
+#content sub.du,
+#content sup.du,
+#content s.du {
+  margin-left: -4%;
+  z-index: 7;
+  position: absolute;
+  left: 0%;
+  top: 50%;
+  margin-top: -7px;
+  display: block;
+  width: 0px;
+  height: 0px;
+  border-style: solid;
+  border-width: 7.5px 0 7.5px 15px;
+  border-color: transparent transparent transparent #1ca315;
+}
+/* line 671, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003671}}
+#content sub.du {
+  border-width: 7.5px 15px 7.5px 0;
+  border-color: transparent #bd1b1b transparent transparent;
+}
+/* line 675, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003675}}
+#content s.du {
+  width: 15px;
+  height: 15px;
+  border-radius: 100%;
+  border-width: 0px;
+  background: #028dda;
+}
+/* line 682, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003682}}
+#content .comp {
+  width: 100%;
+  background: #f9f9f9;
+  border: none;
+  box-shadow: none;
+}
+/* line 687, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003687}}
+#content .comp .crits {
+  background: #f9f9f9;
+}
+/* line 694, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003694}}
+#content .leaglist {
+  display: block;
+  width: 95%;
+  margin: 0% auto 1% auto;
+}
+/* line 698, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003698}}
+#content .leaglist article {
+  display: block;
+  width: 100%;
+  margin: 0% auto;
+}
+/* line 702, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003702}}
+#content .leaglist article:hover sub,
+#content .leaglist article:hover sup {
+  display: block;
+}
+/* line 705, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003705}}
+#content .leaglist article a {
+  width: 8%;
+  display: inline-block;
+  margin: 0.2%;
+}
+/* line 709, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003709}}
+#content .leaglist article a img {
+  border-radius: 5px;
+}
+/* line 713, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003713}}
+#content .leaglist article div {
+  display: inline-block;
+  width: 90%;
+  margin-left: 1%;
+  position: relative;
+  text-align: center;
+}
+/* line 719, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003719}}
+#content .leaglist article div p {
+  white-space: nowrap;
+  margin-right: 2%;
+  overflow: hidden;
+  text-align: left;
+}
+/* line 725, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003725}}
+#content .leaglist article div a {
+  display: inline-block;
+  width: 8%;
+}
+/* line 728, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003728}}
+#content .leaglist article div a img {
+  border-radius: 0px;
+}
+/* line 732, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003732}}
+#content .leaglist article div sub,
+#content .leaglist article div sup {
+  position: absolute;
+  display: none;
+  width: 5%;
+  height: 60%;
+  cursor: pointer;
+  top: 20%;
+  left: -3%;
+  background: url("../images/left.png") center center no-repeat;
+}
+/* line 742, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003742}}
+#content .leaglist article div sup {
+  left: auto;
+  right: -3%;
+  background: url("../images/right.png") center center no-repeat;
+}
+/* line 753, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003753}}
+#content table#graphs {
+  height: 90%;
+  width: 90%;
+  margin: 0% auto;
+  position: relative;
+  table-layout: fixed;
+}
+/* line 759, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003759}}
+#content table#graphs tr {
+  height: 9%;
+}
+/* line 761, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003761}}
+#content table#graphs tr td,
+#content table#graphs tr th {
+  vertical-align: top;
+  text-align: center;
+  border-top: 1px solid #cccccc;
+  height: 200px;
+}
+/* line 767, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003767}}
+#content table#graphs tr td img,
+#content table#graphs tr th img {
+  width: 90%;
+  position: relative;
+}
+/* line 771, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003771}}
+#content table#graphs tr td a,
+#content table#graphs tr th a {
+  display: block;
+  position: relative;
+}
+/* line 776, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003776}}
+#content table#graphs tr th {
+  border-top: none;
+  border-right: 1px solid #000000;
+  line-height: 50% !important;
+  width: 10%;
+}
+/* line 782, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003782}}
+#content table#graphs tr:last-child th {
+  border-right: none;
+}
+/* line 785, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003785}}
+#content table#graphs tr:first-child td,
+#content table#graphs tr:first-child th {
+  border-top: none;
+}
+/* line 788, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003788}}
+#content table#graphs tr:last-child td {
+  border-top: none;
+}
+/** registration.modal **/
+/* line 799, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003799}}
+.registration.modal,
+.login.modal {
+  width: 30%;
+  left: 35%;
+  top: 20% !important;
+  margin: 0% auto;
+  height: auto;
+}
+/* line 805, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003805}}
+.registration.modal .modal-body,
+.login.modal .modal-body {
+  height: auto;
+  max-height: 100%;
+}
+/* line 808, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003808}}
+.registration.modal .modal-body h4,
+.login.modal .modal-body h4 {
+  font-size: 130%;
+  text-align: center;
+  margin: 5% 0px;
+}
+/* line 813, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003813}}
+.registration.modal .modal-body form,
+.login.modal .modal-body form {
+  width: 100%;
+}
+/* line 815, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003815}}
+.registration.modal .modal-body form p,
+.login.modal .modal-body form p {
+  margin: 5% 20%;
+  font-size: 100%;
+}
+/* line 820, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003820}}
+.registration.modal .modal-body input.ng-invalid:not(.ng-pristine),
+.login.modal .modal-body input.ng-invalid:not(.ng-pristine) {
+  color: #b94a48;
+  border-color: #ee5f5b;
+  border-color: #e9322d !important;
+  -webkit-box-shadow: 0 0 6px #f8b9b7 !important;
+  -moz-box-shadow: 0 0 6px #f8b9b7 !important;
+  box-shadow: 0 0 6px #f8b9b7 !important;
+}
+/* line 832, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003832}}
+.login.modal {
+  top: 30% !important;
+}
+/* line 838, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003838}}
+#modal-shadow {
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: none;
+  z-index: 2500;
+  text-align: center;
+}
+/* line 848, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003848}}
+#modal-shadow.show {
+  display: block;
+}
+/* line 851, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003851}}
+#modal-shadow img {
+  display: inline-block;
+  position: relative;
+  z-index: 9999;
+  margin-top: 20%;
+}
+/** main_leagues **/
+/* line 861, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003861}}
+#main_leagues > img {
+  left: 50%;
+  top: 50%;
+}
+/* line 865, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003865}}
+#main_leagues ul {
+  width: 100%;
+  text-align: center;
+  position: relative;
+  margin: 0px auto;
+  top: 0px;
+  transit1ion: top 0.1s linear;
+  -webkit-transi1tion: top 0.1s linear;
+}
+/* line 873, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003873}}
+#main_leagues ul li {
+  width: 10%;
+  display: inline-block;
+  position: relative;
+  line-height: 100%;
+  max-height: 10%;
+  min-width: 1% !important;
+  left: 50%;
+  top: 50%;
+}
+/* line 882, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003882}}
+#main_leagues ul li.showMenu {
+  z-index: 499 !important;
+}
+/* line 885, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003885}}
+#main_leagues ul li.rotate1 {
+  -webkit-animation: rotate 2s linear 0 normal;
+  -moz-animation: rotate 2s linear 0 normal;
+  -o-animation: rotate 2s linear 0 normal;
+  -ms-animation: rotate 2s linear 0 normal;
+  animation: rotate 2s linear 0 normal;
+  -webkit-backface-visibility: hidden;
+  -webkit-perspective: 1000;
+}
+/* line 893, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003893}}
+#main_leagues ul li.rotate1 img {
+  opacity: 1;
+}
+/* line 897, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003897}}
+#main_leagues ul li.show {
+  -webkit-transform: rotateY(0deg);
+  -moz-transform: rotateY(0deg);
+  -o-transform: rotateY(0deg);
+  transform: rotateY(0deg);
+}
+/* line 903, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003903}}
+#main_leagues ul li.ui-draggable-dragging {
+  height: 10%;
+  width: 10%;
+}
+/* line 907, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003907}}
+#main_leagues ul li a {
+  position: relative;
+  display: block;
+}
+/* line 910, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003910}}
+#main_leagues ul li a sub {
+  position: absolute;
+  top: 0%;
+  left: 0%;
+  padding: 5% 0% 0% 7%;
+  width: 93%;
+  height: 0%;
+  color: #ffffff;
+  background: rgba(0, 0, 0, 0.3);
+  transition: all 0.5s ease-out;
+  -webkit-transition: all 0.5s ease-out;
+  oveflow: hidden;
+  opacity: 0;
+}
+/* line 923, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003923}}
+#main_leagues ul li a sub.show {
+  height: 90%;
+  opacity: 1;
+}
+/* line 928, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003928}}
+#main_leagues ul li a span {
+  position: absolute;
+  bottom: 0%;
+  right: 3%;
+  width: 100%;
+  color: #000000;
+  font-size: 90%;
+  text-align: right;
+  z-index: 10;
+}
+/* line 938, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003938}}
+#main_leagues ul li a img {
+  opacity: 0;
+  z-index: 8;
+  width: 100%;
+  height: auto;
+  display: block;
+}
+/* line 945, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003945}}
+#main_leagues ul li a i {
+  position: absolute;
+  top: 0%;
+  left: 0%;
+  width: 100%;
+  height: 100%;
+  background-size: cover !important;
+  z-index: 9;
+  transition: all 0.5s ease-out;
+  -webkit-transition: all 0.5s ease-out;
+}
+/* line 956, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003956}}
+#main_leagues ul li a .fallout {
+  vertical-align: middle;
+  border-radius: 100%;
+  background: rgba(102, 134, 177, 0.5);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0%;
+  height: 0%;
+  transition: all 0.5s ease-out;
+  -webkit-transition: all 0.5s ease-out;
+  overflow: hidden;
+  z-index: 125;
+  text-align: center;
+}
+/* line 970, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003970}}
+#main_leagues ul li a .fallout.show {
+  width: 250%;
+  height: 250%;
+  top: -75%;
+  left: -75%;
+}
+/* line 976, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003976}}
+#main_leagues ul li a .fallout b {
+  color: #000000;
+  text-shadow: 0px 0px 5px #ffffff;
+  font-size: 80%;
+  font-weight: bold;
+  display: block;
+  position: absolute;
+  cursor: pointer;
+  top: 40%;
+  right: -5%;
+  padding: 10%;
+}
+/* line 987, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003987}}
+#main_leagues ul li a .fallout b:nth-child(3) {
+  top: 70%;
+  right: auto;
+  width: 80%;
+}
+/* line 992, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003992}}
+#main_leagues ul li a .fallout b:first-child {
+  top: 22%;
+  right: auto;
+  left: 22%;
+  text-shadow: none;
+  font-size: 90%;
+  font-weight: normal;
+  text-align: left;
+  cursor: move;
+}
+/* line 1002, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031002}}
+#main_leagues ul li a .fallout b:nth-child(2) {
+  right: auto;
+  left: -3%;
+}
+/* line 1010, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031010}}
+#main_leagues ul li.league_ img {
+  opacity: 0.5;
+}
+/* line 1013, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031013}}
+#main_leagues ul li.league_ i {
+  background: none;
+}
+/* line 1018, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031018}}
+#main_leagues ul li.league_10 img {
+  opacity: 0.6;
+}
+/* line 1021, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031021}}
+#main_leagues ul li.league_10 i {
+  background: url("../images/L-gray.png") left top no-repeat;
+}
+/* line 1024, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031024}}
+#main_leagues ul li.league_10 span {
+  color: #ffffff;
+}
+/* line 1029, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031029}}
+#main_leagues ul li.league_9 img {
+  opacity: 0.6;
+}
+/* line 1032, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031032}}
+#main_leagues ul li.league_9 i {
+  background: url("../images/L-brown.png") left top no-repeat;
+}
+/* line 1035, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031035}}
+#main_leagues ul li.league_9 span {
+  color: #ffffff;
+}
+/* line 1040, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031040}}
+#main_leagues ul li.league_8 img {
+  opacity: 0.7;
+}
+/* line 1043, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031043}}
+#main_leagues ul li.league_8 i {
+  background: url("../images/L-pink.png") left top no-repeat;
+}
+/* line 1046, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031046}}
+#main_leagues ul li.league_8 span {
+  color: #ffffff;
+}
+/* line 1051, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031051}}
+#main_leagues ul li.league_7 img {
+  opacity: 0.7;
+}
+/* line 1054, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031054}}
+#main_leagues ul li.league_7 i {
+  background: url("../images/L-purple.png") left top no-repeat;
+}
+/* line 1057, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031057}}
+#main_leagues ul li.league_7 span {
+  color: #ffffff;
+}
+/* line 1062, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031062}}
+#main_leagues ul li.league_6 img {
+  opacity: 0.8;
+}
+/* line 1065, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031065}}
+#main_leagues ul li.league_6 i {
+  background: url("../images/L-blue.png") left top no-repeat;
+}
+/* line 1068, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031068}}
+#main_leagues ul li.league_6 span {
+  color: #ffffff;
+}
+/* line 1073, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031073}}
+#main_leagues ul li.league_5 img {
+  opacity: 0.8;
+}
+/* line 1076, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031076}}
+#main_leagues ul li.league_5 i {
+  background: url("../images/L-azure.png") left top no-repeat;
+}
+/* line 1081, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031081}}
+#main_leagues ul li.league_4 img {
+  opacity: 0.9;
+}
+/* line 1084, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031084}}
+#main_leagues ul li.league_4 i {
+  background: url("../images/L-green.png") left top no-repeat;
+}
+/* line 1087, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031087}}
+#main_leagues ul li.league_4 span {
+  color: #ffffff;
+}
+/* line 1092, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031092}}
+#main_leagues ul li.league_3 img {
+  opacity: 0.9;
+}
+/* line 1095, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031095}}
+#main_leagues ul li.league_3 i {
+  background: url("../images/L-yellow.png") left top no-repeat;
+}
+/* line 1100, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031100}}
+#main_leagues ul li.league_2 img {
+  opacity: 1;
+}
+/* line 1103, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031103}}
+#main_leagues ul li.league_2 i {
+  background: url("../images/L-orange.png") left top no-repeat;
+}
+/* line 1108, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031108}}
+#main_leagues ul li.league_1 img {
+  opacity: 1;
+}
+/* line 1111, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031111}}
+#main_leagues ul li.league_1 i {
+  background: url("../images/L-red.png") left top no-repeat;
+}
+/* line 1120, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031120}}
+.tags li {
+  position: absolute !important;
+}
+/* line 1122, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031122}}
+.tags li img {
+  display: block;
+}
+/* line 1125, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031125}}
+.tags li:hover {
+  z-index: 399 !important;
+}
+/* line 1128, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031128}}
+.tags li span {
+  line-height: 100% !important;
+  right: 5px;
+}
+/* line 1132, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031132}}
+.tags li.league_ {
+  width: 3% !important;
+  z-index: 100;
+  font-size: 70%;
+}
+/* line 1137, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031137}}
+.tags li.league_10 {
+  width: 4% !important;
+  z-index: 101;
+  font-size: 80%;
+}
+/* line 1142, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031142}}
+.tags li.league_9 {
+  width: 5% !important;
+  z-index: 102;
+  font-size: 80%;
+}
+/* line 1147, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031147}}
+.tags li.league_8 {
+  width: 6% !important;
+  z-index: 103;
+  font-size: 80%;
+}
+/* line 1152, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031152}}
+.tags li.league_7 {
+  width: 7% !important;
+  z-index: 104;
+  font-size: 90%;
+}
+/* line 1157, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031157}}
+.tags li.league_6 {
+  width: 8% !important;
+  z-index: 105;
+  font-size: 100%;
+}
+/* line 1162, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031162}}
+.tags li.league_5 {
+  width: 9% !important;
+  z-index: 106;
+  font-size: 100%;
+}
+/* line 1167, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031167}}
+.tags li.league_4 {
+  width: 10% !important;
+  z-index: 107;
+  font-size: 110%;
+}
+/* line 1172, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031172}}
+.tags li.league_3 {
+  width: 11% !important;
+  z-index: 108;
+  font-size: 110%;
+}
+/* line 1177, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031177}}
+.tags li.league_2 {
+  width: 12% !important;
+  z-index: 109;
+  font-size: 120%;
+}
+/* line 1182, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031182}}
+.tags li.league_1 {
+  width: 13% !important;
+  z-index: 110;
+  font-size: 120%;
+}
+/* line 1190, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031190}}
+.who img {
+  z-index: 310;
+  background: #ffffff;
+}
+/* line 1196, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031196}}
+#loosers li {
+  display: inline-block;
+  width: 3%;
+}
+/* line 1202, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031202}}
+.image_box {
+  position: relative;
+}
+/* line 1204, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031204}}
+.image_box span {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  display: none;
+}
+/* line 1213, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031213}}
+.image_box a {
+  display: none;
+  position: absolute;
+  z-index: 12;
+  font-size: 120%;
+  color: #ffffff;
+  bottom: 20px;
+  width: 100%;
+  text-align: center;
+  cursor: pointer;
+}
+/* line 1224, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031224}}
+.image_box img {
+  position: relative;
+  z-index: 9;
+}
+/* line 1229, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031229}}
+.image_box.updated:hover span {
+  display: block;
+  background: rgba(0, 0, 0, 0.5);
+}
+/* line 1233, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031233}}
+.image_box.updated:hover a {
+  display: block;
+}
+/* line 1239, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031239}}
+#image_canvas {
+  display: none;
+}
+/* line 1244, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031244}}
+.lvl-over {
+  box-shadow: 0px 0px 3px 3px #028dda;
+}
+/* line 1247, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031247}}
+.lvl-target {
+  opacity: 0 !important;
+}
+/* line 1251, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031251}}
+[draggable] {
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+  cursor: move;
+}
+/* line 1260, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031260}}
+.footer {
+  position: fixed;
+  left: 0%;
+  bottom: 0%;
+  height: 8%;
+  width: 100%;
+  background: #36374b;
+  z-index: 120;
+  overflow: hidden;
+}
+/* line 1269, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031269}}
+.footer .sexual {
+  display: inline-block;
+  margin-left: 5%;
+  height: 100%;
+}
+/* line 1273, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031273}}
+.footer .sexual img {
+  display: inline-block;
+  height: 60%;
+  margin-top: 10%;
+}
+/* line 1279, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031279}}
+.footer .fuck {
+  display: inline-block;
+  margin-left: 5%;
+  height: 60%;
+}
+/* line 1284, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031284}}
+.footer #follow_tab {
+  background: rgba(255, 255, 255, 0.05);
+  width: 60%;
+  height: 80%;
+  right: 3%;
+  top: 10%;
+  z-index: 300;
+  overflow: hidden;
+  position: absolute;
+  border: 1px solid rgba(200, 200, 200, 0.3);
+}
+/* line 1295, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031295}}
+.footer #follow_tab ul li {
+  display: inline-block;
+  position: relative;
+  overflow: hidden;
+}
+/* line 1299, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031299}}
+.footer #follow_tab ul li img {
+  height: auto;
+  display: block;
+  max-height: 100%;
+}
+/* line 1304, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031304}}
+.footer #follow_tab ul li sub {
+  display: none;
+  position: absolute;
+  top: 0%;
+  left: 0%;
+  padding: 8% 0% 0% 7%;
+  width: 100%;
+  color: #ffffff;
+  background: rgba(0, 0, 0, 0.5);
+}
+/* line 1315, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031315}}
+.footer #follow_tab ul li.show sub {
+  display: block;
+  height: 100%;
+}
+/* line 1318, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031318}}
+.footer #follow_tab ul li.show sub a {
+  font-size: 80%;
+  color: #ffffff;
+  position: absolute;
+  top: 10%;
+  left: 5%;
+  border: 0px !important;
+}
+/* line 1325, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031325}}
+.footer #follow_tab ul li.show sub a.compare {
+  bottom: 25%;
+  top: auto !important;
+}
+/* line 1334, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031334}}
+.footer #follow_tab a {
+  position: absolute;
+  top: 30%;
+  right: 1%;
+  cursor: pointer;
+  width: 0px;
+  height: 0px;
+  border-style: solid;
+  border-width: 10px 0 10px 20px;
+  border-color: transparent transparent transparent #ffffff;
+}
+/* line 1349, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031349}}
+.dropdown-menu li > a strong {
+  font-weight: bold;
+}
+/* line 1352, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031352}}
+.datepicker td,
+.datepicker th {
+  font-family: Arial;
+}
