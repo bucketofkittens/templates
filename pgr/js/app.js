@@ -26,7 +26,21 @@ var socialsAccess = {
  * Основной модуль приложения
  * @type {[type]}
  */
-var pgrModule = angular.module('pgrModule', [ "ngRoute", "ngCookies", "ngResource", "ngAnimate", "localization", "ui", "ui.keypress", 'ui.bootstrap', 'route-segment', 'view-segment', 'ngTouch', 'ngFacebook', '$strap.directives']);
+var pgrModule = angular.module(
+	'pgrModule', 
+	[ 
+		"ngRoute", 
+		"ngCookies", 
+		"ngResource", 
+		"ngAnimate", 
+		"localization", 
+		'route-segment', 
+		'view-segment', 
+		'ngTouch', 
+		'ngFacebook', 
+		'$strap.directives'
+		]
+	);
 
 /**
  * Роутинг приложения
@@ -175,3 +189,21 @@ function makeApiCall() {
 	  })
 	});
 }
+
+Array.prototype.shuffle = function(b) {
+    var i = this.length, j, t;
+    while(i) {
+        j = Math.floor( ( i-- ) * Math.random() );
+        t = b && typeof this[i].shuffle!=='undefined' ? this[i].shuffle() : this[i];
+        this[i] = this[j];
+        this[j] = t;
+    }
+
+    return this;
+};
+
+Array.prototype.remove = function(from, to) {
+    var rest = this.slice((to || from) + 1 || this.length);
+      this.length = from < 0 ? this.length + from : from;
+      return this.push.apply(this, rest);
+};

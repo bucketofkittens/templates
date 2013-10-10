@@ -13,15 +13,26 @@ body {
     width: 100%;
     height: 100%;
     font-family: 'Helvetica Neue Light';
-    -moz-font-smoothing:antialiased;
-    -webkit-font-smoothing:antialiased;
-    .shadow {
-        background: rgba(0, 0, 0, 0.5);
-        z-index: 10;
+    -moz-font-smoothing: antialiased;
+    -webkit-font-smoothing: antialiased;
+    #shadow {
+        background: rgba(0, 0, 0, 0.36);
+        z-index: 999;
         position: absolute;
-        width: 100%;
-        height: 100%;
-        display: none;
+        width: 0%;
+        height: 0%;
+        left: 50%;
+        top: 50%;
+        opacity: 0;
+        transition: all 0.5s ease-out;
+        -webkit-transition: all 0.5s ease-out;
+        &.show {
+            opacity: 1;
+            width: 100%;
+            height: 100%;
+            left: 0%;
+            top: 0%;
+        }
     }
     header {
         height: 8%;
@@ -848,49 +859,6 @@ body {
         }
     }
 }
-    
-
-
-/** registration.modal **/
-.registration, .login {
-    &.modal {
-        width: 30%;
-        left: 35%;
-        top: 20% !important;
-        margin: 0% auto;
-        height: auto;
-        .modal-body {    
-            height: auto;
-            max-height: 100%;
-            h4 {
-                font-size: 130%;
-                text-align: center;
-                margin: 5% 0px;
-            }
-            form {
-                width: 100%;
-                p {
-                    margin: 5% 20%;
-                    font-size: 100%;
-                }
-            }
-            input.ng-invalid:not(.ng-pristine) {
-                color: #b94a48;
-                border-color: #ee5f5b;
-                border-color: #e9322d !important;
-                -webkit-box-shadow: 0 0 6px #f8b9b7 !important;
-                -moz-box-shadow: 0 0 6px #f8b9b7 !important;
-                box-shadow: 0 0 6px #f8b9b7 !important;
-            }
-        }
-    }
-}
-.login {
-    &.modal {
-        top: 30% !important;
-    }
-}
-
 
 #modal-shadow {
     position: fixed;
@@ -1406,4 +1374,69 @@ footer {
 
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
   display: none !important;
+}
+
+.modal {
+    position: absolute;
+    z-index: 1000;
+    opacity: 0;
+    transition: all 1.0s ease-out;
+    -webkit-transition: all 1.0s ease-out;
+    width: 50%;
+    left: 25%;
+    top: 20% !important;
+    margin: 0% auto;
+    height: auto;
+    .header {
+        width: 100%;
+        overflow: hidden;
+        background: #36374b;
+        background: -moz-linear-gradient(top,  #36374b 0%, #36374b 100%);
+        background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#36374b), color-stop(100%,#36374b));
+        background: -webkit-linear-gradient(top,  #36374b 0%,#36374b 100%);
+        background: -o-linear-gradient(top,  #36374b 0%,#36374b 100%);
+        background: -ms-linear-gradient(top,  #36374b 0%,#36374b 100%);
+        background: linear-gradient(to bottom,  #36374b 0%,#36374b 100%);
+        padding: 4% 0% 3% 0%;
+        h4 {
+            color: #ffffff;
+            float: left;
+            font-size: 170%;
+            margin: 0% 0% 0% 3%;
+            font-family: 'Helvetica Neue Light';
+        }
+        p {
+            color: #ffffff;
+            float: right;
+            font-size: 100%;
+            font-family: 'Helvetica Neue Light';
+            margin: 0% 3% 0% 0%;
+            line-height: 170%;
+            a {
+                color: #028dda;
+            }
+        }
+    }
+    .body {
+        width: 100%;
+        overflow: hidden;
+        margin: 3% 0% 0% 0%;
+        .left {
+            float: left;
+            width: 50%;
+            .left_wrapper {
+                margin: 0% 0% 0% 6%;
+            }
+        }
+        .right {
+            float: right;
+            width: 50%;
+        }
+    }
+    &.show {
+        opacity: 1;
+    }
+    .modal_wrapper {
+        background: #ffffff;
+    }
 }

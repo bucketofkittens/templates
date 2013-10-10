@@ -1,6 +1,39 @@
 'use strict';
 
 /**
+ * Контроллер определяет показывать ли теневую подгрузку или нет
+ * @param {[type]} $scope [description]
+ */
+function ShadowCtrl($scope, $rootScope) {
+
+    /**
+     * При клике на тенюшку, убрием modal окно
+     * @param  {[type]} $event [description]
+     * @return {[type]}        [description]
+     */
+    $scope.onHideModal = function() {
+        $rootScope.$broadcast('hideShadow');
+        $rootScope.$broadcast('hideModal');
+    }
+
+    /**
+     * Показывать
+     * @return {undefined} 
+     */
+    $scope.$on('showShadow', function() {
+        $scope.show = true;
+    });
+
+    /**
+     * Не показывать
+     * @return {undefined} 
+     */
+    $scope.$on('hideShadow', function() {
+        $scope.show = false;
+    });
+}
+
+/**
  * Контроллер аватарки
  * @param {Object} $scope
  * @param {Object} $rootScope
@@ -13,6 +46,7 @@ function AvatarCtrl($scope, $rootScope, $location) {
      * @returns {undefined}
      */
     $scope.onLogin = function() {
+        $rootScope.$broadcast('showShadow');
         $rootScope.$broadcast('openLoginModal');
     };
     
@@ -186,8 +220,10 @@ function QuickUserChangeCtrl($scope, User, AuthUser, $rootScope, $location) {
 
     User.get_all({}, {}, function(data) {
         data.sort(function(a, b){
-            if(a.login < b.login) return -1;
-            if(a.login > b.login) return 1;
+            if(a.login
+< b.login) return -1;
+            if(a.login >
+    b.login) return 1;
             return 0;
         })
         var users = [];
@@ -375,7 +411,8 @@ function UserController($scope, $route, $routeParams, User, Needs, Professions, 
      */
     this.generateAgesArray = function(min, max) {
         var i = min, ret = [];
-        for(i = min; i <= max; i++){
+        for(i = min; i
+    <= max; i++){
             ret.push(i);
         }
         return ret;
@@ -954,47 +991,25 @@ function RegController($scope, $location, User, AuthUser, $rootScope) {
 }
 
 /**
- * [LoginController description]
+ * форма модального окна авторизации
  * @param {[type]} $scope [description]
  */
-function LoginController($scope, Sessions, $rootScope, AuthUser, User, Social, $facebook, $location) {
-    $scope.authUser = AuthUser.get();
-    /**
-     * Поле логина
-     * @type {String}
-     */
-    $scope.login = "";
-
-    /**
-     * Поле пароля
-     * @type {String}
-     */
-    $scope.password = "";
-
-    /**
-     * Поле пароля
-     * @type {String}
-     */
-    $scope.error = "";
-
-    /**
-     * 
-     * @type {Boolean}
-     */
-    $scope.shouldBeOpen = false;
+function LoginModalController($scope, Sessions, $rootScope, User, Social, $facebook, $location) {
+    $scope.show = false;
 
     $scope.$on('registered', function() {
-        $scope.shouldBeOpen = false;
-
-        $(".modal-backdrop").remove();
     });
 
     $scope.$on('openLoginModal', function() {
-        $scope.shouldBeOpen = true;
+        $scope.show = true;
     });
 
+    $scope.$on('hideModal', function() {
+        $scope.show = false;
+    });
+    
+
     $scope.$on('socialLogined', function() {
-        $scope.shouldBeOpen = false;
     });
 
     /**
@@ -1448,7 +1463,8 @@ function MainController($scope, Leagues, User, AuthUser, $rootScope, $location, 
 
     var step = 2;
 
-    if($(window).width() < 1100) {
+    if($(window).width()
+        < 1100) {
         step = 1.5;
     }
     $("#main_leagues").css("height", $(window).height()*step).css("width", $(window).width());
@@ -1586,78 +1602,78 @@ function LogoutController($scope, AuthUser, $location, $rootScope, $facebook) {
  * @param {[type]} $scope [description]
  */
 function CompareController($scope) {
-	var needsCountLoaded = 0;
-	var needsValues = {};
-	var goalsCountLoaded = 0;
-	var goalsValues = {};
-	var crtiterias = {};
+    var needsCountLoaded = 0;
+    var needsValues = {};
+    var goalsCountLoaded = 0;
+    var goalsValues = {};
+    var crtiterias = {};
 
-	$scope.$on('needUserValueLoaded', function($event, message) {
-	  needsCountLoaded += 1;
-	  needsValues[message.userId] = message.needsValues;
-	  if(needsCountLoaded == 2) {
-	      angular.forEach(needsValues[$scope.userId2], function(value, key){
+    $scope.$on('needUserValueLoaded', function($event, message) {
+      needsCountLoaded += 1;
+      needsValues[message.userId] = message.needsValues;
+      if(needsCountLoaded == 2) {
+          angular.forEach(needsValues[$scope.userId2], function(value, key){
 
-				if(value < needsValues[$scope.userId1][key]) {
-				  $("li[data-needId='"+key+"'] .cr", $("#compare")).append('<sup class="du"></sup>');
-				} 
-				if(value > needsValues[$scope.userId1][key]) {
-				  $("li[data-needId='"+key+"'] .cr", $("#compare")).append('<sub class="du"></sub>');
-				} 
-				if(value == needsValues[$scope.userId1][key]) {
-				  $("li[data-needId='"+key+"'] .cr", $("#compare")).append('<s class="du"></s>');
-				} 
+                if(value < needsValues[$scope.userId1][key]) {
+                  $("li[data-needId='"+key+"'] .cr", $("#compare")).append('<sup class="du"></sup>');
+                } 
+                if(value > needsValues[$scope.userId1][key]) {
+                  $("li[data-needId='"+key+"'] .cr", $("#compare")).append(' <sub class="du"></sub>');
+                } 
+                if(value == needsValues[$scope.userId1][key]) {
+                  $("li[data-needId='"+key+"'] .cr", $("#compare")).append('<s class="du"></s>');
+                } 
 
-	      });
+          });
           needsCountLoaded = 1;
-	  }
-	});
+      }
+    });
 
-	$scope.$on('criteriaUserValueLoaded', function($event, message) {
-	  if(!crtiterias[message.fCriteria.sguid]) {
-	      crtiterias[message.fCriteria.sguid] = {};
-	  }
-	  var fCriterium = message.fCriteria;
-	  var fCriteriumValue = fCriterium.criteria_values.filter(function(value) {
-	      return value.sguid == fCriterium.user_criteria_sguid;
-	  })[0];
+    $scope.$on('criteriaUserValueLoaded', function($event, message) {
+      if(!crtiterias[message.fCriteria.sguid]) {
+          crtiterias[message.fCriteria.sguid] = {};
+      }
+      var fCriterium = message.fCriteria;
+      var fCriteriumValue = fCriterium.criteria_values.filter(function(value) {
+          return value.sguid == fCriterium.user_criteria_sguid;
+      })[0];
 
-	  crtiterias[message.fCriteria.sguid][message.userId] = fCriteriumValue;
-	  
-	  if(crtiterias[message.fCriteria.sguid][$scope.userId2] && crtiterias[message.fCriteria.sguid][$scope.userId1]) {
-	      var rootCriteria = crtiterias[message.fCriteria.sguid][$scope.userId2];
-	      var authCriteria = crtiterias[message.fCriteria.sguid][$scope.userId1];
+      crtiterias[message.fCriteria.sguid][message.userId] = fCriteriumValue;
+      
+      if(crtiterias[message.fCriteria.sguid][$scope.userId2] && crtiterias[message.fCriteria.sguid][$scope.userId1]) {
+          var rootCriteria = crtiterias[message.fCriteria.sguid][$scope.userId2];
+          var authCriteria = crtiterias[message.fCriteria.sguid][$scope.userId1];
 
-	      if(rootCriteria.value < authCriteria.value) {
-	         $("li[data-id='"+fCriterium.sguid+"']", $("#compare")).append('<sup class="du"></sup>');
-	      }
-	      if(rootCriteria.value > authCriteria.value) {
-	         $("li[data-id='"+fCriterium.sguid+"']", $("#compare")).append('<sub class="du"></sub>');
-	      }
-	      if(rootCriteria.value == authCriteria.value) {
-	         $("li[data-id='"+fCriterium.sguid+"']", $("#compare")).append('<s class="du"></s>');
-	      }
-	  }
-	});
+          if(rootCriteria.value < authCriteria.value) {
+             $("li[data-id='"+fCriterium.sguid+"']", $("#compare")).append('<sup class="du"></sup>');
+          }
+          if(rootCriteria.value > authCriteria.value) {
+             $("li[data-id='"+fCriterium.sguid+"']", $("#compare")).append(' <sub class="du"></sub>');
+          }
+          if(rootCriteria.value == authCriteria.value) {
+             $("li[data-id='"+fCriterium.sguid+"']", $("#compare")).append('<s class="du"></s>');
+          }
+      }
+    });
 
-	$scope.$on('goalUserValueLoaded', function($event, message) {
-		goalsCountLoaded += 1;
-		goalsValues[message.userId] = message.goalsValues;
-		if(goalsCountLoaded == 2) {
-	      angular.forEach(goalsValues[$scope.userId2], function(value, key) {
-	         if(value < goalsValues[$scope.userId1][key]) {
-	            $("li[data-goalid='"+key+"'] > h5", $("#compare")).append('<sup class="du"></sup>');
-	         } 
-         	if(value > goalsValues[$scope.userId1][key]) {
-	            $("li[data-goalid='"+key+"'] > h5", $("#compare")).append('<sub class="du"></sub>');
-	         } 
-	         if(value == goalsValues[$scope.userId1][key]) {
-	            $("li[data-goalid='"+key+"'] > h5", $("#compare")).append('<s class="du"></s>');
-	         } 
-	      });
+    $scope.$on('goalUserValueLoaded', function($event, message) {
+        goalsCountLoaded += 1;
+        goalsValues[message.userId] = message.goalsValues;
+        if(goalsCountLoaded == 2) {
+          angular.forEach(goalsValues[$scope.userId2], function(value, key) {
+             if(value < goalsValues[$scope.userId1][key]) {
+                $("li[data-goalid='"+key+"'] > h5", $("#compare")).append(' <sup class="du"></sup>');
+             } 
+            if(value > goalsValues[$scope.userId1][key]) {
+                $("li[data-goalid='"+key+"'] > h5", $("#compare")).append('<sub class="du"></sub>');
+             } 
+             if(value == goalsValues[$scope.userId1][key]) {
+                $("li[data-goalid='"+key+"'] > h5", $("#compare")).append('<s class="du"></s>');
+             } 
+          });
           goalsCountLoaded = 1;
-	  }
-	});
+      }
+    });
     
 }
 
@@ -1847,14 +1863,14 @@ function RootController($scope, AuthUser, User, $rootScope, Needs, Social, $cook
 }
 
 function LeaguesController($scope, Leagues, User) {
-	$scope.leagues = [];
+    $scope.leagues = [];
 
-	/**
-	* Забираем запросом список лиг.
-	* @param  {[type]} data [description]
-	* @return {[type]}      [description]
-	*/
-	Leagues.query({}, {}, function(data) {
+    /**
+    * Забираем запросом список лиг.
+    * @param  {[type]} data [description]
+    * @return {[type]}      [description]
+    */
+    Leagues.query({}, {}, function(data) {
         data = data.reverse();
 
         $scope.leagues = data;
@@ -1868,7 +1884,7 @@ function LeaguesController($scope, Leagues, User) {
                 value.users = v2;
             })
         });
-	})
+    })
 }
 
 /**
@@ -1969,21 +1985,3 @@ function CropImageController($scope, $rootScope) {
         reader.readAsDataURL(file);
     }
 }
-
-Array.prototype.shuffle = function(b) {
-    var i = this.length, j, t;
-    while(i) {
-        j = Math.floor( ( i-- ) * Math.random() );
-        t = b && typeof this[i].shuffle!=='undefined' ? this[i].shuffle() : this[i];
-        this[i] = this[j];
-        this[j] = t;
-    }
-
-    return this;
-};
-
-Array.prototype.remove = function(from, to) {
-    var rest = this.slice((to || from) + 1 || this.length);
-      this.length = from < 0 ? this.length + from : from;
-      return this.push.apply(this, rest);
-};
