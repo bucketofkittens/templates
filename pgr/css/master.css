@@ -102,24 +102,25 @@ body header #search .searcher {
 /* line 82, /home/lyykfi/Projects/pgr/css/master.less */
 @media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\0000382}}
 body header ul {
-  display: inline-block;
+  display: table;
   vertical-align: top;
   position: absolute;
-  right: 0%;
-  width: 40%;
+  right: 2%;
   height: 100%;
   text-align: right;
   top: 0%;
 }
-/* line 91, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\0000391}}
+/* line 90, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\0000390}}
 body header ul li {
-  margin: 0% 3%;
-  display: inline-block;
+  padding: 0% 3%;
+  display: table-cell;
   vertical-align: top;
+  height: 100%;
+  vertical-align: middle;
 }
-/* line 96, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\0000396}}
+/* line 97, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\0000397}}
 body header ul a {
   color: #ffffff;
   text-decoration: none;
@@ -127,17 +128,12 @@ body header ul a {
   font-size: 100%;
   text-transform: uppercase;
   cursor: pointer;
-}
-/* line 103, /home/lyykfi/Projects/pgr/css/master.less */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003103}}
-body header ul a.login {
-  margin-top: 10%;
-  display: block;
+  line-height: 120%;
 }
 /* line 106, /home/lyykfi/Projects/pgr/css/master.less */
 @media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\00003106}}
 body header ul a.login img {
-  max-height: 80%;
+  max-height: 40%;
   display: block;
 }
 /* line 112, /home/lyykfi/Projects/pgr/css/master.less */
@@ -1787,4 +1783,14 @@ body header .social a:last-child {
 .datepicker td,
 .datepicker th {
   font-family: Arial;
+}
+/* line 1398, /home/lyykfi/Projects/pgr/css/master.less */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/lyykfi\/Projects\/pgr\/css\/master\.less}line{font-family:\000031398}}
+[ng\:cloak],
+[ng-cloak],
+[data-ng-cloak],
+[x-ng-cloak],
+.ng-cloak,
+.x-ng-cloak {
+  display: none !important;
 }

@@ -29,7 +29,7 @@
             </div>
             
             <!-- Навигация -->
-			<ul ng-controller="navCtrl">
+			<ul ng-cloak ng-controller="navCtrl">
 				<li ng-repeat="nav in navs | filter:{show: true}">
 				    <a ng-class="{current: nav.current}" class="{{nav.className}}" ng-click="onNavClick($event, nav)">
 				    	<span ng-if="!nav.img">{{nav.name}}</span>

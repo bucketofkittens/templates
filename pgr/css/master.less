@@ -80,18 +80,19 @@ body {
             }
         }
         ul {
-            display: inline-block;
+            display: table;
             vertical-align: top;
             position: absolute;
-            right: 0%;
-            width: 40%;
+            right: 2%;
             height: 100%;
             text-align: right;
             top: 0%;
             li {
-                margin: 0% 3%;
-                display: inline-block;
+                padding: 0% 3%;
+                display: table-cell;
                 vertical-align: top;
+                height: 100%;
+                vertical-align: middle;
             }
             a {
                 color: #ffffff;
@@ -100,11 +101,10 @@ body {
                 font-size: 100%;
                 text-transform: uppercase;
                 cursor: pointer;
+                line-height: 120%;
                 &.login {
-                    margin-top: 10%;
-                    display: block;
                     img {
-                        max-height: 80%;
+                        max-height: 40%;
                         display: block;
                     }
                     
@@ -1393,4 +1393,8 @@ body {
 }
 .datepicker td, .datepicker th {
     font-family: Arial;
+}
+
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important;
 }
