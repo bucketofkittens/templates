@@ -892,93 +892,6 @@ function NeedsAndGoalsController($scope, Goals, Criterion, AuthUser, UserCriteri
     }
 }
 
-/**
- * Контроллер формы регистрации
- * @param {[type]} $scope    [description]
- * @param {[type]} $location [description]
- * @param {[type]} User      [description]
- */
-function RegController($scope, $location, User, AuthUser, $rootScope) {
-    /**
-     * Объект нового польхователя
-     * @type {Object}
-     */
-    $scope.user = {
-        login: "",
-        name: "",
-        password: "",
-        repassword: "",
-        email: ""
-    };
-
-    /**
-     * Строка ошибок
-     * @type {String}
-     */
-    $scope.errors = "";
-    
-    /**
-     * 
-     * @returns {undefined}
-     */
-    $scope.open = function () {
-        $scope.shouldBeOpen = true;
-    };
-    
-    /**
-     * 
-     * @returns {undefined}
-     */
-    $scope.close = function () {
-        $scope.shouldBeOpen = false;
-    };
-
-    /**
-     * 
-     * @return {[type]} [description]
-     */
-    $scope.$on('registrationModalShow', function() {
-        $scope.shouldBeOpen = true;
-    });
-
-    
-
-    /**
-     * 
-     * @param {type} $event
-     * @returns {undefined}
-     */
-    $scope.addUser = function ($event) {
-        User.create(
-            {user: JSON.stringify({
-                "login": $scope.user.login,
-                "name": $scope.user.name,
-                "email": $scope.user.email,
-                "password": $scope.user.password
-            })}
-            ,function(data) {
-                if(!data.success) {
-                    angular.forEach(data.errors, function(value, key) {
-                        $scope.errors += value;
-                    });
-                } else {
-                    $scope.shouldBeOpen = false;
-                    $rootScope.$broadcast('registered');
-                }
-            }
-        );
-    };
-    
-    /**
-     * Параметры попапа
-     * @type {Object}
-     */
-    $scope.opts = {
-        backdropFade: true,
-        dialogFade:true,
-        dialogClass: "registration modal"
-    };
-}
 
 /**
  * форма модального окна авторизации
@@ -986,14 +899,19 @@ function RegController($scope, $location, User, AuthUser, $rootScope) {
  */
 function LoginModalController($scope, Sessions, $rootScope, User, Social, $facebook, $location) {
     $scope.show = false;
+
     $scope.signup = false;
+
     $scope.login = {
         login: "",
         password: ""
     }
 
-    $scope.$on('registered', function() {
-    });
+    $scope.user = {
+        login: "",
+        email: "",
+        password: ""
+    }
 
     $scope.$on('openLoginModal', function() {
         $scope.show = true;
@@ -1029,6 +947,33 @@ function LoginModalController($scope, Sessions, $rootScope, User, Social, $faceb
             }
         });
     }
+
+    /**
+     * 
+     * @param {type} $event
+     * @returns {undefined}
+     */
+    $scope.onAddUser = function ($event) {
+        User.create(
+            {user: JSON.stringify({
+                "login": $scope.user.login,
+                "email": $scope.user.email,
+                "password": $scope.user.password
+            })}
+            ,function(data) {
+                if(!data.success) {
+                    angular.forEach(data.errors, function(value, key) {
+                        $scope.errors += value;
+                    });
+                } else {
+                    $scope.show = false;
+                    $rootScope.$broadcast('hideShadow');
+                    $rootScope.$broadcast('hideModal');
+                }
+            }
+        );
+    };
+    
 
     /**
      * 

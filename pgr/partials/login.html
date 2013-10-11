@@ -36,7 +36,7 @@
                     <div class="right_wrapper">
                         <div class="sign-up" ng-if="signup">
                             <p>Or, sign up for a PGR account below:</p>
-                            <ng-form name="form" novalidate class="css-form myForm" >
+                            <ng-form name="RegForm" novalidate class="css-form myForm" >
                                 <p>
                                     <input 
                                         type="text" 
@@ -59,7 +59,7 @@
                                 </p>
                                 <p>
                                     <input 
-                                        type="text" 
+                                        type="password" 
                                         id="name_i" 
                                         class="form-input"
                                         ng-model="user.password" 
@@ -69,7 +69,13 @@
                                 </p>
                                 <p class="tip">Make it 6-25 characters</p>
                                 <p class="errors" ng-if="error">{{errors}}</p>
-                                <p><input type="button" value="Sign me up"></p>
+                                <p>
+                                    <input 
+                                        type="button" 
+                                        value="Sign me up"
+                                        ng-disabled="RegForm.$invalid"
+                                        ng-click="onAddUser()" />
+                                </p>
                             </ng-form>
                         </div>
                         <div class="sign-in" ng-if="!signup">
@@ -101,7 +107,7 @@
                                 <p class="errors" ng-if="error">{{error}}</p>
                                 <p>
                                     <input 
-                                        ng-disabled="LoginForm.$invalid" 
+                                        ng-disabled="LoginForm.$invalid"
                                         ng-click="onSingin()" 
                                         type="button" 
                                         value="Log in" />
