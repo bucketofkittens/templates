@@ -1397,7 +1397,7 @@ footer {
         background: -o-linear-gradient(top,  #36374b 0%,#36374b 100%);
         background: -ms-linear-gradient(top,  #36374b 0%,#36374b 100%);
         background: linear-gradient(to bottom,  #36374b 0%,#36374b 100%);
-        padding: 4% 0% 3% 0%;
+        padding: 3% 0% 2% 0%;
         h4 {
             color: #ffffff;
             float: left;
@@ -1414,6 +1414,10 @@ footer {
             line-height: 170%;
             a {
                 color: #028dda;
+                cursor: pointer;
+                &:hover {
+                    text-decoration: underline;
+                }
             }
         }
     }
@@ -1425,12 +1429,52 @@ footer {
             float: left;
             width: 50%;
             .left_wrapper {
-                margin: 0% 0% 0% 6%;
+                margin: 0% 6% 0% 6%;
+                p {
+                    color: #000000;
+                    font-size: 100%;
+                    font-family: 'Helvetica Neue Light';
+                    line-height: 120%;
+                    padding: 0% 0% 5% 0%;
+                }
+                ul {
+                    li {
+                        padding: 0% 0% 3% 0%;
+                        a {
+                            cursor: pointer;
+                            img {
+                                max-width: 100%;
+                            }
+                        }
+                    }
+                }
             }
         }
         .right {
             float: right;
-            width: 50%;
+            width: 49%;
+            border-left: 1px solid #a5a5a5;
+            .right_wrapper {
+                margin: 0% 6% 0% 6%;
+                .form-input {
+                    width: 80%;
+                }
+                a {
+                    font-family: 'Helvetica Neue Light';
+                    text-decoration: none;
+                    color: #5c7294;
+                    &:hover {
+                        text-decoration: underline;
+                    }
+                }
+                p {
+                    color: #000000;
+                    font-size: 100%;
+                    font-family: 'Helvetica Neue Light';
+                    line-height: 120%;
+                    padding: 0% 0% 5% 0%;
+                }
+            }
         }
     }
     &.show {
@@ -1439,4 +1483,20 @@ footer {
     .modal_wrapper {
         background: #ffffff;
     }
+}
+
+.form-input {
+    border: 3px solid #dddddd;
+    font-size: 120%;
+    padding: 3% 6% 1% 6% !important;
+    font-family: 'Helvetica Neue Light';
+}
+input[type="button"] {
+    color: #000000;
+    font-family: 'Helvetica Neue Light';
+    cursor: pointer;
+    background: transparent;
+    border: 3px solid #dddddd;
+    font-size: 115%;
+    padding: 2% 6% 0% 6% !important;
 }

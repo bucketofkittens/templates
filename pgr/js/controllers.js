@@ -247,7 +247,7 @@ function QuickUserChangeCtrl($scope, User, AuthUser, $rootScope, $location) {
  * @param {type} States
  * @returns {undefined}
  */
-function UserController($scope, $route, $routeParams, User, Needs, Professions, States, $http, NeedsByUser, $rootScope, GoalsByUser, AuthUser, Friendships, Leagues, $location, $window) {
+function UserController($scope, $route, $routeParams, User, Needs, Professions, States, $http, NeedsByUser, $rootScope, GoalsByUser, AuthUser, Leagues, $location, $window) {
     $scope.user = null;
     $scope.newImage = null;
     
@@ -996,6 +996,7 @@ function RegController($scope, $location, User, AuthUser, $rootScope) {
  */
 function LoginModalController($scope, Sessions, $rootScope, User, Social, $facebook, $location) {
     $scope.show = false;
+    $scope.signup = false;
 
     $scope.$on('registered', function() {
     });
@@ -1011,6 +1012,10 @@ function LoginModalController($scope, Sessions, $rootScope, User, Social, $faceb
 
     $scope.$on('socialLogined', function() {
     });
+
+    $scope.onSignStateChange = function() {
+        $scope.signup = $scope.signup ? false : true;
+    }
 
     /**
      * Вызывается при нажатии ok в форме авторизации

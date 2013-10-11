@@ -1,9 +1,13 @@
 <div ng-controller="LoginModalController">
     <div class="modal login" ng-class="{show: show}">
         <div class="modal_wrapper">
-            <div class="header">
+            <div class="header" ng-if="signup">
                <h4>Sing up</h4>
-               <p>Already have an account? <a href="#">Log in</a></p>
+               <p>Already have an account? <a ng-click="onSignStateChange()">Log in</a></p>
+            </div>
+            <div class="header" ng-if="!signup">
+               <h4>Log in</h4>
+               <p>Don’t have an account? <a ng-click="onSignStateChange()">Sign up</a> now</p>
             </div>
             <div class="body">
                 <div class="left">
@@ -11,17 +15,17 @@
                         <p>Join improva using your social account:</p>
                         <ul>
                             <li>
-                                <a href="#">
+                                <a ng-click="socialFacebookLogin()">
                                     <img src="/images/facebook.png" alt="" />
                                 </a>
                             </li>
                             <li>
-                                <a href="#">
+                                <a ng-click="socialGooglePlusLogin()">
                                     <img src="/images/google.png" alt="" />
                                 </a>
                             </li>
                             <li>
-                                <a href="#">
+                                <a>
                                     <img src="/images/improva.png" alt="" />
                                 </a>
                             </li>
@@ -29,87 +33,74 @@
                     </div>
                 </div>
                 <div class="right">
-                    <div class="sign-up">
-                        <p>Or, sign up for a PGR account below:</p>
-                        <ng-form name="form" novalidate class="css-form myForm" >
-                            <p>
-                                <label for="login_i">{{'_LoginL_' | i18n}}:</label> 
-                                <input 
-                                    type="text" 
-                                    id="login_i" 
-                                    class="form-control"
-                                    ng-model="user.login" required ng-minlength="6" />
-                            </p>
-                            <p>
-                                <label for="email_i">E-mail:</label> 
-                                <input 
-                                    type="email" 
-                                    id="email_i" 
-                                    class="form-control"
-                                    ng-model="user.email" required  /> 
-                            </p>
-                            <p>
-                                <label for="Name_i">{{'_NameL_' | i18n}}:</label> 
-                                <input 
-                                    type="text" 
-                                    id="name_i" 
-                                    class="form-control"
-                                    ng-model="user.name" required ng-minlength="6" /> 
-                            </p>
-                            <p>
-                                <label for="pass_i">{{'_PasswordL_' | i18n}}:</label> 
-                                <input 
-                                    type="password" 
-                                    id="pass_i"
-                                    name="password"
-                                    class="form-control"
-                                    ng-model="user.password" 
-                                    required 
-                                    ng-minlength="6" /> 
-                            </p>
-                            <p>
-                                <label for="repass_i">{{'_RepeatL_' | i18n}} {{'_PasswordL_' | i18n}}:</label> 
-                                <input 
-                                    type="password" 
-                                    id="repass_i" 
-                                    class="form-control"
-                                    ng-model="user.repassword" 
-                                    required 
-                                    ng-minlength="6"  
-                                    same-as="user"
-                                    /> 
-                            </p>
-                            <p id="errors">{{errors}}</p>
-                        </ng-form>
-                    </div>
-                    <div class="sign-in">
-                        <p>Or, log in with your PGR account:</p>
-                        <ng-form id="login_form" name="form" novalidate class="css-form myForm" >
-                            <p>
-                                <label for="login_i">{{'_LoginL_' | i18n}}:</label> 
-                                <input 
-                                    type="text" 
-                                    id="login_i" 
-                                    class="form-control"
-                                    ng-model="login" required ng-minlength="6" />
-                            </p>
-                            <p>
-                                <label for="pass_i">{{'_PasswordL_' | i18n}}:</label> 
-                                <input 
-                                    type="password" 
-                                    id="pass_i"
-                                    name="password"
-                                    class="form-control"
-                                    ng-model="password" 
-                                    required 
-                                    ng-minlength="6" /> 
-                            </p>
-                            <p><a ng-click="regiostrationOpen()">Registration</a></p>
-                            <p><a ng-click="socialFacebookLogin()">Facebook</a></p>
-                            <p><a ng-click="socialGooglePlusLogin()">Google Plus</a></p>
-
-                            <p id="errors">{{error}}</p>
-                        </ng-form>
+                    <div class="right_wrapper">
+                        <div class="sign-up" ng-if="signup">
+                            <p>Or, sign up for a PGR account below:</p>
+                            <ng-form name="form" novalidate class="css-form myForm" >
+                                <p>
+                                    <input 
+                                        type="text" 
+                                        id="login_i" 
+                                        class="form-input"
+                                        ng-model="user.login" 
+                                        required 
+                                        ng-minlength="6"
+                                        placeholder="Name" />
+                                </p>
+                                <p class="tip">This will be your display name on PGR.</p>
+                                <p>
+                                    <input 
+                                        type="email" 
+                                        id="email_i" 
+                                        class="form-input"
+                                        ng-model="user.email" 
+                                        required
+                                        placeholder="Email"  /> 
+                                </p>
+                                <p>
+                                    <input 
+                                        type="text" 
+                                        id="name_i" 
+                                        class="form-input"
+                                        ng-model="user.password" 
+                                        required 
+                                        ng-minlength="6"
+                                        placeholder="Choose a Password" /> 
+                                </p>
+                                <p class="tip">Make it 6-25 characters</p>
+                                <p id="errors" ng-if="error">{{errors}}</p>
+                                <p><input type="button" value="Sign me up"></p>
+                            </ng-form>
+                        </div>
+                        <div class="sign-in" ng-if="!signup">
+                            <p>Or, log in with your PGR account:</p>
+                            <ng-form id="login_form" name="form" novalidate class="css-form myForm" >
+                                <p>
+                                    <input 
+                                        type="text" 
+                                        id="login_i" 
+                                        class="form-input"
+                                        ng-model="login" 
+                                        required 
+                                        ng-minlength="6"
+                                        placeholder="Email or Username" />
+                                </p>
+                                <p>
+                                    <input 
+                                        type="password" 
+                                        id="pass_i"
+                                        name="password"
+                                        class="form-input"
+                                        ng-model="password"
+                                        required 
+                                        ng-minlength="6"
+                                        placeholder="Password" /> 
+                                </p>
+                                <p><a href="#">Forgot your password?</a></p>
+                                <p id="errors" ng-if="error">{{error}}</p>
+                                <p><input type="button" value="Log in"></p>
+                            </ng-form>
+                        </div>
                     </div>
                 </div>
             </div>

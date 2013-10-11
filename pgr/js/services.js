@@ -1,10 +1,6 @@
 var debugHost = "http://192.168.1.116:3000/api/v1";
-var host = "http://xmpp.dev.improva.com:9090/api/v1";
+var host = "http://dev.sir.improva.com/api/v1";
 var hostShort = host.replace("/api/v1", "");
-
-function createImageFullPath(obj) {
-    return obj.scheme+"://"+obj.host+":"+obj.port+obj.path;
-}
 
 /**
  * Модель пользователя
@@ -248,39 +244,6 @@ pgrModule.factory('Sessions', function ($resource) {
         }
     );
 });
-
-pgrModule.factory('Friendships', function ($resource) {
-    return $resource(
-        host+'/friendships/', 
-        {}, 
-        {
-            create: {method: 'POST'},
-            del: {method: "DELETE"},
-            "by_user": {
-                method: 'GET',
-                isArray: true,
-                url: host+"/friendships/by_user/:user_guid",
-                transformResponse: function (data) {
-                    var frends = angular.fromJson(data);
-                    var users = [];
-                    angular.forEach(frends, function(value, key){
-                        if(value.friendship.user.avatar) {
-                            value.friendship.user.avatar.full_path = createImageFullPath(value.friendship.user.avatar);
-                        }
-                        var user = {
-                            user: value.friendship.user
-                        }
-                        users.push(user);
-                    });
-                    return users;
-                }
-            }
-        }
-    );
-});
-
-
-
 
 /**
  * 
