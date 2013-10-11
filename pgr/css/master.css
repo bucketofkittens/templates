@@ -153,6 +153,7 @@ footer #follow_tab a{position:absolute;top:30%;right:1%;cursor:pointer;width:0;h
 .modal .body{width:100%;overflow:hidden;margin:3% 0 0 0}.modal .body .left{float:left;width:50%}.modal .body .left .left_wrapper{margin:0 6% 0 6%}.modal .body .left .left_wrapper p{color:#000;font-size:100%;font-family:'Helvetica Neue Light';line-height:120%;padding:0 0 5% 0}
 .modal .body .left .left_wrapper ul li{padding:0 0 3% 0}.modal .body .left .left_wrapper ul li a{cursor:pointer}.modal .body .left .left_wrapper ul li a img{max-width:100%}
 .modal .body .right{float:right;width:49%;border-left:1px solid #a5a5a5}.modal .body .right .right_wrapper{margin:0 6% 0 6%}.modal .body .right .right_wrapper .form-input{width:80%}
+.modal .body .right .right_wrapper .tip{color:#898989;font-family:'Helvetica Neue Light';font-size:90%;padding-bottom:2%}
 .modal .body .right .right_wrapper a{font-family:'Helvetica Neue Light';text-decoration:none;color:#5c7294}.modal .body .right .right_wrapper a:hover{text-decoration:underline}
 .modal .body .right .right_wrapper p{color:#000;font-size:100%;font-family:'Helvetica Neue Light';line-height:120%;padding:0 0 5% 0}
 .modal.show{opacity:1}
