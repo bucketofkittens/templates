@@ -68,19 +68,19 @@
                                         placeholder="Choose a Password" /> 
                                 </p>
                                 <p class="tip">Make it 6-25 characters</p>
-                                <p id="errors" ng-if="error">{{errors}}</p>
+                                <p class="errors" ng-if="error">{{errors}}</p>
                                 <p><input type="button" value="Sign me up"></p>
                             </ng-form>
                         </div>
                         <div class="sign-in" ng-if="!signup">
                             <p>Or, log in with your PGR account:</p>
-                            <ng-form id="login_form" name="form" novalidate class="css-form myForm" >
+                            <ng-form id="login_form" name="LoginForm" novalidate class="css-form myForm" >
                                 <p>
                                     <input 
                                         type="text" 
                                         id="login_i" 
                                         class="form-input"
-                                        ng-model="login" 
+                                        ng-model="login.login"
                                         required 
                                         ng-minlength="6"
                                         placeholder="Email or Username" />
@@ -89,16 +89,23 @@
                                     <input 
                                         type="password" 
                                         id="pass_i"
-                                        name="password"
                                         class="form-input"
-                                        ng-model="password"
+                                        ng-model="login.password"
                                         required 
                                         ng-minlength="6"
                                         placeholder="Password" /> 
                                 </p>
-                                <p><a href="#">Forgot your password?</a></p>
-                                <p id="errors" ng-if="error">{{error}}</p>
-                                <p><input type="button" value="Log in"></p>
+                                <p>
+                                    <a href="#">Forgot your password?</a>
+                                </p>
+                                <p class="errors" ng-if="error">{{error}}</p>
+                                <p>
+                                    <input 
+                                        ng-disabled="LoginForm.$invalid" 
+                                        ng-click="onSingin()" 
+                                        type="button" 
+                                        value="Log in" />
+                                </p>
                             </ng-form>
                         </div>
                     </div>

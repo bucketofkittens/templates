@@ -1425,6 +1425,7 @@ footer {
         width: 100%;
         overflow: hidden;
         margin: 3% 0% 0% 0%;
+        padding-bottom: 3%;
         .left {
             float: left;
             width: 50%;
@@ -1505,4 +1506,17 @@ input[type="button"] {
     border: 3px solid #dddddd;
     font-size: 115%;
     padding: 2% 6% 0% 6% !important;
+    &[disabled="disabled"] {
+        opacity: 0.5;
+        cursor: default;
+    }
+}
+ng-form:not(.ng-pristine) {
+    input.ng-invalid:not(.ng-pristine) {
+        border-color: rgba(252, 79, 60, 0.7);
+    }
+}
+
+.errors {
+    color: rgba(252, 79, 60, 1) !important;
 }

@@ -56,7 +56,6 @@ pgrModule.config(function($routeSegmentProvider, $routeProvider) {
         .when('/profile/:userId1',       'profile.oneUser')
         .when('/profile/:userId1/:userId2',    'profile.manyUser')
         
-        .when('/logout',          'logout')
         .when('/',      'main')
         
         .when('/graphs',          'graphs')
@@ -79,10 +78,6 @@ pgrModule.config(function($routeSegmentProvider, $routeProvider) {
                 dependencies: ['userId2', 'userId1']})
                 
         .up()
-        
-        .segment('logout', {
-            templateUrl: 'views/main.html',
-            controller: LogoutController})
 
         .segment('main', {
             templateUrl: 'views/main.html',

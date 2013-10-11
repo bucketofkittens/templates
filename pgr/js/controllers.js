@@ -49,14 +49,6 @@ function AvatarCtrl($scope, $rootScope, $location) {
         $rootScope.$broadcast('showShadow');
         $rootScope.$broadcast('openLoginModal');
     };
-    
-    /**
-     * Выйти из пользователя
-     * @returns {undefined}
-     */
-    $scope.onLogout = function() {
-        $location.path("/logout");
-    };
 
     /**
      * Переход на страницу профиля
@@ -220,10 +212,8 @@ function QuickUserChangeCtrl($scope, User, AuthUser, $rootScope, $location) {
 
     User.get_all({}, {}, function(data) {
         data.sort(function(a, b){
-            if(a.login
-< b.login) return -1;
-            if(a.login >
-    b.login) return 1;
+            if(a.login < b.login) return -1;
+            if(a.login > b.login) return 1;
             return 0;
         })
         var users = [];
@@ -997,6 +987,10 @@ function RegController($scope, $location, User, AuthUser, $rootScope) {
 function LoginModalController($scope, Sessions, $rootScope, User, Social, $facebook, $location) {
     $scope.show = false;
     $scope.signup = false;
+    $scope.login = {
+        login: "",
+        password: ""
+    }
 
     $scope.$on('registered', function() {
     });
@@ -1022,15 +1016,14 @@ function LoginModalController($scope, Sessions, $rootScope, User, Social, $faceb
      * @param  {[type]} $event [description]
      * @return {[type]}        [description]
      */
-    $scope.onSingin = function($event) {
+    $scope.onSingin = function() {
         Sessions.signin({}, $.param({
-            "login": $scope.login,
-            "password": $scope.password
+            "login": $scope.login.login,
+            "password": $scope.login.password
         }), function(data) {
             if(data.success) {
                 $rootScope.$broadcast('onSignin', {guid: data.guid, isSocial: true});
-                $scope.shouldBeOpen = false;
-                $location.path("/");
+                $scope.show = false;
             } else {
                 $scope.error = data.message;
             }
@@ -1046,28 +1039,6 @@ function LoginModalController($scope, Sessions, $rootScope, User, Social, $faceb
         $rootScope.$broadcast('registrationModalShow');
     }
 
-    $scope.onSubmit = function($event) {
-        if($scope.form.$valid) {
-            $scope.onSingin();
-        }
-    }
-
-    /**
-     * 
-     * @returns {undefined}
-     */
-    $scope.open = function () {
-        $scope.shouldBeOpen = true;     
-    };
-    
-    /**
-     * 
-     * @returns {undefined}
-     */
-    $scope.close = function () {
-        $scope.shouldBeOpen = false;
-    };
-
     $scope.socialFacebookLogin = function() {
         $rootScope.$broadcast('loaderShow');
         FB.login(function(response) {
@@ -1077,7 +1048,7 @@ function LoginModalController($scope, Sessions, $rootScope, User, Social, $faceb
                 });
             }
         });
-    }
+    };
 
     $scope.socialGooglePlusLogin = function() {
         $rootScope.$broadcast('loaderShow');
@@ -1086,7 +1057,7 @@ function LoginModalController($scope, Sessions, $rootScope, User, Social, $faceb
             scope: socialsAccess.googlePlus.scopes, 
             immediate: false
         }, handleAuthResult);
-    }
+    };
 
     $scope.$on('fb.auth.authResponseChange', function(data, d) {
         console.log(d);
@@ -1096,18 +1067,7 @@ function LoginModalController($scope, Sessions, $rootScope, User, Social, $faceb
                 socialsAccess.facebook.isLoggined = true;
             });
         });
-    })
-    
-
-    /**
-     * Параметры попапа
-     * @type {Object}
-     */
-    $scope.opts = {
-        backdropFade: true,
-        dialogFade:true,
-        dialogClass: "login modal"
-    };
+    });
 }
 
 function LoaderController($scope) {
@@ -1584,24 +1544,6 @@ function NeighboursCtrl($scope, $location, localize, User, AuthUser, Leagues, $r
     
 }
 
-function LogoutController($scope, AuthUser, $location, $rootScope, $facebook) {
-    AuthUser.logout();
-    if(socialsAccess.facebook.isLoggined) {
-        $facebook.logout();
-        socialsAccess.facebook.isLoggined = false;  
-    }
-    
-    if(socialsAccess.googlePlus.isLoggined) {
-        $.get("https://mail.google.com/mail/u/0/?logout&hl=en");  
-        
-        socialsAccess.googlePlus.isLoggined = false;  
-    }
-    
-    $scope.workspace.user = null;
-    $rootScope.$broadcast('logout');
-    $location.path("/");
-}
-
 /**
  * 
  * @param {[type]} $scope [description]
@@ -1742,6 +1684,24 @@ function RootController($scope, AuthUser, User, $rootScope, Needs, Social, $cook
         $scope.controller = $location.path().split("/").join("_");
     });
 
+    $scope.onLogout = function() {
+        AuthUser.logout();
+    
+        if(socialsAccess.facebook.isLoggined) {
+            $facebook.logout();
+            socialsAccess.facebook.isLoggined = false;  
+        }
+        
+        if(socialsAccess.googlePlus.isLoggined) {
+            $.get("https://mail.google.com/mail/u/0/?logout&hl=en");  
+            
+            socialsAccess.googlePlus.isLoggined = false;  
+        }
+        
+        $scope.workspace.user = null;
+        $rootScope.$broadcast('logout');
+    }
+
     $scope.getUserInfo = function() {
         if($scope.authUserId) {
             User.query({id: $scope.authUserId}, function(data) {
@@ -1845,8 +1805,8 @@ function RootController($scope, AuthUser, User, $rootScope, Needs, Social, $cook
                 $scope.workspace.user.frends = frends;
                 $scope.authUserId = data.sguid;
 
-                $rootScope.$broadcast('login');
-                $rootScope.$broadcast('loaderHide');
+                $rootScope.$broadcast('hideShadow');
+                $rootScope.$broadcast('hideModal');
 
                 if(message.isSocial) {
                     $rootScope.$broadcast('socialLogined');

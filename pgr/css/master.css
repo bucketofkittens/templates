@@ -150,7 +150,7 @@ footer #follow_tab a{position:absolute;top:30%;right:1%;cursor:pointer;width:0;h
 [ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak{display:none !important}
 .modal{position:absolute;z-index:1000;opacity:0;transition:all 1s ease-out;-webkit-transition:all 1s ease-out;width:50%;left:25%;top:20% !important;margin:0 auto;height:auto}.modal .header{width:100%;overflow:hidden;background:#36374b;background:-moz-linear-gradient(top, #36374b 0, #36374b 100%);background:-webkit-gradient(linear, left top, left bottom, color-stop(0, #36374b), color-stop(100%, #36374b));background:-webkit-linear-gradient(top, #36374b 0, #36374b 100%);background:-o-linear-gradient(top, #36374b 0, #36374b 100%);background:-ms-linear-gradient(top, #36374b 0, #36374b 100%);background:linear-gradient(to bottom, #36374b 0, #36374b 100%);padding:3% 0 2% 0}.modal .header h4{color:#fff;float:left;font-size:170%;margin:0 0 0 3%;font-family:'Helvetica Neue Light'}
 .modal .header p{color:#fff;float:right;font-size:100%;font-family:'Helvetica Neue Light';margin:0 3% 0 0;line-height:170%}.modal .header p a{color:#028dda;cursor:pointer}.modal .header p a:hover{text-decoration:underline}
-.modal .body{width:100%;overflow:hidden;margin:3% 0 0 0}.modal .body .left{float:left;width:50%}.modal .body .left .left_wrapper{margin:0 6% 0 6%}.modal .body .left .left_wrapper p{color:#000;font-size:100%;font-family:'Helvetica Neue Light';line-height:120%;padding:0 0 5% 0}
+.modal .body{width:100%;overflow:hidden;margin:3% 0 0 0;padding-bottom:3%}.modal .body .left{float:left;width:50%}.modal .body .left .left_wrapper{margin:0 6% 0 6%}.modal .body .left .left_wrapper p{color:#000;font-size:100%;font-family:'Helvetica Neue Light';line-height:120%;padding:0 0 5% 0}
 .modal .body .left .left_wrapper ul li{padding:0 0 3% 0}.modal .body .left .left_wrapper ul li a{cursor:pointer}.modal .body .left .left_wrapper ul li a img{max-width:100%}
 .modal .body .right{float:right;width:49%;border-left:1px solid #a5a5a5}.modal .body .right .right_wrapper{margin:0 6% 0 6%}.modal .body .right .right_wrapper .form-input{width:80%}
 .modal .body .right .right_wrapper .tip{color:#898989;font-family:'Helvetica Neue Light';font-size:90%;padding-bottom:2%}
@@ -159,4 +159,6 @@ footer #follow_tab a{position:absolute;top:30%;right:1%;cursor:pointer;width:0;h
 .modal.show{opacity:1}
 .modal .modal_wrapper{background:#fff}
 .form-input{border:3px solid #ddd;font-size:120%;padding:3% 6% 1% 6% !important;font-family:'Helvetica Neue Light'}
-input[type="button"]{color:#000;font-family:'Helvetica Neue Light';cursor:pointer;background:transparent;border:3px solid #ddd;font-size:115%;padding:2% 6% 0 6% !important}
+input[type="button"]{color:#000;font-family:'Helvetica Neue Light';cursor:pointer;background:transparent;border:3px solid #ddd;font-size:115%;padding:2% 6% 0 6% !important}input[type="button"][disabled="disabled"]{opacity:.5;cursor:default}
+ng-form:not(.ng-pristine) input.ng-invalid:not(.ng-pristine){border-color:rgba(252,79,60,0.7)}
+.errors{color:#fc4f3c !important}
