@@ -38,7 +38,8 @@ var pgrModule = angular.module(
 		'view-segment', 
 		'ngTouch', 
 		'ngFacebook', 
-		'$strap.directives'
+		'$strap.directives',
+		'wu.masonry'
 		]
 	);
 
