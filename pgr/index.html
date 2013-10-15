@@ -50,6 +50,11 @@
 			</ul>
             
 		</header>
+
+		<!-- Контент -->
+		<div id="content" class="controller_{{controller}}" ng-controller="ContentController">
+			<div app-view-segment="0"></div>
+		</div>
 		
 		<!-- Футер -->
 		<footer>
@@ -65,10 +70,6 @@
 			</div>
 		</footer>
 
-		<div id="content" class="controller_{{controller}}" ng-controller="ContentController">
-			<div app-view-segment="0"></div>
-		</div>
-        
         <section ng-include src="'partials/loader.html'"></section>
         <section ng-include src="'partials/login.html'"></section>
 
