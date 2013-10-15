@@ -1132,10 +1132,7 @@ function MainController($scope, Leagues, User, AuthUser, $rootScope, $location, 
     $scope.enteredPosition = [];
 
     $scope.opts = {
-        columnWidth: 150,
-        masonryHorizontal: {
-            rowHeight: 150
-        }
+        layoutMode: 'masonry'
     }
 
     $scope.testFollow = function() {

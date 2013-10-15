@@ -1,7 +1,10 @@
 <section id="main_leagues" class="tags">
 	<div isotope-container iso-options-subscribe="opts">
 		<div isotope-item class="league_{{userItem.league.name}}" ng-repeat="userItem in users">
-			<img class="repeat-item" ng-src="{{userItem.avatar}}" alt="" err-src="/images/unknown-person.png" />
+			<p>
+				<img class="repeat-item" ng-src="{{userItem.avatar}}" alt="" err-src="/images/unknown-person.png" />
+				<i>{{userItem.points}}</i>
+			</p>
 		</div>
 	</div>
 </section>

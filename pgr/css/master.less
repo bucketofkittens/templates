@@ -182,7 +182,7 @@ body {
     position: relative;
     width: 100%;
     background: #f9f9f9;
-    padding-top: 4%;
+    padding-top: 3%;
     min-height: 88%;
     overflow: hidden;
     /** main page **/
@@ -884,29 +884,52 @@ body {
 /** main_leagues **/
 #main_leagues {
     > div {
+        height: 80%;
         > div {
             float: left;
-            width: 200px;
-            height: 200px;
+            width: 280px;
+            height: 280px;
             overflow: hidden;
-            img {
-                width: 200px;
-                height: 200px;
+            p {
+                position: relative;
+                img {
+                    width: 280px;
+                    height: 280px;
+                }
+                i {
+                    position: absolute;
+                    left: 0px;
+                    bottom: 0px;
+                    width: 100%;
+                    background: rgba(0, 0, 0, 0.48);
+                    text-align: right;
+                    color: #ffffff;
+                    line-height: 120%;
+                    font-family: 'Helvetica Neue Light';
+                }
             }
             &.league_10, &.league_9, &.league_8 {
-                width: 100px;
-                height: 100px;
+                width: 70px;
+                height: 70px;
                 img {
-                    width: 100px;
-                    height: 100px;
+                    width: 70px;
+                    height: 70px;
+                }
+            }
+            &.league_7, &.league_6, &.league_5 {
+                width: 140px;
+                height: 140px;
+                img {
+                    width: 140px;
+                    height: 140px;
                 }
             }
             &.league_ {
-                width: 100px;
-                height: 100px;
+                width: 70px;
+                height: 70px;
                 img {
-                    width: 100px;
-                    height: 100px;
+                    width: 70px;
+                    height: 70px;
                 }
             }
             img {
