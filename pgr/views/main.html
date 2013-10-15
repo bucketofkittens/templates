@@ -1,7 +1,7 @@
 <section id="main_leagues" class="tags">
-	<masonry masonry-options="{isFitWidth: true, gutter: 0, gutter: 0}">
-		<div class="masonry-brick league_{{userItem.league.name}}" ng-repeat="userItem in users">
+	<div isotope-container iso-options-subscribe="opts">
+		<div isotope-item class="league_{{userItem.league.name}}" ng-repeat="userItem in users">
 			<img class="repeat-item" ng-src="{{userItem.avatar}}" alt="" err-src="/images/unknown-person.png" />
 		</div>
-	</masonry>
+	</div>
 </section>

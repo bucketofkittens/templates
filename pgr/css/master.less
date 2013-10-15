@@ -883,24 +883,30 @@ body {
 
 /** main_leagues **/
 #main_leagues {
-    > masonry {
+    > div {
         > div {
-            &.league_7, &.league_6, &.league_5 {
+            float: left;
+            width: 200px;
+            height: 200px;
+            overflow: hidden;
+            img {
                 width: 200px;
-                img {
-                    width: 200px;
-                }
+                height: 200px;
             }
             &.league_10, &.league_9, &.league_8 {
                 width: 100px;
+                height: 100px;
                 img {
                     width: 100px;
+                    height: 100px;
                 }
             }
             &.league_ {
                 width: 100px;
+                height: 100px;
                 img {
                     width: 100px;
+                    height: 100px;
                 }
             }
             img {

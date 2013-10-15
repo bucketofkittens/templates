@@ -1131,6 +1131,13 @@ function MainController($scope, Leagues, User, AuthUser, $rootScope, $location, 
     
     $scope.enteredPosition = [];
 
+    $scope.opts = {
+        columnWidth: 150,
+        masonryHorizontal: {
+            rowHeight: 150
+        }
+    }
+
     $scope.testFollow = function() {
         angular.forEach($scope.workspace.user.frends, function(value, key) {
             angular.forEach($scope.viewedUsers, function(v2, k2) {
@@ -1206,6 +1213,7 @@ function MainController($scope, Leagues, User, AuthUser, $rootScope, $location, 
     $scope.getPublishedUser = function() {
         User.for_main({}, {}, function(data) {
             var users = [];
+            data.shuffle();
             angular.forEach(data, function(value, key){
                 value.points = parseInt(value.points);
                 if(value.avatar) {

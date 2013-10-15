@@ -39,7 +39,8 @@ var pgrModule = angular.module(
 		'ngTouch', 
 		'ngFacebook', 
 		'$strap.directives',
-		'wu.masonry'
+		'iso.config',
+		'iso'
 		]
 	);
 
