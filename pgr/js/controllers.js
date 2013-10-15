@@ -1246,6 +1246,13 @@ function MainController($scope, Leagues, User, AuthUser, $rootScope, $location, 
         }
     }
 
+    $scope.switchState = function(user) {
+        angular.forEach($scope.users, function(value, key){
+            value.showMenu = false;
+        });
+        user.showMenu = user.showMenu ? false : true;
+    }
+
     $scope.onFollow = function($event, user) {
         $rootScope.$broadcast('follow', {userId: AuthUser.get(), frendId: user.sguid, user: user});
     }
