@@ -1254,7 +1254,13 @@ function MainController($scope, Leagues, User, AuthUser, $rootScope, $location, 
     }
 
     $scope.onFollow = function($event, user) {
-        $rootScope.$broadcast('follow', {userId: AuthUser.get(), frendId: user.sguid, user: user});
+        if(user.isFrend) {
+            $rootScope.$broadcast('unfollow', {userId: AuthUser.get(), frendId: user.sguid, user: user});
+        }
+        else {
+            $rootScope.$broadcast('follow', {userId: AuthUser.get(), frendId: user.sguid, user: user});
+        }
+        user = $scope.testUser(user);
     }
 
     /**

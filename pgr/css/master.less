@@ -43,12 +43,12 @@ body {
         overflow: hidden;
         #avatar {
             float: right;
-            height: 100%;
+            height: 90%;
             margin-right: 3%;
             img {
                 max-height:80%;
                 position: relative;
-                top: 15%;
+                top: 10%;
                 display: block;
                 cursor: pointer;
             }
@@ -56,13 +56,11 @@ body {
                 color: #ffffff;
                 text-decoration: none;
                 font-family: 'Helvetica Neue';
-                font-size: 55%;
-                text-transform: uppercase;
+                font-size: 50%;
                 cursor: pointer;
+                text-align: center;
+                position: relative;
             }
-        }
-        &.fixed {
-         
         }
         .logo {
             background: url("../images/logobg.png") left top repeat-x;
@@ -1064,7 +1062,9 @@ body {
 
 
 footer {        
-    position: relative;
+    position: fixed;
+    bottom: 0%;
+    left: 0%;
     height: 8%;
     width: 100%;
     background: #36374b;
@@ -1084,9 +1084,9 @@ footer {
     }
     #follow_tab {
         background: rgba(255, 255, 255, 0.05);
-        width: 60%;
+        width: 67%;
         height: 80%;
-        left: 20%;
+        right: 3%;
         top: 10%;
         z-index: 300;
         overflow: hidden;

@@ -19,7 +19,8 @@
 						</li>
 						<li>
 							<a ng-click="onFollow($event, userItem)">
-								<img src="/images/i3.png" alt="">
+								<img ng-if="!userItem.isFrend" src="/images/i3.png" alt="">
+								<img ng-if="userItem.isFrend" src="/images/i3i.png" alt="">
 							</a>
 						</li>
 					</ul>
