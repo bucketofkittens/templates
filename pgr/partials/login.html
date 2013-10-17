@@ -3,10 +3,10 @@
         <div class="modal_wrapper">
             <div class="header" ng-if="signup">
                <h4>Sing up</h4>
-               <p>Already have an account? <a ng-click="onSignStateChange()">Log in</a></p>
+               <p>Already have an account? <a ng-click="onSignStateChange()">Sign in</a></p>
             </div>
             <div class="header" ng-if="!signup">
-               <h4>Log in</h4>
+               <h4>Sign in</h4>
                <p>Don’t have an account? <a ng-click="onSignStateChange()">Sign up</a> now</p>
             </div>
             <div class="body">
@@ -79,7 +79,7 @@
                             </ng-form>
                         </div>
                         <div class="sign-in" ng-if="!signup">
-                            <p>Or, log in with your PGR account:</p>
+                            <p>Or, sign in with your PGR account:</p>
                             <ng-form id="login_form" name="LoginForm" novalidate class="css-form myForm" >
                                 <p>
                                     <input 
@@ -110,7 +110,7 @@
                                         ng-disabled="LoginForm.$invalid"
                                         ng-click="onSingin()" 
                                         type="button" 
-                                        value="Log in" />
+                                        value="Sign in" />
                                 </p>
                             </ng-form>
                         </div>
