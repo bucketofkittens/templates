@@ -1005,7 +1005,6 @@ function LoginModalController($scope, Sessions, $rootScope, User, Social, $faceb
     };
 
     $scope.$on('fb.auth.authResponseChange', function(data, d) {
-        console.log(d);
         FB.api('/me', function(response) {
             Social.login({}, {email: response.email}, function(data) {
                 $rootScope.$broadcast('onSignin', {guid: data.guid, isSocial: true});
@@ -1127,10 +1126,6 @@ function objToString (obj) {
  * @returns {MainController}
  */
 function MainController($scope, Leagues, User, AuthUser, $rootScope, $location, $timeout) {
-    $scope.viewedUsers = [];
-    
-    $scope.enteredPosition = [];
-
     $scope.opts = {
         layoutMode: 'masonry'
     }
@@ -1149,6 +1144,11 @@ function MainController($scope, Leagues, User, AuthUser, $rootScope, $location, 
         });
     }
 
+    /**
+     * Определяем является пользователь другом или нет
+     * @param  {object} user Пользователь
+     * @return {object}      none
+     */
     $scope.testUser = function(user) {
         if($scope.workspace.user) {
             var frend = $scope.workspace.user.frends.filter(function(data) {
@@ -1163,12 +1163,8 @@ function MainController($scope, Leagues, User, AuthUser, $rootScope, $location, 
                 }
             });
         }
-            
-        if(frend.length > 0) {
-            user.isFrend = true;
-        } else {
-            user.isFrend = false;
-        }
+
+        user.isFrend = frend.length > 0 ? true : false;
 
         return user;
     }
@@ -1183,7 +1179,7 @@ function MainController($scope, Leagues, User, AuthUser, $rootScope, $location, 
     });
 
     $scope.$on('unfollowCallback', function($event, message) {
-        var user = $scope.viewedUsers.filter(function(data) {
+        var user = $scope.users.filter(function(data) {
             if(data.sguid == message.frendId) {
                 return data;
             }
@@ -1194,8 +1190,7 @@ function MainController($scope, Leagues, User, AuthUser, $rootScope, $location, 
     });
 
     $scope.$on('followCallback', function($event, message) {
-        var user = $scope.viewedUsers.filter(function(data) {
-            data = data.shuffle();
+        var user = $scope.users.filter(function(data) {
             if(data.sguid == message.frendId) {
                 return data;
             }
@@ -1260,7 +1255,6 @@ function MainController($scope, Leagues, User, AuthUser, $rootScope, $location, 
         else {
             $rootScope.$broadcast('follow', {userId: AuthUser.get(), frendId: user.sguid, user: user});
         }
-        user = $scope.testUser(user);
     }
 
     /**
@@ -1629,7 +1623,7 @@ function RootController($scope, AuthUser, User, $rootScope, Needs, Social, $cook
                 return data;
             }
         })[0];
-        var index = $rootScope.tmpFollows.indexOf(frend);
+        var index = $scope.tmpFollows.indexOf(frend);
         $scope.tmpFollows.splice(index, 1);
 
         $rootScope.$broadcast('unfollowCallback', {frendId: message.frendId});
