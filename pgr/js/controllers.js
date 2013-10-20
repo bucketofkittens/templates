@@ -1057,14 +1057,6 @@ function FollowController($scope, $rootScope, User, $location, $routeParams, Aut
         }
     }
 
-    $scope.onMouseEnterUser = function(user) {
-        user.show = true;
-    }
-
-    $scope.onMouseLeaveUser = function(user) {
-        //user.show = false;
-    }
-
     $scope.$on('login', function() {
         $scope.setAuthUserData();
     });
@@ -1103,17 +1095,6 @@ function FollowController($scope, $rootScope, User, $location, $routeParams, Aut
     $scope.setAuthUserData();
 }
 
-function objToString (obj) {
-    var tabjson=[];
-    for (var p in obj) {
-        if (obj.hasOwnProperty(p)) {
-            tabjson.push('"'+p +'"'+ ':' + obj[p]);
-        }
-    }  tabjson.push()
-    return '{'+tabjson.join(',')+'}';
-}
-
-
 /**
  * Контроллер главной страницыMainC
  * @param {type} $scope
@@ -1132,7 +1113,7 @@ function MainController($scope, Leagues, User, AuthUser, $rootScope, $location, 
 
     $scope.testFollow = function() {
         angular.forEach($scope.workspace.user.frends, function(value, key) {
-            angular.forEach($scope.viewedUsers, function(v2, k2) {
+            angular.forEach($scope.users, function(v2, k2) {
                 if(v2.sguid == value.user.sguid) {
                     v2.isFrend = true;
                 } else {
@@ -1200,8 +1181,10 @@ function MainController($scope, Leagues, User, AuthUser, $rootScope, $location, 
         }
     });
 
-    
-
+    /**
+     * Забираем список пользователей
+     * @return {object} 
+     */
     $scope.getPublishedUser = function() {
         User.for_main({}, {}, function(data) {
             var users = [];
@@ -1572,7 +1555,7 @@ function RootController($scope, AuthUser, User, $rootScope, Needs, Social, $cook
     });
 
     $scope.$on('unfollow', function($event, message) {
-        if($rootScope.authUserId) {
+        if($scope.authUserId) {
             $scope.authUnFollow(message);
         } else {
             $scope.guestUnFollow(message);
@@ -1580,7 +1563,7 @@ function RootController($scope, AuthUser, User, $rootScope, Needs, Social, $cook
     });
 
     $scope.$on('follow', function($event, message) {
-        if($rootScope.authUserId) {
+        if($scope.authUserId) {
             $scope.authFollow(message);
         } else {
             $scope.guestFollow(message);
@@ -1590,7 +1573,7 @@ function RootController($scope, AuthUser, User, $rootScope, Needs, Social, $cook
     $scope.authFollow = function(message) {
         User.create_friendship({id: message.userId}, {
             friend_guid: message.frendId
-        }, function(response) { 
+        }, function(response) {     
             if(response.success) {
                 $scope.workspace.user.frends.push({sguid: response.message.guid, user: message.user});
                 $rootScope.$broadcast('followCallback', {frendId: message.frendId});
@@ -1610,7 +1593,7 @@ function RootController($scope, AuthUser, User, $rootScope, Needs, Social, $cook
                     return data;
                 }
             })[0];
-            var index = $rootScope.workspace.user.frends.indexOf(frend);
+            var index = $scope.workspace.user.frends.indexOf(frend);
             $scope.workspace.user.frends.splice(index, 1);
 
             $rootScope.$broadcast('unfollowCallback', {frendId: message.frendId});
