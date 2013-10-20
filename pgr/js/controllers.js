@@ -1111,6 +1111,10 @@ function MainController($scope, Leagues, User, AuthUser, $rootScope, $location, 
         layoutMode: 'masonry'
     }
 
+    /**
+     * Проходимся по списку всех пользователей что бы определить друзей
+     * @return {object} 
+     */
     $scope.testFollow = function() {
         angular.forEach($scope.workspace.user.frends, function(value, key) {
             angular.forEach($scope.users, function(v2, k2) {
@@ -1150,15 +1154,22 @@ function MainController($scope, Leagues, User, AuthUser, $rootScope, $location, 
         return user;
     }
 
+    /**
+     * Событие когда мы получили данные авторизированного пользователя
+     * @return {[type]} [description]
+     */
     $scope.$on('authUserGetData', function() {
         $scope.rootUser = $scope.workspace.user;
         $scope.testFollow();
     });
 
-    $scope.$on('logout', function() {
-        $scope.rootUser = null;
-    });
-
+    /**
+     * Событие.
+     * Пользователя удалили из друзей
+     * @param  {[type]} $event  [description]
+     * @param  {[type]} message [description]
+     * @return {[type]}         [description]
+     */
     $scope.$on('unfollowCallback', function($event, message) {
         var user = $scope.users.filter(function(data) {
             if(data.sguid == message.frendId) {
@@ -1170,6 +1181,13 @@ function MainController($scope, Leagues, User, AuthUser, $rootScope, $location, 
         }
     });
 
+    /**
+     * Событие.
+     * Пользователя добавили в друзья
+     * @param  {[type]} $event  [description]
+     * @param  {[type]} message [description]
+     * @return {[type]}         [description]
+     */
     $scope.$on('followCallback', function($event, message) {
         var user = $scope.users.filter(function(data) {
             if(data.sguid == message.frendId) {
@@ -1194,7 +1212,6 @@ function MainController($scope, Leagues, User, AuthUser, $rootScope, $location, 
                 if(value.avatar) {
                     users.push(value);
                 }
-                
             });
             $scope.users = users;
         });

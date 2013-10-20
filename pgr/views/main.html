@@ -1,7 +1,7 @@
 <section id="main_leagues">
 	<div masonry="{isFitWidth: true, columnWidth: 80, transitionDuration: 0}">
-		<div class="masonry-brick league_{{userItem.league.name}}" ng-repeat="userItem in users">
-			<div class="wr" ng-class="{wrs: userItem.showMenu}" >
+		<div ng-class="{wrs: userItem.showMenu}" class="masonry-brick league_{{userItem.league.name}}" ng-repeat="userItem in users">
+			<div class="wr" >
 				<img ng-click="switchState(userItem)" class="repeat-item" ng-src="{{userItem.avatar}}" alt="" err-src="/images/unknown-person.png" />
 				<i>{{userItem.points}}</i>
 				<div class="sub">
