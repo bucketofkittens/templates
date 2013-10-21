@@ -1,11 +1,12 @@
-<section id="main_leagues">
-	<div masonry="{columnWidth: 240, transitionDuration: 0}">
+<section id="main_leagues" msd-wheel="onWheel($event, $delta, $deltaX, $deltaY)">
+	<div isotope-container iso-options="opts" >
 		<div
 			ng-mouseenter="onUserMouseEnter(userItem, $event)"
 			ng-click="onUserClick(userItem, $event)"
 			ng-class="{wrs: userItem.hover}" 
-			class="masonry-brick league_{{userItem.league.name}}" 
-			ng-repeat="userItem in users">
+			class=" league_{{userItem.league.name}}" 
+			ng-repeat="userItem in users"
+			isotope-item>
 			<div class="wr" >
 				<img 
 					ng-click="switchState(userItem)" 
