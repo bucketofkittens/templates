@@ -53,7 +53,7 @@ pgrModule.directive('setWidth', function() {
 
       scope.$watch("userItem.hover", function() {
         if(scope.userItem.hover) {
-          var newSize = $(element).height()*1.5;
+          var newSize = $(window).height()/100*55;
           var oldSize = $(element).height();
           var parentElement = $(element).parent();
           var delta = (oldSize-newSize)/2;
@@ -80,10 +80,13 @@ pgrModule.directive('setWidth', function() {
             parentElement.css("left", "-"+newSize/2+"px");
           }
 
-          scope.userItem.isUpdateSize = true;
+          if(!scope.userItem.isUpdateSize) {
+            scope.userItem.isUpdateSize = true;
+            scope.userItem.oldSize =  oldSize;
+          }
         } else {
           if(scope.userItem.isUpdateSize) {
-            var newSize = $(element).height()/1.5;
+            var newSize = scope.userItem.oldSize;
             var parentElement = $(element).parent();
 
             $(element).width(newSize);

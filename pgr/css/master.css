@@ -79,8 +79,6 @@ body header .social a:last-child{background-position:100% 0}
 #main_leagues{height:100%;position:relative;top:8%;overflow:hidden !important}#main_leagues>div{overflow-x:scroll !important;overflow:hidden !important;transition:all .1s linear;-webkit-transition:all .1s linear;left:0;height:84%}#main_leagues>div>div{overflow:hidden;transition:all .3s linear;-webkit-transition:all .3s linear}#main_leagues>div>div.big{z-index:900}#main_leagues>div>div.big.leftStep{margin-left:0}
 #main_leagues>div>div.big.rightStep{margin-left:-140px}
 #main_leagues>div>div.big.bottomStep{margin-top:-140px}
-#main_leagues>div>div.big.league_ b,#main_leagues>div>div.big.league_10 b,#main_leagues>div>div.big.league_9 b,#main_leagues>div>div.big.league_8 b{font-size:90% !important}
-#main_leagues>div>div.big.league_ i,#main_leagues>div>div.big.league_10 i,#main_leagues>div>div.big.league_9 i,#main_leagues>div>div.big.league_8 i{font-size:90% !important}
 #main_leagues>div>div.big .sub{height:100% !important;opacity:1 !important}
 #main_leagues>div>div.big .wr>img{width:300px !important;height:300px !important}
 #main_leagues>div>div.big i{font-size:160% !important}
