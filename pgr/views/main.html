@@ -3,7 +3,7 @@
 		<div
 			ng-mouseenter="onUserMouseEnter(userItem)"
 			ng-mouseleave="onUserMouseLeave(userItem)"
-			ng-click="onUserClick(userItem)"
+			ng-click="onUserClick(userItem, $event)"
 			ng-class="{wrs: userItem.hover}" 
 			class="masonry-brick league_{{userItem.league.name}}" 
 			ng-repeat="userItem in users">
@@ -15,21 +15,21 @@
 					<ul>
 						<li>
 							<a href="">
-								<img src="/images/i1.png" alt="">
+								<img src="/images/i1.png" alt="" class="navigate" />
 							</a>
 						</li>
 						<li>
 							<a href="">
-								<img src="/images/i2.png" alt="">
+								<img src="/images/i2.png" alt="" class="navigate" />
 							</a>
 						</li>
 						<li>
 							<a ng-if="!userItem.isFrend" ng-click="onFollow(userItem)">
-								<img src="/images/i3.png" alt="">
+								<img src="/images/i3.png" alt="" class="navigate" />
 								<img ng-if="userItem.isFrend" src="/images/i3i.png" alt="">
 							</a>
 							<a ng-if="userItem.isFrend" ng-click="onUnFollow(userItem)">
-								<img src="/images/i3i.png" alt="">
+								<img src="/images/i3i.png" alt="" class="navigate" />
 							</a>
 						</li>
 					</ul>

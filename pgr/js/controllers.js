@@ -1284,10 +1284,13 @@ function MainController($scope, Leagues, User, $rootScope, $location, $timeout, 
     /**
      * Событие клика на пользователе на плитке
      * @param  {object} user 
+     * @param  {object} $event
      * @return {object} 
      */
-    $scope.onUserClick = function(user) {
-        user.hover = true;
+    $scope.onUserClick = function(user, $event) {
+        if(!$event.toElement.classList.contains('navigate')) {
+            user.hover = user.hover ? false : true;
+        }
     }
 }
 
