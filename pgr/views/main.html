@@ -1,6 +1,11 @@
 <section id="main_leagues">
 	<div masonry="{columnWidth: 80, transitionDuration: 0}">
-		<div ng-class="{wrs: userItem.showMenu}" class="masonry-brick league_{{userItem.league.name}}" ng-repeat="userItem in users">
+		<div
+			ng-mouseenter="onUserMouseEnter(userItem)"
+			ng-mouseleave="onUserMouseLeave(userItem)"
+			ng-class="{wrs: userItem.hover}" 
+			class="masonry-brick league_{{userItem.league.name}}" 
+			ng-repeat="userItem in users">
 			<div class="wr" >
 				<img ng-click="switchState(userItem)" class="repeat-item" ng-src="{{userItem.avatar}}" alt="" err-src="/images/unknown-person.png" />
 				<i>{{userItem.points}}</i>
@@ -18,9 +23,12 @@
 							</a>
 						</li>
 						<li>
-							<a ng-click="onFollow($event, userItem)">
-								<img ng-if="!userItem.isFrend" src="/images/i3.png" alt="">
+							<a ng-if="!userItem.isFrend" ng-click="onFollow(userItem)">
+								<img src="/images/i3.png" alt="">
 								<img ng-if="userItem.isFrend" src="/images/i3i.png" alt="">
+							</a>
+							<a ng-if="userItem.isFrend" ng-click="onUnFollow(userItem)">
+								<img src="/images/i3i.png" alt="">
 							</a>
 						</li>
 					</ul>

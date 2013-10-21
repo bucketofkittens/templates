@@ -1106,10 +1106,7 @@ function FollowController($scope, $rootScope, User, $location, $routeParams, Aut
  * @param {type} $timeout
  * @returns {MainController}
  */
-function MainController($scope, Leagues, User, AuthUser, $rootScope, $location, $timeout) {
-    $scope.opts = {
-        layoutMode: 'masonry'
-    }
+function MainController($scope, Leagues, User, $rootScope, $location, $timeout, AuthUser) {
 
     /**
      * Проходимся по списку всех пользователей что бы определить друзей
@@ -1217,54 +1214,71 @@ function MainController($scope, Leagues, User, AuthUser, $rootScope, $location, 
         });
     }
 
+    /**
+     * Забираем список пользователей
+     */
     $scope.getPublishedUser();
     
 
+    /**
+     * Событие перехода к пользователю
+     * @param  {object} user
+     * @return {object}     
+     */
     $scope.onMoveToUser = function(user) {
         $location.path("/profile/"+user.sguid);
     }
 
+    /**
+     * Событие перехода к сравнению
+     * @param  {object} user
+     * @return {object}
+     */
     $scope.onCompareToUser = function(user) {
         $location.path("/profile/"+$scope.rootUser.sguid+"/"+user.sguid);
     }
 
-    $scope.onMouseEnterUser = function(user) {
-        if(!user.dragged) {
-            user.showHint = true;
-            user.isLeave = false;
-
-            $timeout(function() {
-                if(!user.isLeave) {
-                    user.showMenu = true;   
-                }
-            }, 2000);   
-        }
-    }
-
-    $scope.switchState = function(user) {
-        angular.forEach($scope.users, function(value, key){
-            value.showMenu = false;
-        });
-        user.showMenu = user.showMenu ? false : true;
-    }
-
-    $scope.onFollow = function($event, user) {
-        if(user.isFrend) {
-            $rootScope.$broadcast('unfollow', {userId: AuthUser.get(), frendId: user.sguid, user: user});
-        }
-        else {
-            $rootScope.$broadcast('follow', {userId: AuthUser.get(), frendId: user.sguid, user: user});
-        }
+    /**
+     * Событие добавление в друзья
+     * @param  {object} user   
+     * @return {object}        
+     */
+    $scope.onFollow = function(user) {
+        $rootScope.$broadcast('follow', {userId: AuthUser.get(), frendId: user.sguid, user: user});
     }
 
     /**
-     * 
-     * @param  {[type]} $event [description]
-     * @param  {[type]} user   [description]
-     * @return {[type]}        [description]
+     * Событие удаление из друзей
+     * @param  {object} user
+     * @return {object}      
      */
-    $scope.onUnFollow = function($event, user) {
-        $rootScope.$broadcast('unfollow', {userId: AuthUser.get(), frendId: user.sguid});
+    $scope.onUnFollow = function(user) {
+        $rootScope.$broadcast('unfollow', {userId: AuthUser.get(), frendId: user.sguid, user: user});
+    }
+
+    /**
+     * Событие при наведении на элемент плитки
+     * @param  {object} user 
+     * @return {object}      
+     */
+    $scope.onUserMouseEnter = function(user) {
+        user.hovered = true;
+
+        $timeout(function() {
+            user.hover = user.hovered ? true : false;
+        }, 1000);
+    }
+
+    /**
+     * Событие при убирании мышки с элемента
+     * @param  {object} user 
+     * @return {object} 
+     */
+    $scope.onUserMouseLeave = function(user) {
+        angular.forEach($scope.users, function(item, key) {
+            item.hovered = false;
+            item.hover = false;
+        });
     }
 }
 
