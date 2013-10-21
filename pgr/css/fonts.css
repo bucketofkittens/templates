@@ -1,31 +1,17 @@
 @font-face {
    font-family: "Helvetica Neue";
-   src: url('../fonts/947296143-helvetica-neue1.eot');
-   src: url('../fonts/947296143-helvetica-neue1.eot?#iefix') format('embedded-opentype'),
-   url('../fonts/947296143-helvetica-neue1.svg#Helvetica Neue') format('svg'),
-   url('../fonts/947296143-helvetica-neue1.woff') format('woff'),
-   url('../fonts/947296143-helvetica-neue1.ttf') format('truetype');
+   src: url('../fonts/HelveticaNeueCyr-Roman.otf') format("opentype");
    font-weight: normal;
    font-style: normal;
 }
 @font-face {
    font-family: "Helvetica Neue Bold";
-   src: url('../fonts/96557618-helvetica-neue-bold.eot');
-   src: url('../fonts/96557618-helvetica-neue-bold.ttf') format('truetype');
+   src: url('../fonts/HelveticaNeueCyr-Bold.otf') format("opentype");
    font-weight: normal;
    font-style: normal;
-}
- @font-face {
-   font-family: 'Helvetica Neue Light';
-   src: url('../fonts/helveticaneueltpro-lt.eot');
-   src: url('../fonts/helveticaneueltpro-lt.ttf') format('truetype'),
-   url('../fonts/helveticaneueltpro-lt.svg#HelveticaNeueLTPro45Light') format('svg');
 }
 @font-face {
-   font-family: 'Conv_calibri';
-   src: url('../fonts/calibri.eot');
-   src: local('☺'), url('../fonts/calibri.woff') format('woff'), url('../fonts/calibri.ttf') format('truetype'), url('../fonts/calibri.svg') format('svg');
-   font-weight: normal;
-   font-style: normal;
+   font-family: 'Helvetica Neue Light';
+   src: url('../fonts/HelveticaNeueCyr-Light.otf') format("opentype");
 }
 

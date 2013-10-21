@@ -3,6 +3,7 @@
 		<div
 			ng-mouseenter="onUserMouseEnter(userItem)"
 			ng-mouseleave="onUserMouseLeave(userItem)"
+			ng-click="onUserClick(userItem)"
 			ng-class="{wrs: userItem.hover}" 
 			class="masonry-brick league_{{userItem.league.name}}" 
 			ng-repeat="userItem in users">

@@ -532,8 +532,8 @@ function UserController($scope, $route, $routeParams, User, Needs, Professions, 
         );
     }
 
-    if($rootScope.workspace.user) {
-        $scope.authUser = $rootScope.workspace.user;
+    if($scope.workspace && $scope.workspace.user) {
+        $scope.authUser = $scope.workspace.user;
         $scope.testFollow();
     }
 }
@@ -1097,13 +1097,13 @@ function FollowController($scope, $rootScope, User, $location, $routeParams, Aut
 
 /**
  * Контроллер главной страницыMainC
- * @param {type} $scope
- * @param {type} Leagues
- * @param {type} User
- * @param {type} AuthUser
- * @param {type} $rootScope
- * @param {type} $location
- * @param {type} $timeout
+ * @param {object} $scope
+ * @param {object} Leagues
+ * @param {object} User
+ * @param {object} AuthUser
+ * @param {object} $rootScope
+ * @param {object} $location
+ * @param {object} $timeout
  * @returns {MainController}
  */
 function MainController($scope, Leagues, User, $rootScope, $location, $timeout, AuthUser) {
@@ -1279,6 +1279,15 @@ function MainController($scope, Leagues, User, $rootScope, $location, $timeout, 
             item.hovered = false;
             item.hover = false;
         });
+    }
+
+    /**
+     * Событие клика на пользователе на плитке
+     * @param  {object} user 
+     * @return {object} 
+     */
+    $scope.onUserClick = function(user) {
+        user.hover = true;
     }
 }
 
