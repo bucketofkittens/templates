@@ -1323,10 +1323,7 @@ function MainController($scope, Leagues, User, $rootScope, $location, $timeout, 
      * @type {Object}
      */
     $scope.opts = {
-        layoutMode: "masonryHorizontal",
-        masonryHorizontal: {
-            rowHeight: 80
-        }
+        layoutMode: "masonryHorizontal"
     };
 
     /**
@@ -1338,13 +1335,13 @@ function MainController($scope, Leagues, User, $rootScope, $location, $timeout, 
      * @return {object}         [description]
      */
     $scope.onWheel = function($event, $delta, $deltaX, $deltaY) {
-        var usersCont = $("#main_leagues > div");
         var step = $event.originalEvent && $event.originalEvent.wheelDeltaY ? $event.originalEvent.wheelDeltaY : $event.deltaY * 40;
 
-        usersCont.css("left", parseInt(usersCont.css("left").replace("px", "")) + step);
+        if(!$scope.scrollDelta) {
+            $scope.scrollDelta = 0;
+        }
+        $scope.scrollDelta = $scope.scrollDelta + step;
     }
-
-    $("#main_leagues > div").height($(window).height()/1.2);
 }
 
 /** Контроллер графика */

@@ -1,19 +1,14 @@
 <section id="main_leagues" msd-wheel="onWheel($event, $delta, $deltaX, $deltaY)">
-	<div isotope-container iso-options="opts" >
+	<div isotope-container iso-options="opts" ng-style="{left: scrollDelta}" >
 		<div
 			ng-mouseenter="onUserMouseEnter(userItem, $event)"
 			ng-mouseleave="onUserMouseLeave(userItem, $event)"
 			ng-click="onUserClick(userItem, $event)"
-			ng-class="{wrs: userItem.hover}" 
+			ng-class="{big: userItem.hover}" 
 			class=" league_{{userItem.league.name}}" 
 			ng-repeat="userItem in users"
-			isotope-item>
-			<div class="wr" >
-				<img 
-					ng-click="switchState(userItem)" 
-					class="repeat-item" 
-					ng-src="{{userItem.avatar}}" 
-					alt="" />
+			isotope-item >
+			<div set-width class="wr" back-img="{{userItem.avatar}}" ng-click="switchState(userItem)" >
 				<i>{{userItem.points}}</i>
 				<div class="sub">
 					<b>{{userItem.name}} <br /><s>{{userItem.league.name}} league</s></b>
