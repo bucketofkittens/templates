@@ -1274,10 +1274,18 @@ function MainController($scope, Leagues, User, $rootScope, $location, $timeout, 
                         }
                     });
                     user.hover = user.hovered ? true : false;
-                    $scope.fixPosition_(user, $event);    
                 }
-            }, 1000);
+            }, $scope.showTick);
         }
+    }
+
+    /**
+     * 
+     * @param  {object} user 
+     * @return {object}      
+     */
+    $scope.onUserMouseLeave = function(user, $event) {
+        user.hovered = false;
     }
 
     /**
@@ -1295,27 +1303,6 @@ function MainController($scope, Leagues, User, $rootScope, $location, $timeout, 
                 }
             });
             user.hover = user.hover ? false : true;
-            $scope.fixPosition_(user, $event);
-        }
-    }
-
-    /**
-     * Добавляем классы для фиксирования позиции элементов
-     * @param  {object} user   
-     * @param  {object} $event 
-     * @return {object}        
-     */
-    $scope.fixPosition_ = function(user, $event) {
-        if($event.currentTarget.offsetLeft < $scope.maxWidth/2 && user.hover) {
-            $($event.currentTarget).addClass("leftStep");
-        }
-
-        if($event.currentTarget.offsetTop + $scope.maxWidth > $(window).height() && user.hover) {
-            $($event.currentTarget).addClass("bottomStep");
-        }
-
-        if($event.currentTarget.offsetLeft + $scope.maxWidth > $(window).width() && user.hover) {
-            $($event.currentTarget).addClass("rightStep");
         }
     }
 
@@ -1325,13 +1312,31 @@ function MainController($scope, Leagues, User, $rootScope, $location, $timeout, 
      */
     $scope.maxWidth = 300; 
 
+    /**
+     * Через сколько минисекунд картинка становится большой
+     * @type {Number}
+     */
+    $scope.showTick = 2000;
+
+    /**
+     * Настройки masonry
+     * @type {Object}
+     */
     $scope.opts = {
         layoutMode: "masonryHorizontal",
         masonryHorizontal: {
             rowHeight: 80
-          }
+        }
     };
 
+    /**
+     * Событие скроллинга мышкой
+     * @param  {object} $event  [description]
+     * @param  {Number} $delta  [description]
+     * @param  {Number} $deltaX [description]
+     * @param  {Number} $deltaY [description]
+     * @return {object}         [description]
+     */
     $scope.onWheel = function($event, $delta, $deltaX, $deltaY) {
         var usersCont = $("#main_leagues > div");
         var step = $event.originalEvent && $event.originalEvent.wheelDeltaY ? $event.originalEvent.wheelDeltaY : $event.deltaY * 40;

@@ -2,6 +2,7 @@
 	<div isotope-container iso-options="opts" >
 		<div
 			ng-mouseenter="onUserMouseEnter(userItem, $event)"
+			ng-mouseleave="onUserMouseLeave(userItem, $event)"
 			ng-click="onUserClick(userItem, $event)"
 			ng-class="{wrs: userItem.hover}" 
 			class=" league_{{userItem.league.name}}" 
