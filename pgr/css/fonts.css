@@ -11,19 +11,14 @@
 @font-face {
    font-family: "Helvetica Neue Bold";
    src: url('../fonts/96557618-helvetica-neue-bold.eot');
-   src: url('../fonts/96557618-helvetica-neue-bold.eot?#iefix') format('embedded-opentype'),
-   url('../fonts/96557618-helvetica-neue-bold.svg#Helvetica Neue') format('svg'),
-   url('../fonts/96557618-helvetica-neue-bold.woff') format('woff'),
-   url('../fonts/96557618-helvetica-neue-bold.ttf') format('truetype');
+   src: url('../fonts/96557618-helvetica-neue-bold.ttf') format('truetype');
    font-weight: normal;
    font-style: normal;
 }
  @font-face {
    font-family: 'Helvetica Neue Light';
    src: url('../fonts/helveticaneueltpro-lt.eot');
-   src: url('../fonts/helveticaneueltpro-lt.eot') format('embedded-opentype'),
-   url('../fonts/helveticaneueltpro-lt.woff') format('woff'),
-   url('../fonts/helveticaneueltpro-lt.ttf') format('truetype'),
+   src: url('../fonts/helveticaneueltpro-lt.ttf') format('truetype'),
    url('../fonts/helveticaneueltpro-lt.svg#HelveticaNeueLTPro45Light') format('svg');
 }
 @font-face {

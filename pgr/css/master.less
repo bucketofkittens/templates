@@ -41,6 +41,7 @@ body {
         top: 0%;
         z-index: 120;
         overflow: hidden;
+        position: fixed;
         #avatar {
             float: right;
             height: 90%;
@@ -185,6 +186,7 @@ body {
     background: #f9f9f9;
     min-height: 88%;
     overflow: hidden;
+    padding-top: 3%;
     /** main page **/
     .viewch {
         text-align: center;
@@ -907,6 +909,12 @@ body {
                         height: 300px !important;
                     }
                 }
+                i {
+                    font-size: 160% !important;
+                }
+                b {
+                    font-size: 160% !important;
+                }
             }
             .wr {
                 position: relative;
@@ -925,7 +933,7 @@ body {
                     background: rgba(0, 0, 0, 0.48);
                     text-align: right;
                     color: #ffffff;
-                    line-height: 100%;
+                    line-height: 120%;
                     font-size: 160%;
                     padding: 4% 0% 0% 0%;
                     font-family: 'Helvetica Neue Light';
@@ -953,7 +961,6 @@ body {
                             display: inline-block;
                             width: 20%;
                             img {
-                                height: 90%;
                                 width: 90%;
                                 display: inline-block;
                             }
@@ -981,49 +988,29 @@ body {
             &.league_, &.league_10, &.league_9, &.league_8 {
                 width: 80px;
                 height: 80px;
-                img {
+                .wr > img {
                     width: 80px;
                     height: 80px;
                 }
                 i {
-                    font-size: 60% !important;
+                    font-size: 60%;
                 }
                 b {
-                    font-size: 80% !important;
-                }
-                ul {
-                    padding-top: 1% !important;
-                    li {
-                        width: 20% !important;
-                        img {
-                            height: 100% !important;
-                            width: 100% !important;
-                        }
-                    }
+                    font-size: 80%;
                 }
             }
             &.league_7, &.league_6, &.league_5 {
                 width: 160px;
                 height: 160px;
-                img {
+                .wr > img {
                     width: 160px;
                     height: 160px;
                 }
                 i {
-                    font-size: 120% !important;
+                    font-size: 120%;
                 }
                 b {
-                    font-size: 130% !important;
-                }
-                ul {
-                    padding-top: 6% !important;
-                    li {
-                        width: 20% !important;
-                        img {
-                            height: 80% !important;
-                            width: 80% !important;
-                        }
-                    }
+                    font-size: 130%;
                 }
             }
             img {
