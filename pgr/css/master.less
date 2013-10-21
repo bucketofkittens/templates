@@ -896,9 +896,11 @@ body {
 /** main_leagues **/
 #main_leagues {
     height: 100%;
+    overflow: hidden !important;
+    
     > div {
-        overflow: visible !important;
-        overflow: visible !important;
+        overflow-x: scroll !important;
+        overflow: hidden !important;
         transition: all 0.1s linear;
         -webkit-transition: all 0.1s linear;
         left: 0px;
