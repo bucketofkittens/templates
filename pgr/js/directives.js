@@ -68,7 +68,13 @@ pgrModule.directive('setWidth', function() {
           parentElement.css("top", delta);
 
           if(parentElement.offset().left < newSize / 2) {
-            parentElement.css("left", newSize/2);
+            parentElement.css("left", 0);
+          }
+          if(parentElement.offset().top < newSize / 2) {
+            parentElement.css("top", 0);
+          }
+          if(parentElement.offset().top + newSize >  $(window).height()) {
+            parentElement.css("top", "-"+newSize/3+"px");
           }
           if(parentElement.offset().left + newSize > $(window).width()) {
             parentElement.css("left", "-"+newSize/2+"px");

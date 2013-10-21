@@ -12,7 +12,7 @@ body header ul li a.current{color:#86b3ef}
 body header .social{width:12%;height:50%;vertical-align:top;display:inline-block;position:absolute;top:10%;right:0;text-decoration:none}body header .social a{background:url("../images/icons.png") center center no-repeat;width:15%;height:100%;margin:5% 7%;display:inline-block;overflow:hidden;background-position:50% 0;background-size:500% 65%}body header .social a:first-child{background-position:0 0}
 body header .social a:last-child{background-position:100% 0}
 .hiddenScroll #content{height:100%}.hiddenScroll #content .content_wrap{height:100%}
-#content{position:relative;width:100%;background:#f9f9f9;min-height:100%;margin-top:3.5%;}#content .viewch{text-align:center;transform:skewX(angle);font-size:80%;color:#fff;padding:8px 5px 2px 5px;background:#028dda;border-top:1px solid #fff;border-left:1px solid #fff;border-right:1px solid #ccc;border-bottom:1px solid #ccc;position:fixed;top:8%;right:0;z-index:310}
+#content{position:relative;width:100%;background:#f9f9f9;min-height:100%;}#content .viewch{text-align:center;transform:skewX(angle);font-size:80%;color:#fff;padding:8px 5px 2px 5px;background:#028dda;border-top:1px solid #fff;border-left:1px solid #fff;border-right:1px solid #ccc;border-bottom:1px solid #ccc;position:fixed;top:8%;right:0;z-index:310}
 #content .who img{max-width:15%;height:auto;border:1px solid #000;display:inline-block;position:fixed;top:50%;left:50%;margin:-7% 0 0 -7%;cursor:pointer;box-shadow:0 0 30px 1px #000;border:1px solid #666}
 #content .scroll{font-size:100%;color:#333;text-decoration:none;position:fixed;bottom:3%;left:50%;margin-left:-3%;z-index:110;line-height:150%;text-shadow:0 0 2px #fff}
 #content .promain{margin-left:1%;width:48%;background:#fff;border:1px solid #ccc;border-bottom:none;box-shadow: 0 0 30px 1px rgba(0,0,0,0.3);z-index:3;position:relative;display:inline-block}
@@ -76,7 +76,7 @@ body header .social a:last-child{background-position:100% 0}
 #content table#graphs tr:last-child td{border-top:none}
 #modal-shadow{position:fixed;left:0;top:0;width:100%;height:100%;background:rgba(0,0,0,0.5);display:none;z-index:2500;text-align:center}#modal-shadow.show{display:block}
 #modal-shadow img{display:inline-block;position:relative;z-index:9999;margin-top:20%}
-#main_leagues{height:100%;overflow:hidden !important}#main_leagues>div{overflow-x:scroll !important;overflow:hidden !important;transition:all .1s linear;-webkit-transition:all .1s linear;left:0;height:83%}#main_leagues>div>div{overflow:hidden;transition:all .3s linear;-webkit-transition:all .3s linear}#main_leagues>div>div.big{z-index:900}#main_leagues>div>div.big.leftStep{margin-left:0}
+#main_leagues{height:100%;position:relative;top:8%;overflow:hidden !important}#main_leagues>div{overflow-x:scroll !important;overflow:hidden !important;transition:all .1s linear;-webkit-transition:all .1s linear;left:0;height:84%}#main_leagues>div>div{overflow:hidden;transition:all .3s linear;-webkit-transition:all .3s linear}#main_leagues>div>div.big{z-index:900}#main_leagues>div>div.big.leftStep{margin-left:0}
 #main_leagues>div>div.big.rightStep{margin-left:-140px}
 #main_leagues>div>div.big.bottomStep{margin-top:-140px}
 #main_leagues>div>div.big.league_ b,#main_leagues>div>div.big.league_10 b,#main_leagues>div>div.big.league_9 b,#main_leagues>div>div.big.league_8 b{font-size:90% !important}
