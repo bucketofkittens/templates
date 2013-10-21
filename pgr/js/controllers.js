@@ -1261,24 +1261,23 @@ function MainController($scope, Leagues, User, $rootScope, $location, $timeout, 
      * @param  {object} user 
      * @return {object}      
      */
-    $scope.onUserMouseEnter = function(user) {
-        user.hovered = true;
+    $scope.onUserMouseEnter = function(user, $event) {
+        if(!user.hover) {
+            user.hovered = true;
 
-        $timeout(function() {
-            user.hover = user.hovered ? true : false;
-        }, 1000);
-    }
-
-    /**
-     * Событие при убирании мышки с элемента
-     * @param  {object} user 
-     * @return {object} 
-     */
-    $scope.onUserMouseLeave = function(user) {
-        angular.forEach($scope.users, function(item, key) {
-            item.hovered = false;
-            item.hover = false;
-        });
+            $timeout(function() {
+                if(user.hovered) {
+                    angular.forEach($scope.users, function(item, key) {
+                        if(item != user) {
+                            item.hovered = false;
+                            item.hover = false;     
+                        }
+                    });
+                    user.hover = user.hovered ? true : false;
+                    $scope.fixPosition_(user, $event);    
+                }
+            }, 1000);
+        }
     }
 
     /**
@@ -1289,9 +1288,28 @@ function MainController($scope, Leagues, User, $rootScope, $location, $timeout, 
      */
     $scope.onUserClick = function(user, $event) {
         if(!$event.toElement.classList.contains('navigate')) {
+            angular.forEach($scope.users, function(item, key) {
+                if(item != user) {
+                    item.hovered = false;
+                    item.hover = false;    
+                }
+            });
             user.hover = user.hover ? false : true;
+            $scope.fixPosition_(user, $event);
         }
     }
+
+    $scope.fixPosition_ = function(user, $event) {
+        if($event.currentTarget.offsetLeft < $scope.maxWidth/2 && user.hover) {
+            $($event.currentTarget).addClass("leftStep");
+        }
+
+        if($event.currentTarget.offsetTop + $scope.maxWidth > $(window).height() && user.hover) {
+            $($event.currentTarget).addClass("bottomStep");
+        }
+    }
+
+    $scope.maxWidth = 300;
 }
 
 /** Контроллер графика */

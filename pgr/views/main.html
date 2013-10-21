@@ -1,14 +1,17 @@
 <section id="main_leagues">
-	<div masonry="{columnWidth: 80, transitionDuration: 0}">
+	<div masonry="{columnWidth: 240, transitionDuration: 0}">
 		<div
-			ng-mouseenter="onUserMouseEnter(userItem)"
-			ng-mouseleave="onUserMouseLeave(userItem)"
+			ng-mouseenter="onUserMouseEnter(userItem, $event)"
 			ng-click="onUserClick(userItem, $event)"
 			ng-class="{wrs: userItem.hover}" 
 			class="masonry-brick league_{{userItem.league.name}}" 
 			ng-repeat="userItem in users">
 			<div class="wr" >
-				<img ng-click="switchState(userItem)" class="repeat-item" ng-src="{{userItem.avatar}}" alt="" err-src="/images/unknown-person.png" />
+				<img 
+					ng-click="switchState(userItem)" 
+					class="repeat-item" 
+					ng-src="{{userItem.avatar}}" 
+					alt="" />
 				<i>{{userItem.points}}</i>
 				<div class="sub">
 					<b>{{userItem.name}} <br /><s>{{userItem.league.name}} league</s></b>

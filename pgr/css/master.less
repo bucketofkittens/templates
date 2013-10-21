@@ -184,9 +184,8 @@ body {
     position: relative;
     width: 100%;
     background: #f9f9f9;
-    min-height: 100%;
-    overflow: hidden;
-    padding-top: 3%;
+    min-height: 88%;
+    margin-top: 3.5%;
     /** main page **/
     .viewch {
         text-align: center;
@@ -886,7 +885,6 @@ body {
 /** main_leagues **/
 #main_leagues {
     > div {
-        height: 80%;
         > div {
             float: left;
             width: 240px;
@@ -897,9 +895,15 @@ body {
             &.wrs {
                 width: 300px !important;
                 height: 300px !important;
-                margin-top: -50px;
-                margin-left: -50px;
-                z-index: 200;
+                margin-top: -70px;
+                margin-left: -70px;
+                z-index: 900;
+                &.leftStep {
+                    margin-left: 0px;
+                }
+                &.bottomStep {
+                    margin-top: -140px;
+                }
                 .sub { 
                     display: block !important;
                 }
