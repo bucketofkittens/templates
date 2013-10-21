@@ -54,20 +54,40 @@ pgrModule.directive('setWidth', function() {
       scope.$watch("userItem.hover", function() {
         if(scope.userItem.hover) {
           var newSize = $(element).height()*1.5;
+          var oldSize = $(element).height();
+          var parentElement = $(element).parent();
+          var delta = (oldSize-newSize)/2;
+
           $(element).width(newSize);
           $(element).height(newSize);
 
-          $(element).parent().width(newSize);
-          $(element).parent().height(newSize);
+          parentElement.width(newSize);
+          parentElement.height(newSize);
+
+          parentElement.css("left", delta);
+          parentElement.css("top", delta);
+
+          if(parentElement.offset().left < newSize / 2) {
+            parentElement.css("left", newSize/2);
+          }
+          if(parentElement.offset().left + newSize > $(window).width()) {
+            parentElement.css("left", "-"+newSize/2+"px");
+          }
+
           scope.userItem.isUpdateSize = true;
         } else {
           if(scope.userItem.isUpdateSize) {
             var newSize = $(element).height()/1.5;
+            var parentElement = $(element).parent();
+
             $(element).width(newSize);
             $(element).height(newSize);
 
-            $(element).parent().width(newSize);
-            $(element).parent().height(newSize);  
+            parentElement.width(newSize);
+            parentElement.height(newSize);  
+
+            parentElement.css("left", 0);
+            parentElement.css("top", 0);
           }
         }
       });
