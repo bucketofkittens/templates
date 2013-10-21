@@ -1299,6 +1299,12 @@ function MainController($scope, Leagues, User, $rootScope, $location, $timeout, 
         }
     }
 
+    /**
+     * Добавляем классы для фиксирования позиции элементов
+     * @param  {object} user   
+     * @param  {object} $event 
+     * @return {object}        
+     */
     $scope.fixPosition_ = function(user, $event) {
         if($event.currentTarget.offsetLeft < $scope.maxWidth/2 && user.hover) {
             $($event.currentTarget).addClass("leftStep");
@@ -1307,8 +1313,16 @@ function MainController($scope, Leagues, User, $rootScope, $location, $timeout, 
         if($event.currentTarget.offsetTop + $scope.maxWidth > $(window).height() && user.hover) {
             $($event.currentTarget).addClass("bottomStep");
         }
+
+        if($event.currentTarget.offsetLeft + $scope.maxWidth > $(window).width() && user.hover) {
+            $($event.currentTarget).addClass("rightStep");
+        }
     }
 
+    /**
+     * Максимальная ширина плитки.
+     * @type {Number}
+     */
     $scope.maxWidth = 300;
 }
 
