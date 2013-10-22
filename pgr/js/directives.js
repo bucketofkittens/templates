@@ -28,21 +28,21 @@ pgrModule.directive('setWidth', function() {
       var getSize = 0;
       var pElement = $(element).parent().parent();
       var parentElement = $(element).parent();
-      getSize = pElement.height() / 2;
+      getSize = pElement.height() / 3;
 
       if(
         !scope.userItem.league || 
         scope.userItem.league.name == "10" ||
         scope.userItem.league.name == "9" ||
         scope.userItem.league.name == "8") {
-        getSize = pElement.height() / 6;
+        getSize = getSize / 2;
       }
 
       if(
         scope.userItem.league.name == "7" || 
         scope.userItem.league.name == "6" ||
         scope.userItem.league.name == "5") {
-        getSize = pElement.height() / 3;
+        getSize = getSize / 1.5;
       } 
 
       $(element).width(getSize);
@@ -53,7 +53,7 @@ pgrModule.directive('setWidth', function() {
 
       scope.$watch("userItem.hover", function() {
         if(scope.userItem.hover) {
-          var newSize = $(window).height()/100*55;
+          var newSize = $(window).height()/100*40;
           var oldSize = $(element).height();
           var parentElement = $(element).parent();
           var delta = (oldSize-newSize)/2;
