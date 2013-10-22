@@ -228,45 +228,27 @@ function QuickUserChangeCtrl($scope, User, AuthUser, $rootScope, $location) {
 
 /**
  * Контроллер  профиля
- * @param {type} $scope
- * @param {type} $route
- * @param {type} $routeParams
- * @param {type} User
- * @param {type} Needs
- * @param {type} Professions
- * @param {type} States
- * @returns {undefined}
+ * @param {object} $scope
+ * @param {object} $route
+ * @param {object} $routeParams
+ * @param {object} User
+ * @param {object} Needs
+ * @param {object} Professions
+ * @param {object} States
+ * @returns {object}
  */
 function UserController($scope, $route, $routeParams, User, Needs, Professions, States, $http, NeedsByUser, $rootScope, GoalsByUser, AuthUser, Leagues, $location, $window) {
     $scope.user = null;
     $scope.newImage = null;
-    
-    $scope.authUserId = AuthUser.get();
 
-    $scope.currentUserId = '';
-
-    $scope.states = $scope.workspace.states;
-    $scope.professions = $scope.workspace.professions;
-
-    $scope.$on('statesGet', function() {
-        $scope.states = $scope.workspace.states;
-    });
-    
-    $scope.$on('professionsGet', function() {
-        $scope.professions = $scope.workspace.professions;
-    });
+    $scope.userId = $routeParams.userId1;
 
     $scope.$on('authUserIdChange', function() {
-        $scope.authUserId = AuthUser.get();
-    });
+        $scope.userId = AuthUser.get();
+    }); 
 
-    $scope.$watch($scope.currentUserId, function (newVal, oldVal, scope) {
+    $scope.$watch($scope.userId, function (newVal, oldVal, scope) {
         $scope.getUserInfo();
-        $scope.testFollow();
-    });
-
-    $scope.$on('authUserGetData', function() {
-        $scope.authUser = $rootScope.workspace.user;
         $scope.testFollow();
     });
 
@@ -281,18 +263,27 @@ function UserController($scope, $route, $routeParams, User, Needs, Professions, 
      * @return {[type]} [description]
      */
     $scope.getUserInfo = function() {
-        $scope.getUserByServer();
-    }
-
-    $scope.getUserByServer = function() {
-        if(!isNaN(parseInt($scope.currentUserId))) {
-            User.query({id: $scope.currentUserId}, function(data) {
+        if(!isNaN(parseInt($scope.userId))) {
+            User.query({id: $scope.userId}, function(data) {
                 $scope.user = data;
+
+                $scope.user.points = parseInt($scope.user.points);
+
+                /**
+                 * Указваем формат дня рождения
+                 */
                 if($scope.user.birthday) {
-                    var dayWrapper = moment($scope.user.birthday);
-                    $scope.user.birthday = dayWrapper.format("DD/MM/YYYY");
+                    $scope.user.birthday = moment($scope.user.birthday).format("DD/MM/YYYY");
                 }
-                $scope.getLegueUsers();
+                
+                /**
+                 * Забираем список друзей пользователя
+                 */
+                if($scope.user.league) {
+                    User.by_league({league_guid: $scope.user.league.sguid}, {}, function(data) {
+                        $scope.user.league.users = data;
+                    });
+                }
                 
                 $rootScope.$broadcast('getUserInfoToNeeds', {
                     user: $scope.user,
@@ -302,14 +293,6 @@ function UserController($scope, $route, $routeParams, User, Needs, Professions, 
                 $rootScope.$broadcast('getSelectedUserData', {
                     user: $scope.user
                 });
-            });
-        }
-    }
-
-    $scope.getLegueUsers = function() {
-        if($scope.user.league) {
-            User.by_league({league_guid: $scope.user.league.sguid}, {}, function(data) {
-                $scope.user.league.users = data;
             });
         }
     }
@@ -338,8 +321,8 @@ function UserController($scope, $route, $routeParams, User, Needs, Professions, 
     
 
     $scope.testFollow = function() {
-        if($scope.currentUserId && $rootScope.workspace.user) {
-            var item = $rootScope.workspace.user.frends.filter(function(item) {
+        if($scope.currentUserId && $scope.workspace.user) {
+            var item = $scope.workspace.user.frends.filter(function(item) {
                 if(item.user.sguid == $scope.currentUserId) { return item; }
             });
             if(item.length > 0) {
@@ -401,8 +384,7 @@ function UserController($scope, $route, $routeParams, User, Needs, Professions, 
      */
     this.generateAgesArray = function(min, max) {
         var i = min, ret = [];
-        for(i = min; i
-    <= max; i++){
+        for(i = min; i <= max; i++){
             ret.push(i);
         }
         return ret;
