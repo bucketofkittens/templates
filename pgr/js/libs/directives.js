@@ -35,14 +35,14 @@ pgrModule.directive('setWidth', function() {
         scope.userItem.league.name == "10" ||
         scope.userItem.league.name == "9" ||
         scope.userItem.league.name == "8") {
-        getSize = getSize / 2;
+        getSize = getSize / 3;
       }
 
       if(
         scope.userItem.league.name == "7" || 
         scope.userItem.league.name == "6" ||
         scope.userItem.league.name == "5") {
-        getSize = getSize / 1.5;
+        getSize = getSize / 3 * 2;
       } 
 
       $(element).width(getSize);

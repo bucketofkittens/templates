@@ -3,6 +3,15 @@ module.exports = function(grunt) {
 
     // Задачи
     grunt.initConfig({
+    	concat_css: {
+		    options: {
+		      // Task-specific options go here.
+		    },
+		    all: {
+		      src: ["css/*.css"],
+		      dest: "build/style.css"
+		    },
+		},
         // Склеиваем
         concat: {
             main: {
@@ -27,6 +36,12 @@ module.exports = function(grunt) {
                 dest: 'build/scripts.js'
             }
         },
+        watch: {
+		    concat: {
+		        files: '<%= concat.main.src %>',
+		        tasks: ['concat', 'concat_css']
+		    }
+		},
         // Сжимаем
         uglify: {
             main: {
@@ -35,12 +50,17 @@ module.exports = function(grunt) {
                     'build/scripts.min.js': '<%= concat.main.dest %>'
                 }
             }
-        }
+        },
+        jshint: {
+		    options: {
+		        jshintrc: '.jshintrc'
+		    },
+		    files: 'js/libs/*.js'
+		}
     });
 
     // Загрузка плагинов, установленных с помощью npm install
-    grunt.loadNpmTasks('grunt-contrib-concat');
-    grunt.loadNpmTasks('grunt-contrib-uglify');
+    require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
 
     // Задача по умолчанию
     grunt.registerTask('default', ['concat', 'uglify']);

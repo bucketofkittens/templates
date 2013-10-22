@@ -1029,6 +1029,15 @@ function ContentController($scope, $rootScope, $route, $location) {
     
 }
 
+/**
+ * Контроллер панели друзей
+ * @param {object} $scope       
+ * @param {object} $rootScope   
+ * @param {object} User         
+ * @param {object} $location   
+ * @param {object} $routeParams 
+ * @param {object} AuthUser     
+ */
 function FollowController($scope, $rootScope, User, $location, $routeParams, AuthUser) {
     $scope.compareState = 1;
     
@@ -1044,13 +1053,11 @@ function FollowController($scope, $rootScope, User, $location, $routeParams, Aut
         }
     };
 
+    /**
+     * Получаем список друзей. Или временный или же из массива пользователя.
+     */
     $scope.setAuthUserData = function() {
-        $scope.isAuth = $scope.workspace.user && $scope.workspace.user.sguid ? true : false;
-        if($scope.isAuth) {
-            $scope.rootUser = {
-                sguid: $scope.workspace.user.sguid,
-                avatar: $scope.workspace.user.avatar
-            };
+        if($scope.workspace.user && $scope.workspace.user.sguid) {
             $scope.frends = $scope.workspace.user.frends;
         } else {
             $scope.frends = $scope.tmpFollows;
@@ -1066,8 +1073,6 @@ function FollowController($scope, $rootScope, User, $location, $routeParams, Aut
     });
 
     $scope.$on('logout', function() {
-        $scope.rootUser = null;
-        $scope.isAuth = false;
         $scope.frends = [];
     });
 
@@ -1092,6 +1097,9 @@ function FollowController($scope, $rootScope, User, $location, $routeParams, Aut
         
     }
 
+    /**
+     * Забираем информацию о пользователю
+     */
     $scope.setAuthUserData();
 }
 

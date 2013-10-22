@@ -1,12 +1,26 @@
-<section id="follow_tab" ng-if="frends.length > 0" ng-class="{relative: onRelative, fixed: controller == '_'}" >
-	<img class="fuck" src="/images/f.png" alt="" />
-	<ul>
-		<li ng-if="isAuth">
-			<img ng-click="onCompare(rootUser)" ng-src="{{rootUser.avatar}}" err-src="/images/unknown-person.png" />
-		</li>
-		<li ng-class="{show: userItem.user.show}" ng-mouseleave="onMouseLeaveUser(userItem.user)" ng-click="onMouseEnterUser(userItem.user)" ng-mouseenter="onMouseEnterUser(userItem.user)" ng-repeat="userItem in frends">
-			<img ng-click="onCompare(userItem.user)" ng-src="{{userItem.user.avatar}}" alt="" err-src="/images/unknown-person.png" />
-		</li>
-	</ul>
-	<a ng-click="onMoveToUser()"></a>
+<section ng-controller="FollowController" >
+	<div id="follow_tab" ng-if="frends.length > 0">
+		<img class="fuck" src="/images/f.png" alt="" />
+		<ul>
+			<li ng-if="workspace.user && workspace.user.sguid">
+				<img 
+					ng-click="onCompare(workspace.user)" 
+					ng-src="{{workspace.user.avatar}}" 
+					err-src="/images/unknown-person.png" />
+			</li>
+			<li 
+				ng-class="{show: userItem.user.show}" 
+				ng-mouseleave="onMouseLeaveUser(userItem.user)" 
+				ng-click="onMouseEnterUser(userItem.user)" 
+				ng-mouseenter="onMouseEnterUser(userItem.user)" 
+				ng-repeat="userItem in frends">
+				<img 
+					ng-click="onCompare(userItem.user)" 
+					ng-src="{{userItem.user.avatar}}" 
+					alt="" 
+					err-src="/images/unknown-person.png" />
+			</li>
+		</ul>
+		<a ng-click="onMoveToUser()"></a>
+	</div>
 </section>
