@@ -38,7 +38,6 @@ var pgrModule = angular.module(
 		'view-segment', 
 		'ngTouch', 
 		'ngFacebook', 
-		'$strap.directives',
 		'iso.config',
         'iso.directives',
         'iso.services',
