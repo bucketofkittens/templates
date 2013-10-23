@@ -24,6 +24,7 @@ pgrModule.directive('backImg', function() {
 
 pgrModule.directive('setWidth', function() {
   return {
+    priority: 0,
     link: function(scope, element, attrs) {
       var getSize = 0;
       var pElement = $(element).parent().parent();
@@ -48,13 +49,13 @@ pgrModule.directive('setWidth', function() {
       $(element).width(getSize);
       $(element).height(getSize);
 
-      $(element).parent().width(getSize);
-      $(element).parent().height(getSize);
+      parentElement.width(getSize);
+      parentElement.height(getSize);
 
       setTimeout(function() {
-        $(element).parent().parent().isotope('reLayout');
-        $(element).parent().addClass("show");
-      }, 100);
+        parentElement.addClass("show");
+        pElement.isotope( 'insert', parentElement);
+      }, randomRange(200, 2000));
 
       scope.$watch("userItem.hover", function() {
         if(scope.userItem.hover) {
@@ -62,13 +63,13 @@ pgrModule.directive('setWidth', function() {
           var oldSize = $(element).height();
           var parentElement = $(element).parent();
           var delta = (oldSize-newSize)/2;
+          $(parentElement).addClass("full-animate");
 
           $(element).width(newSize);
           $(element).height(newSize);
 
           parentElement.width(newSize);
           parentElement.height(newSize);
-
           parentElement.css("left", delta);
           parentElement.css("top", delta);
 
@@ -108,3 +109,10 @@ pgrModule.directive('setWidth', function() {
     }
   }
 })
+
+function randomRange(l,h){
+  var range = (h-l);
+  var random = Math.floor(Math.random()*range);
+  if (random === 0){random+=1;}
+  return l+random;
+}

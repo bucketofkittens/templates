@@ -8,10 +8,9 @@
 			ng-mouseenter="onUserMouseEnter(userItem, $event)"
 			ng-mouseleave="onUserMouseLeave(userItem, $event)"
 			ng-click="onUserClick(userItem, $event)"
-			ng-class="{big: userItem.hover}" 
-			class=" league_{{userItem.league.name}}" 
+			ng-class="{big: userItem.hover, 'full-animate': userItem.fullAnimate}" 
+			class="league_{{userItem.league.name}} isotope" 
 			ng-repeat="userItem in users"
-			isotope-item
 			hm-dragleft="onDrag($event)"
 			hm-dragright="onDrag($event)" >
 			<div set-width class="wr" back-img="{{userItem.avatar}}" ng-click="switchState(userItem)" >

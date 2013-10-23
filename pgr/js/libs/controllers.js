@@ -1293,6 +1293,7 @@ function MainController($scope, Leagues, User, $rootScope, $location, $timeout, 
                 }
             });
             user.hover = user.hover ? false : true;
+            user.fullAnimate = true;
         }
     }
 

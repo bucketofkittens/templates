@@ -74,19 +74,20 @@ body header .social a:last-child{background-position:100% 0}
 #content table#graphs tr:last-child td{border-top:none}
 #modal-shadow{position:fixed;left:0;top:0;width:100%;height:100%;background:rgba(0,0,0,0.5);display:none;z-index:2500;text-align:center}#modal-shadow.show{display:block}
 #modal-shadow img{display:inline-block;position:relative;z-index:9999;margin-top:20%}
-#main_leagues{height:100%;position:relative;top:8%;overflow:visible !important}#main_leagues>div{overflow:visible !important;transition:all .1s linear;-webkit-transition:all .1s linear;left:0;height:84%;width:100%}#main_leagues>div .isotope-item{overflow:hidden;transition:all .93s linear;-webkit-transition:all .93s linear;opacity:0;left:50%;top:50%}#main_leagues>div .isotope-item.show{opacity:1}
-#main_leagues>div .isotope-item.big{z-index:900}#main_leagues>div .isotope-item.big.leftStep{margin-left:0}
-#main_leagues>div .isotope-item.big.rightStep{margin-left:-140px}
-#main_leagues>div .isotope-item.big.bottomStep{margin-top:-140px}
-#main_leagues>div .isotope-item.big .sub{height:100% !important;opacity:1 !important}
-#main_leagues>div .isotope-item.big .wr>img{width:300px !important;height:300px !important}
-#main_leagues>div .isotope-item.big i{font-size:160% !important}
-#main_leagues>div .isotope-item.big b{font-size:130% !important}
-#main_leagues>div .isotope-item .wr{position:relative;overflow:hidden;width:100%;transition:all .3s linear;-webkit-transition:all .3s linear}#main_leagues>div .isotope-item .wr i{position:absolute;left:0;bottom:0;width:100%;background:rgba(0,0,0,0.48);text-align:right;color:#fff;line-height:100%;font-size:120%;font-family:'Helvetica Neue Light';z-index:3;transition:all .3s linear;-webkit-transition:all .3s linear}
-#main_leagues>div .isotope-item .wr .sub{position:absolute;z-index:2;width:100%;height:0;opacity:0;top:0;left:0;overflow:hidden;transition:all .3s linear;-webkit-transition:all .3s linear;text-align:center;background:rgba(0,0,0,0.45)}#main_leagues>div .isotope-item .wr .sub ul{padding-top:10%;text-align:center}#main_leagues>div .isotope-item .wr .sub ul li{display:inline-block;width:25%}#main_leagues>div .isotope-item .wr .sub ul li img{width:70%;display:inline-block}
-#main_leagues>div .isotope-item .wr .sub ul li a{cursor:pointer}
-#main_leagues>div .isotope-item .wr .sub b{font-family:'Helvetica Neue Light';color:#fff;font-size:100%;display:block;text-align:center;padding:20% 5% 0 5%;transition:all .3s linear;-webkit-transition:all .3s linear}#main_leagues>div .isotope-item .wr .sub b s{font-size:90%;padding-top:5%;display:block;text-decoration:none}
-#main_leagues>div .isotope-item img{display:block}
+#main_leagues{height:100%;position:relative;top:8%;overflow:visible !important}#main_leagues>div{overflow:visible !important;transition:all .1s linear;-webkit-transition:all .1s linear;left:0;height:84%}#main_leagues>div>div{overflow:hidden;display:none}#main_leagues>div>div.show{display:block}
+#main_leagues>div>div.full-animate{transition:all .3s linear;-webkit-transition:all .3s linear}
+#main_leagues>div>div.big{z-index:900}#main_leagues>div>div.big.leftStep{margin-left:0}
+#main_leagues>div>div.big.rightStep{margin-left:-140px}
+#main_leagues>div>div.big.bottomStep{margin-top:-140px}
+#main_leagues>div>div.big .sub{height:100% !important;opacity:1 !important}
+#main_leagues>div>div.big .wr>img{width:300px !important;height:300px !important}
+#main_leagues>div>div.big i{font-size:160% !important}
+#main_leagues>div>div.big b{font-size:130% !important}
+#main_leagues>div>div .wr{position:relative;overflow:hidden;width:100%;transition:all .3s linear;-webkit-transition:all .3s linear}#main_leagues>div>div .wr i{position:absolute;left:0;bottom:0;width:100%;background:rgba(0,0,0,0.48);text-align:right;color:#fff;line-height:100%;font-size:120%;font-family:'Helvetica Neue Light';z-index:3;transition:all .3s linear;-webkit-transition:all .3s linear}
+#main_leagues>div>div .wr .sub{position:absolute;z-index:2;width:100%;height:0;opacity:0;top:0;left:0;overflow:hidden;transition:all .3s linear;-webkit-transition:all .3s linear;text-align:center;background:rgba(0,0,0,0.45)}#main_leagues>div>div .wr .sub ul{padding-top:10%;text-align:center}#main_leagues>div>div .wr .sub ul li{display:inline-block;width:25%}#main_leagues>div>div .wr .sub ul li img{width:70%;display:inline-block}
+#main_leagues>div>div .wr .sub ul li a{cursor:pointer}
+#main_leagues>div>div .wr .sub b{font-family:'Helvetica Neue Light';color:#fff;font-size:100%;display:block;text-align:center;padding:20% 5% 0 5%;transition:all .3s linear;-webkit-transition:all .3s linear}#main_leagues>div>div .wr .sub b s{font-size:90%;padding-top:5%;display:block;text-decoration:none}
+#main_leagues>div>div img{display:block}
 #loosers li{display:inline-block;width:3%}
 .image_box{position:relative}.image_box span{position:absolute;left:0;top:0;width:100%;height:100%;z-index:10;display:none}
 .image_box i{position:absolute;left:0;bottom:0;width:100%;background:rgba(0,0,0,0.5);text-align:right;color:#fff;line-height:150%;font-size:140%;font-family:'Helvetica Neue Light';transition:all .3s linear;-webkit-transition:all .3s linear;z-index:40}
@@ -118,3 +119,7 @@ footer #follow_tab a{position:absolute;top:30%;right:1%;cursor:pointer;width:0;h
 input[type="button"]{color:#000;font-family:'Helvetica Neue Light';cursor:pointer;background:transparent;border:3px solid #ddd;font-size:115%;padding:2% 6% 0 6% !important}input[type="button"][disabled="disabled"]{opacity:.5;cursor:default}
 ng-form:not(.ng-pristine) input.ng-invalid:not(.ng-pristine){border-color:rgba(252,79,60,0.7)}
 .errors{color:#fc4f3c !important}
+.isotope,.isotope .isotope-item{-webkit-transition-duration:.8s;-moz-transition-duration:.8s;-ms-transition-duration:.8s;-o-transition-duration:.8s;transition-duration:.8s}
+.isotope{-webkit-transition-property:height,width,margin;-moz-transition-property:height,width,margin;-ms-transition-property:height,width,margin;-o-transition-property:height,width,margin;transition-property:height,width,margin}
+.isotope .isotope-item{-webkit-transition-property:-webkit-transform,opacity,margin,height,width;-moz-transition-property:-moz-transform,opacity,margin,height,width;-ms-transition-property:-ms-transform,opacity,margin,height,width;-o-transition-property:-o-transform,opacity,margin,height,width;transition-property:transform,opacity,margin,height,width}
+.isotope.no-transition,.isotope.no-transition .isotope-item,.isotope .isotope-item.no-transition{-webkit-transition-duration:0;-moz-transition-duration:0;-ms-transition-duration:0;-o-transition-duration:0;transition-duration:0}
