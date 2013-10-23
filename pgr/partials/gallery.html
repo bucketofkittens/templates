@@ -3,7 +3,7 @@
 		<h4>{{title}}</h4>
 		<div class="galblo">
 			<div class="galblos"
-				ng-repeat="(userKey, userItem) in users "
+				ng-repeat="(userKey, userItem) in users | limitTo:limit "
 				ng-mouseenter="onUserMouseEnter(userItem, $event)"
 				ng-mouseleave="onUserMouseLeave(userItem, $event)"
 				ng-click="onUserClick(userItem, $event)"
@@ -35,8 +35,8 @@
 					</ul>
 				</div>
 			</div> 
-			<sub><img src="../images/left.png"></sub>
-			<sup><img src="../images/right.png"></sup>
+			<sub ng-if="swipe > 0" ng-click="onSwipeLeft()"><img src="../images/left.png"></sub>
+			<sup ng-if="users.length > limit" ng-click="onSwipeRight()"><img src="../images/right.png"></sup>
 		</div>
 	</div>
 </div>

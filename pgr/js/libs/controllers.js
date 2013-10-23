@@ -1407,6 +1407,18 @@ function GalleryController($scope, localize, Leagues, User, AuthUser, $element, 
      */
     $scope.showTick = 2000;
 
+    $scope.limit = 12;
+
+    $scope.swipe = 0;
+
+    $scope.onSwipeRight = function() {
+        $scope.swipe += 1;
+    }
+
+    $scope.onSwipeLeft= function() {
+        $scope.swipe -= 1;
+    }
+
     $scope.$on('usersLoaded', function($event, message) {
         if(message.id == $scope.id) {
             $scope.users = message.users;
