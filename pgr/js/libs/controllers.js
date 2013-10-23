@@ -1289,7 +1289,8 @@ function MainController($scope, Leagues, User, $rootScope, $location, $timeout, 
             angular.forEach($scope.users, function(item, key) {
                 if(item != user) {
                     item.hovered = false;
-                    item.hover = false;    
+                    item.hover = false;
+                    item.fullAnimate = true;    
                 }
             });
             user.hover = user.hover ? false : true;
