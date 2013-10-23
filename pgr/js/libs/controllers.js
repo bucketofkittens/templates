@@ -1287,7 +1287,7 @@ function NeighboursCtrl($scope, $location, localize, User, AuthUser, Leagues, $r
         User.get_from_to_points({from: parseInt(user.points-10000), to: parseInt(user.points+10000)}, {}, function(newUsers) {
             angular.forEach(newUsers, function(value, key){
                 if(!value.published) {
-                    newUsers.splice(key, 1);
+                    //newUsers.splice(key, 1);
                 }
                 value.points = parseInt(value.points);
             });
@@ -1301,7 +1301,7 @@ function NeighboursCtrl($scope, $location, localize, User, AuthUser, Leagues, $r
             User.by_league({league_guid: league.sguid}, {}, function(userData) {
                 angular.forEach(userData, function(value, key){
                     if(!value.published) {
-                        userData.splice(key, 1);
+                        //userData.splice(key, 1);
                     }
                     value.points = parseInt(value.points);
                 });
