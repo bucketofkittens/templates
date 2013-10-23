@@ -53,6 +53,7 @@ pgrModule.directive('setWidth', function() {
 
       setTimeout(function() {
         $(element).parent().parent().isotope('reLayout');
+        $(element).parent().addClass("show");
       }, 100);
 
       scope.$watch("userItem.hover", function() {
