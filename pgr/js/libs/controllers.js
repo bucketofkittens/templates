@@ -1215,7 +1215,7 @@ function MainController($scope, Leagues, User, $rootScope, $location, $timeout, 
      * @param  {object} user
      * @return {object}     
      */
-    $scope.onMoveToUser = function(user) {
+    $scope.onMoveToProfile = function(user) {
         $location.path("/profile/"+user.sguid);
     }
 
