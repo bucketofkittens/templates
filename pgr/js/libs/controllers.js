@@ -1263,21 +1263,20 @@ function GraphsController($scope, $rootScope, $route, $location, Leagues, User) 
 
 function NeighboursCtrl($scope, $location, localize, User, AuthUser, Leagues, $rootScope) {
 
-    $scope.topL = localize.getLocalizedString('_topL_');
-    $scope.neighL = localize.getLocalizedString('_neighL_');
+    /**
+     * Событие вызываемое при загрузке файлов локализации.
+     * @return {[type]} [description]
+     */
+    $scope.$on('localizeResourcesUpdates', function() {
+        $scope.topL = localize.getLocalizedString('_topL_');
+        $scope.neighL = localize.getLocalizedString('_neighL_');
+    });
 
     $scope.getDatas = function(user) {
-        User.get_friends({id: $scope.userId1}, function(data) {
-            angular.forEach(data, function(value, key){
-                data[key] = value.user;
-            });
-            $rootScope.$broadcast('usersLoaded', {
-                id: 'follow',
-                users: data
-            });
-        });
-        
         User.get_from_to_points({from: parseInt(user.points-10000), to: parseInt(user.points+10000)}, {}, function(newUsers) {
+            angular.forEach(newUsers, function(value, key){
+                value.points = parseInt(value.points);
+            });
             $rootScope.$broadcast('usersLoaded', {
                 id: 'neigh',
                 users: newUsers
@@ -1286,6 +1285,9 @@ function NeighboursCtrl($scope, $location, localize, User, AuthUser, Leagues, $r
 
         Leagues.by_position({position: 9}, {}, function(league) {
             User.by_league({league_guid: league.sguid}, {}, function(userData) {
+                angular.forEach(userData, function(value, key){
+                    value.points = parseInt(value.points);
+                });
                 $rootScope.$broadcast('usersLoaded', {
                     id: 'top',
                     users: userData
@@ -1305,8 +1307,6 @@ function NeighboursCtrl($scope, $location, localize, User, AuthUser, Leagues, $r
             $scope.userId1 = mesaage.id;
         }
     });
-
-    
 }
 
 /**
@@ -1410,20 +1410,41 @@ function GalleryController($scope, localize, Leagues, User, AuthUser, $element, 
     $scope.limit = 12;
 
     $scope.swipe = 0;
+    $scope.swipeMax = 0;
 
     $scope.onSwipeRight = function() {
         $scope.swipe += 1;
+        $scope.setPage();
     }
 
     $scope.onSwipeLeft= function() {
         $scope.swipe -= 1;
+        $scope.setPage();    
     }
 
     $scope.$on('usersLoaded', function($event, message) {
         if(message.id == $scope.id) {
             $scope.users = message.users;
+            $scope.setPage();
         }
     });
+
+    $scope.setPage = function() {
+        var first = $scope.swipe * $scope.limit;
+        var last = ($scope.swipe * $scope.limit) + $scope.limit;
+
+        if($scope.users) {
+            $scope.swipeMax = Math.ceil($scope.users.length / $scope.limit); 
+        }
+
+        angular.forEach($scope.users, function(value, key) {
+            if(key >= first && key < last) {
+                value.showItem = true;    
+            } else {
+                value.showItem = false;
+            }
+        });
+    }
 
     /**
      * Определяем является пользователь другом или нет
@@ -1457,8 +1478,6 @@ function GalleryController($scope, localize, Leagues, User, AuthUser, $element, 
     $scope.$on('authUserGetData', function() {
         $scope.testFollow();
     });
-
-    
 
     /**
      * Событие.
