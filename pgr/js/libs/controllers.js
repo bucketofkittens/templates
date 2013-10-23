@@ -540,19 +540,17 @@ function NeedsAndGoalsController($scope, Goals, Criterion, AuthUser, UserCriteri
         }
     });
 
-    $scope.getNeeds = function() {
-        $("#content .crits ul li ul.show").removeClass("show");
-        Needs.query({}, {}, function(data) {
-            $scope.needs = data;
+    $scope.$watch('workspace.needs', function (newVal, oldVal, scope) {
+        if($scope.workspace.needs) {
+            $scope.needs = $scope.workspace.needs;
+        }
+    });
+
+    $scope.$watch('user', function (newVal, oldVal, scope) {
+        if($scope.user && $scope.user.sguid) {
             $scope.bindUserNeedsValues();
-        });
-    }
-
-    //$scope.workspace.needs
-
-    if($scope.user) {
-        $scope.getNeeds();
-    }
+        }
+    });
     
     $scope.bindUserNeedsValues = function() {
         User.needs_points({id: $scope.user.sguid}, {}, function(needsData) {
@@ -617,7 +615,7 @@ function NeedsAndGoalsController($scope, Goals, Criterion, AuthUser, UserCriteri
      * @return {[type]}      [description]
      */
     $scope.getCriteriumValueByUser = function(goal) {
-        UserCriteriaValueByUser.query({id: $scope.currentUserId}, {}, function(d) {
+        UserCriteriaValueByUser.query({id: $scope.user.sguid}, {}, function(d) {
 
             angular.forEach(d, function(userCriteriaItem, userCriteriaKey) {
                 var fCriteria = goal.criteriums.filter(function(value) {
