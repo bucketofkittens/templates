@@ -1302,14 +1302,18 @@ function GraphsController($scope, $rootScope, $route, $location, Leagues, User) 
     });
 }
 
-function NeighboursCtrl($scope, $location, localize, User, AuthUser, Leagues, $rootScope) {
+function NeighboursCtrl($scope, $location, localize, User, AuthUser, Leagues, $rootScope, $routeParams) {
+    $scope.range = 100000;
 
     $scope.getDatas = function(user) {
-        User.get_from_to_points({from: parseInt(user.points-10000), to: parseInt(user.points+10000)}, {}, function(newUsers) {
+        User.get_from_to_points({from: parseInt(user.points-$scope.range), to: parseInt(user.points+$scope.range)}, {}, function(newUsers) {
             angular.forEach(newUsers, function(value, key){
                 if(!value.published) {
                     //newUsers.splice(key, 1);
                 }
+                if($routeParams.userId1 == value.sguid) {
+                    newUsers.splice(key, 1);
+                } 
                 value.points = parseInt(value.points);
             });
             $rootScope.$broadcast('usersLoaded', {
@@ -1324,6 +1328,9 @@ function NeighboursCtrl($scope, $location, localize, User, AuthUser, Leagues, $r
                     if(!value.published) {
                         //userData.splice(key, 1);
                     }
+                    if($routeParams.userId1 == value.sguid) {
+                        userData.splice(key, 1);
+                    } 
                     value.points = parseInt(value.points);
                 });
                 $rootScope.$broadcast('usersLoaded', {

@@ -670,10 +670,13 @@ body {
                         width: 23%;
                         margin: 0%;
                         vertical-align: top;
-                        display: inline-block;
+                        display: none;
                         position: relative;
                         transition: all 0.5s ease-out;
                         -webkit-transition: all 0.5s ease-out;
+                        &.show {
+                            display: inline-block;
+                        }
                         span {
                             position: absolute;
                             bottom: 0px;

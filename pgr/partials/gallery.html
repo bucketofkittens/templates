@@ -6,34 +6,32 @@
 			ng-mouseenter="onUserMouseEnter(userItem, $event)"
 			ng-mouseleave="onUserMouseLeave(userItem, $event)"
 			ng-click="onUserClick(userItem, $event)"
-			ng-class="{big: userItem.hover}">
-			<div ng-if="userItem.showItem">
-				<img ng-src="{{userItem.avatar}}" err-src="/images/unknown-person.png" />
-				<span>{{userItem.points}}</span>
-				<div class="sub"> 
-					<b>{{userItem.name}} <br /><s>{{userItem.league.name}} league</s></b>
-					<ul>
-						<li>
-							<a ng-click="onMoveToProfile(userItem)">
-								<img src="/images/i1.png" alt="" class="navigate" />
-							</a>
-						</li>
-						<li>
-							<a href="">
-								<img src="/images/i2.png" alt="" class="navigate" />
-							</a>
-						</li>
-						<li>
-							<a ng-if="!userItem.isFrend" ng-click="onFollow(userItem)">
-								<img src="/images/i3.png" alt="" class="navigate" />
-								<img ng-if="userItem.isFrend" src="/images/i3i.png" alt="">
-							</a>
-							<a ng-if="userItem.isFrend" ng-click="onUnFollow(userItem)">
-								<img src="/images/i3i.png" alt="" class="navigate" />
-							</a>
-						</li>
-					</ul>
-				</div>
+			ng-class="{big: userItem.hover, show: userItem.showItem}">
+			<img ng-src="{{userItem.avatar}}" err-src="/images/unknown-person.png" />
+			<span>{{userItem.points}}</span>
+			<div class="sub"> 
+				<b>{{userItem.name}} <br /><s>{{userItem.league.name}} league</s></b>
+				<ul>
+					<li>
+						<a ng-click="onMoveToProfile(userItem)">
+							<img src="/images/i1.png" alt="" class="navigate" />
+						</a>
+					</li>
+					<li>
+						<a href="">
+							<img src="/images/i2.png" alt="" class="navigate" />
+						</a>
+					</li>
+					<li>
+						<a ng-if="!userItem.isFrend" ng-click="onFollow(userItem)">
+							<img src="/images/i3.png" alt="" class="navigate" />
+							<img ng-if="userItem.isFrend" src="/images/i3i.png" alt="">
+						</a>
+						<a ng-if="userItem.isFrend" ng-click="onUnFollow(userItem)">
+							<img src="/images/i3i.png" alt="" class="navigate" />
+						</a>
+					</li>
+				</ul>
 			</div>
 		</div> 
 		<sub ng-if="swipe > 0" ng-click="onSwipeLeft()"><img src="../images/left.png"></sub>
