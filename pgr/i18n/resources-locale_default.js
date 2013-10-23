@@ -113,7 +113,7 @@
     },
     {
         "key":"_topL_",
-        "value": "Top of the Gold league"
+        "value": "Top of the league"
     },
     {
         "key":"_neighL_",
