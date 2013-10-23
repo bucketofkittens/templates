@@ -1,1 +1,9 @@
-<div ng-include src="'partials/neighbours.html'" ng-controller="NeighboursCtrl" ></div>
+<div class="nearblock" ng-controller="NeighboursCtrl">
+	<div ng-controller="GalleryController"  ng-init="id='top';title='_topL_'">
+		<div class="lnbl" ng-include src="'partials/gallery.html'"></div>
+	</div>
+	<i></i>
+	<div ng-controller="GalleryController"  ng-init="id='neigh';title='_neighL_'">
+		<div class="lnbl" ng-include src="'partials/gallery.html'"></div>
+	</div>
+</div>
