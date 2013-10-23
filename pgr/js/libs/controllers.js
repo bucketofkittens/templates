@@ -247,7 +247,7 @@ function UserController($scope, $route, $routeParams, User, Needs, Professions, 
         $scope.userId = AuthUser.get();
     }); 
 
-    $scope.$watch($scope.userId, function (newVal, oldVal, scope) {
+    $scope.$watch("userId", function (newVal, oldVal, scope) {
         $scope.getUserInfo();
         $scope.testFollow();
     });
@@ -256,6 +256,48 @@ function UserController($scope, $route, $routeParams, User, Needs, Professions, 
         return $.map($scope.professions, function(profession) {
             return profession.name;
         });
+    }
+
+     /**
+     * Событие.
+     * Пользователя удалили из друзей
+     * @param  {[type]} $event  [description]
+     * @param  {[type]} message [description]
+     * @return {[type]}         [description]
+     */
+    $scope.$on('unfollowCallback', function($event, message) {
+        if($scope.user.sguid == message.frendId) {
+            $scope.user.isFollow = false;
+        }
+    });
+
+    /**
+     * Событие.
+     * Пользователя добавили в друзья
+     * @param  {[type]} $event  [description]
+     * @param  {[type]} message [description]
+     * @return {[type]}         [description]
+     */
+    $scope.$on('followCallback', function($event, message) {
+        if($scope.user.sguid == message.frendId) {
+            $scope.user.isFollow = true;
+        }
+    });
+
+    /**
+     * Событие добавление в друзья
+     * @return {object}        
+     */
+    $scope.onFollow = function() {
+        $rootScope.$broadcast('follow', {userId: AuthUser.get(), frendId: $scope.user.sguid, user: $scope.user});
+    }
+
+    /**
+     * Событие удаление из друзей
+     * @return {object}      
+     */
+    $scope.onUnFollow = function() {
+        $rootScope.$broadcast('unfollow', {userId: AuthUser.get(), frendId: $scope.user.sguid, user: $scope.user});
     }
 
     /**
@@ -293,6 +335,8 @@ function UserController($scope, $route, $routeParams, User, Needs, Professions, 
                 $rootScope.$broadcast('getSelectedUserData', {
                     user: $scope.user
                 });
+
+                $scope.testFollow();
             });
         }
     }
@@ -321,10 +365,17 @@ function UserController($scope, $route, $routeParams, User, Needs, Professions, 
     
 
     $scope.testFollow = function() {
-        if($scope.currentUserId && $scope.workspace.user) {
-            var item = $scope.workspace.user.frends.filter(function(item) {
-                if(item.user.sguid == $scope.currentUserId) { return item; }
-            });
+        if($scope.userId && $scope.workspace.user) {
+            if($scope.workspace.user && $scope.workspace.user.frends) {
+                var item = $scope.workspace.user.frends.filter(function(item) {
+                    if(item.user.sguid == $scope.currentUserId) { return item; }
+                });
+            } else {
+                var item = $scope.tmpFollows.filter(function(item) {
+                    if(item.user.sguid == $scope.currentUserId) { return item; }
+                });
+            }
+            
             if(item.length > 0) {
                 $scope.isFollow = true;
             } else {
@@ -365,16 +416,6 @@ function UserController($scope, $route, $routeParams, User, Needs, Professions, 
     $scope.$on('updateUser', function() {
         $scope.getUserInfo();
     });
-
-    $scope.onFollow = function($event, user) {
-        $rootScope.$broadcast('follow', {userId: AuthUser.get(), frendId: $scope.currentUserId, user: $scope.user});
-        $scope.isFollow = true;
-    }
-
-    $scope.onUnFollow = function($event, user) {
-        $rootScope.$broadcast('unfollow', {userId: AuthUser.get(), frendId: $scope.currentUserId});
-        $scope.isFollow = false;
-    }
 
     /**
      * Список годов
@@ -1412,7 +1453,6 @@ function GalleryController($scope, localize, Leagues, User, AuthUser, $element, 
     $scope.localTitle = localize.getLocalizedString($scope.title);
 
     $scope.$on('localizeResourcesUpdates', function() {
-        console.log($scope.title);
         $scope.localTitle = localize.getLocalizedString($scope.title);
     });
 
@@ -1498,13 +1538,15 @@ function GalleryController($scope, localize, Leagues, User, AuthUser, $element, 
      * @return {[type]}         [description]
      */
     $scope.$on('unfollowCallback', function($event, message) {
-        var user = $scope.users.filter(function(data) {
-            if(data.sguid == message.frendId) {
-                return data;
-            }
-        });
-        if(user.length > 0) {
-            $scope.testUser(user[0]);
+        if($scope.users) {
+            var user = $scope.users.filter(function(data) {
+                if(data.sguid == message.frendId) {
+                    return data;
+                }
+            });
+            if(user.length > 0) {
+                $scope.testUser(user[0]);
+            }    
         }
     });
 
@@ -1516,13 +1558,15 @@ function GalleryController($scope, localize, Leagues, User, AuthUser, $element, 
      * @return {[type]}         [description]
      */
     $scope.$on('followCallback', function($event, message) {
-        var user = $scope.users.filter(function(data) {
-            if(data.sguid == message.frendId) {
-                return data;
-            }
-        });
-        if(user.length > 0) {
-            $scope.testUser(user[0]);
+        if($scope.users) {
+            var user = $scope.users.filter(function(data) {
+                if(data.sguid == message.frendId) {
+                    return data;
+                }
+            });
+            if(user.length > 0) {
+                $scope.testUser(user[0]);
+            }    
         }
     });
 

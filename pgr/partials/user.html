@@ -157,8 +157,10 @@
 		</p>
 	</div>
 
-	<a class="il" href="#"><img src="../images/i3l.png"></a>
-	<a class="il" href="#"><img src="../images/i2l.png"></a> 
+	<a class="il" ng-if="!user.isFollow" ng-click="onFollow()"><img src="../images/i3l.png"></a>
+	<a class="il" ng-if="user.isFollow" ng-click="onUnFollow()"><img src="../images/i3i.png"></a>
+
+	<a class="il"><img src="../images/i2l.png"></a> 
 </div>
 
 <div class="crits" ng-controller="NeedsAndGoalsController" ng-init="isUpdateCriteria=true;id=id;user=user">
