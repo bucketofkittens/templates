@@ -3,7 +3,7 @@
 		<h4>{{title}}</h4>
 		<div class="galblo">
 			<div class="galblos"
-				ng-repeat="(userKey, userItem) in users | limitTo:limit "
+				ng-repeat="(userKey, userItem) in users "
 				ng-mouseenter="onUserMouseEnter(userItem, $event)"
 				ng-mouseleave="onUserMouseLeave(userItem, $event)"
 				ng-click="onUserClick(userItem, $event)"

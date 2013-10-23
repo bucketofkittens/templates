@@ -1400,10 +1400,6 @@ function CompareController($scope) {
  * @param {[type]} $location [description]
  */
 function GalleryController($scope, localize, Leagues, User, AuthUser, $element, $location, $timeout, $rootScope) {
-    $scope.stateView = 0;
-    $scope.stateViewClass = "";
-    $scope.limit = 12;
-    $scope.authUserId = AuthUser.get();
 
     /**
      * Через сколько минисекунд картинка становится большой
@@ -1449,6 +1445,8 @@ function GalleryController($scope, localize, Leagues, User, AuthUser, $element, 
     $scope.$on('authUserGetData', function() {
         $scope.testFollow();
     });
+
+    
 
     /**
      * Событие.
@@ -1568,21 +1566,41 @@ function GalleryController($scope, localize, Leagues, User, AuthUser, $element, 
 
     /**
      * Проходимся по списку всех пользователей что бы определить друзей
-     * @return {object} 
+     * @return {object}
      */
     $scope.testFollow = function() {
-        angular.forEach($scope.workspace.user.frends, function(value, key) {
-            angular.forEach($scope.users, function(v2, k2) {
-                if(v2.sguid == value.user.sguid) {
-                    v2.isFrend = true;
-                } else {
-                    if(v2.isFrend != true) {
-                        v2.isFrend = false;   
+        if($scope.workspace.user && $scope.workspace.user.frends) {
+            angular.forEach($scope.workspace.user.frends, function(value, key) {
+                angular.forEach($scope.users, function(v2, k2) {
+                    if(v2.sguid == value.user.sguid) {
+                        v2.isFrend = true;
+                    } else {
+                        if(v2.isFrend != true) {
+                            v2.isFrend = false;   
+                        }
                     }
-                }
-            });
-        });
+                });
+            });    
+        } else {
+            angular.forEach($scope.tmpFollows, function(value, key) {
+                angular.forEach($scope.users, function(v2, k2) {
+                    if(v2.sguid == value.user.sguid) {
+                        v2.isFrend = true;
+                    } else {
+                        if(v2.isFrend != true) {
+                            v2.isFrend = false;   
+                        }
+                    }
+                });
+            }); 
+        }
     }
+
+    $scope.$watch("users", function (newVal, oldVal, scope) {
+        if($scope.users && $scope.users.length > 0) {
+            $scope.testFollow();
+        }
+    });
 }
 
 function getRandomInt(min, max) {
