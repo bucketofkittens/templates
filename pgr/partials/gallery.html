@@ -2,10 +2,39 @@
 	<div class="gallery {{stateViewClass}}" ng-if="users.length > 0">
 		<h4>{{title}}</h4>
 		<div class="galblo">
-			<a ng-click="onMoveToUser(userItem)" ng-repeat="(userKey, userItem) in users | limitTo:limit ">
+			<a 
+				ng-repeat="(userKey, userItem) in users | limitTo:limit "
+				ng-mouseenter="onUserMouseEnter(userItem, $event)"
+				ng-mouseleave="onUserMouseLeave(userItem, $event)"
+				ng-click="onUserClick(userItem, $event)"
+				ng-class="{big: userItem.hover}" >
 				<img ng-src="{{userItem.avatar}}" err-src="/images/unknown-person.png" />
 				<span>{{userItem.points}}</span>
-			</a>
+				<div class="sub">
+					<b>{{userItem.name}} <br /><s>{{userItem.league.name}} league</s></b>
+					<ul>
+						<li>
+							<a ng-click="onMoveToProfile(userItem)">
+								<img src="/images/i1.png" alt="" class="navigate" />
+							</a>
+						</li>
+						<li>
+							<a href="">
+								<img src="/images/i2.png" alt="" class="navigate" />
+							</a>
+						</li>
+						<li>
+							<a ng-if="!userItem.isFrend" ng-click="onFollow(userItem)">
+								<img src="/images/i3.png" alt="" class="navigate" />
+								<img ng-if="userItem.isFrend" src="/images/i3i.png" alt="">
+							</a>
+							<a ng-if="userItem.isFrend" ng-click="onUnFollow(userItem)">
+								<img src="/images/i3i.png" alt="" class="navigate" />
+							</a>
+						</li>
+					</ul>
+				</div>
+			</a> 
 			<sub><img src="../images/left.png"></sub>
 			<sup><img src="../images/right.png"></sup>
 		</div>

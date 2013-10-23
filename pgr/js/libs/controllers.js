@@ -1293,8 +1293,8 @@ function MainController($scope, Leagues, User, $rootScope, $location, $timeout, 
                     item.fullAnimate = true;    
                 }
             });
-            user.hover = user.hover ? false : true;
             user.fullAnimate = true;
+            user.hover = user.hover ? false : true;
         }
     }
 
@@ -1549,7 +1549,7 @@ function CompareController($scope) {
  * @param {[type]} $element  [description]
  * @param {[type]} $location [description]
  */
-function GalleryController($scope, localize, Leagues, User, AuthUser, $element, $location) {
+function GalleryController($scope, localize, Leagues, User, AuthUser, $element, $location, $timeout) {
     $scope.stateView = 0;
     $scope.stateViewClass = "";
     $scope.users = [];
@@ -1580,6 +1580,57 @@ function GalleryController($scope, localize, Leagues, User, AuthUser, $element, 
             $location.path("/profile/"+$scope.authUserId+"/"+user.sguid);
         } else {
             $location.path("/profile/"+user.sguid);
+        }
+    }
+
+
+    /**
+     * Событие при наведении на элемент плитки
+     * @param  {object} user 
+     * @return {object}      
+     */
+    $scope.onUserMouseEnter = function(user, $event) {
+        if(!user.hover) {
+            user.hovered = true;
+
+            $timeout(function() {
+                if(user.hovered) {
+                    angular.forEach($scope.users, function(item, key) {
+                        if(item != user) {
+                            item.hovered = false;
+                            item.hover = false;     
+                        }
+                    });
+                    user.hover = user.hovered ? true : false;
+                }
+            }, $scope.showTick);
+        }
+    }
+
+    /**
+     * 
+     * @param  {object} user 
+     * @return {object}      
+     */
+    $scope.onUserMouseLeave = function(user, $event) {
+        user.hovered = false;
+    }
+
+    /**
+     * Событие клика на пользователе на плитке
+     * @param  {object} user 
+     * @param  {object} $event
+     * @return {object} 
+     */
+    $scope.onUserClick = function(user, $event) {
+        if(!$event.toElement.classList.contains('navigate')) {
+            angular.forEach($scope.users, function(item, key) {
+                if(item != user) {
+                    item.hovered = false;
+                    item.hover = false;
+                }
+            });
+            user.hover = user.hover ? false : true;
         }
     }
 }

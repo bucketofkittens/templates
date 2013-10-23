@@ -1,14 +1,14 @@
 <section 
-	id="main_leagues" 
 	msd-wheel="onWheel($event, $delta, $deltaX, $deltaY)"
 	hm-dragleft="onDrag($event)"
-	hm-dragright="onDrag($event)">
+	hm-dragright="onDrag($event)"
+	class="gallery">
 	<div isotope-container iso-options="opts" ng-style="{left: scrollDelta}" >
 		<div
 			ng-mouseenter="onUserMouseEnter(userItem, $event)"
 			ng-mouseleave="onUserMouseLeave(userItem, $event)"
 			ng-click="onUserClick(userItem, $event)"
-			ng-class="{big: userItem.hover, 'full-animate': userItem.fullAnimate}" 
+			ng-class="{big: userItem.hover, 'full-animate': userItem.fullAnimate}"
 			class="league_{{userItem.league.name}} isotope" 
 			ng-repeat="userItem in users"
 			hm-dragleft="onDrag($event)"
