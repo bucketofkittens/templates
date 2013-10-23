@@ -2,7 +2,7 @@
 	msd-wheel="onWheel($event, $delta, $deltaX, $deltaY)"
 	hm-dragleft="onDrag($event)"
 	hm-dragright="onDrag($event)"
-	class="gallery">
+	class="gallery" ng-controller="GalleryController">
 	<div isotope-container iso-options="opts" ng-style="{left: scrollDelta}" >
 		<div
 			ng-mouseenter="onUserMouseEnter(userItem, $event)"

@@ -2,7 +2,7 @@
 	<div class="gallery {{stateViewClass}}" ng-if="users.length > 0">
 		<h4>{{title}}</h4>
 		<div class="galblo">
-			<a 
+			<div class="galblos"
 				ng-repeat="(userKey, userItem) in users | limitTo:limit "
 				ng-mouseenter="onUserMouseEnter(userItem, $event)"
 				ng-mouseleave="onUserMouseLeave(userItem, $event)"
@@ -10,7 +10,7 @@
 				ng-class="{big: userItem.hover}" >
 				<img ng-src="{{userItem.avatar}}" err-src="/images/unknown-person.png" />
 				<span>{{userItem.points}}</span>
-				<div class="sub">
+				<div class="sub"> 
 					<b>{{userItem.name}} <br /><s>{{userItem.league.name}} league</s></b>
 					<ul>
 						<li>
@@ -34,7 +34,7 @@
 						</li>
 					</ul>
 				</div>
-			</a> 
+			</div> 
 			<sub><img src="../images/left.png"></sub>
 			<sup><img src="../images/right.png"></sup>
 		</div>

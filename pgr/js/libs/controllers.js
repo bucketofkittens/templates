@@ -1098,93 +1098,6 @@ function FollowController($scope, $rootScope, User, $location, $routeParams, Aut
  */
 function MainController($scope, Leagues, User, $rootScope, $location, $timeout, AuthUser) {
 
-    /**
-     * Проходимся по списку всех пользователей что бы определить друзей
-     * @return {object} 
-     */
-    $scope.testFollow = function() {
-        angular.forEach($scope.workspace.user.frends, function(value, key) {
-            angular.forEach($scope.users, function(v2, k2) {
-                if(v2.sguid == value.user.sguid) {
-                    v2.isFrend = true;
-                } else {
-                    if(v2.isFrend != true) {
-                        v2.isFrend = false;   
-                    }
-                }
-            });
-        });
-    }
-
-    /**
-     * Определяем является пользователь другом или нет
-     * @param  {object} user Пользователь
-     * @return {object}      none
-     */
-    $scope.testUser = function(user) {
-        if($scope.workspace.user) {
-            var frend = $scope.workspace.user.frends.filter(function(data) {
-                if(data.user.sguid === user.sguid) {
-                    return data;
-                }
-            });
-        } else {
-            var frend = $scope.tmpFollows.filter(function(data) {
-                if(data.user.sguid === user.sguid) {
-                    return data;
-                }
-            });
-        }
-
-        user.isFrend = frend.length > 0 ? true : false;
-
-        return user;
-    }
-
-    /**
-     * Событие когда мы получили данные авторизированного пользователя
-     * @return {[type]} [description]
-     */
-    $scope.$on('authUserGetData', function() {
-        $scope.rootUser = $scope.workspace.user;
-        $scope.testFollow();
-    });
-
-    /**
-     * Событие.
-     * Пользователя удалили из друзей
-     * @param  {[type]} $event  [description]
-     * @param  {[type]} message [description]
-     * @return {[type]}         [description]
-     */
-    $scope.$on('unfollowCallback', function($event, message) {
-        var user = $scope.users.filter(function(data) {
-            if(data.sguid == message.frendId) {
-                return data;
-            }
-        });
-        if(user.length > 0) {
-            $scope.testUser(user[0]);
-        }
-    });
-
-    /**
-     * Событие.
-     * Пользователя добавили в друзья
-     * @param  {[type]} $event  [description]
-     * @param  {[type]} message [description]
-     * @return {[type]}         [description]
-     */
-    $scope.$on('followCallback', function($event, message) {
-        var user = $scope.users.filter(function(data) {
-            if(data.sguid == message.frendId) {
-                return data;
-            }
-        });
-        if(user.length > 0) {
-            $scope.testUser(user[0]);
-        }
-    });
 
     /**
      * Забираем список пользователей
@@ -1246,70 +1159,7 @@ function MainController($scope, Leagues, User, $rootScope, $location, $timeout, 
         $rootScope.$broadcast('unfollow', {userId: AuthUser.get(), frendId: user.sguid, user: user});
     }
 
-    /**
-     * Событие при наведении на элемент плитки
-     * @param  {object} user 
-     * @return {object}      
-     */
-    $scope.onUserMouseEnter = function(user, $event) {
-        if(!user.hover) {
-            user.hovered = true;
-
-            $timeout(function() {
-                if(user.hovered) {
-                    angular.forEach($scope.users, function(item, key) {
-                        if(item != user) {
-                            item.hovered = false;
-                            item.hover = false;     
-                        }
-                    });
-                    user.hover = user.hovered ? true : false;
-                }
-            }, $scope.showTick);
-        }
-    }
-
-    /**
-     * 
-     * @param  {object} user 
-     * @return {object}      
-     */
-    $scope.onUserMouseLeave = function(user, $event) {
-        user.hovered = false;
-    }
-
-    /**
-     * Событие клика на пользователе на плитке
-     * @param  {object} user 
-     * @param  {object} $event
-     * @return {object} 
-     */
-    $scope.onUserClick = function(user, $event) {
-        if(!$event.toElement.classList.contains('navigate')) {
-            angular.forEach($scope.users, function(item, key) {
-                if(item != user) {
-                    item.hovered = false;
-                    item.hover = false;
-                    item.fullAnimate = true;    
-                }
-            });
-            user.fullAnimate = true;
-            user.hover = user.hover ? false : true;
-        }
-    }
-
-    /**
-     * Максимальная ширина плитки.
-     * @type {Number}
-     */
-    $scope.maxWidth = 300; 
-
-    /**
-     * Через сколько минисекунд картинка становится большой
-     * @type {Number}
-     */
-    $scope.showTick = 2000;
-
+    
     /**
      * Настройки masonry
      * @type {Object}
@@ -1549,12 +1399,17 @@ function CompareController($scope) {
  * @param {[type]} $element  [description]
  * @param {[type]} $location [description]
  */
-function GalleryController($scope, localize, Leagues, User, AuthUser, $element, $location, $timeout) {
+function GalleryController($scope, localize, Leagues, User, AuthUser, $element, $location, $timeout, $rootScope) {
     $scope.stateView = 0;
     $scope.stateViewClass = "";
-    $scope.users = [];
     $scope.limit = 12;
     $scope.authUserId = AuthUser.get();
+
+    /**
+     * Через сколько минисекунд картинка становится большой
+     * @type {Number}
+     */
+    $scope.showTick = 2000;
 
     $scope.$on('usersLoaded', function($event, message) {
         if(message.id == $scope.id) {
@@ -1562,26 +1417,74 @@ function GalleryController($scope, localize, Leagues, User, AuthUser, $element, 
         }
     });
 
-    $scope.onChangeState = function() {
-        $scope.stateView = $scope.stateView == 1 ? 0 : 1;
-        $scope.stateViewClass = $scope.stateView == 1 ? "fulls" : "";
-        $scope.limit = $scope.stateView == 1 ? 999 : 3;
-
-        if($scope.stateView == 1) {
-            $(".lnbl").hide();
-            $($element).next().show();
+    /**
+     * Определяем является пользователь другом или нет
+     * @param  {object} user Пользователь
+     * @return {object}      none
+     */
+    $scope.testUser = function(user) {
+        if($scope.workspace.user) {
+            var frend = $scope.workspace.user.frends.filter(function(data) {
+                if(data.user.sguid === user.sguid) {
+                    return data;
+                }
+            });
         } else {
-            $(".lnbl").show();
+            var frend = $scope.tmpFollows.filter(function(data) {
+                if(data.user.sguid === user.sguid) {
+                    return data;
+                }
+            });
         }
+
+        user.isFrend = frend.length > 0 ? true : false;
+
+        return user;
     }
 
-    $scope.onMoveToUser = function(user) {
-        if($scope.authUserId) {
-            $location.path("/profile/"+$scope.authUserId+"/"+user.sguid);
-        } else {
-            $location.path("/profile/"+user.sguid);
+    /**
+     * Событие когда мы получили данные авторизированного пользователя
+     * @return {[type]} [description]
+     */
+    $scope.$on('authUserGetData', function() {
+        $scope.testFollow();
+    });
+
+    /**
+     * Событие.
+     * Пользователя удалили из друзей
+     * @param  {[type]} $event  [description]
+     * @param  {[type]} message [description]
+     * @return {[type]}         [description]
+     */
+    $scope.$on('unfollowCallback', function($event, message) {
+        var user = $scope.users.filter(function(data) {
+            if(data.sguid == message.frendId) {
+                return data;
+            }
+        });
+        if(user.length > 0) {
+            $scope.testUser(user[0]);
         }
-    }
+    });
+
+    /**
+     * Событие.
+     * Пользователя добавили в друзья
+     * @param  {[type]} $event  [description]
+     * @param  {[type]} message [description]
+     * @return {[type]}         [description]
+     */
+    $scope.$on('followCallback', function($event, message) {
+        var user = $scope.users.filter(function(data) {
+            if(data.sguid == message.frendId) {
+                return data;
+            }
+        });
+        if(user.length > 0) {
+            $scope.testUser(user[0]);
+        }
+    });
 
 
     /**
@@ -1628,10 +1531,57 @@ function GalleryController($scope, localize, Leagues, User, AuthUser, $element, 
                 if(item != user) {
                     item.hovered = false;
                     item.hover = false;
+                    item.fullAnimate = true;    
                 }
             });
+            user.fullAnimate = true;
             user.hover = user.hover ? false : true;
         }
+    }
+
+    /**
+     * Событие перехода к пользователю
+     * @param  {object} user
+     * @return {object}     
+     */
+    $scope.onMoveToProfile = function(user) {
+        $location.path("/profile/"+user.sguid);
+    }
+
+    /**
+     * Событие добавление в друзья
+     * @param  {object} user   
+     * @return {object}        
+     */
+    $scope.onFollow = function(user) {
+        $rootScope.$broadcast('follow', {userId: AuthUser.get(), frendId: user.sguid, user: user});
+    }
+
+    /**
+     * Событие удаление из друзей
+     * @param  {object} user
+     * @return {object}      
+     */
+    $scope.onUnFollow = function(user) {
+        $rootScope.$broadcast('unfollow', {userId: AuthUser.get(), frendId: user.sguid, user: user});
+    }
+
+    /**
+     * Проходимся по списку всех пользователей что бы определить друзей
+     * @return {object} 
+     */
+    $scope.testFollow = function() {
+        angular.forEach($scope.workspace.user.frends, function(value, key) {
+            angular.forEach($scope.users, function(v2, k2) {
+                if(v2.sguid == value.user.sguid) {
+                    v2.isFrend = true;
+                } else {
+                    if(v2.isFrend != true) {
+                        v2.isFrend = false;   
+                    }
+                }
+            });
+        });
     }
 }
 

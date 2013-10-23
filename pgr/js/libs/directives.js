@@ -55,7 +55,7 @@ pgrModule.directive('setWidth', function() {
       setTimeout(function() {
         parentElement.addClass("show");
         pElement.isotope( 'insert', parentElement);
-      }, randomRange(200, 2000));
+      }, randomRange(100, 500));
 
       scope.$watch("userItem.hover", function() {
         if(scope.userItem.hover) {
