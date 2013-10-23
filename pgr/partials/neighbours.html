@@ -1,5 +1,9 @@
 <div class="nearblock" ng-controller="NeighboursCtrl">
-	<div class="lnbl" ng-include src="'partials/gallery.html'" ng-init="id='top';title=topL"></div>
+	<div ng-controller="GalleryController"  ng-init="id='top';title='_topL_'">
+		<div class="lnbl" ng-include src="'partials/gallery.html'"></div>
+	</div>
 	<i></i>
-	<div class="lnbl" ng-include src="'partials/gallery.html'" ng-init="id='neigh';title=neighL"></div>
+	<div ng-controller="GalleryController"  ng-init="id='neigh';title='_neighL_'">
+		<div class="lnbl" ng-include src="'partials/gallery.html'"></div>
+	</div>
 </div>

@@ -1263,26 +1263,6 @@ function GraphsController($scope, $rootScope, $route, $location, Leagues, User) 
 
 function NeighboursCtrl($scope, $location, localize, User, AuthUser, Leagues, $rootScope) {
 
-    /**
-     * Событие вызываемое при загрузке файлов локализации.
-     * @return {[type]} [description]
-     */
-    $scope.$on('localizeResourcesUpdates', function() {
-        $scope.topL = localize.getLocalizedString('_topL_');
-        $scope.neighL = localize.getLocalizedString('_neighL_');
-
-
-        $rootScope.$broadcast('userTitleLoaded', {
-            id: 'neigh',
-            title: $scope.neighL
-        });
-
-        $rootScope.$broadcast('userTitleLoaded', {
-            id: 'top',
-            title: $scope.topL
-        });
-    });
-
     $scope.getDatas = function(user) {
         User.get_from_to_points({from: parseInt(user.points-10000), to: parseInt(user.points+10000)}, {}, function(newUsers) {
             angular.forEach(newUsers, function(value, key){
@@ -1428,6 +1408,14 @@ function GalleryController($scope, localize, Leagues, User, AuthUser, $element, 
 
     $scope.swipe = 0;
     $scope.swipeMax = 0;
+
+    $scope.localTitle = localize.getLocalizedString($scope.title);
+
+    $scope.$on('localizeResourcesUpdates', function() {
+        console.log($scope.title);
+        $scope.localTitle = localize.getLocalizedString($scope.title);
+    });
+
 
     $scope.onSwipeRight = function() {
         $scope.swipe += 1;
