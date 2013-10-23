@@ -61,7 +61,7 @@ body {
                     color: #ffffff;
                     text-decoration: none;
                     font-family: 'Helvetica Neue';
-                    font-size: 60%;
+                    font-size: 50%;
                     cursor: pointer;
                     text-align: center;
                     position: relative;
@@ -244,10 +244,8 @@ body {
         height: 80%;
         background: #ffffff;
         border: 1px solid #cccccc;
-        border-bottom: none; 
         box-shadow: /** 0px 30px 0px 0px rgba(255, 255, 255, 1), **/ 0px 0px 30px 1px rgba(0, 0, 0, 0.3);
         z-index: 3;
-        position: relative;
         display: inline-block;
         overflow: hidden;
     }
@@ -622,88 +620,83 @@ body {
     }
 
     .pronear {
-        width: 48%;
+        width: 35%;
         height: auto;
         display: inline-block;
         position: relative;
         margin-left: 2%;
         vertical-align: top;
+        top: 10%;
+        height: 80%;
+        background: #ffffff;
+        border: 1px solid #cccccc;
+        box-shadow: /** 0px 30px 0px 0px rgba(255, 255, 255, 1), **/ 0px 0px 30px 1px rgba(0, 0, 0, 0.3);
+        z-index: 3;
+        overflow: hidden;
     }
 
 
     /** NEIGHBOURS **/
     .nearblock {
-        width: 100%;
+        width: 96%;
         display: block;
-        margin-top: 0.5%;
+        padding: 2%;
+        i {
+            width: 98%;
+            height: 1px;
+            border-top: 1px solid #666666;
+            display: block;
+            margin: 5% auto;
+        }
         .lnbl {
             display: block;
             width: 100%;
             height: 30%;
             position: relative;
-            .gallery {                
-                border-top: 3px solid #cccccc;
+            .gallery {  
                 h4 {                
-                    font-size: 100%;
+                    font-size: 130%;
                     color: #000000;
                     text-align: left;
                     display: block;
-                    position: absolute;
-                    right: 10%;
-                    top: 3%;
-                }
-                a {
-                    width: 20%;
                     margin: 2%;
-                    vertical-align: top;
-                    display: inline-block;
                 }
-                a {
-                    position: relative;
-                    span {
+                .galblo {
+                    display: block;
+                    width: 82%;
+                    margin: 0% auto;
+                    a {
+                        width: 20%;
+                        margin: 0%;
+                        vertical-align: top;
+                        display: inline-block;
+                        position: relative;
+                        span {
+                            position: absolute;
+                            bottom: 0px;
+                            width: 100%;
+                            background: rgba(0, 0, 0, 0.5);
+                            padding-top: 5%;
+                            color: #ffffff;
+                            font-size: 120%;
+                            text-align: right;
+                        }
+                        img {
+                            display: block;
+                            width: 100%;
+                        }
+                    }
+                    sub, sup {
                         position: absolute;
-                        bottom: 0px;
-                        width: 100%;
-                        background: rgba(102, 134, 177, 0.7);
-                        padding-top: 5%;
-                        color: #ffffff;
-                        font-size: 120%;
-                    }
-                    img {
                         display: block;
+                        top: 50%;
+                        left: 0%;
                     }
-                }
-            }
-            .more, .less {
-                position: absolute;
-                right: 10%;
-                top: 25%;
-                text-align: center;
-                transform: skewX(angle);
-                font-size: 80%;
-                color: #ffffff;
-                padding: 2%;
-                background: #759fd2;
-                border-top: 1px solid #ffffff;
-                border-left: 1px solid #ffffff; 
-                border-right: 1px solid #cccccc; 
-                border-bottom: 1px solid #cccccc; 
-                width: 10%;
-                display: inline-block;
-            }
-            .less {                
-                position: fixed;
-                right: 0%;
-                top: 20%;
-                padding: 0.5% 3% 0.5% 1px;
-                width: 3%;
-            }
-            .fulls {
-                h4 {      
-                    right: auto;
-                    left: 2%;
-                    top: 3px;
-                }
+                    sup {
+                        left: auto;
+                        right: 0%;
+                    }
+                }                
             }
         }
     }
@@ -1009,7 +1002,7 @@ body {
         left: 0px;
         bottom: 0px;
         width: 100%;
-        background: rgba(0, 0, 0, 0.48);
+        background: rgba(0, 0, 0, 0.5);
         text-align: right;
         color: #ffffff;
         line-height: 150%;

@@ -1552,7 +1552,7 @@ function GalleryController($scope, localize, Leagues, User, AuthUser, $element, 
     $scope.stateView = 0;
     $scope.stateViewClass = "";
     $scope.users = [];
-    $scope.limit = 3;
+    $scope.limit = 12;
     $scope.authUserId = AuthUser.get();
 
     $scope.$on('usersLoaded', function($event, message) {
