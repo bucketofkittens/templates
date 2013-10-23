@@ -2,12 +2,6 @@
 	<div id="follow_tab" ng-if="frends.length > 0">
 		<img class="fuck" src="/images/f.png" alt="" />
 		<ul>
-			<li ng-if="workspace.user && workspace.user.sguid">
-				<img 
-					ng-click="onCompare(workspace.user)" 
-					ng-src="{{workspace.user.avatar}}" 
-					err-src="/images/unknown-person.png" />
-			</li>
 			<li 
 				ng-class="{show: userItem.user.show}" 
 				ng-mouseleave="onMouseLeaveUser(userItem.user)" 

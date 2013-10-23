@@ -1332,6 +1332,21 @@ function MainController($scope, Leagues, User, $rootScope, $location, $timeout, 
         }
         $scope.scrollDelta = $scope.scrollDelta + step;
     }
+
+    /**
+     * Скроллинг плинки на ipad
+     * @param  {[type]} $event [description]
+     * @return {[type]}        [description]
+     */
+    $scope.onDrag = function($event) {
+        if(!$scope.scrollDelta) {
+            $scope.scrollDelta = 0;
+        }
+        $scope.scrollDelta = $event.gesture.deltaX;
+    }
+
+
+    
 }
 
 /** Контроллер графика */

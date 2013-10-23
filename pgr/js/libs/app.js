@@ -41,7 +41,8 @@ var pgrModule = angular.module(
 		'iso.config',
         'iso.directives',
         'iso.services',
-        'monospaced.mousewheel'
+        'monospaced.mousewheel',
+        'hmTouchEvents'
 		]
 	);
 
