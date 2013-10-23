@@ -545,8 +545,10 @@ function NeedsAndGoalsController($scope, Goals, Criterion, AuthUser, UserCriteri
         Needs.query({}, {}, function(data) {
             $scope.needs = data;
             $scope.bindUserNeedsValues();
-        });  
+        });
     }
+
+    //$scope.workspace.needs
 
     if($scope.user) {
         $scope.getNeeds();
@@ -1642,9 +1644,17 @@ function RootController($scope, AuthUser, User, $rootScope, Needs, Social, $cook
         });
     };
 
+    $scope.getNeeds = function() {
+        Needs.query({}, {}, function(data) {
+            $scope.workspace.needs = data;
+            $rootScope.$broadcast('needsGet');
+        });
+    };
+
     $scope.getProfessions();
     $scope.getState();
     $scope.getUserInfo();
+    $scope.getNeeds();
 
     $scope.$on('updateUserData', function($event, message) {
         if(message.user.sguid === $rootScope.authUserId) {
