@@ -1560,11 +1560,13 @@ function GalleryController($scope, localize, Leagues, User, AuthUser, $element, 
                 if(item != user) {
                     item.hovered = false;
                     item.hover = false;
-                    item.fullAnimate = true;    
                 }
+                item.fullAnimate = true;
             });
-            user.fullAnimate = true;
-            user.hover = user.hover ? false : true;
+
+            $timeout(function() {
+                user.hover = user.hover ? false : true;
+            }, 0);
         }
     }
 
