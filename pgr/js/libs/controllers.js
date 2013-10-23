@@ -1270,11 +1270,25 @@ function NeighboursCtrl($scope, $location, localize, User, AuthUser, Leagues, $r
     $scope.$on('localizeResourcesUpdates', function() {
         $scope.topL = localize.getLocalizedString('_topL_');
         $scope.neighL = localize.getLocalizedString('_neighL_');
+
+
+        $rootScope.$broadcast('userTitleLoaded', {
+            id: 'neigh',
+            title: $scope.neighL
+        });
+
+        $rootScope.$broadcast('userTitleLoaded', {
+            id: 'top',
+            title: $scope.topL
+        });
     });
 
     $scope.getDatas = function(user) {
         User.get_from_to_points({from: parseInt(user.points-10000), to: parseInt(user.points+10000)}, {}, function(newUsers) {
             angular.forEach(newUsers, function(value, key){
+                if(!value.published) {
+                    newUsers.splice(key, 1);
+                }
                 value.points = parseInt(value.points);
             });
             $rootScope.$broadcast('usersLoaded', {
@@ -1286,6 +1300,9 @@ function NeighboursCtrl($scope, $location, localize, User, AuthUser, Leagues, $r
         Leagues.by_position({position: 9}, {}, function(league) {
             User.by_league({league_guid: league.sguid}, {}, function(userData) {
                 angular.forEach(userData, function(value, key){
+                    if(!value.published) {
+                        userData.splice(key, 1);
+                    }
                     value.points = parseInt(value.points);
                 });
                 $rootScope.$broadcast('usersLoaded', {
@@ -1426,6 +1443,12 @@ function GalleryController($scope, localize, Leagues, User, AuthUser, $element, 
         if(message.id == $scope.id) {
             $scope.users = message.users;
             $scope.setPage();
+        }
+    });
+
+    $scope.$on('userTitleLoaded', function($event, message) {
+        if(message.id == $scope.id) {
+            $scope.title = message.title;
         }
     });
 
