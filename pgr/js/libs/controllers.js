@@ -1414,7 +1414,6 @@ function GraphsController($scope, $rootScope, $route, $location, Leagues, User) 
 function NeighboursCtrl($scope, $location, localize, User, AuthUser, Leagues, $rootScope) {
 
     $scope.topL = localize.getLocalizedString('_topL_');
-    $scope.flwL = localize.getLocalizedString('_flwL_');
     $scope.neighL = localize.getLocalizedString('_neighL_');
 
     $scope.getDatas = function(user) {

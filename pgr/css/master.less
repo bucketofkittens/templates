@@ -322,9 +322,9 @@ body {
                 vertical-align: top;
                 width: 60%;
                 p {
-                    font-size: 110%;
+                    font-size: 120%;
                     color: #969696;
-                    line-height: 150%;
+                    line-height: 170%;
                 }
                 label {
                     display: inline-block;
@@ -396,7 +396,7 @@ body {
     .crits {
         display: block;
         width: 102%;
-        height: 45%;
+        height: 50%;
         overflow-y: scroll;
         position: relative;
         z-index: 5;
@@ -411,7 +411,6 @@ body {
             li {
                 margin: 1% 0% 1% 2%;
                 width: 98%;
-                cursor: pointer;
                 position: relative;
                 .cr { 
                     background: rgb(117,159,210);
@@ -484,96 +483,97 @@ body {
                     li {
                         display: block;
                         width: 100%;
-                        margin: 1% auto;
+                        margin: 1.5% auto;
                         h5 {
                             position: relative;
-                        }
-                        a {
-                            font-size: 120%;
-                            color: #000000;
-                            text-decoration: none;
-                            display: inline-block;
-                            width: 17%;
-                            vertical-align: middle;
-                            text-align: left;
-                        }
-                        span {
-                            display: inline-block;
-                            vertical-align: middle;
-                            transition: all 0.5s ease;
-                            margin-right: 1%;
-                            position: relative;
-                            width: 3%;
-                            img {
-                                max-width: 100%;
-                            }
-                            sup, sub {
-                                margin-left: -300%;
-                            }
-                        }
-                        strong {
-                            background: #ffffff;
-                            border: 1px solid #cccccc;
-                            display: inline-block;
-                            line-height: 100%;
-                            width: 65%;
-                            position: relative;
-                            overflow: hidden;
-                            margin-left: -1%;
-                            b {
-                                font-size: 100%;
+                            left: -3.5%;
+                            a {
+                                font-size: 120%;
                                 color: #000000;
-                                text-align: center;
-                                display: block;
-                                margin-top: 2%;
-                                position: relative;
-                                z-index: 5;
+                                text-decoration: none;
+                                display: inline-block;
+                                width: 17%;
+                                vertical-align: middle;
+                                text-align: left;
+                                cursor: pointer;
                             }
                             span {
-                                position: absolute;
-                                left: 0%;
-                                top: 0%;
-                                height: 100%;
-                                display: block;
-                                background: #759fd2;
+                                display: inline-block;
+                                vertical-align: middle;
+                                transition: all 0.5s ease;
+                                margin-right: 2%;
+                                position: relative;
+                                width: 3%;
+                                img {
+                                    max-width: 100%;
+                                }
+                                sup, sub {
+                                    margin-left: -300%;
+                                }
                             }
+                            strong {
+                                background: #ffffff;
+                                border: 1px solid #cccccc;
+                                display: inline-block;
+                                line-height: 100%;
+                                width: 65%;
+                                position: relative;
+                                overflow: hidden;
+                                margin-left: -1%;
+                                b {
+                                    font-size: 100%;
+                                    color: #000000;
+                                    text-align: center;
+                                    display: block;
+                                    margin-top: 1%;
+                                    position: relative;
+                                    z-index: 5;
+                                }
+                                span {
+                                    position: absolute;
+                                    left: 0%;
+                                    top: 0%;
+                                    height: 100%;
+                                    display: block;
+                                    background: #759fd2;
+                                }
+                            }                        
                         }
                         /** criterion **/
                         .criterion {
                             margin: 0%;
-                            max-height:0px;
+                            max-height: 0%;
                             &.show {
                                 max-height: 100%;
                                 margin: 0% auto;
-                            }
+                            }  
                             li {
-                                margin: 1% auto;   
-                                 sub.du, sup.du {
-                                    margin-left: -4%;       
-                                }                          
+                                
                                 p {
                                     color: #000000;
                                     font-size: 100%;
-                                    display: inline-block;
+                                    display: block;
                                     width: 20%;
                                     text-align: left;
                                     vertical-align: middle;
+                                    margin-left: 3%;
                                 }
                                 .crp {
                                     display: inline-block;
-                                    cursor: pointer;
-                                    margin: 0% auto;
+                                    cursor: default;
+                                    margin: 0%;
                                     background: -moz-linear-gradient(left, rgba(222,232,244,1) 0%, rgba(117,159,210,0.99) 100%);
                                     background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(222,232,244,1)), color-stop(100%,rgba(117,159,210,0.99)));
                                     background: -webkit-linear-gradient(left, rgba(222,232,244,1) 0%,rgba(117,159,210,0.99) 100%);
                                     background: -o-linear-gradient(left, rgba(222,232,244,1) 0%,rgba(117,159,210,0.99) 100%);
                                     background: -ms-linear-gradient(left, rgba(222,232,244,1) 0%,rgba(117,159,210,0.99) 100%);
                                     background: linear-gradient(to right, rgba(222,232,244,1) 0%,rgba(117,159,210,0.99) 100%);
-                                    width: 65%;
+                                    width: 90%;
                                     vertical-align: middle;
                                     overflow: hidden;
                                     max-height: 100%;
                                     opacity: 1;
+                                    left: -3%;
                                     .tab {
                                         display: table;
                                         width: 100%;
@@ -599,6 +599,9 @@ body {
                                                     height: 100%;
                                                 }
                                             }
+                                            &:first-child {
+                                                width: 5%;
+                                            }
                                         }
                                     }
                                     span {
@@ -609,6 +612,7 @@ body {
                                         display: block;
                                         background: #ffffff;
                                         width: 95%;
+                                        cursor: pointer;
                                         img {
                                             position: absolute;
                                             left: -5%;
@@ -617,6 +621,13 @@ body {
                                             width: 5%;
                                         }
                                     }
+                                } 
+                                strong {
+                                    display: inline-block;
+                                    position: relative;
+                                    vertical-align: middle;
+                                    left: 0%;
+                                    cursor: pointer;
                                 }
                             }
                         } 

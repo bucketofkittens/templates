@@ -109,14 +109,14 @@
     },
     {
         "key":"_topL_",
-        "value": "Top"
-    },
-    {
-        "key":"_flwL_",
-        "value": "Fellows"
+        "value": "Top of the Gold league"
     },
     {
         "key":"_neighL_",
-        "value": "Neighbours"
+        "value": "Near by"
+    },
+    {
+        "key":"_LEAGUES_",
+        "value": "Leagues"
     }
 ]
