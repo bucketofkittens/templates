@@ -332,6 +332,10 @@ function UserController($scope, $route, $routeParams, User, Needs, Professions, 
                     id: $scope.id
                 });
 
+                $rootScope.$broadcast('userControllerGetUser', {
+                    user: $scope.user
+                });
+
                 $rootScope.$broadcast('getSelectedUserData', {
                     user: $scope.user
                 });
@@ -1302,56 +1306,7 @@ function GraphsController($scope, $rootScope, $route, $location, Leagues, User) 
     });
 }
 
-function NeighboursCtrl($scope, $location, localize, User, AuthUser, Leagues, $rootScope, $routeParams) {
-    $scope.range = 100000;
-
-    $scope.getDatas = function(user) {
-        User.get_from_to_points({from: parseInt(user.points-$scope.range), to: parseInt(user.points+$scope.range)}, {}, function(newUsers) {
-            angular.forEach(newUsers, function(value, key){
-                if(!value.published) {
-                    //newUsers.splice(key, 1);
-                }
-                if($routeParams.userId1 == value.sguid) {
-                    newUsers.splice(key, 1);
-                } 
-                value.points = parseInt(value.points);
-            });
-            $rootScope.$broadcast('usersLoaded', {
-                id: 'neigh',
-                users: newUsers
-            });
-        });
-
-        Leagues.by_position({position: 9}, {}, function(league) {
-            User.by_league({league_guid: league.sguid}, {}, function(userData) {
-                angular.forEach(userData, function(value, key){
-                    if(!value.published) {
-                        //userData.splice(key, 1);
-                    }
-                    if($routeParams.userId1 == value.sguid) {
-                        userData.splice(key, 1);
-                    } 
-                    value.points = parseInt(value.points);
-                });
-                $rootScope.$broadcast('usersLoaded', {
-                    id: 'top',
-                    users: userData
-                });
-            });
-        })
-        
-    }
-
-    $scope.$on('getSelectedUserData', function($event, message) {
-        $scope.getDatas(message.user);
-    });
-    
-
-    $scope.$on('updateUserControllerId', function($event, message) {
-        if(message.id == $scope.id) {
-            $scope.userId1 = mesaage.id;
-        }
-    });
+function NeighboursCtrl($scope) {
 }
 
 /**
@@ -1434,6 +1389,43 @@ function CompareController($scope) {
     
 }
 
+function NeighboursGalleryController($scope, User, $routeParams) {
+    $scope.range = 100000;
+
+    $scope.$on("userControllerGetUser", function($event, message) {
+        User.get_from_to_points({from: parseInt(message.user.points-$scope.range), to: parseInt(message.user.points+$scope.range)}, {}, function(newUsers) {
+            angular.forEach(newUsers, function(value, key){
+                if(!value.published) {
+                    //newUsers.splice(key, 1);
+                }
+                if($routeParams.userId1 == value.sguid) {
+                    newUsers.splice(key, 1);
+                } 
+                value.points = parseInt(value.points);
+            });
+            $scope.users = newUsers;
+        });
+    });
+}
+
+function TopGalleryController($scope, Leagues, User, $routeParams) {
+    Leagues.by_position({position: 9}, {}, function(league) {
+        User.by_league({league_guid: league.sguid}, {}, function(userData) {
+            angular.forEach(userData, function(value, key){
+                if(!value.published) {
+                    //userData.splice(key, 1);
+                }
+                if($routeParams.userId1 == value.sguid) {
+                    userData.splice(key, 1);
+                } 
+                value.points = parseInt(value.points);
+            });
+            
+            $scope.users = userData;
+        });
+    });
+}
+
 /**
  * Универсальная галлерея
  * @param {[type]} $scope    [description]
@@ -1446,6 +1438,12 @@ function CompareController($scope) {
  */
 function GalleryController($scope, localize, Leagues, User, AuthUser, $element, $location, $timeout, $rootScope) {
 
+    $scope.$watch("users", function (newVal, oldVal, scope) {
+        if($scope.users && $scope.users.length > 0) {
+            $scope.setPage();
+        }
+    });
+
     /**
      * Через сколько минисекунд картинка становится большой
      * @type {Number}
@@ -1457,12 +1455,6 @@ function GalleryController($scope, localize, Leagues, User, AuthUser, $element, 
     $scope.swipe = 0;
     $scope.swipeMax = 0;
 
-    $scope.localTitle = localize.getLocalizedString($scope.title);
-
-    $scope.$on('localizeResourcesUpdates', function() {
-        $scope.localTitle = localize.getLocalizedString($scope.title);
-    });
-
 
     $scope.onSwipeRight = function() {
         $scope.swipe += 1;
@@ -1473,19 +1465,6 @@ function GalleryController($scope, localize, Leagues, User, AuthUser, $element, 
         $scope.swipe -= 1;
         $scope.setPage();    
     }
-
-    $scope.$on('usersLoaded', function($event, message) {
-        if(message.id == $scope.id) {
-            $scope.users = message.users;
-            $scope.setPage();
-        }
-    });
-
-    $scope.$on('userTitleLoaded', function($event, message) {
-        if(message.id == $scope.id) {
-            $scope.title = message.title;
-        }
-    });
 
     $scope.setPage = function() {
         var first = $scope.swipe * $scope.limit;
