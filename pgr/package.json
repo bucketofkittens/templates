@@ -21,6 +21,7 @@
     "grunt-imageoptim": "~1.4.0",
     "grunt-contrib-imagemin": "~0.3.0",
     "grunt-encode-images": "~0.1.4",
-    "grunt-contrib-cssmin": "~0.6.2"
+    "grunt-contrib-cssmin": "~0.6.2",
+    "grunt-minified": "0.0.6"
   }
 }

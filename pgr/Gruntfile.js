@@ -55,23 +55,8 @@ module.exports = function(grunt) {
         watch: {
 		    concat: {
 		        files: '<%= concat.main.src %>',
-		        tasks: ['concat', 'concat_css']
+		        tasks: ['concat', 'cssmin']
 		    }
-		},
-        // Сжимаем
-        uglify: {
-            main: {
-                files: {
-                    // Результат задачи concat
-                    'build/scripts.min.js': '<%= concat.main.dest %>'
-                }
-            }
-        },
-        jshint: {
-		    options: {
-		        jshintrc: '.jshintrc'
-		    },
-		    files: 'js/libs/*.js'
 		},
         cssmin: {
           minify: {
