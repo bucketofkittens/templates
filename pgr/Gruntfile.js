@@ -66,6 +66,16 @@ module.exports = function(grunt) {
             dest: 'build/',
             ext: '.min.css'
           }
+        },
+        prangler: {
+            default: {
+              options: {
+                ngApp: 'pgrModule'
+              },
+              files: {
+                'js/libs/templates.js': ['views/*.html', 'partials/*.html'],
+              }
+            }
         }
     });
 
@@ -73,5 +83,5 @@ module.exports = function(grunt) {
     require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
 
     // Задача по умолчанию
-    grunt.registerTask('default', ['concat', 'cssmin']);
+    grunt.registerTask('default', ['prangler', 'concat', 'cssmin']);
 };
