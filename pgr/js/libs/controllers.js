@@ -152,41 +152,6 @@ function NavCtrl($scope, localize, $location, AuthUser, $rootScope, $route) {
  * @returns {undefined}
  */
 function ProfileController($scope, $routeParams, AuthUser, $route, $rootScope, $location) {
-    $scope.authUserId = AuthUser.get();
-    $scope.userId1 = $routeParams.userId1;
-    $scope.userId2 = $routeParams.userId2;
-    $scope.currentUserEditStatus = !$scope.userId2 ? true : false;
-    
-    $scope.$on('routeSegmentChange', function(data, d2) {
-        if($routeParams.userId1 && $routeParams.userId1 != $scope.userId1) {
-            $rootScope.$broadcast('updateUserControllerId', {
-                userId: $routeParams.userId1,
-                id: "leftUser"
-            });    
-        }
-
-        if($routeParams.userId2 && $routeParams.userId2 != $scope.userId2) {
-            $rootScope.$broadcast('updateUserControllerId', {
-                isEdit: false,
-                id: "leftUser"
-            });
-            $rootScope.$broadcast('updateUserControllerId', {
-                userId: $routeParams.userId2,
-                id: "rightUser"
-            });
-        } else {
-            if(!$routeParams.userId2) {
-                $rootScope.$broadcast('updateUserControllerId', {
-                    isEdit: true,
-                    id: "leftUser"
-                });
-            }    
-        }
-
-        $scope.userId1 = $routeParams.userId1;
-        $scope.userId2 = $routeParams.userId2;
-        
-    });
 }
 
 /**
@@ -256,6 +221,13 @@ function UserController($scope, $route, $routeParams, User, Needs, Professions, 
             return profession.name;
         });
     }
+
+    $scope.$on('routeSegmentChange', function(data, d2) {
+        if($routeParams.userId1 && $routeParams.userId1 != $scope.userId1) {
+            $scope.userId = $routeParams.userId1;
+            $scope.getUserInfo();
+        }
+    });
 
      /**
      * Событие.
