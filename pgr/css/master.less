@@ -581,7 +581,6 @@ body {
 
     .pronear {
         width: 35%;
-        height: auto;
         display: inline-block;
         position: relative;
         margin-left: 2%;
@@ -604,7 +603,7 @@ body {
         i {
             width: 98%;
             height: 1px;
-            border-top: 2px solid #ccc;
+            border-top: 2px solid #cccccc;
             display: block;
             margin: 5% auto;
         }
@@ -684,99 +683,58 @@ body {
         }
     }
 
-    /** COMPARE **/
-    sub.du, sup.du, s.du {
-        margin-left: -4%;
-        z-index: 7;
-        position: absolute;
-        left: 0%;
-        top: 50%;
-        margin-top: -7px;
-        display: block;
-        width: 0px;
-        height: 0px;
-        border-style: solid;
-        border-width: 7.5px 0 7.5px 15px;
-        border-color: transparent transparent transparent #1ca315;        
-    }
-    sub.du {
-        border-width: 7.5px 15px 7.5px 0;
-        border-color: transparent #bd1b1b transparent transparent;
-        }
-    s.du {
-        width: 15px;
-        height: 15px;
-        border-radius: 100%;
-        border-width: 0px;
-        background: #028dda;
-    }
-    .comp {
+
+    /** NAV ON MY PAGES **/
+    .mynav {
+        margin: 6% 0% 2% 2%;
+        vertical-align: middle;
         width: 100%;
-        background: #f9f9f9;
-        border: none;
-        box-shadow: none;
-        .crits {
-            background: #f9f9f9;
-        }
-    }
-
-
-    /** LEAGUES **/
-    .leaglist {
-        display: block;
-        width: 95%;
-        margin: 0% auto 1% auto;
-        article {
-            display: block;
-            width: 100%;
-            margin: 0% auto;
-            &:hover sub, &:hover sup {
-                display: block;
-            }
-            a {
-                width: 8%;
+        height: auto;
+        ul {
+            display: inline-block;
+            vertical-align: middle;
+            width: 20%;
+            margin-left: 0.3%;
+            li {
                 display: inline-block;
-                margin: 0.2%;
-                img {
-                    border-radius: 5px;
-                }
-            }
-            div {
-                display: inline-block;
-                width: 90%;
-                margin-left: 1%;
-                position: relative;
-                text-align: center;
-                p {
-                    white-space: nowrap;
-                    margin-right: 2%;
-                    overflow: hidden;
-                    text-align: left;
+                border: 1px solid #cccccc;
+                line-height: 200%;
+                margin-left: -1%;
+                padding: 1% 3%;
+                &.current {
+                    background: #36374b;
                 }
                 a {
-                    display: inline-block;
-                    width: 8%;
+                    vertical-align: middle;
+                    text-align: center;
+                    display: block;
                     img {
-                        border-radius: 0px;
+                        display: block;
                     }
-                }
-                sub, sup {
-                    position: absolute;
-                    display: none;
-                    width: 5%;
-                    height: 60%;
-                    cursor: pointer;
-                    top: 20%;
-                    left: -3%;
-                    background: url("../images/left.png") center center no-repeat;
-                }
-                sup {
-                    left: auto;
-                    right: -3%;
-                    background: url("../images/right.png") center center no-repeat; 
                 }
             }
         }
+        h2 {
+            font-size: 150%;
+            color: #000000;
+            display: inline-block;
+        }
+    }
+
+
+    /** MY DASHBOARD **/
+    .mydash {
+        width: 96%;
+        display: block;
+        position: relative;
+        margin-left: 2%;
+        vertical-align: top;
+        height: 72%;
+        background: #ffffff;
+        border: 1px solid #dddddd;
+        box-shadow: 0px 0px 20px 1px rgba(0, 0, 0, 0.2);
+        z-index: 3;
+        overflow: hidden;
     }
 
 
