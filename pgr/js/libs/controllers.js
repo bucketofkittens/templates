@@ -55,7 +55,7 @@ function AvatarCtrl($scope, $rootScope, $location) {
      * @return {undefined}
      */
     $scope.onOpenProfileAuthUser = function() {
-        $location.path("/profile/" + $scope.workspace.user.sguid);
+        $location.path("/my_profile/");
     };
 }
 
@@ -1964,4 +1964,8 @@ function CropImageController($scope, $rootScope) {
         };
         reader.readAsDataURL(file);
     }
+}
+
+function MyProfileController($scope) {
+    
 }

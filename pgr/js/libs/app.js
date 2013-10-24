@@ -56,23 +56,20 @@ pgrModule.config(function($routeSegmentProvider, $routeProvider) {
 
 	$routeSegmentProvider
     
-        .when('/profile',                'profile.authUser')
-        .when('/profile/:userId1',       'profile.oneUser')
-        .when('/profile/:userId1/:userId2',    'profile.manyUser')
+        .when('/my_profile',                'my_profile')
+        .when('/profile/:userId1',          'profile.oneUser')
+        .when('/profile/:userId1/:userId2', 'profile.manyUser')
         
-        .when('/',      'main')
+        .when('/',                          'main')
         
-        .when('/graphs',          'graphs')
-        .when('/leagues',          'leagues')
+        .when('/graphs',                    'graphs')
+        .when('/leagues',                   'leagues')
         
         .segment('profile', {
             templateUrl: 'views/profile.html',
             controller: ProfileController})
             
         .within()
-        	.segment('authUser', {
-                templateUrl: 'views/profile/one.html'})
-
             .segment('oneUser', {
                 templateUrl: 'views/profile/one.html',
             	dependencies: ['userId1']})
@@ -87,6 +84,10 @@ pgrModule.config(function($routeSegmentProvider, $routeProvider) {
             templateUrl: 'views/main.html',
             controller: MainController})
 
+        .segment('my_profile', {
+            templateUrl: 'views/my_profile.html',
+            controller: MyProfileController})
+
         .segment('graphs', {
             templateUrl: 'views/graphs.html',
             controller: GraphsController})
@@ -97,12 +98,11 @@ pgrModule.config(function($routeSegmentProvider, $routeProvider) {
 
 	$routeProvider.otherwise({ redirectTo: '/' });
 });
+
 pgrModule.config(function($facebookProvider) {
 	$facebookProvider.setPermissions("email");
 	$facebookProvider.setAppId(socialsAccess.facebook.applicationId[window.location.hostname]);
 });
-
-
 
 pgrModule.run(function() {
 	localStorage.clear();
