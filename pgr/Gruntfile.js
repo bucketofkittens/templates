@@ -73,15 +73,14 @@ module.exports = function(grunt) {
 		    },
 		    files: 'js/libs/*.js'
 		},
-        imagemin: {
-            dynamic: {                         // Another target
-              files: [{
-                expand: true,                  // Enable dynamic expansion
-                cwd: 'images/',                   // Src matches are relative to this path
-                src: ['**/*.{png,jpg,gif}'],   // Actual patterns to match
-                dest: 'images/'                  // Destination path prefix
-              }]
-            }
+        cssmin: {
+          minify: {
+            expand: true,
+            cwd: 'build/',
+            src: ['*.css', '!*.min.css'],
+            dest: 'build/',
+            ext: '.min.css'
+          }
         }
     });
 
@@ -89,5 +88,5 @@ module.exports = function(grunt) {
     require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
 
     // Задача по умолчанию
-    grunt.registerTask('default', ['concat']);
+    grunt.registerTask('default', ['concat', 'cssmin']);
 };
