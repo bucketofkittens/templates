@@ -3,20 +3,6 @@ module.exports = function(grunt) {
 
     // Задачи
     grunt.initConfig({
-    	concat_css: {
-		    options: {
-		      // Task-specific options go here.
-		    },
-		    all: {
-		      src: [
-                "css/reset.css",
-                "css/jquery.Jcrop.min.css",
-                "css/fonts.css",
-                "css/master.css"
-              ],
-		      dest: "build/style.css"
-		    },
-		},
         // Склеиваем
         concat: {
             main: {
@@ -76,6 +62,16 @@ module.exports = function(grunt) {
                 'js/libs/templates.js': ['views/*.html', 'partials/*.html'],
               }
             }
+        },
+       imageEmbed: {
+            dist: {
+              src: [ "build/style.css" ],
+              dest: "build/style.base64.css",
+              options: {
+                deleteAfterEncoding : false,
+                maxImageSize: 999999
+              }
+            }
         }
     });
 
@@ -83,5 +79,5 @@ module.exports = function(grunt) {
     require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
 
     // Задача по умолчанию
-    grunt.registerTask('default', ['prangler', 'concat', 'cssmin']);
+    grunt.registerTask('default', ['prangler', 'concat', 'imageEmbed']);
 };

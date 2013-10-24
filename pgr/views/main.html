@@ -20,21 +20,20 @@
 					<ul>
 						<li>
 							<a ng-click="onMoveToProfile(userItem)">
-								<img src="/images/i1.png" alt="" class="navigate" />
+								<span class="icon profile navigate"></span>
 							</a>
 						</li>
 						<li>
 							<a href="">
-								<img src="/images/i2.png" alt="" class="navigate" />
+								<span class="icon compare navigate"></span>
 							</a>
 						</li>
 						<li>
 							<a ng-if="!userItem.isFrend" ng-click="onFollow(userItem)">
-								<img src="/images/i3.png" alt="" class="navigate" />
-								<img ng-if="userItem.isFrend" src="/images/i3i.png" alt="">
+								<span class="icon follow navigate"></span>
 							</a>
 							<a ng-if="userItem.isFrend" ng-click="onUnFollow(userItem)">
-								<img src="/images/i3i.png" alt="" class="navigate" />
+								<span class="icon unfollow navigate"></span>
 							</a>
 						</li>
 					</ul>
