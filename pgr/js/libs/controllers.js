@@ -249,7 +249,6 @@ function UserController($scope, $route, $routeParams, User, Needs, Professions, 
 
     $scope.$watch("userId", function (newVal, oldVal, scope) {
         $scope.getUserInfo();
-        $scope.testFollow();
     });
 
     $scope.professionFn = function(query) {
@@ -369,21 +368,21 @@ function UserController($scope, $route, $routeParams, User, Needs, Professions, 
     
 
     $scope.testFollow = function() {
-        if($scope.userId && $scope.workspace.user) {
+        if($scope.userId) {
             if($scope.workspace.user && $scope.workspace.user.frends) {
                 var item = $scope.workspace.user.frends.filter(function(item) {
-                    if(item.user.sguid == $scope.currentUserId) { return item; }
+                    if(item.user.sguid == $scope.userId) { return item; }
                 });
             } else {
                 var item = $scope.tmpFollows.filter(function(item) {
-                    if(item.user.sguid == $scope.currentUserId) { return item; }
+                    if(item.user.sguid == $scope.userId) { return item; }
                 });
             }
             
             if(item.length > 0) {
-                $scope.isFollow = true;
+                $scope.user.isFollow = true;
             } else {
-                $scope.isFollow = false;
+                $scope.user.isFollow = false;
             }
         }
     }
