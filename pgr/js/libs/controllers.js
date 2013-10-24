@@ -379,11 +379,14 @@ function UserController($scope, $route, $routeParams, User, Needs, Professions, 
                 });
             }
             
-            if(item.length > 0) {
-                $scope.user.isFollow = true;
-            } else {
-                $scope.user.isFollow = false;
+            if($scope.user) {
+                if(item.length > 0) {
+                    $scope.user.isFollow = true;
+                } else {
+                    $scope.user.isFollow = false;
+                }    
             }
+            
         }
     }
 
@@ -1967,5 +1970,5 @@ function CropImageController($scope, $rootScope) {
 }
 
 function MyProfileController($scope) {
-    
+
 }

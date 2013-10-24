@@ -8,7 +8,12 @@ module.exports = function(grunt) {
 		      // Task-specific options go here.
 		    },
 		    all: {
-		      src: ["css/*.css"],
+		      src: [
+                "css/reset.css",
+                "css/jquery.Jcrop.min.css",
+                "css/fonts.css",
+                "css/master.css"
+              ],
 		      dest: "build/style.css"
 		    },
 		},
@@ -36,6 +41,15 @@ module.exports = function(grunt) {
                     'js/libs/*.js'
                 ],
                 dest: 'build/scripts.js'
+            },
+            css: {
+                src: [
+                    "css/reset.css",
+                    "css/jquery.Jcrop.min.css",
+                    "css/fonts.css",
+                    "css/master.css"
+                ],
+                dest: "build/style.css"
             }
         },
         watch: {
@@ -58,12 +72,22 @@ module.exports = function(grunt) {
 		        jshintrc: '.jshintrc'
 		    },
 		    files: 'js/libs/*.js'
-		}
+		},
+        imagemin: {
+            dynamic: {                         // Another target
+              files: [{
+                expand: true,                  // Enable dynamic expansion
+                cwd: 'images/',                   // Src matches are relative to this path
+                src: ['**/*.{png,jpg,gif}'],   // Actual patterns to match
+                dest: 'images/'                  // Destination path prefix
+              }]
+            }
+        }
     });
 
     // Загрузка плагинов, установленных с помощью npm install
     require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
 
     // Задача по умолчанию
-    grunt.registerTask('default', ['concat', 'uglify']);
+    grunt.registerTask('default', ['concat']);
 };

@@ -5,10 +5,10 @@ body #shadow{background:rgba(0,0,0,0.36);z-index:999;position:absolute;width:0;h
 body header{height:8%;width:100%;background:#36374b;top:0;z-index:120;overflow:hidden;position:fixed;}body header #avatar{float:right;height:90%;margin-right:3%}body header #avatar p{text-align:center}body header #avatar p img{max-height:80%;position:relative;display:block;cursor:pointer}
 body header #avatar p span{color:#fff;text-decoration:none;font-family:'Helvetica Neue';font-size:50%;cursor:pointer;text-align:center;position:relative}
 body header #search{float:right;width:15%;margin-right:5%;margin-top:1%;background:#fff;height:50%;overflow:hidden;position:relative}body header #search .search{font-size:100%;color:#666;border:none;float:left;display:block;margin:1% 0 0 5%;position:relative;line-height:150%;border:none}
-body header #search .searcher{background:url("../images/search.png") left top no-repeat;width:10%;border:none;cursor:pointer;display:block;padding:0;text-indent:-999px;position:absolute;top:10%;right:5%;background-size:100%}
+body header #search .searcher{background:url("/images/search.png") left top no-repeat;width:10%;border:none;cursor:pointer;display:block;padding:0;text-indent:-999px;position:absolute;top:10%;right:5%;background-size:100%}
 body header ul{float:right;margin-right:4%;height:100%;text-align:right;width:20%;display:table;position:relative;top:3%}body header ul li{display:table-cell;height:100%;vertical-align:middle}body header ul li a{color:#fff;text-decoration:none;font-family:'Helvetica Neue';font-size:100%;text-transform:uppercase;cursor:pointer;position:relative;height:100%}body header ul li a:hover{color:#fff}
 body header ul li a.current{color:#86b3ef}
-body header .social{width:12%;height:50%;vertical-align:top;display:inline-block;position:absolute;top:10%;right:0;text-decoration:none}body header .social a{background:url("../images/icons.png") center center no-repeat;width:15%;height:100%;margin:5% 7%;display:inline-block;overflow:hidden;background-position:50% 0;background-size:500% 65%}body header .social a:first-child{background-position:0 0}
+body header .social{width:12%;height:50%;vertical-align:top;display:inline-block;position:absolute;top:10%;right:0;text-decoration:none}body header .social a{background:url("/images/icons.png") center center no-repeat;width:15%;height:100%;margin:5% 7%;display:inline-block;overflow:hidden;background-position:50% 0;background-size:500% 65%}body header .social a:first-child{background-position:0 0}
 body header .social a:last-child{background-position:100% 0}
 #content{position:relative;width:100%;background:#f9f9f9;min-height:100%;height:100%;overflow:hidden;}#content .content_wrap{height:100%}#content .content_wrap.ng-enter,#content .content_wrap.ng-leave{-webkit-transition:.5s linear all;-moz-transition:.5s linear all;-o-transition:.5s linear all;transition:.5s linear all;position:absolute;top:0;left:0;right:0;height:600px}
 #content .content_wrap.ng-enter{z-index:100;top:600px;opacity:0}
@@ -65,8 +65,8 @@ body header .social a:last-child{background-position:100% 0}
 #content .leaglist article a{width:8%;display:inline-block;margin:.2%}#content .leaglist article a img{border-radius:5px}
 #content .leaglist article div{display:inline-block;width:90%;margin-left:1%;position:relative;text-align:center}#content .leaglist article div p{white-space:nowrap;margin-right:2%;overflow:hidden;text-align:left}
 #content .leaglist article div a{display:inline-block;width:8%}#content .leaglist article div a img{border-radius:0}
-#content .leaglist article div sub,#content .leaglist article div sup{position:absolute;display:none;width:5%;height:60%;cursor:pointer;top:20%;left:-3%;background:url("../images/left.png") center center no-repeat}
-#content .leaglist article div sup{left:auto;right:-3%;background:url("../images/right.png") center center no-repeat}
+#content .leaglist article div sub,#content .leaglist article div sup{position:absolute;display:none;width:5%;height:60%;cursor:pointer;top:20%;left:-3%;background:url("/images/left.png") center center no-repeat}
+#content .leaglist article div sup{left:auto;right:-3%;background:url("/images/right.png") center center no-repeat}
 #content table#graphs{height:90%;width:90%;margin:0 auto;position:relative;table-layout:fixed}#content table#graphs tr{height:9%}#content table#graphs tr td,#content table#graphs tr th{vertical-align:top;text-align:center;border-top:1px solid #ccc;height:200px}#content table#graphs tr td img,#content table#graphs tr th img{width:90%;position:relative}
 #content table#graphs tr td a,#content table#graphs tr th a{display:block;position:relative}
 #content table#graphs tr th{border-top:none;border-right:1px solid #000;line-height:50% !important;width:10%}
