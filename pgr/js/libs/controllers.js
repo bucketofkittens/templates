@@ -627,7 +627,11 @@ function NeedsAndGoalsController($scope, Goals, Criterion, AuthUser, UserCriteri
             /**
              * забираем значения для текущего пользователя
              */
-            $scope.getCriteriumValueByUser(goal);   
+            $scope.getCriteriumValueByUser(goal);
+
+            setTimeout(function() {
+                $("#content .crits ul li ul li .criterion li .bord .crp .tab").css("height", $("#content .crits ul li .cr").height());
+            });
         }); 
     }
 
