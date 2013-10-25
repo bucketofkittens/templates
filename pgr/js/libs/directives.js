@@ -109,6 +109,20 @@ pgrModule.directive('setWidth', function() {
   }
 })
 
+pgrModule.directive('setWidthSmall', function() {
+  return {
+    link: function(scope, element, attrs) {
+      scope.$watch("userItem.hover", function() {
+        if(scope.userItem.hover) {
+          //$(element).clone().addClass("clone").insertAfter($(element));
+        } else {
+          //$(".clone").remove();
+        }
+      });
+    }
+  }
+})
+
 function randomRange(l,h){
   var range = (h-l);
   var random = Math.floor(Math.random()*range);

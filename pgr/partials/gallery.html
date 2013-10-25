@@ -1,10 +1,11 @@
 <div class="galblo">
-	<div class="galblos"
+	<div class="galblos isotope"
 		ng-repeat="(userKey, userItem) in users"
 		ng-mouseenter="onUserMouseEnter(userItem, $event)"
 		ng-mouseleave="onUserMouseLeave(userItem, $event)"
 		ng-click="onUserClick(userItem, $event)"
-		ng-class="{big: userItem.hover, show: userItem.showItem}">
+		ng-class="{big: userItem.hover}"
+		ng-if="userItem.showItem">
 		<img ng-src="{{userItem.avatar}}" err-src="/images/unknown-person.png" />
 		<span>{{userItem.points}}</span>
 		<div class="sub"> 
@@ -30,7 +31,8 @@
 				</li>
 			</ul>
 		</div>
-	</div> 
-	<sub ng-if="swipe > 0" ng-click="onSwipeLeft()"><img src="../images/left.png"></sub>
-	<sup ng-if="users.length > limit && swipe < swipeMax - 1" ng-click="onSwipeRight()"><img src="../images/right.png"></sup>
+	</div>
 </div>
+
+<sub ng-if="swipe > 0" ng-click="onSwipeLeft()"><img src="../images/left.png"></sub>
+<sup ng-if="users.length > limit && swipe < swipeMax - 1" ng-click="onSwipeRight()"><img src="../images/right.png"></sup>
