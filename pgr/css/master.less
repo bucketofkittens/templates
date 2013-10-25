@@ -249,7 +249,6 @@ body {
                     width: 100%;
                     background: #ffffff;
                     height: auto;
-                    max-width: 300px;
                     &.edit {
                         cursor: pointer;
                     }
@@ -788,18 +787,57 @@ body {
             box-shadow: 0px 0px 20px 1px rgba(0, 0, 0, 0.2);
             z-index: 3;
             overflow: hidden;
-            padding: 1%;
-            p {
-                padding: 0% 0% 5% 0%;
-                input[type="text"], input[type="email"] {
-                    border: 1px solid #cccccc;
-                }
-            }
+            padding: 1%;            
         }
         
         /** MY SETTINGS **/
         .myset {
-            
+            width: 96%;
+            display: block;
+            position: relative;
+            margin-left: 2%;    
+            vertical-align: top;
+            height: 73%;
+            background: #ffffff;
+            border: 1px solid #dddddd;
+            box-shadow: 0px 0px 20px 1px rgba(0, 0, 0, 0.2);
+            z-index: 3;
+            overflow: hidden;
+            .promy {
+                .publish {
+                    display: block;
+                    text-align: center;
+                    position: relative;
+                    strong {
+                        font-size: 120%;
+                        color: #000000;
+                        margin-top: 5%;
+                        display: block;
+                        b {
+                            font-size: 70%;
+                            color: #666666;
+                            display: block;
+                            margin: 2% 0%;
+                        }
+                    }
+                }
+                .pmpar {
+                    p {
+                        padding-bottom: 1.5%;
+                    }
+                    label {
+                        width: 20%;
+                    }
+                    select, input {                        
+                        width: 30%;
+                        padding: 1% !important;
+                        border: 2px solid #cccccc;
+                    }
+                    .form-control, .ng-pristine {
+                        width: 30%;
+                    }
+                }
+            }
         }
     }
 

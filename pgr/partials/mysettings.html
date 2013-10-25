@@ -1,6 +1,6 @@
-<section class="mydash">
+<section class="myset">
 	<div 
-		class="pmain pro" 
+		class="pmain pro promy" 
 		ng-controller="UserController" >
 		<div class="block">
 			<input 
@@ -19,9 +19,9 @@
 				<span></span>
 			</div>
 			
-			<!--
 			<div class="publish">
 				<p>
+					<strong>Your account is private.<b>Only you can see your profile.</b></strong>
 					<button ng-click="onPublish()" ng-if="authUserId == currentUserId && isEdit">
 						<span ng-switch on="user.published" >
 							<span ng-switch-when="1">
@@ -32,24 +32,10 @@
 							</span>
 						</span>
 					</button>
-					<span ng-if="authUserId && authUserId != currentUserId">
-						<span ng-switch on="isFollow" >
-							<span ng-switch-when="false">
-								<button ng-click="onFollow()">
-									{{'_AddFrend_' | i18n}}
-								</button>
-							</span>
-							<span ng-switch-when="true">
-								<button class="unfollow" ng-click="onUnFollow()">
-									{{'_RemoveFrend_' | i18n}}
-								</button>
-							</span>
-						</span>
-					</span>
 				</p>
 			</div>
-			-->	
 		</div>
+
 		<div class="pmpar">
 			<p>
 				<label for="name_i">{{'_NameL_' | i18n}}:</label> 
@@ -59,6 +45,28 @@
 					ng-model="workspace.user.name"
 					required
 					ng-minlength="6" />
+			</p>
+			<p>
+				<label for="age_i">{{'_BirthdayL_' | i18n}}:</label>
+				<input 
+					type="text" 
+					ng-model="workspace.user.birthday" 
+					data-date-format="dd/mm/yyyy" 
+					bs-datepicker
+					id="age_i" />
+			</p>
+			<p>
+				<label for="loc_i">{{'_LocL_' | i18n}}:</label>
+				<input 
+					id="pro_i" 
+					ng-model="workspace.user.state.name"
+					type="text"  />
+			<p>
+				<label for="pro_i">{{'_ProfL_' | i18n}}:</label>
+				<input 
+					id="pro_i" 
+					ng-model="workspace.user.profession.name"
+					type="text"  />
 			</p>
 			<p>
 				<label for="email_i">{{'_EmaiL_' | i18n}}:</label> 
@@ -81,29 +89,6 @@
 				<i ng-if="!isEdit || user.sguid != authUserId">{{user.login}}</i>
 			</p>
 			-->
-			<p>
-				<label for="age_i">{{'_BirthdayL_' | i18n}}:</label>
-				<input 
-					type="text" 
-					ng-model="workspace.user.birthday" 
-					data-date-format="dd/mm/yyyy" 
-					bs-datepicker
-					id="age_i" />
-			</p>
-			<p>
-				<label for="loc_i">{{'_LocL_' | i18n}}:</label>
-				<input 
-					id="pro_i" 
-					ng-model="workspace.user.state.name"
-					type="text"  />
-				</select>
-			<p>
-				<label for="pro_i">{{'_ProfL_' | i18n}}:</label>
-				<input 
-					id="pro_i" 
-					ng-model="workspace.user.profession.name"
-					type="text"  />
-			</p>
 		</div>
 	</div>
 </section>
