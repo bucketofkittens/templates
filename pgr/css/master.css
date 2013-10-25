@@ -51,7 +51,7 @@ body header ul li a.current{color:#86b3ef}
 #content .nearblock .lnbl{display:block;width:100%;position:relative}#content .nearblock .lnbl .gallery>div>div{overflow:visible}
 #content .nearblock .lnbl .gallery h4{font-size:130%;color:#000;text-align:left;display:block;margin:2% 2% 5% 2%}
 #content .nearblock .lnbl .gallery .big{-webkit-transform:translate(-10%, -10%);-webkit-transform:scale(1.8);-moz-transform:translate(-10%, -10%);-moz-transform:scale(1.8);-ms-transform:translate(-10%, -10%);-ms-transform:scale(1.8)}#content .nearblock .lnbl .gallery .big b{font-size:70% !important;padding-top:15% !important}
-#content .nearblock .lnbl .gallery .big span{font-size:60% !important;z-index:999}
+#content .nearblock .lnbl .gallery .big span{font-size:50% !important;z-index:999}
 #content .nearblock .lnbl .gallery sub,#content .nearblock .lnbl .gallery sup{position:absolute;display:block;top:50%;left:0;cursor:pointer}
 #content .nearblock .lnbl .gallery sup{left:auto;right:0}
 #content .nearblock .lnbl .gallery .galblo{display:block;width:80%;margin:0 auto;text-align:center;overflow:visible !important;position:relative}#content .nearblock .lnbl .gallery .galblo .galblos{width:23%;margin:0;vertical-align:top;display:block;transition:all .5s ease-out;-webkit-transition:all .5s ease-out;display:inline-block;position:relative}#content .nearblock .lnbl .gallery .galblo .galblos>span{position:absolute;bottom:0;width:99%;background:rgba(0,0,0,0.5);padding:5% 1% 0 0;color:#fff;font-size:120%;text-align:right;left:0}
