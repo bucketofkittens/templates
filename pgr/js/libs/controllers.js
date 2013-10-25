@@ -800,8 +800,6 @@ function NeedsAndGoalsController($scope, Goals, Criterion, AuthUser, UserCriteri
             }
         }
 
-        
-
         if(!criteria["affects?"]) {
             if(criteria["depend_guids"].length == 0) {
                 $scope.onPointsSet(currentValue, criteriaValue.value, needItem, goalItem);
@@ -810,8 +808,6 @@ function NeedsAndGoalsController($scope, Goals, Criterion, AuthUser, UserCriteri
                 $scope.onPointsSet(currentValue, criteriaValue.value*criteriums, needItem, goalItem);
             }
         }
-
-
 
         if(criteria["affects?"]) {
             angular.forEach(criteria["affect_guids"], function(value, key){
@@ -856,9 +852,13 @@ function NeedsAndGoalsController($scope, Goals, Criterion, AuthUser, UserCriteri
         parentLi.addClass("current");
 
         if(parentLi.index() != 0) {
-            slider.css("width", parentUl.get(0).clientWidth - parentLi.get(0).offsetLeft - parentLi.get(0).clientWidth + "px");
+            var size = parentUl.get(0).clientWidth - parentLi.get(0).offsetLeft - parentLi.get(0).clientWidth;
+            if (size <  15) {
+                size = 0;
+            }
+            slider.css("width", size + "px").css("right", "-15px");
         } else {
-            slider.css("width", "95%");
+            slider.css("width", "95%").css("right", "-1%");
         }
         
         var isCurrent = false;
