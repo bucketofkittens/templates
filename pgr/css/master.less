@@ -436,7 +436,6 @@ body {
                         margin: 1.5% auto;
                         h5 {
                             position: relative;
-                            left: -3.5%;
                             padding: 0.3% 0%;
                             a {
                                 font-size: 120%;
@@ -447,56 +446,64 @@ body {
                                 vertical-align: middle;
                                 text-align: left;
                                 cursor: pointer;
-                            }
-                            s {
-                                position: absolute;
-                                left: 28.5%;
-                                top: 30%;
-                                display: inline-block;
-                                width: 0px;
-                                height: 0px;
-                                border-style: solid;
-                                border-width: 8px 7.5px 0 7.5px;
-                                border-color: #000000 transparent transparent transparent;
-                            }
-                            span {
-                                display: inline-block;
-                                vertical-align: middle;
-                                transition: all 0.5s ease;
-                                margin-right: 2%;
-                                position: relative;
-                                width: 3%;
-                                img {
-                                    max-width: 100%;
+                                span {
+                                    display: inline-block;
+                                    vertical-align: middle;
+                                    transition: all 0.5s ease;
+                                    margin: 0% 5% 0% -2%;
+                                    position: relative;
+                                    width: 12%;
+                                    img {
+                                        max-width: 100%;
+                                    }
+                                }
+                                s {
+                                    position: absolute;
+                                    left: 25%;
+                                    top: 30%;
+                                    display: inline-block;
+                                    width: 0px;
+                                    height: 0px;
+                                    border-style: solid;
+                                    border-width: 8px 7.5px 0 7.5px;
+                                    border-color: #000000 transparent transparent transparent;
                                 }
                             }
-                            strong {
-                                background: #ffffff;
-                                border: 1px solid #cccccc;
-                                display: inline-block;
-                                line-height: 100%;
-                                width: 62%;
-                                position: relative;
-                                overflow: hidden;
-                                margin-left: -1%;
+                            .right {
+                                float: right;
+                                width: 70%;
+                                margin: -1% 3% 0% 0%;
                                 b {
                                     font-size: 100%;
                                     color: #000000;
                                     text-align: center;
                                     display: block;
-                                    margin-top: 1%;
                                     position: relative;
                                     z-index: 5;
+                                    text-align: right;
+                                    line-height: 120%;
                                 }
-                                span {
-                                    position: absolute;
-                                    left: 0%;
-                                    top: 0%;
-                                    height: 100%;
+                                strong {
+                                    background: #ffffff;
+                                    border: 1px solid #cccccc;
                                     display: block;
-                                    background: #759fd2;
-                                }
-                            }                        
+                                    line-height: 100%;
+                                    width: 25%;
+                                    position: relative;
+                                    overflow: hidden;
+                                    height: 3px;
+                                    float: right;
+                                    span {
+                                        position: absolute;
+                                        left: 0%;
+                                        top: 0%;
+                                        height: 100%;
+                                        display: block;
+                                        background: #759fd2;
+                                        transition: all 0.5s ease;
+                                    }
+                                }  
+                            }                      
                         }
                         /** criterion **/
                         .criterion {

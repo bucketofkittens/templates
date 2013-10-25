@@ -183,12 +183,17 @@
 			<ul>
 				<li ng-repeat="(goalKey,goalItem) in needItem.goals | orderBy:'position'" data-goalid="{{goalItem.sguid}}" >
 					<h5>
-						<span><img ng-src="{{goalItem.icon}}" alt="" title="{{goalItem.name}}" /></span>
-						<a ng-click="openCriteriumList($event, needItem, goalItem)">{{goalItem.name}}</a><s></s>		
-						<strong>
-							<b>{{goalItem.current_value}} / {{goalItem.points_summary}}</b>
-							<span class="current_position" style="width: {{(goalItem.current_value / (goalItem.points_summary ))*100}}%;"></span>
-						</strong>
+						<a ng-click="openCriteriumList($event, needItem, goalItem)">
+							<span><img ng-src="{{goalItem.icon}}" alt="" title="{{goalItem.name}}" /></span>
+							{{goalItem.name}}
+							<s></s>
+						</a>	
+						<div class="right">
+							<b>{{goalItem.current_value}} / {{goalItem.points_summary}}</b>	
+							<strong>
+								<span class="current_position" style="width: {{(goalItem.current_value / (goalItem.points_summary ))*100}}%;"></span>
+							</strong>
+						</div>
 					</h5>
 					<ul class="criterion">
 						<li data-id="{{crItem.sguid}}" ng-repeat="crItem in goalItem.criteriums | orderBy:'position'" >
