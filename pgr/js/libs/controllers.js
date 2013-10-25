@@ -1945,5 +1945,9 @@ function CropImageController($scope, $rootScope) {
 }
 
 function MyProfileController($scope) {
+    $scope.tab = 2;
 
+    $scope.onChange = function(tab) {
+        $scope.tab = tab;
+    }
 }

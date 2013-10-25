@@ -1,21 +1,41 @@
 <div class="mynav">
 	<ul>
-		<li>
-			<a href="#"><img src="../images/pro.png"></a>
+		<li ng-click="onChange(1)" ng-class="{current: tab == 1}">
+			<a>
+				<img src="../images/pro2.png" alt="" ng-if="tab == 1" />
+				<img src="../images/pro.png" alt="" ng-if="tab != 1" />
+			</a>
 		</li>
-		<li class="current">
-			<a href="#"><img src="../images/dash2.png"></a>
+		<li ng-click="onChange(2)" ng-class="{current: tab == 2}">
+			<a>
+				<img src="../images/dash2.png" alt="" ng-if="tab == 2" />
+				<img src="../images/dash.png" alt="" ng-if="tab != 2" />
+			</a>
 		</li>
-		<li>
-			<a href="#"><img src="../images/set.png"></a>
+		<li ng-click="onChange(3)" ng-class="{current: tab == 3}">
+			<a>
+				<img src="../images/set2.png" alt="" ng-if="tab == 3" />
+				<img src="../images/set.png" alt="" ng-if="tab != 3" />
+			</a>
 		</li>
 	</ul>
-	<h2>Dashboard</h2>
+	<h2 ng-if="tab == 1">
+		Profile
+	</h2>
+	<h2 ng-if="tab == 2">
+		Dashboard
+	</h2>
+	<h2 ng-if="tab == 3">
+		Settings
+	</h2>
 </div>
-<section class="mydash">
-	<p>Dashboard will be here</p>
-</section>
 
-<!-- подключить 3 страницы html partials: my-profile, my-dashboard, my-settings. 
-див с классом майнав висит на всех 3х страницах (сделать по нему навигацию, по умолчанию сначала попадаем на дэшборд). 
-секшн майдэш (весь!) загнать в паршлс, сюда впендюрить ng-include src="'partials/my-dashboard.html' -->
+<div ng-if="tab == 1" class="tab">
+	<section class="tab" ng-include src="'partials/myprofile.html'" ></section>
+</div>
+<div ng-if="tab == 2" class="tab">
+	<section class="tab" ng-include src="'partials/mydash.html'" ></section>
+</div>
+<div ng-if="tab == 3" class="tab">
+	<section class="tab" ng-include src="'partials/mysettings.html'" ></section>
+</div>
