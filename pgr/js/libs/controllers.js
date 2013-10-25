@@ -216,6 +216,10 @@ function UserController($scope, $route, $routeParams, User, Needs, Professions, 
         $scope.getUserInfo();
     });
 
+    $scope.$watch("workspace.user.frends", function (newVal, oldVal, scope) {
+        $scope.testFollow();
+    });
+
     $scope.professionFn = function(query) {
         return $.map($scope.professions, function(profession) {
             return profession.name;
@@ -350,7 +354,6 @@ function UserController($scope, $route, $routeParams, User, Needs, Professions, 
                     if(item.user.sguid == $scope.userId) { return item; }
                 });
             }
-            
             if($scope.user) {
                 if(item.length > 0) {
                     $scope.user.isFollow = true;
