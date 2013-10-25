@@ -169,7 +169,7 @@
 	<ul> 
 		<li ng-repeat="(needKey, needItem) in needs | orderBy:'position'" data-needId="{{needItem.sguid}}">
 			<div class="cr" ng-click="onShowGoals($event, needItem.sguid)">
-				<p>{{needItem.name}}</p>
+				<p>{{needItem.name}}<s></s></p>
 				<div class="right" ng-if="needItem.current_value">
 					<b>{{needItem.current_value}} / {{needItem.points_summary}}</b>
 					<strong>
@@ -184,7 +184,7 @@
 				<li ng-repeat="(goalKey,goalItem) in needItem.goals | orderBy:'position'" data-goalid="{{goalItem.sguid}}" >
 					<h5>
 						<span><img ng-src="{{goalItem.icon}}" alt="" title="{{goalItem.name}}" /></span>
-						<a ng-click="openCriteriumList($event, needItem, goalItem)">{{goalItem.name}}</a>					
+						<a ng-click="openCriteriumList($event, needItem, goalItem)">{{goalItem.name}}</a><s></s>		
 						<strong>
 							<b>{{goalItem.current_value}} / {{goalItem.points_summary}}</b>
 							<span class="current_position" style="width: {{(goalItem.current_value / (goalItem.points_summary ))*100}}%;"></span>

@@ -16,21 +16,19 @@
 		<header ng-class="{fixed: controller === '_'}">
 			
             <!-- Логотип -->
-            <!-- 
             <a href="#/" class="logo">
-                <img src="./images/logo1.png" alt="PERSON GROWTH RANKING">
+               <img src="./images/logobg.png">
             </a>
-            -->
             
             <!-- Аватар -->
 			<section id="avatar" ng-cloak ng-controller="AvatarCtrl">
                 <p ng-if="!workspace.user">
                     <img ng-click="onLogin()" ng-src="/images/anon.png" alt="" />
-                    <span ng-click="onLogin()">SIGN IN</span>
+                    <span ng-click="onLogin()">Sign in</span>
                 </p>
                 <p ng-if="workspace.user">
                     <img ng-click="onOpenProfileAuthUser()" ng-src="{{workspace.user.avatar}}" alt="{{workspace.user.name}}" />
-                    <span ng-click="onLogout()">SIGN OUT</span>
+                    <span ng-click="onLogout()">Sign out</span>
                 </p>
 			</section>
             
