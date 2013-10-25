@@ -13,7 +13,6 @@ module.exports = function(grunt) {
                 	'js/angular-route.min.js',
                 	'js/angular-resource.min.js',
                 	'js/angular-cookies.min.js',
-                	'js/angular-animate.min.js',
                 	'js/angular-touch.min.js',
                 	'js/angular-route-segment.min.js',
                 	'js/angular-isotope.min.js',
