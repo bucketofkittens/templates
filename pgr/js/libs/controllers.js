@@ -535,13 +535,13 @@ function NeedsAndGoalsController($scope, Goals, Criterion, AuthUser, UserCriteri
 
     $scope.$watch('user', function (newVal, oldVal, scope) {
         if($scope.user && $scope.user.sguid) {
-            $rootScope.$broadcast('loaderShow');
             $scope.bindUserNeedsValues();
         }
     });
     
     $scope.bindUserNeedsValues = function() {
         User.needs_points({id: $scope.user.sguid}, {}, function(needsData) {
+            $rootScope.$broadcast('loaderShow');
             $rootScope.$broadcast('needUserValueLoaded', {
                 needsValues: needsData,
                 userId: $scope.user.sguid
@@ -596,7 +596,7 @@ function NeedsAndGoalsController($scope, Goals, Criterion, AuthUser, UserCriteri
              */
             $scope.getCriteriumValueByUser(goal);
 
-            console.log(goal);
+            $rootScope.$broadcast('loaderHide');
 
             setTimeout(function() {
                 $("#content .crits ul li ul li .criterion li .bord .crp .tab").css("height", $("#content .crits ul li .cr").height());
