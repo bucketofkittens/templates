@@ -912,7 +912,7 @@ function LoginModalController($scope, Sessions, $rootScope, User, Social, $faceb
             "password": $scope.login.password
         }), function(data) {
             if(data.success) {
-                $rootScope.$broadcast('onSignin', {guid: data.guid, isSocial: true});
+                $rootScope.$broadcast('onSignin', {sguid: data.guid, isSocial: true});
                 $scope.show = false;
             } else {
                 $scope.error = data.message;
@@ -979,7 +979,7 @@ function LoginModalController($scope, Sessions, $rootScope, User, Social, $faceb
     $scope.$on('fb.auth.authResponseChange', function(data, d) {
         FB.api('/me', function(response) {
             Social.login({}, {email: response.email}, function(data) {
-                $rootScope.$broadcast('onSignin', {guid: data.guid, isSocial: true});
+                $rootScope.$broadcast('onSignin', {sguid: data.guid, isSocial: true});
                 socialsAccess.facebook.isLoggined = true;
             });
         });
@@ -1041,6 +1041,10 @@ function FollowController($scope, $rootScope, User, $location, $routeParams, Aut
     });
 
     $scope.$on('authUserGetData', function() {
+        $scope.setAuthUserData();
+    });
+
+    $scope.$on('onSignin', function() {
         $scope.setAuthUserData();
     });
 
@@ -1758,24 +1762,26 @@ function RootController($scope, AuthUser, User, $rootScope, Needs, Social, $cook
     };
 
     $scope.$on('onSignin', function($event, message) {
-        User.query({id: message.guid}, function(data) {
-            $scope.workspace.user = data;
+        if(message && message.sguid) {
+            User.query({id: message.sguid}, function(data) {
+                $scope.workspace.user = data;
+                AuthUser.set(message.sguid);
 
-            User.get_friends({id: message.guid}, function(frends) {
-                AuthUser.set(message.guid);
-                
-                $scope.workspace.user.frends = frends;
-                $scope.authUserId = data.sguid;
+                User.get_friends({id: message.guid}, function(frends) {
+                    $scope.workspace.user.frends = frends;
+                    $scope.authUserId = data.sguid;
 
-                $rootScope.$broadcast('hideShadow');
-                $rootScope.$broadcast('hideModal');
+                    $rootScope.$broadcast('hideShadow');
+                    $rootScope.$broadcast('hideModal');
 
-                if(message.isSocial) {
-                    $rootScope.$broadcast('socialLogined');
-                }
-            });
-            
-        });
+                    $rootScope.$broadcast('onSignin');
+
+                    if(message.isSocial) {
+                        $rootScope.$broadcast('socialLogined');
+                    }
+                });
+            });    
+        }
     });
     
     $scope.gplusAuth = function(email) {
