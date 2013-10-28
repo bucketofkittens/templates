@@ -29,6 +29,18 @@
 
 	<section class="mypro">
 		<div class="crits">
+			<h5>
+				<a ng-click="openCriteriumList($event, needItem, goalItem)">
+					<span><img ng-src="{{goalItem.icon}}" alt="" title="{{goalItem.name}}" /></span>
+					{{goalItem.name}}
+				</a>	
+				<div class="right">
+					<b>{{goalItem.current_value}} / {{goalItem.points_summary}}</b>
+					<strong>
+						<span class="current_position" style="width: {{(goalItem.current_value / (goalItem.points_summary ))*100}}%;"></span>
+					</strong>
+				</div>
+			</h5>
 			<ul class="criterion">
 				<li data-id="{{crItem.sguid}}" ng-repeat="crItem in currentGoal.criteriums | orderBy:'position'" >
 					<p>{{crItem.name}}</p>

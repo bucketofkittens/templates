@@ -849,6 +849,131 @@ body {
                     }
                 } 
             }
+            .crits {                    
+                h5 {
+                    position: relative;
+                    padding: 0.3% 0%;
+                    display: block;
+                    width: 100%;
+                    a {
+                        font-size: 120%;
+                        color: #000000;
+                        text-decoration: none;
+                        display: inline-block;
+                        width: 20%;
+                        vertical-align: middle;
+                        text-align: left;
+                        cursor: pointer;
+                        span {
+                            display: inline-block;
+                            vertical-align: middle;
+                            transition: all 0.5s ease;
+                            margin: 0% 5% 0% -2%;
+                            position: relative;
+                            width: 12%;
+                            img {
+                                max-width: 100%;
+                            }
+                        }
+                    }
+                }
+                /** criterion **/
+                .criterion {
+                    margin: 1% 0%;
+                    max-height: 0%;
+                    &.show {
+                        max-height: 100%;
+                        margin: 0%;
+                    }  
+                    li {
+                        text-align: left;
+                        width: 100%;
+                        p {
+                            color: #000000;
+                            font-size: 90%;
+                            display: block;
+                            width: 70%;
+                            text-align: left;
+                            vertical-align: middle;
+                            margin-left: 3%;
+                        }
+                        .bord {
+                            width: 100%;
+                            border-top: 1px solid #cccccc;
+                            border-bottom: 1px solid #cccccc;
+                            height: 45px;
+                            position: relative;
+                            overflow: hidden;
+                            .crp {
+                                display: inline-block;
+                                cursor: default;
+                                margin: 0%;
+                                background: -moz-linear-gradient(left, rgba(222,232,244,1) 0%, rgba(117,159,210,0.99) 100%);
+                                background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(222,232,244,1)), color-stop(100%,rgba(117,159,210,0.99)));
+                                background: -webkit-linear-gradient(left, rgba(222,232,244,1) 0%,rgba(117,159,210,0.99) 100%);
+                                background: -o-linear-gradient(left, rgba(222,232,244,1) 0%,rgba(117,159,210,0.99) 100%);
+                                background: -ms-linear-gradient(left, rgba(222,232,244,1) 0%,rgba(117,159,210,0.99) 100%);
+                                background: linear-gradient(to right, rgba(222,232,244,1) 0%,rgba(117,159,210,0.99) 100%);
+                                width: 100%;
+                                vertical-align: middle;
+                                overflow: hidden;
+                                opacity: 1;
+                                left: 0%;
+                                .tab {
+                                    display: table;
+                                    width: 100%;
+                                    table-layout: fixed;
+                                    li {
+                                        display: table-cell;
+                                        color: #000000;
+                                        font-size: 70%;
+                                        width: auto;
+                                        margin: 0% auto;
+                                        line-height: 100%;
+                                        z-index: 7;
+                                        position: relative;
+                                        border: 0px;
+                                        text-align: center;
+                                        height: 50px;
+                                        vertical-align: middle;
+                                        overflow: hidden;
+                                        padding: 0% 2%;
+                                        i {
+                                            display: block;
+                                            cursor: pointer;
+                                            word-break: break-all;
+                                            &.null_criteria {
+                                                width: 20px;
+                                                height: 100%;
+                                            }
+                                        }
+                                        &:first-child {
+                                            width: 5%;
+                                        }
+                                    }
+                                }
+                                span {
+                                    position: absolute;
+                                    right: -1%;
+                                    top: 0%;
+                                    height: 100%;
+                                    display: block;
+                                    background: #ffffff;
+                                    width: 95%;
+                                    cursor: pointer;
+                                    img {
+                                        position: absolute;
+                                        left: -15px;
+                                        top: 0%;
+                                        height: 90%;
+                                        width: 15px;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            } 
         }
     
         /** MY DASHBOARD **/
