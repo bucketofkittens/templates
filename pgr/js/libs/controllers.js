@@ -593,6 +593,8 @@ function NeedsAndGoalsController($scope, Goals, Criterion, AuthUser, UserCriteri
              */
             $scope.getCriteriumValueByUser(goal);
 
+            console.log(goal);
+
             setTimeout(function() {
                 $("#content .crits ul li ul li .criterion li .bord .crp .tab").css("height", $("#content .crits ul li .cr").height());
             });

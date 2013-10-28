@@ -168,7 +168,7 @@
 <div class="crits" ng-controller="NeedsAndGoalsController" ng-init="isUpdateCriteria=true;id=id;user=user">
 	<ul> 
 		<li ng-repeat="(needKey, needItem) in needs | orderBy:'position'" data-needId="{{needItem.sguid}}">
-			<div class="cr" ng-click="onShowGoals($event, needItem.sguid)">
+			<div class="cr" ng-click="onShowGoals($event, needItem)">
 				<p>{{needItem.name}}<s></s></p>
 				<div class="right" ng-if="needItem.current_value">
 					<b>{{needItem.current_value}} / {{needItem.points_summary}}</b>
@@ -180,10 +180,10 @@
 					</strong>	
 				</div>
 			</div>
-			<ul>
+			<ul ng-class="{current: needItem.current}">
 				<li ng-repeat="(goalKey,goalItem) in needItem.goals | orderBy:'position'" data-goalid="{{goalItem.sguid}}" >
 					<h5>
-						<a ng-click="openCriteriumList($event, needItem, goalItem)">
+						<a ng-click="openCriteriumList($event, needItem, goalItem, user, needs)">
 							<span><img ng-src="{{goalItem.icon}}" alt="" title="{{goalItem.name}}" /></span>
 							{{goalItem.name}}
 							<s></s>
@@ -195,7 +195,7 @@
 							</strong>
 						</div>
 					</h5>
-					<ul class="criterion">
+					<ul class="criterion" ng-class="{current: needItem.current}">
 						<li data-id="{{crItem.sguid}}" ng-repeat="crItem in goalItem.criteriums | orderBy:'position'" >
 							<p>{{crItem.name}}</p>
 							<div class="bord">
@@ -203,7 +203,8 @@
 									<div class="tab">
 										<li data-id="{{value.sguid}}"  
 											ng-repeat="value in crItem.criteria_values | orderBy:'position'"  
-											class="{{value.user_criteria}} position_{{value.position}}" ng-click="onCriteriaSelect(value, crItem, $event, needItem, goalItem)">
+											class="{{value.user_criteria}} position_{{value.position}}" 
+											ng-click="onCriteriaSelect(value, crItem, $event, needItem, goalItem)">
 											<i ng-if="value.sguid != 'none'">{{value.name}}</i>
 											<i ng-if="value.sguid == 'none'" class="null_criteria"></i>
 										</li>
