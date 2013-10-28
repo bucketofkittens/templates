@@ -514,6 +514,7 @@ function UserController($scope, $route, $routeParams, User, Needs, Professions, 
  */
 function NeedsAndGoalsController($scope, Goals, Criterion, AuthUser, UserCriteriaValue, $rootScope, CriterionByGoal, UserCriteriaValueByUser, $routeParams, Needs, User, $element) {
     $scope.needs = [];
+    $scope.currentGoal = {};
 
     $scope.$on('getUserInfoToNeeds', function($event, message) {
         if(!$scope.user && message.id == $scope.id) {
@@ -559,8 +560,6 @@ function NeedsAndGoalsController($scope, Goals, Criterion, AuthUser, UserCriteri
         });
     }
 
-    
-
     $scope.addEmptyElement = function(goal) {
         angular.forEach(goal.criteriums, function(criteriumsItem, criteriumsKey) {
             if(criteriumsItem.criteria_values) {
@@ -580,6 +579,7 @@ function NeedsAndGoalsController($scope, Goals, Criterion, AuthUser, UserCriteri
      * @return {[type]}      [description]
      */
     $scope.getCriteriumByGoal = function(goal) {
+        $scope.currentGoal = goal;    
         CriterionByGoal.query({id: goal.sguid}, function(data) {
             goal.criteriums = data;
 
