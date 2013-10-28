@@ -13,7 +13,7 @@
     },
     {
         "key":"_PublishL_",
-        "value":"Publish profile"
+        "value":"Make it public"
     },
     {
         "key":"_NameL_",
@@ -30,6 +30,10 @@
     {
         "key":"_AgeL_",
         "value":"Age"
+    },
+    {
+        "key":"_BirthdayL_",
+        "value":"Birthday"
     },
     {
         "key":"_LocL_",
@@ -89,7 +93,7 @@
     },
     {
         "key":"_RemoveFrend_",
-        "value": "Remove Frend"
+        "value": "Unfollow"
     },
     {
         "key":"_GRAPHS_",
@@ -116,7 +120,11 @@
         "value": "Near by"
     },
     {
-        "key":"_LEAGUES_",
-        "value": "Leagues"
+        "key":"_ChaEm_",
+        "value": "Change e-mail"
+    },
+    {
+        "key":"_ChaPas_",
+        "value": "Change password"
     }
 ]
