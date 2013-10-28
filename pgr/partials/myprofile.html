@@ -18,6 +18,7 @@
 								</strong>
 							</div>
 						</h5>
+						<b></b>
 					</li>
 				</ul>
 			</li>
@@ -26,34 +27,26 @@
 </section>
 
 <section class="mypro">
-	<div class="crits" ng-controller="NeedsAndGoalsController" ng-init="isUpdateCriteria=true;id=id;user=user">
-		<ul> 
-			<li ng-repeat="(needKey, needItem) in needs | orderBy:'position'" data-needId="{{needItem.sguid}}">
-				<ul>
-					<li ng-repeat="(goalKey,goalItem) in needItem.goals | orderBy:'position'" data-goalid="{{goalItem.sguid}}" >						
-						<ul class="criterion">
-							<li data-id="{{crItem.sguid}}" ng-repeat="crItem in goalItem.criteriums | orderBy:'position'" >
-								<p>{{crItem.name}}</p>
-								<div class="bord">
-									<ul class="crp">
-										<div class="tab">
-											<li data-id="{{value.sguid}}"  
-												ng-repeat="value in crItem.criteria_values | orderBy:'position'"  
-												class="{{value.user_criteria}} position_{{value.position}}" ng-click="onCriteriaSelect(value, crItem, $event, needItem, goalItem)">
-												<i ng-if="value.sguid != 'none'">{{value.name}}</i>
-												<i ng-if="value.sguid == 'none'" class="null_criteria"></i>
-											</li>
-										</div>
-										<span>
-											<img src="../images/ar.png">
-										</span>
-									</ul>
-									<strong><img src="../images/com.png"></strong>
-								</div>
+	<div class="crits" ng-controller="NeedsAndGoalsController" ng-init="isUpdateCriteria=true;id=id;user=user">						
+		<ul class="criterion">
+			<li data-id="{{crItem.sguid}}" ng-repeat="crItem in goalItem.criteriums | orderBy:'position'" >
+				<p>{{crItem.name}}</p>
+				<div class="bord">
+					<ul class="crp">
+						<div class="tab">
+							<li data-id="{{value.sguid}}"  
+								ng-repeat="value in crItem.criteria_values | orderBy:'position'"  
+								class="{{value.user_criteria}} position_{{value.position}}" ng-click="onCriteriaSelect(value, crItem, $event, needItem, goalItem)">
+								<i ng-if="value.sguid != 'none'">{{value.name}}</i>
+								<i ng-if="value.sguid == 'none'" class="null_criteria"></i>
 							</li>
-						</ul>
-					</li>					
-				</ul>
+						</div>
+						<span>
+							<img src="../images/ar.png">
+						</span>
+					</ul>
+					<strong><img src="../images/com.png"></strong>
+				</div>
 			</li>
 		</ul>
 	</div>
