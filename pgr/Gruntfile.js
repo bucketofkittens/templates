@@ -9,6 +9,7 @@ module.exports = function(grunt) {
                 src: [
                 	'js/jquery-2.0.3.min.js',
                 	'js/jquery.isotope.min.js',
+                    'js/jquery-ui-1.10.3.custom.min.js',
                 	'js/angular.min.js',
                 	'js/angular-route.min.js',
                 	'js/angular-resource.min.js',
@@ -16,12 +17,15 @@ module.exports = function(grunt) {
                 	'js/angular-touch.min.js',
                 	'js/angular-route-segment.min.js',
                 	'js/angular-isotope.min.js',
+                    'js/date.js',
+                    'js/autocomplete.js',
                 	'js/hamster.js',
                 	'js/mousewheel.js',
                 	'js/ngFacebook.js',
                 	'js/google-plus-signin.js',
                     'js/hammer.min.js',
                     'js/angular-hammer.js',
+                    'js/moment+langs.min.js',
                 	'js/localize.js',
                     'js/libs/*.js'
                 ],
@@ -30,7 +34,7 @@ module.exports = function(grunt) {
             css: {
                 src: [
                     "css/reset.css",
-                    "css/jquery.Jcrop.min.css",
+                    "css/jquery-ui-1.10.3.custom.min.css",
                     "css/fonts.css",
                     "css/master.css"
                 ],

@@ -1942,7 +1942,6 @@ function MyProfileController($scope, $rootScope, User) {
      * @return {[type]}        [description]
      */
     $scope.onPublish = function($event) {
-        $rootScope.$broadcast('loaderShow');
 
         if(!$scope.workspace.user.published) {
             $scope.workspace.user.published = 0;
@@ -1962,7 +1961,6 @@ function MyProfileController($scope, $rootScope, User) {
                 "state": $scope.workspace.user.state ? $scope.workspace.user.state.sguid : null,
                 "published": 1
             })}, function(data) {
-                $rootScope.$broadcast('loaderHide');
             }
         );
     }
