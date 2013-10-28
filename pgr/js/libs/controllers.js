@@ -854,7 +854,7 @@ function NeedsAndGoalsController($scope, Goals, Criterion, AuthUser, UserCriteri
     }
 
     $scope.onShowGoals = function($event, needItem) {
-        needItem.current = true;
+        needItem.current = needItem.current ? false : true;
     }
 }
 
