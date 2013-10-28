@@ -580,9 +580,12 @@ function NeedsAndGoalsController($scope, Goals, Criterion, AuthUser, UserCriteri
      * @param  {[type]} goal [description]
      * @return {[type]}      [description]
      */
-    $scope.getCriteriumByGoal = function(goal) {
+    $scope.getCriteriumByGoal = function(goal, need) {
         $rootScope.$broadcast('loaderShow');
         $scope.currentGoal = goal;
+        if(need) {
+            $scope.currentNeed = need;
+        }
         CriterionByGoal.query({id: goal.sguid}, function(data) {
             goal.criteriums = data;
 
@@ -650,7 +653,7 @@ function NeedsAndGoalsController($scope, Goals, Criterion, AuthUser, UserCriteri
         if(user) {
             $scope.user = user;
         }
-        $scope.getCriteriumByGoal(goal);
+        $scope.getCriteriumByGoal(goal, need);
     };
 
     $scope.$on('openCriteriumList', function($event, message) {
