@@ -1,3 +1,60 @@
-<section class="mydash">
-	<p>My profile will be here</p>
+<section class="mypro acrd">
+	<div class="crits" ng-controller="NeedsAndGoalsController" ng-init="isUpdateCriteria=true;id=id;user=user">
+		<ul> 
+			<li ng-repeat="(needKey, needItem) in needs | orderBy:'position'" data-needId="{{needItem.sguid}}">
+				<div class="cr" ng-click="onShowGoals($event, needItem.sguid)">
+					<p>{{needItem.name}}</p>
+				</div>
+				<ul>
+					<li ng-repeat="(goalKey,goalItem) in needItem.goals | orderBy:'position'" data-goalid="{{goalItem.sguid}}" >
+						<h5>
+							<a ng-click="openCriteriumList($event, needItem, goalItem)">
+								<span><img ng-src="{{goalItem.icon}}" alt="" title="{{goalItem.name}}" /></span>
+								{{goalItem.name}}
+							</a>	
+							<div class="right">
+								<strong>
+									<span class="current_position" style="width: {{(goalItem.current_value / (goalItem.points_summary ))*100}}%;"></span>
+								</strong>
+							</div>
+						</h5>
+					</li>
+				</ul>
+			</li>
+		</ul>
+	</div>
+</section>
+
+<section class="mypro">
+	<div class="crits" ng-controller="NeedsAndGoalsController" ng-init="isUpdateCriteria=true;id=id;user=user">
+		<ul> 
+			<li ng-repeat="(needKey, needItem) in needs | orderBy:'position'" data-needId="{{needItem.sguid}}">
+				<ul>
+					<li ng-repeat="(goalKey,goalItem) in needItem.goals | orderBy:'position'" data-goalid="{{goalItem.sguid}}" >						
+						<ul class="criterion">
+							<li data-id="{{crItem.sguid}}" ng-repeat="crItem in goalItem.criteriums | orderBy:'position'" >
+								<p>{{crItem.name}}</p>
+								<div class="bord">
+									<ul class="crp">
+										<div class="tab">
+											<li data-id="{{value.sguid}}"  
+												ng-repeat="value in crItem.criteria_values | orderBy:'position'"  
+												class="{{value.user_criteria}} position_{{value.position}}" ng-click="onCriteriaSelect(value, crItem, $event, needItem, goalItem)">
+												<i ng-if="value.sguid != 'none'">{{value.name}}</i>
+												<i ng-if="value.sguid == 'none'" class="null_criteria"></i>
+											</li>
+										</div>
+										<span>
+											<img src="../images/ar.png">
+										</span>
+									</ul>
+									<strong><img src="../images/com.png"></strong>
+								</div>
+							</li>
+						</ul>
+					</li>					
+				</ul>
+			</li>
+		</ul>
+	</div>
 </section>
