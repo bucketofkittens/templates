@@ -579,7 +579,7 @@ function NeedsAndGoalsController($scope, Goals, Criterion, AuthUser, UserCriteri
      * @return {[type]}      [description]
      */
     $scope.getCriteriumByGoal = function(goal) {
-        $scope.currentGoal = goal;    
+        $scope.currentGoal = goal;
         CriterionByGoal.query({id: goal.sguid}, function(data) {
             goal.criteriums = data;
 
@@ -634,25 +634,18 @@ function NeedsAndGoalsController($scope, Goals, Criterion, AuthUser, UserCriteri
      * @param  {[type]} goalId [description]
      * @return {[type]}        [description]
      */
-    $scope.openCriteriumList = function ($event, need, goal, currentUserId) {
-        var fNeed = $scope.needs.filter(function (needValue) { 
-            return needValue.sguid == need.sguid;
-        })[0];
-        var fGoal = fNeed.goals.filter(function (goalValue) { 
-            return goalValue.sguid == goal.sguid;
-        })[0];
-        
-        $scope.getCriteriumByGoal(fGoal);
-
-        if(!currentUserId) {
-            $rootScope.$broadcast('openCriteriumList', {
-                goal: goal,
-                need: need,
-                event: $event,
-                currentUserId: $scope.currentUserId
+    $scope.openCriteriumList = function ($event, need, goal, user, needs) {
+        angular.forEach(needs, function(value, key){
+            angular.forEach(value.goals, function(v2, k2){
+                v2.current = false;
             });
+        });
+        
+        goal.current = true;
+        if(user) {
+            $scope.user = user;
         }
-        $("li[data-goalid='"+goal.sguid+"'] .criterion", $($element)).toggleClass("show");
+        $scope.getCriteriumByGoal(goal);
     };
 
     $scope.$on('openCriteriumList', function($event, message) {
@@ -660,7 +653,6 @@ function NeedsAndGoalsController($scope, Goals, Criterion, AuthUser, UserCriteri
             $scope.openCriteriumList(message.event, message.need, message.goal, message.currentUserId);
         }
     });
-
 
     /**
      * 
@@ -859,8 +851,8 @@ function NeedsAndGoalsController($scope, Goals, Criterion, AuthUser, UserCriteri
         slider.css("width", "5%");
     }
 
-    $scope.onShowGoals = function($event, sguid) {
-        $("li[data-needId='"+sguid+"'] > ul").toggleClass("show");
+    $scope.onShowGoals = function($event, needItem) {
+        needItem.current = true;
     }
 }
 

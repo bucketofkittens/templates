@@ -1,15 +1,15 @@
 <div ng-controller="NeedsAndGoalsController" class="tab">
 	<section class="mypro acrd">
-		<div class="crits" ng-init="isUpdateCriteria=true;id=id;user=user">
+		<div class="crits">
 			<ul> 
 				<li ng-repeat="(needKey, needItem) in needs | orderBy:'position'" data-needId="{{needItem.sguid}}">
-					<div class="cr" ng-click="onShowGoals($event, needItem.sguid)">
+					<div class="cr" ng-click="onShowGoals($event, needItem)">
 						<p>{{needItem.name}}</p>
 					</div>
-					<ul>
+					<ul ng-class="{current: needItem.current}">
 						<li ng-repeat="(goalKey,goalItem) in needItem.goals | orderBy:'position'" data-goalid="{{goalItem.sguid}}" >
-							<h5>
-								<a ng-click="openCriteriumList($event, needItem, goalItem)">
+							<h5 ng-class="{current: goalItem.current}">
+								<a ng-click="openCriteriumList($event, needItem, goalItem, workspace.user, needs)">
 									<span><img ng-src="{{goalItem.icon}}" alt="" title="{{goalItem.name}}" /></span>
 									{{goalItem.name}}
 								</a>	
