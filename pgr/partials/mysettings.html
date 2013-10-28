@@ -40,7 +40,7 @@
 			<p>
 				<label for="age_i">{{'_BirthdayL_' | i18n}}:</label>
 				<input 
-					type="text" 
+					type="datetime-local" 
 					ng-model="workspace.user.birthday" 
 					data-date-format="dd/mm/yyyy" 
 					bs-datepicker
@@ -65,18 +65,18 @@
 					type="email" 
 					id="email_i" 
 					ng-model="workspace.user.email"
-					readonly = readonly
+					readonly="readonly"
 					required />
 					<button>{{'_ChaEm_' | i18n}}</button>
 			</p>
 			<p>
-				<label for="acc_i">{{'_AccL_' | i18n}}:</label> 
+				<label for="username_i">{{'_UserName_' | i18n}}:</label> 
 				<input 
-					type="email" 
-					id="acc_i" 
-					ng-model="nextUser"
-					readonly = readonly
-					required />
+					type="text" 
+					id="username_i" 
+					readonly="readonly"
+					required
+					ng-model="workspace.user.login" />
 					<button>{{'_ChaPas_' | i18n}}</button>
 			</p>
 			<!--

@@ -1,4 +1,4 @@
-<div class="mynav">
+<div class="mynav" ng-if="workspace.user">
 	<ul>
 		<li ng-click="onChange(1)" ng-class="{current: tab == 1}">
 			<a>
@@ -30,12 +30,12 @@
 	</h2>
 </div>
 
-<div ng-if="tab == 1" class="tab">
+<div ng-if="tab == 1 && workspace.user" class="tab">
 	<section class="tab" ng-include src="'partials/myprofile.html'" ></section>
 </div>
-<div ng-if="tab == 2" class="tab">
+<div ng-if="tab == 2 && workspace.user" class="tab">
 	<section class="tab" ng-include src="'partials/mydash.html'" ></section>
 </div>
-<div ng-if="tab == 3" class="tab">
+<div ng-if="tab == 3 && workspace.user" class="tab">
 	<section class="tab" ng-include src="'partials/mysettings.html'" ></section>
 </div>

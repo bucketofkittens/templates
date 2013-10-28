@@ -500,42 +500,6 @@ function UserController($scope, $route, $routeParams, User, Needs, Professions, 
         return filtered;
     }
 
-    /**
-     * Публикация профиля
-     * Пока не работает нет backend
-     * @param  {[type]} $event [description]
-     * @return {[type]}        [description]
-     */
-    $scope.onPublish = function($event) {
-        $rootScope.$broadcast('loaderShow');
-
-        if(!$scope.user.published) {
-            $scope.user.published = 0;
-        }
-
-        if($scope.user.profession && $scope.user.profession.name) {
-            $scope.user.profession = $scope.getProfessionByName($scope.user.profession.name)[0];
-        }
-        if($scope.user.birthday) {
-            var dayWrapper = moment($scope.user.birthday);
-            $scope.user.birthday = dayWrapper.format("DD/MM/YYYY");
-        }
-        User.updateUser({"id": $scope.user.sguid},  {user: JSON.stringify({
-                "login": $scope.user.login,
-                "name": $scope.user.name,
-                "email": $scope.user.email,
-                "birthday": $scope.user.birthday,
-                "profession": $scope.user.profession ? $scope.user.profession.sguid : null ,
-                "state": $scope.user.state ? $scope.user.state.sguid : null,
-                "published": 1
-            })}, function(data) {
-                $rootScope.$broadcast('loaderHide');
-                $rootScope.$broadcast('updateUserData', {user: $scope.user});
-                $("input[type='text'], input[type='email'], select", ".pmpar").attr("readonly", "readonly");
-            }
-        );
-    }
-
     if($scope.workspace && $scope.workspace.user) {
         $scope.authUser = $scope.workspace.user;
         $scope.testFollow();
@@ -1948,8 +1912,43 @@ function CropImageController($scope, $rootScope) {
     }
 }
 
-function MyProfileController($scope) {
+function MyProfileController($scope, $rootScope, User) {
     $scope.tab = 2;
+
+    /**
+     * Публикация профиля
+     * Пока не работает нет backend
+     * @param  {[type]} $event [description]
+     * @return {[type]}        [description]
+     */
+    $scope.onPublish = function($event) {
+        $rootScope.$broadcast('loaderShow');
+
+        if(!$scope.workspace.user.published) {
+            $scope.workspace.user.published = 0;
+        }
+
+        /*
+        if($scope.workspace.user.profession && $scope.workspace.user.profession.name) {
+            $scope.workspace.user.profession = $scope.getProfessionByName($scope.user.profession.name)[0];
+        }*/
+        if($scope.workspace.user.birthday) {
+            var dayWrapper = moment($scope.workspace.user.birthday);
+            $scope.workspace.user.birthday = dayWrapper.format("DD/MM/YYYY");
+        }
+        User.updateUser({"id": $scope.workspace.user.sguid},  {user: JSON.stringify({
+                "login": $scope.workspace.user.login,
+                "name": $scope.workspace.user.name,
+                "email": $scope.workspace.user.email,
+                "birthday": $scope.workspace.user.birthday,
+                "profession": $scope.workspace.user.profession ? $scope.workspace.user.profession.sguid : null ,
+                "state": $scope.workspace.user.state ? $scope.workspace.user.state.sguid : null,
+                "published": 1
+            })}, function(data) {
+                $rootScope.$broadcast('loaderHide');
+            }
+        );
+    }
 
     $scope.onChange = function(tab) {
         $scope.tab = tab;
