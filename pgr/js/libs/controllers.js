@@ -514,7 +514,7 @@ function UserController($scope, $route, $routeParams, User, Needs, Professions, 
  */
 function NeedsAndGoalsController($scope, Goals, Criterion, AuthUser, UserCriteriaValue, $rootScope, CriterionByGoal, UserCriteriaValueByUser, $routeParams, Needs, User, $element) {
     $scope.needs = [];
-    $scope.currentGoal = {};
+    $scope.currentGoal = null;
 
     $scope.$on('getUserInfoToNeeds', function($event, message) {
         if(!$scope.user && message.id == $scope.id) {
