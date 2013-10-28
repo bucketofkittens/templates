@@ -13,13 +13,13 @@
 				accept="image/jpeg,image/png,image/gif" />
 			
 			<div class="image_box" ng-class="{updated: user.sguid == authUserId && isEdit}">
-				<img class="pp" ng-src="{{user.avatar}}" err-src="/images/unknown-person.png" />
+				<img class="pp" ng-src="{{workspace.user.avatar}}" err-src="/images/unknown-person.png" />
 				<i>{{user.points}}</i>
 				<a ng-click="onUpdateFile()" title="">Update image</a>
 				<span></span>
 			</div>
 			
-			<div class="publish">
+			<div class="publish" ng-if="!workspace.user.published">
 				<p>
 					<strong>Your account is private.<b>Only you can see your profile.</b></strong>
 					<button ng-click="onPublish()">{{'_PublishL_' | i18n}}</button>
@@ -40,10 +40,9 @@
 			<p>
 				<label for="age_i">{{'_BirthdayL_' | i18n}}:</label>
 				<input 
-					type="datetime-local" 
-					ng-model="workspace.user.birthday" 
-					data-date-format="dd/mm/yyyy" 
-					bs-datepicker
+					type="datetime"
+					ng-model="workspace.user.birthdayDate"
+					ui-date="dateOptions"
 					id="age_i" />
 			</p>
 			<p>
@@ -51,13 +50,13 @@
 				<input 
 					id="pro_i" 
 					ng-model="workspace.user.state.name"
-					type="text"  />
+					type="text" ui-autocomplete="stateOption"  />
 			<p>
 				<label for="pro_i">{{'_ProfL_' | i18n}}:</label>
 				<input 
 					id="pro_i" 
 					ng-model="workspace.user.profession.name"
-					type="text"  />
+					type="text" ui-autocomplete="professionOption"  />
 			</p>
 			<p>
 				<label for="email_i">{{'_EmaiL_' | i18n}}:</label> 

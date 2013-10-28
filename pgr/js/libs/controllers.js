@@ -1760,6 +1760,7 @@ function RootController($scope, AuthUser, User, $rootScope, Needs, Social, $cook
     $scope.$on('onSignin', function($event, message) {
         User.query({id: message.guid}, function(data) {
             $scope.workspace.user = data;
+
             User.get_friends({id: message.guid}, function(frends) {
                 AuthUser.set(message.guid);
                 
@@ -1915,6 +1916,25 @@ function CropImageController($scope, $rootScope) {
 function MyProfileController($scope, $rootScope, User) {
     $scope.tab = 2;
 
+    $scope.$watch("workspace.user.birthday", function (newVal, oldVal, scope) {
+        if($scope.workspace.user && $scope.workspace.user.birthday) {
+            var birthdaySplit = $scope.workspace.user.birthday.split("-");
+            $scope.workspace.user.birthdayDate =  new Date(birthdaySplit[0], birthdaySplit[1], birthdaySplit[2] );
+        }
+    });
+
+    $scope.$watch("workspace.user.birthdayDate", function (newVal, oldVal, scope) {
+        if(oldVal && newVal) {
+            $scope.onPublish();
+        }
+    });
+
+    $scope.$watch("workspace.user.name", function (newVal, oldVal, scope) {
+        if(oldVal && newVal) {
+            $scope.onPublish();
+        }
+    });
+
     /**
      * Публикация профиля
      * Пока не работает нет backend
@@ -1928,19 +1948,16 @@ function MyProfileController($scope, $rootScope, User) {
             $scope.workspace.user.published = 0;
         }
 
-        /*
-        if($scope.workspace.user.profession && $scope.workspace.user.profession.name) {
-            $scope.workspace.user.profession = $scope.getProfessionByName($scope.user.profession.name)[0];
-        }*/
-        if($scope.workspace.user.birthday) {
-            var dayWrapper = moment($scope.workspace.user.birthday);
-            $scope.workspace.user.birthday = dayWrapper.format("DD/MM/YYYY");
-        }
+        var birthday = $scope.workspace.user.birthday;
+        if($scope.workspace.user.birthdayDate) {
+            var birthday = moment($scope.workspace.user.birthdayDate).format("DD/MM/YYYY");
+        } 
+
         User.updateUser({"id": $scope.workspace.user.sguid},  {user: JSON.stringify({
                 "login": $scope.workspace.user.login,
                 "name": $scope.workspace.user.name,
                 "email": $scope.workspace.user.email,
-                "birthday": $scope.workspace.user.birthday,
+                "birthday": birthday,
                 "profession": $scope.workspace.user.profession ? $scope.workspace.user.profession.sguid : null ,
                 "state": $scope.workspace.user.state ? $scope.workspace.user.state.sguid : null,
                 "published": 1
@@ -1949,6 +1966,62 @@ function MyProfileController($scope, $rootScope, User) {
             }
         );
     }
+
+    /* config object */
+    $scope.professionOption = {
+        options: {
+            html: true,
+            onlySelect: true,
+            source: function (request, response) {
+                var data = $scope.workspace.professions;
+                var outData = [];
+                angular.forEach(data, function(value, key){
+                    outData.push({value: value["name"], label: value["name"], sguid: value["sguid"]});
+                });
+                outData = $scope.professionOption.methods.filter(outData, request.term);
+                response(outData);
+            }
+        },
+        methods: {},
+        events: {
+            change: function(event, ui) {
+                $scope.workspace.user.profession.name = ui.item.label;
+                $scope.workspace.user.profession.sguid = ui.item.sguid;
+                $scope.onPublish();
+            }
+        }
+    };
+
+    /* config object */
+    $scope.stateOption = {
+        options: {
+            html: true,
+            onlySelect: true,
+            source: function (request, response) {
+                var data = $scope.workspace.states;
+                var outData = [];
+                angular.forEach(data, function(value, key){
+                    outData.push({value: value["name"], label: value["name"], sguid: value["sguid"]});
+                });
+                outData = $scope.professionOption.methods.filter(outData, request.term);
+                response(outData);
+            }
+        },
+        methods: {},
+        events: {
+            change: function(event, ui) {
+                $scope.workspace.user.state.name = ui.item.label;
+                $scope.workspace.user.state.sguid = ui.item.sguid;
+                $scope.onPublish();
+            }
+        }
+    };
+
+    $scope.dateOptions = {
+        changeYear: true,
+        changeMonth: true,
+        yearRange: '1900:-0'
+    };
 
     $scope.onChange = function(tab) {
         $scope.tab = tab;

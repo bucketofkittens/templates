@@ -41,7 +41,9 @@ var pgrModule = angular.module(
         'iso.directives',
         'iso.services',
         'monospaced.mousewheel',
-        'hmTouchEvents'
+        'hmTouchEvents',
+        'ui.date',
+        'ui.autocomplete'
 		]
 	);
 
