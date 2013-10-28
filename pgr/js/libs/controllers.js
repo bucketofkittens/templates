@@ -535,6 +535,7 @@ function NeedsAndGoalsController($scope, Goals, Criterion, AuthUser, UserCriteri
 
     $scope.$watch('user', function (newVal, oldVal, scope) {
         if($scope.user && $scope.user.sguid) {
+            $rootScope.$broadcast('loaderShow');
             $scope.bindUserNeedsValues();
         }
     });
@@ -556,6 +557,7 @@ function NeedsAndGoalsController($scope, Goals, Criterion, AuthUser, UserCriteri
                     goalsValues: goalsData,
                     userId: $scope.user.sguid
                 });
+                $rootScope.$broadcast('loaderHide');
             });
         });
     }
@@ -579,6 +581,7 @@ function NeedsAndGoalsController($scope, Goals, Criterion, AuthUser, UserCriteri
      * @return {[type]}      [description]
      */
     $scope.getCriteriumByGoal = function(goal) {
+        $rootScope.$broadcast('loaderShow');
         $scope.currentGoal = goal;
         CriterionByGoal.query({id: goal.sguid}, function(data) {
             goal.criteriums = data;
