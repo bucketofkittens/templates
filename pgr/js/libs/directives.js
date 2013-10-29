@@ -22,6 +22,29 @@ pgrModule.directive('backImg', function() {
   }
 })
 
+pgrModule.directive('square', function() {
+  return {
+    link: function(scope, element, attrs, $window) {
+      function applyHeight() {
+        $(element).height($(element).parent().height()/100*90);
+        $(element).width($(element).height());
+        var parent = $(element).parent().parent();
+        $(element).css("margin-top", parseInt(parent.height()/2 - $(element).height()/2));  
+      }
+
+      angular.element($window).bind('resize', function() {
+        scope.$apply(function() {
+            applyHeight();
+        });
+      });
+
+      applyHeight();
+    }
+  }
+})
+
+
+
 pgrModule.directive('setWidth', function() {
   return {
     priority: 0,

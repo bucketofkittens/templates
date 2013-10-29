@@ -2,20 +2,17 @@
 	<ul>
 		<li ng-click="onChange(1)" ng-class="{current: tab == 1}">
 			<a>
-				<img src="../images/pro2.png" alt="" ng-if="tab == 1" />
-				<img src="../images/pro.png" alt="" ng-if="tab != 1" />
+				<span square class="icon myprofile profile" ng-class="{current: tab == 1}"></span>
 			</a>
 		</li>
 		<li ng-click="onChange(2)" ng-class="{current: tab == 2}">
 			<a>
-				<img src="../images/dash2.png" alt="" ng-if="tab == 2" />
-				<img src="../images/dash.png" alt="" ng-if="tab != 2" />
+				<span square class="icon myprofile dash" ng-class="{current: tab == 2}"></span>
 			</a>
 		</li>
 		<li ng-click="onChange(3)" ng-class="{current: tab == 3}">
 			<a>
-				<img src="../images/set2.png" alt="" ng-if="tab == 3" />
-				<img src="../images/set.png" alt="" ng-if="tab != 3" />
+				<span square class="icon myprofile settings" ng-class="{current: tab == 3}"></span>
 			</a>
 		</li>
 	</ul>
