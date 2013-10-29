@@ -664,7 +664,7 @@ function NeedsAndGoalsController($scope, Goals, Criterion, AuthUser, UserCriteri
      */
     $scope.openAllNeeds = function(needs) {
         angular.forEach(needs, function(value, key){
-            value.current = true;
+            value.current = true;   
         });
     }
 
