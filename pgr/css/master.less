@@ -1512,122 +1512,120 @@ footer {
   display: none !important;
 }
 
-.modal {
-    position: absolute;
-    z-index: 1000;
-    opacity: 0;
-    transition: all 1.0s ease-out;
-    -webkit-transition: all 1.0s ease-out;
-    width: 50%;
-    left: 25%;
-    top: 25% !important;
-    margin: 0% auto;
-    height: auto;
-    display: none;
-    .header {
-        width: 100%;
-        text-align: center;
-        h4 {
-            color: #000000;
-            font-size: 170%;
-            margin-bottom: 5%;
-            font-family: 'Helvetica Neue Light';
-        }
-        p {
-            color: #000000;
-            font-size: 100%;
-            font-family: 'Helvetica Neue Light';
-            margin: 0% 3% 0% 0%;
-            line-height: 170%;
-            a {
-                color: #028dda;
-                cursor: pointer;
-                &:hover {
-                    text-decoration: underline;
+.login {
+    width: 100%;
+    height: 100%;
+    background: #ffffff;
+    .modal {
+        z-index: 1000;
+        transition: all 1.0s ease-out;
+        -webkit-transition: all 1.0s ease-out;
+        width: 50%;
+        top: 25% !important;
+        margin: 0% auto;
+        position: relative;
+        .header {
+            width: 100%;
+            text-align: center;
+            h4 {
+                color: #000000;
+                font-size: 170%;
+                margin-bottom: 5%;
+                font-family: 'Helvetica Neue Light';
+            }
+            p {
+                color: #000000;
+                font-size: 100%;
+                font-family: 'Helvetica Neue Light';
+                margin: 0% 3% 0% 0%;
+                line-height: 170%;
+                a {
+                    color: #028dda;
+                    cursor: pointer;
+                    &:hover {
+                        text-decoration: underline;
+                    }
                 }
             }
         }
-    }
-    .body {
-        width: 100%;
-        overflow: hidden;
-        margin: 3% 0% 0% 0%;
-        padding-bottom: 3%;
-        .left {
-            float: left;
-            width: 50%;
-            .left_wrapper {
-                margin: 0% 0% 0% 20%;
-                p {
-                    color: #000000;
-                    font-size: 100%;
-                    font-family: 'Helvetica Neue Light';
-                    line-height: 120%;
-                    padding: 0% 0% 5% 0%;
-                }
-                ul {
-                    li {
-                        padding: 0% 0% 5% 5%;
-                        display: inline-block;
-                        width: 35%;
-                        a {
-                            cursor: pointer;
-                            img {
-                                max-width: 100%;
+        .body {
+            width: 100%;
+            overflow: hidden;
+            margin: 3% 0% 0% 0%;
+            padding-bottom: 3%;
+            .left {
+                float: left;
+                width: 50%;
+                .left_wrapper {
+                    margin: 0% 0% 0% 20%;
+                    p {
+                        color: #000000;
+                        font-size: 100%;
+                        font-family: 'Helvetica Neue Light';
+                        line-height: 120%;
+                        padding: 0% 0% 5% 0%;
+                    }
+                    ul {
+                        li {
+                            padding: 0% 0% 5% 5%;
+                            display: inline-block;
+                            width: 35%;
+                            a {
+                                cursor: pointer;
+                                img {
+                                    max-width: 100%;
+                                }
                             }
                         }
                     }
                 }
             }
-        }
-        .right {
-            float: right;
-            width: 50%;
-            .right_wrapper {
-                margin: 0% 20% 0% 0%;
-                .form-input {
-                    width: 80%;
-                }
-                .tip {
-                    color: #898989;
-                    font-family: 'Helvetica Neue Light';
-                    font-size: 90%;
-                    padding-bottom: 2%;
-                }
-                a {
-                    font-family: 'Helvetica Neue Light';
-                    text-decoration: none;
-                    color: #5c7294;
-                    &:hover {
-                        text-decoration: underline;
+            .right {
+                float: right;
+                width: 50%;
+                .right_wrapper {
+                    margin: 0% 20% 0% 0%;
+                    .form-input {
+                        width: 80%;
                     }
-                }
-                p {
-                    color: #000000;
-                    font-size: 100%;
-                    font-family: 'Helvetica Neue Light';
-                    line-height: 120%;
-                    padding: 0% 0% 5% 0%;
-                    overflow: hidden;
+                    .tip {
+                        color: #898989;
+                        font-family: 'Helvetica Neue Light';
+                        font-size: 90%;
+                        padding-bottom: 2%;
+                    }
                     a {
-                        font-size: 90%;
-                        margin: 5% 0% -3% 0%;
-                        display: block;
+                        font-family: 'Helvetica Neue Light';
+                        text-decoration: none;
+                        color: #5c7294;
+                        &:hover {
+                            text-decoration: underline;
+                        }
                     }
-                    label {
-                        font-size: 90%;
-                        vertical-align: middle;
+                    p {
+                        color: #000000;
+                        font-size: 100%;
+                        font-family: 'Helvetica Neue Light';
+                        line-height: 120%;
+                        padding: 0% 0% 5% 0%;
+                        overflow: hidden;
+                        a {
+                            font-size: 90%;
+                            margin: 5% 0% -3% 0%;
+                            display: block;
+                        }
+                        label {
+                            font-size: 90%;
+                            vertical-align: middle;
+                        }
                     }
                 }
             }
         }
-    }
-    &.show {
-        opacity: 1;
-        display: block;
-    }
-    .modal_wrapper {
-        background: #f9f9f9;
+        &.show {
+            opacity: 1;
+            display: block;
+        }
     }
 }
 

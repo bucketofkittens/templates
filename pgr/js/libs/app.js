@@ -58,6 +58,7 @@ pgrModule.config(function($routeSegmentProvider, $routeProvider) {
 	$routeSegmentProvider
     
         .when('/my_profile',                'my_profile')
+        .when('/login',                     'login')
         .when('/profile/:userId1',          'profile.oneUser')
         .when('/profile/:userId1/:userId2', 'profile.manyUser')
         
@@ -84,6 +85,10 @@ pgrModule.config(function($routeSegmentProvider, $routeProvider) {
         .segment('main', {
             templateUrl: 'views/main.html',
             controller: MainController})
+
+        .segment('login', {
+            templateUrl: 'views/login.html',
+            controller: LoginController})
 
         .segment('my_profile', {
             templateUrl: 'views/my_profile.html',

@@ -46,8 +46,7 @@ function AvatarCtrl($scope, $rootScope, $location) {
      * @returns {undefined}
      */
     $scope.onLogin = function() {
-        $rootScope.$broadcast('showShadow');
-        $rootScope.$broadcast('openLoginModal');
+        $location.path("/login/");
     };
 
     /**
@@ -923,7 +922,7 @@ function NeedsAndGoalsController($scope, Goals, Criterion, AuthUser, UserCriteri
  * форма модального окна авторизации
  * @param {[type]} $scope [description]
  */
-function LoginModalController($scope, Sessions, $rootScope, User, Social, $facebook, $location) {
+function LoginController($scope, Sessions, $rootScope, User, Social, $facebook, $location, $window) {
     $scope.show = false;
 
     $scope.signup = false;
@@ -992,9 +991,7 @@ function LoginModalController($scope, Sessions, $rootScope, User, Social, $faceb
                         $scope.errors += value;
                     });
                 } else {
-                    $scope.show = false;
-                    $rootScope.$broadcast('hideShadow');
-                    $rootScope.$broadcast('hideModal');
+                    $window.history.back();
                 }
             }
         );
@@ -1825,14 +1822,11 @@ function RootController($scope, AuthUser, User, $rootScope, Needs, Social, $cook
                     $scope.workspace.user.frends = frends;
                     $scope.authUserId = data.sguid;
 
-                    $rootScope.$broadcast('hideShadow');
-                    $rootScope.$broadcast('hideModal');
-
-                    $rootScope.$broadcast('onSignin');
-
                     if(message.isSocial) {
                         $rootScope.$broadcast('socialLogined');
                     }
+
+                    $location.path("/");
                 });
             });    
         }
