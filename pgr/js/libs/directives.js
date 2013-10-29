@@ -100,7 +100,7 @@ pgrModule.directive('setWidth', function() {
 
       scope.$watch("userItem.hover", function() {
         if(scope.userItem.hover) {
-          var newSize = $(window).height()/100*40;
+          var newSize = $(window).height()/100*35;
           var oldSize = $(element).height();
           var parentElement = $(element).parent();
           var delta = (oldSize-newSize)/2;
