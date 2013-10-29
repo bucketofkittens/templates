@@ -44,7 +44,24 @@ pgrModule.directive('square', function($window) {
   }
 })
 
+pgrModule.directive('bridge', function($window) {
+  return {
+    link: function(scope, element, attrs) {
+      setInterval(function() {
+        var currentItem = $("#content .tab .mypro.acrd .crits ul li h5.current");
 
+        if(currentItem.size() > 0) {
+          $(element).show();
+          $(element).css("top",$(currentItem).offset().top);
+          $(element).css("height",$(currentItem).height()+1);
+          $(element).css("left",$(currentItem).offset().left+$(currentItem).width());
+        } else {
+          $(element).hide();
+        }
+      }, 100);
+    }
+  }
+})
 
 pgrModule.directive('setWidth', function() {
   return {
