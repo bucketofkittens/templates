@@ -168,9 +168,8 @@ function QuickUserChangeCtrl($scope, User, AuthUser, $rootScope, $location) {
     $scope.onMoveUserClick = function($event, nextUser) {
         AuthUser.set(nextUser.sguid);
         
-        $rootScope.workspace.user = nextUser;
-        $rootScope.authUserId = nextUser.sguid;
-        $location.path("/profile/"+nextUser.sguid);
+        $scope.workspace.user = nextUser;
+        $scope.authUserId = nextUser.sguid;
 
         $rootScope.$broadcast('authUserIdChange');
     }

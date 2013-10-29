@@ -68,15 +68,16 @@
 					required />
 					<button>{{'_ChaEm_' | i18n}}</button>
 			</p>
-			<p>
+			<p ng-controller="QuickUserChangeCtrl">
 				<label for="username_i">{{'_UserName_' | i18n}}:</label> 
-				<input 
-					type="text" 
-					id="username_i" 
-					readonly="readonly"
-					required
-					ng-model="workspace.user.login" />
-					<button>{{'_ChaPas_' | i18n}}</button>
+				<select 
+					id="acc_i"
+					ng-options="item.login for item in users" 
+					ng-model="nextUser" 
+					ng-change="onMoveUserClick($event, nextUser)">
+					<option value="">{{workspace.user.login}}</option>
+				</select>
+				<button>{{'_ChaPas_' | i18n}}</button>
 			</p>
 			<!--
 			<p ng-if="isEdit && user.sguid == authUserId" ng-controller="QuickUserChangeCtrl">
