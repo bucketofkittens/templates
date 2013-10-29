@@ -22,204 +22,204 @@
 	</div>
 </div>
 -->
-<div 
-	class="pmain pro" 
-	ng-controller="UserController" >
-	<div class="block" ng-if="user">
-		<input 
-			class="hidden" 
-			type="file"  
-			name="photo" 
-			ng-model="newImage"
+<div ng-controller="UserController">
+	<div class="pmain pro" >
+		<div class="block" ng-if="user">
+			<input 
+				class="hidden" 
+				type="file"  
+				name="photo" 
+				ng-model="newImage"
+				
+				id="photo" 
+				accept="image/jpeg,image/png,image/gif" />
 			
-			id="photo" 
-			accept="image/jpeg,image/png,image/gif" />
-		
-		<div class="image_box" ng-class="{updated: user.sguid == authUserId && isEdit}">
-			<img class="pp" ng-src="{{user.avatar}}" err-src="/images/unknown-person.png" />
-			<i>{{user.points}}</i>
-			<a ng-click="onUpdateFile()" title="">Update image</a>
-			<span></span>
+			<div class="image_box" ng-class="{updated: user.sguid == authUserId && isEdit}">
+				<img class="pp" ng-src="{{user.avatar}}" err-src="/images/unknown-person.png" />
+				<i>{{user.points}}</i>
+				<a ng-click="onUpdateFile()" title="">Update image</a>
+				<span></span>
+			</div>
+			
+			<!--
+			<div class="publish">
+				<p>
+					<button ng-click="onPublish()" ng-if="authUserId == currentUserId && isEdit">
+						<span ng-switch on="user.published" >
+							<span ng-switch-when="1">
+								{{'_Update_' | i18n}}
+							</span>
+							<span ng-switch-when="0">
+								{{'_PublishL_' | i18n}}
+							</span>
+						</span>
+					</button>
+					<span ng-if="authUserId && authUserId != currentUserId">
+						<span ng-switch on="isFollow" >
+							<span ng-switch-when="false">
+								<button ng-click="onFollow()">
+									{{'_AddFrend_' | i18n}}
+								</button>
+							</span>
+							<span ng-switch-when="true">
+								<button class="unfollow" ng-click="onUnFollow()">
+									{{'_RemoveFrend_' | i18n}}
+								</button>
+							</span>
+						</span>
+					</span>
+				</p>
+			</div>
+			-->	
 		</div>
-		
-		<!--
-		<div class="publish">
+		<div class="pmpar" ng-if="user">
 			<p>
-				<button ng-click="onPublish()" ng-if="authUserId == currentUserId && isEdit">
-					<span ng-switch on="user.published" >
-						<span ng-switch-when="1">
-							{{'_Update_' | i18n}}
-						</span>
-						<span ng-switch-when="0">
-							{{'_PublishL_' | i18n}}
-						</span>
-					</span>
-				</button>
-				<span ng-if="authUserId && authUserId != currentUserId">
-					<span ng-switch on="isFollow" >
-						<span ng-switch-when="false">
-							<button ng-click="onFollow()">
-								{{'_AddFrend_' | i18n}}
-							</button>
-						</span>
-						<span ng-switch-when="true">
-							<button class="unfollow" ng-click="onUnFollow()">
-								{{'_RemoveFrend_' | i18n}}
-							</button>
-						</span>
-					</span>
-				</span>
+				<label for="name_i">{{'_NameL_' | i18n}}:</label> 
+				<input 
+					type="text" 
+					id="name_i" 
+					class="clean form-control" 
+					ng-model="user.name"
+					readonly="readonly"
+					required
+					ng-minlength="6"
+					ng-click="onElementClick($event)"
+					ng-if="isEdit && user.sguid == authUserId" />
+				<i ng-if="!isEdit || user.sguid != authUserId">{{user.name}}</i>
+			</p>
+			<!--
+			<p>
+				<label for="email_i">{{'_EmaiL_' | i18n}}:</label> 
+				<input 
+					type="email" 
+					id="email_i" 
+					class="clean form-control" 
+					readonly="readonly"
+					ng-model="user.email"
+					required
+					ng-click="onElementClick($event)"
+					ng-if="isEdit && user.sguid == authUserId" />
+					<i ng-if="!isEdit || user.sguid != authUserId">{{user.email}}</i>
+			</p>
+			<p ng-if="isEdit && user.sguid == authUserId" ng-controller="QuickUserChangeCtrl">
+				<label for="acc_i">{{'_AccL_' | i18n}}:</label>
+				<select 
+					id="acc_i"
+					ng-options="item.login for item in users" 
+					ng-model="nextUser" 
+					readonly="readonly"
+					ng-change="onMoveUserClick($event, nextUser)">
+					<option value="">{{user.login}}</option>
+				</select>
+				<i ng-if="!isEdit || user.sguid != authUserId">{{user.login}}</i>
+			</p>
+			-->
+			<p>
+				<label for="age_i">{{'_BirthdayL_' | i18n}}:</label>
+				<input 
+					type="text" 
+					ng-model="user.birthday" 
+					data-date-format="dd/mm/yyyy" 
+					bs-datepicker
+					readonly="readonly"
+					class="clean form-control" 
+					id="age_i"
+					ng-click="onElementClick($event)"
+					ng-if="isEdit && user.sguid == authUserId" />
+				<i ng-if="!isEdit || user.sguid != authUserId">{{user.birthday}}</i>
+			</p>
+			<p>
+				<label for="loc_i">{{'_LocL_' | i18n}}:</label>
+				<select 
+					ng-options="item.sguid as item.name for item in states" 
+					ng-model="user.state.sguid" 
+					readonly="readonly" 
+					id="loc_i"
+					ng-click="onElementClick($event)"
+					ng-if="isEdit && user.sguid == authUserId">
+				</select>
+				<i ng-if="!isEdit || user.sguid != authUserId">{{user.state.name}}</i>
+			<p>
+				<label for="pro_i">{{'_ProfL_' | i18n}}:</label>
+				<input 
+					id="pro_i" 
+					ng-if="isEdit && user.sguid == authUserId" 
+					ng-model="user.profession.name" 
+					type="text" 
+					bs-typeahead="professionFn"
+					readonly="readonly"
+					ng-click="onElementClick($event)" />
+				<i ng-if="!isEdit || user.sguid != authUserId">{{user.profession.name}}</i>
+			</p>
+
+			<p>
+				<label for="pro_i">{{'_LEAGUES_' | i18n}}:</label>
+				<i>{{user.league.name}}</i>
 			</p>
 		</div>
-		-->	
-	</div>
-	<div class="pmpar" ng-if="user">
-		<p>
-			<label for="name_i">{{'_NameL_' | i18n}}:</label> 
-			<input 
-				type="text" 
-				id="name_i" 
-				class="clean form-control" 
-				ng-model="user.name"
-				readonly="readonly"
-				required
-				ng-minlength="6"
-				ng-click="onElementClick($event)"
-				ng-if="isEdit && user.sguid == authUserId" />
-			<i ng-if="!isEdit || user.sguid != authUserId">{{user.name}}</i>
-		</p>
-		<!--
-		<p>
-			<label for="email_i">{{'_EmaiL_' | i18n}}:</label> 
-			<input 
-				type="email" 
-				id="email_i" 
-				class="clean form-control" 
-				readonly="readonly"
-				ng-model="user.email"
-				required
-				ng-click="onElementClick($event)"
-				ng-if="isEdit && user.sguid == authUserId" />
-				<i ng-if="!isEdit || user.sguid != authUserId">{{user.email}}</i>
-		</p>
-		<p ng-if="isEdit && user.sguid == authUserId" ng-controller="QuickUserChangeCtrl">
-			<label for="acc_i">{{'_AccL_' | i18n}}:</label>
-			<select 
-				id="acc_i"
-				ng-options="item.login for item in users" 
-				ng-model="nextUser" 
-				readonly="readonly"
-				ng-change="onMoveUserClick($event, nextUser)">
-				<option value="">{{user.login}}</option>
-			</select>
-			<i ng-if="!isEdit || user.sguid != authUserId">{{user.login}}</i>
-		</p>
-		-->
-		<p>
-			<label for="age_i">{{'_BirthdayL_' | i18n}}:</label>
-			<input 
-				type="text" 
-				ng-model="user.birthday" 
-				data-date-format="dd/mm/yyyy" 
-				bs-datepicker
-				readonly="readonly"
-				class="clean form-control" 
-				id="age_i"
-				ng-click="onElementClick($event)"
-				ng-if="isEdit && user.sguid == authUserId" />
-			<i ng-if="!isEdit || user.sguid != authUserId">{{user.birthday}}</i>
-		</p>
-		<p>
-			<label for="loc_i">{{'_LocL_' | i18n}}:</label>
-			<select 
-				ng-options="item.sguid as item.name for item in states" 
-				ng-model="user.state.sguid" 
-				readonly="readonly" 
-				id="loc_i"
-				ng-click="onElementClick($event)"
-				ng-if="isEdit && user.sguid == authUserId">
-			</select>
-			<i ng-if="!isEdit || user.sguid != authUserId">{{user.state.name}}</i>
-		<p>
-			<label for="pro_i">{{'_ProfL_' | i18n}}:</label>
-			<input 
-				id="pro_i" 
-				ng-if="isEdit && user.sguid == authUserId" 
-				ng-model="user.profession.name" 
-				type="text" 
-				bs-typeahead="professionFn"
-				readonly="readonly"
-				ng-click="onElementClick($event)" />
-			<i ng-if="!isEdit || user.sguid != authUserId">{{user.profession.name}}</i>
-		</p>
 
-		<p>
-			<label for="pro_i">{{'_LEAGUES_' | i18n}}:</label>
-			<i>{{user.league.name}}</i>
-		</p>
+		<a class="il" ng-if="user && !user.isFollow" ng-click="onFollow()"><img src="../images/i3l.png"></a>
+		<a class="il" ng-if="user && user.isFollow" ng-click="onUnFollow()"><img src="../images/i3i.png"></a>
+
+		<a class="il" ng-if="user"><img src="../images/i2l.png"></a> 
 	</div>
 
-	<a class="il" ng-if="user && !user.isFollow" ng-click="onFollow()"><img src="../images/i3l.png"></a>
-	<a class="il" ng-if="user && user.isFollow" ng-click="onUnFollow()"><img src="../images/i3i.png"></a>
-
-	<a class="il" ng-if="user"><img src="../images/i2l.png"></a> 
-</div>
-
-<div class="crits" ng-controller="NeedsAndGoalsController" ng-init="isUpdateCriteria=true;id=id;user=user">
-	<ul> 
-		<li ng-repeat="(needKey, needItem) in needs | orderBy:'position'" data-needId="{{needItem.sguid}}">
-			<div class="cr" ng-click="onShowGoals($event, needItem)">
-				<p>{{needItem.name}}<s></s></p>
-				<div class="right" ng-if="needItem.current_value">
-					<b>{{needItem.current_value}} / {{needItem.points_summary}}</b>
-					<strong>
-						<span 
-							class="current_position" 
-							style="width: {{(needItem.current_value / (needItem.points_summary ))*100}}%;">
-						</span>
-					</strong>	
+	<div class="crits" ng-controller="NeedsAndGoalsController" ng-init="openFirst = false; allOpen = false;">
+		<ul> 
+			<li ng-class="{current: needItem.current}" ng-repeat="(needKey, needItem) in needs | orderBy:'position'" data-needId="{{needItem.sguid}}">
+				<div class="cr" ng-click="onShowGoals($event, needItem)">
+					<p>{{needItem.name}}<s></s></p>
+					<div class="right" ng-if="needItem.current_value">
+						<b>{{needItem.current_value}} / {{needItem.points_summary}}</b>
+						<strong>
+							<span 
+								class="current_position" 
+								style="width: {{(needItem.current_value / (needItem.points_summary ))*100}}%;">
+							</span>
+						</strong>	
+					</div>
 				</div>
-			</div>
-			<ul ng-class="{current: needItem.current}">
-				<li ng-repeat="(goalKey,goalItem) in needItem.goals | orderBy:'position'" data-goalid="{{goalItem.sguid}}" >
-					<h5>
-						<a ng-click="openCriteriumList($event, needItem, goalItem, needs)">
-							<span><img ng-src="{{goalItem.icon}}" alt="" title="{{goalItem.name}}" /></span>
-							{{goalItem.name}}
-							<s></s>
-						</a>	
-						<div class="right">
-							<b>{{goalItem.current_value}} / {{goalItem.points_summary}}</b>	
-							<strong>
-								<span class="current_position" style="width: {{(goalItem.current_value / (goalItem.points_summary ))*100}}%;"></span>
-							</strong>
-						</div>
-					</h5>
-					<ul class="criterion" ng-class="{current: needItem.current}">
-						<li data-id="{{crItem.sguid}}" ng-repeat="crItem in goalItem.criteriums | orderBy:'position'" >
-							<p>{{crItem.name}}</p>
-							<div class="bord">
-								<ul class="crp">
-									<div class="tab">
-										<li data-id="{{value.sguid}}"  
-											ng-repeat="value in crItem.criteria_values | orderBy:'position'"  
-											class="{{value.user_criteria}} position_{{value.position}}" 
-											ng-click="onCriteriaSelect(value, crItem, $event, needItem, goalItem)">
-											<i ng-if="value.sguid != 'none'">{{value.name}}</i>
-											<i ng-if="value.sguid == 'none'" class="null_criteria"></i>
-										</li>
-									</div>
-									<span>
-										<img src="../images/ar.png">
-									</span>
-								</ul>
-								<strong><img src="../images/com.png"></strong>
+				<ul ng-class="{current: needItem.current}">
+					<li ng-repeat="(goalKey,goalItem) in needItem.goals | orderBy:'position'" data-goalid="{{goalItem.sguid}}" >
+						<h5>
+							<a ng-click="openCriteriumList($event, needItem, goalItem, needs)">
+								<span><img ng-src="{{goalItem.icon}}" alt="" title="{{goalItem.name}}" /></span>
+								{{goalItem.name}}
+								<s></s>
+							</a>	
+							<div class="right">
+								<b>{{goalItem.current_value}} / {{goalItem.points_summary}}</b>	
+								<strong>
+									<span class="current_position" style="width: {{(goalItem.current_value / (goalItem.points_summary ))*100}}%;"></span>
+								</strong>
 							</div>
-						</li>
-					</ul>
-				</li>
-				
-			</ul>
-		</li>
-	</ul>
+						</h5>
+						<ul class="criterion" ng-class="{current: needItem.current}">
+							<li data-id="{{crItem.sguid}}" ng-repeat="crItem in goalItem.criteriums | orderBy:'position'" >
+								<p>{{crItem.name}}</p>
+								<div class="bord">
+									<ul class="crp">
+										<div class="tab">
+											<li data-id="{{value.sguid}}"  
+												ng-repeat="value in crItem.criteria_values | orderBy:'position'"  
+												class="{{value.user_criteria}} position_{{value.position}}" 
+												ng-click="onCriteriaSelect(value, crItem, $event, needItem, goalItem)">
+												<i ng-if="value.sguid != 'none'">{{value.name}}</i>
+												<i ng-if="value.sguid == 'none'" class="null_criteria"></i>
+											</li>
+										</div>
+										<span>
+											<img src="../images/ar.png">
+										</span>
+									</ul>
+									<strong><img src="../images/com.png"></strong>
+								</div>
+							</li>
+						</ul>
+					</li>
+					
+				</ul>
+			</li>
+		</ul>
+	</div>
 </div>

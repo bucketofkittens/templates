@@ -527,7 +527,9 @@ function NeedsAndGoalsController($scope, Goals, Criterion, AuthUser, UserCriteri
     $scope.$watch('workspace.needs', function (newVal, oldVal, scope) {
         if($scope.workspace.needs) {
             $scope.needs = $scope.workspace.needs;
-            $scope.openAllNeeds($scope.needs);
+            if($scope.allOpen) {
+                $scope.openAllNeeds($scope.needs);
+            }
             $scope.needs.sort(function(a, b) {
                 if(a.position < b.position)
                     return -1
