@@ -566,14 +566,17 @@ function NeedsAndGoalsController($scope, Goals, Criterion, AuthUser, UserCriteri
                 $rootScope.$broadcast('loaderHide');
 
                 var openGoal = $cookieStore.get("openGoal");
+                if(!$scope.persistState) {
+                    openGoal = null;
+                }
 
                 if($scope.openFirst && !openGoal) {
                     $scope.openCriteriumList({}, $scope.needs[0], $scope.needs[0].goals[0], $scope.needs);
                 }
 
-                if(openGoal) {
+                if(openGoal && $scope.persistState) {
                     var openNeed = $cookieStore.get("openNeed");
-                    
+
                     var need = $scope.needs.filter(function(value) {
                         if(value.sguid == openNeed) {
                             return value;
@@ -702,8 +705,10 @@ function NeedsAndGoalsController($scope, Goals, Criterion, AuthUser, UserCriteri
 
         $scope.getCriteriumByGoal(goal, need);
 
-        $cookieStore.put("openGoal", goal.sguid);
-        $cookieStore.put("openNeed", need.sguid);
+        if($scope.persistState) {
+            $cookieStore.put("openGoal", goal.sguid);
+            $cookieStore.put("openNeed", need.sguid);
+        }
     };
 
     $scope.$on('openCriteriumList', function($event, message) {

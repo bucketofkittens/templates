@@ -164,7 +164,7 @@
 		<a class="il" ng-if="user"><img src="../images/i2l.png"></a> 
 	</div>
 
-	<div class="crits" ng-controller="NeedsAndGoalsController" ng-init="openFirst = false; allOpen = false;">
+	<div class="crits" ng-controller="NeedsAndGoalsController" ng-init="openFirst = false; allOpen = false; persistState = false;">
 		<ul> 
 			<li ng-class="{current: needItem.current}" ng-repeat="(needKey, needItem) in needs | orderBy:'position'" data-needId="{{needItem.sguid}}">
 				<div class="cr" ng-click="onShowGoals($event, needItem)">
