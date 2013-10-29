@@ -507,7 +507,7 @@ function UserController($scope, $route, $routeParams, User, Needs, Professions, 
  * @param {[type]} Goals
  * @param {[type]} Criterion
  */
-function NeedsAndGoalsController($scope, Goals, Criterion, AuthUser, UserCriteriaValue, $rootScope, CriterionByGoal, UserCriteriaValueByUser, $routeParams, Needs, User, $element) {
+function NeedsAndGoalsController($scope, Goals, Criterion, AuthUser, UserCriteriaValue, $rootScope, CriterionByGoal, UserCriteriaValueByUser, $routeParams, Needs, User, $element, $cookieStore) {
     $scope.needs = [];
     $scope.currentGoal = null;
 
@@ -565,8 +565,28 @@ function NeedsAndGoalsController($scope, Goals, Criterion, AuthUser, UserCriteri
                 });
                 $rootScope.$broadcast('loaderHide');
 
-                if($scope.openFirst) {
+                var openGoal = $cookieStore.get("openGoal");
+
+                if($scope.openFirst && !openGoal) {
                     $scope.openCriteriumList({}, $scope.needs[0], $scope.needs[0].goals[0], $scope.needs);
+                }
+
+                if(openGoal) {
+                    var openNeed = $cookieStore.get("openNeed");
+                    
+                    var need = $scope.needs.filter(function(value) {
+                        if(value.sguid == openNeed) {
+                            return value;
+                        }
+                    })[0];
+
+                    var goal = need.goals.filter(function(value) {
+                        if(value.sguid == openGoal) {
+                            return value;
+                        }
+                    })[0];
+
+                    $scope.openCriteriumList({}, need, goal, $scope.needs);
                 }
             });
         });
@@ -681,6 +701,9 @@ function NeedsAndGoalsController($scope, Goals, Criterion, AuthUser, UserCriteri
         goal.current = true;
 
         $scope.getCriteriumByGoal(goal, need);
+
+        $cookieStore.put("openGoal", goal.sguid);
+        $cookieStore.put("openNeed", need.sguid);
     };
 
     $scope.$on('openCriteriumList', function($event, message) {

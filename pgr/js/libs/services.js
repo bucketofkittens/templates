@@ -257,7 +257,7 @@ pgrModule.factory('AuthUser', function ($cookieStore) {
         }
 
         this.set = function(guid) {
-            $cookieStore.put("user", guid); 
+            $cookieStore.put("user", guid);
         }
 
         this.logout = function() {
