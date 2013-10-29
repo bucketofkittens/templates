@@ -30,25 +30,6 @@ body {
         overflow-y: hidden !important;
         position: relative;
     }
-    #shadow {
-        background: rgba(0, 0, 0, 0.36);
-        z-index: 999;
-        position: absolute;
-        width: 0%;
-        height: 0%;
-        left: 50%;
-        top: 50%;
-        opacity: 0;
-        transition: all 0.5s ease-out;
-        -webkit-transition: all 0.5s ease-out;
-        &.show {
-            opacity: 1;
-            width: 100%;
-            height: 100%;
-            left: 0%;
-            top: 0%;
-        }
-    }
     header {
         height: 8%;
         width: 100%;
@@ -1545,25 +1526,15 @@ footer {
     display: none;
     .header {
         width: 100%;
-        overflow: hidden;
-        background: #36374b;
-        background: -moz-linear-gradient(top,  #36374b 0%, #36374b 100%);
-        background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#36374b), color-stop(100%,#36374b));
-        background: -webkit-linear-gradient(top,  #36374b 0%,#36374b 100%);
-        background: -o-linear-gradient(top,  #36374b 0%,#36374b 100%);
-        background: -ms-linear-gradient(top,  #36374b 0%,#36374b 100%);
-        background: linear-gradient(to bottom,  #36374b 0%,#36374b 100%);
-        padding: 3% 0% 2% 0%;
+        text-align: center;
         h4 {
-            color: #ffffff;
-            float: left;
+            color: #000000;
             font-size: 170%;
-            margin: 0% 0% 0% 3%;
+            margin-bottom: 5%;
             font-family: 'Helvetica Neue Light';
         }
         p {
-            color: #ffffff;
-            float: right;
+            color: #000000;
             font-size: 100%;
             font-family: 'Helvetica Neue Light';
             margin: 0% 3% 0% 0%;
@@ -1586,7 +1557,7 @@ footer {
             float: left;
             width: 50%;
             .left_wrapper {
-                margin: 0% 6% 0% 6%;
+                margin: 0% 0% 0% 20%;
                 p {
                     color: #000000;
                     font-size: 100%;
@@ -1596,11 +1567,12 @@ footer {
                 }
                 ul {
                     li {
-                        padding: 0% 0% 3% 0%;
+                        padding: 0% 0% 10% 5%;
+                        display: inline-block;
                         a {
                             cursor: pointer;
                             img {
-                                max-width: 100%;
+                                max-width: 80%;
                             }
                         }
                     }
@@ -1609,10 +1581,9 @@ footer {
         }
         .right {
             float: right;
-            width: 49%;
-            border-left: 1px solid #a5a5a5;
+            width: 50%;
             .right_wrapper {
-                margin: 0% 6% 0% 6%;
+                margin: 0% 20% 0% 0%;
                 .form-input {
                     width: 80%;
                 }
@@ -1636,6 +1607,16 @@ footer {
                     font-family: 'Helvetica Neue Light';
                     line-height: 120%;
                     padding: 0% 0% 5% 0%;
+                    overflow: hidden;
+                    a {
+                        font-size: 90%;
+                        margin: 5% 0% -3% 0%;
+                        display: block;
+                    }
+                    label {
+                        font-size: 90%;
+                        vertical-align: middle;
+                    }
                 }
             }
         }
@@ -1645,12 +1626,13 @@ footer {
         display: block;
     }
     .modal_wrapper {
-        background: #ffffff;
+        background: #f9f9f9;
     }
 }
 
 .form-input {
-    border: 3px solid #dddddd;
+    border: 1px solid #dddddd;
+    background: transparent;
     font-size: 120%;
     padding: 3% 6% 1% 6% !important;
     font-family: 'Helvetica Neue Light';
@@ -1660,9 +1642,11 @@ input[type="button"] {
     font-family: 'Helvetica Neue Light';
     cursor: pointer;
     background: transparent;
-    border: 3px solid #dddddd;
+    border: 1px solid #dddddd;
     font-size: 115%;
-    padding: 2% 6% 0% 6% !important;
+    padding: 4% 7% 3% 7% !important;
+    float: right;
+    margin-right: 7%;
     &[disabled="disabled"] {
         opacity: 0.5;
         cursor: default;

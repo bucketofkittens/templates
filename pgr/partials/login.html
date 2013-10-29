@@ -2,17 +2,18 @@
     <div class="modal login" ng-class="{show: show}">
         <div class="modal_wrapper">
             <div class="header" ng-if="signup">
-               <h4>Sing up</h4>
-               <p>Already have an account? <a ng-click="onSignStateChange()">Sign in</a></p>
+               <h4>Sing up to SIRating</h4>
+               <p>Use Facebook, Twitter, Google+, Improva or your email to sign up.</p>
+               <p>Don’t have a SIRating account yet? <a ng-click="onSignStateChange()">Sign in </a>now.</p>
             </div>
             <div class="header" ng-if="!signup">
-               <h4>Sign in</h4>
-               <p>Don’t have an account? <a ng-click="onSignStateChange()">Sign up</a> now</p>
+               <h4>Sing in to SIRating</h4>
+               <p>Use Facebook, Twitter, Google+, Improva or your email to sign in.</p> 
+               <p>Do already have a SIRating account? <a ng-click="onSignStateChange()">Sign up </a>now.</p>
             </div>
             <div class="body">
                 <div class="left">
                     <div class="left_wrapper">
-                        <p>Join improva using your social account:</p>
                         <ul>
                             <li>
                                 <a ng-click="socialFacebookLogin()">
@@ -21,6 +22,11 @@
                             </li>
                             <li>
                                 <a ng-click="socialGooglePlusLogin()">
+                                    <img src="/images/twitter.png" alt="" />
+                                </a>
+                            </li>
+                            <li>
+                                <a>
                                     <img src="/images/google.png" alt="" />
                                 </a>
                             </li>
@@ -35,7 +41,6 @@
                 <div class="right">
                     <div class="right_wrapper">
                         <div class="sign-up" ng-if="signup">
-                            <p>Or, sign up for a PGR account below:</p>
                             <ng-form name="RegForm" novalidate class="css-form myForm" >
                                 <p>
                                     <input 
@@ -47,7 +52,6 @@
                                         ng-minlength="6"
                                         placeholder="Name" />
                                 </p>
-                                <p class="tip">This will be your display name on PGR.</p>
                                 <p>
                                     <input 
                                         type="email" 
@@ -72,14 +76,13 @@
                                 <p>
                                     <input 
                                         type="button" 
-                                        value="Sign me up"
+                                        value="Sign up"
                                         ng-disabled="RegForm.$invalid"
                                         ng-click="onAddUser()" />
                                 </p>
                             </ng-form>
                         </div>
                         <div class="sign-in" ng-if="!signup">
-                            <p>Or, sign in with your PGR account:</p>
                             <ng-form id="login_form" name="LoginForm" novalidate class="css-form myForm" >
                                 <p>
                                     <input 
@@ -103,6 +106,10 @@
                                 </p>
                                 <p>
                                     <a href="#">Forgot your password?</a>
+                                </p>
+                                <p>
+                                    <input type="checkbox" />
+                                    <label>Keep me sign in</label>
                                 </p>
                                 <p class="errors" ng-if="error">{{error}}</p>
                                 <p>
