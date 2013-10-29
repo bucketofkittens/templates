@@ -183,7 +183,7 @@
 			<ul ng-class="{current: needItem.current}">
 				<li ng-repeat="(goalKey,goalItem) in needItem.goals | orderBy:'position'" data-goalid="{{goalItem.sguid}}" >
 					<h5>
-						<a ng-click="openCriteriumList($event, needItem, goalItem, user, needs)">
+						<a ng-click="openCriteriumList($event, needItem, goalItem, needs)">
 							<span><img ng-src="{{goalItem.icon}}" alt="" title="{{goalItem.name}}" /></span>
 							{{goalItem.name}}
 							<s></s>

@@ -301,11 +301,6 @@ function UserController($scope, $route, $routeParams, User, Needs, Professions, 
                         $scope.user.league.users = data;
                     });
                 }
-                
-                $rootScope.$broadcast('getUserInfoToNeeds', {
-                    user: $scope.user,
-                    id: $scope.id
-                });
 
                 $rootScope.$broadcast('userControllerGetUser', {
                     user: $scope.user
@@ -516,6 +511,8 @@ function NeedsAndGoalsController($scope, Goals, Criterion, AuthUser, UserCriteri
     $scope.needs = [];
     $scope.currentGoal = null;
 
+    $rootScope.$broadcast('loaderShow');
+
     $scope.$on('getUserInfoToNeeds', function($event, message) {
         if(!$scope.user && message.id == $scope.id) {
             $scope.user = message.user;
@@ -530,6 +527,14 @@ function NeedsAndGoalsController($scope, Goals, Criterion, AuthUser, UserCriteri
     $scope.$watch('workspace.needs', function (newVal, oldVal, scope) {
         if($scope.workspace.needs) {
             $scope.needs = $scope.workspace.needs;
+            $scope.openAllNeeds($scope.needs);
+            $scope.needs.sort(function(a, b) {
+                if(a.position < b.position)
+                    return -1
+                if(a.position > b.position)
+                    return 1
+                return 0
+            });
         }
     });
 
@@ -541,7 +546,6 @@ function NeedsAndGoalsController($scope, Goals, Criterion, AuthUser, UserCriteri
     
     $scope.bindUserNeedsValues = function() {
         User.needs_points({id: $scope.user.sguid}, {}, function(needsData) {
-            $rootScope.$broadcast('loaderShow');
             $rootScope.$broadcast('needUserValueLoaded', {
                 needsValues: needsData,
                 userId: $scope.user.sguid
@@ -558,6 +562,10 @@ function NeedsAndGoalsController($scope, Goals, Criterion, AuthUser, UserCriteri
                     userId: $scope.user.sguid
                 });
                 $rootScope.$broadcast('loaderHide');
+
+                if($scope.openFirst) {
+                    $scope.openCriteriumList({}, $scope.needs[0], $scope.needs[0].goals[0], $scope.needs);
+                }
             });
         });
     }
@@ -582,10 +590,10 @@ function NeedsAndGoalsController($scope, Goals, Criterion, AuthUser, UserCriteri
      */
     $scope.getCriteriumByGoal = function(goal, need) {
         $rootScope.$broadcast('loaderShow');
+
         $scope.currentGoal = goal;
-        if(need) {
-            $scope.currentNeed = need;
-        }
+        $scope.currentNeed = need;
+
         CriterionByGoal.query({id: goal.sguid}, function(data) {
             goal.criteriums = data;
 
@@ -636,23 +644,40 @@ function NeedsAndGoalsController($scope, Goals, Criterion, AuthUser, UserCriteri
         });
     }
 
+    /**
+     * Скрываем все goals
+     * @param  {object} массив всех needs
+     * @return {object} 
+     */
+    $scope.closeAllGoals = function(needs) {
+        angular.forEach(needs, function(value, key){
+            angular.forEach(value.goals, function(v2, k2){
+                v2.current = false;
+            });
+        });
+    }
+
+    /**
+     * Открываем все needs
+     * @param  {object} массив всех needs
+     * @return {object}
+     */
+    $scope.openAllNeeds = function(needs) {
+        angular.forEach(needs, function(value, key){
+            value.current = true;
+        });
+    }
 
     /**
      * 
      * @param  {[type]} goalId [description]
      * @return {[type]}        [description]
      */
-    $scope.openCriteriumList = function ($event, need, goal, user, needs) {
-        angular.forEach(needs, function(value, key){
-            angular.forEach(value.goals, function(v2, k2){
-                v2.current = false;
-            });
-        });
+    $scope.openCriteriumList = function ($event, need, goal, needs) {
+        $scope.closeAllGoals(needs);
         
         goal.current = true;
-        if(user) {
-            $scope.user = user;
-        }
+
         $scope.getCriteriumByGoal(goal, need);
     };
 

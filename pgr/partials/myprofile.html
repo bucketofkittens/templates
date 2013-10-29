@@ -1,4 +1,4 @@
-<div ng-controller="NeedsAndGoalsController" class="tab" ng-init="user = workspace.user">
+<div ng-controller="NeedsAndGoalsController" class="tab" ng-init="user = workspace.user; openFirst = true;">
 	<section class="mypro acrd">
 		<div class="crits">
 			<ul> 
@@ -9,7 +9,7 @@
 					<ul ng-class="{current: needItem.current}">
 						<li ng-repeat="(goalKey,goalItem) in needItem.goals | orderBy:'position'" data-goalid="{{goalItem.sguid}}" >
 							<h5 ng-class="{current: goalItem.current}">
-								<a ng-click="openCriteriumList($event, needItem, goalItem, workspace.user, needs)">
+								<a ng-click="openCriteriumList($event, needItem, goalItem, needs)">
 									<span><img ng-src="{{goalItem.icon}}" alt="" title="{{goalItem.name}}" /></span>
 									{{goalItem.name}}
 								</a>	
@@ -26,7 +26,7 @@
 			</ul>
 		</div>
 	</section>
-	
+
 	<section class="mypro">
 		<div class="crits" ng-if="currentGoal">
 			<h5>
