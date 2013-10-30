@@ -2014,15 +2014,30 @@ function MyProfileController($scope, $rootScope, User) {
             var birthday = moment($scope.workspace.user.birthdayDate).format("DD/MM/YYYY");
         } 
 
-        User.updateUser({"id": $scope.workspace.user.sguid},  {user: JSON.stringify({
+        var user = {
                 "login": $scope.workspace.user.login,
-                "name": $scope.workspace.user.name,
                 "email": $scope.workspace.user.email,
-                "birthday": birthday,
-                "profession": $scope.workspace.user.profession ? $scope.workspace.user.profession.sguid : null ,
-                "state": $scope.workspace.user.state ? $scope.workspace.user.state.sguid : null,
                 "published": 1
-            })}, function(data) {
+        }
+
+        if($scope.workspace.user.name) {
+            user["name"] = $scope.workspace.user.name;
+        }
+
+        if($scope.workspace.user.state) {
+            user["state"] = $scope.workspace.user.state.sguid;
+        }
+
+        if(birthday) {
+            user["birthday"] = birthday;
+        }
+
+        if($scope.workspace.user.profession) {
+            user["profession"] = $scope.workspace.user.profession.sguid;
+        }
+
+        User.updateUser({"id": $scope.workspace.user.sguid},  {user: JSON.stringify(user)}, function(data) {
+                $scope.workspace.user.published = 1;
             }
         );
     }
