@@ -126,5 +126,13 @@
     {
         "key":"_ChaPas_",
         "value": "Change password"
+    },
+    {
+        "key":"_SignIn_",
+        "value": "Sign in"
+    },
+    {
+        "key":"_SignOut_",
+        "value": "Sign out"
     }
 ]

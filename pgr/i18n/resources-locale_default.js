@@ -130,6 +130,14 @@
     {
         "key":"_UserName_",
         "value": "Username"
+    },
+    {
+        "key":"_SignIn_",
+        "value": "Sign in"
+    },
+    {
+        "key":"_SignOut_",
+        "value": "Sign out"
     }
     
 ]

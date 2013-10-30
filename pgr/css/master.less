@@ -31,21 +31,81 @@ body {
         position: relative;
     }
     header {
-        height: 8%;
+        height: 60px;
         width: 100%;
         background: #36374b;
         top: 0%;
         z-index: 120;
         overflow: hidden;
         position: fixed;
+        .logo {
+            background-size: contain;
+            width: 100px;
+            height: 50px;
+            margin-left: 50px;
+            position: relative;
+            display: inline-block;
+            img {
+                position: absolute; 
+                display: inline-block;
+                right: 0px;
+                top: 0px;
+                height: 50px;
+            }
+        }
+        .graphlink {
+            float: right;
+            color: #ffffff;
+            text-decoration: none;
+            font-family: 'Helvetica Neue';
+            font-size: 20px;
+            text-transform: uppercase;
+            cursor: pointer;
+            position: relative;
+            display: inline-block;
+            margin: 23px 100px 0px 0px;
+        }
+        #search  {
+            float: right;
+            width: 300px;
+            margin: 15px 20px 0px 0px;
+            background: #ffffff;
+            height: 30px;
+            overflow: hidden;
+            position: relative;
+            .search {
+                font-size: 14px;
+                color: #666666;
+                border: none;
+                float: left;
+                display: block;
+                position: relative;
+                margin: 3px 0px 0px 10px;
+                position: relative;
+                line-height: 20px;
+                border: none;
+            }
+            .searcher {
+                background: url("../images/search.png") left top no-repeat;
+                width: 20px;
+                border: none;
+                cursor: pointer;
+                display: block;
+                padding: 0px;
+                text-indent: -999px;
+                position: absolute;
+                top: 5px;
+                right: 10px;
+                background-size: 100%;
+            }
+        }
         #avatar {
             float: right;
-            height: 90%;
-            margin-right: 3%;
+            margin: 3px 20px 0px 0px;
             p {
                 text-align: center;
                 img {
-                    max-height: 80%;
+                    max-height: 40px;
                     position: relative;
                     display: block;
                     cursor: pointer;
@@ -54,91 +114,10 @@ body {
                     color: #ffffff;
                     text-decoration: none;
                     font-family: 'Helvetica Neue';
-                    font-size: 55%;
+                    font-size: 10px;
                     cursor: pointer;
                     text-align: center;
                     position: relative;
-                }
-            }
-        }
-        .logo {
-            background-size: contain;
-            width: 30%;
-            height: 100%;
-            margin-right: 12%;
-            position: relative;
-            display: inline-block;
-            img {
-                position: absolute; 
-                display: inline-block;
-                right: 3%;
-                top: 5%;
-                height: 90%;
-            }
-        }
-        #search  {
-            float: right;
-            width: 15%;
-            margin-right: 5%;
-            margin-top: 1%;
-            background: #ffffff;
-            height: 50%;
-            overflow: hidden;
-            position: relative;
-            .search {
-                font-size: 100%;
-                color: #666666;
-                border: none;
-                float: left;
-                display: block;
-                position: relative;
-                margin: 1% 0% 0% 5%;
-                position: relative;
-                line-height: 150%;
-                border: none;
-            }
-            .searcher {
-                background: url("../images/search.png") left top no-repeat;
-                width: 10%;
-                border: none;
-                cursor: pointer;
-                display: block;
-                padding: 0px;
-                text-indent: -999px;
-                position: absolute;
-                top: 10%;
-                right: 5%;
-                background-size: 100%;
-            }
-        }
-        ul {
-            float: right;
-            margin-right: 4%;
-            height: 100%;
-            text-align: right;
-            width: 20%;
-            display: table;
-            position: relative;
-            top: 3%;
-            li {
-                display: table-cell;
-                height: 100%;
-                vertical-align: middle;
-                a {
-                    color: #ffffff;
-                    text-decoration: none;
-                    font-family: 'Helvetica Neue';
-                    font-size: 100%;
-                    text-transform: uppercase;
-                    cursor: pointer;
-                    position: relative;
-                    height: 100%;
-                    &:hover {
-                        color: #ffffff;
-                    }
-                    &.current {
-                        color: #86b3ef;
-                    }
                 }
             }
         }
@@ -187,31 +166,16 @@ body {
           opacity:0;
         }
     }
-    /** main page **/
-    .viewch {
-        text-align: center;
-        transform: skewX(angle);
-        font-size: 80%;
-        color: #ffffff;
-        padding: 8px 5px 2px 5px;
-        background: #028dda;
-        border-top: 1px solid #ffffff;
-        border-left: 1px solid #ffffff; 
-        border-right: 1px solid #cccccc; 
-        border-bottom: 1px solid #cccccc; 
-        position: fixed;
-        top: 8%;
-        right: 0%;
-        z-index: 310;
-    }
     
-     /** profile page **/
+    /** profile page **/
     .promain {
         position: relative;
-        top: 10%;
-        margin-left: 1%;
+        top: 80px;
+        margin-left: 20px;
         width: 60%;
-        height: 82%;
+        min-width: 600px;
+        height: 90%;
+        min-height: 550px;
         background: #ffffff;
         border: 1px solid #dddddd;
         box-shadow: 0px 0px 20px 1px rgba(0, 0, 0, 0.2);
@@ -232,13 +196,12 @@ body {
         vertical-align: top;
         width: 100%;
         &.pro {
-            padding: 2%;
+            padding: 15px;
             .block {
                 display: inline-block;
-                width: 30%;
+                width: 200px;
                 vertical-align: middle;
-                margin-right: 5%;
-                max-width: 300px;
+                margin-right: 15px;
                 .pp {
                     width: 100%;
                     background: #ffffff;
@@ -251,36 +214,35 @@ body {
             .pmpar {
                 display: inline-block;
                 vertical-align: top;
-                width: 60%;
+                width: auto;
                 p {
-                    font-size: 120%;
+                    font-size: 18px;
                     color: #969696;
-                    line-height: 170%;
+                    line-height: 40px;
                 }
                 label {
                     display: inline-block;
-                    width: 35%;
+                    width: 120px;
                     vertical-align: middle;                  
                     cursor: pointer;
                 }
                 select, input {                        
-                    width: 55%;
-                    height: 100%;
+                    width: 200px;
+                    height: 30px;
                     line-height: 100%;
-                    margin: 0%;
+                    margin: 0px;
                     vertical-align: middle !important;
                     display: inline-block;
-                    padding-bottom: 1.3% !important;
+                    padding-bottom: 5px !important;
                     cursor: pointer;
                     vertical-align: bottom;
-                    font-size: 100%;
-                    width: 50%;
+                    font-size: 16px;
                 }
                 .form-control {
                     display: inline-block;
-                    width: 50%;
+                    width: 200px;
                     vertical-align: bottom;
-                    font-size: 100%;
+                    font-size: 16px;
                 }
                 .form-control[readonly="readonly"] {
                     background: #ebebeb;
@@ -297,11 +259,6 @@ body {
                     border-width: 1px;
                     cursor: default;
                 }
-                img {
-                    width: 5%;
-                    height: 8%;
-                    vertical-align: middle;
-                }
                 i {
                     color: #000000;
                 }
@@ -309,14 +266,14 @@ body {
 
             .il {
                 position: absolute;
-                right: -3%;
-                top: 25%;
+                right: 20px;
+                top: 140px;
                 cursor: pointer;
                 img {
-                    width: 50%;
+                    width: 40px;
                 }
                 &:last-child {
-                    top: 10%;
+                    top: 50px;
                 }
             }
         }
@@ -326,22 +283,21 @@ body {
     .crits {
         display: block;
         width: 100%;
-        height: 55%;
+        height: auto;
         position: relative;
         z-index: 5;
         transition: all 0.5s ease-out;
         -webkit-transition: all 0.5s ease-out;
-        padding-bottom: 1%;
+        padding-bottom: 15px;
         ul {
             text-align: center;
             position: relative;
-            margin: 0% auto;
+            margin: 0px auto;
             li {
-                margin: 1% 0% 1% 2%;
-                width: 98%;
+                margin: 0px 0px 5px 15px;
                 position: relative;
                 &.current {
-                     margin: 1% 0% -2% 2%;
+                    margin-bottom: -10px;
                 }
                 .cr { 
                     background: rgb(117,159,210);
@@ -351,23 +307,21 @@ body {
                     background: -o-linear-gradient(left, rgb(117,159,210) 0%,rgb(55,55,75) 100%,rgb(125,185,232) 100%);
                     background: -ms-linear-gradient(left, rgb(117,159,210) 0%,rgb(55,55,75) 100%,rgb(125,185,232) 100%);
                     background: linear-gradient(to right, rgb(117,159,210) 0%,rgb(55,55,75) 100%,rgb(125,185,232) 100%);
-                    line-height: 250%;
+                    line-height: 50px;
                     cursor: pointer;
                     position: relative;
-                    width: 100%;
                     overflow: hidden;
                     p {
-                        font-size: 130%;
+                        font-size: 20px;
                         color: #ffffff;
                         float: left;
-                        margin-top: 1%;
-                        width: 20%; 
+                        margin-top: 3px;
                         text-align: left;
-                        padding-left: 3%;
+                        padding-left: 15px;
                         s {
                             position: absolute;
-                            left: 25%;
-                            top: 50%;
+                            left: 200px;
+                            top: 22px;
                             display: inline-block;
                             width: 0px;
                             height: 0px;
@@ -378,32 +332,30 @@ body {
                     }
                     .right {
                         float: right;
-                        width: 70%;
-                        margin-right: 3%;
-                        margin-top: 1.5%;
+                        width: 150px;
+                        margin: 17px 15px 0px 0px;
                         b {
-                            font-size: 100%;
+                            font-size: 16px;
                             color: #ffffff;
                             text-align: center;
                             display: block;
                             position: relative;
                             z-index: 5;
                             text-align: right;
-                            line-height: 120%;
+                            line-height: 18px;
                         }
                         strong {
                             background: #ffffff;
                             display: block;
-                            line-height: 100%;
-                            width: 25%;
+                            width: 130px;
                             position: relative;
                             overflow: hidden;
                             height: 3px;
                             float: right;
                             span {
                                 position: absolute;
-                                left: 0%;
-                                top: 0%;
+                                left: 0px;
+                                top: 0px;
                                 height: 100%;
                                 display: block;
                                 background: #759fd2;
@@ -416,25 +368,24 @@ body {
                     vertical-align: top;
                     position: relative;
                     display: none;
-                    margin: 0%;
-                    padding: 0%;
+                    margin: 0px;
+                    padding: 0px;
                     &.show, &.current {
                         display: block;
-                        margin: 0% auto;
+                        margin: 0px auto;
                     }
                     li {
                         display: block;
-                        width: 100%;
-                        margin: 1.5% auto;
+                        margin: 5px auto;
                         h5 {
                             position: relative;
-                            padding: 0.3% 0%;
+                            padding: 3px 0px 5px 0px;
                             a {
-                                font-size: 120%;
+                                font-size: 16px;
                                 color: #000000;
                                 text-decoration: none;
                                 display: inline-block;
-                                width: 20%;
+                                width: 300px;
                                 vertical-align: middle;
                                 text-align: left;
                                 cursor: pointer;
@@ -442,17 +393,17 @@ body {
                                     display: inline-block;
                                     vertical-align: middle;
                                     transition: all 0.5s ease;
-                                    margin: 0% 5% 0% -2%;
+                                    margin: 0px 10px 0px -55px;
                                     position: relative;
-                                    width: 12%;
+                                    width: 20px;
                                     img {
-                                        max-width: 100%;
+                                        max-width: 20px;
                                     }
                                 }
                                 s {
                                     position: absolute;
-                                    left: 25%;
-                                    top: 30%;
+                                    left: 200px;
+                                    top: 10px;
                                     display: inline-block;
                                     width: 0px;
                                     height: 0px;
@@ -463,32 +414,31 @@ body {
                             }
                             .right {
                                 float: right;
-                                width: 70%;
-                                margin: -1% 3% 0% 0%;
+                                width: 150px;
+                                margin: 0px 15px 0px 0px;
                                 b {
-                                    font-size: 100%;
+                                    font-size: 16px;
                                     color: #000000;
                                     text-align: center;
                                     display: block;
                                     position: relative;
                                     z-index: 5;
                                     text-align: right;
-                                    line-height: 120%;
+                                    line-height: 18px;
                                 }
                                 strong {
                                     background: #ffffff;
-                                    border: 1px solid #cccccc;
+                                    border: 1px solid #dddddd;
                                     display: block;
-                                    line-height: 100%;
-                                    width: 25%;
+                                    width: 130px;
                                     position: relative;
                                     overflow: hidden;
                                     height: 3px;
                                     float: right;
                                     span {
                                         position: absolute;
-                                        left: 0%;
-                                        top: 0%;
+                                        left: 0px;
+                                        top: 0px;
                                         height: 100%;
                                         display: block;
                                         background: #759fd2;
@@ -611,13 +561,14 @@ body {
     }
 
     .pronear {
-        width: 36%;
+        width: 35%;
         display: inline-block;
         position: relative;
-        margin-left: 1%;
+        margin-right: 20px;
+        float: right;
         vertical-align: top;
-        top: 10%;
-        height: 82%;
+        top: 80px;
+        height: 90%;
         background: #ffffff;
         border: 1px solid #dddddd;
         box-shadow: 0px 0px 20px 1px rgba(0, 0, 0, 0.2);
@@ -1346,12 +1297,11 @@ body {
         left: 0px;
         bottom: 0px;
         width: 99%;
-        padding-right: 1%;
+        padding: 7px 1% 0px 0px;
         background: rgba(0, 0, 0, 0.5);
         text-align: right;
         color: #ffffff;
-        line-height: 150%;
-        font-size: 140%;
+        font-size: 20px;
         font-family: 'Helvetica Neue Light';
         transition: all 0.3s linear;
         -webkit-transition: all 0.3s linear;
@@ -1361,7 +1311,7 @@ body {
         display: none;
         position: absolute;
         z-index: 12;
-        font-size: 120%;
+        font-size: 16px;
         color: #ffffff;
         bottom: 20px;
         width: 100%;
@@ -1391,25 +1341,25 @@ body {
 
 footer {        
     position: fixed;
-    bottom: 0%;
-    left: 0%;
-    height: 8%;
+    bottom: 0px;
+    left: 0px;
+    height: 60px;
     width: 100%;
     background: #36374b;
     z-index: 120;
     overflow: hidden;
     .sexual {
         display: inline-block;
-        margin-left: 5%;
-        height: 100%;
+        margin-left: 30px;
+        height: 60px;
         vertical-align: top;
         a {
             display: inline-block;
-            height: 60%;
-            margin-top: 15%;
+            height: 50px;
+            margin-top: 15px;
             vertical-align: top;
             img {
-                height: 70%;
+                height: 30px;
             }
         }
     }

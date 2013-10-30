@@ -15,37 +15,31 @@
 	<body ng-controller="RootController" >
 		
 		<header>
-            <!-- Логотип -->
-            <a href="#/" class="logo">
-               <img src="./images/logobg.png" alt="" />
-            </a>
-            
-            <!-- Аватар -->
+         <!-- Логотип -->
+         <a href="#/" class="logo">
+            <img src="./images/logobg.png" alt="" />
+         </a>
+         
+         <!-- Аватар -->
 			<section id="avatar" ng-cloak ng-controller="AvatarCtrl">
                 <p ng-if="!workspace.user">
                     <img ng-click="onLogin()" ng-src="/images/anon.png" alt="" />
-                    <span ng-click="onLogin()">Sign in</span>
+                    <span ng-click="onLogin()">{{'_SignIn_' | i18n}}</span>
                 </p>
                 <p ng-if="workspace.user">
                     <img ng-click="onOpenProfileAuthUser()" ng-src="{{workspace.user.avatar}}" alt="{{workspace.user.name}}" />
-                    <span ng-click="onLogout()">Sign out</span>
+                    <span ng-click="onLogout()">{{'_SignOut_' | i18n}}</span>
                 </p>
 			</section>
             
-            <!-- Поиск -->
-            <div id="search">
-                <input type="text" placeholder="Search people" class="search" />
-                <input type="submit" class="searcher" />
-            </div>
-            
-            <!-- Навигация -->
-			<ul ng-if="workspace.user" ng-cloak ng-controller="NavCtrl">
-				<li ng-repeat="nav in navs">
-				    <a ng-class="{current: nav.current}" ng-click="onNavClick($event, nav)">
-				    	{{nav.name}}
-				    </a>
-				</li>
-			</ul>
+         <!-- Поиск -->
+         <div id="search">
+             <input type="text" placeholder="Search people" class="search" />
+             <input type="submit" class="searcher" />
+         </div>
+         
+         <!-- GRAPHS -->
+		   <a  class="graphlink" ng-if="workspace.user" href="#/graphs">{{'_GRAPHS_' | i18n}}</a>
             
 		</header>
 

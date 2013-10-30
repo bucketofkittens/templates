@@ -105,11 +105,6 @@ function NavCtrl($scope, localize, $location, AuthUser, $rootScope, $route) {
     $scope.generateNav = function() {
         $scope.navs = [
             {
-                name: localize.getLocalizedString("_LEAGUES_"), 
-                link: '#/leagues', 
-                current: false
-            },
-            {
                 name: localize.getLocalizedString("_GRAPHS_"), 
                 link: '#/graphs', 
                 current: false
