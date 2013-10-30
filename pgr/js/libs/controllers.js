@@ -443,9 +443,7 @@ function UserController($scope, $route, $routeParams, User, Needs, Professions, 
      * @return {[type]}
      */
     $scope.onReadFile = function($event) {
-        if($scope.user.sguid == $scope.authUserId) {
-            $rootScope.$broadcast('cropImage', {user: $scope.user});
-        }
+            $rootScope.$broadcast('cropImage');
     }
 
     /**
@@ -454,10 +452,7 @@ function UserController($scope, $route, $routeParams, User, Needs, Professions, 
      * @return {[type]}
      */
     $scope.onUpdateFile = function($event) {
-        if($scope.user.sguid == $scope.authUserId) {
-
-            $rootScope.$broadcast('cropImage', {user: $scope.user});
-        }
+        $("#photo_crop").click();
     }
 
     $scope.onUpdateGoalImage = function($event) {
@@ -1869,18 +1864,27 @@ function LeaguesController($scope, Leagues, User) {
  * @param {[type]} $rootScope [description]
  */
 function CropImageController($scope, $rootScope) {
-    $scope.shouldBeOpen = false;
     $scope.user = [];
     $scope.positions = [];
     $scope.imageData = '';
+    $scope.show = false;
+    $scope.jcrop = null;
 
-    $scope.$on('cropImage', function($event, message) {
-        $scope.user = message.user;
-        $scope.shouldBeOpen = true;
+    $scope.$on('cropImage', function($event) {
+        $rootScope.$broadcast('loaderShow');
+        $scope.user = $scope.workspace.user;
+        $scope.show = true;
+        $("#crop_modal").show();
+        $scope.onReadFile();
+    });
+
+    $scope.$on('cropImageClose', function($event) {
+        $scope.close();
     });
 
     $scope.close = function() {
-       $scope.shouldBeOpen = false; 
+        $scope.show = false;
+        $("#crop_modal").hide();
     }
 
     $scope.onSend = function() {
@@ -1922,8 +1926,8 @@ function CropImageController($scope, $rootScope) {
             }).done(function(data) {
                 $scope.$apply(function(){
                     if(data.success) {
-                        $scope.user.avatar = createImageFullPath(data.message);
-                        $rootScope.$broadcast('updateUserData', {user: $scope.user});
+                        $scope.workspace.user.avatar = data.message.scheme+"://"+data.message.host+data.message.path;
+                        $scope.close();
                     }
                     $rootScope.$broadcast('loaderHide');
                     $scope.shouldBeOpen = false; 
@@ -1931,8 +1935,6 @@ function CropImageController($scope, $rootScope) {
             });
         };
     }
-
-    
 
     /**
      * [onReadFile description]
@@ -1948,15 +1950,13 @@ function CropImageController($scope, $rootScope) {
             var crop_img = $("#crop_img");
             $scope.imageData = data.target.result;
             $(crop_img).attr("src", data.target.result);
-            if($(crop_img).width() > 199 && $(crop_img).width() > 199) {
-                crop_img.Jcrop({minSize: [200, 200], aspectRatio: 1, setSelect: [0, 0, 200, 200], onChange: function(data) {
-                    $scope.positions = data;
-                }});   
-            } else {
-                $(crop_img).attr("src", false);
-                alert("Размер аватарки должен быть не меньше 200x200.");
+            $rootScope.$broadcast('loaderHide');
+            if($scope.jcrop) {
+                $scope.jcrop.data('Jcrop').destroy();
             }
-            
+            $scope.jcrop = crop_img.Jcrop({boxWidth: 500, boxHeight: 500 , minSize: [200, 200], aspectRatio: 1, setSelect: [0, 0, 200, 200], onChange: function(data) {
+                $scope.positions = data;
+            }}); 
         };
         reader.readAsDataURL(file);
     }

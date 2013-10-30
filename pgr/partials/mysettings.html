@@ -1,22 +1,32 @@
+<div ng-controller="CropImageController"  >
+	<div ng-class="{show: show}" id="crop_modal">
+		<div class="modal-body">
+			<form action="" method="get" accept-charset="utf-8">
+				<div id='cropContainer'>
+			      <div class="cropper">
+			         <div class="preview-container">
+			         	<img src="" id="crop_img" alt="" />
+		        		<canvas id="image_canvas"></canvas>
+			         </div>
+			      </div>
+			   </div>
+		   </form>
+		</div>
+		<div class="buttons">
+			<button ng-click="close()">Cancel</button>
+			<button class="apply" ng-click="onSend()">Apply</button>
+		</div>
+	</div>
+</div>
 <section class="myset">
 	<div 
 		class="pmain pro promy" 
 		ng-controller="UserController" >
 		<div class="block">
-			<input 
-				class="hidden" 
-				type="file"  
-				name="photo" 
-				ng-model="newImage"
-				
-				id="photo" 
-				accept="image/jpeg,image/png,image/gif" />
+			<input class="hidden" id="photo_crop" onchange="angular.element(this).scope().onReadFile()" capture="camera" type="file" accept="image/*" />
 			
-			<div class="image_box" ng-class="{updated: user.sguid == authUserId && isEdit}">
+			<div class="image_box" ng-click="onUpdateFile()">
 				<img class="pp" ng-src="{{workspace.user.avatar}}" err-src="/images/unknown-person.png" />
-				<i>{{user.points}}</i>
-				<a ng-click="onUpdateFile()" title="">Update image</a>
-				<span></span>
 			</div>
 			
 			<div class="publish" ng-if="!workspace.user.published">

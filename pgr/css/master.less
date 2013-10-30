@@ -3,7 +3,7 @@ select, textarea, input {
 }
   
 img {
-    image-rendering: optimizeQuality;
+    image-rendering: optimizeQuality; 
     -ms-interpolation-mode: bicubic;
 } 
 
@@ -1283,6 +1283,7 @@ body {
 
 .image_box {
     position: relative;
+    cursor: pointer;
     span {
         position: absolute;
         left: 0px;
@@ -1689,4 +1690,45 @@ ng-form:not(.ng-pristine) {
     border-bottom: 1px solid #dddddd;
     z-index: 200;
     box-shadow:  0 20px 30px -20px rgba(0,0,0,0.5), 0 -20px 30px -20px rgba(0,0,0,0.5);
+}
+
+#crop_modal {
+    background: #ffffff;
+    padding: 20px;
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    width: 500px;
+    margin-left: -250px;
+    z-index: 500;
+    display: none;
+    box-shadow: 0 0 20px 1px rgba(0,0,0,0.2);
+    &.show {
+        display: block;
+    }
+    #cropContainer {
+        width: 460px;
+    }
+    button {
+        width: 30%;
+        height: 100%;
+        font-size: 100%;
+        font-family: 'Helvetica Neue Light';
+        line-height: 130%;
+        margin-left: 3%;
+        padding: 1% !important;
+        vertical-align: middle !important;
+        display: inline-block;
+        cursor: pointer;
+        background: none;
+        border: 2px solid #ccc;
+    }
+    .buttons {
+        width: 100%;
+        overflow: hidden;
+        padding: 10px 0px 0px 0px;
+        .apply {
+            float: right;
+        }
+    }
 }

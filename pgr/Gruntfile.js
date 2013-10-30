@@ -17,6 +17,8 @@ module.exports = function(grunt) {
                 	'js/angular-touch.min.js',
                 	'js/angular-route-segment.min.js',
                 	'js/angular-isotope.min.js',
+                    'js/jquery.Jcrop.min.js',
+                    'js/jquery.jcrop-canvas.js',
                     'js/date.js',
                     'js/autocomplete.js',
                 	'js/hamster.js',
@@ -35,6 +37,7 @@ module.exports = function(grunt) {
                 src: [
                     "css/reset.css",
                     "css/jquery-ui-1.10.3.custom.min.css",
+                    "css/jquery.Jcrop.min.css",
                     "css/fonts.css",
                     "css/master.css"
                 ],
