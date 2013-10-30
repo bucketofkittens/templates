@@ -180,6 +180,9 @@ function QuickUserChangeCtrl($scope, User, AuthUser, $rootScope, $location) {
                 users.push(value);
             }
         });
+        angular.forEach(users, function(value, key){
+            value.fullname = value.login + ", " + value.name;
+        });
         $scope.users = users;
     }); 
 }

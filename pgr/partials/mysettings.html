@@ -82,26 +82,13 @@
 				<label for="username_i">{{'_UserName_' | i18n}}:</label> 
 				<select 
 					id="acc_i"
-					ng-options="item.login for item in users" 
+					ng-options="item.fullname for item in users" 
 					ng-model="nextUser" 
 					ng-change="onMoveUserClick($event, nextUser)">
-					<option value="">{{workspace.user.login}}</option>
+					<option value="">{{workspace.user.login}}, {{workspace.user.name}}</option>
 				</select>
 				<button>{{'_ChaPas_' | i18n}}</button>
 			</p>
-			<!--
-			<p ng-if="isEdit && user.sguid == authUserId" ng-controller="QuickUserChangeCtrl">
-				<label for="acc_i">{{'_AccL_' | i18n}}:</label>
-				<select 
-					id="acc_i"
-					ng-options="item.login for item in users" 
-					ng-model="nextUser" 
-					ng-change="onMoveUserClick($event, nextUser)">
-					<option value="">{{user.login}}</option>
-				</select>
-				<i ng-if="!isEdit || user.sguid != authUserId">{{user.login}}</i>
-			</p>
-			-->
 		</div>
 	</div>
 </section>
