@@ -320,7 +320,7 @@ body {
                         padding-left: 15px;
                         s {
                             position: absolute;
-                            left: 200px;
+                            left: 170px;
                             top: 22px;
                             display: inline-block;
                             width: 0px;
@@ -379,12 +379,14 @@ body {
                         margin: 5px auto;
                         h5 {
                             position: relative;
-                            padding: 3px 0px 5px 0px;
+                            padding: 7px 0px;
+                            width: 100%;
+                            overflow: hidden;
                             a {
                                 font-size: 16px;
                                 color: #000000;
                                 text-decoration: none;
-                                display: inline-block;
+                                float: left;
                                 width: 300px;
                                 vertical-align: middle;
                                 text-align: left;
@@ -393,7 +395,7 @@ body {
                                     display: inline-block;
                                     vertical-align: middle;
                                     transition: all 0.5s ease;
-                                    margin: 0px 10px 0px -55px;
+                                    margin: 0px 10px 0px 15px;
                                     position: relative;
                                     width: 20px;
                                     img {
@@ -402,8 +404,8 @@ body {
                                 }
                                 s {
                                     position: absolute;
-                                    left: 200px;
-                                    top: 10px;
+                                    left: 170px;
+                                    top: 15px;
                                     display: inline-block;
                                     width: 0px;
                                     height: 0px;
@@ -449,24 +451,24 @@ body {
                         }
                         /** criterion **/
                         .criterion {
-                            margin: 1% 0%;
-                            max-height: 0%;
+                            margin: 0px;
+                            max-height: 0px;
                             border-top: 1px solid #cccccc;
                             border-bottom: 1px solid #cccccc;
                             &.show, &.current {
                                 max-height: 100%;
-                                margin: 0%;
+                                margin: 0px;
                             }  
                             li {
                                 text-align: left;
                                 p {
                                     color: #000000;
-                                    font-size: 90%;
+                                    font-size: 13px;
                                     display: block;
-                                    width: 70%;
+                                    width: 500px;
                                     text-align: left;
                                     vertical-align: middle;
-                                    margin-left: 3%;
+                                    margin-left: 15px;
                                 }
                                 .bord {
                                     width: 100%;
@@ -478,7 +480,7 @@ body {
                                     .crp {
                                         display: inline-block;
                                         cursor: default;
-                                        margin: 0%;
+                                        margin: 0px;
                                         background: -moz-linear-gradient(left, rgba(222,232,244,1) 0%, rgba(117,159,210,0.99) 100%);
                                         background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(222,232,244,1)), color-stop(100%,rgba(117,159,210,0.99)));
                                         background: -webkit-linear-gradient(left, rgba(222,232,244,1) 0%,rgba(117,159,210,0.99) 100%);
@@ -489,7 +491,7 @@ body {
                                         vertical-align: middle;
                                         overflow: hidden;
                                         opacity: 1;
-                                        left: 0%;
+                                        left: 0px;
                                         .tab {
                                             display: table;
                                             width: 100%;
@@ -497,10 +499,10 @@ body {
                                             li {
                                                 display: table-cell;
                                                 color: #000000;
-                                                font-size: 70%;
+                                                font-size: 10px;
                                                 width: auto;
-                                                margin: 0% auto;
-                                                line-height: 100%;
+                                                margin: 0px auto;
+                                                line-height: 12px;
                                                 z-index: 7;
                                                 position: relative;
                                                 border: 0px;
@@ -508,29 +510,28 @@ body {
                                                 height: 50px;
                                                 vertical-align: middle;
                                                 overflow: hidden;
-                                                padding: 0% 2%;
+                                                padding: 0px 10px;
                                                 i {
                                                     display: block;
                                                     cursor: pointer;
                                                     word-break: break-all;
+                                                    margin-top: -7px;
                                                     &.null_criteria {
                                                         width: 20px;
                                                         height: 100%;
                                                     }
                                                 }
                                                 &:first-child {
-                                                    width: 5%;
+                                                    width: 20px;
                                                 }
                                             }
                                         }
                                         span {
                                             position: absolute;
-                                            right: -1%;
-                                            top: 0%;
+                                            top: 0px;
                                             height: 100%;
                                             display: block;
                                             background: #ffffff;
-                                            width: 95%;
                                             cursor: pointer;
                                             img {
                                                 position: absolute;
@@ -543,12 +544,12 @@ body {
                                     }
                                     strong {
                                         display: inline-block;
-                                        position: relative;
-                                        vertical-align: middle;
-                                        right: -3%;
+                                        position: absolute;
+                                        top: 12px;
+                                        right: 15px;
                                         cursor: pointer;
                                         img {
-                                            width: 70%;
+                                            width: 30px;
                                         }
                                     }
                                 } 
@@ -561,14 +562,16 @@ body {
     }
 
     .pronear {
-        width: 35%;
         display: inline-block;
         position: relative;
         margin-right: 20px;
         float: right;
         vertical-align: top;
         top: 80px;
+        width: 35%;
+        min-height: 350px;
         height: 90%;
+        min-height: 550px;
         background: #ffffff;
         border: 1px solid #dddddd;
         box-shadow: 0px 0px 20px 1px rgba(0, 0, 0, 0.2);
@@ -579,15 +582,13 @@ body {
 
     /** NEIGHBOURS **/
     .nearblock {
-        width: 96%;
         display: block;
-        padding: 2%;
+        padding: 15px;
         i {
-            width: 98%;
             height: 1px;
             border-top: 2px solid #cccccc;
             display: block;
-            margin: 5% auto;
+            margin: 15px auto;
         }
         .lnbl {
             display: block;
@@ -598,11 +599,11 @@ body {
                     overflow: visible;
                 } 
                 h4 {                
-                    font-size: 130%;
+                    font-size: 20px;
                     color: #000000;
                     text-align: left;
                     display: block;
-                    margin: 2% 2% 5% 2%;
+                    margin-bottom: 15px;
                 }
                 .big { 
                     -webkit-transform: translate(-10%, -10%);
@@ -614,11 +615,11 @@ body {
                     -ms-transform: translate(-10%, -10%);
                     -ms-transform: scale(2.3);
                     b {
-                        font-size: 70% !important;
-                        padding-top: 15% !important;
+                        font-size: 8px !important;
+                        padding-top: 5px !important;
                     }
                     span {
-                        font-size: 80% !important;
+                        font-size: 8px !important;
                         z-index: 999;
                     }
                 }
@@ -626,14 +627,17 @@ body {
                 sub, sup {
                     position: absolute;
                     display: block;
-                    top: 50%;
-                    left: 0%;
+                    top: 45%;
+                    left: 0px;
                     cursor: pointer;
                 }
                 sup {
                     left: auto;
-                    right: 0%;
+                    right: 0px;
                 }
+                /**  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                ЗДЕСЬ НУЖНО БУДЕТ ПОПРАВИТЬ ПРОЦЕНТЫ. ОНО РАСПРОСТРАНЯЕТСЯ НА ПЛИТКУ СОСЕДЕЙ И НА ГЛАВНУЮ. 
+                !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!  **/
                 .galblo {
                     display: block;
                     width: 80%;
