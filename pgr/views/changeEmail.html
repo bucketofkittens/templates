@@ -1,0 +1,41 @@
+<div class="email login" ng-if="workspace.user">
+    <div class="modal">
+        <div class="modal_wrapper">
+            <div class="header">
+               <h4>Change email</h4>
+            </div>
+            <div class="body">
+                <ng-form id="login_form" novalidate name="ReemailForm" class="css-form myForm" >
+                    <p>
+                        <input 
+                            id="login_i" 
+                            class="form-input"
+                            ng-model="form.oldEmail"
+                            required 
+                            ng-minlength="6"
+                            placeholder="Current email"
+                            type="email" />
+                    </p>
+                    <p>
+                        <input 
+                            type="email" 
+                            id="pass_i"
+                            class="form-input"
+                            ng-model="form.newEmail"
+                            required 
+                            ng-minlength="6"
+                            placeholder="New email" /> 
+                    </p>
+                    <p class="errors" ng-if="error">{{error}}</p>
+                    <p>
+                        <input 
+                            ng-disabled="ReemailForm.$invalid"
+                            ng-click="onChangeEmail()" 
+                            type="button" 
+                            value="Save" />
+                    </p>
+                </ng-form>
+            </div>
+        </div>
+    </div>
+</div>

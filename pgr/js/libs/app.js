@@ -61,6 +61,8 @@ pgrModule.config(function($routeSegmentProvider, $routeProvider) {
         .when('/login',                     'login')
         .when('/profile/:userId1',          'profile.oneUser')
         .when('/profile/:userId1/:userId2', 'profile.manyUser')
+        .when('/change_email',              'changeEmail')
+        .when('/change_password',           'changePassword')
         
         .when('/',                          'main')
         
@@ -85,6 +87,14 @@ pgrModule.config(function($routeSegmentProvider, $routeProvider) {
         .segment('main', {
             templateUrl: 'views/main.html',
             controller: MainController})
+
+        .segment('changeEmail', {
+            templateUrl: 'views/changeEmail.html',
+            controller: ChangeEmailController})
+
+        .segment('changePassword', {
+            templateUrl: 'views/changePassword.html',
+            controller: ChangePasswordController})
 
         .segment('login', {
             templateUrl: 'views/login.html',

@@ -1987,7 +1987,7 @@ function CropImageController($scope, $rootScope) {
     }
 }
 
-function MyProfileController($scope, $rootScope, User) {
+function MyProfileController($scope, $rootScope, User, $location) {
     $scope.tab = 2;
 
     $scope.$watch("workspace.user.birthday", function (newVal, oldVal, scope) {
@@ -2016,7 +2016,6 @@ function MyProfileController($scope, $rootScope, User) {
      * @return {[type]}        [description]
      */
     $scope.onPublish = function($event) {
-
         if(!$scope.workspace.user.published) {
             $scope.workspace.user.published = 0;
         }
@@ -2052,6 +2051,14 @@ function MyProfileController($scope, $rootScope, User) {
                 $scope.workspace.user.published = 1;
             }
         );
+    }
+
+    $scope.onChangeEmail = function() {
+        $location.path("/change_email"); 
+    }
+
+    $scope.onChangePassword = function() {
+        $location.path("/change_password"); 
     }
 
     /* config object */
@@ -2112,5 +2119,60 @@ function MyProfileController($scope, $rootScope, User) {
 
     $scope.onChange = function(tab) {
         $scope.tab = tab;
+    }
+}
+
+function ChangeEmailController($scope, User, $location) {
+    $scope.form = {
+        oldEmail: "",
+        newEmail: ""
+    }
+
+    $scope.onChangeEmail = function() {
+        if($scope.form.oldEmail == $scope.workspace.user.email) {
+            var user = {
+                    "email": $scope.form.newEmail
+            }
+
+            User.updateUser({"id": $scope.workspace.user.sguid},  {user: JSON.stringify(user)}, function(data) {
+                    $scope.workspace.user.email = $scope.form.newEmail;
+                    $location.path("/my_profile/");
+                }
+            );
+        } else {
+            $scope.error = "error";
+        }
+        
+    }
+}
+
+function ChangePasswordController($scope, Sessions, User, $location) {
+    $scope.form = {
+        oldPassword: "",
+        newPassword: "",
+        confirmPassword: ""
+    }
+
+    $scope.onChangePassword = function() {
+        if($scope.form.newPassword == $scope.form.confirmPassword) {
+            Sessions.signin({}, $.param({
+                "login": $scope.workspace.user.login,
+                "password": $scope.form.oldPassword 
+            }), function(data) {
+                if(data.success) {
+                    var user = {
+                        "password": $scope.form.confirmPassword
+                    }
+
+                    User.updateUser({"id": $scope.workspace.user.sguid},  {user: JSON.stringify(user)}, function(data) {
+                        $location.path("/my_profile/");
+                    });
+                } else {
+                    $scope.error = data.message;
+                }
+            });
+        } else {
+            $scope.error = "error";
+        }
     }
 }

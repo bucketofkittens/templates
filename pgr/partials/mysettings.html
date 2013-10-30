@@ -76,7 +76,7 @@
 					ng-model="workspace.user.email"
 					readonly="readonly"
 					required />
-					<button>{{'_ChaEm_' | i18n}}</button>
+					<button ng-click="onChangeEmail()">{{'_ChaEm_' | i18n}}</button>
 			</p>
 			<p ng-controller="QuickUserChangeCtrl">
 				<label for="username_i">{{'_UserName_' | i18n}}:</label> 
@@ -87,7 +87,7 @@
 					ng-change="onMoveUserClick($event, nextUser)">
 					<option value="">{{workspace.user.login}}, {{workspace.user.name}}</option>
 				</select>
-				<button>{{'_ChaPas_' | i18n}}</button>
+				<button  ng-click="onChangePassword()">{{'_ChaPas_' | i18n}}</button>
 			</p>
 		</div>
 	</div>

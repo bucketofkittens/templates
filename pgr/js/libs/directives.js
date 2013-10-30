@@ -58,7 +58,7 @@ pgrModule.directive('bridge', function($window) {
         } else {
           $(element).hide();
         }
-      }, 100);
+      }, 10);
     }
   }
 })
