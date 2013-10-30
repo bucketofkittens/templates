@@ -984,7 +984,8 @@ function LoginController($scope, Sessions, $rootScope, User, Social, $facebook, 
                         $scope.errors += value;
                     });
                 } else {
-                    $window.history.back();
+                    $location.path("/my_profile/");
+
                 }
             }
         );
