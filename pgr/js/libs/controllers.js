@@ -952,7 +952,7 @@ function LoginController($scope, Sessions, $rootScope, User, Social, $facebook, 
      * @param  {[type]} $event [description]
      * @return {[type]}        [description]
      */
-    $scope.onSingin = function() {
+    $scope.onSingin = function(data) {
         Sessions.signin({}, $.param({
             "login": $scope.login.login,
             "password": $scope.login.password
@@ -984,8 +984,15 @@ function LoginController($scope, Sessions, $rootScope, User, Social, $facebook, 
                         $scope.errors += value;
                     });
                 } else {
-                    $location.path("/my_profile/");
-
+                    Sessions.signin({}, $.param({
+                        "login": $scope.user.login,
+                        "password": $scope.user.password
+                    }), function(data) {
+                        if(data.success) {
+                            $rootScope.$broadcast('onSignin', {sguid: data.guid, isSocial: true, noRedirect: true});
+                            $location.path("/my_profile/");
+                        }
+                    });
                 }
             }
         );
@@ -1820,7 +1827,9 @@ function RootController($scope, AuthUser, User, $rootScope, Needs, Social, $cook
                         $rootScope.$broadcast('socialLogined');
                     }
 
-                    $location.path("/");
+                    if(!message.noRedirect) {
+                        $location.path("/");    
+                    }
                 });
             });    
         }
