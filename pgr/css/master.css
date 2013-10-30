@@ -71,11 +71,11 @@ body header #avatar p span{color:#fff;text-decoration:none;font-family:'Helvetic
 #content .tab .myset{width:96%;display:block;position:relative;margin-left:2%;vertical-align:top;height:75%;background:#fff;border:1px solid #ddd;box-shadow:0 0 20px 1px rgba(0,0,0,0.2);z-index:3;overflow:hidden}#content .tab .myset .promy .block{width:20%}
 #content .tab .myset .promy .publish{display:block;text-align:center;position:relative}#content .tab .myset .promy .publish strong{font-size:100%;color:#000;margin-top:5%;display:block}#content .tab .myset .promy .publish strong b{font-size:70%;color:#666;display:block;margin:2% 0}
 #content .tab .myset .promy .publish button{width:60%;height:100%;font-size:100%;font-family:'Helvetica Neue Light';line-height:100%;padding:5% 2% !important;vertical-align:middle !important;display:inline-block;cursor:pointer;background:none;border:2px solid #ccc;margin-top:5%}
-#content .tab .myset .promy .pmpar p{padding-bottom:2%}
+#content .tab .myset .promy .pmpar{width:700px}#content .tab .myset .promy .pmpar p{padding-bottom:2%}
 #content .tab .myset .promy .pmpar label{width:20%}
-#content .tab .myset .promy .pmpar select,#content .tab .myset .promy .pmpar input{width:30%;padding:1% !important;border:2px solid #ccc;font-family:'Helvetica Neue Light';box-shadow:none}
-#content .tab .myset .promy .pmpar select{width:32.5% !important}
-#content .tab .myset .promy .pmpar button{width:30%;height:100%;font-size:100%;font-family:'Helvetica Neue Light';line-height:130%;margin-left:3%;padding:1% !important;vertical-align:middle !important;display:inline-block;cursor:pointer;background:none;border:2px solid #ccc}
+#content .tab .myset .promy .pmpar select,#content .tab .myset .promy .pmpar input{width:250px;padding:1% !important;border:2px solid #ccc;font-family:'Helvetica Neue Light';box-shadow:none}
+#content .tab .myset .promy .pmpar select{width:268px}
+#content .tab .myset .promy .pmpar button{width:200px;height:100%;font-size:100%;font-family:'Helvetica Neue Light';line-height:130%;margin-left:3%;padding:1% !important;vertical-align:middle !important;display:inline-block;cursor:pointer;background:none;border:2px solid #ccc}
 #content table#graphs{height:90%;width:90%;margin:0 auto;position:relative;table-layout:fixed}#content table#graphs tr{height:9%}#content table#graphs tr td,#content table#graphs tr th{vertical-align:top;text-align:center;border-top:1px solid #ccc;height:200px}#content table#graphs tr td img,#content table#graphs tr th img{width:90%;position:relative}
 #content table#graphs tr td a,#content table#graphs tr th a{display:block;position:relative}
 #content table#graphs tr th{border-top:none;border-right:1px solid #000;line-height:50% !important;width:10%}
