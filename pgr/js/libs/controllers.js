@@ -673,6 +673,12 @@ function NeedsAndGoalsController($scope, Goals, Criterion, AuthUser, UserCriteri
         });
     }
 
+    $scope.closeAllNeeds = function(needs) {
+        angular.forEach(needs, function(value, key){
+            value.current = false;
+        });
+    }
+
     /**
      * Открываем все needs
      * @param  {object} массив всех needs
@@ -690,15 +696,21 @@ function NeedsAndGoalsController($scope, Goals, Criterion, AuthUser, UserCriteri
      * @return {[type]}        [description]
      */
     $scope.openCriteriumList = function ($event, need, goal, needs) {
-        $scope.closeAllGoals(needs);
+        if(!goal.current) {
+            $scope.closeAllGoals(needs);
         
-        goal.current = true;
+            goal.current = true;
 
-        $scope.getCriteriumByGoal(goal, need);
+            $scope.getCriteriumByGoal(goal, need);
 
-        if($scope.persistState) {
-            $cookieStore.put("openGoal", goal.sguid);
-            $cookieStore.put("openNeed", need.sguid);
+            if($scope.persistState) {
+                $cookieStore.put("openGoal", goal.sguid);
+                $cookieStore.put("openNeed", need.sguid);
+            }    
+        } else {
+            $scope.closeAllGoals(needs);
+
+            goal.current = false;
         }
     };
 
