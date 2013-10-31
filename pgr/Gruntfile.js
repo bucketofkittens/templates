@@ -27,8 +27,8 @@ module.exports = function(grunt) {
                 	'js/google-plus-signin.js',
                     'js/hammer.min.js',
                     'js/angular-hammer.js',
-                    'js/moment+langs.min.js',
                     'js/keypress.js',
+                    'js/moment+langs.min.js',
                 	'js/localize.js',
                     'js/libs/*.js'
                 ],

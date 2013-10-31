@@ -29,6 +29,10 @@
                     <p class="errors" ng-if="error">{{error}}</p>
                     <p>
                         <input 
+                            ng-click="onCancel()" 
+                            type="button" 
+                            value="Cancel" class="cancel" />
+                        <input 
                             ng-disabled="ReemailForm.$invalid"
                             ng-click="onChangeEmail()" 
                             type="button" 

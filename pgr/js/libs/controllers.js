@@ -2160,6 +2160,10 @@ function ChangeEmailController($scope, User, $location) {
         newEmail: ""
     }
 
+    $scope.onCancel = function() {
+        $location.path("/my_profile");
+    }
+
     $scope.onChangeEmail = function() {
         if($scope.form.oldEmail == $scope.workspace.user.email) {
             var user = {
@@ -2183,6 +2187,10 @@ function ChangePasswordController($scope, Sessions, User, $location) {
         oldPassword: "",
         newPassword: "",
         confirmPassword: ""
+    }
+
+    $scope.onCancel = function() {
+        $location.path("/my_profile");
     }
 
     $scope.onChangePassword = function() {
