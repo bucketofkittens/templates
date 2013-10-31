@@ -1167,6 +1167,9 @@ function MainController($scope, Leagues, User, $rootScope, $location, $timeout, 
             data.shuffle();
             angular.forEach(data, function(value, key){
                 value.points = parseInt(value.points);
+                if(!value.league) {
+                    value.league = {name: "10"};
+                }
                 if(value.avatar) {
                     users.push(value);
                 }

@@ -65,11 +65,7 @@ pgrModule.directive('setWidth', function() {
           scope.userItem.league.name == "5") {
           getSize = getSize / 3 * 2;
         }
-      } else {
-        console.log(scope.userItem.league);
-        console.log(scope.userItem);
-        getSize = getSize / 3 * 2;  
-      } 
+      }
 
       $(element).width(getSize);
       $(element).height(getSize);
