@@ -1009,18 +1009,18 @@ body {
             border: 1px solid #dddddd;
             box-shadow: 0px 0px 20px 1px rgba(0, 0, 0, 0.2);
             z-index: 3;
-            overflow: hidden;
-            padding: 15px;            
+            overflow: hidden;       
         }
         
         /** MY SETTINGS **/
         .myset {
-            width: 96%;
+            width: auto;
             display: block;
             position: relative;
-            margin-left: 2%;    
+            margin: 0px 15px;    
             vertical-align: top;
-            height: 75%;
+            height: 90%;
+            min-height: 550px;
             background: #ffffff;
             border: 1px solid #dddddd;
             box-shadow: 0px 0px 20px 1px rgba(0, 0, 0, 0.2);
@@ -1028,70 +1028,72 @@ body {
             overflow: hidden;
             .promy {
                 .block {
-                    width: 20%;
+                    width: 200px;
                 }
                 .publish {
                     display: block;
                     text-align: center;
                     position: relative;
                     strong {
-                        font-size: 100%;
+                        font-size: 15px;
                         color: #000000;
-                        margin-top: 5%;
+                        margin-top: 15px;
                         display: block;
                         b {
-                            font-size: 70%;
+                            font-size: 11px;
                             color: #666666;
                             display: block;
-                            margin: 2% 0%;
+                            margin: 5px 0px;
                         }
                     }
                     button {
-                        width: 60%;
+                        width: 120px;
                         height: 100%;
-                        font-size: 100%;
+                        font-size: 16px;
                         font-family: 'Helvetica Neue Light';
-                        line-height: 100%;
-                        padding: 5% 2% !important;
+                        line-height: 16px;
+                        padding: 10px 5px !important;
                         vertical-align: middle !important;
                         display: inline-block;
                         cursor: pointer;
                         background: none;
-                        border: 2px solid #cccccc;
-                        margin-top: 5%;
+                        border: 1px solid #cccccc;
+                        margin-top: 15px;
                     }
                 }
                 .pmpar {
                     width: 700px;
                     p {
-                        padding-bottom: 2%;
+                        padding-bottom: 10px;
                     }
                     label {
-                        width: 20%;
+                        width: 150px;
                     }
                     select, input {                        
                         width: 250px;
-                        padding: 1% !important;
-                        border: 2px solid #cccccc;
+                        padding: 5px !important;
+                        border: 1px solid #cccccc;
                         font-family: 'Helvetica Neue Light';
                         box-shadow: none;
+                        height: 26px;
                     }
                     select {
-                        width: 268px;
+                        width: 263px;
+                        height: 38px;
                     }
                     button {
                         width: 200px;
                         height: 100%;
-                        font-size: 100%;
+                        font-size: 16px;
                         font-family: 'Helvetica Neue Light';
-                        line-height: 130%;
-                        margin-left: 3%;
-                        padding: 1% !important;
+                        line-height: 16px;
+                        margin-left: 15px;
+                        padding: 10px !important;
                         vertical-align: middle !important;
                         display: inline-block;
                         cursor: pointer;
                         background: none;
-                        border: 2px solid #cccccc;
+                        border: 1px solid #cccccc;
                     }
                 }
             }
@@ -1608,9 +1610,6 @@ footer {
     }
     input[type="button"] {
         margin-right: 0px !important;
-    }
-    .cancel {
-        float: left;
     }
 }
 
