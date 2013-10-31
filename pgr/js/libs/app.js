@@ -43,7 +43,8 @@ var pgrModule = angular.module(
         'monospaced.mousewheel',
         'hmTouchEvents',
         'ui.date',
-        'ui.autocomplete'
+        'ui.autocomplete',
+        'ui.keypress'
 		]
 	);
 

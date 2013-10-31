@@ -978,6 +978,18 @@ function LoginController($scope, Sessions, $rootScope, User, Social, $facebook, 
         });
     }
 
+    $scope.onKeyPress = function($event) {
+        if(!$scope.LoginForm.$invalid) {
+            $scope.onSingin();
+        }
+    }
+
+    $scope.onKeyPressReg = function($event) {
+        if(!$scope.RegForm.$invalid) {
+            $scope.onAddUser();
+        }
+    }
+
     /**
      * 
      * @param {type} $event
@@ -2052,6 +2064,23 @@ function MyProfileController($scope, $rootScope, User, $location) {
 
         User.updateUser({"id": $scope.workspace.user.sguid},  {user: JSON.stringify(user)}, function(data) {
                 $scope.workspace.user.published = 1;
+            }
+        );
+    }
+
+    /**
+     * Публикация профиля
+     * Пока не работает нет backend
+     * @param  {[type]} $event [description]
+     * @return {[type]}        [description]
+     */
+    $scope.onUnPublish = function($event) {
+        var user = {
+                "published": 0
+        }
+
+        User.updateUser({"id": $scope.workspace.user.sguid},  {user: JSON.stringify(user)}, function(data) {
+                $scope.workspace.user.published = 0;
             }
         );
     }

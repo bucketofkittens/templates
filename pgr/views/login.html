@@ -40,7 +40,7 @@
                 </div>
                 <div class="right">
                     <div class="right_wrapper">
-                        <div class="sign-up" ng-if="signup">
+                        <div class="sign-up" ng-show="signup">
                             <ng-form name="RegForm" novalidate class="css-form myForm" >
                                 <p>
                                     <input 
@@ -50,7 +50,8 @@
                                         ng-model="user.login" 
                                         required 
                                         ng-minlength="6"
-                                        placeholder="Name" />
+                                        placeholder="Name"
+                                        ui-keypress="{13:'onKeyPressReg($event)'}" />
                                 </p>
                                 <p>
                                     <input 
@@ -59,7 +60,8 @@
                                         class="form-input"
                                         ng-model="user.email" 
                                         required
-                                        placeholder="Email"  /> 
+                                        placeholder="Email"
+                                        ui-keypress="{13:'onKeyPressReg($event)'}"  /> 
                                 </p>
                                 <p>
                                     <input 
@@ -69,7 +71,8 @@
                                         ng-model="user.password" 
                                         required 
                                         ng-minlength="6"
-                                        placeholder="Choose a Password" /> 
+                                        placeholder="Choose a Password"
+                                        ui-keypress="{13:'onKeyPressReg($event)'}" /> 
                                 </p>
                                 <p class="tip">Make it 6-25 characters</p>
                                 <p class="errors" ng-if="error">{{errors}}</p>
@@ -82,8 +85,12 @@
                                 </p>
                             </ng-form>
                         </div>
-                        <div class="sign-in" ng-if="!signup">
-                            <ng-form id="login_form" name="LoginForm" novalidate class="css-form myForm" >
+                        <div class="sign-in" ng-show="!signup">
+                            <ng-form 
+                                id="login_form" 
+                                name="LoginForm" 
+                                novalidate 
+                                class="css-form myForm" >
                                 <p>
                                     <input 
                                         type="text" 
@@ -92,7 +99,8 @@
                                         ng-model="login.login"
                                         required 
                                         ng-minlength="6"
-                                        placeholder="Email or Username" />
+                                        placeholder="Email or Username"
+                                        ui-keypress="{13:'onKeyPress($event)'}" />
                                 </p>
                                 <p>
                                     <input 
@@ -102,7 +110,8 @@
                                         ng-model="login.password"
                                         required 
                                         ng-minlength="6"
-                                        placeholder="Password" /> 
+                                        placeholder="Password"
+                                        ui-keypress="{13:'onKeyPress($event)'}" /> 
                                 </p>
                                 <p>
                                     <a href="#">Forgot your password?</a>
@@ -117,7 +126,8 @@
                                         ng-disabled="LoginForm.$invalid"
                                         ng-click="onSingin()" 
                                         type="button" 
-                                        value="Sign in" />
+                                        value="Sign in"
+                                        ui-keypress="{13:'onKeyPress($event)'}" />
                                 </p>
                             </ng-form>
                         </div>

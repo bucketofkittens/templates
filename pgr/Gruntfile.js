@@ -28,6 +28,7 @@ module.exports = function(grunt) {
                     'js/hammer.min.js',
                     'js/angular-hammer.js',
                     'js/moment+langs.min.js',
+                    'js/keypress.js',
                 	'js/localize.js',
                     'js/libs/*.js'
                 ],

@@ -29,10 +29,16 @@
 				<img class="pp" ng-src="{{workspace.user.avatar}}" err-src="/images/unknown-person.png" />
 			</div>
 			
-			<div class="publish" ng-if="!workspace.user.published">
+			<div class="publish" ng-if="workspace.user.published == 0">
 				<p>
 					<strong>Your account is private.<b>Only you can see your profile.</b></strong>
 					<button ng-click="onPublish()">{{'_PublishL_' | i18n}}</button>
+				</p>
+			</div>
+			<div class="publish" ng-if="workspace.user.published == 1">
+				<p>
+					<strong>Your account is public.<b>Everybody can see you profile.</b></strong>
+					<button ng-click="onUnPublish()">Make it private</button>
 				</p>
 			</div>
 		</div>
