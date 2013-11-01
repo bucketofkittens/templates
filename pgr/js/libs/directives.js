@@ -30,9 +30,14 @@ pgrModule.directive('bridge', function($window) {
 
         if(currentItem.size() > 0) {
           $(element).show();
-          $(element).css("top",$(currentItem).offset().top);
-          $(element).css("height",$(currentItem).height()+1);
+          $(element).css("top",$(currentItem).offset().top-1);
+          $(element).css("height",58);
           $(element).css("left",$(currentItem).offset().left+$(currentItem).width());
+          if($(currentItem).offset().top < 100) {
+            $(element).hide();
+          } else {
+            $(element).show();
+          }
         } else {
           $(element).hide();
         }
