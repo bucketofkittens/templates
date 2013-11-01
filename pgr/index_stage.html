@@ -9,48 +9,40 @@
 
 		<link rel="stylesheet" href="/build/style.base64.css" />
 	</head>
-	<body 
-		ng-controller="RootController" >
+	<body ng-controller="RootController" >
 		
 		<header>
-			
-            <!-- Логотип -->
-            <a href="#/" class="logo">
-               <img src="./images/logobg.png">
-            </a>
-            
-            <!-- Аватар -->
+         <!-- Логотип -->
+         <a href="#/" class="logo">
+            <img src="./images/logobg.png" alt="" />
+         </a>
+         
+         <!-- Аватар -->
 			<section id="avatar" ng-cloak ng-controller="AvatarCtrl">
                 <p ng-if="!workspace.user">
                     <img ng-click="onLogin()" ng-src="/images/anon.png" alt="" />
-                    <span ng-click="onLogin()">Sign in</span>
+                    <span ng-click="onLogin()">{{'_SignIn_' | i18n}}</span>
                 </p>
                 <p ng-if="workspace.user">
-                    <img ng-click="onOpenProfileAuthUser()" ng-src="{{workspace.user.avatar}}" alt="{{workspace.user.name}}" />
-                    <span ng-click="onLogout()">Sign out</span>
+                    <img ng-click="onOpenProfileAuthUser()" err-src="/images/unknown-person.png" ng-src="{{workspace.user.avatar}}" alt="{{workspace.user.name}}" />
+                    <span ng-click="onLogout()">{{'_SignOut_' | i18n}}</span>
                 </p>
 			</section>
             
-            <!-- Поиск -->
-            <div id="search">
-                <input type="text" placeholder="Search people" class="search" />
-                <input type="submit" class="searcher" />
-            </div>
-            
-            <!-- Навигация -->
-			<ul ng-if="workspace.user" ng-cloak ng-controller="NavCtrl">
-				<li ng-repeat="nav in navs">
-				    <a ng-class="{current: nav.current}" ng-click="onNavClick($event, nav)">
-				    	{{nav.name}}
-				    </a>
-				</li>
-			</ul>
+         <!-- Поиск -->
+         <div id="search">
+             <input type="text" placeholder="Search people" class="search" />
+             <input type="submit" class="searcher" />
+         </div>
+         
+         <!-- GRAPHS -->
+		   <a  class="graphlink" ng-if="workspace.user" href="#/graphs">{{'_GRAPHS_' | i18n}}</a>
             
 		</header>
 
 		<!-- Контент -->
-		<div id="content" class="controller_{{controller}}" ng-controller="ContentController">
-			<div app-view-segment="0" class="content_wrap"></div>
+		<div id="content" class="controller_{{controller}} my-slide-container" ng-controller="ContentController">
+			<div class="content_wrap" app-view-segment="0"></div>
 		</div>
 		
 		<!-- Футер -->
@@ -62,8 +54,7 @@
 			<div 
 				class="lnbl" 
 				ng-include 
-				src="'partials/follow.html'" 
-				ng-controller="FollowController" >
+				src="'partials/follow.html'"  >
 			</div>
 		</footer>
 
