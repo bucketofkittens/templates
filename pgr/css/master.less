@@ -781,7 +781,7 @@ body {
                                 background: none;
                                 width: 230px;
                                 height: 47px;
-                                
+
                                 &.current {
                                     background: -moz-linear-gradient(left, rgba(118,159,211,1) 0%, rgba(255,255,255,0.98) 93%, rgba(255,255,255,0.98) 100%);
                                     background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(118,159,211,1)), color-stop(93%,rgba(255,255,255,0.98)), color-stop(100%,rgba(255,255,255,0.98)));
@@ -1783,5 +1783,66 @@ ng-form:not(.ng-pristine) {
         .apply {
             float: right;
         }
+    }
+}
+
+/* iCheck plugin Minimal skin, black
+----------------------------------- */
+.icheckbox_minimal,
+.iradio_minimal {
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    width: 18px;
+    height: 18px;
+    background: url(../images/minimal.png) no-repeat;
+    border: none;
+    cursor: pointer;
+}
+
+.icheckbox_minimal {
+    background-position: 0 0;
+}
+    .icheckbox_minimal.hover {
+        background-position: -20px 0;
+    }
+    .icheckbox_minimal.checked {
+        background-position: -40px 0;
+    }
+    .icheckbox_minimal.disabled {
+        background-position: -60px 0;
+        cursor: default;
+    }
+    .icheckbox_minimal.checked.disabled {
+        background-position: -80px 0;
+    }
+
+.iradio_minimal {
+    background-position: -100px 0;
+}
+    .iradio_minimal.hover {
+        background-position: -120px 0;
+    }
+    .iradio_minimal.checked {
+        background-position: -140px 0;
+    }
+    .iradio_minimal.disabled {
+        background-position: -160px 0;
+        cursor: default;
+    }
+    .iradio_minimal.checked.disabled {
+        background-position: -180px 0;
+    }
+
+/* Retina support */
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5),
+       only screen and (-moz-min-device-pixel-ratio: 1.5),
+       only screen and (-o-min-device-pixel-ratio: 3/2),
+       only screen and (min-device-pixel-ratio: 1.5) {
+    .icheckbox_minimal,
+    .iradio_minimal {
+        background-image: url(minimal@2x.png);
+        -webkit-background-size: 200px 20px;
+        background-size: 200px 20px;
     }
 }

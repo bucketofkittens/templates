@@ -152,3 +152,15 @@ ng-form:not(.ng-pristine) input.ng-invalid:not(.ng-pristine){border-color:rgba(2
 #crop_modal #cropContainer{width:460px}
 #crop_modal button{width:30%;height:100%;font-size:100%;font-family:'Helvetica Neue Light';line-height:130%;margin-left:3%;padding:1% !important;vertical-align:middle !important;display:inline-block;cursor:pointer;background:none;border:2px solid #ccc}
 #crop_modal .buttons{width:100%;overflow:hidden;padding:10px 0 0 0}#crop_modal .buttons .apply{float:right}
+.icheckbox_minimal,.iradio_minimal{display:inline-block;margin:0;padding:0;width:18px;height:18px;background:url(../images/minimal.png) no-repeat;border:none;cursor:pointer}
+.icheckbox_minimal{background-position:0 0}
+.icheckbox_minimal.hover{background-position:-20px 0}
+.icheckbox_minimal.checked{background-position:-40px 0}
+.icheckbox_minimal.disabled{background-position:-60px 0;cursor:default}
+.icheckbox_minimal.checked.disabled{background-position:-80px 0}
+.iradio_minimal{background-position:-100px 0}
+.iradio_minimal.hover{background-position:-120px 0}
+.iradio_minimal.checked{background-position:-140px 0}
+.iradio_minimal.disabled{background-position:-160px 0;cursor:default}
+.iradio_minimal.checked.disabled{background-position:-180px 0}
+@media only screen and (-webkit-min-device-pixel-ratio:1.5),only screen and (-moz-min-device-pixel-ratio:1.5),only screen and (-o-min-device-pixel-ratio:3/2),only screen and (min-device-pixel-ratio:1.5){.icheckbox_minimal,.iradio_minimal{background-image:url(minimal@2x.png);-webkit-background-size:200px 20px;background-size:200px 20px}}
