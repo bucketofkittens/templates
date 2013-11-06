@@ -74,9 +74,15 @@
 		<a class="il" ng-if="user && !compare"><img src="../images/i2l.png"></a> 
 	</div>
 
-	<div class="crits" ng-controller="NeedsAndGoalsController" ng-init="openFirst = false; allOpen = false; persistState = false;">
+	<div 
+		class="crits" 
+		ng-controller="NeedsAndGoalsController" 
+		ng-init="openFirst = false; allOpen = false; persistState = false;">
 		<ul> 
-			<li ng-class="{current: needItem.current}" ng-repeat="(needKey, needItem) in needs | orderBy:'position'" data-needId="{{needItem.sguid}}">
+			<li 
+				ng-class="{current: needItem.current}" 
+				ng-repeat="(needKey, needItem) in needs | orderBy:'position'" 
+				data-needId="{{needItem.sguid}}">
 				<div class="cr" ng-click="onShowGoals($event, needItem)">
 					<p>{{needItem.name}}<s></s></p>
 					<div class="right" ng-if="needItem.current_value">
@@ -124,7 +130,7 @@
 											<img src="../images/ar.png">
 										</span>
 									</ul>
-									<strong><img src="../images/com.png"></strong>
+									<strong ng-if="!compare"><img src="../images/com.png"></strong>
 								</div>
 							</li>
 						</ul>

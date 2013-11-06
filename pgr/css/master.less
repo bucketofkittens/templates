@@ -1879,16 +1879,22 @@ ng-form:not(.ng-pristine) {
 }
 
 #compare_box {
-    margin-top: -60px;
     height: 70%;
+    overflow-y: scroll;
+    overflow-x: hidden;
     .compare_promain1 {
         width: 47%;
         margin-left: 15px;
         float: left;
+        height: 100%;
     }
     .promain {
         width: 100%;
         margin-left: 0px;
+        overflow: hidden;
+        height: auto;
+        margin-top: 12px;
+        top: 0px;
     }
     .promain2 {
         width: 100%;
@@ -1898,5 +1904,9 @@ ng-form:not(.ng-pristine) {
         width: 47%;
         float: right;
         margin-right: 15px;
+        height: 100%;
+    }
+    .crits ul li ul li .criterion li .bord .crp {
+        width: 100%;
     }
 }

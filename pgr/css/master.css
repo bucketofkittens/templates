@@ -168,7 +168,8 @@ ng-form:not(.ng-pristine) input.ng-invalid:not(.ng-pristine){border-color:rgba(2
 #favorite_compare{border:1px solid #b4b4b4;margin:0 14px;background:#fff}#favorite_compare .inner{width:100%;overflow:hidden}
 #favorite_compare .favorite{margin-left:27px;margin-top:15px;display:block;float:left}
 #favorite_compare .list{float:right;margin-left:-187px;width:100%;overflow:hidden}#favorite_compare .list ul{margin-left:187px;overflow:hidden;width:99999px}#favorite_compare .list ul li{float:left}#favorite_compare .list ul li img{width:60px;display:block}
-#compare_box{margin-top:-60px;height:70%}#compare_box .compare_promain1{width:47%;margin-left:15px;float:left}
-#compare_box .promain{width:100%;margin-left:0}
+#compare_box{height:70%;overflow-y:scroll;overflow-x:hidden}#compare_box .compare_promain1{width:47%;margin-left:15px;float:left;height:100%}
+#compare_box .promain{width:100%;margin-left:0;overflow:hidden;height:auto;margin-top:12px;top:0}
 #compare_box .promain2{width:100%;margin-left:0}
-#compare_box .compare_promain{width:47%;float:right;margin-right:15px}
+#compare_box .compare_promain{width:47%;float:right;margin-right:15px;height:100%}
+#compare_box .crits ul li ul li .criterion li .bord .crp{width:100%}

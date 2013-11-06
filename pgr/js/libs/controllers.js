@@ -516,30 +516,12 @@ function NeedsAndGoalsController($scope, Goals, Criterion, AuthUser, UserCriteri
 
     $rootScope.$broadcast('loaderShow');
 
-    $scope.$on('getUserInfoToNeeds', function($event, message) {
-        if(!$scope.user && message.id == $scope.id) {
-            $scope.user = message.user;
-            $scope.getNeeds();
-        }
-        if($scope.user && message.user && $scope.user.sguid != message.user.sguid  && message.id == $scope.id) {
-            $scope.user = message.user;
-            $scope.getNeeds();
-        }
-    });
-
     $scope.$watch('workspace.needs', function (newVal, oldVal, scope) {
         if($scope.workspace.needs) {
-            $scope.needs = $.extend(true, {}, $scope.workspace.needs);
+            $scope.needs = JSON.parse(JSON.stringify($scope.workspace.needs));
             if($scope.allOpen) {
                 $scope.openAllNeeds($scope.needs);
             }
-            $scope.needs.sort(function(a, b) {
-                if(a.position < b.position)
-                    return -1
-                if(a.position > b.position)
-                    return 1
-                return 0
-            });
         }
     });
 
