@@ -173,3 +173,5 @@ ng-form:not(.ng-pristine) input.ng-invalid:not(.ng-pristine){border-color:rgba(2
 #compare_box .promain2{width:100%;margin-left:0}
 #compare_box .compare_promain{width:47%;float:right;margin-right:15px;height:100%}
 #compare_box .crits ul li ul li .criterion li .bord .crp{width:100%}
+.search{position:relative}.search input[type="text"]{border:1px solid #bbb;height:35px;padding-left:15px !important;display:block;font-family:'Helvetica Neue Light';font-size:16px;width:100%;position:relative;left:-1px;line-height:40px}
+.search input[type="button"]{display:block;width:14px !important;height:14px !important;background:url(../images/s1.png) no-repeat;cursor:pointer;position:absolute;right:16px !important;top:13px !important;border:0 !important;background-size:100% !important;padding:0 !important;margin:0 !important}
