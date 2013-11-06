@@ -706,7 +706,8 @@ function NeedsAndGoalsController($scope, Goals, Criterion, AuthUser, UserCriteri
             if($scope.persistState) {
                 $cookieStore.put("openGoal", goal.sguid);
                 $cookieStore.put("openNeed", need.sguid);
-            }    
+            }
+            $rootScope.$broadcast('criteriaOpened');
         } else {
             $scope.closeAllGoals(needs);
 
@@ -2022,6 +2023,10 @@ function MyProfileController($scope, $rootScope, User, $location) {
         if(oldVal && newVal) {
             $scope.onPublish();
         }
+    });
+
+    $scope.$on('criteriaOpened', function($event) {
+       $("#content .tab .mypro").scrollTop(0); 
     });
 
     /**
