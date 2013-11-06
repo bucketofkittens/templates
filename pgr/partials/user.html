@@ -68,10 +68,10 @@
 			</p>
 		</div>
 
-		<a class="il" ng-if="user && !user.isFollow" ng-click="onFollow()"><img src="../images/i3l.png"></a>
-		<a class="il" ng-if="user && user.isFollow" ng-click="onUnFollow()"><img src="../images/i3i.png"></a>
+		<a class="il" ng-if="user && !user.isFollow && !compare" ng-click="onFollow()"><img src="../images/i3l.png"></a>
+		<a class="il" ng-if="user && user.isFollow && !compare" ng-click="onUnFollow()"><img src="../images/i3i.png"></a>
 
-		<a class="il" ng-if="user"><img src="../images/i2l.png"></a> 
+		<a class="il" ng-if="user && !compare"><img src="../images/i2l.png"></a> 
 	</div>
 
 	<div class="crits" ng-controller="NeedsAndGoalsController" ng-init="openFirst = false; allOpen = false; persistState = false;">

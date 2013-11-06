@@ -55,10 +55,12 @@
 				<a href="#"><img src="/images/sex.png" alt="" /></a>
 			</div>
 			
-			<div 
-				class="lnbl" 
-				ng-include 
-				src="'partials/follow.html'"  >
+			<div ng-if="controller != '_compare'">
+				<div 
+					class="lnbl" 
+					ng-include
+					src="'partials/follow.html'"  >
+				</div>	
 			</div>
 		</footer>
 

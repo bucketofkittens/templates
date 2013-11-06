@@ -187,6 +187,17 @@ function QuickUserChangeCtrl($scope, User, AuthUser, $rootScope, $location) {
     }); 
 }
 
+function RightUserController($scope, $location) {
+    $scope.compare = true;
+    if($location.search().user2) {
+        $scope.rightId = $location.search().user2;
+    }
+}
+
+function LeftUserController($scope, $location) {
+    $scope.compare = true;
+}
+
 /**
  * Контроллер  профиля
  * @param {object} $scope
@@ -208,6 +219,14 @@ function UserController($scope, $route, $routeParams, User, Needs, Professions, 
         $scope.userId = AuthUser.get();
     }); 
 
+    if($location.search().user1) {
+        $scope.userId = $location.search().user1;
+    }
+
+    if($scope.rightId) {
+        $scope.userId = $scope.rightId;
+    }
+
     $scope.$watch("userId", function (newVal, oldVal, scope) {
         $scope.getUserInfo();
     });
@@ -221,13 +240,6 @@ function UserController($scope, $route, $routeParams, User, Needs, Professions, 
             return profession.name;
         });
     }
-
-    $scope.$on('routeSegmentChange', function(data, d2) {
-        if($routeParams.userId1 && $routeParams.userId1 != $scope.userId1) {
-            $scope.userId = $routeParams.userId1;
-            $scope.getUserInfo();
-        }
-    });
 
      /**
      * Событие.
@@ -517,7 +529,7 @@ function NeedsAndGoalsController($scope, Goals, Criterion, AuthUser, UserCriteri
 
     $scope.$watch('workspace.needs', function (newVal, oldVal, scope) {
         if($scope.workspace.needs) {
-            $scope.needs = $scope.workspace.needs;
+            $scope.needs = $.extend(true, {}, $scope.workspace.needs);
             if($scope.allOpen) {
                 $scope.openAllNeeds($scope.needs);
             }
@@ -1206,6 +1218,10 @@ function MainController($scope, Leagues, User, $rootScope, $location, $timeout, 
         $location.path("/profile/"+user.sguid);
     }
 
+    $scope.onMoveToCompare = function(user) {
+        $location.path("/compare").search({user1: user.sguid});;
+    }
+
     /**
      * Событие перехода к сравнению
      * @param  {object} user
@@ -1415,7 +1431,6 @@ function CompareController($scope) {
           goalsCountLoaded = 1;
       }
     });
-    
 }
 
 function NeighboursGalleryController($scope, User, $routeParams) {
@@ -2220,4 +2235,8 @@ function ChangePasswordController($scope, Sessions, User, $location) {
             $scope.error = "error";
         }
     }
+}
+
+function CompareController($scope) {
+
 }

@@ -135,7 +135,7 @@ footer #follow_tab a{position:absolute;top:30%;right:1%;cursor:pointer;width:0;h
 .form-input{border:1px solid #ddd;background:transparent;font-size:120%;padding:3% 6% 1% 6% !important;font-family:'Helvetica Neue Light'}
 input[type="button"]{color:#000;font-family:'Helvetica Neue Light';cursor:pointer;background:transparent;border:1px solid #ddd;font-size:115%;padding:4% 7% 3% 7% !important;float:right;margin-right:7%}input[type="button"][disabled="disabled"]{opacity:.5;cursor:default}
 ng-form:not(.ng-pristine) input.ng-invalid:not(.ng-pristine){border-color:rgba(252,79,60,0.7)}
-.errors{color:#fc4f3c !important}
+.errors{color:#fc4f3c !important;padding-left:3px !important}
 .isotope,.isotope .isotope-item{-webkit-transition-duration:.8s;-moz-transition-duration:.8s;-ms-transition-duration:.8s;-o-transition-duration:.8s;transition-duration:.8s}
 .isotope{-webkit-transition-property:height,width,margin;-moz-transition-property:height,width,margin;-ms-transition-property:height,width,margin;-o-transition-property:height,width,margin;transition-property:height,width,margin}
 .isotope .isotope-item{-webkit-transition-property:-webkit-transform,opacity,margin,height,width;-moz-transition-property:-moz-transform,opacity,margin,height,width;-ms-transition-property:-ms-transform,opacity,margin,height,width;-o-transition-property:-o-transform,opacity,margin,height,width;transition-property:transform,opacity,margin,height,width}
@@ -147,6 +147,7 @@ ng-form:not(.ng-pristine) input.ng-invalid:not(.ng-pristine){border-color:rgba(2
 .icon.myprofile.profile{background:url("../images/pro.png") left top no-repeat}.icon.myprofile.profile.current{background:url("../images/pro2.png") left top no-repeat}
 .icon.myprofile.dash{background:url("../images/dash.png") left top no-repeat}.icon.myprofile.dash.current{background:url("../images/dash2.png") left top no-repeat}
 .icon.myprofile.settings{background:url("../images/set.png") left top no-repeat}.icon.myprofile.settings.current{background:url("../images/set2.png") left top no-repeat}
+.icon.favorite{background:url("../images/fw.png") left top no-repeat;width:118px;height:24px}
 #bridge{position:absolute;width:37px;left:0;top:0;background:#fff;height:50px;display:none;border-top:1px solid #ddd;border-bottom:1px solid #ddd;z-index:200;box-shadow:0 20px 30px -20px rgba(0,0,0,0.5),0 -20px 30px -20px rgba(0,0,0,0.5)}
 #crop_modal{background:#fff;padding:20px;position:absolute;top:30%;left:50%;width:500px;margin-left:-250px;z-index:500;display:none;box-shadow:0 0 20px 1px rgba(0,0,0,0.2)}#crop_modal.show{display:block}
 #crop_modal #cropContainer{width:460px}
@@ -163,4 +164,11 @@ ng-form:not(.ng-pristine) input.ng-invalid:not(.ng-pristine){border-color:rgba(2
 .iradio_minimal.checked{background-position:-140px 0}
 .iradio_minimal.disabled{background-position:-160px 0;cursor:default}
 .iradio_minimal.checked.disabled{background-position:-180px 0}
-@media only screen and (-webkit-min-device-pixel-ratio:1.5),only screen and (-moz-min-device-pixel-ratio:1.5),only screen and (-o-min-device-pixel-ratio:3/2),only screen and (min-device-pixel-ratio:1.5){.icheckbox_minimal,.iradio_minimal{background-image:url(minimal@2x.png);-webkit-background-size:200px 20px;background-size:200px 20px}}
+#compare{margin:80px 0 0 0}
+#favorite_compare{border:1px solid #b4b4b4;margin:0 14px;background:#fff}#favorite_compare .inner{width:100%;overflow:hidden}
+#favorite_compare .favorite{margin-left:27px;margin-top:15px;display:block;float:left}
+#favorite_compare .list{float:right;margin-left:-187px;width:100%;overflow:hidden}#favorite_compare .list ul{margin-left:187px;overflow:hidden;width:99999px}#favorite_compare .list ul li{float:left}#favorite_compare .list ul li img{width:60px;display:block}
+#compare_box{margin-top:-60px;height:70%}#compare_box .compare_promain1{width:47%;margin-left:15px;float:left}
+#compare_box .promain{width:100%;margin-left:0}
+#compare_box .promain2{width:100%;margin-left:0}
+#compare_box .compare_promain{width:47%;float:right;margin-right:15px}

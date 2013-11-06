@@ -1653,6 +1653,7 @@ ng-form:not(.ng-pristine) {
 
 .errors {
     color: rgba(252, 79, 60, 1) !important;
+    padding-left: 3px !important;
 }
  
 .isotope,
@@ -1727,6 +1728,11 @@ ng-form:not(.ng-pristine) {
                 background: url("../images/set2.png") left top no-repeat;
             }
         }
+    }
+    &.favorite {
+        background: url("../images/fw.png") left top no-repeat;
+        width: 118px;
+        height: 24px;
     }
 }
 
@@ -1834,15 +1840,63 @@ ng-form:not(.ng-pristine) {
         background-position: -180px 0;
     }
 
-/* Retina support */
-@media only screen and (-webkit-min-device-pixel-ratio: 1.5),
-       only screen and (-moz-min-device-pixel-ratio: 1.5),
-       only screen and (-o-min-device-pixel-ratio: 3/2),
-       only screen and (min-device-pixel-ratio: 1.5) {
-    .icheckbox_minimal,
-    .iradio_minimal {
-        background-image: url(minimal@2x.png);
-        -webkit-background-size: 200px 20px;
-        background-size: 200px 20px;
+#compare {
+    margin: 80px 0px 0px 0px;
+}
+
+#favorite_compare {
+    border: 1px solid #b4b4b4;
+    margin: 0px 14px;
+    background: #ffffff;
+    .inner {
+        width: 100%;
+        overflow: hidden;
+    }
+    .favorite {
+        margin-left: 27px;
+        margin-top: 15px;
+        display: block;
+        float: left;
+    }
+    .list {
+        float: right;
+        margin-left: -187px;
+        width: 100%;
+        overflow: hidden;
+        ul {
+            margin-left: 187px;
+            overflow: hidden;
+            width: 99999px;
+            li {
+                float: left;
+                img {
+                   width: 60px;
+                   display: block; 
+                }
+            }
+        }
+    }
+}
+
+#compare_box {
+    margin-top: -60px;
+    height: 70%;
+    .compare_promain1 {
+        width: 47%;
+        margin-left: 15px;
+        float: left;
+    }
+    .promain {
+        width: 100%;
+        margin-left: 0px;
+    }
+    .promain2 {
+        width: 100%;
+        margin-left: 0px;
+    }
+    .compare_promain {
+        width: 47%;
+        float: right;
+        margin-right: 15px;
     }
 }
