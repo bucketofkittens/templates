@@ -721,7 +721,7 @@ function NeedsAndGoalsController($scope, Goals, Criterion, AuthUser, UserCriteri
             $rootScope.$broadcast('criteriaOpened');
 
             if(noEvent !== false) {
-                $rootScope.$broadcast('criteriaOpen', {user: $scope.user, goalId: goal.sguid});    
+                //$rootScope.$broadcast('criteriaOpen', {user: $scope.user, goalId: goal.sguid});    
             }
         } else {
             $scope.closeAllGoals(needs);
