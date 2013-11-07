@@ -2,17 +2,16 @@
     <div class="modal">
         <div class="modal_wrapper">
             <div class="header" ng-if="signup">
-               <h4>Sing up to SIRating</h4>
-               <p>Use Facebook, Twitter, Google+, Improva or your email to sign up.</p>
-               <p>Don’t have a SIRating account yet? <a ng-click="onSignStateChange()">Sign in </a>now.</p>
+               <h4>Sign up with your email address</h4>
+               <p>Do already have a SIRating account? <a ng-click="onSignStateChange()">Sign in </a>now.</p>
             </div>
             <div class="header" ng-if="!signup">
-               <h4>Sing in to SIRating</h4>
+               <h4>Sign in to SIRating</h4>
                <p>Use Facebook, Twitter, Google+, Improva or your email to sign in.</p> 
-               <p>Do already have a SIRating account? <a ng-click="onSignStateChange()">Sign up </a>now.</p>
+               <p>Don’t have a SIRating account yet? <a ng-click="onSignStateChange()">Sign up </a>now.</p>
             </div>
             <div class="body">
-                <div class="left">
+                <div class="left" ng-show="!signup">
                     <div class="left_wrapper">
                         <ul>
                             <li>
@@ -38,7 +37,7 @@
                         </ul>
                     </div>
                 </div>
-                <div class="right">
+                <div class="right" ng-class="{full: signup}">
                     <div class="right_wrapper">
                         <div class="sign-up" ng-show="signup">
                             <ng-form name="RegForm" novalidate class="css-form myForm" >
@@ -48,19 +47,8 @@
                                         id="login_i" 
                                         class="form-input"
                                         ng-model="user.login" 
-                                        required 
-                                        ng-minlength="6"
-                                        placeholder="Name"
-                                        ui-keypress="{13:'onKeyPressReg($event)'}" />
-                                </p>
-                                <p>
-                                    <input 
-                                        type="email" 
-                                        id="email_i" 
-                                        class="form-input"
-                                        ng-model="user.email" 
                                         required
-                                        placeholder="Email"
+                                        placeholder="Login"
                                         ui-keypress="{13:'onKeyPressReg($event)'}"  /> 
                                 </p>
                                 <p>
@@ -71,11 +59,25 @@
                                         ng-model="user.password" 
                                         required 
                                         ng-minlength="6"
-                                        placeholder="Choose a Password"
+                                        placeholder="Password"
                                         ui-keypress="{13:'onKeyPressReg($event)'}" /> 
                                 </p>
-                                <p class="tip">Make it 6-25 characters</p>
+                                <p>
+                                    <input 
+                                        type="password" 
+                                        id="name_i" 
+                                        class="form-input"
+                                        ng-model="user.repassword" 
+                                        required 
+                                        ng-minlength="6"
+                                        placeholder="Confirm"
+                                        ui-keypress="{13:'onKeyPressReg($event)'}" /> 
+                                </p>
                                 <p class="errors" ng-if="error">{{errors}}</p>
+                                <p class="acknowledge">
+                                    <input type="checkbox" icheck />
+                                    <label>I acknowledge that I have read and accept the<br /> <a class="notdark">Terms of use Agreement</a> and consent to the <a class="notdark">Privacy Policy</a>.</label>
+                                </p> 
                                 <p>
                                     <input 
                                         type="button" 
@@ -99,7 +101,7 @@
                                         ng-model="login.login"
                                         required 
                                         ng-minlength="6"
-                                        placeholder="Email or Username"
+                                        placeholder="Login"
                                         ui-keypress="{13:'onKeyPress($event)'}" />
                                 </p>
                                 <p>

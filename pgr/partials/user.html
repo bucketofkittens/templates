@@ -1,5 +1,5 @@
 <div ng-controller="UserController">
-	<div class="search">
+	<div class="search" ng-if="compare" >
 		<input type="text" placeholder="Search people" />
 		<input type="button" />
 	</div>
@@ -84,7 +84,8 @@
 		ng-init="openFirst = false; allOpen = false; persistState = false;">
 		<ul> 
 			<li 
-				ng-class="{current: needItem.current}" 
+				ng-class="{current: needItem.current}"
+				class="{{needItem.name}}" 
 				ng-repeat="(needKey, needItem) in needs | orderBy:'position'" 
 				data-needId="{{needItem.sguid}}">
 				<div class="cr" ng-click="onShowGoals($event, needItem)">
@@ -117,7 +118,9 @@
 							</div>
 						</h5>
 						<ul class="criterion" ng-class="{current: goalItem.current}">
-							<li data-id="{{crItem.sguid}}" ng-repeat="crItem in goalItem.criteriums | orderBy:'position'" >
+							<li 
+								data-id="{{crItem.sguid}}" 
+								ng-repeat="crItem in goalItem.criteriums | orderBy:'position'" >
 								<p>{{crItem.name}}</p>
 								<div class="bord">
 									<ul class="crp">

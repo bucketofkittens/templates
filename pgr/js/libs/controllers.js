@@ -212,6 +212,7 @@ function LeftUserController($scope, $location) {
 function UserController($scope, $route, $routeParams, User, Needs, Professions, States, $http, NeedsByUser, $rootScope, GoalsByUser, AuthUser, Leagues, $location, $window) {
     $scope.user = null;
     $scope.newImage = null;
+    $scope.bindIn = "";
 
     $scope.userId = $routeParams.userId1;
 
@@ -221,11 +222,21 @@ function UserController($scope, $route, $routeParams, User, Needs, Professions, 
 
     if($location.search().user1) {
         $scope.userId = $location.search().user1;
+        $scope.bindIn = "user1";
     }
 
     if($scope.rightId) {
         $scope.userId = $scope.rightId;
+        $scope.bindIn = "user2";
     }
+
+    $scope.$on('$locationChangeSuccess', function(){
+      if($scope.bindIn == "user2") {
+        $scope.userId = $location.search().user2;
+        console.log($scope.userId);
+        $scope.getUserInfo();
+      }
+    });
 
     $scope.$watch("userId", function (newVal, oldVal, scope) {
         $scope.getUserInfo();
@@ -517,6 +528,7 @@ function NeedsAndGoalsController($scope, Goals, Criterion, AuthUser, UserCriteri
     $rootScope.$broadcast('loaderShow');
 
     $scope.$watch('workspace.needs', function (newVal, oldVal, scope) {
+
         if($scope.workspace.needs) {
             $scope.needs = JSON.parse(JSON.stringify($scope.workspace.needs));
             if($scope.allOpen) {
@@ -719,14 +731,13 @@ function NeedsAndGoalsController($scope, Goals, Criterion, AuthUser, UserCriteri
                 $cookieStore.put("openNeed", need.sguid);
             }
             $rootScope.$broadcast('criteriaOpened');
-
-            if(noEvent !== false) {
-                //$rootScope.$broadcast('criteriaOpen', {user: $scope.user, goalId: goal.sguid});    
-            }
         } else {
             $scope.closeAllGoals(needs);
 
             goal.current = false;
+        }
+        if(noEvent !== false) {
+            //$rootScope.$broadcast('criteriaOpen', {user: $scope.user, goalId: goal.sguid});    
         }
     };
 
@@ -1380,8 +1391,11 @@ function CompareController($scope, $location) {
       needsValues[message.userId] = message.needsValues;
       if(needsCountLoaded == 2) {
           angular.forEach(needsValues[$location.search().user2], function(value, key){
+                $("li[data-needId='"+key+"'] .cr sup", $("#compare1")).remove();
+                $("li[data-needId='"+key+"'] .cr sub", $("#compare2")).remove();
+
                 if(value < needsValues[$location.search().user1][key]) {
-                  $("li[data-needId='"+key+"'] .cr", $("#compare2")).append('<sup class="du"></sup>');
+                  $("li[data-needId='"+key+"'] .cr", $("#compare1")).append('<sup class="du"></sup>');
                 } 
                 if(value > needsValues[$location.search().user1][key]) {
                   $("li[data-needId='"+key+"'] .cr", $("#compare2")).append(' <sub class="du"></sub>');
@@ -1405,8 +1419,11 @@ function CompareController($scope, $location) {
           var rootCriteria = crtiterias[message.fCriteria.sguid][$location.search().user2];
           var authCriteria = crtiterias[message.fCriteria.sguid][$location.search().user1];
 
+          $("li[data-needId='"+fCriterium.sguid+"'] .cr sup", $("#compare1")).remove();
+          $("li[data-needId='"+fCriterium.sguid+"'] .cr sub", $("#compare2")).remove();
+
           if(rootCriteria.value < authCriteria.value) {
-             $("li[data-id='"+fCriterium.sguid+"']", $("#compare2")).append('<sup class="du"></sup>');
+             $("li[data-id='"+fCriterium.sguid+"']", $("#compare1")).append('<sup class="du"></sup>');
           }
           if(rootCriteria.value > authCriteria.value) {
              $("li[data-id='"+fCriterium.sguid+"']", $("#compare2")).append(' <sub class="du"></sub>');
@@ -1419,8 +1436,11 @@ function CompareController($scope, $location) {
         goalsValues[message.userId] = message.goalsValues;
         if(goalsCountLoaded == 2) {
           angular.forEach(goalsValues[$location.search().user2], function(value, key) {
+             $("li[data-needId='"+key+"'] .cr sup", $("#compare1")).remove();
+             $("li[data-needId='"+key+"'] .cr sub", $("#compare2")).remove();
+
              if(value < goalsValues[$location.search().user1][key]) {
-                $("li[data-goalid='"+key+"'] > h5", $("#compare2")).append(' <sup class="du"></sup>');
+                $("li[data-goalid='"+key+"'] > h5", $("#compare1")).append(' <sup class="du"></sup>');
              } 
              if(value > goalsValues[$location.search().user1][key]) {
                 $("li[data-goalid='"+key+"'] > h5", $("#compare2")).append('<sub class="du"></sub>');

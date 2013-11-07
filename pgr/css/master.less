@@ -296,6 +296,18 @@ body {
             li {
                 margin: 0px 0px 5px 15px;
                 position: relative;
+                &.Spirituality {
+                    .cr {
+                        background: rgb(222,237,252);
+                        background: -moz-linear-gradient(left,  rgba(222,237,252,1) 0%, rgba(118,159,211,1) 100%);
+                        background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(222,237,252,1)), color-stop(100%,rgba(118,159,211,1)));
+                        background: -webkit-linear-gradient(left,  rgba(222,237,252,1) 0%,rgba(118,159,211,1) 100%);
+                        background: -o-linear-gradient(left,  rgba(222,237,252,1) 0%,rgba(118,159,211,1) 100%);
+                        background: -ms-linear-gradient(left,  rgba(222,237,252,1) 0%,rgba(118,159,211,1) 100%);
+                        background: linear-gradient(to right,  rgba(222,237,252,1) 0%,rgba(118,159,211,1) 100%);
+
+                    }
+                }
                 &.current {
                     margin-bottom: -10px;
                     .cr {
@@ -596,7 +608,6 @@ body {
         margin-right: 20px;
         float: right;
         vertical-align: top;
-        top: 80px;
         width: 35%;
         min-height: 350px;
         height: 90%;
@@ -755,9 +766,13 @@ body {
         height: 100%;
         
         /** MY PROFILE **/
+        .mypro_wr {
+            float: right;
+            margin-left: -295px;
+            width: 100%;
+        }
         .mypro {
-            width: 60%;
-            min-width: 680px;
+            margin-left: 295px !important;
             display: inline-block;
             position: relative;
             margin: 0px 15px;    
@@ -778,6 +793,10 @@ body {
             &.acrd {
                 width: 215px;
                 min-width: 215px;
+                float: left;
+                margin-left: 15px !important;
+                position: relative;
+                z-index: 10;
                 .crits {
                     height: auto;
                     margin-bottom: 100%;
@@ -1519,16 +1538,15 @@ footer {
             text-align: center;
             h4 {
                 color: #000000;
-                font-size: 170%;
-                margin-bottom: 5%;
+                font-size: 22px;
+                margin-bottom: 20px;
                 font-family: 'Helvetica Neue Light';
             }
             p {
                 color: #000000;
-                font-size: 100%;
+                font-size: 15px;
                 font-family: 'Helvetica Neue Light';
-                margin: 0% 3% 0% 0%;
-                line-height: 170%;
+                line-height: 20px;
                 a {
                     color: #028dda;
                     cursor: pointer;
@@ -1541,8 +1559,7 @@ footer {
         .body {
             width: 100%;
             overflow: hidden;
-            margin: 3% 0% 0% 0%;
-            padding-bottom: 3%;
+            margin: 20px 0px;
             .left {
                 float: left;
                 width: 50%;
@@ -1550,14 +1567,14 @@ footer {
                     margin: 0% 0% 0% 20%;
                     p {
                         color: #000000;
-                        font-size: 100%;
+                        font-size: 16px;
                         font-family: 'Helvetica Neue Light';
-                        line-height: 120%;
-                        padding: 0% 0% 5% 0%;
+                        line-height: 17px;
+                        padding: 0px 0px 20px 0px;
                     }
                     ul {
                         li {
-                            padding: 0% 0% 5% 5%;
+                            padding: 0% 0% 15px 15px;
                             display: inline-block;
                             width: 35%;
                             a {
@@ -1573,16 +1590,38 @@ footer {
             .right {
                 float: right;
                 width: 50%;
+                &.full {
+                    width: 100%;
+                }
                 .right_wrapper {
                     margin: 0% 20% 0% 0%;
                     .form-input {
                         width: 80%;
                     }
+                    .sign-up {
+                        width: 300px;
+                        margin-left: 200px;
+                    }
+                    .acknowledge {
+                        margin-left: -50px;
+                        width: 500px;
+                        position: relative;
+                        .icheckbox_minimal {
+                            position: absolute;
+                            left: 0px;
+                            top: 0px;
+                        }
+                        label {
+                            padding-left: 20px;
+                            display: block;
+                            line-height: 100%;
+                        }
+                    }
                     .tip {
                         color: #898989;
                         font-family: 'Helvetica Neue Light';
-                        font-size: 90%;
-                        padding-bottom: 2%;
+                        font-size: 13px;
+                        padding-bottom: 5px;
                     }
                     a {
                         font-family: 'Helvetica Neue Light';
@@ -1594,18 +1633,23 @@ footer {
                     }
                     p {
                         color: #000000;
-                        font-size: 100%;
+                        font-size: 16px;
                         font-family: 'Helvetica Neue Light';
-                        line-height: 120%;
-                        padding: 0% 0% 5% 0%;
+                        line-height: 17px;
+                        padding: 0px 0px 20px 5px;
                         overflow: hidden;
                         a {
-                            font-size: 90%;
-                            margin: 5% 0% -3% 0%;
+                            font-size: 13px;
+                            margin: 15px 0px -5px 0px;
                             display: block;
+                            &.notdark {
+                                display: inline-block;                                                           
+                                color: #028dda;
+                                font-size: 16px;
+                            } 
                         }
                         label {
-                            font-size: 90%;
+                            font-size: 15px;
                             vertical-align: middle;
                         }
                     }
@@ -1911,7 +1955,7 @@ ng-form:not(.ng-pristine) {
         width: 100%;
         min-width: 490px;
         margin-left: 0px;
-        overflow: hidden;
+        overflow: visible;
         height: auto;
         margin-top: 12px;
         top: 0px;
@@ -1933,11 +1977,14 @@ ng-form:not(.ng-pristine) {
     .crits ul li ul li .criterion li .bord .crp {
         width: 100%;
     }
-    .pmpar {
-        max-width: 250px;
-        i {
-            text-overflow: ellipsis;
-        }
+    .pmpar p i {
+        max-width: 138px;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        display: inline-block;
+        line-height: 120%;
+        white-space: nowrap;
+        vertical-align: middle;
     }
 }
 
@@ -1988,5 +2035,6 @@ sub.du {
     border-color: transparent #576d91 transparent transparent;
 }
 sup.du {
-    left: -11%;
+    right: -25px;
+    left: auto;
 }
