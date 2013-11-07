@@ -644,7 +644,7 @@ function NeedsAndGoalsController($scope, Goals, Criterion, AuthUser, UserCriteri
 
                     $rootScope.$broadcast('criteriaUserValueLoaded', {
                         fCriteria: fCriteria,
-                        userId: $scope.currentUserId
+                        userId: $scope.user.sguid
                     });
 
                     var currentElement = $('li[data-id="'+fCriteria.sguid+'"] li[data-id="'+userCriteriaItem.criteria_value_sguid+'"]', $($element));
@@ -1332,7 +1332,7 @@ function NeighboursCtrl($scope) {
  * 
  * @param {[type]} $scope [description]
  */
-function CompareController($scope) {
+function CompareController($scope, $location) {
     var needsCountLoaded = 0;
     var needsValues = {};
     var goalsCountLoaded = 0;
@@ -1342,19 +1342,14 @@ function CompareController($scope) {
     $scope.$on('needUserValueLoaded', function($event, message) {
       needsCountLoaded += 1;
       needsValues[message.userId] = message.needsValues;
-      console.log(message);
       if(needsCountLoaded == 2) {
-          angular.forEach(needsValues[$scope.userId2], function(value, key){
-                if(value < needsValues[$scope.userId1][key]) {
+          angular.forEach(needsValues[$location.search().user2], function(value, key){
+                if(value < needsValues[$location.search().user1][key]) {
                   $("li[data-needId='"+key+"'] .cr", $("#compare2")).append('<sup class="du"></sup>');
                 } 
-                if(value > needsValues[$scope.userId1][key]) {
+                if(value > needsValues[$location.search().user1][key]) {
                   $("li[data-needId='"+key+"'] .cr", $("#compare2")).append(' <sub class="du"></sub>');
                 } 
-                if(value == needsValues[$scope.userId1][key]) {
-                  $("li[data-needId='"+key+"'] .cr", $("#compare2")).append('<s class="du"></s>');
-                } 
-
           });
           needsCountLoaded = 1;
       }
@@ -1370,19 +1365,15 @@ function CompareController($scope) {
       })[0];
 
       crtiterias[message.fCriteria.sguid][message.userId] = fCriteriumValue;
-      
-      if(crtiterias[message.fCriteria.sguid][$scope.userId2] && crtiterias[message.fCriteria.sguid][$scope.userId1]) {
-          var rootCriteria = crtiterias[message.fCriteria.sguid][$scope.userId2];
-          var authCriteria = crtiterias[message.fCriteria.sguid][$scope.userId1];
+      if(crtiterias[message.fCriteria.sguid][$location.search().user1] && crtiterias[message.fCriteria.sguid][$location.search().user2]) {
+          var rootCriteria = crtiterias[message.fCriteria.sguid][$location.search().user2];
+          var authCriteria = crtiterias[message.fCriteria.sguid][$location.search().user1];
 
           if(rootCriteria.value < authCriteria.value) {
              $("li[data-id='"+fCriterium.sguid+"']", $("#compare2")).append('<sup class="du"></sup>');
           }
           if(rootCriteria.value > authCriteria.value) {
              $("li[data-id='"+fCriterium.sguid+"']", $("#compare2")).append(' <sub class="du"></sub>');
-          }
-          if(rootCriteria.value == authCriteria.value) {
-             $("li[data-id='"+fCriterium.sguid+"']", $("#compare2")).append('<s class="du"></s>');
           }
       }
     });
@@ -1391,15 +1382,12 @@ function CompareController($scope) {
         goalsCountLoaded += 1;
         goalsValues[message.userId] = message.goalsValues;
         if(goalsCountLoaded == 2) {
-          angular.forEach(goalsValues[$scope.userId2], function(value, key) {
-             if(value < goalsValues[$scope.userId1][key]) {
-                $("li[data-goalid='"+key+"'] > h5", $("#compare")).append(' <sup class="du"></sup>');
+          angular.forEach(goalsValues[$location.search().user2], function(value, key) {
+             if(value < goalsValues[$location.search().user1][key]) {
+                $("li[data-goalid='"+key+"'] > h5", $("#compare2")).append(' <sup class="du"></sup>');
              } 
-            if(value > goalsValues[$scope.userId1][key]) {
-                $("li[data-goalid='"+key+"'] > h5", $("#compare")).append('<sub class="du"></sub>');
-             } 
-             if(value == goalsValues[$scope.userId1][key]) {
-                $("li[data-goalid='"+key+"'] > h5", $("#compare")).append('<s class="du"></s>');
+             if(value > goalsValues[$location.search().user1][key]) {
+                $("li[data-goalid='"+key+"'] > h5", $("#compare2")).append('<sub class="du"></sub>');
              } 
           });
           goalsCountLoaded = 1;
@@ -2209,8 +2197,4 @@ function ChangePasswordController($scope, Sessions, User, $location) {
             $scope.error = "error";
         }
     }
-}
-
-function CompareController($scope) {
-
 }
