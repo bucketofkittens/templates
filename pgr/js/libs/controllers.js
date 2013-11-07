@@ -684,12 +684,30 @@ function NeedsAndGoalsController($scope, Goals, Criterion, AuthUser, UserCriteri
         });
     }
 
+    $scope.$on('criteriaOpen', function($event, message) {
+        if(message.user.sguid != $scope.user.ssguid) {
+            var goal = {};
+            var need = {};
+            angular.forEach($scope.needs, function(value, key) {
+                angular.forEach(value.goals, function(value2, key2){
+                    console.log(value2);
+                    if(value2.sguid == message.goalId) {
+                        goal = value2;
+                        need = value;
+                    }
+                });
+            });
+            $scope.openCriteriumList({}, need, goal, $scope.needs, true);
+        }
+    });
+
     /**
      * 
      * @param  {[type]} goalId [description]
      * @return {[type]}        [description]
      */
-    $scope.openCriteriumList = function ($event, need, goal, needs) {
+    $scope.openCriteriumList = function ($event, need, goal, needs, noEvent) {
+        console.log("cr");
         if(!goal.current) {
             $scope.closeAllGoals(needs);
         
@@ -702,6 +720,10 @@ function NeedsAndGoalsController($scope, Goals, Criterion, AuthUser, UserCriteri
                 $cookieStore.put("openNeed", need.sguid);
             }
             $rootScope.$broadcast('criteriaOpened');
+
+            if(!noEvent) {
+                $rootScope.$broadcast('criteriaOpen', {user: $scope.user, goalId: goal.sguid});    
+            }
         } else {
             $scope.closeAllGoals(needs);
 
