@@ -690,14 +690,14 @@ function NeedsAndGoalsController($scope, Goals, Criterion, AuthUser, UserCriteri
             var need = {};
             angular.forEach($scope.needs, function(value, key) {
                 angular.forEach(value.goals, function(value2, key2){
-                    console.log(value2);
                     if(value2.sguid == message.goalId) {
                         goal = value2;
                         need = value;
                     }
                 });
             });
-            $scope.openCriteriumList({}, need, goal, $scope.needs, true);
+
+            $scope.openCriteriumList({}, need, goal, $scope.needs, false);
         }
     });
 
@@ -707,7 +707,6 @@ function NeedsAndGoalsController($scope, Goals, Criterion, AuthUser, UserCriteri
      * @return {[type]}        [description]
      */
     $scope.openCriteriumList = function ($event, need, goal, needs, noEvent) {
-        console.log("cr");
         if(!goal.current) {
             $scope.closeAllGoals(needs);
         
@@ -721,7 +720,7 @@ function NeedsAndGoalsController($scope, Goals, Criterion, AuthUser, UserCriteri
             }
             $rootScope.$broadcast('criteriaOpened');
 
-            if(!noEvent) {
+            if(noEvent !== false) {
                 $rootScope.$broadcast('criteriaOpen', {user: $scope.user, goalId: goal.sguid});    
             }
         } else {
@@ -934,9 +933,24 @@ function NeedsAndGoalsController($scope, Goals, Criterion, AuthUser, UserCriteri
         slider.css("width", "5%");
     }
 
-    $scope.onShowGoals = function($event, needItem) {
+    $scope.onShowGoals = function($event, needItem, sendEvent) {
         needItem.current = needItem.current ? false : true;
+        if(sendEvent !== false) {
+            $rootScope.$broadcast('showGoals', {user: $scope.user, needItem: needItem});
+        }
     }
+
+    $scope.$on('showGoals', function($event, message) {
+        console.log(message.user.sguid != $scope.user.sguid);
+        if(message.user.sguid != $scope.user.sguid) {
+            var need = $scope.needs.filter(function(item) {
+                if(item.sguid == message.needItem.sguid) {
+                    return item;
+                }
+            })[0];
+            $scope.onShowGoals({}, need, false);
+        }
+    });
 }
 
 
