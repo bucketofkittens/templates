@@ -173,10 +173,11 @@ ng-form:not(.ng-pristine) input.ng-invalid:not(.ng-pristine){border-color:rgba(2
 #favorite_compare .list{float:right;margin-left:-187px;width:100%;overflow:hidden}#favorite_compare .list ul{margin-left:187px;overflow:hidden;width:99999px}#favorite_compare .list ul li{float:left}#favorite_compare .list ul li img{width:60px;display:block}
 #compare_box{height:70%;overflow-y:scroll;overflow-x:hidden}#compare_box::-webkit-scrollbar{width:0;height:0}
 #compare_box .compare_promain1{width:47%;margin-left:15px;float:left;height:100%}
-#compare_box .promain{width:100%;margin-left:0;overflow:hidden;height:auto;margin-top:12px;top:0}
-#compare_box .promain2{width:100%;margin-left:0}
+#compare_box .promain{width:100%;min-width:490px;margin-left:0;overflow:hidden;height:auto;margin-top:12px;top:0}
+#compare_box .promain2{width:100%;min-width:490px;margin-left:0}
 #compare_box .compare_promain{width:47%;float:right;margin-right:15px;height:100%}#compare_box .compare_promain .promain{overflow:visible}
 #compare_box .crits ul li ul li .criterion li .bord .crp{width:100%}
+#compare_box .pmpar{max-width:250px}#compare_box .pmpar i{text-overflow:ellipsis}
 .search{position:relative}.search input[type="text"]{border:1px solid #bbb;height:35px;text-indent:15px;display:block;font-family:'Helvetica Neue Light';font-size:16px;width:100%;position:relative;left:-1px;line-height:40px}
 .search input[type="button"]{display:block;width:14px !important;height:14px !important;background:url(../images/s1.png) no-repeat;cursor:pointer;position:absolute;right:16px !important;top:13px !important;border:0 !important;background-size:100% !important;padding:0 !important;margin:0 !important}
 sub.du,sup.du,s.du{z-index:7;position:absolute;left:-40px;top:0;display:block;width:0;height:0;border-style:solid;border-width:25px 0 25px 25px;border-color:transparent transparent transparent #576d91}
