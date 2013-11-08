@@ -94,8 +94,8 @@
 						<b>{{needItem.current_value}} / {{needItem.points_summary}}</b>
 						<strong>
 							<span 
-								class="current_position" 
-								style="width: {{(needItem.current_value / (needItem.points_summary ))*100}}%;">
+								class="current_position"
+								position-need>
 							</span>
 						</strong>	
 					</div>
@@ -113,7 +113,7 @@
 							<div class="right">
 								<b>{{goalItem.current_value}} / {{goalItem.points_summary}}</b>	
 								<strong>
-									<span class="current_position" style="width: {{(goalItem.current_value / (goalItem.points_summary ))*100}}%;"></span>
+									<span position-goal class="current_position" ></span>
 								</strong>
 							</div>
 						</h5>
