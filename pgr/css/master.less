@@ -133,6 +133,8 @@ body {
     overflow: hidden;
     .content_wrap {
         height: 100%;
+        width: 1020px;
+        margin: 0px auto;
         &.ng-enter, &.ng-leave {
           -webkit-transition:0.5s linear all;
           -moz-transition:0.5s linear all;
@@ -1003,7 +1005,7 @@ body {
                                         }
                                         &:first-child {
                                             width: 5px;
-                                        } 
+                                        }  
                                     }
                                 }
                                 span {
@@ -2026,21 +2028,21 @@ ng-form:not(.ng-pristine) {
 sub.du, sup.du, s.du {
     z-index: 7;
     position: absolute;
-    left: -40px;
+    left: -31px;
     top: 0%;
     display: block;
     width: 0px;
     height: 0px;
     border-style: solid;
-    border-width: 25px 0 25px 25px;
+    border-width: 25px 0 25px 15px;
     border-color: transparent transparent transparent #576d91;        
 }
 sub.du {
-    border-width: 25px 25px 25px 0;
+    border-width: 25px 15px 25px 0;
     border-color: transparent #576d91 transparent transparent;
 }
 sup.du {
-    right: -25px;
+    right: -15px;
     left: auto;
 }
 
@@ -2058,4 +2060,8 @@ sup.du {
         width: 43px;
         height: 35px;
     }
+}
+
+.controller__ .content_wrap {
+    width: 100% !important;
 }
