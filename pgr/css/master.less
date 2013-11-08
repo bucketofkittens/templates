@@ -38,86 +38,90 @@ body {
         z-index: 120;
         overflow: hidden;
         position: fixed;
-        .logo {
-            background-size: contain;
-            width: 100px;
-            height: 50px;
-            margin-left: 50px;
-            position: relative;
-            display: inline-block;
-            img {
-                position: absolute; 
-                display: inline-block;
-                right: 0px;
-                top: 0px;
+        #header {
+            width: 1020px;
+            margin: 0px auto;
+            .logo {
+                background-size: contain;
+                width: 100px;
                 height: 50px;
-            }
-        }
-        .graphlink {
-            float: right;
-            color: #ffffff;
-            text-decoration: none;
-            font-family: 'Helvetica Neue';
-            font-size: 20px;
-            text-transform: uppercase;
-            cursor: pointer;
-            position: relative;
-            display: inline-block;
-            margin: 23px 100px 0px 0px;
-        }
-        #search  {
-            float: right;
-            width: 300px;
-            margin: 15px 20px 0px 0px;
-            background: #ffffff;
-            height: 30px;
-            overflow: hidden;
-            position: relative;
-            .search {
-                font-size: 14px;
-                color: #666666;
-                border: none;
-                float: left;
-                display: block;
+                margin-left: 50px;
                 position: relative;
-                margin: 3px 0px 0px 10px;
-                position: relative;
-                line-height: 20px;
-                border: none;
-            }
-            .searcher {
-                background: url("../images/search.png") left top no-repeat;
-                width: 20px;
-                border: none;
-                cursor: pointer;
-                display: block;
-                padding: 0px;
-                text-indent: -999px;
-                position: absolute;
-                top: 5px;
-                right: 10px;
-                background-size: 100%;
-            }
-        }
-        #avatar {
-            float: right;
-            margin: 3px 20px 0px 0px;
-            p {
-                text-align: center;
+                display: inline-block;
                 img {
-                    max-height: 40px;
-                    position: relative;
-                    display: block;
-                    cursor: pointer;
+                    position: absolute; 
+                    display: inline-block;
+                    right: 0px;
+                    top: 0px;
+                    height: 50px;
                 }
-                span {
-                    color: #ffffff;
-                    text-decoration: none;
-                    font-family: 'Helvetica Neue';
-                    font-size: 10px;
-                    cursor: pointer;
-                    text-align: center;
+            }
+            .graphlink {
+                float: right;
+                color: #ffffff;
+                text-decoration: none;
+                font-family: 'Helvetica Neue';
+                font-size: 20px;
+                text-transform: uppercase;
+                cursor: pointer;
+                position: relative;
+                display: inline-block;
+                margin: 23px 100px 0px 0px;
+            }
+            #search  {
+                float: right;
+                width: 300px;
+                margin: 15px 20px 0px 0px;
+                background: #ffffff;
+                height: 30px;
+                overflow: hidden;
+                position: relative;
+                .search {
+                    font-size: 14px;
+                    color: #666666;
+                    border: none;
+                    float: left;
+                    display: block;
                     position: relative;
+                    margin: 3px 0px 0px 10px;
+                    position: relative;
+                    line-height: 20px;
+                    border: none;
+                }
+                .searcher {
+                    background: url("../images/search.png") left top no-repeat;
+                    width: 20px;
+                    border: none;
+                    cursor: pointer;
+                    display: block;
+                    padding: 0px;
+                    text-indent: -999px;
+                    position: absolute;
+                    top: 5px;
+                    right: 10px;
+                    background-size: 100%;
+                }
+            }
+            #avatar {
+                float: right;
+                margin: 3px 20px 0px 0px;
+                p {
+                    text-align: center;
+                    img {
+                        max-height: 40px;
+                        position: relative;
+                        display: block;
+                        cursor: pointer;
+                    }
+                    span {
+                        color: #ffffff;
+                        text-decoration: none;
+                        font-family: 'Helvetica Neue';
+                        font-size: 10px;
+                        cursor: pointer;
+                        text-align: center;
+                        position: relative;
+                    }
                 }
             }
         }
@@ -1420,95 +1424,102 @@ footer {
     background: #36374b;
     z-index: 120;
     overflow: hidden;
-    .sexual {
-        display: inline-block;
-        margin-left: 30px;
-        height: 60px;
-        vertical-align: top;
-        a {
+    #footer {
+        width: 1020px;
+        margin: 0px auto;
+        position: relative;
+        .sexual {
             display: inline-block;
-            height: 50px;
-            margin-top: 15px;
+            margin-left: 30px;
+            height: 60px;
             vertical-align: top;
-            img {
-                height: 30px;
+            a {
+                display: inline-block;
+                height: 50px;
+                margin-top: 15px;
+                vertical-align: top;
+                img {
+                    height: 30px;
+                }
             }
         }
-    }
-    #follow_tab {
-        background: rgba(255, 255, 255, 0.05);
-        width: 67%;
-        height: 80%;
-        right: 3%;
-        top: 10%;
-        z-index: 300;
-        overflow: hidden;
-        position: absolute;
-        border: 1px solid rgba(200, 200, 200, 0.3);
-        vertical-align: middle;
-        white-space: nowrap;
-        img {
-            display: inline-block;
-            max-height: 100%;
-            margin-left: 3%;
-            margin-right: 2%;
-            height: 50%;
+        #follow_tab {
+            background: rgba(255, 255, 255, 0.05);
+            width: 67%;
+            height: 80%;
+            right: 3%;
+            top: 10%;
+            z-index: 300;
+            overflow: hidden;
+            position: absolute;
+            border: 1px solid rgba(200, 200, 200, 0.3);
             vertical-align: middle;
-            position: relative;
-            top: -10%;
-        }
-        ul {
-            display: inline-block;
-            vertical-align: middle;            
-            li {
+            white-space: nowrap;
+            img {
                 display: inline-block;
+                max-height: 100%;
+                margin-left: 3%;
+                margin-right: 2%;
+                height: 50%;
+                vertical-align: middle;
                 position: relative;
+                top: -10%;
+            }
+            ul {
+                display: inline-block;
+                vertical-align: middle;
+                max-width: 480px;
                 overflow: hidden;
-                img {
-                    height: auto;
-                    display: block;
-                    max-height: 100%;
-                }
-                sub {
-                    display: none;
-                    position: absolute;
-                    top: 0%;
-                    left: 0%;
-                    padding: 8% 0% 0% 7%;
-                    width: 100%;
-                    color: #ffffff;
-                    background: rgba(0, 0, 0, 0.5);
-                }
-                &.show {
-                    sub {
+                li {
+                    display: inline-block;
+                    position: relative;
+                    overflow: hidden;
+                    img {
+                        height: auto;
                         display: block;
-                        height: 100%;
-                        a {
-                            font-size: 80%;
-                            color: #ffffff;
-                            position: absolute;
-                            top: 10%;
-                            left: 5%;
-                            border: 0px !important;
-                            &.compare {
-                                bottom: 25%;
-                                top: auto !important;
+                        max-height: 100%;
+                    }
+                    sub {
+                        display: none;
+                        position: absolute;
+                        top: 0%;
+                        left: 0%;
+                        padding: 8% 0% 0% 7%;
+                        width: 100%;
+                        color: #ffffff;
+                        background: rgba(0, 0, 0, 0.5);
+                    }
+                    &.show {
+                        sub {
+                            display: block;
+                            height: 100%;
+                            a {
+                                font-size: 80%;
+                                color: #ffffff;
+                                position: absolute;
+                                top: 10%;
+                                left: 5%;
+                                border: 0px !important;
+                                &.compare {
+                                    bottom: 25%;
+                                    top: auto !important;
+                                }
                             }
                         }
                     }
                 }
+            }        
+            a {
+                position: absolute;
+                top: 30%;
+                right: 1%;
+                cursor: pointer;
+                width: 0px;
+                height: 0px;
+                border-style: solid;
+                border-width: 10px 0 10px 20px;
+                border-color: transparent transparent transparent #ffffff;
             }
-        }        
-        a {
-            position: absolute;
-            top: 30%;
-            right: 1%;
-            cursor: pointer;
-            width: 0px;
-            height: 0px;
-            border-style: solid;
-            border-width: 10px 0 10px 20px;
-            border-color: transparent transparent transparent #ffffff;
         }
     }
 }

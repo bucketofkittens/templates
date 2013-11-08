@@ -2,12 +2,12 @@ select,textarea,input{padding:0 !important}
 img{image-rendering:optimizeQuality;-ms-interpolation-mode:bicubic}
 @-webkit-keyframes rotating{from{-webkit-transform:rotate(0deg)} to{-webkit-transform:rotate(360deg)}}.rotating{-webkit-animation:rotating 3s linear infinite}
 body{width:100%;height:100%;font-family:'Helvetica Neue Light';-moz-font-smoothing:antialiased;-webkit-font-smoothing:subpixel-antialiased}body.hiddenScroll{overflow-y:hidden !important;position:relative}
-body header{height:60px;width:100%;background:#36374b;top:0;z-index:120;overflow:hidden;position:fixed}body header .logo{background-size:contain;width:100px;height:50px;margin-left:50px;position:relative;display:inline-block}body header .logo img{position:absolute;display:inline-block;right:0;top:0;height:50px}
-body header .graphlink{float:right;color:#fff;text-decoration:none;font-family:'Helvetica Neue';font-size:20px;text-transform:uppercase;cursor:pointer;position:relative;display:inline-block;margin:23px 100px 0 0}
-body header #search{float:right;width:300px;margin:15px 20px 0 0;background:#fff;height:30px;overflow:hidden;position:relative}body header #search .search{font-size:14px;color:#666;border:none;float:left;display:block;margin:3px 0 0 10px;position:relative;line-height:20px;border:none}
-body header #search .searcher{background:url("../images/search.png") left top no-repeat;width:20px;border:none;cursor:pointer;display:block;padding:0;text-indent:-999px;position:absolute;top:5px;right:10px;background-size:100%}
-body header #avatar{float:right;margin:3px 20px 0 0}body header #avatar p{text-align:center}body header #avatar p img{max-height:40px;position:relative;display:block;cursor:pointer}
-body header #avatar p span{color:#fff;text-decoration:none;font-family:'Helvetica Neue';font-size:10px;cursor:pointer;text-align:center;position:relative}
+body header{height:60px;width:100%;background:#36374b;top:0;z-index:120;overflow:hidden;position:fixed}body header #header{width:1020px;margin:0 auto}body header #header .logo{background-size:contain;width:100px;height:50px;margin-left:50px;position:relative;display:inline-block}body header #header .logo img{position:absolute;display:inline-block;right:0;top:0;height:50px}
+body header #header .graphlink{float:right;color:#fff;text-decoration:none;font-family:'Helvetica Neue';font-size:20px;text-transform:uppercase;cursor:pointer;position:relative;display:inline-block;margin:23px 100px 0 0}
+body header #header #search{float:right;width:300px;margin:15px 20px 0 0;background:#fff;height:30px;overflow:hidden;position:relative}body header #header #search .search{font-size:14px;color:#666;border:none;float:left;display:block;margin:3px 0 0 10px;position:relative;line-height:20px;border:none}
+body header #header #search .searcher{background:url("../images/search.png") left top no-repeat;width:20px;border:none;cursor:pointer;display:block;padding:0;text-indent:-999px;position:absolute;top:5px;right:10px;background-size:100%}
+body header #header #avatar{float:right;margin:3px 20px 0 0}body header #header #avatar p{text-align:center}body header #header #avatar p img{max-height:40px;position:relative;display:block;cursor:pointer}
+body header #header #avatar p span{color:#fff;text-decoration:none;font-family:'Helvetica Neue';font-size:10px;cursor:pointer;text-align:center;position:relative}
 #content{position:relative;width:100%;background:#f9f9f9;min-height:100%;height:100%;overflow:hidden;}#content .content_wrap{height:100%;width:1020px;margin:0 auto}#content .content_wrap.ng-enter,#content .content_wrap.ng-leave{-webkit-transition:.5s linear all;-moz-transition:.5s linear all;-o-transition:.5s linear all;transition:.5s linear all;position:absolute;top:0;left:0;right:0;height:600px}
 #content .content_wrap.ng-enter{z-index:100;top:600px;opacity:0}
 #content .content_wrap.ng-enter.ng-enter-active{top:0;opacity:1}
@@ -113,12 +113,12 @@ body header #avatar p span{color:#fff;text-decoration:none;font-family:'Helvetic
 .image_box.updated:hover span{display:block;background:rgba(0,0,0,0.5)}
 .image_box.updated:hover a{display:block}
 #image_canvas{display:none}
-footer{position:fixed;bottom:0;left:0;height:60px;width:100%;background:#36374b;z-index:120;overflow:hidden}footer .sexual{display:inline-block;margin-left:30px;height:60px;vertical-align:top}footer .sexual a{display:inline-block;height:50px;margin-top:15px;vertical-align:top}footer .sexual a img{height:30px}
-footer #follow_tab{background:rgba(255,255,255,0.05);width:67%;height:80%;right:3%;top:10%;z-index:300;overflow:hidden;position:absolute;border:1px solid rgba(200,200,200,0.3);vertical-align:middle;white-space:nowrap}footer #follow_tab img{display:inline-block;max-height:100%;margin-left:3%;margin-right:2%;height:50%;vertical-align:middle;position:relative;top:-10%}
-footer #follow_tab ul{display:inline-block;vertical-align:middle}footer #follow_tab ul li{display:inline-block;position:relative;overflow:hidden}footer #follow_tab ul li img{height:auto;display:block;max-height:100%}
-footer #follow_tab ul li sub{display:none;position:absolute;top:0;left:0;padding:8% 0 0 7%;width:100%;color:#fff;background:rgba(0,0,0,0.5)}
-footer #follow_tab ul li.show sub{display:block;height:100%}footer #follow_tab ul li.show sub a{font-size:80%;color:#fff;position:absolute;top:10%;left:5%;border:0 !important}footer #follow_tab ul li.show sub a.compare{bottom:25%;top:auto !important}
-footer #follow_tab a{position:absolute;top:30%;right:1%;cursor:pointer;width:0;height:0;border-style:solid;border-width:10px 0 10px 20px;border-color:transparent transparent transparent #fff}
+footer{position:fixed;bottom:0;left:0;height:60px;width:100%;background:#36374b;z-index:120;overflow:hidden}footer #footer{width:1020px;margin:0 auto;position:relative}footer #footer .sexual{display:inline-block;margin-left:30px;height:60px;vertical-align:top}footer #footer .sexual a{display:inline-block;height:50px;margin-top:15px;vertical-align:top}footer #footer .sexual a img{height:30px}
+footer #footer #follow_tab{background:rgba(255,255,255,0.05);width:67%;height:80%;right:3%;top:10%;z-index:300;overflow:hidden;position:absolute;border:1px solid rgba(200,200,200,0.3);vertical-align:middle;white-space:nowrap}footer #footer #follow_tab img{display:inline-block;max-height:100%;margin-left:3%;margin-right:2%;height:50%;vertical-align:middle;position:relative;top:-10%}
+footer #footer #follow_tab ul{display:inline-block;vertical-align:middle;max-width:480px;overflow:hidden}footer #footer #follow_tab ul li{display:inline-block;position:relative;overflow:hidden}footer #footer #follow_tab ul li img{height:auto;display:block;max-height:100%}
+footer #footer #follow_tab ul li sub{display:none;position:absolute;top:0;left:0;padding:8% 0 0 7%;width:100%;color:#fff;background:rgba(0,0,0,0.5)}
+footer #footer #follow_tab ul li.show sub{display:block;height:100%}footer #footer #follow_tab ul li.show sub a{font-size:80%;color:#fff;position:absolute;top:10%;left:5%;border:0 !important}footer #footer #follow_tab ul li.show sub a.compare{bottom:25%;top:auto !important}
+footer #footer #follow_tab a{position:absolute;top:30%;right:1%;cursor:pointer;width:0;height:0;border-style:solid;border-width:10px 0 10px 20px;border-color:transparent transparent transparent #fff}
 .dropdown-menu li>a strong{font-weight:bold}
 .datepicker td,.datepicker th{font-family:Arial}
 [ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak{display:none !important}
