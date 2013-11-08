@@ -1884,7 +1884,7 @@ function RootController($scope, AuthUser, User, $rootScope, Needs, Social, $cook
                 User.get_friends({id: message.sguid}, function(frends) {
                     $scope.workspace.user.frends = frends;
                     $scope.authUserId = data.sguid;
-                    
+
                     $rootScope.$broadcast('frendLoad');
 
                     if(message.isSocial) {
@@ -2039,8 +2039,11 @@ function CropImageController($scope, $rootScope) {
     }
 }
 
-function MyProfileController($scope, $rootScope, User, $location) {
+function MyProfileController($scope, $rootScope, User, $location, $cookieStore) {
     $scope.tab = 2;
+    if($cookieStore.get("myProfileTab")) {
+        $scope.tab = $cookieStore.get("myProfileTab");    
+    }
 
     $scope.$watch("workspace.user.birthday", function (newVal, oldVal, scope) {
         if($scope.workspace.user && $scope.workspace.user.birthday) {
@@ -2062,7 +2065,7 @@ function MyProfileController($scope, $rootScope, User, $location) {
     });
 
     $scope.$on('criteriaOpened', function($event) {
-       $("#content .tab .mypro").scrollTop(0); 
+       $("#content .tab .mypro_wr .mypro").scrollTop(0); 
     });
 
     /**
@@ -2192,12 +2195,13 @@ function MyProfileController($scope, $rootScope, User, $location) {
 
     $scope.onChange = function(tab) {
         $scope.tab = tab;
+        $cookieStore.put("myProfileTab", tab);
     }
 }
 
-function ChangeEmailController($scope, User, $location) {
+function ChangeEmailController($scope, User, $location, Sessions) {
     $scope.form = {
-        oldEmail: "",
+        password: "",
         newEmail: ""
     }
 
@@ -2206,20 +2210,24 @@ function ChangeEmailController($scope, User, $location) {
     }
 
     $scope.onChangeEmail = function() {
-        if($scope.form.oldEmail == $scope.workspace.user.email) {
-            var user = {
+        Sessions.signin({}, $.param({
+            "login": $scope.workspace.user.login,
+            "password": $scope.form.password
+        }), function(data) {
+            if(data.success) {
+                var user = {
                     "email": $scope.form.newEmail
-            }
-
-            User.updateUser({"id": $scope.workspace.user.sguid},  {user: JSON.stringify(user)}, function(data) {
-                    $scope.workspace.user.email = $scope.form.newEmail;
-                    $location.path("/my_profile/");
                 }
-            );
-        } else {
-            $scope.error = "error";
-        }
-        
+
+                User.updateUser({"id": $scope.workspace.user.sguid},  {user: JSON.stringify(user)}, function(data) {
+                        $scope.workspace.user.email = $scope.form.newEmail;
+                        $location.path("/my_profile/");
+                    }
+                );
+            } else {
+                $scope.error = data.message;
+            }
+        });
     }
 }
 
