@@ -153,6 +153,7 @@ ng-form:not(.ng-pristine) input.ng-invalid:not(.ng-pristine){border-color:rgba(2
 .icon.compare{background:url("../images/i2.png") left top no-repeat}
 .icon.follow{background:url("../images/i3.png") left top no-repeat}
 .icon.unfollow{background:url("../images/i3i.png") left top no-repeat}
+.icon.league{background:url("../images/league.png") left top no-repeat}
 .icon.myprofile.profile{background:url("../images/pro.png") left top no-repeat}.icon.myprofile.profile.current{background:url("../images/pro2.png") left top no-repeat}
 .icon.myprofile.dash{background:url("../images/dash.png") left top no-repeat}.icon.myprofile.dash.current{background:url("../images/dash2.png") left top no-repeat}
 .icon.myprofile.settings{background:url("../images/set.png") left top no-repeat}.icon.myprofile.settings.current{background:url("../images/set2.png") left top no-repeat}
@@ -189,3 +190,5 @@ ng-form:not(.ng-pristine) input.ng-invalid:not(.ng-pristine){border-color:rgba(2
 sub.du,sup.du,s.du{z-index:7;position:absolute;left:-40px;top:0;display:block;width:0;height:0;border-style:solid;border-width:25px 0 25px 25px;border-color:transparent transparent transparent #576d91}
 sub.du{border-width:25px 25px 25px 0;border-color:transparent #576d91 transparent transparent}
 sup.du{right:-25px;left:auto}
+#setting_info{position:absolute;top:83px;right:50px;font-size:17px;font-family:'Helvetica Neue Light';vertical-align:middle}#setting_info *{vertical-align:middle}
+#setting_info .league{width:43px;height:35px}
