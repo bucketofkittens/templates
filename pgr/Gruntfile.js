@@ -19,6 +19,7 @@ module.exports = function(grunt) {
                 	'js/angular-isotope.min.js',
                     'js/jquery.Jcrop.min.js',
                     'js/jquery.jcrop-canvas.js',
+                    'js/jquery.icheck.min.js',
                     'js/date.js',
                     'js/autocomplete.js',
                 	'js/hamster.js',

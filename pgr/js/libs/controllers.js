@@ -1139,6 +1139,7 @@ function FollowController($scope, $rootScope, User, $location, $routeParams, Aut
      * Получаем список друзей. Или временный или же из массива пользователя.
      */
     $scope.setAuthUserData = function() {
+
         if($scope.workspace.user && $scope.workspace.user.sguid) {
             $scope.frends = $scope.workspace.user.frends;
         } else {
@@ -1154,7 +1155,7 @@ function FollowController($scope, $rootScope, User, $location, $routeParams, Aut
         $scope.setAuthUserData();
     });
 
-    $scope.$on('onSignin', function() {
+    $scope.$on('frendLoad', function() {
         $scope.setAuthUserData();
     });
 
@@ -1880,9 +1881,11 @@ function RootController($scope, AuthUser, User, $rootScope, Needs, Social, $cook
                 $scope.workspace.user = data;
                 AuthUser.set(message.sguid);
 
-                User.get_friends({id: message.guid}, function(frends) {
+                User.get_friends({id: message.sguid}, function(frends) {
                     $scope.workspace.user.frends = frends;
                     $scope.authUserId = data.sguid;
+                    
+                    $rootScope.$broadcast('frendLoad');
 
                     if(message.isSocial) {
                         $rootScope.$broadcast('socialLogined');
