@@ -587,6 +587,9 @@ function NeedsAndGoalsController($scope, Goals, Criterion, AuthUser, UserCriteri
                     })[0];
 
                     $scope.openCriteriumList({}, need, goal, $scope.needs);
+                    setTimeout(function() {
+                        $("#content .tab .mypro.acrd").scrollTop($("#content .tab .mypro.acrd .crits ul li h5.current").offset().top); 
+                    }, 0);
                 }
             });
         });
