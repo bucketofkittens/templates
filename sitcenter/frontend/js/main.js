@@ -545,6 +545,9 @@ var MapEventsPanel = function(app) {
 	this.events = [{
 		"latitude": 55.7517,
 		"longitude": 37.6178
+	}, {
+		"latitude": 54.37,
+		"longitude": 39.43
 	}];
 
 	this.OnEvensMapChangeState = new signals.Signal();
