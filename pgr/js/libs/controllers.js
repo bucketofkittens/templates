@@ -1179,10 +1179,15 @@ function FollowController($scope, $rootScope, User, $location, $routeParams, Aut
     }
 
     $scope.onMoveToUser = function() {
-        if($rootScope.authUserId) {
-            $location.path("/profile/"+$rootScope.authUserId+"/compare/");
+        if($scope.workspace.user && $scope.workspace.user.sguid) {
+            $location.path("/compare").search({user1: $scope.workspace.user.sguid, user2: $scope.workspace.user.frends[0].user.sguid});
         } else {
-            $location.path("/profile/"+$scope.frends[0].user.sguid+"/compare/");
+            console.log($scope.tmpFollows);
+            if($scope.tmpFollows.length > 1) {
+                $location.path("/compare").search({user1: $scope.tmpFollows[0].user.sguid, user2: $scope.tmpFollows[1].user.sguid});
+            } else {
+                $location.path("/compare").search({user1: $scope.tmpFollows[0].user.sguid, user2: $scope.tmpFollows[0].user.sguid});
+            }
         }
         
     }
