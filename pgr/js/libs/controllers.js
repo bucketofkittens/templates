@@ -796,6 +796,15 @@ function NeedsAndGoalsController($scope, Goals, Criterion, AuthUser, UserCriteri
             var delta = criteriaValue - currentValue;
             needItem.current_value = parseInt(needItem.current_value) + parseInt(delta);
             goalItem.current_value = parseInt(goalItem.current_value) + parseInt(delta);
+
+            User.query({id: $scope.workspace.user.sguid}, function(data) {
+                User.query({id: $scope.workspace.user.sguid}, function(data) {
+                    $scope.workspace.user.points = parseInt(data.points);
+                    if(isNaN($scope.workspace.user.points)) {
+                        $scope.workspace.user.points = 0;
+                    }
+                });
+            });
         }
     }
 
@@ -1782,6 +1791,7 @@ function RootController($scope, AuthUser, User, $rootScope, Needs, Social, $cook
         
         $scope.workspace.user = null;
         $rootScope.$broadcast('logout');
+        $location.path("/");
     }
 
     $scope.getUserInfo = function() {

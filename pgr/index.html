@@ -29,8 +29,7 @@
 				        <span ng-click="onLogin()">{{'_SignIn_' | i18n}}</span>
 				    </p>
 				    <p ng-if="workspace.user">
-				        <img ng-click="onOpenProfileAuthUser()" err-src="/images/unknown-person.png" ng-src="{{workspace.user.avatar}}" alt="{{workspace.user.name}}" />
-				        <span ng-click="onLogout()">{{'_SignOut_' | i18n}}</span>
+				        <img ng-click="onOpenProfileAuthUser()" err-src="/images/unknown-person.png" ng-src="{{workspace.user.avatar}}" class="current" alt="{{workspace.user.name}}" />
 				    </p>
 				</section>
 
