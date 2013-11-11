@@ -162,7 +162,10 @@ pgrModule.factory('Goals', function ($resource) {
         host+'/goals/:id', 
         {id:'@id'}, 
         {
-            create: {method: 'POST'}
+            query: {
+                method: 'GET',
+                isArray: true
+            }
         }
     );
 });
@@ -174,10 +177,25 @@ pgrModule.factory('Goals', function ($resource) {
  */
 pgrModule.factory('Professions', function ($resource) {
     return $resource(
-        host+'/professions/:id', 
+        host+'/goals/:id/professions', 
         {id:'@id'}, 
         {
-            create: {method: 'POST'}
+            create: {
+                method: 'POST',
+                url: host+"/professions"
+            }
+        }
+    );
+});
+
+pgrModule.factory('ProfessionCreate', function ($resource) {
+    return $resource(
+        host+'/professions', 
+        {},
+        {
+            create: {
+                method: 'POST'
+            }
         }
     );
 });

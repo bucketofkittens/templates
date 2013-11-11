@@ -54,7 +54,7 @@ function AvatarCtrl($scope, $rootScope, $location) {
      * @return {undefined}
      */
     $scope.onOpenProfileAuthUser = function() {
-        $location.path("/my_profile/");
+        $location.path("/my_profile/").search({});
     };
 }
 
@@ -304,6 +304,9 @@ function UserController($scope, $route, $routeParams, User, Needs, Professions, 
                 $scope.user = data;
 
                 $scope.user.points = parseInt($scope.user.points);
+                if($scope.workspace.user.points == null) {
+                    $scope.workspace.user.points = 0;
+                }
 
                 /**
                  * Указваем формат дня рождения
@@ -588,7 +591,7 @@ function NeedsAndGoalsController($scope, Goals, Criterion, AuthUser, UserCriteri
 
                     $scope.openCriteriumList({}, need, goal, $scope.needs);
                     setTimeout(function() {
-                        $("#content .tab .mypro.acrd").scrollTop($("#content .tab .mypro.acrd .crits ul li h5.current").offset().top); 
+                        $("#content .tab .mypro.acrd").scrollTop($("#content .tab .mypro.acrd .crits ul li h5.current").offset().top - 200); 
                     }, 0);
                 }
             });
@@ -1011,7 +1014,7 @@ function LoginController($scope, Sessions, $rootScope, User, Social, $facebook, 
      */
     $scope.onSingin = function(data) {
         Sessions.signin({}, $.param({
-            "login": $scope.login.login,
+            "email": $scope.login.email,
             "password": $scope.login.password
         }), function(data) {
             if(data.success) {
@@ -1043,7 +1046,7 @@ function LoginController($scope, Sessions, $rootScope, User, Social, $facebook, 
     $scope.onAddUser = function ($event) {
         User.create(
             {user: JSON.stringify({
-                "login": $scope.user.login,
+                "login": $scope.user.email,
                 "email": $scope.user.email,
                 "password": $scope.user.password
             })}
@@ -1054,7 +1057,7 @@ function LoginController($scope, Sessions, $rootScope, User, Social, $facebook, 
                     });
                 } else {
                     Sessions.signin({}, $.param({
-                        "login": $scope.user.login,
+                        "email": $scope.user.email,
                         "password": $scope.user.password
                     }), function(data) {
                         if(data.success) {
@@ -1785,6 +1788,11 @@ function RootController($scope, AuthUser, User, $rootScope, Needs, Social, $cook
         if($scope.authUserId) {
             User.query({id: $scope.authUserId}, function(data) {
                 $scope.workspace.user = data;
+                $scope.workspace.user.points = parseInt($scope.workspace.user.points);
+                if(isNaN($scope.workspace.user.points)) {
+                    $scope.workspace.user.points = 0;
+                }
+
                 User.get_friends({id: $scope.authUserId}, {}, function(frends) {
                    $scope.workspace.user.frends = frends;
                    $rootScope.$broadcast('authUserGetData');
@@ -1801,10 +1809,12 @@ function RootController($scope, AuthUser, User, $rootScope, Needs, Social, $cook
     };
 
     $scope.getProfessions = function() {
+        /*
         Professions.query({}, {}, function(data) {
             $scope.workspace.professions = data;
             $rootScope.$broadcast('professionsGet');
         });
+        */
     };
 
     $scope.getNeeds = function() {
@@ -1887,6 +1897,7 @@ function RootController($scope, AuthUser, User, $rootScope, Needs, Social, $cook
         if(message && message.sguid) {
             User.query({id: message.sguid}, function(data) {
                 $scope.workspace.user = data;
+                $scope.workspace.user.points = parseInt($scope.workspace.user.points);
                 AuthUser.set(message.sguid);
 
                 User.get_friends({id: message.sguid}, function(frends) {
@@ -2047,8 +2058,61 @@ function CropImageController($scope, $rootScope) {
     }
 }
 
-function MyProfileController($scope, $rootScope, User, $location, $cookieStore) {
+function MyProfileController($scope, $rootScope, User, $location, $cookieStore, Professions, ProfessionCreate) {
     $scope.tab = 2;
+    $scope.curNeed = null;
+    $scope.curProff = [];
+    $scope.showProf = false;
+    $scope.career = null;
+
+    $scope.selectCareer = function($event, career) {
+        Professions.query({ id: career.sguid }, {}, function(data) {
+            $scope.showProf = true;
+            $scope.curProff = data;
+
+            if($scope.workspace.user.profession && $scope.workspace.user.profession.name) {
+                $scope.workspace.user.profession.name = "";
+                $scope.workspace.user.profession.sguid = "";    
+            }
+        });
+    }
+
+    $scope.addProfession = function() {
+        ProfessionCreate.create({}, {
+            "profession": { 
+                name: $scope.workspace.user.profession.name 
+            },
+            "goal_guid": $scope.career.sguid
+        }, function(data) {
+            console.log(data);
+        });
+    }
+
+    /* config object */
+    $scope.professionOption = {
+        options: {
+            html: true,
+            onlySelect: true,
+            source: function (request, response) {
+                var data = $scope.curProff;
+                var outData = [];
+                angular.forEach(data, function(value, key){
+                    outData.push({value: value["name"], label: value["name"], sguid: value["sguid"]});
+                });
+                outData = $scope.professionOption.methods.filter(outData, request.term);
+                response(outData);
+            }
+        },
+        methods: {},
+        events: {
+            change: function(event, ui) {
+                $scope.workspace.user.profession.name = ui.item.label;
+                $scope.workspace.user.profession.sguid = ui.item.sguid;
+                $scope.onPublish();
+            }
+        }
+    };
+
     if($cookieStore.get("myProfileTab")) {
         $scope.tab = $cookieStore.get("myProfileTab");    
     }
@@ -2057,6 +2121,41 @@ function MyProfileController($scope, $rootScope, User, $location, $cookieStore) 
         if($scope.workspace.user && $scope.workspace.user.birthday) {
             var birthdaySplit = $scope.workspace.user.birthday.split("-");
             $scope.workspace.user.birthdayDate =  new Date(birthdaySplit[0], birthdaySplit[1], birthdaySplit[2] );
+        }
+    });
+
+    $scope.$watch("workspace.user.profession", function (newVal, oldVal, scope) {
+        if($scope.workspace.user && $scope.workspace.user.profession && $scope.curNeed) {
+            $scope.career = $scope.curNeed.goals.filter(function(value) {
+                if(newVal.goal_sguid == value.sguid) {
+                    return value;
+                }
+            })[0];
+            $scope.selectCareer({}, $scope.career);
+            $scope.showProf = true;
+        }
+    });
+
+    $scope.$watch("workspace.needs", function (newVal, oldVal, scope) {
+        if($scope.workspace.needs) {
+            $scope.curNeed = $scope.workspace.needs.filter(function(value) {
+                if(value.sguid == "169990243011789827") {
+                    return value;
+                }
+            })[0];
+            $scope.curNeed.goals = $scope.curNeed.goals.filter(function(value) {
+                if(value.sguid != "170689401829983233") { return value }
+            });
+
+            if($scope.workspace.user && $scope.workspace.user.profession) {
+                $scope.career = $scope.curNeed.goals.filter(function(value) {
+                    if($scope.workspace.user.profession.goal_sguid == value.sguid) {
+                        return value;
+                    }
+                })[0];
+                $scope.selectCareer({}, $scope.career);
+                $scope.showProf = true;
+            }
         }
     });
 
@@ -2145,30 +2244,7 @@ function MyProfileController($scope, $rootScope, User, $location, $cookieStore) 
         $location.path("/change_password"); 
     }
 
-    /* config object */
-    $scope.professionOption = {
-        options: {
-            html: true,
-            onlySelect: true,
-            source: function (request, response) {
-                var data = $scope.workspace.professions;
-                var outData = [];
-                angular.forEach(data, function(value, key){
-                    outData.push({value: value["name"], label: value["name"], sguid: value["sguid"]});
-                });
-                outData = $scope.professionOption.methods.filter(outData, request.term);
-                response(outData);
-            }
-        },
-        methods: {},
-        events: {
-            change: function(event, ui) {
-                $scope.workspace.user.profession.name = ui.item.label;
-                $scope.workspace.user.profession.sguid = ui.item.sguid;
-                $scope.onPublish();
-            }
-        }
-    };
+    
 
     /* config object */
     $scope.stateOption = {
@@ -2271,5 +2347,17 @@ function ChangePasswordController($scope, Sessions, User, $location) {
         } else {
             $scope.error = "error";
         }
+    }
+}
+
+function FollowCaruselController($scope) {
+    $scope.position = 0;
+
+    $scope.onLeft = function() {
+        $scope.position -= 1;
+    }
+
+    $scope.onRight = function() {
+        $scope.position += 1;
     }
 }

@@ -43,14 +43,25 @@
                             <ng-form name="RegForm" novalidate class="css-form myForm" >
                                 <p>
                                     <input 
-                                        type="text" 
-                                        id="login_i" 
+                                        type="email" 
+                                        id="email_i" 
                                         class="form-input"
-                                        ng-model="user.login" 
+                                        ng-model="user.email" 
                                         required
                                         ng-minlength="6"
-                                        placeholder="Login"
+                                        placeholder="Email"
                                         ui-keypress="{13:'onKeyPressReg($event)'}"  /> 
+                                </p>
+                                <p>
+                                    <input 
+                                        type="email" 
+                                        id="name_i" 
+                                        class="form-input"
+                                        ng-model="user.reemail" 
+                                        required 
+                                        ng-minlength="6"
+                                        placeholder="Confirm email"
+                                        ui-keypress="{13:'onKeyPressReg($event)'}" /> 
                                 </p>
                                 <p>
                                     <input 
@@ -63,17 +74,7 @@
                                         placeholder="Password"
                                         ui-keypress="{13:'onKeyPressReg($event)'}" /> 
                                 </p>
-                                <p>
-                                    <input 
-                                        type="password" 
-                                        id="name_i" 
-                                        class="form-input"
-                                        ng-model="user.repassword" 
-                                        required 
-                                        ng-minlength="6"
-                                        placeholder="Confirm"
-                                        ui-keypress="{13:'onKeyPressReg($event)'}" /> 
-                                </p>
+                                
                                 <p class="errors" ng-if="error">{{errors}}</p>
                                 <p class="acknowledge">
                                     <input type="checkbox" icheck />
@@ -99,10 +100,10 @@
                                         type="text" 
                                         id="login_i" 
                                         class="form-input"
-                                        ng-model="login.login"
+                                        ng-model="login.email"
                                         required 
                                         ng-minlength="6"
-                                        placeholder="Login"
+                                        placeholder="Email"
                                         ui-keypress="{13:'onKeyPress($event)'}" />
                                 </p>
                                 <p>

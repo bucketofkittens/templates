@@ -41,6 +41,9 @@
 					<button ng-click="onUnPublish()">Make it private</button>
 				</p>
 			</div>
+			<div class="publish">
+				<button ng-click="onLogout()">Sign out</button>
+			</div>
 		</div>
 
 		<div class="pmpar">
@@ -64,15 +67,27 @@
 			<p>
 				<label for="loc_i">{{'_LocL_' | i18n}}:</label>
 				<input 
-					id="pro_i" 
+					id="loc_i" 
 					ng-model="workspace.user.state.name"
 					type="text" ui-autocomplete="stateOption"  />
+			</p>
 			<p>
+				<label for="areapro_i">Career:</label>
+				<select 
+					id="areapro_i"
+					ng-options="item.name for item in curNeed.goals" 
+					ng-model="career" 
+					ng-change="selectCareer($event, career)">
+				</select>
+			</p>
+			<p ng-if="showProf">
 				<label for="pro_i">{{'_ProfL_' | i18n}}:</label>
 				<input 
 					id="pro_i" 
 					ng-model="workspace.user.profession.name"
-					type="text" ui-autocomplete="professionOption"  />
+					type="text" 
+					ui-autocomplete="professionOption"
+					ui-keypress="{13:'addProfession($event)'}"  />
 			</p>
 			<p>
 				<label for="email_i">{{'_EmaiL_' | i18n}}:</label> 
@@ -82,7 +97,6 @@
 					ng-model="workspace.user.email"
 					readonly="readonly"
 					required />
-					<button ng-click="onChangeEmail()">{{'_ChaEm_' | i18n}}</button>
 			</p>
 			<p ng-controller="QuickUserChangeCtrl">
 				<label for="username_i">{{'_UserName_' | i18n}}:</label> 
@@ -93,7 +107,9 @@
 					ng-change="onMoveUserClick($event, nextUser)">
 					<option value="">{{workspace.user.login}}, {{workspace.user.name}}</option>
 				</select>
-				<button  ng-click="onChangePassword()">{{'_ChaPas_' | i18n}}</button>
+			</p>
+			<p ng-controller="QuickUserChangeCtrl">
+				<button style="margin: 0px;" ng-click="onChangePassword()">Reset password</button>
 			</p>
 		</div>
 	</div>

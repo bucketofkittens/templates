@@ -1,22 +1,26 @@
 <section id="compare" ng-controller="FollowController" >
-	<div id="favorite_compare">
+	<div id="favorite_compare" ng-controller="FollowCaruselController">
 		<div class="inner">
 			<span class="icon favorite"></span>
 			<div class="list">
-				<ul>
-					<li 
-						ng-class="{show: userItem.user.show}" 
-						ng-mouseleave="onMouseLeaveUser(userItem.user)" 
-						ng-click="onMouseEnterUser(userItem.user)" 
-						ng-mouseenter="onMouseEnterUser(userItem.user)" 
-						ng-repeat="userItem in frends">
-						<img 
-							ng-click="onCompare(userItem.user)" 
-							ng-src="{{userItem.user.avatar}}" 
-							alt="" 
-							err-src="/images/unknown-person.png" />
-					</li>
-				</ul>
+				<span class="icon favorite_nav_left" ng-click="onLeft()" ng-if="frends.length > 12"></span>
+				<div class="list_wrap">
+					<ul carusel-position>
+						<li
+							ng-class="{show: userItem.user.show}" 
+							ng-mouseleave="onMouseLeaveUser(userItem.user)" 
+							ng-click="onMouseEnterUser(userItem.user)" 
+							ng-mouseenter="onMouseEnterUser(userItem.user)" 
+							ng-repeat="userItem in frends">
+							<img 
+								ng-click="onCompare(userItem.user)" 
+								ng-src="{{userItem.user.avatar}}" 
+								alt="" 
+								err-src="/images/unknown-person.png" />
+						</li>
+					</ul>
+				</div>
+				<span class="icon favorite_nav_right" ng-click="onRight()" ng-if="frends.length > 12"></span>
 			</div>
 		</div>
 	</div>

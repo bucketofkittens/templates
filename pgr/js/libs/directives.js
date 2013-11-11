@@ -54,9 +54,9 @@ pgrModule.directive('bridge', function($window) {
 
         if(currentItem.size() > 0) {
           $(element).show();
-          $(element).css("top",$(currentItem).offset().top-1);
+          $(element).css("top",$(currentItem).offset().top-71);
           $(element).css("height",58);
-          $(element).css("left",$(currentItem).offset().left+$(currentItem).width());
+          $(element).css("left", 260);
           if($(currentItem).offset().top < 120) {
             $(element).hide();
           } else {
@@ -75,6 +75,18 @@ pgrModule.directive('icheck', function($window) {
     link: function(scope, element, attrs) {
       $(element).iCheck({
         checkboxClass: 'icheckbox_minimal'
+      });
+    }
+  }
+})
+
+pgrModule.directive('caruselPosition', function($window) {
+  return {
+    link: function(scope, element, attrs) {
+      scope.$watch("position", function (newVal, oldVal, scope) {
+        if(scope.position) {
+          $(element).css("left", 60*scope.position);
+        }
       });
     }
   }

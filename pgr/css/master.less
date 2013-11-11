@@ -1812,6 +1812,16 @@ ng-form:not(.ng-pristine) {
         width: 118px;
         height: 24px;
     }
+    &.favorite_nav_left {
+        background: url("../images/fl.png") left top no-repeat;
+        width: 11px;
+        height: 16px;
+    }
+    &.favorite_nav_right {
+        background: url("../images/fr.png") left top no-repeat;
+        width: 11px;
+        height: 16px;
+    }
 }
 
 
@@ -1833,7 +1843,7 @@ ng-form:not(.ng-pristine) {
     background: #ffffff;
     padding: 20px;
     position: absolute;
-    top: 30%;
+    top: 0%;
     left: 50%;
     width: 500px;
     margin-left: -250px;
@@ -1924,7 +1934,7 @@ ng-form:not(.ng-pristine) {
 
 #favorite_compare {
     border: 1px solid #b4b4b4;
-    margin: 0px 14px;
+    margin: 0px 0px 0px 14px;
     background: #ffffff;
     .inner {
         width: 100%;
@@ -1936,22 +1946,46 @@ ng-form:not(.ng-pristine) {
         display: block;
         float: left;
     }
+    .favorite_nav_left, 
+    .favorite_nav_right {
+        position: absolute;
+        cursor: pointer;
+    }
+    .favorite_nav_right {
+        top: 26px;
+        right: 24px;
+    }
+    .favorite_nav_left {
+        top: 26px;
+        left: 182px;
+    }
     .list {
         float: right;
-        margin-left: -187px;
+        margin-left: -222px;
         width: 100%;
         overflow: hidden;
-        ul {
-            margin-left: 187px;
+        position: relative;
+        .list_wrap {
+            margin-left: 222px;
             overflow: hidden;
-            width: 99999px;
-            li {
-                float: left;
-                img {
-                   width: 60px;
-                   display: block; 
+            margin-right: 60px;
+            position: relative;
+            height: 60px;
+            ul {
+                width: 760px;
+                height: 60px;
+                position: relative;
+                -webkit-transition:0.2s linear all;
+                -moz-transition:0.2s linear all;
+                transition:0.2s linear all;
+                li {
+                    float: left;
+                    img {
+                       width: 60px;
+                       display: block; 
+                    }
                 }
-            }
+            }   
         }
     }
 }
