@@ -1,0 +1,138 @@
+html {
+    height: 100%;
+}
+body {
+    font-family: 'proxima_novaregular';
+    min-width: 1000px;
+    margin: 0px auto;
+    height: 100%;
+}
+#page {
+    min-height: 100%;
+    position: relative;
+}
+
+header {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+}
+header #logo {
+    margin: 19px 0px 0px 127px;
+    display: inline-block;
+}
+header nav {
+    position: absolute;
+    top: 60px;
+    width: 100%;
+}
+header nav div {
+    margin: 0px 202px 0px 500px;
+} 
+header nav ul {
+    display: table;
+    width: 100%;
+}
+header nav li {
+    display: table-cell;
+    padding: 0px 15px 0px 15px;
+}
+header nav li a {
+    font-family: 'pf_din_text_cond_promedium';
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 11px;
+    color: #717171;
+}
+header nav li a:hover{
+    color: #019cc6;
+}
+
+footer {
+    height: 73px;
+    margin-top: -73px;
+    position: relative;
+    width: 100%;
+    background: #26292e;
+}
+footer p {
+    margin-left: 193px;
+    color: #ffffff;
+    font-size: 12px;
+    opacity: 0.66;
+    line-height: 140%;
+    padding: 20px 0px 0px 0px;
+    font-family: 'PT Sans', sans-serif;
+}
+
+#content {
+    width: 100%;
+    overflow: hidden;
+    margin: 34px 0px 0px 0px;
+    padding-bottom: 90px;
+}
+#content #left {
+    float: left;
+    margin-left: 173px;
+    width: 370px;
+}
+#content #left h1 {
+    font-size: 33px;
+    color: #0e91cc;
+    padding: 0px 0px 24px 0px;
+}
+#content #left h1 span {
+    display: block;
+    font-size: 30px;
+}
+#content #left p {
+    font-size: 13px;
+    color: #3d3d3d;
+    line-height: 18px;
+}
+#content #right {
+    width: 100%;
+    float: right;
+    margin-left: -543px;
+}
+#content #right_wrapp {
+    margin-left: 543px;
+    margin-right: 202px;
+}
+
+#images_list {
+    float: right;
+}
+
+#images_list p {
+    float: right;
+    position: relative;
+    padding: 0px 0px 7px 7px;
+}
+#images_list p img {
+    display: block;
+}
+#images_list p span {
+    position: absolute;
+    bottom: 0px;
+    left: 7px;
+    display: none;
+    width: 270px;
+    height: 80px;
+    background: url("../images/hh.png") left top no-repeat;
+}
+#images_list p span a {
+    position: absolute;
+    bottom: 14px;
+    left: 7px;
+    font-size: 15px;
+    color: #ffffff;
+    text-transform: uppercase;
+    font-family: 'proxima_novabold';
+    text-decoration: none;
+    padding-right: 20px;
+    background: url("../images/arr.png") right top no-repeat;
+}
+#images_list p:hover span {
+    display: block;
+}

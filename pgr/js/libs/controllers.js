@@ -2084,7 +2084,9 @@ function MyProfileController($scope, $rootScope, User, $location, $cookieStore, 
             },
             "goal_guid": $scope.career.sguid
         }, function(data) {
-            console.log(data);
+            $scope.workspace.user.profession.name = data.message.name;
+            $scope.workspace.user.profession.sguid = data.message.guid;
+            $scope.onPublish();
         });
     }
 
@@ -2125,6 +2127,7 @@ function MyProfileController($scope, $rootScope, User, $location, $cookieStore, 
     });
 
     $scope.$watch("workspace.user.profession", function (newVal, oldVal, scope) {
+        console.log($scope.workspace.user);
         if($scope.workspace.user && $scope.workspace.user.profession && $scope.curNeed) {
             $scope.career = $scope.curNeed.goals.filter(function(value) {
                 if(newVal.goal_sguid == value.sguid) {
