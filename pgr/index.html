@@ -34,13 +34,33 @@
 				</section>
 
 				<!-- Поиск -->
-				<div id="search">
-					<input type="text" placeholder="Search people" class="search" />
-					<input type="submit" class="searcher" />
+				<div id="search" ng-controller="SearchController">
+					<input 
+						type="text" 
+						ng-model="searchText" 
+						placeholder="Search people" 
+						class="search"
+						ui-keypress="{13:'onSearch()'}" />
+					<input type="submit" class="searcher" ng-click="onSearch()" />
+					<div ng-cloak class="searchResult" ng-if="resultSearch.length > 0">
+						<div class="item" ng-repeat="(userKey, userItem) in resultSearch">
+							<div class="image">
+								<img ng-src="{{userItem.avatar}}" alt="">
+								<i>{{userItem.points}}</i>
+							</div>
+							<div class="text">
+								<p class="name">{{userItem.name}}</p>
+								<p class="birthday">{{userItem.birthday}}</p>
+								<p class="birthday">{{userItem.state}}</p>
+								<p class="profession">{{userItem.profession.name}}</p>
+								<p class="league">{{userItem.league.name}} league</p>
+							</div>
+						</div>
+					</div>
 				</div>
 
 				<!-- GRAPHS -->
-				<a  class="graphlink" ng-if="workspace.user" href="#/graphs">{{'_GRAPHS_' | i18n}}</a>	
+				<a ng-cloak class="graphlink" ng-if="workspace.user" href="#/graphs">{{'_GRAPHS_' | i18n}}</a>	
 			</div>
 		</header>
 

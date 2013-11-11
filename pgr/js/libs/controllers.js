@@ -230,10 +230,22 @@ function UserController($scope, $route, $routeParams, User, Needs, Professions, 
         $scope.bindIn = "user2";
     }
 
+    $scope.changeUser = function(user) {
+        if($scope.bindIn == "user2") {
+            $location.search({user1: $location.search().user1, user2: user.sguid});
+        } else {
+            $location.search({user1: user.sguid, user2: $location.search().user2});
+        }
+
+        $rootScope.$broadcast('hideSearch');
+    }
+
     $scope.$on('$locationChangeSuccess', function(){
       if($scope.bindIn == "user2") {
         $scope.userId = $location.search().user2;
-        console.log($scope.userId);
+        $scope.getUserInfo();
+      } else {
+        $scope.userId = $location.search().user1;
         $scope.getUserInfo();
       }
     });
@@ -1222,7 +1234,6 @@ function FollowController($scope, $rootScope, User, $location, $routeParams, Aut
  * @returns {MainController}
  */
 function MainController($scope, Leagues, User, $rootScope, $location, $timeout, AuthUser) {
-
 
     /**
      * Забираем список пользователей
@@ -2373,4 +2384,35 @@ function FollowCaruselController($scope) {
     $scope.onRight = function() {
         $scope.position += 1;
     }
+}
+
+function SearchController($scope, User, $rootScope) {
+    $scope.searchText = "";
+    $scope.resultSearch = [];
+
+    $scope.onSearch = function() {
+        $rootScope.$broadcast('loaderShow');
+        $scope.resultSearch = [];
+        User.for_main({}, {}, function(data) {
+            var users = [];
+            angular.forEach(data, function(value, key) {
+                var reg = new RegExp($scope.searchText, "i");
+                if(reg.test(value.name)) {
+                    value.points = parseInt(value.points);
+                    if(!value.league) {
+                        value.league = {name: "10"};
+                    }
+                    if(value.avatar) {
+                        users.push(value);
+                    }
+                    $scope.resultSearch.push(value);
+                }
+            });
+            $rootScope.$broadcast('loaderHide');
+        });
+    }
+
+    $scope.$on('hideSearch', function($event) {
+       $scope.resultSearch = [];
+    });
 }
