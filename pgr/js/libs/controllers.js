@@ -209,10 +209,11 @@ function LeftUserController($scope, $location) {
  * @param {object} States
  * @returns {object}
  */
-function UserController($scope, $route, $routeParams, User, Needs, Professions, States, $http, NeedsByUser, $rootScope, GoalsByUser, AuthUser, Leagues, $location, $window) {
+function UserController($scope, $element, $route, $routeParams, User, Needs, Professions, States, $http, NeedsByUser, $rootScope, GoalsByUser, AuthUser, Leagues, $location, $window) {
     $scope.user = null;
     $scope.newImage = null;
     $scope.bindIn = "";
+    $scope.hidden = false;
 
     $scope.userId = $routeParams.userId1;
 
@@ -316,8 +317,8 @@ function UserController($scope, $route, $routeParams, User, Needs, Professions, 
                 $scope.user = data;
 
                 $scope.user.points = parseInt($scope.user.points);
-                if($scope.workspace.user.points == null) {
-                    $scope.workspace.user.points = 0;
+                if($scope.user.points == null) {
+                    $scope.user.points = 0;
                 }
 
                 /**
@@ -2392,27 +2393,38 @@ function FollowCaruselController($scope) {
 function SearchController($scope, User, $rootScope) {
     $scope.searchText = "";
     $scope.resultSearch = [];
+    $scope.usersCollections = [];
+
+    $scope.test_ = function() {
+        angular.forEach($scope.usersCollections, function(value, key) {
+            var reg = new RegExp($scope.searchText, "i");
+            if(reg.test(value.name)) {
+                value.points = parseInt(value.points);
+                if(!value.league) {
+                    value.league = {name: "10"};
+                }
+                $scope.resultSearch.push(value);
+            }
+        });
+        $rootScope.$broadcast('loaderHide');
+    }
 
     $scope.onSearch = function() {
-        $rootScope.$broadcast('loaderShow');
-        $scope.resultSearch = [];
-        User.for_main({}, {}, function(data) {
-            var users = [];
-            angular.forEach(data, function(value, key) {
-                var reg = new RegExp($scope.searchText, "i");
-                if(reg.test(value.name)) {
-                    value.points = parseInt(value.points);
-                    if(!value.league) {
-                        value.league = {name: "10"};
-                    }
-                    if(value.avatar) {
-                        users.push(value);
-                    }
-                    $scope.resultSearch.push(value);
-                }
-            });
+        if($scope.searchText.length > 0) {
+            $rootScope.$broadcast('loaderShow');
+            $scope.resultSearch = [];
+            if($scope.usersCollections.length == 0) {
+                User.for_main({}, {}, function(data) {
+                    $scope.usersCollections = data;
+                    $scope.test_();
+                });  
+            } else {
+                $scope.test_();
+            }
+        } else {
+            $scope.resultSearch = [];
             $rootScope.$broadcast('loaderHide');
-        });
+        }
     }
 
     $scope.$on('hideSearch', function($event) {

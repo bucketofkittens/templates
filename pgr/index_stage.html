@@ -37,7 +37,7 @@
 						ng-model="searchText" 
 						placeholder="Search people" 
 						class="search"
-						ui-keypress="{13:'onSearch()'}" />
+						ng-change="onSearch()" />
 					<input type="submit" class="searcher" ng-click="onSearch()" />
 					<div ng-cloak class="searchResult" ng-if="resultSearch.length > 0">
 						<div class="item" ng-repeat="(userKey, userItem) in resultSearch">
