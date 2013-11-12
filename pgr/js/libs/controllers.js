@@ -1919,6 +1919,9 @@ function RootController($scope, AuthUser, User, $rootScope, Needs, Social, $cook
             User.query({id: message.sguid}, function(data) {
                 $scope.workspace.user = data;
                 $scope.workspace.user.points = parseInt($scope.workspace.user.points);
+                if(isNaN($scope.workspace.user.points)) {
+                    $scope.workspace.user.points = 0;
+                }
                 AuthUser.set(message.sguid);
 
                 User.get_friends({id: message.sguid}, function(frends) {
