@@ -131,7 +131,7 @@ footer p {
     font-family: 'proxima_novabold';
     text-decoration: none;
     padding-right: 20px;
-    background: url("../images/arr.png") right top no-repeat;
+    background: url("../images/arr.png") 90% top no-repeat;
 }
 #images_list p:hover span {
     display: block;
