@@ -18,7 +18,7 @@ header {
     position: relative;
 }
 header #logo {
-    margin: 19px 0px 0px 127px;
+    margin: 19px 0px 0px 8%;
     display: inline-block;
 }
 header nav {
@@ -27,7 +27,7 @@ header nav {
     width: 100%;
 }
 header nav div {
-    margin: 0px 202px 0px 500px;
+    margin: 0px 202px 0px 31%;
 } 
 header nav ul {
     display: table;
@@ -56,7 +56,7 @@ footer {
     background: #26292e;
 }
 footer p {
-    margin-left: 193px;
+    margin-left: 18%;
     color: #ffffff;
     font-size: 12px;
     opacity: 0.66;
@@ -73,8 +73,8 @@ footer p {
 }
 #content #left {
     float: left;
-    margin-left: 173px;
-    width: 370px;
+    margin-left: 15%;
+    width: 27%;
 }
 #content #left h1 {
     font-size: 33px;
@@ -91,13 +91,11 @@ footer p {
     line-height: 18px;
 }
 #content #right {
-    width: 100%;
+    width: 40%;
+    margin-right: 18%;
     float: right;
-    margin-left: -543px;
 }
 #content #right_wrapp {
-    margin-left: 543px;
-    margin-right: 202px;
 }
 
 #images_list {
@@ -120,6 +118,8 @@ footer p {
     width: 270px;
     height: 80px;
     background: url("../images/hh.png") left top no-repeat;
+    background-size: 100%;
+    text-shadow: 3px 3px 9px rgba(0, 0, 0, 1);
 }
 #images_list p span a {
     position: absolute;
