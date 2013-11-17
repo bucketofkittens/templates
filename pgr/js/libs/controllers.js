@@ -1193,7 +1193,32 @@ function FollowController($scope, $rootScope, User, $location, $routeParams, Aut
     $scope.compareState = 1;
     
     $scope.onCompare = function(user) {
-        $location.path("/compare").search({user1: $scope.workspace.user.sguid, user2: user.sguid});
+        if($location.search().user1) {
+            if($scope.compareState == 1) {
+                $scope.compareState = 2;
+                $location.path("/compare").search(
+                    {
+                        user1: $location.search().user1, 
+                        user2: user.sguid
+                    }
+                );
+            } else {
+                $scope.compareState = 1;
+                $location.path("/compare").search(
+                    {
+                        user1: user.sguid, 
+                        user2: $location.search().user2
+                    }
+                );
+        }
+        } else {
+            $location.path("/compare").search(
+                {
+                    user1: $scope.workspace.user.sguid, 
+                    user2: user.sguid
+                }
+            );
+        }
     };
 
     /**
