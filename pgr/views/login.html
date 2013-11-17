@@ -20,13 +20,13 @@
                                 </a>
                             </li>
                             <li>
-                                <a>
-                                    <img src="/images/twitter.png" alt="" />
+                                <a ng-click="socialGooglePlusLogin()">
+                                    <img src="/images/google.png" alt="" />
                                 </a>
                             </li>
                             <li>
-                                <a ng-click="socialGooglePlusLogin()">
-                                    <img src="/images/google.png" alt="" />
+                                <a ng-click="socialMicrosoftLiveLogin()">
+                                    <img src="/images/live.png" alt="" />
                                 </a>
                             </li>
                             <li>
@@ -41,39 +41,52 @@
                     <div class="right_wrapper">
                         <div class="sign-up" ng-show="signup">
                             <ng-form name="RegForm" novalidate class="css-form myForm" >
-                                <p>
-                                    <input 
-                                        type="email" 
-                                        id="email_i" 
-                                        class="form-input"
-                                        ng-model="user.email" 
-                                        required
-                                        ng-minlength="6"
-                                        placeholder="Email"
-                                        ui-keypress="{13:'onKeyPressReg($event)'}"  /> 
-                                </p>
-                                <p>
-                                    <input 
-                                        type="email" 
-                                        id="name_i" 
-                                        class="form-input"
-                                        ng-model="user.reemail" 
-                                        required 
-                                        ng-minlength="6"
-                                        placeholder="Confirm email"
-                                        ui-keypress="{13:'onKeyPressReg($event)'}" /> 
-                                </p>
-                                <p>
-                                    <input 
-                                        type="password" 
-                                        id="name_i" 
-                                        class="form-input"
-                                        ng-model="user.password" 
-                                        required 
-                                        ng-minlength="6"
-                                        placeholder="Password"
-                                        ui-keypress="{13:'onKeyPressReg($event)'}" /> 
-                                </p>
+                                <div class="left">
+                                    <p>
+                                        <input 
+                                            type="email" 
+                                            id="email_i" 
+                                            class="form-input"
+                                            ng-model="user.email" 
+                                            required
+                                            ng-minlength="6"
+                                            placeholder="Email"
+                                            ui-keypress="{13:'onKeyPressReg($event)'}"  /> 
+                                    </p>
+                                    <p>
+                                        <input 
+                                            type="email" 
+                                            id="name_i" 
+                                            class="form-input"
+                                            ng-model="user.reemail" 
+                                            required 
+                                            ng-minlength="6"
+                                            placeholder="Confirm email"
+                                            ui-keypress="{13:'onKeyPressReg($event)'}" /> 
+                                    </p>
+                                    <p>
+                                        <input 
+                                            type="password" 
+                                            id="name_i" 
+                                            class="form-input"
+                                            ng-model="user.password" 
+                                            required 
+                                            ng-minlength="6"
+                                            placeholder="Password"
+                                            ui-keypress="{13:'onKeyPressReg($event)'}" /> 
+                                    </p>
+                                </div>
+                                <div class="right">
+                                    <p>
+                                        <div
+                                            vc-recaptcha
+                                            ng-model="captha"
+                                            key="6Lf1Z-oSAAAAAEkk7m5n6cGiwgqeMya21UetPbIO"
+                                        ></div>
+                                    </p>    
+                                </div>
+                                
+                                
                                 
                                 <p class="errors" ng-if="error">{{errors}}</p>
                                 <p class="acknowledge">

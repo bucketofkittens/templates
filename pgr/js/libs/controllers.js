@@ -1001,6 +1001,7 @@ function LoginController($scope, Sessions, $rootScope, User, Social, $facebook, 
     $scope.show = false;
 
     $scope.signup = false;
+    $scope.captha = "";
 
     $scope.login = {
         login: "",
@@ -1035,6 +1036,7 @@ function LoginController($scope, Sessions, $rootScope, User, Social, $facebook, 
      * @return {[type]}        [description]
      */
     $scope.onSingin = function(data) {
+
         Sessions.signin({}, $.param({
             "email": $scope.login.email,
             "password": $scope.login.password
@@ -1066,6 +1068,8 @@ function LoginController($scope, Sessions, $rootScope, User, Social, $facebook, 
      * @returns {undefined}
      */
     $scope.onAddUser = function ($event) {
+        console.log($scope.captha);
+
         User.create(
             {user: JSON.stringify({
                 "login": $scope.user.email,
@@ -1120,6 +1124,34 @@ function LoginController($scope, Sessions, $rootScope, User, Social, $facebook, 
             scope: socialsAccess.googlePlus.scopes, 
             immediate: false
         }, handleAuthResult);
+    };
+
+    $scope.socialMicrosoftLiveLogin = function() {
+        $rootScope.$broadcast('loaderShow');
+        WL.login({
+            scope: ["wl.signin", "wl.basic", "wl.emails"]
+        }).then(
+            function (session) {
+                WL.api({
+                    path: "me",
+                    method: "GET"
+                }, function(data) {
+                    console.log(data);
+                    Social.login({}, {email: data.emails.account}, function(data) {
+                        $rootScope.$broadcast('onSignin', {sguid: data.guid, isSocial: true});
+                        $rootScope.$broadcast('loaderHide');
+                        socialsAccess.live.isLoggined = true;
+                    });
+                });
+            },
+            function (sessionError) {
+                Social.login({}, {email: response.email}, function(data) {
+                    $rootScope.$broadcast('onSignin', {sguid: data.guid, isSocial: true});
+                    $rootScope.$broadcast('loaderHide');
+                    socialsAccess.facebook.isLoggined = true;
+                });
+            }
+        );
     };
 
     $scope.$on('fb.auth.authResponseChange', function(data, d) {
@@ -1794,6 +1826,11 @@ function RootController($scope, $facebook, AuthUser, User, $rootScope, Needs, So
         if(socialsAccess.facebook.isLoggined) {
             $facebook.logout();
             socialsAccess.facebook.isLoggined = false;  
+        }
+
+        if(socialsAccess.live.isLoggined) {
+            WL.logout();
+            socialsAccess.live.isLoggined = false;  
         }
         
         if(socialsAccess.googlePlus.isLoggined) {

@@ -17,6 +17,7 @@ module.exports = function(grunt) {
                 	'js/angular-touch.min.js',
                 	'js/angular-route-segment.min.js',
                 	'js/angular-isotope.min.js',
+                    'js/angular-recaptcha.min.js',
                     'js/jquery.Jcrop.min.js',
                     'js/jquery.jcrop-canvas.js',
                     'js/jquery.icheck.min.js',

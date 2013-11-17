@@ -19,6 +19,9 @@ var socialsAccess = {
 			'https://www.googleapis.com/auth/userinfo.email'
 		],
 		isLoggined: false
+	},
+	live: {
+		isLoggined: false
 	}
 };
 
@@ -44,7 +47,8 @@ var pgrModule = angular.module(
         'hmTouchEvents',
         'ui.date',
         'ui.autocomplete',
-        'ui.keypress'
+        'ui.keypress',
+        'vcRecaptcha'
 		]
 	);
 
@@ -142,6 +146,14 @@ pgrModule.run(function() {
 	  po.src = 'https://apis.google.com/js/client:plusone.js';
 	  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
 	})();
+
+	WL.init({
+	    client_id: "000000004410A030",
+	    redirect_uri: "http://xmpp.dev.improva.com:8901/",
+	    scope: "wl.signin", 
+	    response_type: "token"
+	});
+
 })
 
 
