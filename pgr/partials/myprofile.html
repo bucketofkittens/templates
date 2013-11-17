@@ -41,7 +41,7 @@
 						<span><img ng-src="{{currentGoal.icon}}" alt="" title="{{currentGoal.name}}" /></span>
 						{{currentGoal.name}}
 					</a>	
-					<div class="right" ng-if="currentGoal.current_value">
+					<div class="right">
 						<b>{{currentGoal.current_value}} / {{currentGoal.points_summary}}</b>
 						<strong>
 							<span class="current_position" style="width: {{(currentGoal.current_value / (currentGoal.points_summary ))*100}}%;"></span>
