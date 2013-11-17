@@ -1126,6 +1126,7 @@ function LoginController($scope, Sessions, $rootScope, User, Social, $facebook, 
         FB.api('/me', function(response) {
             Social.login({}, {email: response.email}, function(data) {
                 $rootScope.$broadcast('onSignin', {sguid: data.guid, isSocial: true});
+                $rootScope.$broadcast('loaderHide');
                 socialsAccess.facebook.isLoggined = true;
             });
         });
@@ -1776,7 +1777,7 @@ function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-function RootController($scope, AuthUser, User, $rootScope, Needs, Social, $cookieStore, States, Professions, $location) {
+function RootController($scope, $facebook, AuthUser, User, $rootScope, Needs, Social, $cookieStore, States, Professions, $location) {
     $scope.authUserId = AuthUser.get();
     $scope.workspace = {};
     $scope.tmpFollows = [];
@@ -1945,7 +1946,8 @@ function RootController($scope, AuthUser, User, $rootScope, Needs, Social, $cook
     
     $scope.gplusAuth = function(email) {
         Social.login({}, {email: email}, function(data) {
-            $rootScope.$broadcast('onSignin', {guid: data.guid, isSocial: true});
+            $rootScope.$broadcast('onSignin', {sguid: data.guid, isSocial: true});
+            $rootScope.$broadcast('loaderHide');
         });
     };
 

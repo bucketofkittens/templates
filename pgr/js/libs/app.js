@@ -191,22 +191,8 @@ function makeApiCall() {
 	gapi.client.load('oauth2', 'v2', function() {
 	  gapi.client.oauth2.userinfo.get().execute(function(resp) {
 	    var scope = angular.element($("body")).scope();
-        var request = gapi.client.plus.people.list({
-            'userId' : 'me',
-            'collection' : 'visible'
-          });
-        request.execute(function(resp) {
-            var numItems = resp.items.length;
-            console.log(numItems);
-            for (var i = 0; i < numItems; i++) {
-              console.log(resp.items[i].displayName);
-            }
-        });
-          /*
-        console.log(resp);
 	    scope.gplusAuth(resp.email);
 	    socialsAccess.googlePlus.isLoggined = true;
-        */
 	  })
 	});
 }

@@ -27,7 +27,7 @@ header nav {
     width: 100%;
 }
 header nav div {
-    margin: 0px 202px 0px 31%;
+    margin: 0px 15% 0px 35%;
 } 
 header nav ul {
     display: table;
@@ -41,7 +41,7 @@ header nav li a {
     font-family: 'pf_din_text_cond_promedium';
     text-decoration: none;
     text-transform: uppercase;
-    font-size: 11px;
+    font-size: 9px;
     color: #717171;
 }
 header nav li a:hover{
@@ -73,17 +73,17 @@ footer p {
 }
 #content #left {
     float: left;
-    margin-left: 15%;
+    margin-left: 13%;
     width: 27%;
 }
 #content #left h1 {
-    font-size: 33px;
+    font-size: 31px;
     color: #0e91cc;
-    padding: 0px 0px 24px 0px;
+    padding: 0px 0px 2% 0px;
 }
 #content #left h1 span {
     display: block;
-    font-size: 30px;
+    font-size: 27px;
 }
 #content #left p {
     font-size: 13px;
@@ -91,8 +91,8 @@ footer p {
     line-height: 18px;
 }
 #content #right {
-    width: 40%;
-    margin-right: 18%;
+    width: 44%;
+    margin-right: 13%;
     float: right;
 }
 #content #right_wrapp {
