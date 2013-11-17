@@ -241,14 +241,19 @@ function UserController($scope, $element, $route, $routeParams, User, Needs, Pro
         $rootScope.$broadcast('hideSearch');
     }
 
-    $scope.$on('$locationChangeSuccess', function(){
-      if($scope.bindIn == "user2") {
-        $scope.userId = $location.search().user2;
-        $scope.getUserInfo();
-      } else {
-        $scope.userId = $location.search().user1;
-        $scope.getUserInfo();
-      }
+    $scope.$on('$locationChangeSuccess', function(location) {
+        if($scope.bindIn == "user2") {
+            $scope.userId = $location.search().user2;
+            $scope.getUserInfo();
+        } else {
+            $scope.userId = $location.search().user1;
+            $scope.getUserInfo();
+        }
+
+        if($routeParams.userId1) {
+            $scope.userId = $routeParams.userId1;
+            $scope.getUserInfo();
+        }
     });
 
     $scope.$watch("userId", function (newVal, oldVal, scope) {
@@ -1331,7 +1336,7 @@ function MainController($scope, Leagues, User, $rootScope, $location, $timeout, 
     }
 
     $scope.onMoveToCompare = function(user) {
-        $location.path("/compare").search({user1: user.sguid});;
+        $location.path("/compare").search({user1: user.sguid, user2: $scope.workspace.user.sguid});
     }
 
     /**
@@ -1771,6 +1776,10 @@ function GalleryController($scope, localize, Leagues, User, AuthUser, $element, 
      */
     $scope.onMoveToProfile = function(user) {
         $location.path("/profile/"+user.sguid);
+    }
+
+    $scope.onMoveToCompare = function(user) {
+        $location.path("/compare").search({user1: user.sguid, user2: $scope.workspace.user.sguid});
     }
 
     /**
