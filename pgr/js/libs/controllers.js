@@ -1039,6 +1039,10 @@ function LoginController($scope, Sessions, $rootScope, User, Social, $facebook, 
         $scope.signup = $scope.signup ? false : true;
     }
 
+    $scope.onAcknowledge = function() {
+        console.log("login");
+    }
+
     /**
      * Вызывается при нажатии ok в форме авторизации
      * @param  {[type]} $event [description]
@@ -1598,13 +1602,13 @@ function TopGalleryController($scope, Leagues, User, $routeParams) {
  * @param {[type]} $element  [description]
  * @param {[type]} $location [description]
  */
-function GalleryController($scope, localize, Leagues, User, AuthUser, $element, $location, $timeout, $rootScope) {
+function GalleryController($scope, localize, Leagues, User, AuthUser, $element, $location, $timeout, $rootScope, $routeParams) {
 
     $scope.$watch("users", function (newVal, oldVal, scope) {
         if($scope.users && $scope.users.length > 0) {
             $scope.setPage();
         }
-    });
+    }); 
 
     /**
      * Через сколько минисекунд картинка становится большой
@@ -1783,7 +1787,11 @@ function GalleryController($scope, localize, Leagues, User, AuthUser, $element, 
     }
 
     $scope.onMoveToCompare = function(user) {
-        $location.path("/compare").search({user1: user.sguid, user2: $scope.workspace.user.sguid});
+        if($scope.workspace.user && $scope.workspace.user.sguid) {
+            $location.path("/compare").search({user1: $scope.workspace.user.sguid, user2: user.sguid});    
+        } else {
+            $location.path("/compare").search({user1: $routeParams.userId1, user2: user.sguid});
+        }
     }
 
     /**

@@ -18,7 +18,7 @@ header {
     position: relative;
 }
 header #logo {
-    margin: 19px 0px 0px 8%;
+    margin: 19px 0px 0px 5%;
     display: inline-block;
 }
 header nav {
@@ -27,7 +27,7 @@ header nav {
     width: 100%;
 }
 header nav div {
-    margin: 0px 15% 0px 35%;
+    margin: 0px 8% 0px 39%;
 } 
 header nav ul {
     display: table;
@@ -73,7 +73,7 @@ footer p {
 }
 #content #left {
     float: left;
-    margin-left: 13%;
+    margin-left: 9%;
     width: 27%;
 }
 #content #left h1 {
@@ -91,8 +91,8 @@ footer p {
     line-height: 18px;
 }
 #content #right {
-    width: 44%;
-    margin-right: 13%;
+    width: 51%;
+    margin-right: 10%;
     float: right;
 }
 #content #right_wrapp {

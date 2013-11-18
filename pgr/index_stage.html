@@ -10,8 +10,6 @@
 		<link rel="stylesheet" href="/build/style.base64.css" />
 	</head>
 	<body ng-controller="RootController" >
-		
-		
 		<header>
 			<div id="header">
 				<!-- Логотип -->
@@ -57,7 +55,7 @@
 				</div>
 
 				<!-- GRAPHS -->
-				<a  class="graphlink" ng-if="workspace.user" href="#/graphs">{{'_GRAPHS_' | i18n}}</a>	
+				<a class="graphlink" ng-if="workspace.user" ng-cloak href="#/graphs">{{'_GRAPHS_' | i18n}}</a>	
 			</div>
 		</header>
 
