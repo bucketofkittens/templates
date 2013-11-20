@@ -1124,12 +1124,13 @@ function LoginController($scope, Sessions, $rootScope, User, Social, $facebook, 
     $scope.socialFacebookLogin = function() {
         $rootScope.$broadcast('loaderShow');
         FB.login(function(response) {
+            console.log(response);
             if(!response.authResponse) {
                 $scope.$apply(function() {
                     $rootScope.$broadcast('loaderHide');
                 });
             }
-        });
+        }, { scope: 'email' });
     };
 
     $scope.socialGooglePlusLogin = function() {
@@ -1170,7 +1171,8 @@ function LoginController($scope, Sessions, $rootScope, User, Social, $facebook, 
     };
 
     $scope.$on('fb.auth.authResponseChange', function(data, d) {
-        FB.api('/me', function(response) {
+        FB.api('/me',{fields: 'id,name,email'},  function(response) {
+            console.log(response);
             Social.login({}, {email: response.email}, function(data) {
                 $rootScope.$broadcast('onSignin', {sguid: data.guid, isSocial: true});
                 $rootScope.$broadcast('loaderHide');

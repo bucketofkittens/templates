@@ -136,8 +136,6 @@ pgrModule.config(function($facebookProvider) {
 });
 
 pgrModule.run(function() {
-	localStorage.clear();
-
 	(function(d, s, id){
 	 var js, fjs = d.getElementsByTagName(s)[0];
 	 if (d.getElementById(id)) {return;}
@@ -158,7 +156,6 @@ pgrModule.run(function() {
 	    scope: "wl.signin", 
 	    response_type: "token"
 	});
-
 })
 
 
