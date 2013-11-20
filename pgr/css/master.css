@@ -151,7 +151,8 @@ ng-form:not(.ng-pristine) input.ng-invalid:not(.ng-pristine){border-color:rgba(2
 .isotope{-webkit-transition-property:height,width,margin;-moz-transition-property:height,width,margin;-ms-transition-property:height,width,margin;-o-transition-property:height,width,margin;transition-property:height,width,margin}
 .isotope .isotope-item{-webkit-transition-property:-webkit-transform,opacity,margin,height,width;-moz-transition-property:-moz-transform,opacity,margin,height,width;-ms-transition-property:-ms-transform,opacity,margin,height,width;-o-transition-property:-o-transform,opacity,margin,height,width;transition-property:transform,opacity,margin,height,width}
 .isotope.no-transition,.isotope.no-transition .isotope-item,.isotope .isotope-item.no-transition{-webkit-transition-duration:0;-moz-transition-duration:0;-ms-transition-duration:0;-o-transition-duration:0;transition-duration:0}
-.icon{display:inline-block;background-size:100% !important}.icon.profile{background:url("../images/i1.png") left top no-repeat}
+.icon{display:inline-block;background-size:100% !important}.icon.close{background:url("../images/dialog_close.png") left top no-repeat;width:24px;height:24px;position:absolute;right:10px;top:5px;display:block}
+.icon.profile{background:url("../images/i1.png") left top no-repeat}
 .icon.compare{background:url("../images/i2.png") left top no-repeat}
 .icon.follow{background:url("../images/i3.png") left top no-repeat}
 .icon.unfollow{background:url("../images/i3i.png") left top no-repeat}
@@ -206,3 +207,6 @@ sup.du{right:-15px;left:auto}
 .controller__ .content_wrap{width:100% !important}
 .reset{margin:0 0 0 135px !important;width:233px !important}
 .signup-submit input[type="button"]{padding-top:2% !important;padding-bottom:1% !important;padding-left:3% !important;padding-right:3% !important}
+.ui-menu-item{position:relative}
+.ui-menu-item:hover .close{display:block}
+.ui-menu .ui-menu-item a{margin-right:30px}

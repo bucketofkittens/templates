@@ -79,10 +79,11 @@ angular.module('ui.autocomplete', [])
               element = $(element);
             }
             if (typeof element !== 'object' || element.length > 1 || !element.is('a')) {
-              element = $('<a>').append(element);
+              return $('<li>').append($('<a>').text(element)).append($("<i>").addClass("close").addClass("icon")).appendTo(ul).data('ui-autocomplete-item', item);
             }
           } else {
-            element = $('<a>').text(element);
+            $('<a>').text(element).appendTo(element);
+            $("<i>").addClass("close").addClass("icon").appendTo(element);
           }
           return $('<li>').append(element).appendTo(ul).data('ui-autocomplete-item', item);
         },

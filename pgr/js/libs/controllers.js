@@ -243,14 +243,18 @@ function UserController($scope, $element, $route, $routeParams, User, Needs, Pro
 
     $scope.$on('$locationChangeSuccess', function(location) {
         if($scope.bindIn == "user2") {
+            $("sub.du, sup.du").remove();
             $scope.userId = $location.search().user2;
             $scope.getUserInfo();
+
         } else {
+            $("sub.du, sup.du").remove();
             $scope.userId = $location.search().user1;
             $scope.getUserInfo();
         }
 
         if($routeParams.userId1) {
+            $("sub.du, sup.du").remove();
             $scope.userId = $routeParams.userId1;
             $scope.getUserInfo();
         }
@@ -1242,8 +1246,8 @@ function FollowController($scope, $rootScope, User, $location, $routeParams, Aut
                     }
                 );
             }
-            
         }
+        $rootScope.$broadcast('loaderShow');
     };
 
     /**
@@ -2191,16 +2195,10 @@ function MyProfileController($scope, $rootScope, User, $location, $cookieStore, 
         Professions.query({ id: career.sguid }, {}, function(data) {
             $scope.showProf = true;
             $scope.curProff = data;
-
-            if($scope.workspace.user.profession && $scope.workspace.user.profession.name) {
-                $scope.workspace.user.profession.name = "";
-                $scope.workspace.user.profession.sguid = "";    
-            }
         });
     }
 
     $scope.addProfession = function($event) {
-        console.log($scope.workspace.user.profession.name);
         ProfessionCreate.create({}, {
             "profession": { 
                 name: $scope.workspace.user.profession.name 
@@ -2219,6 +2217,12 @@ function MyProfileController($scope, $rootScope, User, $location, $cookieStore, 
         return false;
     }
 
+    $("body").on("click", ".close", function(event) {
+        event.stopPropagation();
+        event.stopImmediatePropagation();
+        return false;
+    });
+
     /* config object */
     $scope.professionOption = {
         options: {
@@ -2234,7 +2238,12 @@ function MyProfileController($scope, $rootScope, User, $location, $cookieStore, 
                 response(outData);
             }
         },
-        methods: {},
+        methods: {
+            _renderItem: function( ul, item ) {
+                console.log(item);
+                return "gfg";
+            }
+        },
         events: {
             change: function(event, ui) {
                 if(ui.item) {
@@ -2245,6 +2254,8 @@ function MyProfileController($scope, $rootScope, User, $location, $cookieStore, 
             }
         }
     };
+
+
 
     if($cookieStore.get("myProfileTab")) {
         $scope.tab = $cookieStore.get("myProfileTab");    

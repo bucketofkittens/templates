@@ -1791,6 +1791,15 @@ ng-form:not(.ng-pristine) {
 .icon {
     display: inline-block;
     background-size: 100% !important;
+    &.close {
+        background: url("../images/dialog_close.png") left top no-repeat;
+        width: 24px;
+        height: 24px;
+        position: absolute;
+        right: 10px;
+        top: 5px;
+        display: block;
+    }
     &.profile {
         background: url("../images/i1.png") left top no-repeat;
     }
@@ -2192,4 +2201,14 @@ sup.du {
         padding-left: 3% !important;
         padding-right: 3% !important;
     }
+}
+
+.ui-menu-item {
+    position: relative;
+}
+.ui-menu-item:hover .close {
+    display: block;
+}
+.ui-menu .ui-menu-item a {
+    margin-right: 30px;
 }
