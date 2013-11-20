@@ -565,55 +565,62 @@ function NeedsAndGoalsController($scope, Goals, Criterion, AuthUser, UserCriteri
     });
     
     $scope.bindUserNeedsValues = function() {
-        User.needs_points({id: $scope.user.sguid}, {}, function(needsData) {
+        User.goals_points({id: $scope.user.sguid}, {}, function(goalsData) {
+            var needsData = {};
+            angular.forEach($scope.needs, function(needItem, needKey) {
+                needsData[needItem.sguid] = 0;
+                //needItem.current_value = parseInt(needsData[needItem.sguid]);
+                angular.forEach(needItem.goals, function(goalItem, goalKey) {
+                    goalItem.current_value = parseInt(goalsData[goalItem.sguid]);
+                    if(goalsData[goalItem.sguid]) {
+                        needsData[needItem.sguid] += parseInt(goalsData[goalItem.sguid]);
+                    }
+                });
+
+                needItem.current_value = needsData[needItem.sguid];
+            });
+            console.log(needsData);
             $rootScope.$broadcast('needUserValueLoaded', {
                 needsValues: needsData,
                 userId: $scope.user.sguid
             });
-            User.goals_points({id: $scope.user.sguid}, {}, function(goalsData) {
-                angular.forEach($scope.needs, function(needItem, needKey) {
-                    needItem.current_value = parseInt(needsData[needItem.sguid]);
-                    angular.forEach(needItem.goals, function(goalItem, goalKey){
-                        goalItem.current_value = parseInt(goalsData[goalItem.sguid]);
-                    });
-                });
-                $rootScope.$broadcast('goalUserValueLoaded', {
-                    goalsValues: goalsData,
-                    userId: $scope.user.sguid
-                });
-                $rootScope.$broadcast('loaderHide');
-
-                var openGoal = $cookieStore.get("openGoal");
-                if(!$scope.persistState) {
-                    openGoal = null;
-                }
-
-                if($scope.openFirst && !openGoal) {
-                    $scope.openCriteriumList({}, $scope.needs[0], $scope.needs[0].goals[0], $scope.needs);
-                }
-
-                if(openGoal && $scope.persistState) {
-                    var openNeed = $cookieStore.get("openNeed");
-
-                    var need = $scope.needs.filter(function(value) {
-                        if(value.sguid == openNeed) {
-                            return value;
-                        }
-                    })[0];
-
-                    var goal = need.goals.filter(function(value) {
-                        if(value.sguid == openGoal) {
-                            return value;
-                        }
-                    })[0];
-
-                    $scope.openCriteriumList({}, need, goal, $scope.needs);
-                    setTimeout(function() {
-                        $("#content .tab .mypro.acrd").scrollTop($("#content .tab .mypro.acrd .crits ul li h5.current").offset().top - 200); 
-                    }, 0);
-                }
+            $rootScope.$broadcast('goalUserValueLoaded', {
+                goalsValues: goalsData,
+                userId: $scope.user.sguid
             });
+            $rootScope.$broadcast('loaderHide');
+
+            var openGoal = $cookieStore.get("openGoal");
+            if(!$scope.persistState) {
+                openGoal = null;
+            }
+
+            if($scope.openFirst && !openGoal) {
+                $scope.openCriteriumList({}, $scope.needs[0], $scope.needs[0].goals[0], $scope.needs);
+            }
+
+            if(openGoal && $scope.persistState) {
+                var openNeed = $cookieStore.get("openNeed");
+
+                var need = $scope.needs.filter(function(value) {
+                    if(value.sguid == openNeed) {
+                        return value;
+                    }
+                })[0];
+
+                var goal = need.goals.filter(function(value) {
+                    if(value.sguid == openGoal) {
+                        return value;
+                    }
+                })[0];
+
+                $scope.openCriteriumList({}, need, goal, $scope.needs);
+                setTimeout(function() {
+                    $("#content .tab .mypro.acrd").scrollTop($("#content .tab .mypro.acrd .crits ul li h5.current").offset().top - 200); 
+                }, 0);
+            }
         });
+        /*});*/
     }
 
     $scope.addEmptyElement = function(goal) {
