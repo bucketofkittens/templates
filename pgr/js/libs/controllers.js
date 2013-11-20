@@ -1227,12 +1227,22 @@ function FollowController($scope, $rootScope, User, $location, $routeParams, Aut
                 );
         }
         } else {
-            $location.path("/compare").search(
-                {
-                    user1: $scope.workspace.user.sguid, 
-                    user2: user.sguid
-                }
-            );
+            if($scope.workspace.user && $scope.workspace.user.sguid) {
+                $location.path("/compare").search(
+                    {
+                        user1: $scope.workspace.user.sguid, 
+                        user2: user.sguid
+                    }
+                );    
+            } else {
+                $location.path("/compare").search(
+                    {
+                        user1: user.sguid, 
+                        user2: user.sguid
+                    }
+                );
+            }
+            
         }
     };
 
