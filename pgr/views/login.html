@@ -53,6 +53,7 @@
                                             placeholder="Email"
                                             ui-keypress="{13:'onKeyPressReg($event)'}"  /> 
                                     </p>
+                                    <p class="errors" ng-if="errorEmail">{{errorEmail}}</p>
                                     <p>
                                         <input 
                                             type="email" 
@@ -86,7 +87,7 @@
                                     </p>    
                                 </div>
                                 
-                                <p class="errors" ng-if="error">{{errors}}</p>
+                                
                                 <p class="acknowledge">
                                     <input type="checkbox" required="required" ng-model="acknowledge" class="icheckbox_minimal"  />
                                     <label>I acknowledge that I have read and accept the<br /> <a class="notdark">Terms of use Agreement</a> and consent to the <a class="notdark">Privacy Policy</a>.</label>

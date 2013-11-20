@@ -1081,8 +1081,6 @@ function LoginController($scope, Sessions, $rootScope, User, Social, $facebook, 
      * @returns {undefined}
      */
     $scope.onAddUser = function ($event) {
-        console.log($scope.captha);
-
         User.create(
             {user: JSON.stringify({
                 "login": $scope.user.email,
@@ -1091,8 +1089,12 @@ function LoginController($scope, Sessions, $rootScope, User, Social, $facebook, 
             })}
             ,function(data) {
                 if(!data.success) {
+                    $scope.errors = "";
+                    $scope.errorEmail = "";
                     angular.forEach(data.errors, function(value, key) {
-                        $scope.errors += value;
+                        if(value && value == 'login: ["is already taken"]') {
+                            $scope.errorEmail = "Exists specified email.";
+                        }
                     });
                 } else {
                     Sessions.signin({}, $.param({
