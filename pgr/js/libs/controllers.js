@@ -569,7 +569,6 @@ function NeedsAndGoalsController($scope, Goals, Criterion, AuthUser, UserCriteri
             var needsData = {};
             angular.forEach($scope.needs, function(needItem, needKey) {
                 needsData[needItem.sguid] = 0;
-                //needItem.current_value = parseInt(needsData[needItem.sguid]);
                 angular.forEach(needItem.goals, function(goalItem, goalKey) {
                     goalItem.current_value = parseInt(goalsData[goalItem.sguid]);
                     if(goalsData[goalItem.sguid]) {
@@ -2218,6 +2217,9 @@ function MyProfileController($scope, $rootScope, User, $location, $cookieStore, 
             $scope.workspace.user.profession.name = data.message.name;
             $scope.workspace.user.profession.sguid = data.message.guid;
             $scope.onPublish();
+            Professions.query({ id: $scope.career.sguid }, {}, function(data) {
+                $scope.curProff = data;
+            });
         });
     }
 
