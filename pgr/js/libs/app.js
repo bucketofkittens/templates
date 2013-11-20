@@ -69,6 +69,7 @@ pgrModule.config(function($routeSegmentProvider, $routeProvider) {
         .when('/change_email',              'changeEmail')
         .when('/change_password',           'changePassword')
         .when('/compare',                   'compare')
+        .when('/search',                    'search')
         
         .when('/',                          'main')
         
@@ -93,6 +94,10 @@ pgrModule.config(function($routeSegmentProvider, $routeProvider) {
         .segment('main', {
             templateUrl: 'views/main.html',
             controller: MainController})
+
+        .segment('main', {
+            templateUrl: 'views/search.html',
+            controller: SearchAdvanceController})
 
         .segment('compare', {
             templateUrl: 'views/compare.html',

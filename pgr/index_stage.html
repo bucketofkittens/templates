@@ -29,7 +29,7 @@
 				</section>
 
 				<!-- Поиск -->
-				<div id="search" ng-controller="SearchController">
+				<div id="search" ng-controller="SearchController" ng-init="limit=5">
 					<input 
 						type="text" 
 						ng-model="searchText" 
@@ -38,7 +38,7 @@
 						ng-change="onSearch()" />
 					<input type="submit" class="searcher" ng-click="onSearch()" />
 					<div ng-cloak class="searchResult" ng-if="resultSearch.length > 0">
-						<div class="item" ng-repeat="(userKey, userItem) in resultSearch">
+						<div class="item" ng-repeat="(userKey, userItem) in resultSearch | limitTo: limit">
 							<div class="image">
 								<img ng-src="{{userItem.avatar}}" alt="">
 								<i>{{userItem.points}}</i>
@@ -50,6 +50,9 @@
 								<p class="profession">{{userItem.profession.name}}</p>
 								<p class="league">{{userItem.league.name}} league</p>
 							</div>
+						</div>
+						<div class="all" ng-if="resultSearch.length > limit">
+							<a ng-click="onAdvanceSearch()">See all result</a>
 						</div>
 					</div>
 				</div>

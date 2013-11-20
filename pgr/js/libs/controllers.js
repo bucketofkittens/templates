@@ -2482,10 +2482,16 @@ function FollowCaruselController($scope) {
     }
 }
 
-function SearchController($scope, User, $rootScope) {
+function SearchController($scope, User, $rootScope, $location) {
     $scope.searchText = "";
     $scope.resultSearch = [];
     $scope.usersCollections = [];
+
+    $scope.onAdvanceSearch = function() {
+        $scope.resultSearch = [];
+        $scope.searchText = "";
+        $location.path("/search").search({text: $scope.searchText});
+    }
 
     $scope.test_ = function() {
         angular.forEach($scope.usersCollections, function(value, key) {
@@ -2522,4 +2528,8 @@ function SearchController($scope, User, $rootScope) {
     $scope.$on('hideSearch', function($event) {
        $scope.resultSearch = [];
     });
+}
+
+function SearchAdvanceController($scope) {
+
 }
