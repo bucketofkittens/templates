@@ -95,7 +95,7 @@ pgrModule.config(function($routeSegmentProvider, $routeProvider) {
             templateUrl: 'views/main.html',
             controller: MainController})
 
-        .segment('main', {
+        .segment('search', {
             templateUrl: 'views/search.html',
             controller: SearchAdvanceController})
 
