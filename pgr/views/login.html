@@ -41,55 +41,47 @@
                     <div class="right_wrapper">
                         <div class="sign-up" ng-show="signup">
                             <ng-form name="RegForm" novalidate class="css-form myForm" >
-                                <div class="left">
-                                    <p>
-                                        <input 
-                                            type="email" 
-                                            id="email_i" 
-                                            class="form-input"
-                                            ng-model="user.email" 
-                                            required
-                                            ng-minlength="6"
-                                            placeholder="Email"
-                                            ui-keypress="{13:'onKeyPressReg($event)'}"  /> 
-                                    </p>
-                                    <p class="errors" ng-if="errorEmail">{{errorEmail}}</p>
-                                    <p>
-                                        <input 
-                                            type="email" 
-                                            id="name_i" 
-                                            class="form-input"
-                                            ng-model="user.reemail" 
-                                            required 
-                                            ng-minlength="6"
-                                            placeholder="Confirm email"
-                                            disable-paste
-                                            onpaste="return false;"
-                                            ui-keypress="{13:'onKeyPressReg($event)'}" /> 
-                                    </p>
-                                    <p>
-                                        <input 
-                                            type="password" 
-                                            id="name_i" 
-                                            class="form-input"
-                                            ng-model="user.password" 
-                                            required 
-                                            ng-minlength="6"
-                                            placeholder="Password"
-                                            ui-keypress="{13:'onKeyPressReg($event)'}" /> 
-                                    </p>
-                                </div>
-                                <div class="right">
-                                    <p>
-                                        <div
-                                            vc-recaptcha
-                                            ng-model="captha"
-                                            key="6Lf1Z-oSAAAAAEkk7m5n6cGiwgqeMya21UetPbIO"
-                                        ></div>
-                                    </p>    
-                                </div>
-                                
-                                
+                                <p>
+                                    <input 
+                                        type="email" 
+                                        id="email_i" 
+                                        class="form-input"
+                                        ng-model="user.email" 
+                                        required
+                                        ng-minlength="6"
+                                        placeholder="Email"
+                                        ui-keypress="{13:'onKeyPressReg($event)'}"  /> 
+                                </p>
+                                <p class="errors" ng-if="errorEmail">{{errorEmail}}</p>
+                                <p>
+                                    <input 
+                                        type="email" 
+                                        id="name_i" 
+                                        class="form-input"
+                                        ng-model="user.reemail" 
+                                        required 
+                                        ng-minlength="6"
+                                        placeholder="Confirm email"
+                                        disable-paste
+                                        onpaste="return false;"
+                                        ui-keypress="{13:'onKeyPressReg($event)'}" /> 
+                                </p>
+                                <p>
+                                    <input 
+                                        type="password" 
+                                        id="name_i" 
+                                        class="form-input"
+                                        ng-model="user.password" 
+                                        required 
+                                        ng-minlength="6"
+                                        placeholder="Password"
+                                        ui-keypress="{13:'onKeyPressReg($event)'}" /> 
+                                </p>
+                                <div
+                                    vc-recaptcha
+                                    ng-model="captha"
+                                    key="6Lf1Z-oSAAAAAEkk7m5n6cGiwgqeMya21UetPbIO"
+                                ></div><br />
                                 <p class="acknowledge">
                                     <input type="checkbox" required="required" ng-model="acknowledge" class="icheckbox_minimal"  />
                                     <label>I acknowledge that I have read and accept the<br /> <a class="notdark">Terms of use Agreement</a> and consent to the <a class="notdark">Privacy Policy</a>.</label>

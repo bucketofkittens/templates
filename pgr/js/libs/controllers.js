@@ -2220,6 +2220,8 @@ function MyProfileController($scope, $rootScope, User, $location, $cookieStore, 
     $("body").on("click", ".close", function(event) {
         event.stopPropagation();
         event.stopImmediatePropagation();
+        event.preventDefault();
+        event.stopEvent();
         return false;
     });
 
