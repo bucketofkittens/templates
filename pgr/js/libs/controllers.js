@@ -2207,7 +2207,8 @@ function MyProfileController($scope, $rootScope, User, $location, $cookieStore, 
         });
     }
 
-    $scope.addProfession = function() {
+    $scope.addProfession = function($event) {
+        console.log($scope.workspace.user.profession.name);
         ProfessionCreate.create({}, {
             "profession": { 
                 name: $scope.workspace.user.profession.name 
@@ -2221,13 +2222,16 @@ function MyProfileController($scope, $rootScope, User, $location, $cookieStore, 
                 $scope.curProff = data;
             });
         });
+        $event.preventDefault();
+        $event.stopPropagation();
+        return false;
     }
 
     /* config object */
     $scope.professionOption = {
         options: {
             html: true,
-            onlySelect: true,
+            onlySelect: false,
             source: function (request, response) {
                 var data = $scope.curProff;
                 var outData = [];
@@ -2241,9 +2245,11 @@ function MyProfileController($scope, $rootScope, User, $location, $cookieStore, 
         methods: {},
         events: {
             change: function(event, ui) {
-                $scope.workspace.user.profession.name = ui.item.label;
-                $scope.workspace.user.profession.sguid = ui.item.sguid;
-                $scope.onPublish();
+                if(ui.item) {
+                    $scope.workspace.user.profession.name = ui.item.label;
+                    $scope.workspace.user.profession.sguid = ui.item.sguid;
+                    $scope.onPublish();    
+                }
             }
         }
     };
