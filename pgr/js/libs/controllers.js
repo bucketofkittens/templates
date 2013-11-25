@@ -1182,9 +1182,8 @@ function LoginController($scope, Sessions, $rootScope, User, Social, $facebook, 
                     path: "me",
                     method: "GET"
                 }, function(data) {
-                    console.log(data);
                     Social.login({}, {email: data.emails.account}, function(data) {
-                        $rootScope.$broadcast('onSignin', {sguid: data.guid, isSocial: true});
+                        $rootScope.$broadcast('onSignin', {sguid: data.guid, isSocial: true, {update: data.name}});
                         $rootScope.$broadcast('loaderHide');
                         socialsAccess.live.isLoggined = true;
                     });
@@ -1204,7 +1203,7 @@ function LoginController($scope, Sessions, $rootScope, User, Social, $facebook, 
         FB.api('/me',{fields: 'id,name,email'},  function(response) {
             console.log(response);
             Social.login({}, {email: response.email}, function(data) {
-                $rootScope.$broadcast('onSignin', {sguid: data.guid, isSocial: true});
+                $rootScope.$broadcast('onSignin', {sguid: data.guid, isSocial: true, update: { name: response.name} });
                 $rootScope.$broadcast('loaderHide');
                 socialsAccess.facebook.isLoggined = true;
             });
@@ -2064,6 +2063,19 @@ function RootController($scope, $facebook, AuthUser, User, $rootScope, Needs, So
         if(message && message.sguid) {
             User.query({id: message.sguid}, function(data) {
                 $scope.workspace.user = data;
+                console.log(message.update);
+                if(message.update) {
+                    User.updateUser(
+                        { "id": $scope.workspace.user.sguid },  
+                        { user: JSON.stringify({ name: message.update.name }) }, 
+                        function(data) {
+                            if(message.update.name) {
+                                $scope.workspace.user.name = message.update.name;
+                            }
+                        }
+                    );
+                }
+                
                 $scope.workspace.user.points = parseInt($scope.workspace.user.points);
                 if(isNaN($scope.workspace.user.points)) {
                     $scope.workspace.user.points = 0;
@@ -2088,10 +2100,11 @@ function RootController($scope, $facebook, AuthUser, User, $rootScope, Needs, So
         }
     });
     
-    $scope.gplusAuth = function(email) {
+    $scope.gplusAuth = function(email, name) {
         Social.login({}, {email: email}, function(data) {
-            $rootScope.$broadcast('onSignin', {sguid: data.guid, isSocial: true});
+            $rootScope.$broadcast('onSignin', {sguid: data.guid, isSocial: true , update: {name: name}});
             $rootScope.$broadcast('loaderHide');
+
         });
     };
 

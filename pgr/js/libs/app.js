@@ -16,7 +16,8 @@ var socialsAccess = {
 		apiKey: 'AIzaSyBUJ3rialFIcJ5QvuWFkvPqmFbTBIZ2Kmo',
 		scopes: [
 			'https://www.googleapis.com/auth/plus.me',
-			'https://www.googleapis.com/auth/userinfo.email'
+			'https://www.googleapis.com/auth/userinfo.email',
+			'https://www.googleapis.com/auth/userinfo.profile'
 		],
 		isLoggined: false
 	},
@@ -165,8 +166,9 @@ function onSignInCallback(authResult) {
     if (authResult['access_token']) {
       	gapi.client.load('oauth2', 'v2', function() {
 		  gapi.client.oauth2.userinfo.get().execute(function(resp) {
+		  	console.log(resp);
 		    var scope = angular.element($("body")).scope();
-		    scope.gplusAuth(resp.email);
+		    scope.gplusAuth(resp.email, resp.name);
 		  })
 		});
     }
@@ -207,7 +209,7 @@ function makeApiCall() {
 	gapi.client.load('oauth2', 'v2', function() {
 	  gapi.client.oauth2.userinfo.get().execute(function(resp) {
 	    var scope = angular.element($("body")).scope();
-	    scope.gplusAuth(resp.email);
+	    scope.gplusAuth(resp.email, resp.name);
 	    socialsAccess.googlePlus.isLoggined = true;
 	  })
 	});
