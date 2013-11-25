@@ -7,7 +7,7 @@
             </div>
             <div class="header" ng-if="!signup">
                <h4>Sign in to iRate</h4>
-               <p>Use Facebook, Live, Google+, Improva or your email to sign in.</p> 
+               <p>Use Facebook, LiveID, Google+, Improva or your email to sign in.</p> 
                <p>Don’t have a iRate account yet? <a ng-click="onSignStateChange()">Sign up </a>now.</p>
             </div>
             <div class="body">
@@ -127,7 +127,7 @@
                                         ui-keypress="{13:'onKeyPress($event)'}" /> 
                                 </p>
                                 <div class="left">
-                                    <p class="errors" ng-if="error">{{error}}</p>
+                                    <p class="errors" ng-show="error">{{error}}</p>
                                     <p>
                                         <a href="#">Forgot your password?</a>
                                     </p>

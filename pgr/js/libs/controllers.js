@@ -1041,10 +1041,6 @@ function LoginController($scope, Sessions, $rootScope, User, Social, $facebook, 
         $scope.signup = $scope.signup ? false : true;
     }
 
-    $scope.onAcknowledge = function() {
-        console.log("login");
-    }
-
     /**
      * Вызывается при нажатии ok в форме авторизации
      * @param  {[type]} $event [description]
