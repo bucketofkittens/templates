@@ -189,6 +189,18 @@ pgrModule.factory('Professions', function ($resource) {
     );
 });
 
+pgrModule.factory('MailHash', function ($resource) {
+    return $resource(
+        host+'/users/mail_reset_hash/', 
+        {}, 
+        {
+            create: {
+                method: 'POST'
+            }
+        }
+    );
+});
+
 pgrModule.factory('ProfessionCreate', function ($resource) {
     return $resource(
         host+'/professions', 

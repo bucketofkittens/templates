@@ -219,3 +219,5 @@ sup.du{right:-15px;left:auto}
 .proffesion_list{position:absolute;margin:-10px 0 0 135px;border:1px solid #ccc;background:#fff;z-index:9999}.proffesion_list li{padding:10px;position:relative}.proffesion_list li a{cursor:pointer;display:block;margin-right:15px}
 .proffesion_list li span{cursor:pointer}
 .proffesion_list li:hover{background:#ccc}
+.form-show{position:fixed;left:50%;top:50%;z-index:99999;background:#fff;text-align:center;width:300px;margin-left:-150px;box-shadow:0 0 20px 1px rgba(0,0,0,0.2);padding:30px;margin-top:-150px}.form-show p{font-size:16px}
+.form-show input{float:none}

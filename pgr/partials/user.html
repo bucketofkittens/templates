@@ -125,10 +125,11 @@
 					</div>
 				</div>
 				<ul ng-class="{current: needItem.current}">
-					<li ng-repeat="(goalKey,goalItem) in needItem.goals | orderBy:'position'" data-goalid="{{goalItem.sguid}}" >
+					<li ng-repeat="(goalKey,goalItem) in needItem.goals | orderBy:'position'" data-goalid="{{goalItem.sguid}}" user-id="{{user.sguid}}" >
 						<h5>
 							<a 
 								ng-class="{current: goalItem.current}"
+								data-goalid="{{goalItem.sguid}}" user-id="{{user.sguid}}"
 								ng-click="openCriteriumList($event, needItem, goalItem, needs)">
 								<span><img ng-src="{{goalItem.icon}}" alt="" title="{{goalItem.name}}" /></span>
 								{{goalItem.name}}

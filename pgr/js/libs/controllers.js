@@ -770,6 +770,26 @@ function NeedsAndGoalsController($scope, Goals, Criterion, AuthUser, UserCriteri
         
             goal.current = true;
 
+            var element = $($event.currentTarget);
+            var id = element.attr("data-goalid");
+            var items = $("a[data-goalid='"+id+"']");
+            var hasCurrent = $(element).hasClass("current");
+            
+            $.each(items, function(key, value) {
+                if($(value).attr("user-id") != $scope.user.sguid) {
+                    console.log(hasCurrent);
+                    console.log($(value).hasClass("current"));
+                    if(
+                        goal.current && !$(value).hasClass("current") ||
+                        !goal.current && $(value).hasClass("current")) {
+                        setTimeout(function() {
+                            $(value).click();
+                        });    
+                    }
+                    
+                }
+            });
+
             $scope.getCriteriumByGoal(goal, need);
 
             if($scope.persistState) {
@@ -2518,7 +2538,7 @@ function ChangeEmailController($scope, User, $location, Sessions) {
     }
 }
 
-function ChangePasswordController($scope, Sessions, User, $location) {
+function ChangePasswordController($scope, Sessions, User, $location, $rootScope, MailHash) {
     $scope.form = {
         oldPassword: "",
         newPassword: "",
@@ -2526,13 +2546,27 @@ function ChangePasswordController($scope, Sessions, User, $location) {
         email: ""
     }
 
+    $scope.message = 0;
+
     $scope.state = 1;
 
     $scope.onCancel = function() {
         $location.path("/my_profile");
     }
 
+    $scope.onChangePasswordOk = function() {
+        $scope.message = 0;
+    }
+
     $scope.onChangePassword = function() {
+        $scope.message = 1;
+
+        MailHash.create({}, {
+            "email": $scope.form.email
+        }, function(data) {
+            console.log(data);
+        });
+        /*
         if($scope.form.newPassword == $scope.form.confirmPassword) {
             Sessions.signin({}, $.param({
                 "login": $scope.workspace.user.login,
@@ -2552,7 +2586,7 @@ function ChangePasswordController($scope, Sessions, User, $location) {
             });
         } else {
             $scope.error = "error";
-        }
+        }*/
     }
 }
 
