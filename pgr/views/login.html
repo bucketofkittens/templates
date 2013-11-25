@@ -3,7 +3,7 @@
         <div class="modal_wrapper">
             <div class="header" ng-if="signup">
                <h4>Sign up with your email address</h4>
-               <p>Do already have a iRate account? <a ng-click="onSignStateChange()">Sign in </a>now.</p>
+               <p>Аlready have a iRate account? <a ng-click="onSignStateChange()">Sign in </a>now.</p>
             </div>
             <div class="header" ng-if="!signup">
                <h4>Sign in to iRate</h4>
@@ -79,12 +79,15 @@
                                 </p>
                                 <div
                                     vc-recaptcha
+                                    theme="clean"
+                                    lang="ru"
                                     ng-model="captha"
                                     key="6Lf1Z-oSAAAAAEkk7m5n6cGiwgqeMya21UetPbIO"
                                 ></div><br />
+
                                 <p class="acknowledge">
                                     <input type="checkbox" required="required" ng-model="acknowledge" class="icheckbox_minimal"  />
-                                    <label>I acknowledge that I have read and accept the<br /> <a class="notdark">Terms of use Agreement</a> and consent to the <a class="notdark">Privacy Policy</a>.</label>
+                                    <label>I acknowledge that I have read and accept the<a class="notdark">Terms of use Agreement</a> and consent to the <a class="notdark">Privacy Policy</a>.</label>
                                 </p> 
                                 <p class="signup-submit">
                                     <input 
@@ -123,22 +126,26 @@
                                         placeholder="Password"
                                         ui-keypress="{13:'onKeyPress($event)'}" /> 
                                 </p>
-                                <p class="errors" ng-if="error">{{error}}</p>
-                                <p>
-                                    <a href="#">Forgot your password?</a>
-                                </p>
-                                <p>
-                                    <input type="checkbox" icheck />
-                                    <label>Keep me sign in</label>
-                                </p>    
-                                <p>
-                                    <input 
-                                        ng-disabled="LoginForm.$invalid"
-                                        ng-click="onSingin()" 
-                                        type="button" 
-                                        value="Sign in"
-                                        ui-keypress="{13:'onKeyPress($event)'}" />
-                                </p>
+                                <div class="left">
+                                    <p class="errors" ng-if="error">{{error}}</p>
+                                    <p>
+                                        <a href="#">Forgot your password?</a>
+                                    </p>
+                                    <p>
+                                        <input type="checkbox" icheck />
+                                        <label>Keep me sign in</label>
+                                    </p>
+                                </div>
+                                <div class="right">
+                                    <p class="singin-sub">
+                                        <input 
+                                            ng-disabled="LoginForm.$invalid"
+                                            ng-click="onSingin()" 
+                                            type="button" 
+                                            value="Sign in"
+                                            ui-keypress="{13:'onKeyPress($event)'}" />
+                                    </p>    
+                                </div> 
                             </ng-form>
                         </div>
                     </div>

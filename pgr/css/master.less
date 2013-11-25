@@ -1463,6 +1463,7 @@ footer {
                 width: 30px;
                 height: 30px;
                 background: url("../images/sex.png") left top no-repeat;
+                cursor: pointer;
                 img {
                     height: 30px;
                 }
@@ -1624,6 +1625,8 @@ footer {
                         padding: 0px 0px 20px 0px;
                     }
                     ul {
+                        position: relative;
+                        right: -37px;
                         li {
                             padding: 0% 0% 15px 15px;
                             display: inline-block;
@@ -1650,21 +1653,25 @@ footer {
                         width: 80%;
                     }
                     .sign-up {
-                        width: 300px;
+                        width: 270px;
                         margin: 0px auto;
+                        position: relative;
+                        left: 10px;
                     }
                     .acknowledge {
-                        width: 500px;
                         position: relative;
                         .icheckbox_minimal {
                             position: absolute;
-                            left: 0px;
+                            left: -20px;
                             top: 0px;
                         }
                         label {
-                            padding-left: 20px;
                             display: block;
-                            line-height: 100%;
+                            line-height: 140% !important;
+                            a {
+                                display: inline;
+                                margin: 0px !important;
+                            }
                         }
                     }
                     .tip {
@@ -1687,7 +1694,6 @@ footer {
                         font-family: 'Helvetica Neue Light';
                         line-height: 17px;
                         padding: 0px 0px 20px 5px;
-                        overflow: hidden;
                         a {
                             font-size: 13px;
                             margin: 15px 0px -5px 0px;
@@ -2227,4 +2233,7 @@ sup.du {
 }
 .ui-menu .ui-menu-item a {
     margin-right: 30px;
+}
+.singin-sub {
+    margin: 40px 17px 0px 0px;
 }
