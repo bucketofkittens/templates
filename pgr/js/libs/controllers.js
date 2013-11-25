@@ -260,6 +260,18 @@ function UserController($scope, $element, $route, $routeParams, User, Needs, Pro
         }
     });
 
+    $scope.onCompareUser = function() {
+        if($scope.workspace.user && $scope.workspace.user.sguid) {
+            $location.path("/compare").search({user1: $scope.workspace.user.sguid, user2: $scope.userId});
+        } else {
+            if($scope.tmpFollows.length > 0) {
+                $location.path("/compare").search({user1: $scope.tmpFollows[0].user.sguid, user2: $scope.userId});
+            } else {
+                $location.path("/compare").search({user1: $scope.userId, user2: $scope.userId});
+            }
+        }
+    }
+
     $scope.$watch("userId", function (newVal, oldVal, scope) {
         $scope.getUserInfo();
     });
@@ -1297,7 +1309,6 @@ function FollowController($scope, $rootScope, User, $location, $routeParams, Aut
                 $location.path("/compare").search({user1: $scope.tmpFollows[0].user.sguid, user2: $scope.tmpFollows[0].user.sguid});
             }
         }
-        
     }
 
     /**
