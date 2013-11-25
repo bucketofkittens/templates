@@ -86,10 +86,18 @@
 				<input 
 					id="pro_i" 
 					ng-model="workspace.user.profession.name"
-					type="text" 
-					ui-autocomplete="professionOption"
+					type="text"
+					ng-change="selectProfession($event, career)"
 					ui-keypress="{13:'addProfession($event)'}"  />
 			</p>
+			<div class="proffesion_list" ng-if="curProff && showProf && showProf2">
+				<ul>
+					<li ng-if="profItem.show" ng-repeat="(profKey, profItem) in curProff">
+						<a ng-click="selectCurrentProfession($event, profItem, profKey)">{{profItem.name}}</a>
+						<span class="close icon" ng-click="deleteItem($event, profItem, profKey)"></span>
+					</li>
+				</ul>
+			</div>
 			<p>
 				<label for="email_i">{{'_EmaiL_' | i18n}}:</label> 
 				<input 

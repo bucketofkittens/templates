@@ -1822,9 +1822,8 @@ ng-form:not(.ng-pristine) {
         width: 24px;
         height: 24px;
         position: absolute;
-        right: -30px;
+        right: 0px;
         top: 5px;
-        display: block;
     }
     &.profile {
         background: url("../images/i1.png") left top no-repeat;
@@ -2241,4 +2240,28 @@ sup.du {
 }
 .singin-sub {
     margin: 40px 17px 0px 0px;
+}
+
+.proffesion_list {
+    position: absolute;
+    margin: -10px 0px 0px 135px;
+    border: 1px solid #cccccc;
+    background: #ffffff;
+    z-index: 9999;
+    li {
+        padding: 10px;
+        position: relative;
+        a {
+            cursor: pointer;
+            display: block;
+            margin-right: 15px;
+        }
+        span {
+            cursor: pointer;
+        }
+        &:hover {
+            background: #cccccc;
+
+        }
+    }
 }

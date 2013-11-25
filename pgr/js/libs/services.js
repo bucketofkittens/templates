@@ -183,7 +183,8 @@ pgrModule.factory('Professions', function ($resource) {
             create: {
                 method: 'POST',
                 url: host+"/professions"
-            }
+            },
+            del: {method: "DELETE"}
         }
     );
 });
@@ -195,6 +196,10 @@ pgrModule.factory('ProfessionCreate', function ($resource) {
         {
             create: {
                 method: 'POST'
+            },
+            del: {
+                url: host+'/professions/:id', 
+                method: "DELETE"
             }
         }
     );

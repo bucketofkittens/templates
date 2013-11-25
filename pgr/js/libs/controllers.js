@@ -2203,6 +2203,7 @@ function MyProfileController($scope, $rootScope, User, $location, $cookieStore, 
     $scope.curNeed = null;
     $scope.curProff = [];
     $scope.showProf = false;
+    $scope.showProf2 = false;
     $scope.career = null;
 
     $scope.selectCareer = function($event, career) {
@@ -2210,6 +2211,38 @@ function MyProfileController($scope, $rootScope, User, $location, $cookieStore, 
             $scope.showProf = true;
             $scope.curProff = data;
         });
+    }
+
+    $scope.deleteItem = function($event, item, key) {
+        ProfessionCreate.del({id: item.sguid}, {}, function(data) {
+            $scope.curProff.splice(key, 1);
+        });
+    }
+
+    $scope.selectCurrentProfession = function($event, item, key) {
+        $scope.showProf2 = false;
+        $scope.workspace.user.profession.name = item.name;
+        $scope.workspace.user.profession.sguid = item.sguid;
+        $scope.onPublish();    
+    }
+
+    $scope.selectProfession = function($event) {
+        var countShow = 0;
+        angular.forEach($scope.curProff, function(value, key) {
+            var reg = new RegExp($scope.workspace.user.profession.name, "i");
+            if(reg.test(value.name)) {
+                countShow += 1;
+                value.show = true;
+            } else {
+                value.show = false;
+            }
+        });
+
+        if(countShow > 0) {
+            $scope.showProf2 = true;
+        } else {
+            $scope.showProf2 = false;
+        }
     }
 
     $scope.addProfession = function($event) {
@@ -2226,18 +2259,9 @@ function MyProfileController($scope, $rootScope, User, $location, $cookieStore, 
                 $scope.curProff = data;
             });
         });
-        $event.preventDefault();
-        $event.stopPropagation();
+
         return false;
     }
-
-    $("body").on("click", ".close", function(event) {
-        event.stopPropagation();
-        event.stopImmediatePropagation();
-        event.preventDefault();
-        event.stopEvent();
-        return false;
-    });
 
     /* config object */
     $scope.professionOption = {
