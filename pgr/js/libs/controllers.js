@@ -1105,41 +1105,54 @@ function LoginController($scope, Sessions, $rootScope, User, Social, $facebook, 
         }
     }
 
+    $scope.errorValidate = "";
+
     /**
      * 
      * @param {type} $event
      * @returns {undefined}
      */
     $scope.onAddUser = function ($event) {
-        User.create(
-            {user: JSON.stringify({
-                "login": $scope.user.email,
-                "email": $scope.user.email,
-                "password": $scope.user.password
-            })}
-            ,function(data) {
-                if(!data.success) {
-                    $scope.errors = "";
-                    $scope.errorEmail = "";
-                    angular.forEach(data.errors, function(value, key) {
-                        if(value && value == 'login: ["is already taken"]') {
-                            $scope.errorEmail = "Exists specified email.";
-                        }
-                    });
-                } else {
-                    Sessions.signin({}, $.param({
+        var phpquery = $.ajax({url:"test.php",
+          type: "POST",
+          async: false,
+          data:{recaptcha_challenge_field:Recaptcha.get_challenge(),recaptcha_response_field:Recaptcha.get_response()},
+          success:function(resp) {
+            if(resp == "0") {
+                $scope.errorValidate = "Text invalid";
+            } else {
+                User.create(
+                    {user: JSON.stringify({
+                        "login": $scope.user.email,
                         "email": $scope.user.email,
                         "password": $scope.user.password
-                    }), function(data) {
-                        if(data.success) {
-                            $rootScope.$broadcast('onSignin', {sguid: data.guid, isSocial: true, noRedirect: true});
-                            $location.path("/my_profile/");
+                    })}
+                    ,function(data) {
+                        if(!data.success) {
+                            $scope.errors = "";
+                            $scope.errorEmail = "";
+                            angular.forEach(data.errors, function(value, key) {
+                                if(value && value == 'login: ["is already taken"]') {
+                                    $scope.errorEmail = "Exists specified email.";
+                                }
+                            });
+                        } else {
+                            Sessions.signin({}, $.param({
+                                "email": $scope.user.email,
+                                "password": $scope.user.password
+                            }), function(data) {
+                                if(data.success) {
+                                    $rootScope.$broadcast('onSignin', {sguid: data.guid, isSocial: true, noRedirect: true});
+                                    $location.path("/my_profile/");
+                                }
+                            });
                         }
-                    });
-                }
+                    }
+                );
             }
-        );
-    };
+          }
+        });
+    }
     
 
     /**
@@ -1183,7 +1196,10 @@ function LoginController($scope, Sessions, $rootScope, User, Social, $facebook, 
                     method: "GET"
                 }, function(data) {
                     Social.login({}, {email: data.emails.account}, function(data) {
-                        $rootScope.$broadcast('onSignin', {sguid: data.guid, isSocial: true, {update: data.name}});
+                        $rootScope.$broadcast('onSignin', {
+                            sguid: data.guid, 
+                            isSocial: true
+                        });
                         $rootScope.$broadcast('loaderHide');
                         socialsAccess.live.isLoggined = true;
                     });
