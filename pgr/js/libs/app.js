@@ -69,6 +69,7 @@ pgrModule.config(function($routeSegmentProvider, $routeProvider) {
         .when('/profile/:userId1/:userId2', 'profile.manyUser')
         .when('/change_email',              'changeEmail')
         .when('/change_password',           'changePassword')
+        .when('/forgot/:hash',              'changePassword')
         .when('/compare',                   'compare')
         .when('/search',                    'search')
         
@@ -110,7 +111,8 @@ pgrModule.config(function($routeSegmentProvider, $routeProvider) {
 
         .segment('changePassword', {
             templateUrl: 'views/changePassword.html',
-            controller: ChangePasswordController})
+            controller: ChangePasswordController,
+        	dependencies: ['hash']})
 
         .segment('login', {
             templateUrl: 'views/login.html',
@@ -132,7 +134,7 @@ pgrModule.config(function($routeSegmentProvider, $routeProvider) {
 });
 
 pgrModule.config(function($facebookProvider) {
-	$facebookProvider.setPermissions("email");
+	$facebookProvider.setPermissions("email,user_birthday,user_location,user_about_me");
 	$facebookProvider.setAppId(socialsAccess.facebook.applicationId[window.location.hostname]);
 });
 

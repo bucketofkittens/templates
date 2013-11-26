@@ -1198,7 +1198,8 @@ function LoginController($scope, Sessions, $rootScope, User, Social, $facebook, 
                     Social.login({}, {email: data.emails.account}, function(data) {
                         $rootScope.$broadcast('onSignin', {
                             sguid: data.guid, 
-                            isSocial: true
+                            isSocial: true,
+                            update: { name: data.name }
                         });
                         $rootScope.$broadcast('loaderHide');
                         socialsAccess.live.isLoggined = true;
@@ -1216,10 +1217,18 @@ function LoginController($scope, Sessions, $rootScope, User, Social, $facebook, 
     };
 
     $scope.$on('fb.auth.authResponseChange', function(data, d) {
-        FB.api('/me',{fields: 'id,name,email'},  function(response) {
-            console.log(response);
+        FB.api('/me', {fields: 'name,id,location,birthday,email'}, function(response) {
             Social.login({}, {email: response.email}, function(data) {
-                $rootScope.$broadcast('onSignin', {sguid: data.guid, isSocial: true, update: { name: response.name} });
+                var update = { name: response.name };
+                console.log(response);
+                if(response.location && response.location.name) {
+                    update.location = response.location.name;
+                }
+                $rootScope.$broadcast('onSignin', {
+                    sguid: data.guid, 
+                    isSocial: true, 
+                    update: update
+                });
                 $rootScope.$broadcast('loaderHide');
                 socialsAccess.facebook.isLoggined = true;
             });
@@ -2079,11 +2088,10 @@ function RootController($scope, $facebook, AuthUser, User, $rootScope, Needs, So
         if(message && message.sguid) {
             User.query({id: message.sguid}, function(data) {
                 $scope.workspace.user = data;
-                console.log(message.update);
                 if(message.update) {
                     User.updateUser(
                         { "id": $scope.workspace.user.sguid },  
-                        { user: JSON.stringify({ name: message.update.name }) }, 
+                        { user: JSON.stringify(message.update) }, 
                         function(data) {
                             if(message.update.name) {
                                 $scope.workspace.user.name = message.update.name;
@@ -2270,6 +2278,7 @@ function MyProfileController($scope, $rootScope, User, $location, $cookieStore, 
         Professions.query({ id: career.sguid }, {}, function(data) {
             $scope.showProf = true;
             $scope.curProff = data;
+            $scope.career = career;
         });
     }
 
@@ -2567,7 +2576,7 @@ function ChangeEmailController($scope, User, $location, Sessions) {
     }
 }
 
-function ChangePasswordController($scope, Sessions, User, $location, $rootScope, MailHash) {
+function ChangePasswordController($scope, Sessions, User, $location, $rootScope, MailHash, $routeParams) {
     $scope.form = {
         oldPassword: "",
         newPassword: "",
@@ -2578,6 +2587,13 @@ function ChangePasswordController($scope, Sessions, User, $location, $rootScope,
     $scope.message = 0;
 
     $scope.state = 1;
+
+    $scope.hash = "";
+    console.log($routeParams);
+    if($routeParams.hash) {
+        $scope.hash = $routeParams.hash;
+        $scope.state = 2;
+    }
 
     $scope.onCancel = function() {
         $location.path("/my_profile");

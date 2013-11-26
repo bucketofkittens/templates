@@ -129,9 +129,9 @@ footer #footer #follow_tab a{position:absolute;top:30%;right:1%;cursor:pointer;w
 [ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak{display:none !important}
 .login{width:100%;height:100%;background:#fff}.login .modal{z-index:1000;transition:all 1s ease-out;-webkit-transition:all 1s ease-out;width:70%;top:15% !important;margin:0 auto;position:relative}.login .modal .header{width:100%;text-align:center}.login .modal .header h4{color:#000;font-size:22px;margin-bottom:30px;font-family:'Helvetica Neue Light'}
 .login .modal .header p{color:#000;font-size:15px;font-family:'Helvetica Neue Light';line-height:20px}.login .modal .header p a{color:#028dda;cursor:pointer}.login .modal .header p a:hover{text-decoration:underline}
-.login .modal .body{width:100%;overflow:hidden;margin:40px 0}.login .modal .body .left{float:left;width:50%}.login .modal .body .left .left_wrapper{margin:0 0 0 20%}.login .modal .body .left .left_wrapper p{color:#000;font-size:16px;font-family:'Helvetica Neue Light';line-height:17px;padding:0 0 20px 0}
+.login .modal .body{width:95%;margin:40px auto;position:relative;left:-10px}.login .modal .body .left{float:left;width:50%}.login .modal .body .left .left_wrapper{margin:0 0 0 20%}.login .modal .body .left .left_wrapper p{color:#000;font-size:16px;font-family:'Helvetica Neue Light';line-height:17px;padding:0 0 20px 0}
 .login .modal .body .left .left_wrapper ul{position:relative;right:-37px}.login .modal .body .left .left_wrapper ul li{padding:0 0 40px 15px;display:inline-block;width:35%}.login .modal .body .left .left_wrapper ul li a{cursor:pointer}.login .modal .body .left .left_wrapper ul li a img{max-width:70px}
-.login .modal .body .right{float:right;width:50%}.login .modal .body .right.full{width:100%}
+.login .modal .body .right{float:left;width:40%}.login .modal .body .right.full{width:100%}
 .login .modal .body .right .right_wrapper{margin:0 0 0 0}.login .modal .body .right .right_wrapper .form-input{width:80%}
 .login .modal .body .right .right_wrapper .sign-up{width:270px;margin:0 auto;position:relative;left:10px}
 .login .modal .body .right .right_wrapper .acknowledge{position:relative}.login .modal .body .right .right_wrapper .acknowledge .icheckbox_minimal{position:absolute;left:-20px;top:0}
@@ -142,13 +142,13 @@ footer #footer #follow_tab a{position:absolute;top:30%;right:1%;cursor:pointer;w
 .login .modal .body .right .right_wrapper p a{font-size:13px;display:block}.login .modal .body .right .right_wrapper p a.notdark{display:inline-block;color:#028dda;font-size:16px}
 .login .modal .body .right .right_wrapper p label{font-size:15px;vertical-align:middle}
 .login .modal.show{opacity:1;display:block}
-.login .singin-sub{margin-top:30px}
+.login .singin-sub{margin-top:25px;margin-right:-5px}.login .singin-sub input{padding:12px 20px 10px 20px !important}
 .email .modal{width:230px;matgin-left:-100px}
 .email h4{margin-bottom:30px !important}
 .email .form-input{width:200px}
 .email p{margin-bottom:15px}
 .email input[type="button"]{margin-right:0 !important}
-.form-input{border:1px solid #ddd;background:transparent;font-size:120%;padding:3% 6% 1% 6% !important;font-family:'Helvetica Neue Light'}
+.form-input{border:1px solid #ddd;background:transparent;font-size:16px;line-height:120%;padding:3% 4% 1% 4% !important;font-family:'Helvetica Neue Light'}
 input[type="button"]{color:#000;font-family:'Helvetica Neue Light';cursor:pointer;background:transparent;border:1px solid #ddd;font-size:115%;padding:4% 7% 3% 7% !important;float:right;margin-right:7%}input[type="button"][disabled="disabled"]{opacity:.5;cursor:default}
 ng-form:not(.ng-pristine) input.ng-invalid:not(.ng-pristine){border-color:rgba(252,79,60,0.7)}
 .errors{color:#fc4f3c !important;padding-left:3px !important}
@@ -221,3 +221,4 @@ sup.du{right:-15px;left:auto}
 .proffesion_list li:hover{background:#ccc}
 .form-show{position:fixed;left:50%;top:50%;z-index:99999;background:#fff;text-align:center;width:300px;margin-left:-150px;box-shadow:0 0 20px 1px rgba(0,0,0,0.2);padding:30px;margin-top:-150px}.form-show p{font-size:16px}
 .form-show input{float:none}
+.cursor{cursor:pointer;vertical-align:middle}

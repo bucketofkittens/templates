@@ -1609,9 +1609,10 @@ footer {
             }
         }
         .body {
-            width: 100%;
-            overflow: hidden;
-            margin: 40px 0px;
+            width: 95%;
+            margin: 40px auto;
+            position: relative;
+            left: -10px;
             .left {
                 float: left;
                 width: 50%;
@@ -1642,8 +1643,8 @@ footer {
                 }
             }
             .right {
-                float: right;
-                width: 50%;
+                float: left;
+                width: 40%;
                 &.full {
                     width: 100%;
                 }
@@ -1720,7 +1721,11 @@ footer {
         }
     }
     .singin-sub {
-        margin-top: 30px;
+        margin-top: 25px;
+        margin-right: -5px;
+        input {
+            padding: 12px 20px 10px 20px !important;
+        }
     }
 }
 
@@ -1746,8 +1751,9 @@ footer {
 .form-input {
     border: 1px solid #dddddd;
     background: transparent;
-    font-size: 120%;
-    padding: 3% 6% 1% 6% !important;
+    font-size: 16px;
+    line-height: 120%;
+    padding: 3% 4% 1% 4% !important;
     font-family: 'Helvetica Neue Light';
 }
 input[type="button"] {
@@ -2284,4 +2290,9 @@ sup.du {
     input {
         float: none;
     }
+}
+
+.cursor {
+    cursor: pointer;
+    vertical-align: middle;
 }
