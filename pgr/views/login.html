@@ -50,7 +50,10 @@
                                         required
                                         ng-minlength="6"
                                         placeholder="Email"
-                                        ui-keypress="{13:'onKeyPressReg($event)'}"  /> 
+                                        name="NewEmail"
+                                        ui-keypress="{13:'onKeyPressReg($event)'}"  />
+                                        <br />
+                                        <span class="errorss" ng-show="RegForm.NewEmail.$dirty && (RegForm.NewEmail.$error.required || RegForm.NewEmail.$error.minlength || RegForm.NewEmail.$error.email)">Incorrect email</span>
                                 </p>
                                 <p class="errors" ng-if="errorEmail">{{errorEmail}}</p>
                                 <p>
@@ -64,7 +67,10 @@
                                         placeholder="Confirm email"
                                         disable-paste
                                         onpaste="return false;"
-                                        ui-keypress="{13:'onKeyPressReg($event)'}" /> 
+                                        name="NewMassEmail"
+                                        ui-keypress="{13:'onKeyPressReg($event)'}" />
+                                        <br />
+                                        <span class="errorss" ng-show="RegForm.NewMassEmail.$dirty && (RegForm.NewMassEmail.$error.required || RegForm.NewMassEmail.$error.minlength || RegForm.NewEmail.$error.email)">Incorrect mismatch</span> 
                                 </p>
                                 <p>
                                     <input 
@@ -75,7 +81,10 @@
                                         required 
                                         ng-minlength="6"
                                         placeholder="Password"
+                                        name="NewPassword"
                                         ui-keypress="{13:'onKeyPressReg($event)'}" /> 
+                                        <br />
+                                        <span class="errorss" ng-show="RegForm.NewPassword.$dirty && (RegForm.NewPassword.$error.required || RegForm.NewPassword.$error.minlength)">Incorrect password</span>
                                 </p>
                                 <div
                                     vc-recaptcha
@@ -107,15 +116,19 @@
                                 class="css-form myForm" >
                                 <p>
                                     <input 
-                                        type="text" 
+                                        type="email" 
                                         id="login_i" 
                                         class="form-input"
                                         ng-model="login.email"
+                                        name="Email"
                                         required 
                                         ng-minlength="6"
                                         placeholder="Email"
                                         ui-keypress="{13:'onKeyPress($event)'}" />
+                                        <br />
+                                        <span class="errorss" ng-show="LoginForm.Email.$dirty && (LoginForm.Email.$error.required || LoginForm.Email.$error.minlength || LoginForm.Email.$error.email)">Incorrect email</span>
                                 </p>
+                                
                                 <p>
                                     <input 
                                         type="password" 
@@ -123,14 +136,17 @@
                                         class="form-input"
                                         ng-model="login.password"
                                         required 
+                                        name="Password"
                                         ng-minlength="6"
                                         placeholder="Password"
                                         ui-keypress="{13:'onKeyPress($event)'}" /> 
+                                        <br />
+                                        <span class="errorss" ng-show="LoginForm.Password.$dirty && (LoginForm.Password.$error.required || LoginForm.Password.$error.minlength)">Incorrect password</span>
                                 </p>
                                 <div class="left">
                                     <p class="errors" ng-show="error">{{error}}</p>
                                     <p>
-                                        <a href="#">Forgot your password?</a>
+                                        <a href="#/change_password">Forgot your password?</a>
                                     </p>
                                     <p>
                                         <input type="checkbox" icheck />

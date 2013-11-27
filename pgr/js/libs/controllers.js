@@ -1237,6 +1237,7 @@ function LoginController($scope, Sessions, $rootScope, User, Social, $facebook, 
 }
 
 function LoaderController($scope) {
+    
     $scope.$on('loaderShow', function() {
         $("#modal-shadow").css("height", $("#content").outerHeight(true)+$("header").outerHeight(true));
         $("#modal-shadow").addClass("show");
@@ -1373,7 +1374,6 @@ function FollowController($scope, $rootScope, User, $location, $routeParams, Aut
  * @returns {MainController}
  */
 function MainController($scope, Leagues, User, $rootScope, $location, $timeout, AuthUser) {
-
     /**
      * Забираем список пользователей
      * @return {object} 
@@ -1926,6 +1926,8 @@ function RootController($scope, $facebook, AuthUser, User, $rootScope, Needs, So
     $scope.authUserId = AuthUser.get();
     $scope.workspace = {};
     $scope.tmpFollows = [];
+
+
 
     $scope.controller = $location.path().split("/").join("_");
 
