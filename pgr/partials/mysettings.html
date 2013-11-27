@@ -65,13 +65,31 @@
 					id="age_i" />
 			</p>
 			<p>
-				<label for="loc_i">{{'_LocL_' | i18n}}:</label>
+				<label for="areapro_i">State:</label>
+				<select 
+					id="areapro_i"
+					ng-options="item.name for item in states" 
+					ng-model="state"
+					ng-change="selectCityByState($event, state)">
+				</select>
+			</p>
+			<p>
+				<label for="loc_i">City:</label>
 				<input 
 					id="loc_i" 
-					ng-model="workspace.user.state.name"
-					type="text" 
-					ui-autocomplete="stateOption"  />
+					ng-model="workspace.user.city.name"
+					type="text"
+					ng-change="testCity($event)" />
+					<img src="/images/7.jpg" ng-if="isAddState" class="cursor" ng-click="addCity($event)" width="40px" alt="" />
 			</p>
+			<div class="proffesion_list" ng-if="curState && showState && showState2">
+				<ul>
+					<li ng-if="stateItem.show" ng-repeat="(stateKey, stateItem) in curState">
+						<a ng-click="selectCurrentCity($event, stateItem, stateKey)">{{stateItem.name}}</a>
+						<span class="close icon" ng-click="deleteCityItem($event, stateItem, stateKey)"></span>
+					</li>
+				</ul>
+			</div>
 			<p>
 				<label for="areapro_i">Career:</label>
 				<select 

@@ -189,6 +189,41 @@ pgrModule.factory('Professions', function ($resource) {
     );
 });
 
+pgrModule.factory('City', function ($resource) {
+    return $resource(
+        host+'/cities/:id', 
+        {id:'@id'}, 
+        {
+            create: {
+                method: 'POST',
+                url: host+"/cities/"
+            },
+            del: {method: "DELETE"}
+        }
+    );
+});
+
+pgrModule.factory('CityByState', function ($resource) {
+    return $resource(
+        host+'/cities/by_state/:id', 
+        {id:'@id'}
+    );
+});
+
+pgrModule.factory('States', function ($resource) {
+    return $resource(
+        host+'/states/', 
+        {id:'@id'}, 
+        {
+            create: {
+                method: 'POST',
+                url: host+"/cities"
+            },
+            del: {method: "DELETE"}
+        }
+    );
+});
+
 pgrModule.factory('MailHash', function ($resource) {
     return $resource(
         host+'/users/mail_reset_hash/', 

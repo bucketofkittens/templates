@@ -2268,14 +2268,20 @@ function CropImageController($scope, $rootScope) {
     }
 }
 
-function MyProfileController($scope, $rootScope, User, $location, $cookieStore, Professions, ProfessionCreate) {
+function MyProfileController($scope, $rootScope, User, $location, $cookieStore, Professions, ProfessionCreate, City, States, CityByState) {
     $scope.tab = 2;
     $scope.curNeed = null;
     $scope.curProff = [];
+    $scope.curState = [];
     $scope.showProf = false;
     $scope.showProf2 = false;
+    $scope.showState = false;
+    $scope.showState2 = false;
+    $scope.isAddState = false;
     $scope.career = null;
     $scope.isAddProff = false;
+    $scope.states = [];
+    $scope.state = null;
 
     $scope.selectCareer = function($event, career) {
         if(career) {
@@ -2287,9 +2293,42 @@ function MyProfileController($scope, $rootScope, User, $location, $cookieStore, 
         }
     }
 
+    $scope.selectCityByState = function($event, state) {
+        if(state) {
+            CityByState.query({ id: state.sguid }, {}, function(data) {
+                $scope.showState = true;
+                $scope.curState = data;
+                $scope.state = state;
+            });    
+        }
+    }
+
+    $scope.selectCity = function($event) {
+        City.query({}, {}, function(data) {
+            $scope.showState = true;
+            $scope.curState = data;
+        });
+    }
+
+    $scope.getStates = function($event) {
+        States.query({}, {}, function(data) {
+            $scope.showState = true;
+            $scope.states = data;
+        });    
+    }
+
+    $scope.getStates();
+    $scope.selectCity();
+
     $scope.deleteItem = function($event, item, key) {
         ProfessionCreate.del({id: item.sguid}, {}, function(data) {
             $scope.curProff.splice(key, 1);
+        });
+    }
+
+    $scope.deleteCityItem = function($event, item, key) {
+        City.del({id: item.sguid}, {}, function(data) {
+            $scope.curState.splice(key, 1);
         });
     }
 
@@ -2298,6 +2337,14 @@ function MyProfileController($scope, $rootScope, User, $location, $cookieStore, 
         $scope.isAddProff = false;
         $scope.workspace.user.profession.name = item.name;
         $scope.workspace.user.profession.sguid = item.sguid;
+        $scope.onPublish();    
+    }
+
+    $scope.selectCurrentCity = function($event, item, key) {
+        $scope.showState2 = false;
+        $scope.isAddState = false;
+        $scope.workspace.user.city.name = item.name;
+        $scope.workspace.user.city.sguid = item.sguid;
         $scope.onPublish();    
     }
 
@@ -2336,6 +2383,41 @@ function MyProfileController($scope, $rootScope, User, $location, $cookieStore, 
         }
     }
 
+    $scope.testCity = function($event) {
+        var countShow = 0;
+        var proffisset = false;
+
+        if($scope.workspace.user.city.name.length > 0) {
+            angular.forEach($scope.curState, function(value, key) {
+                var reg = new RegExp($scope.workspace.user.city.name, "i");
+                console.log(reg);
+                if(reg.test(value.name)) {
+                    countShow += 1;
+                    value.show = true;
+                } else {
+                    value.show = false;
+                }
+                if(value.name == $scope.workspace.user.city.name) {
+                    $scope.isAddState = false;
+                    proffisset = true;
+                }
+            });    
+        } else {
+            $scope.showState2 = false;
+        }
+        
+
+        if(!proffisset) {
+            $scope.isAddState = true;
+        }
+        if(countShow > 0) {
+            $scope.showState2 = true;
+        } else {
+            $scope.showState2 = false;
+            $scope.isAddState = true;
+        }
+    }
+
     $scope.addProfession = function($event) {
         ProfessionCreate.create({}, {
             "profession": { 
@@ -2349,6 +2431,26 @@ function MyProfileController($scope, $rootScope, User, $location, $cookieStore, 
             Professions.query({ id: $scope.career.sguid }, {}, function(data) {
                 $scope.curProff = data;
                 $scope.isAddProff = false;
+            });
+        });
+
+        return false;
+    }
+
+    $scope.addCity = function($event) {
+        console.log($scope.state);
+        City.create({}, {
+            "city": { 
+                name: $scope.workspace.user.city.name
+            },
+            "state_guid": $scope.state.sguid
+        }, function(data) {
+            $scope.workspace.user.city.name = data.message.name;
+            $scope.workspace.user.city.sguid = data.message.guid;
+            $scope.onPublish();
+            City.query({}, {}, function(data) {
+                $scope.curState = data;
+                $scope.isAddState = false;
             });
         });
 
@@ -2380,11 +2482,32 @@ function MyProfileController($scope, $rootScope, User, $location, $cookieStore, 
         }
     });
 
+    $scope.$watch("workspace.user.city", function (newVal, oldVal, scope) {
+        
+        if($scope.workspace.user && $scope.workspace.user.city && $scope.curState) {
+            console.log($scope.workspace.user.city);
+            if($scope.workspace.user.city.state_sguid) {
+                $scope.state = $scope.curState.filter(function(value) {
+                    if(newVal.goal_sguid == value.sguid) {
+                        return value;
+                    }
+                })[0];
+                $scope.selectCityByState({}, $scope.state);
+                $scope.showState = true;    
+            }
+        }
+    });
+
     $scope.$watch("workspace.user", function (newVal, oldVal, scope) {
+        console.log($scope.workspace.user);
         if($scope.workspace.user && !$scope.workspace.user.profession && $scope.curNeed) {
             $scope.career = $scope.curNeed.goals[1];
-            console.log($scope.career);
             $scope.selectCareer({}, $scope.career);
+        }
+
+        if($scope.workspace.user && !$scope.workspace.user.city && $scope.curState) {
+            $scope.state = $scope.curState[1];
+            $scope.selectCityByState({}, $scope.state);
         }
     });
 
@@ -2458,8 +2581,8 @@ function MyProfileController($scope, $rootScope, User, $location, $cookieStore, 
             user["name"] = $scope.workspace.user.name;
         }
 
-        if($scope.workspace.user.state) {
-            user["state"] = $scope.workspace.user.state.sguid;
+        if($scope.workspace.user.city) {
+            user["citie"] = $scope.workspace.user.city.sguid;
         }
 
         if(birthday) {
