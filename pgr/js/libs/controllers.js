@@ -2273,6 +2273,7 @@ function MyProfileController($scope, $rootScope, User, $location, $cookieStore, 
     $scope.showProf = false;
     $scope.showProf2 = false;
     $scope.career = null;
+    $scope.isAddProff = false;
 
     $scope.selectCareer = function($event, career) {
         Professions.query({ id: career.sguid }, {}, function(data) {
@@ -2297,6 +2298,7 @@ function MyProfileController($scope, $rootScope, User, $location, $cookieStore, 
 
     $scope.selectProfession = function($event) {
         var countShow = 0;
+        var proffisset = false;
         angular.forEach($scope.curProff, function(value, key) {
             var reg = new RegExp($scope.workspace.user.profession.name, "i");
             if(reg.test(value.name)) {
@@ -2305,12 +2307,22 @@ function MyProfileController($scope, $rootScope, User, $location, $cookieStore, 
             } else {
                 value.show = false;
             }
+            if(value.name == $scope.workspace.user.profession.name) {
+                $scope.isAddProff = false;
+                proffisset = true;
+            }
         });
+
+        if(!proffisset) {
+            $scope.isAddProff = true;
+        }
 
         if(countShow > 0) {
             $scope.showProf2 = true;
+            
         } else {
             $scope.showProf2 = false;
+            $scope.isAddProff = true;
         }
     }
 
@@ -2326,6 +2338,7 @@ function MyProfileController($scope, $rootScope, User, $location, $cookieStore, 
             $scope.onPublish();
             Professions.query({ id: $scope.career.sguid }, {}, function(data) {
                 $scope.curProff = data;
+                $scope.isAddProff = false;
             });
         });
 
@@ -2589,7 +2602,6 @@ function ChangePasswordController($scope, Sessions, User, $location, $rootScope,
     $scope.state = 1;
 
     $scope.hash = "";
-    console.log($routeParams);
     if($routeParams.hash) {
         $scope.hash = $routeParams.hash;
         $scope.state = 2;
