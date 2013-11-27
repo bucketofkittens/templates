@@ -211,7 +211,7 @@ sup.du{right:-15px;left:auto}
 #setting_info .league{width:43px;height:35px}
 .controller__ .content_wrap{width:100% !important}
 .reset{margin:0 0 0 135px !important;width:233px !important}
-.signup-submit input[type="button"]{padding-top:2% !important;padding-bottom:1% !important;padding-left:3% !important;padding-right:3% !important}
+.signup-submit{margin-top:-10px;margin-right:10px}.signup-submit input[type="button"]{padding:12px 20px 10px 20px !important}
 .ui-menu-item{position:relative}
 .ui-menu-item:hover .close{display:block;right:-30px}
 .ui-menu .ui-menu-item a{margin-right:30px}
@@ -228,3 +228,4 @@ sup.du{right:-15px;left:auto}
 #recaptcha_logo,#recaptcha_privacy{display:none}
 #recaptcha_image,#recaptcha_response_field{width:170px !important}
 #recaptcha_response_field{border:1px solid #ddd !important}
+.recaptchatable .recaptcha_image_cell{padding:0 !important}
