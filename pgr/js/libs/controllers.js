@@ -1237,7 +1237,7 @@ function LoginController($scope, Sessions, $rootScope, User, Social, $facebook, 
 }
 
 function LoaderController($scope) {
-    
+
     $scope.$on('loaderShow', function() {
         $("#modal-shadow").css("height", $("#content").outerHeight(true)+$("header").outerHeight(true));
         $("#modal-shadow").addClass("show");
@@ -2278,11 +2278,13 @@ function MyProfileController($scope, $rootScope, User, $location, $cookieStore, 
     $scope.isAddProff = false;
 
     $scope.selectCareer = function($event, career) {
-        Professions.query({ id: career.sguid }, {}, function(data) {
-            $scope.showProf = true;
-            $scope.curProff = data;
-            $scope.career = career;
-        });
+        if(career) {
+            Professions.query({ id: career.sguid }, {}, function(data) {
+                $scope.showProf = true;
+                $scope.curProff = data;
+                $scope.career = career;
+            });    
+        }
     }
 
     $scope.deleteItem = function($event, item, key) {
@@ -2293,6 +2295,7 @@ function MyProfileController($scope, $rootScope, User, $location, $cookieStore, 
 
     $scope.selectCurrentProfession = function($event, item, key) {
         $scope.showProf2 = false;
+        $scope.isAddProff = false;
         $scope.workspace.user.profession.name = item.name;
         $scope.workspace.user.profession.sguid = item.sguid;
         $scope.onPublish();    
@@ -2301,19 +2304,25 @@ function MyProfileController($scope, $rootScope, User, $location, $cookieStore, 
     $scope.selectProfession = function($event) {
         var countShow = 0;
         var proffisset = false;
-        angular.forEach($scope.curProff, function(value, key) {
-            var reg = new RegExp($scope.workspace.user.profession.name, "i");
-            if(reg.test(value.name)) {
-                countShow += 1;
-                value.show = true;
-            } else {
-                value.show = false;
-            }
-            if(value.name == $scope.workspace.user.profession.name) {
-                $scope.isAddProff = false;
-                proffisset = true;
-            }
-        });
+
+        if($scope.workspace.user.profession.name.length > 0) {
+            angular.forEach($scope.curProff, function(value, key) {
+                var reg = new RegExp($scope.workspace.user.profession.name, "i");
+                if(reg.test(value.name)) {
+                    countShow += 1;
+                    value.show = true;
+                } else {
+                    value.show = false;
+                }
+                if(value.name == $scope.workspace.user.profession.name) {
+                    $scope.isAddProff = false;
+                    proffisset = true;
+                }
+            });    
+        } else {
+            $scope.showProf2 = false;
+        }
+        
 
         if(!proffisset) {
             $scope.isAddProff = true;
@@ -2321,7 +2330,6 @@ function MyProfileController($scope, $rootScope, User, $location, $cookieStore, 
 
         if(countShow > 0) {
             $scope.showProf2 = true;
-            
         } else {
             $scope.showProf2 = false;
             $scope.isAddProff = true;
@@ -2347,40 +2355,6 @@ function MyProfileController($scope, $rootScope, User, $location, $cookieStore, 
         return false;
     }
 
-    /* config object */
-    $scope.professionOption = {
-        options: {
-            html: true,
-            onlySelect: false,
-            source: function (request, response) {
-                var data = $scope.curProff;
-                var outData = [];
-                angular.forEach(data, function(value, key){
-                    outData.push({value: value["name"], label: value["name"], sguid: value["sguid"]});
-                });
-                outData = $scope.professionOption.methods.filter(outData, request.term);
-                response(outData);
-            }
-        },
-        methods: {
-            _renderItem: function( ul, item ) {
-                console.log(item);
-                return "gfg";
-            }
-        },
-        events: {
-            change: function(event, ui) {
-                if(ui.item) {
-                    $scope.workspace.user.profession.name = ui.item.label;
-                    $scope.workspace.user.profession.sguid = ui.item.sguid;
-                    $scope.onPublish();    
-                }
-            }
-        }
-    };
-
-
-
     if($cookieStore.get("myProfileTab")) {
         $scope.tab = $cookieStore.get("myProfileTab");    
     }
@@ -2393,15 +2367,24 @@ function MyProfileController($scope, $rootScope, User, $location, $cookieStore, 
     });
 
     $scope.$watch("workspace.user.profession", function (newVal, oldVal, scope) {
-        console.log($scope.workspace.user);
         if($scope.workspace.user && $scope.workspace.user.profession && $scope.curNeed) {
-            $scope.career = $scope.curNeed.goals.filter(function(value) {
-                if(newVal.goal_sguid == value.sguid) {
-                    return value;
-                }
-            })[0];
+            if($scope.workspace.user.profession.goal_sguid) {
+                $scope.career = $scope.curNeed.goals.filter(function(value) {
+                    if(newVal.goal_sguid == value.sguid) {
+                        return value;
+                    }
+                })[0];
+                $scope.selectCareer({}, $scope.career);
+                $scope.showProf = true;    
+            }
+        }
+    });
+
+    $scope.$watch("workspace.user", function (newVal, oldVal, scope) {
+        if($scope.workspace.user && !$scope.workspace.user.profession && $scope.curNeed) {
+            $scope.career = $scope.curNeed.goals[1];
+            console.log($scope.career);
             $scope.selectCareer({}, $scope.career);
-            $scope.showProf = true;
         }
     });
 
@@ -2424,6 +2407,11 @@ function MyProfileController($scope, $rootScope, User, $location, $cookieStore, 
                 })[0];
                 $scope.selectCareer({}, $scope.career);
                 $scope.showProf = true;
+            }
+            if($scope.workspace.user && !$scope.workspace.user.profession) {
+                $scope.career = $scope.curNeed.goals[1];
+                console.log($scope.career);
+                $scope.selectCareer({}, $scope.career);
             }
         }
     });
