@@ -2572,7 +2572,7 @@ function MyProfileController($scope, $rootScope, User, $location, $cookieStore, 
     });
 
     $scope.$on('criteriaOpened', function($event) {
-       $("#content .tab .mypro_wr .mypro").scrollTop(0); 
+       $("#content .tab .mypro_wr .mypro").scrollTop(0);
     });
 
     /**
