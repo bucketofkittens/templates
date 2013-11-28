@@ -1040,13 +1040,19 @@ function NeedsAndGoalsController($scope, Goals, Criterion, AuthUser, UserCriteri
  * форма модального окна авторизации
  * @param {[type]} $scope [description]
  */
-function LoginController($scope, Sessions, $rootScope, User, Social, $facebook, $location, $window) {
+function LoginController($scope, Sessions, $rootScope, User, Social, $facebook, $location, $window, ImprovaLogin) {
     $scope.show = false;
+    $scope.improva = 0;
 
     $scope.signup = false;
     $scope.captha = "";
 
     $scope.login = {
+        login: "",
+        password: ""
+    }
+
+    $scope.improvaForm = {
         login: "",
         password: ""
     }
@@ -1064,13 +1070,73 @@ function LoginController($scope, Sessions, $rootScope, User, Social, $facebook, 
     $scope.$on('hideModal', function() {
         $scope.show = false;
     });
-    
+
+    $scope.improvaError = "";
 
     $scope.$on('socialLogined', function() {
     });
 
     $scope.onSignStateChange = function() {
         $scope.signup = $scope.signup ? false : true;
+    }
+
+    $scope.improvaLogin = function() {
+        $scope.improva = 1;
+    }
+
+    $scope.onCancelImprova = function() {
+        $scope.improva = 0;
+    }
+
+    $scope.onImprovaSign = function() {
+        $rootScope.$broadcast('loaderShow');
+        ImprovaLogin.isset({}, {login: $scope.improvaForm.email, password: $scope.improvaForm.password}, function(dataImprova) {
+            if(!dataImprova.authorized) {
+                $scope.improvaError = "No user";
+                $rootScope.$broadcast('loaderHide');
+            } else {
+                Sessions.signin({}, $.param({
+                    "email": dataImprova.email,
+                    "password": ""
+                }), function(data) {
+                    if(data.success) {
+                        $rootScope.$broadcast('onSignin', {sguid: data.guid});
+                        $rootScope.$broadcast('loaderHide');
+                    } else {
+                        User.create(
+                            {user: JSON.stringify({
+                                "login": dataImprova.email,
+                                "email": dataImprova.email,
+                                "password": ""
+                            })}
+                            ,function(data) {
+                                if(data.success) {
+                                    var user = {
+                                            "name": dataImprova.name,
+                                    }
+
+                                    User.updateUser({"id": data.message.guid},  {user: JSON.stringify(user)}, function(data) {
+                                            Sessions.signin({}, $.param({
+                                                "email": dataImprova.email,
+                                                "password": ""
+                                            }), function(data) {
+                                                if(data.success) {
+                                                    $rootScope.$broadcast('onSignin', {sguid: data.guid});
+                                                    $rootScope.$broadcast('loaderHide');
+                                                }
+                                            });
+                                        }
+                                    );
+                                    
+                                } else {
+                                    $rootScope.$broadcast('loaderHide');
+                                }
+                            }
+                        );
+                    }
+                });
+            }
+        });
     }
 
     /**

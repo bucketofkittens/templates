@@ -107,7 +107,20 @@ pgrModule.factory('Picture', function ($resource) {
     );
 });
 
-
+/**
+ * Модель картинов
+ * @param  {[type]} $resource [description]
+ * @return {[type]}           [description]
+ */
+pgrModule.factory('ImprovaLogin', function ($resource) {
+    return $resource(
+        'http://dev.tutors.improva.com/sessions.json', 
+        {}, 
+        {
+            isset: {method: 'POST'}
+        }
+    );
+});
 
 /**
  * Модель для Needs

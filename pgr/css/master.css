@@ -223,6 +223,13 @@ sup.du{right:-15px;left:auto}
 .proffesion_list li:hover{background:#ccc}
 .form-show{position:fixed;left:50%;top:50%;z-index:99999;background:#fff;text-align:center;width:300px;margin-left:-150px;box-shadow:0 0 20px 1px rgba(0,0,0,0.2);padding:30px;margin-top:-150px}.form-show p{font-size:16px}
 .form-show input{float:none}
+.improva{width:400px;margin-left:-200px;z-index:2000}.improva h2{color:#000;font-size:22px;margin-bottom:15px;font-family:'Helvetica Neue Light'}
+.improva>p{font-size:16px}
+.improva .errorss{left:32px}
+.improva p{position:relative}
+.improva .left{display:inline-block;margin-top:15px;width:110px;vertical-align:top}.improva .left img{width:70px}
+.improva .right{width:280px;margin-top:15px;display:inline-block;vertical-align:top}.improva .right p{margin-bottom:15px}
+.improva .buttons{margin-left:8px}.improva .buttons input{margin-left:5px}
 .cursor{cursor:pointer;vertical-align:middle}
 #recaptcha_image,.recaptcha_image_cell{width:170px !important}
 .recaptchatable .recaptcha_image_cell center img{width:150px !important}

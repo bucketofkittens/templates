@@ -1,3 +1,56 @@
+<div class="form-show improva" ng-show="improva == 1">
+    <h2>Sign in with improva account</h2>
+    <p>Use your improva account to sign in to iRate</p>
+    <ng-form 
+        id="improva_form" 
+        name="ImprovaForm" 
+        novalidate 
+        class="css-form myForm" >
+        <div class="left">
+            <img src="/images/improva.png" alt="" />
+        </div>
+        <div class="right">
+            <p>
+                <input 
+                    type="text" 
+                    id="login_i" 
+                    class="form-input"
+                    ng-model="improvaForm.email"
+                    name="ImprovaEmail"
+                    required 
+                    ng-minlength="6"
+                    placeholder="Login" />
+                    <br />
+                    <span class="errorss" ng-show="ImprovaForm.ImprovaEmail.$dirty && (ImprovaForm.Email.$error.required || ImprovaForm.ImprovaEmail.$error.minlength )">Incorrect login</span>
+            </p>
+            <p>
+                <input 
+                    type="password" 
+                    id="pass_i"
+                    class="form-input"
+                    ng-model="improvaForm.password"
+                    required 
+                    name="ImprovaPassword"
+                    ng-minlength="6"
+                    placeholder="Password" /> 
+                    <br />
+                    <span class="errorss" ng-show="ImprovaForm.ImprovaPassword.$dirty && (ImprovaForm.ImprovaPassword.$error.required || ImprovaForm.ImprovaPassword.$error.minlength)">Incorrect password</span>
+            </p>
+            <p class="errors" ng-if="improvaError">{{improvaError}}</p>
+            <p class="buttons">
+                <input 
+                    type="button" 
+                    value="Cancel"
+                    ng-click="onCancelImprova()" />
+                <input 
+                    type="button" 
+                    value="Sign in"
+                    ng-disabled="ImprovaForm.$invalid"
+                    ng-click="onImprovaSign()" />
+            </p>
+        </div>
+    </ng-form>
+</div>
 <div class="login">
     <div class="modal">
         <div class="modal_wrapper">
@@ -30,7 +83,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a>
+                                <a ng-click="improvaLogin()">
                                     <img src="/images/improva.png" alt="" />
                                 </a>
                             </li>
