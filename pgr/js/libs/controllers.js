@@ -2375,6 +2375,7 @@ function MyProfileController($scope, $rootScope, User, $location, $cookieStore, 
                 $scope.showProf = true;
                 $scope.curProff = data;
                 $scope.career = career;
+                $scope.workspace.user.profession = {};
             });    
         }
     }
@@ -2385,6 +2386,7 @@ function MyProfileController($scope, $rootScope, User, $location, $cookieStore, 
                 $scope.showState = true;
                 $scope.curState = data;
                 $scope.state = state;
+                $scope.workspace.user.city = {};
             });    
         }
     }
