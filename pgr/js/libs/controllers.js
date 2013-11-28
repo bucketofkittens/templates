@@ -2388,6 +2388,7 @@ function MyProfileController($scope, $rootScope, User, $location, $cookieStore, 
             });    
         } else {
             $scope.showProf2 = false;
+            $scope.isAddProff = false;
         }
         
 
@@ -2400,6 +2401,10 @@ function MyProfileController($scope, $rootScope, User, $location, $cookieStore, 
         } else {
             $scope.showProf2 = false;
             $scope.isAddProff = true;
+        }
+
+        if($scope.workspace.user.profession.name.length == 0) {
+            $scope.isAddProff = false;
         }
     }
 
