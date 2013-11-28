@@ -2441,6 +2441,10 @@ function MyProfileController($scope, $rootScope, User, $location, $cookieStore, 
             $scope.showState2 = false;
             $scope.isAddState = true;
         }
+
+        if($scope.workspace.user.city.name.length == 0) {
+            $scope.isAddState = false;
+        }
     }
 
     $scope.addProfession = function($event) {
@@ -2463,7 +2467,6 @@ function MyProfileController($scope, $rootScope, User, $location, $cookieStore, 
     }
 
     $scope.addCity = function($event) {
-        console.log($scope.state);
         City.create({}, {
             "city": { 
                 name: $scope.workspace.user.city.name
@@ -2507,31 +2510,47 @@ function MyProfileController($scope, $rootScope, User, $location, $cookieStore, 
         }
     });
 
-    $scope.$watch("workspace.user.city", function (newVal, oldVal, scope) {
+    $scope.$watch("workspace.user.state", function (newVal, oldVal, scope) {
         
-        if($scope.workspace.user && $scope.workspace.user.city && $scope.curState) {
-            console.log($scope.workspace.user.city);
-            if($scope.workspace.user.city.state_sguid) {
-                $scope.state = $scope.curState.filter(function(value) {
-                    if(newVal.goal_sguid == value.sguid) {
-                        return value;
-                    }
-                })[0];
-                $scope.selectCityByState({}, $scope.state);
-                $scope.showState = true;    
-            }
+        if($scope.workspace.user && $scope.workspace.user.state) {
+            angular.forEach($scope.states, function(value, key){
+                if(value.sguid == $scope.workspace.user.state.sguid) {
+                    $scope.state = value;
+                }
+            });
+            console.log($scope.state);
+            $scope.selectCityByState({}, $scope.state);
+            $scope.showState = true;
         }
     });
 
     $scope.$watch("workspace.user", function (newVal, oldVal, scope) {
-        console.log($scope.workspace.user);
         if($scope.workspace.user && !$scope.workspace.user.profession && $scope.curNeed) {
             $scope.career = $scope.curNeed.goals[1];
             $scope.selectCareer({}, $scope.career);
         }
 
-        if($scope.workspace.user && !$scope.workspace.user.city && $scope.curState) {
-            $scope.state = $scope.curState[1];
+        if($scope.workspace.user && !$scope.workspace.user.city && $scope.states.length > 0) {
+            console.log($scope.states);
+            angular.forEach($scope.states, function(value, key){
+                console.log(value);
+                if(value.sguid == "459827700832404777") {
+                    $scope.state = value;
+                }
+            });
+            $scope.selectCityByState({}, $scope.state);
+        }
+    });
+
+    $scope.$watch("states", function (newVal, oldVal, scope) {
+        if($scope.workspace.user && !$scope.workspace.user.city && $scope.states.length > 0) {
+            console.log($scope.states);
+            angular.forEach($scope.states, function(value, key){
+                console.log(value);
+                if(value.sguid == "459827700832404777") {
+                    $scope.state = value;
+                }
+            });
             $scope.selectCityByState({}, $scope.state);
         }
     });
