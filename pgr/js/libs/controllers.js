@@ -2602,7 +2602,7 @@ function MyProfileController($scope, $rootScope, User, $location, $cookieStore, 
         }
 
         if($scope.workspace.user.city) {
-            user["citie"] = $scope.workspace.user.city.sguid;
+            user["city"] = $scope.workspace.user.city.sguid;
         }
 
         if(birthday) {
@@ -2650,33 +2650,6 @@ function MyProfileController($scope, $rootScope, User, $location, $cookieStore, 
             $scope.workspace.user.league.name = "10";
         }
     });
-
-    
-
-    /* config object */
-    $scope.stateOption = {
-        options: {
-            html: true,
-            onlySelect: true,
-            source: function (request, response) {
-                var data = $scope.workspace.states;
-                var outData = [];
-                angular.forEach(data, function(value, key){
-                    outData.push({value: value["name"], label: value["name"], sguid: value["sguid"]});
-                });
-                outData = $scope.professionOption.methods.filter(outData, request.term);
-                response(outData);
-            }
-        },
-        methods: {},
-        events: {
-            change: function(event, ui) {
-                $scope.workspace.user.state.name = ui.item.label;
-                $scope.workspace.user.state.sguid = ui.item.sguid;
-                $scope.onPublish();
-            }
-        }
-    };
 
     $scope.dateOptions = {
         changeYear: true,
@@ -2740,6 +2713,10 @@ function ChangePasswordController($scope, Sessions, User, $location, $rootScope,
         $scope.state = 2;
     }
 
+    $scope.onChangePasswordChanged = function() {
+        $scope.message = 0;
+    }
+
     $scope.onCancel = function() {
         $location.path("/my_profile");
     }
@@ -2756,27 +2733,26 @@ function ChangePasswordController($scope, Sessions, User, $location, $rootScope,
         }, function(data) {
             console.log(data);
         });
-        /*
-        if($scope.form.newPassword == $scope.form.confirmPassword) {
-            Sessions.signin({}, $.param({
-                "login": $scope.workspace.user.login,
-                "password": $scope.form.oldPassword 
-            }), function(data) {
-                if(data.success) {
-                    var user = {
-                        "password": $scope.form.confirmPassword
-                    }
+    }
 
-                    User.updateUser({"id": $scope.workspace.user.sguid},  {user: JSON.stringify(user)}, function(data) {
-                        $location.path("/my_profile/");
-                    });
-                } else {
-                    $scope.error = data.message;
+    $scope.onChangePasswordBegin = function() {
+        Sessions.signin({}, $.param({
+            "email": $scope.form.testEmail,
+            "password": $scope.form.oldPassword 
+        }), function(data) {
+            if(data.success) {
+                var user = {
+                    "password": $scope.form.newPassword
                 }
-            });
-        } else {
-            $scope.error = "error";
-        }*/
+
+                User.updateUser({"id": data.guid},  {user: JSON.stringify(user)}, function(data) {
+                        $scope.message = 3;
+                    }
+                );
+            } else {
+                $scope.error = data.message;
+            }
+        });
     }
 }
 
