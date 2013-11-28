@@ -2531,27 +2531,23 @@ function MyProfileController($scope, $rootScope, User, $location, $cookieStore, 
         }
 
         if($scope.workspace.user && !$scope.workspace.user.city && $scope.states.length > 0) {
-            console.log($scope.states);
-            angular.forEach($scope.states, function(value, key){
-                console.log(value);
-                if(value.sguid == "459827700832404777") {
-                    $scope.state = value;
-                }
-            });
-            $scope.selectCityByState({}, $scope.state);
+            $scope.setDefaultState();
         }
     });
 
+    $scope.setDefaultState = function() {
+        angular.forEach($scope.states, function(value, key){
+            console.log(value);
+            if(value.sguid == "459827700832404777") {
+                $scope.state = value;
+            }
+        });
+        $scope.selectCityByState({}, $scope.state);
+    }
+
     $scope.$watch("states", function (newVal, oldVal, scope) {
         if($scope.workspace.user && !$scope.workspace.user.city && $scope.states.length > 0) {
-            console.log($scope.states);
-            angular.forEach($scope.states, function(value, key){
-                console.log(value);
-                if(value.sguid == "459827700832404777") {
-                    $scope.state = value;
-                }
-            });
-            $scope.selectCityByState({}, $scope.state);
+            $scope.setDefaultState();
         }
     });
 

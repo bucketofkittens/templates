@@ -143,26 +143,28 @@
                                         <br />
                                         <span class="errorss" ng-show="LoginForm.Password.$dirty && (LoginForm.Password.$error.required || LoginForm.Password.$error.minlength)">Incorrect password</span>
                                 </p>
-                                <div class="left">
-                                    <p class="errors" ng-show="error">{{error}}</p>
-                                    <p>
-                                        <a href="#/change_password">Forgot your password?</a>
-                                    </p>
-                                    <p>
-                                        <input type="checkbox" icheck />
-                                        <label>Keep me sign in</label>
-                                    </p>
+                                <div class="step">
+                                    <div class="left">
+                                        <p class="errors" ng-show="error">{{error}}</p>
+                                        <p>
+                                            <a href="#/change_password">Forgot your password?</a>
+                                        </p>
+                                        <p>
+                                            <input type="checkbox" icheck />
+                                            <label>Keep me sign in</label>
+                                        </p>
+                                    </div>
+                                    <div class="right">
+                                        <p class="singin-sub">
+                                            <input 
+                                                ng-disabled="LoginForm.$invalid"
+                                                ng-click="onSingin()" 
+                                                type="button" 
+                                                value="Sign in"
+                                                ui-keypress="{13:'onKeyPress($event)'}" />
+                                        </p>    
+                                    </div> 
                                 </div>
-                                <div class="right">
-                                    <p class="singin-sub">
-                                        <input 
-                                            ng-disabled="LoginForm.$invalid"
-                                            ng-click="onSingin()" 
-                                            type="button" 
-                                            value="Sign in"
-                                            ui-keypress="{13:'onKeyPress($event)'}" />
-                                    </p>    
-                                </div> 
                             </ng-form>
                         </div>
                     </div>
