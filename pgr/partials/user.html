@@ -14,7 +14,7 @@
 				<div class="item" ng-repeat="(userKey, userItem) in resultSearch">
 					<div class="image">
 						<img ng-src="{{userItem.avatar}}" ng-click="changeUser(userItem)" alt="">
-						<i>{{userItem.points}}</i>
+						<i ng-if="userItem.points">{{userItem.points}}</i>
 					</div>
 					<div class="text">
 						<p class="name">{{userItem.name}}</p>
