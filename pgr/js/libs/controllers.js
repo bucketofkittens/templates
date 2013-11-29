@@ -169,9 +169,8 @@ function QuickUserChangeCtrl($scope, User, AuthUser, $rootScope, $location, $rou
         
         $scope.workspace.user = nextUser;
         $scope.authUserId = nextUser.sguid;
-
-        $rootScope.$broadcast('authUserIdChange');
-        $route.reload()
+        
+        window.location.reload();
     }
 
     User.get_all({}, {}, function(data) {
