@@ -128,13 +128,16 @@
 					required />
 			</p>
 			<p ng-controller="QuickUserChangeCtrl">
-				<label for="username_i">{{'_UserName_' | i18n}}:</label> 
-				<select 
+				<label for="username_i">{{'_UserName_' | i18n}}:</label>
+				<span ng-if="users.length == 0">Users loading...</span>
+				<select
+					 ng-if="users.length > 0"
 					id="acc_i"
 					ng-options="item.fullname for item in users" 
 					ng-model="nextUser" 
 					ng-change="onMoveUserClick($event, nextUser)">
 					<option value="">{{workspace.user.login}}, {{workspace.user.name}}</option>
+
 				</select>
 			</p>
 			<p ng-controller="QuickUserChangeCtrl">
