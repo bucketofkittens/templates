@@ -2403,6 +2403,13 @@ sup.du {
         }
     }
     .comm {
+        height: 70%;
+        overflow-y: scroll;
+        overflow-x: visible;
+        &::-webkit-scrollbar {
+            width: 0px;
+            height: 0px; 
+        }  
         .cmnt {
             border-bottom: 1px solid #aeaeae;
             overflow: hidden;
@@ -2432,24 +2439,33 @@ sup.du {
         overflow: hidden;
         padding: 15px;
         width: 320px;
+        position: absolute;
+        bottom: 60px;
+        left: 0px;
         textarea {
             float: left;
-            border: 1px solid #666666;
-            font-size: 16px;
+            border: 1px solid #d8d8d8;
+            font-size: 18px;
             color: #666666;
             line-height: 20px;
             max-width: 200px;
             height: 20px;
             padding: 10px !important;
             font-family: 'Helvetica Neue Light';
+            vertical-align: middle;
+            margin-top: 7px;
         }
         button {
             float: right;
-            border: 1px solid #666666;
+            border: 2px solid #d8d8d8;
             font-size: 18px;
-            color: #cccccc;
+            color: #666666;
             line-height: 27px;
-            padding: 10px;
+            padding: 10px 15px;
+            vertical-align: middle;
+            font-family: 'Helvetica Neue Light';
+            background: none;
+            cursor: pointer;
         }
     }
 }
