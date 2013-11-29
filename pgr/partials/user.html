@@ -32,7 +32,7 @@
 			
 			<div class="image_box" ng-class="{updated: user.sguid == authUserId && isEdit}">
 				<img class="pp" ng-src="{{user.avatar}}" err-src="/images/unknown-person.png" />
-				<i>{{user.points}}</i>
+				<i ng-if="user.points && user.points != null">{{user.points}}</i>
 				<a ng-click="onUpdateFile()" title="">Update image</a>
 				<span></span>
 			</div>
