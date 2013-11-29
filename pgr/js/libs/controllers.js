@@ -2577,8 +2577,7 @@ function MyProfileController($scope, $rootScope, User, $location, $cookieStore, 
     });
 
     $scope.$watch("workspace.user.state", function (newVal, oldVal, scope) {
-        
-        if($scope.workspace.user && $scope.workspace.user.state) {
+        if($scope.workspace.user && $scope.workspace.user.state && $scope.states.length > 0) {
             angular.forEach($scope.states, function(value, key){
                 if(value.sguid == $scope.workspace.user.state.sguid) {
                     $scope.state = value;
