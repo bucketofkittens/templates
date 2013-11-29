@@ -2371,6 +2371,8 @@ function MyProfileController($scope, $rootScope, User, $location, $cookieStore, 
     $scope.isAddProff = false;
     $scope.states = [];
     $scope.state = null;
+    $scope.countCareerChange = 0;
+    $scope.countCityChange = 0;
 
     $scope.selectCareer = function($event, career) {
         if(career) {
@@ -2378,6 +2380,12 @@ function MyProfileController($scope, $rootScope, User, $location, $cookieStore, 
                 $scope.showProf = true;
                 $scope.curProff = data;
                 $scope.career = career;
+
+                if($scope.countCareerChange != 0) {
+                    $scope.workspace.user.profession = {};
+                }
+
+                $scope.countCareerChange += 1;
             });    
         }
     }
@@ -2388,6 +2396,12 @@ function MyProfileController($scope, $rootScope, User, $location, $cookieStore, 
                 $scope.showState = true;
                 $scope.curState = data;
                 $scope.state = state;
+
+                if($scope.countCityChange != 0) {
+                    $scope.workspace.user.city = {};
+                }
+
+                $scope.countCityChange += 1;
             });    
         }
     }
@@ -2586,7 +2600,6 @@ function MyProfileController($scope, $rootScope, User, $location, $cookieStore, 
                     $scope.state = value;
                 }
             });
-            console.log($scope.state);
             $scope.selectCityByState({}, $scope.state);
             $scope.showState = true;
         }
@@ -2615,6 +2628,15 @@ function MyProfileController($scope, $rootScope, User, $location, $cookieStore, 
     $scope.$watch("states", function (newVal, oldVal, scope) {
         if($scope.workspace.user && !$scope.workspace.user.city && $scope.states.length > 0) {
             $scope.setDefaultState();
+        }
+        if($scope.workspace.user && $scope.workspace.user.city && $scope.workspace.user.state && $scope.states.length > 0) {
+            angular.forEach($scope.states, function(value, key){
+                if(value.sguid == $scope.workspace.user.state.sguid) {
+                    $scope.state = value;
+                }
+            });
+            $scope.selectCityByState({}, $scope.state);
+            $scope.showState = true;
         }
     });
 
