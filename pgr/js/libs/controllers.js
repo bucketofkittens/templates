@@ -146,6 +146,11 @@ function NavCtrl($scope, localize, $location, AuthUser, $rootScope, $route) {
  * @returns {undefined}
  */
 function ProfileController($scope, $routeParams, AuthUser, $route, $rootScope, $location) {
+    $scope.comments = 0;
+
+    $scope.onShowComments = function(criteria) {
+        $scope.comments = 1;
+    }
 }
 
 /**
