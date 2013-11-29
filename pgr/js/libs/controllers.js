@@ -148,9 +148,16 @@ function NavCtrl($scope, localize, $location, AuthUser, $rootScope, $route) {
 function ProfileController($scope, $routeParams, AuthUser, $route, $rootScope, $location) {
     $scope.comments = 0;
 
-    $scope.onShowComments = function(criteria) {
+    $scope.onShowComments = function(criteria, user) {
         $scope.comments = 1;
+        
+        $rootScope.$broadcast('openComments', { criteria: criteria,  user: $routeParams.userId1 });
     }
+
+    $scope.$on('closeComments', function() {
+        $scope.comments = 0;
+    });
+    
 }
 
 /**
@@ -169,7 +176,7 @@ function QuickUserChangeCtrl($scope, User, AuthUser, $rootScope, $location, $rou
         
         $scope.workspace.user = nextUser;
         $scope.authUserId = nextUser.sguid;
-        
+
         window.location.reload();
     }
 
@@ -2942,4 +2949,19 @@ function SearchController($scope, User, $rootScope, $location) {
 
 function SearchAdvanceController($scope) {
 
+}
+
+function CommentsController($scope, $rootScope) {
+    $scope.user = null;
+    $scope.criteria = null;
+    
+    $scope.onClose = function() {
+        $rootScope.$broadcast('closeComments');  
+    }
+
+    $scope.$on('openComments', function($event, message) {
+        console.log(message);
+        $scope.user = message.user;
+        $scope.criteria = message.criteria;
+    });
 }
