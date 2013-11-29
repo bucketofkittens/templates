@@ -1554,12 +1554,22 @@ function MainController($scope, Leagues, User, $rootScope, $location, $timeout, 
      * @return {object}         [description]
      */
     $scope.onWheel = function($event, $delta, $deltaX, $deltaY) {
-        var step = $event.originalEvent && $event.originalEvent.wheelDeltaY ? $event.originalEvent.wheelDeltaY : $event.deltaY * 40;
+        var contentWidth = $(".isotope").width();
+        var windowWidth = $(window).width();
+        
+        if(contentWidth > windowWidth) {
+            var step = $event.originalEvent && $event.originalEvent.wheelDeltaY ? $event.originalEvent.wheelDeltaY : $event.deltaY * 40;
 
-        if(!$scope.scrollDelta) {
-            $scope.scrollDelta = 0;
+            if(!$scope.scrollDelta) {
+                $scope.scrollDelta = 0;
+            }
+
+            if($scope.scrollDelta + step <= 0) {
+                if(Math.abs($scope.scrollDelta + step) + windowWidth <= contentWidth+50) {
+                    $scope.scrollDelta = $scope.scrollDelta + step;
+                }    
+            }
         }
-        $scope.scrollDelta = $scope.scrollDelta + step;
     }
 
     /**
