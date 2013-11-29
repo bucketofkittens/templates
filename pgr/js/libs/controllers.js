@@ -338,6 +338,7 @@ function UserController($scope, $element, $route, $routeParams, User, Needs, Pro
                 $scope.user = data;
 
                 $scope.user.points = parseInt($scope.user.points);
+
                 if($scope.user.points == null) {
                     $scope.user.points = 0;
                 }
@@ -365,6 +366,8 @@ function UserController($scope, $element, $route, $routeParams, User, Needs, Pro
                 $rootScope.$broadcast('getSelectedUserData', {
                     user: $scope.user
                 });
+
+
 
                 $scope.testFollow();
             });
@@ -2602,7 +2605,6 @@ function MyProfileController($scope, $rootScope, User, $location, $cookieStore, 
 
     $scope.setDefaultState = function() {
         angular.forEach($scope.states, function(value, key){
-            console.log(value);
             if(value.sguid == "459827700832404777") {
                 $scope.state = value;
             }

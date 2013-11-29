@@ -26,7 +26,8 @@
 			<input class="hidden" id="photo_crop" onchange="angular.element(this).scope().onReadFile()" capture="camera" type="file" accept="image/*" />
 			
 			<div class="image_box" ng-click="onUpdateFile()">
-				<img class="pp" ng-src="{{workspace.user.avatar}}" err-src="/images/unknown-person.png" />
+				<img class="pp" ng-src="{{workspace.user.avatar}}" ng-if="workspace.user.avatar" err-src="/images/unknown-person.png" />
+				<img class="pp" ng-src="/images/unknown-person.png" ng-if="!workspace.user.avatar" />
 			</div>
 			
 			<div class="publish" ng-if="workspace.user.published == 0">

@@ -1,7 +1,6 @@
 pgrModule.directive('errSrc', function() {
   return {
     link: function(scope, element, attrs) {
-      attrs.src = '';
       scope.$watch(attrs.src, function (newVal, oldVal, scope) {
         if(!attrs.src) {
           element.attr('src', attrs.errSrc);
