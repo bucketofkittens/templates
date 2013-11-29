@@ -161,7 +161,7 @@ function ProfileController($scope, $routeParams, AuthUser, $route, $rootScope, $
  * @param {[type]} $rootScope [description]
  * @param {[type]} $location  [description]
  */
-function QuickUserChangeCtrl($scope, User, AuthUser, $rootScope, $location) {
+function QuickUserChangeCtrl($scope, User, AuthUser, $rootScope, $location, $route) {
     $scope.users = [];
 
     $scope.onMoveUserClick = function($event, nextUser) {
@@ -171,6 +171,7 @@ function QuickUserChangeCtrl($scope, User, AuthUser, $rootScope, $location) {
         $scope.authUserId = nextUser.sguid;
 
         $rootScope.$broadcast('authUserIdChange');
+        $route.reload()
     }
 
     User.get_all({}, {}, function(data) {
