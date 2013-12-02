@@ -1107,7 +1107,7 @@ function LoginController($scope, Sessions, $rootScope, User, Social, $facebook, 
 
     $scope.onImprovaSign = function() {
         $rootScope.$broadcast('loaderShow');
-        ImprovaLogin.isset({}, {login: $scope.improvaForm.email, password: $scope.improvaForm.password}, function(dataImprova) {
+        ImprovaLogin.isset({}, {email: $scope.improvaForm.email, password: $scope.improvaForm.password}, function(dataImprova) {
             if(!dataImprova.authorized) {
                 $scope.improvaError = "No user";
                 $rootScope.$broadcast('loaderHide');

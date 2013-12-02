@@ -142,7 +142,7 @@ footer #footer #follow_tab a{position:absolute;top:30%;right:1%;cursor:pointer;w
 .login .modal .body .right .right_wrapper a{font-family:'Helvetica Neue Light';text-decoration:none;color:#5c7294}.login .modal .body .right .right_wrapper a:hover{text-decoration:underline}
 .login .modal .body .right .right_wrapper p{color:#000;font-size:16px;font-family:'Helvetica Neue Light';line-height:17px;padding:0 0 20px 5px}.login .modal .body .right .right_wrapper p *{vertical-align:middle}
 .login .modal .body .right .right_wrapper p a{font-size:13px;display:block}.login .modal .body .right .right_wrapper p a.notdark{display:inline-block;color:#028dda;font-size:16px}
-.login .modal .body .right .right_wrapper p label{font-size:15px;vertical-align:middle}
+.login .modal .body .right .right_wrapper p label{font-size:13px;vertical-align:middle}
 .login .modal.show{opacity:1;display:block}
 .login .singin-sub{margin-top:25px;margin-right:-5px}.login .singin-sub input{padding:12px 20px 10px 20px !important}
 .email .modal{width:230px;matgin-left:-100px}
