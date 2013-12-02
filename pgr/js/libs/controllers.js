@@ -2906,6 +2906,19 @@ function SearchController($scope, User, $rootScope, $location) {
     $scope.resultSearch = [];
     $scope.usersCollections = [];
 
+    $scope.onCompare = function(userItem) {
+        $scope.resultSearch = [];
+        if($scope.workspace.user && $scope.workspace.user.sguid) {
+            $location.path("/compare").search({user1: $scope.workspace.user.sguid, user2: userItem.sguid});
+        } else {
+            if($scope.tmpFollows.length > 0) {
+                $location.path("/compare").search({user1: $scope.tmpFollows[0].user.sguid, user2: userItem.sguid});
+            } else {
+                $location.path("/compare").search({user1: userItem.sguid, user2: userItem.sguid});
+            }
+        }
+    }
+
     $scope.onAdvanceSearch = function() {
         $scope.resultSearch = [];
         $scope.searchText = "";

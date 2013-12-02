@@ -204,9 +204,9 @@ ng-form:not(.ng-pristine) input.ng-invalid:not(.ng-pristine){border-color:rgba(2
 .search{position:relative}.search input[type="text"]{border:1px solid #bbb;height:35px;text-indent:15px;display:block;font-family:'Helvetica Neue Light';font-size:16px;width:100%;position:relative;left:-1px;line-height:40px}
 .search input[type="button"]{display:block;width:14px !important;height:14px !important;background:url(../images/s1.png) no-repeat;cursor:pointer;position:absolute;right:16px !important;top:13px !important;border:0 !important;background-size:100% !important;padding:0 !important;margin:0 !important}
 .searchResult{position:absolute;background:#fff;z-index:999;right:-100px;top:31px;width:400px;padding-top:15px;padding-bottom:15px}.searchResult .item{width:100%;overflow:hidden;border-bottom:1px solid #d6d6d6}.searchResult .item:first-child{border:0}
-.searchResult .item .image{float:left;margin:0 0 0 30px;width:100px;position:relative}.searchResult .item .image i{position:absolute;left:0;bottom:0;width:99%;padding-right:1%;background:rgba(0,0,0,0.48);text-align:right;color:#fff;line-height:100%;font-size:120%;font-family:'Helvetica Neue Light';z-index:3}
+.searchResult .item .image{float:left;margin:0 0 0 30px;width:100px;position:relative;cursor:pointer}.searchResult .item .image i{position:absolute;left:0;bottom:0;width:99%;padding-right:1%;background:rgba(0,0,0,0.48);text-align:right;color:#fff;line-height:100%;font-size:120%;font-family:'Helvetica Neue Light';z-index:3}
 .searchResult .item .image img{display:block;width:100px}
-.searchResult .item .text{float:left;width:220px;padding:17px 0 0 30px;line-height:140%}
+.searchResult .item .text{float:left;width:220px;padding:17px 0 0 30px;line-height:140%;cursor:pointer}
 sub.du,sup.du,s.du{z-index:7;position:absolute;left:-31px;top:0;display:block;width:0;height:0;border-style:solid;border-width:25px 0 25px 15px;border-color:transparent transparent transparent #576d91}
 sub.du{border-width:25px 15px 25px 0;border-color:transparent #576d91 transparent transparent}
 sup.du{right:-15px;left:auto}
