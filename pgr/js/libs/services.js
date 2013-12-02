@@ -112,6 +112,27 @@ pgrModule.factory('Picture', function ($resource) {
  * @param  {[type]} $resource [description]
  * @return {[type]}           [description]
  */
+pgrModule.factory('Comments', function ($resource) {
+    return $resource(
+        host+'/comments/:id', 
+        {id:'@id'}, 
+        {
+            create: {method: 'POST'},
+            get_by_user: {
+                url: host + "/comments/for_user/:user_guid/by_owner/:owner_type/:owner_id",
+                method: 'GET',
+                isArray: true
+            },
+            updatePicture: {method: 'PUT', headers : {'Content-Type': 'application/x-www-form-urlencoded'} }
+        }
+    );
+});
+
+/**
+ * Модель картинов
+ * @param  {[type]} $resource [description]
+ * @return {[type]}           [description]
+ */
 pgrModule.factory('ImprovaLogin', function ($resource) {
     return $resource(
         'http://dev.tutors.improva.com/sessions.json', 

@@ -3,46 +3,16 @@
 	<b ng-click="onClose()">Close</b>
 </div>
 <div class="comm">
-	<!--
-	<div class="cmnt">
-		<strong>%Name Username%</strong>
-		<i>September 20, 2013</i>
+	<div class="cmnt" ng-repeat="comment in comments | orderBy:'post_date'"  >
+		<strong>{{comment.user.name}}</strong>
+		<i>{{comment.post_date}}</i>
 		<br />
-		<p>Сomment text comment text comment text comment text comment text comment text comment text comment text comment text comment text.</p>
+		<p>{{comment.message}}</p>
 	</div>
-	<div class="cmnt">
-		<strong>%Name Username%</strong>
-		<i>September 20, 2013</i>
-		<br />
-		<p>Сomment text comment text comment text comment text comment text comment text comment text comment text comment text comment text.</p>
-	</div>
-	<div class="cmnt">
-		<strong>%Name Username%</strong>
-		<i>September 20, 2013</i>
-		<br />
-		<p>Сomment text comment text comment text comment text comment text comment text comment text comment text comment text comment text.</p>
-	</div>
-	<div class="cmnt">
-		<strong>%Name Username%</strong>
-		<i>September 20, 2013</i>
-		<br />
-		<p>Сomment text comment text comment text comment text comment text comment text comment text comment text comment text comment text.</p>
-	</div>
-	<div class="cmnt">
-		<strong>%Name Username%</strong>
-		<i>September 20, 2013</i>
-		<br />
-		<p>Сomment text comment text comment text comment text comment text comment text comment text comment text comment text comment text.</p>
-	</div>
-	<div class="cmnt">
-		<strong>%Name Username%</strong>
-		<i>September 20, 2013</i>
-		<br />
-		<p>Сomment text comment text comment text comment text comment text comment text comment text comment text comment text comment text.</p>
-	</div>
-	-->
 </div>
 <div class="butcomm">
-	<textarea placeholder="Enter your comment here"></textarea>
-	<button>Send</button>
+	<ng-form>
+		<textarea ng-model="form.message" id="comment_message" name="comment" placeholder="Enter your comment here"></textarea>
+		<button ng-click="onSendMessage()">Send</button>
+	</ng-form>
 </div>

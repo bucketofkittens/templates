@@ -150,7 +150,7 @@ function ProfileController($scope, $routeParams, AuthUser, $route, $rootScope, $
 
     $scope.onShowComments = function(criteria, user) {
         $scope.comments = 1;
-        
+
         $rootScope.$broadcast('openComments', { criteria: criteria,  user: $routeParams.userId1 });
     }
 
@@ -2951,17 +2951,46 @@ function SearchAdvanceController($scope) {
 
 }
 
-function CommentsController($scope, $rootScope) {
+function CommentsController($scope, $rootScope, Comments) {
     $scope.user = null;
     $scope.criteria = null;
+    $scope.form = {
+        message: ""
+    }
+
+    $scope.comments = [];
     
     $scope.onClose = function() {
         $rootScope.$broadcast('closeComments');  
     }
 
     $scope.$on('openComments', function($event, message) {
-        console.log(message);
         $scope.user = message.user;
         $scope.criteria = message.criteria;
+
+        $rootScope.$broadcast('loaderShow');
+        $scope.getMessages();
     });
+
+    $scope.getMessages = function() {
+        Comments.get_by_user({user_guid: $scope.user, owner_type: 0, owner_id: $scope.criteria.sguid}, {}, function(data) {
+            $scope.comments = data;
+             $rootScope.$broadcast('loaderHide');
+        });
+    }
+
+    $scope.onSendMessage = function() {
+        $rootScope.$broadcast('loaderShow');
+        Comments.create({}, {
+            owner_type: 0,
+            author_guid: $scope.workspace.user.sguid,
+            post_date: moment().format("DD-MM-YYYY"),
+            message: $scope.form.message,
+            owner_id: $scope.criteria.sguid,
+            user_guid: $scope.user
+        }, function(data) {
+            $rootScope.$broadcast('loaderHide');
+            $scope.getMessages();
+        });
+    }
 }
