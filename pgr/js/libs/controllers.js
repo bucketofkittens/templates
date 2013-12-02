@@ -149,7 +149,9 @@ function ProfileController($scope, $routeParams, AuthUser, $route, $rootScope, $
     $scope.comments = 0;
 
     $scope.onShowComments = function(criteria, user) {
-        $scope.comments = 1;
+        if($scope.comments == 0) {
+            $scope.comments = 1;   
+        }
 
         $rootScope.$broadcast('openComments', { criteria: criteria,  user: $routeParams.userId1 });
     }
@@ -2958,7 +2960,7 @@ function CommentsController($scope, $rootScope, Comments) {
         message: ""
     }
 
-    $scope.comments = [];
+    $scope.commentsList = [];
     
     $scope.onClose = function() {
         $rootScope.$broadcast('closeComments');  
@@ -2974,8 +2976,12 @@ function CommentsController($scope, $rootScope, Comments) {
 
     $scope.getMessages = function() {
         Comments.get_by_user({user_guid: $scope.user, owner_type: 0, owner_id: $scope.criteria.sguid}, {}, function(data) {
-            $scope.comments = data;
-             $rootScope.$broadcast('loaderHide');
+            angular.forEach(data, function(value, key){
+                value.post_date = moment(value.post_date).format("DD-MM-YYYY");
+            });
+            
+            $scope.commentsList = data;
+            $rootScope.$broadcast('loaderHide');
         });
     }
 
