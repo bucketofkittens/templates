@@ -2828,12 +2828,13 @@ function ChangeEmailController($scope, User, $location, Sessions) {
     }
 }
 
-function ChangePasswordController($scope, Sessions, User, $location, $rootScope, MailHash, $routeParams) {
+function ChangePasswordController($scope, Sessions, User, $location, $rootScope, MailHash, $routeParams, Password) {
     $scope.form = {
         oldPassword: "",
         newPassword: "",
         confirmPassword: "",
-        email: ""
+        email: "",
+        code: ""
     }
 
     $scope.message = 0;
@@ -2856,6 +2857,7 @@ function ChangePasswordController($scope, Sessions, User, $location, $rootScope,
 
     $scope.onChangePasswordOk = function() {
         $scope.message = 0;
+        $scope.state = 2;
     }
 
     $scope.onChangePassword = function() {
@@ -2870,15 +2872,17 @@ function ChangePasswordController($scope, Sessions, User, $location, $rootScope,
 
     $scope.onChangePasswordBegin = function() {
         Sessions.signin({}, $.param({
-            "email": $scope.form.testEmail,
+            "email": $scope.form.email,
             "password": $scope.form.oldPassword 
         }), function(data) {
             if(data.success) {
                 var user = {
-                    "password": $scope.form.newPassword
+                    "password": $scope.form.newPassword,
+                    "sguid": data.guid,
+                    "code": $scope.form.code
                 }
 
-                User.updateUser({"id": data.guid},  {user: JSON.stringify(user)}, function(data) {
+                Password.update({},  user, function(data) {
                         $scope.message = 3;
                     }
                 );

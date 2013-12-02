@@ -143,6 +143,17 @@ pgrModule.factory('ImprovaLogin', function ($resource) {
     );
 });
 
+pgrModule.factory('Password', function ($resource) {
+    return $resource(
+        host+'/users/update_password', 
+        {}, 
+        {
+            update: {method: 'POST'}
+        }
+    );
+});
+
+
 /**
  * Модель для Needs
  * @param  {[type]} $resource [description]

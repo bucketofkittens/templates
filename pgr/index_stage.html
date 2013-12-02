@@ -39,11 +39,11 @@
 					<input type="submit" class="searcher" ng-click="onSearch()" />
 					<div ng-cloak class="searchResult" ng-if="resultSearch.length > 0">
 						<div class="item" ng-repeat="(userKey, userItem) in resultSearch | limitTo: limit">
-							<div class="image">
+							<div class="image" ng-click="onCompare(userItem)">
 								<img ng-src="{{userItem.avatar}}" alt="">
 								<i>{{userItem.points}}</i>
 							</div>
-							<div class="text">
+							<div class="text" ng-click="onCompare(userItem)">
 								<p class="name">{{userItem.name}}</p>
 								<p class="birthday">{{userItem.birthday}}</p>
 								<p class="birthday">{{userItem.state}}</p>
