@@ -1946,6 +1946,10 @@ function GalleryController($scope, localize, Leagues, User, AuthUser, $element, 
      */
     $scope.onUserMouseLeave = function(user, $event) {
         user.hovered = false;
+            
+        $timeout(function() {
+            user.hover = false;
+        }, $scope.showTick);
     }
 
     /**
