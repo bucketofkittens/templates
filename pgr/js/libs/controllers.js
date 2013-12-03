@@ -1487,6 +1487,10 @@ function MainController($scope, Leagues, User, $rootScope, $location, $timeout, 
             data.shuffle();
             angular.forEach(data, function(value, key){
                 value.points = parseInt(value.points);
+                console.log(value.points);
+                if(isNaN(value.points)) {
+                    value.points = 0;
+                }
                 if(!value.league) {
                     value.league = {name: "10"};
                 }
@@ -2760,7 +2764,7 @@ function MyProfileController($scope, $rootScope, User, $location, $cookieStore, 
      */
     $scope.onUnPublish = function($event) {
         var user = {
-                "published": 0
+            "published": 0
         }
 
         User.updateUser({"id": $scope.workspace.user.sguid},  {user: JSON.stringify(user)}, function(data) {
