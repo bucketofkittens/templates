@@ -146,6 +146,7 @@ footer #footer #follow_tab a{position:absolute;top:30%;right:1%;cursor:pointer;w
 .login .modal.show{opacity:1;display:block}
 .login .singin-sub{margin-top:25px;margin-right:-5px}.login .singin-sub input{padding:12px 20px 10px 20px !important}
 .email .modal{width:230px;matgin-left:-100px}
+.email .cancel{float:left}
 .email h4{margin-bottom:30px !important}
 .email .form-input{width:200px}
 .email p{margin-bottom:15px}

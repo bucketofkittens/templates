@@ -2830,13 +2830,21 @@ function ChangeEmailController($scope, User, $location, Sessions) {
     }
 }
 
-function ChangePasswordController($scope, Sessions, User, $location, $rootScope, MailHash, $routeParams, Password) {
+function ChangePasswordController($scope, Sessions, User, $location, $rootScope, MailHash, $routeParams, Password, $window) {
     $scope.form = {
         oldPassword: "",
         newPassword: "",
         confirmPassword: "",
         email: "",
         code: ""
+    }
+
+    $scope.onChangePasswordCancel = function() {
+        $window.history.back();
+    }
+
+    $scope.onChangePasswordCancel2 = function() {
+        $scope.state = 1;
     }
 
     $scope.message = 0;
