@@ -1,11 +1,21 @@
 <section id="compare" ng-controller="FollowController" >
 	<div id="favorite_compare" ng-controller="FollowCaruselController">
 		<div class="inner">
+			<img 
+				ng-click="onCompare(workspace.user)" 
+				ng-src="{{workspace.user.avatar}}" 
+				alt="" 
+				ng-if="workspace.user"
+				ng-click="onMouseEnterUser(workspace.user)" 
+				err-src="/images/unknown-person.png" />
 			<span class="icon favorite"></span>
 			<div class="list">
 				<span class="icon favorite_nav_left" ng-click="onLeft()" ng-if="frends.length > 12"></span>
 				<div class="list_wrap">
 					<ul carusel-position>
+
+							
+						</li>
 						<li
 							ng-class="{show: userItem.user.show}" 
 							ng-mouseleave="onMouseLeaveUser(userItem.user)" 

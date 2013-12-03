@@ -189,7 +189,8 @@ ng-form:not(.ng-pristine) input.ng-invalid:not(.ng-pristine){border-color:rgba(2
 .iradio_minimal.disabled{background-position:-160px 0;cursor:default}
 .iradio_minimal.checked.disabled{background-position:-180px 0}
 #compare{margin:80px 0 0 0}
-#favorite_compare{border:1px solid #b4b4b4;margin:0 0 0 14px;background:#fff}#favorite_compare .inner{width:100%;overflow:hidden}
+#favorite_compare{border:1px solid #b4b4b4;margin:0 0 0 14px;background:#fff}#favorite_compare .inner>img{float:left;width:60px;display:block}
+#favorite_compare .inner{width:100%;overflow:hidden}
 #favorite_compare .favorite{margin-left:27px;margin-top:15px;display:block;float:left}
 #favorite_compare .favorite_nav_left,#favorite_compare .favorite_nav_right{position:absolute;cursor:pointer}
 #favorite_compare .favorite_nav_right{top:26px;right:24px}
