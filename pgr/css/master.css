@@ -172,7 +172,7 @@ ng-form:not(.ng-pristine) input.ng-invalid:not(.ng-pristine){border-color:rgba(2
 .icon.favorite_nav_left{background:url("../images/fl.png") left top no-repeat;width:11px;height:16px}
 .icon.favorite_nav_right{background:url("../images/fr.png") left top no-repeat;width:11px;height:16px}
 #bridge{position:absolute;width:32px;left:0;top:0;background:#fff;height:57px !important;display:none;border-top:1px solid #ddd;border-bottom:1px solid #ddd;z-index:200;box-shadow:0 20px 30px -20px rgba(0,0,0,0.5),0 -20px 30px -20px rgba(0,0,0,0.5)}
-#crop_modal{background:#fff;padding:20px;position:absolute;top:0;left:50%;width:500px;margin-left:-250px;z-index:500;display:none;box-shadow:0 0 20px 1px rgba(0,0,0,0.2)}#crop_modal.show{display:block}
+#crop_modal{background:#fff;padding:20px;position:absolute;top:0;left:50%;width:500px;margin-left:-250px;z-index:9999;display:none;box-shadow:0 0 20px 1px rgba(0,0,0,0.2)}#crop_modal.show{display:block}
 #crop_modal #cropContainer{width:460px}
 #crop_modal button{width:30%;height:100%;font-size:100%;font-family:'Helvetica Neue Light';line-height:130%;margin-left:3%;padding:1% !important;vertical-align:middle !important;display:inline-block;cursor:pointer;background:none;border:2px solid #ccc}
 #crop_modal .buttons{width:100%;overflow:hidden;padding:10px 0 0 0}#crop_modal .buttons .apply{float:right}
