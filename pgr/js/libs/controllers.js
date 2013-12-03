@@ -1487,7 +1487,6 @@ function MainController($scope, Leagues, User, $rootScope, $location, $timeout, 
             data.shuffle();
             angular.forEach(data, function(value, key){
                 value.points = parseInt(value.points);
-                console.log(value.points);
                 if(isNaN(value.points)) {
                     value.points = 0;
                 }
