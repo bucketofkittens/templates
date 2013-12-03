@@ -260,7 +260,6 @@ function UserController($scope, $element, $route, $routeParams, User, Needs, Pro
             $("sub.du, sup.du").remove();
             $scope.userId = $location.search().user2;
             $scope.getUserInfo();
-
         } else {
             $("sub.du, sup.du").remove();
             $scope.userId = $location.search().user1;
@@ -2043,12 +2042,12 @@ function RootController($scope, $facebook, AuthUser, User, $rootScope, Needs, So
     $scope.workspace = {};
     $scope.tmpFollows = [];
 
-
-
     $scope.controller = $location.path().split("/").join("_");
 
-    $scope.$on('$routeChangeStart', function(event, next, current) { 
+    $scope.$on('$routeChangeStart', function(event, next, current) {
         $scope.controller = $location.path().split("/").join("_");
+
+        $rootScope.$broadcast('hideSearch');
     });
 
     $scope.shareFacebook = function(url, title, descr, image) {
@@ -2959,6 +2958,7 @@ function SearchController($scope, User, $rootScope, $location) {
 
     $scope.$on('hideSearch', function($event) {
        $scope.resultSearch = [];
+       $scope.searchText = "";
     });
 }
 
