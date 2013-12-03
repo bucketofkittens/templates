@@ -1367,24 +1367,33 @@ function FollowController($scope, $rootScope, User, $location, $routeParams, Aut
     $scope.compareState = 1;
     
     $scope.onCompare = function(user) {
+        var noCl = false;
         if($location.search().user1) {
             if($scope.compareState == 1) {
                 $scope.compareState = 2;
-                $location.path("/compare").search(
-                    {
-                        user1: $location.search().user1, 
-                        user2: user.sguid
-                    }
-                );
+                if($location.search().user2 != user.sguid) {
+                    $location.path("/compare").search(
+                        {
+                            user1: $location.search().user1, 
+                            user2: user.sguid
+                        }
+                    );
+                } else {
+                    noCl = true;
+                }
             } else {
                 $scope.compareState = 1;
-                $location.path("/compare").search(
-                    {
-                        user1: user.sguid, 
-                        user2: $location.search().user2
-                    }
-                );
-        }
+                if($location.search().user1 != user.sguid) {
+                    $location.path("/compare").search(
+                        {
+                            user1: user.sguid, 
+                            user2: $location.search().user2
+                        }
+                    );
+                } else {
+                    noCl = true;
+                }
+            }
         } else {
             if($scope.workspace.user && $scope.workspace.user.sguid) {
                 $location.path("/compare").search(
@@ -1402,7 +1411,9 @@ function FollowController($scope, $rootScope, User, $location, $routeParams, Aut
                 );
             }
         }
-        $rootScope.$broadcast('loaderShow');
+        if(!noCl) {
+            $rootScope.$broadcast('loaderShow');    
+        }
     };
 
     /**
