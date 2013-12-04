@@ -2501,3 +2501,108 @@ sup.du {
         }
     }
 }
+
+
+
+/** FULL SEARCH **/
+.searchfull {
+    position: relative;
+    top: 80px;
+    margin-left: 20px;
+    width: 380px;
+    height: 90%;
+    min-height: 550px;
+    background: #ffffff;
+    border: 1px solid #dddddd;
+    box-shadow: 0px 0px 20px 1px rgba(0, 0, 0, 0.2);
+    z-index: 3;
+    display: inline-block;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    &::-webkit-scrollbar {
+        width: 0px;
+        height: 0px; 
+    }
+    .fullsearch {
+        input[type="text"] {
+            left: 0px;
+            width: 398px;
+        }
+        .searchResult {
+            width: 490px;
+            right: 0px;
+            min-height: 2000px;
+            position: relative;
+            img {
+                cursor: pointer;
+            }
+        }
+    }    
+}
+.fusepar {
+    display: inline-block;
+    position: relative;
+    margin: 50px 20px 0px 0px;
+    float: right;
+    vertical-align: top;
+    width: 580px;
+    height: 90%;
+    min-height: 550px;
+    z-index: 3;
+    overflow: hidden;
+    overflow-y: scroll;
+    padding-bottom: 500px;
+    &::-webkit-scrollbar {
+        width: 0px;
+        height: 0px; 
+    }
+    .fsp {
+        overflow: hidden;        
+        background: #ffffff;
+        border: 1px solid #dddddd;
+        box-shadow: 0px 0px 20px 1px rgba(0, 0, 0, 0.2);
+        margin: 30px auto;
+        width: 525px;
+        padding: 15px;
+        div {
+            float: left;
+            width: 250px;
+            position: relative;
+            h6 {
+                font-size: 20px;
+                margin-bottom: 7px;
+            }
+            input[type="text"] {
+                font-size: 18px;
+                line-height: 20px;
+                vertical-align: middle;
+                padding: 5px 10px !important;
+                border: 1px solid #aaaaaa !important;
+                font-family: 'Helvetica Neue Light';
+                width: 180px;
+            }
+            input[type="button"] {
+                width: 30px !important;
+                height: 30px !important;
+                background: url(../images/fullsearch.png) no-repeat;
+                position: absolute;
+                right: 30px !important;
+                top: 30px !important;
+                border: none;
+                border-left: 1px solid #aaaaaa !important;
+                vertical-align: middle;
+            }
+            img {
+                cursor: pointer;
+                vertical-align: middle;
+                width: 30px;
+                height: 30px;
+                border: 1px solid #aaaaaa !important;
+                margin-left: 10px;
+            }
+        }
+        div:last-child {
+            float: right;
+        }
+    }
+}
