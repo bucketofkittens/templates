@@ -157,7 +157,7 @@ pgrModule.run(function() {
 
 	WL.init({
 	    client_id: "000000004410A030",
-	    redirect_uri: "http://xmpp.dev.improva.com:8901/",
+	    redirect_uri: "http://i-rate.com/",
 	    scope: "wl.signin", 
 	    response_type: "token"
 	});
