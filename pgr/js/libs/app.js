@@ -5,7 +5,7 @@ var socialsAccess = {
 		applicationId: {
 			"localhost": '205232122986999', 
 			"xmpp.dev.improva.com": '173391222849160',
-			"i-rate": '181043732091838'
+			"i-rate.com": '181043732091838'
 		},
 		isLoggined: false
 	},
@@ -13,7 +13,7 @@ var socialsAccess = {
 		applicationId: {
 			"localhost": '339940198985.apps.googleusercontent.com', 
 			"xmpp.dev.improva.com": "339940198985-h79e4hvjp9b2658og8o849u3blaootub.apps.googleusercontent.com",
-			"i-rate.com": "600755979648.apps.googleusercontent.com"
+			"i-rate.com": "339940198985-c9idb0ng4letjpfnhsm4l7jci1uh7t6c.apps.googleusercontent.com"
 		},
 		apiKey: 'AIzaSyBUJ3rialFIcJ5QvuWFkvPqmFbTBIZ2Kmo',
 		scopes: [
