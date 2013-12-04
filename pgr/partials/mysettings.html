@@ -106,8 +106,7 @@
 					id="pro_i" 
 					ng-model="workspace.user.profession.name"
 					type="text"
-					ng-change="selectProfession($event, career)"
-					ui-keypress="{13:'addProfession($event)'}"  />
+					ng-change="selectProfession($event, career)"  />
 					<img src="/images/7.jpg" ng-if="isAddProff" class="cursor" ng-click="addProfession($event)" width="40px" alt="" />
 			</p>
 			<div class="proffesion_list" ng-if="curProff && showProf && showProf2">
