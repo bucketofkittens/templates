@@ -2416,6 +2416,13 @@ function MyProfileController($scope, $rootScope, User, $location, $cookieStore, 
     $scope.countCareerChange = 0;
     $scope.countCityChange = 0;
 
+    $("body").on("click", function() {
+        $scope.$apply(function() {
+            $scope.showProf2 = false;
+            $scope.showState2 = false;
+        });
+    });
+
     $scope.selectCareer = function($event, career) {
         if(career) {
             Professions.query({ id: career.sguid }, {}, function(data) {
