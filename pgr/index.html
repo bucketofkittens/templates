@@ -11,7 +11,9 @@
 		<link rel="stylesheet" href="./css/fonts.css" />
 		<link rel="stylesheet" href="./css/jquery-ui-1.10.3.custom.min.css" />
 		<link rel="stylesheet" href="./css/jquery.Jcrop.min.css" />
-		<link rel="stylesheet" href="./css/master.css" />
+		<link href="./css/master.less" rel="stylesheet/less" />
+
+		<script src="/js/less-1.5.0.min.js"></script>
 	</head>
 	<body ng-controller="RootController" >
 		
@@ -55,6 +57,7 @@
 								<p class="profession">{{userItem.profession.name}}</p>
 								<p class="league">{{userItem.league.name}} league</p>
 							</div>
+							<img class="sealin" src="./images/i1l.png" alt="">
 						</div>
 						<div class="all" ng-if="resultSearch.length > limit">
 							<a ng-click="onAdvanceSearch()">See all result</a>

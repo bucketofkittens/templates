@@ -2171,18 +2171,16 @@ ng-form:not(.ng-pristine) {
     position: absolute;
     background: #ffffff;
     z-index: 999;
-    right: -100px;
+    right: -80px;
     top: 31px;
-    width: 400px;
+    width: 355px;
     padding-top: 15px;
     padding-bottom: 15px;
     .item {
         width: 100%;
         overflow: hidden;
         border-bottom: 1px solid #d6d6d6;
-        &:first-child {
-            border: 0px;
-        }
+        position: relative;
         .image {
             float: left;
             margin: 0px 0px 0px 30px;
@@ -2210,9 +2208,18 @@ ng-form:not(.ng-pristine) {
         }
         .text {
             float: left;
-            width: 220px;
+            width: 195px;
             padding: 17px 0px 0px 30px;
             line-height: 140%;
+            cursor: pointer;
+        }
+        img.sealin {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            top: 50%;
+            margin-top: -20px;
+            right: 15px;
             cursor: pointer;
         }
     }
