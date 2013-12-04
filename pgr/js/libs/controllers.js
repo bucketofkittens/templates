@@ -2955,6 +2955,13 @@ function SearchController($scope, User, $rootScope, $location) {
         $location.path("/search").search({text: $scope.searchText});
     }
 
+    $("body").on("click", function() {
+        $scope.$apply(function() {
+            $scope.resultSearch = [];
+            $scope.searchText = "";
+        });
+    });
+
     $scope.test_ = function() {
         angular.forEach($scope.usersCollections, function(value, key) {
             var reg = new RegExp($scope.searchText, "i");
