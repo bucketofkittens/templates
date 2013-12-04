@@ -1251,9 +1251,7 @@ function LoginController($scope, Sessions, $rootScope, User, Social, $facebook, 
     }
 
     $scope.socialFacebookLogin = function() {
-        $rootScope.$broadcast('loaderShow');
         FB.login(function(response) {
-            console.log(response);
             if(!response.authResponse) {
                 $scope.$apply(function() {
                     $rootScope.$broadcast('loaderHide');
@@ -1263,7 +1261,6 @@ function LoginController($scope, Sessions, $rootScope, User, Social, $facebook, 
     };
 
     $scope.socialGooglePlusLogin = function() {
-        $rootScope.$broadcast('loaderShow');
         gapi.auth.authorize({
             client_id: socialsAccess.googlePlus.applicationId[window.location.hostname], 
             scope: socialsAccess.googlePlus.scopes, 
@@ -1272,7 +1269,6 @@ function LoginController($scope, Sessions, $rootScope, User, Social, $facebook, 
     };
 
     $scope.socialMicrosoftLiveLogin = function() {
-        $rootScope.$broadcast('loaderShow');
         WL.login({
             scope: ["wl.signin", "wl.basic", "wl.emails"]
         }).then(
