@@ -280,7 +280,11 @@ function UserController($scope, $element, $route, $routeParams, User, Needs, Pro
             if($scope.tmpFollows.length > 0) {
                 $location.path("/compare").search({user1: $scope.tmpFollows[0].user.sguid, user2: $scope.userId});
             } else {
-                $location.path("/compare").search({user1: $scope.userId, user2: $scope.userId});
+                User.for_main({}, {}, function(data) {
+                    var index = getRandomInt(0, data.length-1);
+                    $location.path("/compare").search({user1: data[index].sguid, user2: $scope.userId})
+                });
+                
             }
         }
     }
@@ -1457,6 +1461,7 @@ function FollowController($scope, $rootScope, User, $location, $routeParams, Aut
     }
 
     $scope.onMoveToUser = function() {
+
         if($scope.workspace.user && $scope.workspace.user.sguid) {
             $location.path("/compare").search({user1: $scope.workspace.user.sguid, user2: $scope.workspace.user.frends[0].user.sguid});
         } else {
@@ -1985,9 +1990,14 @@ function GalleryController($scope, localize, Leagues, User, AuthUser, $element, 
 
     $scope.onMoveToCompare = function(user) {
         if($scope.workspace.user && $scope.workspace.user.sguid) {
-            $location.path("/compare").search({user1: $scope.workspace.user.sguid, user2: user.sguid});    
+            $location.path("/compare").search({user1: $scope.workspace.user.sguid, user2: user.sguid});
         } else {
-            $location.path("/compare").search({user1: $routeParams.userId1, user2: user.sguid});
+            if($scope.tmpFollows.length > 0) {
+                $location.path("/compare").search({user1: $scope.tmpFollows[0].user.sguid, user2: user.sguid});
+            } else {
+                var index = getRandomInt(0, $scope.users.length-1);
+                $location.path("/compare").search({user1: $scope.users[index].sguid, user2: user.sguid});
+            }
         }
     }
 
