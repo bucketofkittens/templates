@@ -610,7 +610,6 @@ function NeedsAndGoalsController($scope, Goals, Criterion, AuthUser, UserCriteri
 
                 needItem.current_value = needsData[needItem.sguid];
             });
-            console.log(needsData);
             $rootScope.$broadcast('needUserValueLoaded', {
                 needsValues: needsData,
                 userId: $scope.user.sguid

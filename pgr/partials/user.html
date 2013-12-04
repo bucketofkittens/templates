@@ -29,10 +29,9 @@
 	</div>
 	<div class="pmain pro" >
 		<div class="block" ng-if="user">
-			
 			<div class="image_box" ng-class="{updated: user.sguid == authUserId && isEdit}">
 				<img class="pp" ng-src="{{user.avatar}}" err-src="/images/unknown-person.png" />
-				<i ng-if="user.points && user.points != null">{{user.points}}</i>
+				<i>{{user.points}}</i>
 				<a ng-click="onUpdateFile()" title="">Update image</a>
 				<span></span>
 			</div>
@@ -114,7 +113,7 @@
 				data-needId="{{needItem.sguid}}">
 				<div class="cr" ng-click="onShowGoals($event, needItem)">
 					<p>{{needItem.name}}<s></s></p>
-					<div class="right" ng-if="needItem.current_value">
+					<div class="right">
 						<b>{{needItem.current_value}} / {{needItem.points_summary}}</b>
 						<strong>
 							<span 
