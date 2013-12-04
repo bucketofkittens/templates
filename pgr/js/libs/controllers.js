@@ -1082,6 +1082,8 @@ function LoginController($scope, Sessions, $rootScope, User, Social, $facebook, 
         password: ""
     }
 
+    $scope.user_create = 0;
+
     $scope.$on('openLoginModal', function() {
         $scope.show = true;
     });
@@ -1094,6 +1096,11 @@ function LoginController($scope, Sessions, $rootScope, User, Social, $facebook, 
 
     $scope.$on('socialLogined', function() {
     });
+
+
+    $scope.onCancelCreate = function() {
+        $scope.user_create = 0;
+    }
 
     $scope.onSignStateChange = function() {
         $scope.signup = $scope.signup ? false : true;
@@ -1199,6 +1206,8 @@ function LoginController($scope, Sessions, $rootScope, User, Social, $facebook, 
      * @returns {undefined}
      */
     $scope.onAddUser = function ($event) {
+        $rootScope.$broadcast('loaderShow');
+        
         var phpquery = $.ajax({url:"test.php",
           type: "POST",
           async: false,
@@ -1214,6 +1223,7 @@ function LoginController($scope, Sessions, $rootScope, User, Social, $facebook, 
                         "password": $scope.user.password
                     })}
                     ,function(data) {
+                        $rootScope.$broadcast('loaderHide');
                         if(!data.success) {
                             $scope.errors = "";
                             $scope.errorEmail = "";
@@ -1223,15 +1233,7 @@ function LoginController($scope, Sessions, $rootScope, User, Social, $facebook, 
                                 }
                             });
                         } else {
-                            Sessions.signin({}, $.param({
-                                "email": $scope.user.email,
-                                "password": $scope.user.password
-                            }), function(data) {
-                                if(data.success) {
-                                    $rootScope.$broadcast('onSignin', {sguid: data.guid, isSocial: true, noRedirect: true});
-                                    $location.path("/my_profile/");
-                                }
-                            });
+                            $scope.user_create = 1;
                         }
                     }
                 );
@@ -3055,4 +3057,14 @@ function CommentsController($scope, $rootScope, Comments) {
             $scope.getMessages();
         });
     }
+}
+
+function ConfirmController($scope, ConfirmSignup, $routeParams, $location) {
+    ConfirmSignup.test({hash: $routeParams.hash}, {}, function(data) {
+        if(data) {
+            $location.path("/login/");
+        } else {
+            $location.path("/login/");
+        }
+    });
 }

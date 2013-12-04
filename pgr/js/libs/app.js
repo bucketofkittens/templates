@@ -79,6 +79,8 @@ pgrModule.config(function($routeSegmentProvider, $routeProvider) {
         
         .when('/graphs',                    'graphs')
         .when('/leagues',                   'leagues')
+        .when('/confirm_signup/:hash',            'confirm')
+        
         
         .segment('profile', {
             templateUrl: 'views/profile.html',
@@ -98,6 +100,11 @@ pgrModule.config(function($routeSegmentProvider, $routeProvider) {
         .segment('main', {
             templateUrl: 'views/main.html',
             controller: MainController})
+
+        .segment('confirm', {
+            templateUrl: 'views/confirm.html',
+            controller: ConfirmController,
+            dependencies: ['hash']})
 
         .segment('search', {
             templateUrl: 'views/search.html',

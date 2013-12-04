@@ -107,6 +107,19 @@ pgrModule.factory('Picture', function ($resource) {
     );
 });
 
+pgrModule.factory('ConfirmSignup', function ($resource) {
+    return $resource(
+        hostShort+'/confirm_signup/:hash', 
+        {hash:'@hash'}, 
+        {
+            test: {
+                method: "GET",
+                url: hostShort+'/confirm_signup/:hash'
+            }
+        }
+    );
+});
+
 /**
  * Модель картинов
  * @param  {[type]} $resource [description]
