@@ -273,6 +273,14 @@ function UserController($scope, $element, $route, $routeParams, User, Needs, Pro
         }
     });
 
+    $scope.$on('$routeChangeSuccess', function(event, next, current) {
+        if($routeParams.userId1) {
+            $("sub.du, sup.du").remove();
+            $scope.userId = $routeParams.userId1;
+            $scope.getUserInfo();
+        }
+    });
+
     $scope.onCompareUser = function() {
         if($scope.workspace.user && $scope.workspace.user.sguid) {
             $location.path("/compare").search({user1: $scope.workspace.user.sguid, user2: $scope.userId});
@@ -1207,7 +1215,7 @@ function LoginController($scope, Sessions, $rootScope, User, Social, $facebook, 
      */
     $scope.onAddUser = function ($event) {
         $rootScope.$broadcast('loaderShow');
-        
+
         var phpquery = $.ajax({url:"test.php",
           type: "POST",
           async: false,

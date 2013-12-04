@@ -51,7 +51,7 @@ body header #header #avatar p span{color:#fff;text-decoration:none;font-family:'
 #content .crits ul li ul li .criterion li .bord strong{display:inline-block;position:absolute;top:12px;right:15px;cursor:pointer}#content .crits ul li ul li .criterion li .bord strong img{width:30px}
 #content .pronear{display:inline-block;position:relative;margin-right:20px;float:right;vertical-align:top;width:350px;height:90%;min-height:550px;background:#fff;border:1px solid #ddd;box-shadow:0 0 20px 1px rgba(0,0,0,0.2);z-index:3;overflow:hidden}
 #content .nearblock{display:block;padding:15px}#content .nearblock i{height:1px;border-top:2px solid #ccc;display:block;margin:15px auto}
-#content .nearblock .lnbl{display:block;width:100%;position:relative}#content .nearblock .lnbl .gallery{}#content .nearblock .lnbl .gallery>div>div{overflow:visible}
+#content .nearblock .lnbl{display:block;width:100%;position:relative}#content .nearblock .lnbl .gallery{top:0 !important;}#content .nearblock .lnbl .gallery>div>div{overflow:visible}
 #content .nearblock .lnbl .gallery h4{font-size:20px;color:#000;text-align:left;display:block;margin-bottom:15px}
 #content .nearblock .lnbl .gallery .big{-webkit-transform:translate(-10%, -10%);-webkit-transform:scale(2.3);-moz-transform:translate(-10%, -10%);-moz-transform:scale(2.3);-ms-transform:translate(-10%, -10%);-ms-transform:scale(2.3)}#content .nearblock .lnbl .gallery .big b{font-size:8px !important;padding-top:5px !important}
 #content .nearblock .lnbl .gallery .big span{font-size:8px !important;z-index:999}
