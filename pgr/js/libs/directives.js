@@ -149,6 +149,7 @@ pgrModule.directive('setWidth', function() {
 
           parentElement.width(newSize);
           parentElement.height(newSize);
+
           parentElement.css("left", delta);
           parentElement.css("top", delta);
 
