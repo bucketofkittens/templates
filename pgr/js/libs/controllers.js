@@ -1123,7 +1123,8 @@ function LoginController($scope, Sessions, $rootScope, User, Social, $facebook, 
                             {user: JSON.stringify({
                                 "login": dataImprova.email,
                                 "email": dataImprova.email,
-                                "password": ""
+                                "password": "",
+                                "confirmed": "1"
                             })}
                             ,function(data) {
                                 if(data.success) {

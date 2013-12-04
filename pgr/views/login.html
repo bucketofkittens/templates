@@ -12,7 +12,7 @@
         <div class="right">
             <p>
                 <input 
-                    type="text" 
+                    type="email" 
                     id="login_i" 
                     class="form-input"
                     ng-model="improvaForm.email"
@@ -21,7 +21,7 @@
                     ng-minlength="6"
                     placeholder="Email" />
                     <br />
-                    <span class="errorss" ng-show="ImprovaForm.ImprovaEmail.$dirty && (ImprovaForm.Email.$error.required || ImprovaForm.ImprovaEmail.$error.minlength )">Incorrect email</span>
+                    <span class="errorss" ng-show="ImprovaForm.ImprovaEmail.$dirty && (ImprovaForm.ImprovaEmail.$error.required || ImprovaForm.ImprovaEmail.$error.minlength || ImprovaForm.ImprovaEmail.$error.email )">Incorrect email</span>
             </p>
             <p>
                 <input 
