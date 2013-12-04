@@ -4,14 +4,16 @@ var socialsAccess = {
 	facebook: {
 		applicationId: {
 			"localhost": '205232122986999', 
-			"xmpp.dev.improva.com": '173391222849160'
+			"xmpp.dev.improva.com": '173391222849160',
+			"i-rate": '181043732091838'
 		},
 		isLoggined: false
 	},
 	googlePlus: {
 		applicationId: {
 			"localhost": '339940198985.apps.googleusercontent.com', 
-			"xmpp.dev.improva.com": "339940198985-h79e4hvjp9b2658og8o849u3blaootub.apps.googleusercontent.com"
+			"xmpp.dev.improva.com": "339940198985-h79e4hvjp9b2658og8o849u3blaootub.apps.googleusercontent.com",
+			"i-rate.com": "600755979648.apps.googleusercontent.com"
 		},
 		apiKey: 'AIzaSyBUJ3rialFIcJ5QvuWFkvPqmFbTBIZ2Kmo',
 		scopes: [
