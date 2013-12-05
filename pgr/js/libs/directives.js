@@ -162,7 +162,7 @@ pgrModule.directive('setWidth', function() {
             parentElement.css("top", 0);
           }
           if(parentElement.offset().top + newSize >  $(window).height()) {
-            parentElement.css("top", "-"+newSize/2+"px");
+            parentElement.css("top", "-"+newSize/1.5+"px");
           }
           if(parentElement.offset().left + newSize > $(window).width()) {
             parentElement.css("left", "-"+newSize/2+"px");
