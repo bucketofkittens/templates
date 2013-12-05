@@ -368,6 +368,10 @@ function UserController($scope, $element, $route, $routeParams, User, Needs, Pro
                     $scope.user.points = 0;
                 }
 
+                if(isNaN($scope.user.points)) {
+                    $scope.user.points = 0;
+                }
+
                 if(!$scope.user.avatar) {
                     $scope.user.avatar = "/images/unknown-person.png";
                 }
