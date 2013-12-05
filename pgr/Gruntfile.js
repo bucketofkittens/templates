@@ -33,6 +33,7 @@ module.exports = function(grunt) {
                     'js/keypress.js',
                     'js/moment+langs.min.js',
                 	'js/localize.js',
+                    'js/angular-slider.min.js',
                     'js/libs/*.js'
                 ],
                 dest: 'build/scripts.js'
@@ -42,6 +43,7 @@ module.exports = function(grunt) {
                     "css/reset.css",
                     "css/jquery-ui-1.10.3.custom.min.css",
                     "css/jquery.Jcrop.min.css",
+                    "css/angular-slider.min.css",
                     "css/fonts.css",
                     "css/master.css"
                 ],
