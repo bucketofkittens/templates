@@ -94,7 +94,7 @@ body header #header #avatar p span{color:#fff;text-decoration:none;font-family:'
 #content table#graphs tr:last-child td{border-top:none}
 #modal-shadow{position:fixed;left:0;top:0;width:100%;height:100%;background:rgba(0,0,0,0.5);display:none;z-index:2500}#modal-shadow.show{display:block}
 #modal-shadow span{display:inline-block;position:relative;z-index:9999;width:100px;height:100px;top:50%;margin-top:-100px;left:50%}
-.gallery{height:110%;position:relative;top:60px;overflow:visible !important}.gallery>div{overflow:visible !important;transition:all .1s linear;-webkit-transition:all .1s linear;left:0;height:84%}.gallery>div>div{overflow:hidden;display:none}.gallery>div>div.show{display:block}
+.gallery{height:100%;margin-top:60px;position:relative;overflow:visible !important}.gallery>div{overflow:visible !important;transition:all .1s linear;-webkit-transition:all .1s linear;left:0;height:100%}.gallery>div>div{overflow:hidden;display:none}.gallery>div>div.show{display:block}
 .gallery>div>div.full-animate{transition:all .3s linear;-webkit-transition:all .3s linear}
 .gallery>div>div .wr{position:relative;overflow:hidden;width:100%;transition:all .3s linear;-webkit-transition:all .3s linear}.gallery>div>div .wr i{position:absolute;left:0;bottom:-4px;width:99%;padding-right:1%;background:rgba(0,0,0,0.48);text-align:right;color:#fff;line-height:100%;font-size:120%;font-family:'Helvetica Neue Light';z-index:3;transition:all .3s linear;-webkit-transition:all .3s linear}
 .gallery>div>div img{display:block}

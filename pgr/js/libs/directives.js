@@ -104,6 +104,8 @@ pgrModule.directive('setWidth', function() {
   return {
     priority: 0,
     link: function(scope, element, attrs) {
+      $(".gallery").height($(window).height() - 115);
+      $(".gallery > div").height($(window).height() - 115);
       var getSize = 0;
       var pElement = $(element).parent().parent();
       var parentElement = $(element).parent();
@@ -160,7 +162,7 @@ pgrModule.directive('setWidth', function() {
             parentElement.css("top", 0);
           }
           if(parentElement.offset().top + newSize >  $(window).height()) {
-            parentElement.css("top", "-"+newSize/3+"px");
+            parentElement.css("top", "-"+newSize+"px");
           }
           if(parentElement.offset().left + newSize > $(window).width()) {
             parentElement.css("left", "-"+newSize/2+"px");
