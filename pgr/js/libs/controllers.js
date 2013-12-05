@@ -1818,7 +1818,7 @@ function GalleryController($scope, localize, Leagues, User, AuthUser, $element, 
      * Через сколько минисекунд картинка становится большой
      * @type {Number}
      */
-    $scope.showTick = 2000;
+    $scope.showTick = 500;
 
     $scope.limit = 12;
 
