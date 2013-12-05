@@ -51,7 +51,8 @@ var pgrModule = angular.module(
         'ui.date',
         'ui.autocomplete',
         'ui.keypress',
-        'vcRecaptcha'
+        'vcRecaptcha',
+        'uiSlider'
 		]
 	);
 
