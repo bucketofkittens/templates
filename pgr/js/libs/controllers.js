@@ -597,7 +597,6 @@ function NeedsAndGoalsController($scope, Goals, Criterion, AuthUser, UserCriteri
     $rootScope.$broadcast('loaderShow');
 
     $scope.$watch('workspace.needs', function (newVal, oldVal, scope) {
-
         if($scope.workspace.needs) {
             $scope.needs = JSON.parse(JSON.stringify($scope.workspace.needs));
             if($scope.allOpen) {
@@ -2710,7 +2709,9 @@ function MyProfileController($scope, $rootScope, User, $location, $cookieStore, 
 
     $scope.$watch("workspace.needs", function (newVal, oldVal, scope) {
         if($scope.workspace.needs) {
-            $scope.curNeed = $scope.workspace.needs.filter(function(value) {
+
+            var needs = JSON.parse(JSON.stringify($scope.workspace.needs)); ;
+            $scope.curNeed = needs.filter(function(value) {
                 if(value.sguid == "169990243011789827") {
                     return value;
                 }
@@ -2730,7 +2731,6 @@ function MyProfileController($scope, $rootScope, User, $location, $cookieStore, 
             }
             if($scope.workspace.user && !$scope.workspace.user.profession) {
                 $scope.career = $scope.curNeed.goals[1];
-                console.log($scope.career);
                 $scope.selectCareer({}, $scope.career);
             }
         }
