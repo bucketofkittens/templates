@@ -81,7 +81,7 @@ body header #header #avatar p span{color:#fff;text-decoration:none;font-family:'
 #content .tab .myset .promy .block{width:250px;margin-right:55px}
 #content .tab .myset .promy .publish{display:block;text-align:center;position:relative;width:200px}#content .tab .myset .promy .publish strong{font-size:15px;color:#000;margin-top:15px;display:block}#content .tab .myset .promy .publish strong b{font-size:11px;color:#666;display:block;margin:5px 0}
 #content .tab .myset .promy .publish button{width:120px;height:100%;font-size:16px;font-family:'Helvetica Neue Light';line-height:16px;padding:10px 5px !important;vertical-align:middle !important;display:inline-block;cursor:pointer;background:none;border:1px solid #ccc;margin-top:15px}
-#content .tab .myset .promy .pmpar{width:600px;height:100%;padding-bottom:1000px}#content .tab .myset .promy .pmpar p{padding-bottom:10px}
+#content .tab .myset .promy .pmpar{width:600px;height:100%;padding-bottom:500px}#content .tab .myset .promy .pmpar p{padding-bottom:10px}
 #content .tab .myset .promy .pmpar label{width:130px}
 #content .tab .myset .promy .pmpar select,#content .tab .myset .promy .pmpar input{width:220px;padding:5px !important;border:1px solid #ccc;font-family:'Helvetica Neue Light';box-shadow:none;height:26px}
 #content .tab .myset .promy .pmpar select{width:233px;height:38px}
