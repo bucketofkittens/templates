@@ -2897,7 +2897,10 @@ function ChangePasswordController($scope, Sessions, User, $location, $rootScope,
 
     $scope.state = 1;
 
+    $scope.userSguid = "";
+
     $scope.hash = "";
+
     if($routeParams.hash) {
         $scope.hash = $routeParams.hash;
         $scope.state = 2;
@@ -2922,30 +2925,21 @@ function ChangePasswordController($scope, Sessions, User, $location, $rootScope,
         MailHash.create({}, {
             "email": $scope.form.email
         }, function(data) {
-            console.log(data);
+            $scope.userSguid = data.guid;
         });
     }
 
     $scope.onChangePasswordBegin = function() {
-        Sessions.signin({}, $.param({
+        var user = {
+            "password": $scope.form.newPassword,
             "email": $scope.form.email,
-            "password": $scope.form.oldPassword 
-        }), function(data) {
-            if(data.success) {
-                var user = {
-                    "password": $scope.form.newPassword,
-                    "sguid": data.guid,
-                    "code": $scope.form.code
-                }
+            "code": $scope.form.code
+        }
 
-                Password.update({},  user, function(data) {
-                        $scope.message = 3;
-                    }
-                );
-            } else {
-                $scope.error = data.message;
+        Password.update({},  user, function(data) {
+                $scope.message = 3;
             }
-        });
+        );
     }
 }
 
