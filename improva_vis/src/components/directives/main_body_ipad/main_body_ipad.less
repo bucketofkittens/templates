@@ -1,0 +1,452 @@
+#slider {
+  top: 0px;
+  left: 110px;
+  position: relative;
+  height: 100%;
+  a.flex-prev, a.flex-next {
+    font-size: 0.7em;
+  }
+  .flexslider-container {
+    .flexslider {
+      margin-bottom: 60px;
+      background: none;
+      border: none;
+      position: relative;
+      -webkit-border-radius: none;
+      -moz-border-radius: none;
+      -o-border-radius: none;
+      border-radius: none;
+      -webkit-box-shadow: none;
+      -moz-box-shadow: none;
+      -o-box-shadow: none;
+      box-shadow: none;
+      zoom: 1;
+      .flex-control-nav.flex-control-paging {
+        position: absolute;
+        top: 175px;
+        left: -122px;
+        z-index: 9999;
+        text-align: left;
+      }
+      .flex-control-nav li {
+        margin-bottom: 10px;
+        display: block;
+        zoom: 1;
+        *display: block;
+      }
+      .flex-control-paging li a {
+        width: 13px;
+        height: 13px;
+        display: block;
+//        background: rgba(0,0,0,0);
+        background: lightgrey;
+//        border: 1px solid lightgrey;
+        border: none;
+        cursor: pointer;
+        text-indent: -9999px;
+        -webkit-border-radius: 0px;
+        -moz-border-radius: 0px;
+        -o-border-radius: 0px;
+        border-radius: 0px;
+        -webkit-box-shadow: inset 0 0 0 rgba(0,0,0,0.3);
+        -moz-box-shadow: inset 0 0 0 rgba(0,0,0,0.3);
+        -o-box-shadow: inset 0 0 0 rgba(0,0,0,0.3);
+        box-shadow: inset 0 0 0 rgba(0,0,0,0.3);
+      }
+      .flex-control-paging li a:hover {
+//        background: @blue-light;
+      }
+      .flex-control-paging li a.flex-active {
+        background: @blue-light;
+        cursor: default;
+      }
+      .flex-viewport {
+        height: 2000px !important;
+        width: 370px;
+        margin-left: -90px;
+        display: block;
+        li {
+          &.slide {
+            opacity: 0.5;
+            .feature {
+              height: 225px;
+              background-color: white;
+              margin-left: 3px;
+              margin-right: 3px;
+              p {
+                font-size: 1.2em;
+                line-height: 25px;
+              }
+            }
+            .delimiter-top {
+              height: 45px;
+            }
+            .delimiter-bottom {
+              height: 5px;
+            }
+            &.flex-active-slide {
+              opacity: 1;
+              .feature {
+                background-color: rgb(235, 241, 249);
+//                -webkit-box-shadow: 2px 2px 5px rgba(50, 50, 50, 0.75);
+//                -moz-box-shadow:    2px 2px 5px rgba(50, 50, 50, 0.75);
+//                box-shadow:         2px 2px 5px rgba(50, 50, 50, 0.75);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+#ipad-container {
+  position: fixed;
+  margin-top: 40px;
+  #ipad-window {
+    position: fixed;
+    background-image: url("../assets/images/ipadair@2x.png");
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    width: 522px;
+    height: 369px;
+    margin-left: 100px;
+    z-index: 2;
+  }
+  @media only screen and (-webkit-min-device-pixel-ratio: 1.5),
+  only screen and (min-resolution: 144dpi) {
+    #ipad-window {
+      background-image: url("../assets/images/ipadair@2x.png");
+    }
+  }
+  #app-screenshot-back {
+    background-color: #2e2e2e;
+    width: 430px;
+    height: 322px;
+    position: absolute;
+    top: 23px;
+    left: 141px;
+    z-index: 0;
+  }
+  #app-screenshot {
+    background-color: #ffffff;
+    width: 428px;
+    height: 321px;
+    position: absolute;
+    top: 23px;
+    left: 147px;
+    z-index: 1;
+  }
+}
+
+#appstore-link {
+  top: 412px;
+  left: 480px;
+  position: relative;
+  width: 136px;
+  height: 47px;
+  background-image: url("../assets/images/icons/appstore.png");
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+
+//======================= iPhone ========================//
+@media only screen and (max-width: 480px) and (orientation:landscape), only screen and (max-device-width: 480px) and (orientation:landscape) {
+  #slider {
+    top: 0px;
+    left: 130px;
+    position: absolute;
+    height: 100%;
+    float: left;
+    a.flex-prev, a.flex-next {
+      font-size: 0.7em;
+    }
+    .flexslider-container {
+      .flexslider {
+        margin-bottom: 60px;
+        background: none;
+        border: none;
+        position: relative;
+        -webkit-border-radius: none;
+        -moz-border-radius: none;
+        -o-border-radius: none;
+        border-radius: none;
+        -webkit-box-shadow: none;
+        -moz-box-shadow: none;
+        -o-box-shadow: none;
+        box-shadow: none;
+        zoom: 1;
+        .flex-control-nav.flex-control-paging {
+          position: absolute;
+          top: 175px;
+          left: -122px;
+          z-index: 9999;
+          text-align: left;
+        }
+        .flex-control-nav li {
+          margin-bottom: 10px;
+          display: block;
+          zoom: 1;
+          *display: block;
+        }
+        .flex-control-paging li a {
+          width: 13px;
+          height: 13px;
+          display: block;
+          //        background: rgba(0,0,0,0);
+          background: lightgrey;
+          //        border: 1px solid lightgrey;
+          border: none;
+          cursor: pointer;
+          text-indent: -9999px;
+          -webkit-border-radius: 0px;
+          -moz-border-radius: 0px;
+          -o-border-radius: 0px;
+          border-radius: 0px;
+          -webkit-box-shadow: inset 0 0 0 rgba(0,0,0,0.3);
+          -moz-box-shadow: inset 0 0 0 rgba(0,0,0,0.3);
+          -o-box-shadow: inset 0 0 0 rgba(0,0,0,0.3);
+          box-shadow: inset 0 0 0 rgba(0,0,0,0.3);
+        }
+        .flex-control-paging li a:hover {
+          //        background: @blue-light;
+        }
+        .flex-control-paging li a.flex-active {
+          background: @blue-light;
+          cursor: default;
+        }
+        .flex-viewport {
+          height: 2000px !important;
+          width: 370px;
+          margin-left: -90px;
+          display: block;
+          li {
+            &.slide {
+              opacity: 0.5;
+              .feature {
+                height: 225px;
+                background-color: white;
+                margin-left: 3px;
+                margin-right: 3px;
+                p {
+                  font-size: 1.2em;
+                  line-height: 25px;
+                }
+                img.app-icon {
+                  width: 30px; margin-top: 5px; margin-left: 10px;
+                }
+              }
+              .delimiter-top {
+                height: 45px;
+              }
+              .delimiter-bottom {
+                height: 5px;
+              }
+              &.flex-active-slide {
+                opacity: 1;
+                .feature {
+                  background-color: rgb(235, 241, 249);
+                  //                -webkit-box-shadow: 2px 2px 5px rgba(50, 50, 50, 0.75);
+                  //                -moz-box-shadow:    2px 2px 5px rgba(50, 50, 50, 0.75);
+                  //                box-shadow:         2px 2px 5px rgba(50, 50, 50, 0.75);
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  #ipad-container {
+    position: absolute;
+    left: 350px;
+    #ipad-window {
+      position: fixed;
+      background-image: url("../assets/images/ipadair@2x.png");
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      -o-background-size: cover;
+      background-size: cover;
+      width: 522px;
+      height: 369px;
+      margin-left: 100px;
+      z-index: 2;
+    }
+    @media only screen and (-webkit-min-device-pixel-ratio: 1.5),
+    only screen and (min-resolution: 144dpi) {
+      #ipad-window {
+        background-image: url("../assets/images/ipadair@2x.png");
+      }
+    }
+    #app-screenshot-back {
+      background-color: #2e2e2e;
+      width: 430px;
+      height: 322px;
+      position: absolute;
+      top: 23px;
+      left: 141px;
+      z-index: 0;
+    }
+    #app-screenshot {
+      background-color: #ffffff;
+      width: 428px;
+      height: 321px;
+      position: absolute;
+      top: 23px;
+      left: 147px;
+      z-index: 1;
+    }
+  }
+
+  #appstore-link {
+    top: 412px;
+    left: 480px;
+    position: relative;
+    width: 136px;
+    height: 47px;
+    background-image: url("../assets/images/icons/appstore.png");
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+  }
+}
+
+@media only screen and (max-width: 480px) and (orientation:portrait), only screen and (max-device-width: 480px) and (orientation:portrait) {
+  #slider {
+    top: 480px;
+    left: 230px;
+    position: absolute;
+    height: 100%;
+    float: left;
+    a.flex-prev, a.flex-next {
+      font-size: 0.7em;
+    }
+    .flexslider-container {
+      .flexslider {
+        margin-bottom: 60px;
+        background: none;
+        border: none;
+        position: relative;
+        -webkit-border-radius: none;
+        -moz-border-radius: none;
+        -o-border-radius: none;
+        border-radius: none;
+        -webkit-box-shadow: none;
+        -moz-box-shadow: none;
+        -o-box-shadow: none;
+        box-shadow: none;
+        zoom: 1;
+        .flex-control-paging li a {
+          width: 20px;
+          height: 20px;
+          display: block;
+          //        background: rgba(0,0,0,0);
+          background: lightgrey;
+          //        border: 1px solid lightgrey;
+          border: none;
+          cursor: pointer;
+          text-indent: -9999px;
+          -webkit-border-radius: 0px;
+          -moz-border-radius: 0px;
+          -o-border-radius: 0px;
+          border-radius: 0px;
+          -webkit-box-shadow: inset 0 0 0 rgba(0,0,0,0.3);
+          -moz-box-shadow: inset 0 0 0 rgba(0,0,0,0.3);
+          -o-box-shadow: inset 0 0 0 rgba(0,0,0,0.3);
+          box-shadow: inset 0 0 0 rgba(0,0,0,0.3);
+        }
+        .flex-control-paging li a:hover {
+          //        background: @blue-light;
+        }
+        .flex-control-paging li a.flex-active {
+          background: @blue-light;
+          cursor: default;
+        }
+        .flex-viewport {
+//          height: 2000px !important;
+          width: 710px;
+          margin-left: -90px;
+          display: block;
+          li {
+            &.slide {
+              opacity: 0.5;
+              .feature {
+                height: 500px;
+                width: 700px;
+                background-color: white;
+                margin-left: 3px;
+                margin-right: 3px;
+                p {
+                  font-size: 3em;
+                  line-height: 60px;
+                }
+                h3 {
+                  font-size: 3em;
+                }
+                img.app-icon {
+                  width: 50px; margin-top: 5px; margin-left: 10px;
+                }
+              }
+//              .delimiter-top {
+//                height: 45px;
+//              }
+//              .delimiter-bottom {
+//                height: 5px;
+//              }
+              &.flex-active-slide {
+                opacity: 1;
+                .feature {
+                  background-color: rgb(235, 241, 249);
+                  //                -webkit-box-shadow: 2px 2px 5px rgba(50, 50, 50, 0.75);
+                  //                -moz-box-shadow:    2px 2px 5px rgba(50, 50, 50, 0.75);
+                  //                box-shadow:         2px 2px 5px rgba(50, 50, 50, 0.75);
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  #ipad-container {
+    position: absolute;
+    top: -30px;
+    left: 25px;
+    #ipad-window {
+      position: fixed;
+      background-image: url("../assets/images/ipadair@2x.png");
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      -o-background-size: cover;
+      background-size: cover;
+      width: 710px;
+      height: 500px;
+      margin-left: 115px;
+      z-index: 2;
+    }
+    @media only screen and (-webkit-min-device-pixel-ratio: 1.5),
+    only screen and (min-resolution: 144dpi) {
+      #ipad-window {
+        background-image: url("../assets/images/ipadair@2x.png");
+      }
+    }
+
+    #app-screenshot {
+      background-color: #ffffff;
+      width: 582px;
+      height: 437px;
+      position: absolute;
+      top: 32px;
+      left: 178px;
+      z-index: 1;
+    }
+  }
+}

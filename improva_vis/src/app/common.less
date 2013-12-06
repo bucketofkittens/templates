@@ -1,0 +1,422 @@
+@blue: rgb(54,55,75,1);
+@blue-light: rgb(92,114,148);
+@header-height: 55px;
+@font_name: Arial, "Lucida Grande", sans-serif;
+
+body {
+  overflow: hidden;
+}
+
+body,
+input,
+select,
+textarea,
+dt,
+button,
+span,
+.navbar-search .search-query {
+  font-family: @font_name;
+  font-weight: 300;
+  letter-spacing: 1px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: @font_name;
+  font-weight: 300;
+  letter-spacing: 1px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+a,
+button,
+label,
+span,
+i {
+  color: #ffffff;
+  &.blue {
+    color: @blue;
+  }
+  &.blue-light {
+    color: @blue-light;
+  }
+  &.black {
+    color: black;
+  }
+  &.centered {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+.show_hide_animation.ng-hide-add,
+.show_hide_animation.ng-hide-remove {
+  -webkit-transition:0.5s linear all;
+  -moz-transition:0.5s linear all;
+  -o-transition:0.5s linear all;
+  transition:0.5s linear all;
+  display:block!important;
+}
+.show_hide_animation.ng-hide-remove {
+  opacity:0;
+}
+.show_hide_animation.ng-hide-remove.ng-hide-remove-active {
+  opacity:1;
+}
+.show_hide_animation.ng-hide-add {
+  opacity:1;
+}
+.show_hide_animation.ng-hide-add.ng-hide-add-active {
+  opacity:0;
+}
+
+.main-header {
+  position: fixed;
+  top: 0px;
+  background-color: @blue;
+  height: @header-height;
+  width: 100%;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 5px;
+  padding-bottom:5px;
+  ul {
+    h2,h4, {
+      margin: 0px;
+      &:hover {
+        cursor: pointer;
+      }
+    }
+    &.logo {
+      img {
+        width: 30px;
+        padding-bottom: 15px;
+      }
+    }
+    &.navigation {
+      margin-top: 11px;
+      margin-right: 40px;
+      li {
+        margin-left: 20px;
+      }
+    }
+  }
+}
+
+.terms-body {
+  position: fixed;
+  top: @header-height;
+  background-color: ghostwhite;
+  height: 100%;
+  width: 100%;
+  overflow-y: hidden;
+  background: url('../assets/images/background.png') no-repeat top center fixed;
+  .container.white {
+    background-color: white;
+    margin-bottom: 130px;
+    padding-right: 80px;
+    padding-left: 10px;
+  }
+}
+
+.main-body {
+  position: fixed;
+  top: @header-height;
+  height: 100%;
+  width: 100%;
+  min-width: 1024px;
+  background-image: url("../assets/images/background_welcome@2x.jpg");
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  background-position: top right;
+}
+
+.terms-body {
+  background: url('../assets/images/background.png') no-repeat top center fixed;
+  overflow-y: scroll;
+}
+
+.about-body {
+  position: fixed;
+  top: @header-height;
+  height: 100%;
+  width: 100%;
+  background: none;
+  background-color: #ffffff;
+  .about-text {
+    margin-top: 20px;
+    margin-right: 50px;
+    p {
+      font-size: 1.2em;
+    }
+  }
+}
+
+.welcome-body {
+  position: fixed;
+  top: @header-height;
+  height: 100%;
+  width: 100%;
+  background-image: url("../assets/images/background_welcome@2x.jpg");
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  background-position: bottom left;
+  .description {
+    width: 450px;
+    position: relative;
+    top:40px;
+    padding-left: 0px;
+    p {
+      color: #000000;
+      font-size: 1.2em;
+      line-height: 26px;
+      span {
+        color: @blue-light;
+      }
+    }
+    .learn_button {
+      margin-right: 50px;
+      width: 170px;
+      height: 46px;
+      background-color: @blue;
+      text-align: center;
+      &:hover {
+        background-color: @blue-light;
+      }
+      p {
+        color: white;
+        margin-top: 12px;
+        font-size: 1.5em;
+      }
+    }
+  }
+}
+
+.main-footer {
+  position: fixed;
+  bottom: 0px;
+  background-color: @blue;
+  height: @header-height;
+  width: 100%;
+  padding-left: 20px;
+  padding-right: 20px;
+  z-index: 1000;
+  ul {
+    h4, {
+      margin: 0px;
+      &:hover {
+        cursor: pointer;
+      }
+    }
+    &.services {
+      img {
+        width: 40px;
+        padding-top: 7px;
+      }
+    }
+    &.contacts {
+      padding-top: 7px;
+      margin-right: 40px;
+      li {
+        h4 {
+          width: 110px;
+          margin: 0px;
+          text-align: left;
+        }
+        img {
+          width: 40px;
+          padding-bottom: 10px;
+        }
+      }
+    }
+  }
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+
+ul.contacts-menu {
+  padding: 10px;
+//  margin-left: 35px;
+  margin-right: 25px;
+  padding-bottom: 0px;
+  li {
+    margin-bottom: 10px;
+    text-align: left;
+//    border-bottom: 1px solid lightgrey;
+    p {
+      text-align: left;
+      font-size: 1.2em;
+    }
+  }
+}
+
+.popover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1010;
+  display: none;
+  max-width: 276px;
+  padding: 1px;
+  text-align: left;
+  white-space: normal;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border: 1px solid rgba(0,0,0,0.2);
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+  border-radius: 0px;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  -webkit-background-clip: padding-box;
+  -moz-background-clip: padding;
+  background-clip: padding-box;
+  background-color: @blue;
+  margin-left: 26px;
+}
+
+.popover.top {
+  margin-top: -4px;
+}
+
+.popover.top .arrow {
+  display: none;
+}
+
+//======================= iPad ========================//
+
+//@media only screen and (device-width: 768px) {
+//  .welcome-body {
+//    position: fixed;
+//    top: @header-height;
+//    height: 100%;
+//    width: 100%;
+//    background-image: url("../assets/images/background_welcome@2x.jpg");
+//    -webkit-background-size: cover;
+//    -moz-background-size: cover;
+//    -o-background-size: cover;
+//    background-size: cover;
+//    background-position: top right;
+//  }
+//}
+
+@media only screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait) {
+  .welcome-body {
+    position: fixed;
+    top: @header-height;
+    height: 100%;
+    width: 100%;
+    background-image: url("../assets/images/background_welcome@2x.jpg");
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    background-position: top center;
+    .description {
+      width: 445px;
+      position: relative;
+      top:100px;
+      padding-left: 0px;
+      p {
+        color: #000000;
+        font-size: 1.4em;
+        line-height: 30px;
+      }
+    }
+  }
+}
+
+@media only screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape) {
+  .welcome-body {
+    position: fixed;
+    top: @header-height;
+    height: 100%;
+    width: 100%;
+    background-image: url("../assets/images/background_welcome@2x.jpg");
+    -webkit-background-size: contain;
+    -moz-background-size: contain;
+    -o-background-size: contain;
+    background-size: contain;
+    background-position: top right;
+  }
+}
+
+//======================= iPhone ========================//
+@media only screen and (max-width: 480px) and (orientation:landscape), only screen and (max-device-width: 480px) and (orientation:landscape) {
+
+}
+
+@media only screen and (max-width: 480px) and (orientation:portrait), only screen and (max-device-width: 480px) and (orientation:portrait) {
+  .welcome-body {
+    position: fixed;
+    top: @header-height;
+    height: 100%;
+    width: 100%;
+//    min-width: 1024px;
+    background-image: url("../assets/images/background_welcome.jpg");
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    background-position: bottom left;
+    .description {
+      width: 440px;
+      position: relative;
+      top:40px;
+      padding-left: 0px;
+      p {
+        color: #000000;
+        font-size: 2em;
+        line-height: 35px;
+        span {
+          color: @blue-light;
+        }
+      }
+      .learn_button {
+        margin-right: 50px;
+        width: 170px;
+        height: 46px;
+        background-color: @blue;
+        text-align: center;
+        &:hover {
+          background-color: @blue-light;
+        }
+        p {
+          color: white;
+          margin-top: 12px;
+          font-size: 1.5em;
+        }
+      }
+    }
+  }
+  .main-body {
+    position: fixed;
+    top: @header-height;
+    height: 100%;
+    width: 100%;
+    background-image: url("../assets/images/background_welcome.jpg");
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    background-position: bottom left;
+  }
+}

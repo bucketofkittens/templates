@@ -1,0 +1,55 @@
+<div class="row">
+    <div class="span4">
+        <div id="slider">
+            <flex-slider slide="link in links"
+                         control-nav="true"
+                         direction-nav="false"
+                         direction="vertical"
+                         animation="slide"
+                         animation-speed=300
+                         mousewheel="true"
+                         animation-loop="false"
+                         after="toggle()"
+                         keyboard="true"
+                         end="end()">
+                <li id="{{ link }}" class="slide" ng-click="">
+                    <div class="delimiter-top"></div>
+                    <div class="feature">
+                        <!--<div class="row-fluid" style="border-bottom: 1px solid lightgrey;">-->
+                        <div class="row-fluid">
+                            <div class="span2"><img style="width: 30px; margin-top: 5px; margin-left: 10px;" src="src/assets/images/icons/app/{{ link }}.png"></div>
+                            <div class="span10"><h3 class="black" style="margin: 0px;">{{link | limitTo:1 | uppercase}}{{link | limitTo:(-link.length +1)}}</h3></div>
+                        </div>
+                        <div class="row-fluid" style="height: 2px; margin: 0px; padding: 0px;">
+                            <div class="span12" style="height: 2px; margin: 0px; padding: 0px;">
+                                <img src="src/assets/images/horLine.png" style="height: 2px; margin: 0px; padding: 0px; padding-top: 5px;">
+                            </div>
+                        </div>
+                        <div class="row-fluid">
+                            <div class="span12" style="margin: 0px; padding: 10px; padding-top: 0px;">
+                                <p class="black" style="margin: 0px; padding: 0px;">{{ text[link] }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="delimiter-bottom"></div>
+                </li>
+            </flex-slider>
+        </div>
+    </div>
+    <div class="span8">
+        <div id="ipad-container">
+            <div id="ipad-window">
+
+            </div>
+            <!--<div id="app-screenshot" class="show_hide_animation" ng-hide="featureHide"></div>-->
+            <div id="app-screenshot"></div>
+            <div id="app-screenshot-back"></div>
+        </div>
+        <!--<h5 class="black" style="top: 410px; left: 400px; position: relative;">Available soon on AppStore...</h5>-->
+        <a href="https://itunes.apple.com/ru/app/improva/id741987507?l=en&mt=8" class="pointer" target="_blank">
+            <div id="appstore-link">
+
+            </div>
+        </a>
+    </div>
+</div>
