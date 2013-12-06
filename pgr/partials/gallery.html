@@ -5,7 +5,7 @@
 		ng-mouseleave="onUserMouseLeave(userItem, $event)"
 		ng-click="onUserClick(userItem, $event)"
 		ng-class="{big: userItem.hover}"
-		ng-if="userItem.showItem">
+		ng-show="userItem.showItem">
 		<img ng-src="{{userItem.avatar}}" err-src="/images/unknown-person.png" />
 		<span>{{userItem.points}}</span>
 		<div class="sub"> 
