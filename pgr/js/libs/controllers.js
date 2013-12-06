@@ -286,7 +286,12 @@ function UserController($scope, $element, $route, $routeParams, User, Needs, Pro
             $location.path("/compare").search({user1: $scope.workspace.user.sguid, user2: $scope.userId});
         } else {
             if($scope.tmpFollows.length > 0) {
-                $location.path("/compare").search({user1: $scope.tmpFollows[0].user.sguid, user2: $scope.userId});
+                if($scope.tmpFollows[0].user.sguid != $scope.userId) {
+                    $location.path("/compare").search({user1: $scope.tmpFollows[0].user.sguid, user2: $scope.userId});
+                } else {
+                    var index = getRandomInt(0, data.length-1);
+                    $location.path("/compare").search({user1: $scope.tmpFollows[0].user.sguid, user2: data[index].sguid});
+                }
             } else {
                 User.for_main({}, {}, function(data) {
                     var index = getRandomInt(0, data.length-1);
@@ -1421,12 +1426,14 @@ function FollowController($scope, $rootScope, User, $location, $routeParams, Aut
                     }
                 );    
             } else {
-                $location.path("/compare").search(
-                    {
-                        user1: user.sguid, 
-                        user2: user.sguid
-                    }
-                );
+                if($scope.tmpFollows[0].user.sguid != user.sguid) {
+                    $location.path("/compare").search({user1: $scope.tmpFollows[0].user.sguid, user2: user.sguid});
+                } else {
+                    User.for_main({}, {}, function(data) {
+                        var index = getRandomInt(0, data.length-1);
+                        $location.path("/compare").search({user1: data[index].sguid, user2: user.sguid})
+                    });
+                }
             }
         }
         if(!noCl) {
@@ -2007,7 +2014,13 @@ function GalleryController($scope, localize, Leagues, User, AuthUser, $element, 
             $location.path("/compare").search({user1: $scope.workspace.user.sguid, user2: user.sguid});
         } else {
             if($scope.tmpFollows.length > 0) {
-                $location.path("/compare").search({user1: $scope.tmpFollows[0].user.sguid, user2: user.sguid});
+                if($scope.tmpFollows[0].user.sguid != user.sguid) {
+                    $location.path("/compare").search({user1: $scope.tmpFollows[0].user.sguid, user2: user.sguid});    
+                } else {
+                    var index = getRandomInt(0, $scope.users.length-1);
+                    $location.path("/compare").search({user1: $scope.tmpFollows[0].user.sguid, user2: $scope.users[index].sguid});
+                }
+                
             } else {
                 var index = getRandomInt(0, $scope.users.length-1);
                 $location.path("/compare").search({user1: $scope.users[index].sguid, user2: user.sguid});
