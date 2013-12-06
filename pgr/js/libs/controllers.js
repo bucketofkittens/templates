@@ -608,6 +608,9 @@ function NeedsAndGoalsController($scope, Goals, Criterion, AuthUser, UserCriteri
     $scope.$watch('workspace.needs', function (newVal, oldVal, scope) {
         if($scope.workspace.needs) {
             $scope.needs = JSON.parse(JSON.stringify($scope.workspace.needs));
+            angular.forEach($scope.needs, function(value, key){
+                value.current = true;
+            });
             if($scope.allOpen) {
                 $scope.openAllNeeds($scope.needs);
             }
