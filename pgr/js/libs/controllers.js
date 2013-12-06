@@ -819,8 +819,6 @@ function NeedsAndGoalsController($scope, Goals, Criterion, AuthUser, UserCriteri
             
             $.each(items, function(key, value) {
                 if($(value).attr("user-id") != $scope.user.sguid) {
-                    console.log(hasCurrent);
-                    console.log($(value).hasClass("current"));
                     if(
                         goal.current && !$(value).hasClass("current") ||
                         !goal.current && $(value).hasClass("current")) {
@@ -1065,7 +1063,6 @@ function NeedsAndGoalsController($scope, Goals, Criterion, AuthUser, UserCriteri
     }
 
     $scope.$on('showGoals', function($event, message) {
-        console.log(message.user.sguid != $scope.user.sguid);
         if(message.user.sguid != $scope.user.sguid) {
             var need = $scope.needs.filter(function(item) {
                 if(item.sguid == message.needItem.sguid) {
@@ -1328,7 +1325,6 @@ function LoginController($scope, Sessions, $rootScope, User, Social, $facebook, 
         FB.api('/me', {fields: 'name,id,location,birthday,email'}, function(response) {
             Social.login({}, {email: response.email}, function(data) {
                 var update = { name: response.name };
-                console.log(response);
                 if(response.location && response.location.name) {
                     update.location = response.location.name;
                 }
@@ -1489,7 +1485,6 @@ function FollowController($scope, $rootScope, User, $location, $routeParams, Aut
         if($scope.workspace.user && $scope.workspace.user.sguid) {
             $location.path("/compare").search({user1: $scope.workspace.user.sguid, user2: $scope.workspace.user.frends[0].user.sguid});
         } else {
-            console.log($scope.tmpFollows);
             if($scope.tmpFollows.length > 1) {
                 $location.path("/compare").search({user1: $scope.tmpFollows[0].user.sguid, user2: $scope.tmpFollows[1].user.sguid});
             } else {
@@ -2586,7 +2581,6 @@ function MyProfileController($scope, $rootScope, User, $location, $cookieStore, 
         if($scope.workspace.user.city.name.length > 0) {
             angular.forEach($scope.curState, function(value, key) {
                 var reg = new RegExp($scope.workspace.user.city.name, "i");
-                console.log(reg);
                 if(reg.test(value.name)) {
                     countShow += 1;
                     value.show = true;
