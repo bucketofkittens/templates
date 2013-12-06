@@ -19,7 +19,7 @@ body header #header #avatar p span{color:#fff;text-decoration:none;font-family:'
 #content .hidden{display:none}
 #content .pmain{display:inline-block;vertical-align:top;width:100%}#content .pmain .image_box{width:170px;height:170px}
 #content .pmain.pro{padding:15px}#content .pmain.pro .block{display:inline-block;width:170px;vertical-align:middle;margin-right:15px}#content .pmain.pro .block .pp{width:100%;background:#fff;height:auto}#content .pmain.pro .block .pp.edit{cursor:pointer}
-#content .pmain.pro .pmpar{display:inline-block;vertical-align:top;width:auto}#content .pmain.pro .pmpar p{font-size:18px;color:#969696;line-height:40px}
+#content .pmain.pro .pmpar{display:inline-block;vertical-align:top;width:auto}#content .pmain.pro .pmpar p{font-size:18px;color:#969696;line-height:36px}
 #content .pmain.pro .pmpar label{display:inline-block;width:120px;vertical-align:middle;cursor:pointer}
 #content .pmain.pro .pmpar select,#content .pmain.pro .pmpar input{width:200px;height:30px;line-height:100%;margin:0;vertical-align:middle !important;display:inline-block;padding-bottom:5px !important;cursor:pointer;vertical-align:bottom;font-size:16px}
 #content .pmain.pro .pmpar .form-control{display:inline-block;width:200px;vertical-align:bottom;font-size:16px}
