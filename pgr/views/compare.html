@@ -10,12 +10,9 @@
 				err-src="/images/unknown-person.png" />
 			<span class="icon favorite"></span>
 			<div class="list">
-				<span class="icon favorite_nav_left" ng-click="onLeft()" ng-if="frends.length > 12"></span>
+				<span class="icon favorite_nav_left" ng-click="onLeft()" ng-if="frends.length > 11 && position != 0"></span>
 				<div class="list_wrap">
 					<ul carusel-position>
-
-							
-						</li>
 						<li
 							ng-class="{show: userItem.user.show}" 
 							ng-mouseleave="onMouseLeaveUser(userItem.user)" 
@@ -30,7 +27,7 @@
 						</li>
 					</ul>
 				</div>
-				<span class="icon favorite_nav_right" ng-click="onRight()" ng-if="frends.length > 12"></span>
+				<span class="icon favorite_nav_right" ng-click="onRight()" ng-if="frends.length > 12 && countFrend > position + 12"></span>
 			</div>
 		</div>
 	</div>

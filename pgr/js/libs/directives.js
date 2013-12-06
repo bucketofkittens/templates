@@ -92,9 +92,7 @@ pgrModule.directive('caruselPosition', function($window) {
   return {
     link: function(scope, element, attrs) {
       scope.$watch("position", function (newVal, oldVal, scope) {
-        if(scope.position) {
-          $(element).css("left", 60*scope.position);
-        }
+        $(element).css("left", "-"+60*scope.position+"px");
       });
     }
   }

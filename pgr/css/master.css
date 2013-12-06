@@ -191,11 +191,11 @@ ng-form:not(.ng-pristine) input.ng-invalid:not(.ng-pristine){border-color:rgba(2
 #compare{margin:80px 0 0 0}
 #favorite_compare{border:1px solid #b4b4b4;margin:0 0 0 14px;background:#fff}#favorite_compare .inner>img{float:left;width:60px;display:block;position:relative;z-index:10}
 #favorite_compare .inner{width:100%;overflow:hidden}
-#favorite_compare .favorite{margin-left:27px;margin-top:15px;display:block;float:left}
+#favorite_compare .favorite{margin-left:12px;margin-top:18px;display:block;float:left}
 #favorite_compare .favorite_nav_left,#favorite_compare .favorite_nav_right{position:absolute;cursor:pointer}
-#favorite_compare .favorite_nav_right{top:26px;right:24px}
-#favorite_compare .favorite_nav_left{top:26px;left:182px}
-#favorite_compare .list{float:right;margin-left:-222px;width:100%;overflow:hidden;position:relative}#favorite_compare .list .list_wrap{margin-left:222px;overflow:hidden;margin-right:60px;position:relative;height:60px}#favorite_compare .list .list_wrap ul{width:760px;height:60px;position:relative;-webkit-transition:.2s linear all;-moz-transition:.2s linear all;transition:.2s linear all}#favorite_compare .list .list_wrap ul li{float:left}#favorite_compare .list .list_wrap ul li img{width:60px;display:block}
+#favorite_compare .favorite_nav_right{top:26px;right:37px}
+#favorite_compare .favorite_nav_left{top:26px;left:200px}
+#favorite_compare .list{float:right;margin-left:-222px;width:100%;overflow:hidden;position:relative}#favorite_compare .list .list_wrap{margin-left:222px;overflow:hidden;margin-right:61px;position:relative;height:60px}#favorite_compare .list .list_wrap ul{width:10000px;height:60px;position:relative;-webkit-transition:.2s linear all;-moz-transition:.2s linear all;transition:.2s linear all}#favorite_compare .list .list_wrap ul li{float:left}#favorite_compare .list .list_wrap ul li img{width:60px;display:block}
 #compare_box{height:100%;overflow-y:scroll;overflow-x:hidden;width:102%}#compare_box::-webkit-scrollbar{width:0;height:0}
 #compare_box .compare_promain1{width:47%;margin-left:15px;float:left;height:100%}
 #compare_box .promain{width:100%;min-width:490px;margin-left:0;overflow:visible;height:auto;margin-top:12px;top:0}

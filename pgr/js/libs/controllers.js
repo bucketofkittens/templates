@@ -1301,10 +1301,14 @@ function LoginController($scope, Sessions, $rootScope, User, Social, $facebook, 
                     method: "GET"
                 }, function(data) {
                     Social.login({}, {email: data.emails.account}, function(data) {
+                        var updateUser = {};
+                        if(data.was_created) {
+                            updateUser["name"] = data.name;
+                        }
                         $rootScope.$broadcast('onSignin', {
                             sguid: data.guid, 
                             isSocial: true,
-                            update: { name: data.name }
+                            update: updateUser
                         });
                         $rootScope.$broadcast('loaderHide');
                         socialsAccess.live.isLoggined = true;
@@ -1324,14 +1328,17 @@ function LoginController($scope, Sessions, $rootScope, User, Social, $facebook, 
     $scope.$on('fb.auth.authResponseChange', function(data, d) {
         FB.api('/me', {fields: 'name,id,location,birthday,email'}, function(response) {
             Social.login({}, {email: response.email}, function(data) {
-                var update = { name: response.name };
+                var updateUser = {};
+                if(data.was_created) {
+                    updateUser["name"] = data.name;
+                }
                 if(response.location && response.location.name) {
-                    update.location = response.location.name;
+                    updateUser["location"] = response.location.name;
                 }
                 $rootScope.$broadcast('onSignin', {
                     sguid: data.guid, 
                     isSocial: true, 
-                    update: update
+                    update: updateUser
                 });
                 $rootScope.$broadcast('loaderHide');
                 socialsAccess.facebook.isLoggined = true;
@@ -2293,7 +2300,12 @@ function RootController($scope, $facebook, AuthUser, User, $rootScope, Needs, So
     
     $scope.gplusAuth = function(email, name) {
         Social.login({}, {email: email}, function(data) {
-            $rootScope.$broadcast('onSignin', {sguid: data.guid, isSocial: true , update: {name: name}});
+            var updateUser = {};
+            if(data.was_created) {
+                updateUser["name"] = name;
+            }
+
+            $rootScope.$broadcast('onSignin', {sguid: data.guid, isSocial: true , update: updateUser});
             $rootScope.$broadcast('loaderHide');
 
         });
@@ -2956,6 +2968,7 @@ function ChangePasswordController($scope, Sessions, User, $location, $rootScope,
 
 function FollowCaruselController($scope) {
     $scope.position = 0;
+    $scope.countFrend = 0;
 
     $scope.onLeft = function() {
         $scope.position -= 1;
@@ -2964,6 +2977,10 @@ function FollowCaruselController($scope) {
     $scope.onRight = function() {
         $scope.position += 1;
     }
+
+    $scope.$watch("frends", function (newVal, oldVal, scope) {
+        $scope.countFrend = newVal.length;
+    });
 }
 
 function SearchController($scope, User, $rootScope, $location) {
