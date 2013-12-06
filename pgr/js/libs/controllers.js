@@ -1115,6 +1115,7 @@ function LoginController($scope, Sessions, $rootScope, User, Social, $facebook, 
 
     $scope.onCancelCreate = function() {
         $scope.user_create = 0;
+        $location.path("/login/");
     }
 
     $scope.onSignStateChange = function() {
