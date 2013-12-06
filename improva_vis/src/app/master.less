@@ -73,12 +73,12 @@
 			}
 		}
 		.contacts {
-			width: 200px;
+			width: 185px;
 			margin-right: 0px !important;
 			padding-top: 5px !important;
 			li {
 				position: relative;
-				top: -5px;
+				top: -7px;
 				&:first-child {
 					margin-left: 23px;
 					top: 0px;
@@ -95,12 +95,83 @@
 						h4 {
 							font-size: 18px;
 						}
-						p {
-							font-size: 12px !important;
-						}
 					}				
+				}
+				p.white {
+					font-size: 12px !important;
 				}				
 			}
+		}
+	}
+	.welcome-body {
+		background-position: -320px -80px;
+		background-size: 320px auto;
+		.span6 {
+			width: 300px;
+			.description {
+				width: 200px;
+				top: -25px;
+				left: 115px;
+				p {
+					font-size: 12px;
+					line-height: 15px;
+					margin-bottom: -20px;
+				}
+				li {
+					position: relative;
+					top: 23px;
+					padding: 0px !important;
+					img {
+						width: 100px !important;
+						height: 38px !important;
+					}
+					h4 {
+						font-size: 16px;
+						position: relative;
+						left: -5px;
+					}
+				}
+			}
+		}
+	}
+	.terms-body {
+		width: 340px;
+		.container {
+			width: 300px;
+		}
+	}
+	.about-body {
+		position: relative;
+		top: 35px;
+		.span8 {
+			width: 60%;
+			margin-left: 20% !important;
+		}
+		.span4 {
+			width: 98%;
+			margin-left: 2%;
+			.about-text {
+				margin: 0px !important;
+				p {
+					font-size: 13px;
+					line-height: 15px;
+					margin-bottom: 0px;
+				}
+				br {
+					display: none;
+				}
+			}
+		}
+	}
+}
+
+@media (max-height: 400px) {
+	.about-body {
+		height: 230px;
+		overflow-y: scroll;
+		&::-webkit-scrollbar {
+        width: 0px;
+        height: 0px;
 		}
 	}
 }
