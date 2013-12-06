@@ -9,7 +9,7 @@
 					ng-repeat="(needKey, needItem) in needs | orderBy:'position'" 
 					data-needId="{{needItem.sguid}}"
 					class="{{needItem.name}}">
-					<div class="cr" ng-click="onShowGoals($event, needItem)">
+					<div class="cr" >
 						<p>{{needItem.name}}</p>
 					</div>
 					<ul ng-class="{current: needItem.current}">
