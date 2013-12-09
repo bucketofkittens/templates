@@ -2779,6 +2779,8 @@ function MyProfileController($scope, $rootScope, User, $location, $cookieStore, 
        $("#content .tab .mypro_wr .mypro").scrollTop(0);
     });
 
+    $scope.nameIsError = false;
+
     /**
      * Публикация профиля
      * Пока не работает нет backend
@@ -2818,7 +2820,23 @@ function MyProfileController($scope, $rootScope, User, $location, $cookieStore, 
         }
 
         User.updateUser({"id": $scope.workspace.user.sguid},  {user: JSON.stringify(user)}, function(data) {
-                $scope.workspace.user.published = 1;
+                if(data.success) {
+                    $scope.nameIsError = false;
+                } else {
+                    var isName = false;
+                    angular.forEach(data.errors, function(value, key){
+                        if(value == 'name: ["is already taken"]') {
+                            console.log(value);
+                            isName = true;
+                        }
+                    });
+                    if(isName) {
+                        $scope.nameIsError = true;
+                    } else {
+                        $scope.nameIsError = false;
+                    }
+                }
+                //$scope.workspace.user.published = 1;
             }
         );
     }
