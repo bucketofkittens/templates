@@ -1,3 +1,6 @@
+html {
+	-webkit-text-size-adjust: auto;
+}
 @media (max-width: 800px) {
 	.welcome-body {
 		background-position: -240px 0px;
@@ -198,7 +201,7 @@
 			width: 100%;
 			position: absolute;
 			left: 0px;
-			top: -5px;
+			top: 0px;
 			#appstore-link {
 				display: none;
 			}
@@ -206,6 +209,7 @@
 				width: 180px !important;
 				height: 127px !important;
 				margin-left: 40px !important;
+				position: absolute !important;
 			}
 			 #app-screenshot {
 				width: 150px !important;
@@ -223,7 +227,7 @@
 		.span4 {
 			position: absolute;
 			left: 0px;
-			top: 200px;
+			top: 210px;
 			#slider {
 				top: -65px;
 				left: 10px;
@@ -236,7 +240,7 @@
 					width: 300px !important;
 					height: 150px !important;
 					.span12 {
-						min-height: 5px !important;
+						min-height: 10px !important;
 						position: relative;
 						top: -5px;
 						p {
@@ -264,14 +268,15 @@
 				}
 			}
 			.flex-control-nav {
-				top: -135px !important;
-				left: 270px !important;
-				width: 20px;
+				top: 120px !important;
+				left: 0px !important;
+				width: 280px !important;
 				li {
-					margin: 11px 0px !important;
+					margin: 0px 15px !important;
+					display: inline-block !important;
 					a {
-						height: 10px !important;
-						width: 10px !important;
+						height: 15px !important;
+						width: 15px !important;
 					}
 				}
 			}
@@ -282,6 +287,14 @@
 @media (max-height: 400px) {
 	.about-body {
 		height: 230px;
+		overflow-y: scroll;
+		&::-webkit-scrollbar {
+        width: 0px;
+        height: 0px;
+		}
+	}
+	.main-body {
+		height: 250px;
 		overflow-y: scroll;
 		&::-webkit-scrollbar {
         width: 0px;
