@@ -2095,6 +2095,14 @@ function getRandomInt(min, max) {
 }
 
 function RootController($scope, $facebook, AuthUser, User, $rootScope, Needs, Social, $cookieStore, States, Professions, $location) {
+    $scope.guestFollowGetOnStorage = function() {
+        var follows =  JSON.parse(localStorage.getItem('follows'));
+        if(follows == null) {
+            follows = [];
+        }
+        return follows;
+    }
+
     $scope.authUserId = AuthUser.get();
     $scope.workspace = {};
     $scope.tmpFollows = $scope.guestFollowGetOnStorage();
@@ -2237,9 +2245,7 @@ function RootController($scope, $facebook, AuthUser, User, $rootScope, Needs, So
         localStorage.setItem('follows', JSON.stringify($scope.tmpFollows));
     }
 
-    $scope.guestFollowGetOnStorage = function() {
-        return JSON.parse(localStorage.getItem('follows'));
-    }
+    
 
     $scope.authUnFollow = function(message) {
         User.destroy_friendship({id: message.userId, friendId: message.frendId}, { }, function() {
