@@ -1635,7 +1635,7 @@ function MainController($scope, Leagues, User, $rootScope, $location, $timeout, 
             if(!$scope.scrollDelta) {
                 $scope.scrollDelta = 0;
             }
-
+            
             if($scope.scrollDelta + step <= 0) {
                 if(Math.abs($scope.scrollDelta + step) + windowWidth <= contentWidth+50) {
                     $scope.scrollDelta = $scope.scrollDelta + step;
