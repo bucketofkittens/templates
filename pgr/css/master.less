@@ -219,6 +219,10 @@ body {
         display: inline-block;
         vertical-align: top;
         width: 100%;
+        .du {
+            left: 0px !important;
+            right: auto !important;
+        }
         .image_box {
             width: 170px;
             height: 170px;
@@ -2123,11 +2127,28 @@ ng-form:not(.ng-pristine) {
         height: auto;
         margin-top: 12px;
         top: 0px;
+        .pmain {
+            .du {
+                top: 35px !important;
+                right: -15px !important;
+                left: auto !important;
+                border-width: 105px 0 105px 15px !important;
+                border-color: transparent transparent transparent #576d91 !important; 
+            }
+        }
     }
     .promain2 {
         width: 100%;
         min-width: 490px;
         margin-left: 0px;
+        .pmain {
+            .du {
+                top: 35px !important;
+                left: -15px !important;
+                border-width: 105px 15px 105px 0 !important;
+                border-color: transparent #576d91 transparent transparent !important;
+            }
+        }
     }
     .compare_promain {
         width: 47%;

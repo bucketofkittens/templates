@@ -1725,6 +1725,23 @@ function CompareController($scope, $location) {
     var goalsCountLoaded = 0;
     var goalsValues = {};
     var crtiterias = {};
+    var pointsCountLoaded = 0;
+    var pointsValues = {};
+
+    $scope.$on('getSelectedUserData', function($event, message) {
+      pointsCountLoaded += 1;
+      pointsValues[message.user.sguid] = message.user.points;
+      if(pointsCountLoaded == 2) {
+          var containers =  $("#content .pmain");
+          containers.find(".du").remove();
+          if(pointsValues[$location.search().user2] > pointsValues[$location.search().user1]) {
+            containers.eq(1).append('<sup class="du"></sup>');
+          } else {
+            containers.eq(0).append('<sup class="du"></sup>');
+          }
+          pointsCountLoaded = 1;
+      }
+    });
 
     $scope.$on('needUserValueLoaded', function($event, message) {
       needsCountLoaded += 1;
@@ -1742,8 +1759,6 @@ function CompareController($scope, $location) {
                 } 
           });
           needsCountLoaded = 1;
-
-
       }
     });
 
