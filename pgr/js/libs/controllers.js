@@ -1786,10 +1786,10 @@ function CompareController($scope, $location) {
           $("li[data-needId='"+fCriterium.sguid+"'] .cr sub", $("#compare2")).remove();
 
           if(rootCriteria.value < authCriteria.value) {
-             $("li[data-id='"+fCriterium.sguid+"']", $("#compare1")).append('<sup class="du"></sup>');
+             $("li[data-id='"+fCriterium.sguid+"']", $("#compare1")).append('<sup class="du bidubi"></sup>');
           }
           if(rootCriteria.value > authCriteria.value) {
-             $("li[data-id='"+fCriterium.sguid+"']", $("#compare2")).append(' <sub class="du"></sub>');
+             $("li[data-id='"+fCriterium.sguid+"']", $("#compare2")).append(' <sub class="du bidubi"></sub>');
           }
       }
     });
