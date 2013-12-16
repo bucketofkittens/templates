@@ -1415,7 +1415,7 @@ function FollowController($scope, $rootScope, User, $location, $routeParams, Aut
                 if($location.search().user2 != user.sguid) {
                     $location.path("/compare").search(
                         {
-                            user1: $location.search().user1, 
+                            user1: $location.search().user2, 
                             user2: user.sguid
                         }
                     );
@@ -1427,8 +1427,8 @@ function FollowController($scope, $rootScope, User, $location, $routeParams, Aut
                 if($location.search().user1 != user.sguid) {
                     $location.path("/compare").search(
                         {
-                            user1: user.sguid, 
-                            user2: $location.search().user2
+                            user1: $location.search().user2, 
+                            user2: user.sguid
                         }
                     );
                 } else {
@@ -1742,6 +1742,8 @@ function CompareController($scope, $location) {
                 } 
           });
           needsCountLoaded = 1;
+
+
       }
     });
 
