@@ -2666,10 +2666,17 @@ function MyProfileController($scope, $rootScope, User, $location, $cookieStore, 
         $scope.tab = $cookieStore.get("myProfileTab");    
     }
 
+    /**
+     * Проверка изменения даты рождения
+     * @param  {[type]} newVal [description]
+     * @param  {[type]} oldVal [description]
+     * @param  {[type]} scope  [description]
+     * @return {[type]}        [description]
+     */
     $scope.$watch("workspace.user.birthday", function (newVal, oldVal, scope) {
-        if($scope.workspace.user && $scope.workspace.user.birthday) {
-            var birthdaySplit = $scope.workspace.user.birthday.split("-");
-            $scope.workspace.user.birthdayDate =  new Date(birthdaySplit[0], birthdaySplit[1], birthdaySplit[2] );
+        if(newVal) {
+            $scope.workspace.user.birthdayDate = moment(newVal).toDate();
+            console.log($scope.workspace.user.birthdayDate);
         }
     });
 
@@ -2836,7 +2843,7 @@ function MyProfileController($scope, $rootScope, User, $location, $cookieStore, 
                         $scope.nameIsError = false;
                     }
                 }
-                //$scope.workspace.user.published = 1;
+                $scope.workspace.user.published = 1;
             }
         );
     }
