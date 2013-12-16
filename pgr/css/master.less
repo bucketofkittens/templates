@@ -2238,25 +2238,34 @@ ng-form:not(.ng-pristine) {
     }
 }
 
-sub.du, sup.du, s.du {
+sub.du, sup.du {
     z-index: 7;
     position: absolute;
     left: -31px;
-    top: 0%;
+    top: -5px;
     display: block;
     width: 0px;
     height: 0px;
     border-style: solid;
-    border-width: 25px 0 25px 15px;
+    border-width: 20px 0 20px 15px;
     border-color: transparent transparent transparent #576d91;        
 }
 sub.du {
-    border-width: 25px 15px 25px 0;
+    border-width: 20px 15px 20px 0;
     border-color: transparent #576d91 transparent transparent;
 }
 sup.du {
     right: -15px;
     left: auto;
+}
+sub.dubidu {    
+    top: 0px !important;
+    border-width: 27px 15px 27px 0px;
+    border-color: transparent #576d91 transparent transparent;
+} 
+sup.dubidu {    
+    top: 0px !important;
+    border-width: 27px 0px 27px 15px;
 }
 
 #setting_info {

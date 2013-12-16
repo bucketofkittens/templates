@@ -1758,10 +1758,10 @@ function CompareController($scope, $location) {
                 $("li[data-needId='"+key+"'] .cr sub", $("#compare2")).remove();
 
                 if(value < needsValues[$location.search().user1][key]) {
-                  $("li[data-needId='"+key+"'] .cr", $("#compare1")).append('<sup class="du"></sup>');
+                  $("li[data-needId='"+key+"'] .cr", $("#compare1")).append('<sup class="du dubidu"></sup>');
                 } 
                 if(value > needsValues[$location.search().user1][key]) {
-                  $("li[data-needId='"+key+"'] .cr", $("#compare2")).append(' <sub class="du"></sub>');
+                  $("li[data-needId='"+key+"'] .cr", $("#compare2")).append(' <sub class="du dubidu"></sub>');
                 } 
           });
           needsCountLoaded = 1;
