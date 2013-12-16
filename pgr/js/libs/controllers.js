@@ -2097,7 +2097,7 @@ function getRandomInt(min, max) {
 function RootController($scope, $facebook, AuthUser, User, $rootScope, Needs, Social, $cookieStore, States, Professions, $location) {
     $scope.authUserId = AuthUser.get();
     $scope.workspace = {};
-    $scope.tmpFollows = [];
+    $scope.tmpFollows = $scope.guestFollowGetOnStorage();
 
     $scope.controller = $location.path().split("/").join("_");
 
@@ -2108,22 +2108,22 @@ function RootController($scope, $facebook, AuthUser, User, $rootScope, Needs, So
     });
 
     $scope.shareFacebook = function(url, title, descr, image) {
-    var winWidth = 600;
-    var winHeight = 600;
-    var winTop = (screen.height / 2) - (winHeight / 2);
-    var winLeft = (screen.width / 2) - (winWidth / 2);
-    window.open('http://www.facebook.com/sharer.php?s=100&p[title]=' + title + '&p[summary]=' + descr + '&p[url]=' + url + '&p[images][0]=' + image, 'sharer', 'top=' + winTop + ',left=' + winLeft + ',toolbar=0,status=0,width=' + winWidth + ',height=' + winHeight);
-    return false;
-  };
+        var winWidth = 600;
+        var winHeight = 600;
+        var winTop = (screen.height / 2) - (winHeight / 2);
+        var winLeft = (screen.width / 2) - (winWidth / 2);
+        window.open('http://www.facebook.com/sharer.php?s=100&p[title]=' + title + '&p[summary]=' + descr + '&p[url]=' + url + '&p[images][0]=' + image, 'sharer', 'top=' + winTop + ',left=' + winLeft + ',toolbar=0,status=0,width=' + winWidth + ',height=' + winHeight);
+        return false;
+    };
 
-  $scope.shareGoogle = function(url) {
-    var winWidth = 600;
-    var winHeight = 600;
-    var winTop = (screen.height / 2) - (winHeight / 2);
-    var winLeft = (screen.width / 2) - (winWidth / 2);
-    window.open('https://plus.google.com/share?url='+ url, 'top=' + winTop + ',left=' + winLeft + ',toolbar=0,status=0,width=' + winWidth + ',height=' + winHeight);
-    return false;
-  };
+    $scope.shareGoogle = function(url) {
+        var winWidth = 600;
+        var winHeight = 600;
+        var winTop = (screen.height / 2) - (winHeight / 2);
+        var winLeft = (screen.width / 2) - (winWidth / 2);
+        window.open('https://plus.google.com/share?url='+ url, 'top=' + winTop + ',left=' + winLeft + ',toolbar=0,status=0,width=' + winWidth + ',height=' + winHeight);
+        return false;
+    };
 
     $scope.onLogout = function() {
         AuthUser.logout();
@@ -2229,8 +2229,17 @@ function RootController($scope, $facebook, AuthUser, User, $rootScope, Needs, So
 
     $scope.guestFollow = function(message) {
         $scope.tmpFollows.push({sguid: null, user: message.user});
+        $scope.guestFollowPersist();
         $rootScope.$broadcast('followCallback', {frendId: message.frendId});
     };
+
+    $scope.guestFollowPersist = function() {
+        localStorage.setItem('follows', JSON.stringify($scope.tmpFollows));
+    }
+
+    $scope.guestFollowGetOnStorage = function() {
+        return JSON.parse(localStorage.getItem('follows'));
+    }
 
     $scope.authUnFollow = function(message) {
         User.destroy_friendship({id: message.userId, friendId: message.frendId}, { }, function() {
@@ -2254,7 +2263,7 @@ function RootController($scope, $facebook, AuthUser, User, $rootScope, Needs, So
         })[0];
         var index = $scope.tmpFollows.indexOf(frend);
         $scope.tmpFollows.splice(index, 1);
-
+        $scope.guestFollowPersist();
         $rootScope.$broadcast('unfollowCallback', {frendId: message.frendId});
     };
 
@@ -2832,7 +2841,6 @@ function MyProfileController($scope, $rootScope, User, $location, $cookieStore, 
                     var isName = false;
                     angular.forEach(data.errors, function(value, key){
                         if(value == 'name: ["is already taken"]') {
-                            console.log(value);
                             isName = true;
                         }
                     });
