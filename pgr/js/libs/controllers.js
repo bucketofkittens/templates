@@ -550,7 +550,7 @@ function UserController($scope, $element, $route, $routeParams, User, Needs, Pro
      * @return {[type]}
      */
     $scope.onReadFile = function($event) {
-            $rootScope.$broadcast('cropImage');
+        $rootScope.$broadcast('cropImage');
     }
 
     /**
@@ -565,19 +565,19 @@ function UserController($scope, $element, $route, $routeParams, User, Needs, Pro
     $scope.onUpdateGoalImage = function($event) {
         $("#goal_done").html("");
         var data = new FormData();
-            data.append("picture", $("#goal_image")[0].files[0]);
-            data.append("owner_type", 3);
+        data.append("picture", $("#goal_image")[0].files[0]);
+        data.append("owner_type", 3);
 
-            $.ajax({
-                url: host+'/pictures/'+$("#goal_id").val(),
-                data: data,
-                cache: false,
-                contentType: false,
-                processData: false,
-                type: 'PUT'
-            }).done(function(data) {
-                $("#goal_done").html("done");
-            });
+        $.ajax({
+            url: host+'/pictures/'+$("#goal_id").val(),
+            data: data,
+            cache: false,
+            contentType: false,
+            processData: false,
+            type: 'PUT'
+        }).done(function(data) {
+            $("#goal_done").html("done");
+        });
     }
 
     $scope.getProfessionByName = function(name) {
@@ -1808,8 +1808,12 @@ function CompareController($scope, $location) {
     });
 }
 
-function NeighboursGalleryController($scope, User, $routeParams) {
-    $scope.range = 100000;
+function TopGalleryController($scope, Leagues, User, $routeParams, $location) {
+    $scope.range = 10000;
+
+    $scope.onUserPage = function(userItem) {
+        $location.path("/profile/"+userItem.sguid);
+    }
 
     $scope.$on("userControllerGetUser", function($event, message) {
         User.get_from_to_points({from: parseInt(message.user.points-$scope.range), to: parseInt(message.user.points+$scope.range)}, {}, function(newUsers) {
@@ -1827,24 +1831,6 @@ function NeighboursGalleryController($scope, User, $routeParams) {
     });
 }
 
-function TopGalleryController($scope, Leagues, User, $routeParams) {
-    Leagues.by_position({position: 9}, {}, function(league) {
-        User.by_league({league_guid: league.sguid}, {}, function(userData) {
-            angular.forEach(userData, function(value, key){
-                if(!value.published) {
-                    //userData.splice(key, 1);
-                }
-                if($routeParams.userId1 == value.sguid) {
-                    userData.splice(key, 1);
-                } 
-                value.points = parseInt(value.points);
-            });
-            
-            $scope.users = userData;
-        });
-    });
-}
-
 /**
  * Универсальная галлерея
  * @param {[type]} $scope    [description]
@@ -1857,50 +1843,11 @@ function TopGalleryController($scope, Leagues, User, $routeParams) {
  */
 function GalleryController($scope, localize, Leagues, User, AuthUser, $element, $location, $timeout, $rootScope, $routeParams) {
 
-    $scope.$watch("users", function (newVal, oldVal, scope) {
-        if($scope.users && $scope.users.length > 0) {
-            $scope.setPage();
-        }
-    }); 
-
     /**
      * Через сколько минисекунд картинка становится большой
      * @type {Number}
      */
     $scope.showTick = 500;
-
-    $scope.limit = 4;
-
-    $scope.swipe = 0;
-    $scope.swipeMax = 0;
-
-
-    $scope.onSwipeRight = function() {
-        $scope.swipe += 1;
-        $scope.setPage();
-    }
-
-    $scope.onSwipeLeft= function() {
-        $scope.swipe -= 1;
-        $scope.setPage();    
-    }
-
-    $scope.setPage = function() {
-        var first = $scope.swipe * $scope.limit;
-        var last = ($scope.swipe * $scope.limit) + $scope.limit;
-
-        if($scope.users) {
-            $scope.swipeMax = Math.ceil($scope.users.length / $scope.limit); 
-        }
-
-        angular.forEach($scope.users, function(value, key) {
-            if(key >= first && key < last) {
-                value.showItem = true;    
-            } else {
-                value.showItem = false;
-            }
-        });
-    }
 
     /**
      * Определяем является пользователь другом или нет
@@ -3109,6 +3056,7 @@ function SearchController($scope, User, $rootScope, $location) {
     }
 
     $scope.onSearch = function() {
+        console.log($scope.searchText.length);
         if($scope.searchText.length > 0) {
             $rootScope.$broadcast('loaderShow');
             $scope.resultSearch = [];

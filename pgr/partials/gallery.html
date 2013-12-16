@@ -1,36 +1,21 @@
 <div class="galblo">
-	<div class="galblos isotope"
+	<div class="galblos isotope item"
 		ng-repeat="(userKey, userItem) in users"
 		ng-mouseenter="onUserMouseEnter(userItem, $event)"
 		ng-mouseleave="onUserMouseLeave(userItem, $event)"
-		ng-click="onUserClick(userItem, $event)"
-		ng-class="{big: userItem.hover}"
-		ng-show="userItem.showItem">
-		<img ng-src="{{userItem.avatar}}" err-src="/images/unknown-person.png" />
-		<span>{{userItem.points}}</span>
-		<div class="sub"> 
-			<b>{{userItem.name}} <br /><s>{{userItem.league.name}} league</s></b>
-			<ul>
-				<li>
-					<a ng-click="onMoveToProfile(userItem)">
-						<span class="icon profile navigate"></span>
-					</a>
-				</li>
-				<li>
-					<a ng-click="onMoveToCompare(userItem)">
-						<span class="icon compare navigate"></span>
-					</a>
-				</li>
-				<li>
-					<a ng-if="!userItem.isFrend" ng-click="onFollow(userItem)">
-						<span class="icon follow navigate"></span>
-					</a>
-					<a ng-if="userItem.isFrend" ng-click="onUnFollow(userItem)">
-						<span class="icon unfollow navigate"></span>
-					</a>
-				</li>
-			</ul>
+		 ng-click="onUserPage(userItem)">
+		<div class="image">
+			<img ng-src="{{userItem.avatar}}" alt="">
+			<i>{{userItem.points}}</i>
 		</div>
+		<div class="text">
+			<p class="name">{{userItem.name}}</p>
+			<p class="birthday">{{userItem.birthday}}</p>
+			<p class="birthday gr">{{userItem.state.name}}</p>
+			<p class="profession gr">{{userItem.profession.name}}</p>
+		</div>
+		<img class="sealin" src="./images/i1l.png" alt="">
+		<b></b>
 	</div>
 </div>
 
