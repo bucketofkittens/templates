@@ -1630,7 +1630,7 @@ function MainController($scope, Leagues, User, $rootScope, $location, $timeout, 
         var windowWidth = $(window).width();
 
         if(contentWidth > windowWidth) {
-            var step = $event.originalEvent && $event.originalEvent.wheelDeltaY ? $event.originalEvent.wheelDeltaY : $event.deltaY * 40;
+            var step = $event.wheelDeltaY ? $event.wheelDeltaY/2 : $event.deltaY * 40;
 
             if(!$scope.scrollDelta) {
                 $scope.scrollDelta = 0;
