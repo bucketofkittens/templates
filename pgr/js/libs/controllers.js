@@ -170,7 +170,7 @@ function ProfileController($scope, $routeParams, AuthUser, $route, $rootScope, $
  * @param {[type]} $rootScope [description]
  * @param {[type]} $location  [description]
  */
-function QuickUserChangeCtrl($scope, User, AuthUser, $rootScope, $location, $route) {
+function QuickUserChangeCtrl($scope, User, AuthUser, $rootScope, $location, $route, $cookieStore) {
     $scope.users = [];
 
     $scope.onMoveUserClick = function($event, nextUser) {
@@ -178,6 +178,9 @@ function QuickUserChangeCtrl($scope, User, AuthUser, $rootScope, $location, $rou
         
         $scope.workspace.user = nextUser;
         $scope.authUserId = nextUser.sguid;
+
+        $cookieStore.remove("openGoal");
+        $cookieStore.remove("openNeed");
 
         window.location.reload();
     }
