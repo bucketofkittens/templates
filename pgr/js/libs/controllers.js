@@ -623,6 +623,13 @@ function NeedsAndGoalsController($scope, Goals, Criterion, AuthUser, UserCriteri
     $scope.$watch('user', function (newVal, oldVal, scope) {
         if($scope.user && $scope.user.sguid) {
             $scope.bindUserNeedsValues();
+            angular.forEach($scope.needs, function(value, key){
+                angular.forEach(value.goals, function(v2, k2) {
+                    if(v2.current) {
+                        $scope.getCriteriumByGoal(v2, value); 
+                    }
+                });
+            });
         }
     });
     
@@ -648,6 +655,7 @@ function NeedsAndGoalsController($scope, Goals, Criterion, AuthUser, UserCriteri
                 goalsValues: goalsData,
                 userId: $scope.user.sguid
             });
+
             $rootScope.$broadcast('loaderHide');
 
             var openGoal = $cookieStore.get("openGoal");
@@ -764,7 +772,7 @@ function NeedsAndGoalsController($scope, Goals, Criterion, AuthUser, UserCriteri
      */
     $scope.closeAllGoals = function(needs) {
         angular.forEach(needs, function(value, key){
-            angular.forEach(value.goals, function(v2, k2){
+            angular.forEach(value.goals, function(v2, k2) {
                 v2.current = false;
             });
         });
@@ -1620,7 +1628,7 @@ function MainController($scope, Leagues, User, $rootScope, $location, $timeout, 
     $scope.onWheel = function($event, $delta, $deltaX, $deltaY) {
         var contentWidth = $(".isotope").width();
         var windowWidth = $(window).width();
-        
+
         if(contentWidth > windowWidth) {
             var step = $event.originalEvent && $event.originalEvent.wheelDeltaY ? $event.originalEvent.wheelDeltaY : $event.deltaY * 40;
 
@@ -1647,8 +1655,6 @@ function MainController($scope, Leagues, User, $rootScope, $location, $timeout, 
         }
         $scope.scrollDelta = $event.gesture.deltaX;
     }
-
-
     
 }
 
@@ -1808,7 +1814,7 @@ function CompareController($scope, $location) {
     });
 }
 
-function TopGalleryController($scope, Leagues, User, $routeParams, $location) {
+function TopGalleryController($scope, Leagues, User, $routeParams, $location, $rootScope) {
     $scope.range = 10000;
 
     $scope.onUserPage = function(userItem) {
@@ -1816,18 +1822,25 @@ function TopGalleryController($scope, Leagues, User, $routeParams, $location) {
     }
 
     $scope.$on("userControllerGetUser", function($event, message) {
-        User.get_from_to_points({from: parseInt(message.user.points-$scope.range), to: parseInt(message.user.points+$scope.range)}, {}, function(newUsers) {
-            angular.forEach(newUsers, function(value, key){
-                if(!value.published) {
-                    //newUsers.splice(key, 1);
-                }
-                if($routeParams.userId1 == value.sguid) {
-                    newUsers.splice(key, 1);
-                } 
-                value.points = parseInt(value.points);
-            });
-            $scope.users = newUsers;
-        });
+        if(!$rootScope.topUsers || $rootScope.topUsers.length == 0) {
+            User.get_from_to_points({from: parseInt(message.user.points-$scope.range), to: parseInt(message.user.points+$scope.range)}, {}, function(newUsers) {
+                angular.forEach(newUsers, function(value, key){
+                    if(!value.published) {
+                        //newUsers.splice(key, 1);
+                    }
+                    if($routeParams.userId1 == value.sguid) {
+                        newUsers.splice(key, 1);
+                    } 
+                    value.points = parseInt(value.points);
+                });
+                $scope.users = newUsers;
+                $rootScope.topUsers = newUsers;
+            }); 
+        } else {
+            if(!$scope.users ||  $scope.users.length == 0) {
+                $scope.users = $rootScope.topUsers;    
+            }
+        }
     });
 }
 
