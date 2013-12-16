@@ -1079,7 +1079,7 @@ function NeedsAndGoalsController($scope, Goals, Criterion, AuthUser, UserCriteri
  * форма модального окна авторизации
  * @param {[type]} $scope [description]
  */
-function LoginController($scope, Sessions, $rootScope, User, Social, $facebook, $location, $window, ImprovaLogin) {
+function LoginController($scope, Sessions, $rootScope, User, Social, $facebook, $location, $window, ImprovaLogin, $routeParams) {
     $scope.show = false;
     $scope.improva = 0;
 
@@ -1117,6 +1117,15 @@ function LoginController($scope, Sessions, $rootScope, User, Social, $facebook, 
     $scope.$on('socialLogined', function() {
     });
 
+    $scope.onSuccessRegistration = 0;
+
+    if($routeParams.onSuccess) {
+        $scope.onSuccessRegistration = 1;
+    }
+
+    $scope.onCancelSuccess = function() {
+        $scope.onSuccessRegistration = 0;
+    }
 
     $scope.onCancelCreate = function() {
         $scope.user_create = 0;
@@ -2095,6 +2104,10 @@ function getRandomInt(min, max) {
 }
 
 function RootController($scope, $facebook, AuthUser, User, $rootScope, Needs, Social, $cookieStore, States, Professions, $location) {
+    /**
+     * Забираем список друзей из localStorage
+     * @return {Array} [description]
+     */
     $scope.guestFollowGetOnStorage = function() {
         var follows =  JSON.parse(localStorage.getItem('follows'));
         if(follows == null) {
@@ -3154,9 +3167,9 @@ function CommentsController($scope, $rootScope, Comments) {
 function ConfirmController($scope, ConfirmSignup, $routeParams, $location) {
     ConfirmSignup.test({hash: $routeParams.hash}, {}, function(data) {
         if(data) {
-            $location.path("/login/");
+            $location.path("/login/").search({ onSuccess: true});
         } else {
-            $location.path("/login/");
+            $location.path("/login/").search({ onSuccess: true});
         }
     });
 }

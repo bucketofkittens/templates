@@ -67,6 +67,23 @@
         </div>
     </ng-form>
 </div>
+<div class="form-show improva" ng-show="onSuccessRegistration == 1">
+    <h2>Successful registration!</h2>
+    <p>Please login now.</p>
+    <ng-form 
+        id="create_form" 
+        name="create_form" 
+        novalidate 
+        class="css-form myForm" >
+            <p class="buttons">
+                <input 
+                    type="button" 
+                    value="Ok"
+                    ng-click="onCancelSuccess()" />
+            </p>
+        </div>
+    </ng-form>
+</div>
 <div class="login">
     <div class="modal">
         <div class="modal_wrapper">
