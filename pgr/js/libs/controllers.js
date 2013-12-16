@@ -2806,8 +2806,7 @@ function MyProfileController($scope, $rootScope, User, $location, $cookieStore, 
 
         var user = {
                 "login": $scope.workspace.user.login,
-                "email": $scope.workspace.user.email,
-                "published": 1
+                "email": $scope.workspace.user.email
         }
 
         if($scope.workspace.user.name) {
@@ -2843,7 +2842,6 @@ function MyProfileController($scope, $rootScope, User, $location, $cookieStore, 
                         $scope.nameIsError = false;
                     }
                 }
-                $scope.workspace.user.published = 1;
             }
         );
     }
@@ -2861,6 +2859,23 @@ function MyProfileController($scope, $rootScope, User, $location, $cookieStore, 
 
         User.updateUser({"id": $scope.workspace.user.sguid},  {user: JSON.stringify(user)}, function(data) {
                 $scope.workspace.user.published = 0;
+            }
+        );
+    }
+
+    /**
+     * Публикация профиля
+     * Пока не работает нет backend
+     * @param  {[type]} $event [description]
+     * @return {[type]}        [description]
+     */
+    $scope.onOnPublish = function($event) {
+        var user = {
+            "published": 1
+        }
+
+        User.updateUser({"id": $scope.workspace.user.sguid},  {user: JSON.stringify(user)}, function(data) {
+                $scope.workspace.user.published = 1;
             }
         );
     }
