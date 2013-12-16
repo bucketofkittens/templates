@@ -823,23 +823,7 @@ function NeedsAndGoalsController($scope, Goals, Criterion, AuthUser, UserCriteri
         
             goal.current = true;
 
-            var element = $($event.currentTarget);
-            var id = element.attr("data-goalid");
-            var items = $("a[data-goalid='"+id+"']");
-            var hasCurrent = $(element).hasClass("current");
-            
-            $.each(items, function(key, value) {
-                if($(value).attr("user-id") != $scope.user.sguid) {
-                    if(
-                        goal.current && !$(value).hasClass("current") ||
-                        !goal.current && $(value).hasClass("current")) {
-                        setTimeout(function() {
-                            $(value).click();
-                        });    
-                    }
-                    
-                }
-            });
+            $scope.syncOpenAndClose($event, goal);
 
             $scope.getCriteriumByGoal(goal, need);
 
@@ -850,6 +834,7 @@ function NeedsAndGoalsController($scope, Goals, Criterion, AuthUser, UserCriteri
             $rootScope.$broadcast('criteriaOpened');
         } else {
             $scope.closeAllGoals(needs);
+            $scope.syncOpenAndClose($event, goal);
 
             goal.current = false;
         }
@@ -857,6 +842,25 @@ function NeedsAndGoalsController($scope, Goals, Criterion, AuthUser, UserCriteri
             //$rootScope.$broadcast('criteriaOpen', {user: $scope.user, goalId: goal.sguid});    
         }
     };
+
+    $scope.syncOpenAndClose = function($event, goal) {
+        var element = $($event.currentTarget);
+        var id = element.attr("data-goalid");
+        var items = $("a[data-goalid='"+id+"']");
+        var hasCurrent = $(element).hasClass("current");
+
+        $.each(items, function(key, value) {
+            if($(value).attr("user-id") != $scope.user.sguid) {
+                if(
+                    goal.current && !$(value).hasClass("current") ||
+                    !goal.current && $(value).hasClass("current")) {
+                    setTimeout(function() {
+                        $(value).click();
+                    }, 0);    
+                }
+            }
+        });
+    }
 
     $scope.$on('openCriteriumList', function($event, message) {
         if(message.currentUserId != $scope.currentUserId) {
