@@ -913,6 +913,26 @@ function NeedsAndGoalsController($scope, Goals, Criterion, AuthUser, UserCriteri
             goalItem.current_value = parseInt(goalItem.current_value) + parseInt(delta);
 
             $scope.workspace.user.points = parseInt($scope.workspace.user.points+delta);
+
+            /*
+            var max = 0;
+            var carreerMax = {};
+            var moneyPoints = 0;
+
+            angular.forEach($scope.currentNeed.goals, function(goal){
+                if (goal.current_value > max && goal.name != "Money") {
+                  max = goal.current_value;
+                  carreerMax = {goal: goal.sguid, points: goal.current_value};
+                }
+                if(goal.name == "Money") {
+                  moneyPoints = goal.current_value;
+                }
+            });
+
+            */
+
+            $scope.onPointsSet(currentValue, criteriaValue.value*criteriums, needItem, goalItem);
+
             User.update_legue({id: $scope.workspace.user.sguid}, function(data) {
                 $scope.workspace.user.league = data.message;
             });
@@ -965,72 +985,75 @@ function NeedsAndGoalsController($scope, Goals, Criterion, AuthUser, UserCriteri
         });
 
         var currentValue = 0;
-
-        if (fCriterium[0].need.name != 'Career') {
-
-          if(fCriterium[0].user_criteria_sguid) {
+        
+        if(fCriterium[0].user_criteria_sguid) {
             var fCriteriumValue = fCriterium[0].criteria_values.filter(function(value) {
-              return value.sguid == fCriterium[0].user_criteria_sguid;
-            });
-
-            if(criteria["depend_guids"].length == 0) {
-              currentValue = fCriteriumValue[0].value;
-            } else {
-              var criteriums = $scope.getAffects(criteria["depend_guids"], goalItem, true);
-              currentValue = fCriteriumValue[0].value*criteriums;
+                return value.sguid == fCriterium[0].user_criteria_sguid;
             }
-          }
+        );
 
-          if(!criteria["affects?"]) {
+        if(criteria["depend_guids"].length == 0) {
+          currentValue = fCriteriumValue[0].value;
+        } else {
+          var criteriums = $scope.getAffects(criteria["depend_guids"], goalItem, true);
+          currentValue = fCriteriumValue[0].value*criteriums;
+        }
+        }
+
+        if(!criteria["affects?"]) {
             if(criteria["depend_guids"].length == 0) {
               $scope.onPointsSet(currentValue, criteriaValue.value, needItem, goalItem);
             } else {
               var criteriums = $scope.getAffects(criteria["depend_guids"], goalItem);
               $scope.onPointsSet(currentValue, criteriaValue.value*criteriums, needItem, goalItem);
             }
+        }
+
+        if(criteria["affects?"]) {
+        angular.forEach(criteria["affect_guids"], function(value, key){
+          var sguid = value;
+
+          var fsCriterium = goalItem.criteriums.filter(function (criterium) {
+            return criterium.sguid == sguid;
+          })[0];
+
+          var fsCriteriumValue = fsCriterium.criteria_values.filter(function(value) {
+            return value.sguid == fsCriterium.user_criteria_sguid;
+          })[0];
+
+          if(fsCriteriumValue) {
+            $scope.updateNeedsAndAreaPoints(fsCriteriumValue, fsCriterium, needItem, goalItem);
           }
+        });
+        }
 
-          if(criteria["affects?"]) {
-            angular.forEach(criteria["affect_guids"], function(value, key){
-              var sguid = value;
-
-              var fsCriterium = goalItem.criteriums.filter(function (criterium) {
-                return criterium.sguid == sguid;
-              })[0];
-
-              var fsCriteriumValue = fsCriterium.criteria_values.filter(function(value) {
-                return value.sguid == fsCriterium.user_criteria_sguid;
-              })[0];
-
-              if(fsCriteriumValue) {
-                $scope.updateNeedsAndAreaPoints(fsCriteriumValue, fsCriterium, needItem, goalItem);
-              }
-            });
-          }
-
-          if(fCriterium[0].user_criteria_sguid) {
+        if(fCriterium[0].user_criteria_sguid) {
             fCriterium[0].old_user_criteria_sguids = fCriterium[0].user_criteria_sguid;
-          } else {
-            fCriterium[0].old_user_criteria_sguids = 'none';
-          }
-          fCriterium[0].user_criteria_sguid = criteriaValue.sguid;
-
-          if(oneCall) {
-            $scope.updateNeedsAndAreaPoints(criteriaValue, criteria, needItem, goalItem);
-          }
-
         } else {
+            fCriterium[0].old_user_criteria_sguids = 'none';
+        }
+            fCriterium[0].user_criteria_sguid = criteriaValue.sguid;
+
+        if(oneCall) {
+            $scope.updateNeedsAndAreaPoints(criteriaValue, criteria, needItem, goalItem);
+        }
+
+        if (fCriterium[0].need.name == 'Career') {
             var max = 0;
             var carreerMax = {};
+            var moneyPoints = 0;
+
             angular.forEach($scope.currentNeed.goals, function(goal){
-                if (goal.current_value > max) {
+                if (goal.current_value > max && goal.name != "Money") {
                   max = goal.current_value;
                   carreerMax = {goal: goal.sguid, points: goal.current_value};
                 }
+                if(goal.name == "Money") {
+                  moneyPoints = goal.current_value;
+                }
             });
-            if (($scope.currentGoal.sguid == fCriterium[0].goal.sguid) && ($scope.currentGoal.sguid == carreerMax.goal)){
 
-            }
+            $scope.onPointsSet(currentValue, criteriaValue.value*criteriums, needItem, goalItem);
         }
     }
 
