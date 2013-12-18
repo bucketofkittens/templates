@@ -1237,7 +1237,11 @@ function LoginController($scope, Sessions, $rootScope, User, Social, $facebook, 
                             ,function(data) {
                                 if(data.success) {
                                     var user = {
-                                            "name": dataImprova.name,
+                                        "name": dataImprova.name
+                                    }
+
+                                    if(dataImprova.birthday) {
+                                        user["birthday"] = dataImprova.birthday;
                                     }
 
                                     User.updateUser({"id": data.message.guid},  {user: JSON.stringify(user)}, function(data) {
