@@ -912,13 +912,12 @@ function NeedsAndGoalsController($scope, Goals, Criterion, AuthUser, UserCriteri
             needItem.current_value = parseInt(needItem.current_value) + parseInt(delta);
             goalItem.current_value = parseInt(goalItem.current_value) + parseInt(delta);
 
-            console.log(goalItem);
-            if(goalItem.name == "Career") {
+            if(needItem.name == "Career") {
                 var max = 0;
                 var carreerMax = {};
                 var moneyPoints = 0;
 
-                angular.forEach(needItem.goals, function(goal){
+                angular.forEach(needItem.goals, function(goal) {
                     if (goal.current_value > max && goal.name != "Money") {
                       max = goal.current_value;
                       carreerMax = {goal: goal.sguid, points: goal.current_value};
@@ -927,9 +926,16 @@ function NeedsAndGoalsController($scope, Goals, Criterion, AuthUser, UserCriteri
                       moneyPoints = goal.current_value;
                     }
                 });
-            } else {
-                $scope.workspace.user.points = parseInt($scope.workspace.user.points+delta);
+
+                needItem.current_value = parseInt(carreerMax.points + moneyPoints);
             }
+
+            var newPoints = 0;
+            angular.forEach($scope.needs, function(value, key){
+                newPoints += value.current_value;
+            });
+
+            $scope.workspace.user.points = newPoints;
 
             User.update_legue({id: $scope.workspace.user.sguid}, function(data) {
                 $scope.workspace.user.league = data.message;
