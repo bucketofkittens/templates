@@ -180,6 +180,7 @@ function onSignInCallback(authResult) {
 		  gapi.client.oauth2.userinfo.get().execute(function(resp) {
 		  	console.log(resp);
 		    var scope = angular.element($("body")).scope();
+
 		    scope.gplusAuth(resp.email, resp.name);
 		  })
 		});
@@ -222,6 +223,7 @@ function makeApiCall() {
 	  gapi.client.oauth2.userinfo.get().execute(function(resp) {
 	    var scope = angular.element($("body")).scope();
 	    scope.gplusAuth(resp.email, resp.name);
+	    console.log(resp);
 	    socialsAccess.googlePlus.isLoggined = true;
 	  })
 	});

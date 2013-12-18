@@ -960,7 +960,9 @@ function NeedsAndGoalsController($scope, Goals, Criterion, AuthUser, UserCriteri
 
             var newPoints = 0;
             angular.forEach($scope.needs, function(value, key){
-                newPoints += value.current_value;
+                if(value.current_value) {
+                    newPoints += value.current_value;    
+                }
             });
 
             $scope.workspace.user.points = newPoints;
@@ -1376,17 +1378,21 @@ function LoginController($scope, Sessions, $rootScope, User, Social, $facebook, 
 
     $scope.socialMicrosoftLiveLogin = function() {
         WL.login({
-            scope: ["wl.signin", "wl.basic", "wl.emails"]
+            scope: ["wl.signin", "wl.basic", "wl.emails", "wl.birthday"]
         }).then(
             function (session) {
                 WL.api({
                     path: "me",
                     method: "GET"
-                }, function(data) {
-                    Social.login({}, {email: data.emails.account}, function(data) {
+                }, function(dataWL) {
+                    Social.login({}, {email: dataWL.emails.account}, function(data) {
                         var updateUser = {};
+                        console.log(dataWL);
                         if(data.was_created) {
-                            updateUser["name"] = data.name;
+                            updateUser["name"] = dataWL.first_name;
+                            if(dataWL.birth_day) {
+                                updateUser["birthday"] = dataWL.birth_day+"/"+dataWL.birth_month+"/"+dataWL.birth_year;
+                            }
                         }
                         $rootScope.$broadcast('onSignin', {
                             sguid: data.guid, 
@@ -1415,9 +1421,7 @@ function LoginController($scope, Sessions, $rootScope, User, Social, $facebook, 
                 if(data.was_created) {
                     updateUser["name"] = data.name;
                 }
-                if(response.location && response.location.name) {
-                    updateUser["location"] = response.location.name;
-                }
+                
                 $rootScope.$broadcast('onSignin', {
                     sguid: data.guid, 
                     isSocial: true, 
@@ -2382,6 +2386,7 @@ function RootController($scope, $facebook, AuthUser, User, $rootScope, Needs, So
     
     $scope.gplusAuth = function(email, name) {
         Social.login({}, {email: email}, function(data) {
+            console.log(data);
             var updateUser = {};
             if(data.was_created) {
                 updateUser["name"] = name;
