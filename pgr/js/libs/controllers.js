@@ -638,12 +638,30 @@ function NeedsAndGoalsController($scope, Goals, Criterion, AuthUser, UserCriteri
             var needsData = {};
             angular.forEach($scope.needs, function(needItem, needKey) {
                 needsData[needItem.sguid] = 0;
+                
                 angular.forEach(needItem.goals, function(goalItem, goalKey) {
                     goalItem.current_value = parseInt(goalsData[goalItem.sguid]);
                     if(goalsData[goalItem.sguid]) {
                         needsData[needItem.sguid] += parseInt(goalsData[goalItem.sguid]);
                     }
                 });
+                
+                if(needItem.name == "Career") {
+                    var max = 0;
+                    var carreerMax = {};
+                    var moneyPoints = 0;
+
+                    angular.forEach(needItem.goals, function(goal) {
+                        if (goal.current_value > max && goal.name != "Money") {
+                          max = goal.current_value;
+                          carreerMax = {goal: goal.sguid, points: goal.current_value};
+                        }
+                        if(goal.name == "Money") {
+                          moneyPoints = goal.current_value;
+                        }
+                    });
+                    needsData[needItem.sguid] = parseInt(carreerMax.points + moneyPoints);
+                }
 
                 needItem.current_value = needsData[needItem.sguid];
             });
