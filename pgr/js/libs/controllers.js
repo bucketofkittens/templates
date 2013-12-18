@@ -912,26 +912,24 @@ function NeedsAndGoalsController($scope, Goals, Criterion, AuthUser, UserCriteri
             needItem.current_value = parseInt(needItem.current_value) + parseInt(delta);
             goalItem.current_value = parseInt(goalItem.current_value) + parseInt(delta);
 
-            $scope.workspace.user.points = parseInt($scope.workspace.user.points+delta);
+            console.log(goalItem);
+            if(goalItem.name == "Career") {
+                var max = 0;
+                var carreerMax = {};
+                var moneyPoints = 0;
 
-            /*
-            var max = 0;
-            var carreerMax = {};
-            var moneyPoints = 0;
-
-            angular.forEach($scope.currentNeed.goals, function(goal){
-                if (goal.current_value > max && goal.name != "Money") {
-                  max = goal.current_value;
-                  carreerMax = {goal: goal.sguid, points: goal.current_value};
-                }
-                if(goal.name == "Money") {
-                  moneyPoints = goal.current_value;
-                }
-            });
-
-            */
-
-            $scope.onPointsSet(currentValue, criteriaValue.value*criteriums, needItem, goalItem);
+                angular.forEach(needItem.goals, function(goal){
+                    if (goal.current_value > max && goal.name != "Money") {
+                      max = goal.current_value;
+                      carreerMax = {goal: goal.sguid, points: goal.current_value};
+                    }
+                    if(goal.name == "Money") {
+                      moneyPoints = goal.current_value;
+                    }
+                });
+            } else {
+                $scope.workspace.user.points = parseInt($scope.workspace.user.points+delta);
+            }
 
             User.update_legue({id: $scope.workspace.user.sguid}, function(data) {
                 $scope.workspace.user.league = data.message;
@@ -1036,24 +1034,6 @@ function NeedsAndGoalsController($scope, Goals, Criterion, AuthUser, UserCriteri
 
         if(oneCall) {
             $scope.updateNeedsAndAreaPoints(criteriaValue, criteria, needItem, goalItem);
-        }
-
-        if (fCriterium[0].need.name == 'Career') {
-            var max = 0;
-            var carreerMax = {};
-            var moneyPoints = 0;
-
-            angular.forEach($scope.currentNeed.goals, function(goal){
-                if (goal.current_value > max && goal.name != "Money") {
-                  max = goal.current_value;
-                  carreerMax = {goal: goal.sguid, points: goal.current_value};
-                }
-                if(goal.name == "Money") {
-                  moneyPoints = goal.current_value;
-                }
-            });
-
-            $scope.onPointsSet(currentValue, criteriaValue.value*criteriums, needItem, goalItem);
         }
     }
 
