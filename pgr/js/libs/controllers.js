@@ -248,6 +248,17 @@ function UserController($scope, $element, $route, $routeParams, User, Needs, Pro
         $scope.bindIn = "user2";
     }
 
+    /**Событие клика на пользователе в сравнении */
+    $scope.onUserClick = function(user, $event) {
+        if($scope.compare && user.sguid != AuthUser.get()) {
+            if(user.hover == true) {
+                user.hover = false;
+            } else {
+                user.hover = true;
+            }
+        }
+    }
+
     $scope.changeUser = function(user) {
         if($scope.bindIn == "user2") {
             $location.search({user1: $location.search().user1, user2: user.sguid});
@@ -345,20 +356,19 @@ function UserController($scope, $element, $route, $routeParams, User, Needs, Pro
         }
     });
 
-    /**
-     * Событие добавление в друзья
-     * @return {object}        
-     */
+    /** Событие добавление в друзья */
     $scope.onFollow = function() {
         $rootScope.$broadcast('follow', {userId: AuthUser.get(), frendId: $scope.user.sguid, user: $scope.user});
     }
 
-    /**
-     * Событие удаление из друзей
-     * @return {object}      
-     */
+    /** Событие удаление из друзей */
     $scope.onUnFollow = function() {
         $rootScope.$broadcast('unfollow', {userId: AuthUser.get(), frendId: $scope.user.sguid, user: $scope.user});
+    }
+
+    /** Событие перехода к пользователю */
+    $scope.onMoveToProfile = function(user) {
+        $location.path("/profile/"+user.sguid).search({});
     }
 
     /**

@@ -29,11 +29,30 @@
 	</div>
 	<div class="pmain pro" >
 		<div class="block" ng-if="user">
-			<div class="image_box" ng-class="{updated: user.sguid == authUserId && isEdit}">
+			<div class="image_box" ng-class="{updated: user.sguid == authUserId && isEdit, big: user.hover}" 
+				ng-click="onUserClick(user, $event)" >
 				<img class="pp" ng-src="{{user.avatar}}" err-src="/images/unknown-person.png" />
 				<i>{{user.points}}</i>
 				<a ng-click="onUpdateFile()" title="">Update image</a>
-				<span></span>
+				<span></span>				
+				<div class="sub">
+					<b>{{user.name}} <br /><s>{{user.league.name}} league</s></b>
+					<ul>
+						<li>
+							<a ng-click="onMoveToProfile(user)">
+								<span class="icon profile navigate"></span>
+							</a>
+						</li>
+						<li>
+							<a ng-if="user && !user.isFollow" ng-click="onFollow()">
+								<span class="icon follow navigate"></span>
+							</a>
+							<a ng-if="user && user.isFollow" ng-click="onUnFollow()">
+								<span class="icon unfollow navigate"></span>
+							</a>
+						</li>
+					</ul>
+				</div>
 			</div>
 		</div>
 		<div class="pmpar" ng-if="user">
