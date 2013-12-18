@@ -638,7 +638,7 @@ function NeedsAndGoalsController($scope, Goals, Criterion, AuthUser, UserCriteri
             var needsData = {};
             angular.forEach($scope.needs, function(needItem, needKey) {
                 needsData[needItem.sguid] = 0;
-                
+
                 angular.forEach(needItem.goals, function(goalItem, goalKey) {
                     goalItem.current_value = parseInt(goalsData[goalItem.sguid]);
                     if(goalsData[goalItem.sguid]) {
@@ -1303,9 +1303,11 @@ function LoginController($scope, Sessions, $rootScope, User, Social, $facebook, 
           success:function(resp) {
             if(resp == "0") {
                 $scope.errorValidate = "Text invalid";
+                $rootScope.$broadcast('loaderHide');
             } else {
                 User.create(
                     {user: JSON.stringify({
+                        "name": $scope.user.email.split("@")[0],
                         "login": $scope.user.email,
                         "email": $scope.user.email,
                         "password": $scope.user.password
