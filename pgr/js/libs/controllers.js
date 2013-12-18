@@ -965,56 +965,72 @@ function NeedsAndGoalsController($scope, Goals, Criterion, AuthUser, UserCriteri
         });
 
         var currentValue = 0;
-        
-        if(fCriterium[0].user_criteria_sguid) {
+
+        if (fCriterium[0].need.name != 'Career') {
+
+          if(fCriterium[0].user_criteria_sguid) {
             var fCriteriumValue = fCriterium[0].criteria_values.filter(function(value) {
-                return value.sguid == fCriterium[0].user_criteria_sguid;
+              return value.sguid == fCriterium[0].user_criteria_sguid;
             });
-            
-            if(criteria["depend_guids"].length == 0) {
-                currentValue = fCriteriumValue[0].value;
-            } else {
-                var criteriums = $scope.getAffects(criteria["depend_guids"], goalItem, true);
-                currentValue = fCriteriumValue[0].value*criteriums;
-            }
-        }
 
-        if(!criteria["affects?"]) {
             if(criteria["depend_guids"].length == 0) {
-                $scope.onPointsSet(currentValue, criteriaValue.value, needItem, goalItem);
+              currentValue = fCriteriumValue[0].value;
             } else {
-                var criteriums = $scope.getAffects(criteria["depend_guids"], goalItem);
-                $scope.onPointsSet(currentValue, criteriaValue.value*criteriums, needItem, goalItem);
+              var criteriums = $scope.getAffects(criteria["depend_guids"], goalItem, true);
+              currentValue = fCriteriumValue[0].value*criteriums;
             }
-        }
+          }
 
-        if(criteria["affects?"]) {
+          if(!criteria["affects?"]) {
+            if(criteria["depend_guids"].length == 0) {
+              $scope.onPointsSet(currentValue, criteriaValue.value, needItem, goalItem);
+            } else {
+              var criteriums = $scope.getAffects(criteria["depend_guids"], goalItem);
+              $scope.onPointsSet(currentValue, criteriaValue.value*criteriums, needItem, goalItem);
+            }
+          }
+
+          if(criteria["affects?"]) {
             angular.forEach(criteria["affect_guids"], function(value, key){
-                var sguid = value;
+              var sguid = value;
 
-                var fsCriterium = goalItem.criteriums.filter(function (criterium) { 
-                    return criterium.sguid == sguid;
-                })[0];
-                
-                var fsCriteriumValue = fsCriterium.criteria_values.filter(function(value) {
-                    return value.sguid == fsCriterium.user_criteria_sguid;
-                })[0];
+              var fsCriterium = goalItem.criteriums.filter(function (criterium) {
+                return criterium.sguid == sguid;
+              })[0];
 
-                if(fsCriteriumValue) {
-                    $scope.updateNeedsAndAreaPoints(fsCriteriumValue, fsCriterium, needItem, goalItem);
+              var fsCriteriumValue = fsCriterium.criteria_values.filter(function(value) {
+                return value.sguid == fsCriterium.user_criteria_sguid;
+              })[0];
+
+              if(fsCriteriumValue) {
+                $scope.updateNeedsAndAreaPoints(fsCriteriumValue, fsCriterium, needItem, goalItem);
+              }
+            });
+          }
+
+          if(fCriterium[0].user_criteria_sguid) {
+            fCriterium[0].old_user_criteria_sguids = fCriterium[0].user_criteria_sguid;
+          } else {
+            fCriterium[0].old_user_criteria_sguids = 'none';
+          }
+          fCriterium[0].user_criteria_sguid = criteriaValue.sguid;
+
+          if(oneCall) {
+            $scope.updateNeedsAndAreaPoints(criteriaValue, criteria, needItem, goalItem);
+          }
+
+        } else {
+            var max = 0;
+            var carreerMax = {};
+            angular.forEach($scope.currentNeed.goals, function(goal){
+                if (goal.current_value > max) {
+                  max = goal.current_value;
+                  carreerMax = {goal: goal.sguid, points: goal.current_value};
                 }
             });
-        }
+            if (($scope.currentGoal.sguid == fCriterium[0].goal.sguid) && ($scope.currentGoal.sguid == carreerMax.goal)){
 
-        if(fCriterium[0].user_criteria_sguid) {
-            fCriterium[0].old_user_criteria_sguids = fCriterium[0].user_criteria_sguid; 
-        } else {
-            fCriterium[0].old_user_criteria_sguids = 'none';
-        }
-        fCriterium[0].user_criteria_sguid = criteriaValue.sguid;    
-
-        if(oneCall) {
-            $scope.updateNeedsAndAreaPoints(criteriaValue, criteria, needItem, goalItem);   
+            }
         }
     }
 
@@ -1659,6 +1675,10 @@ function MainController($scope, Leagues, User, $rootScope, $location, $timeout, 
         }
         $scope.scrollDelta = $event.gesture.deltaX;
     }
+
+    $scope.onLogin = function() {
+      $location.path('/login/');
+    };
     
 }
 
@@ -1864,7 +1884,7 @@ function GalleryController($scope, localize, Leagues, User, AuthUser, $element, 
      * Через сколько минисекунд картинка становится большой
      * @type {Number}
      */
-    $scope.showTick = 500;
+    $scope.showTick = 1000;
 
     /**
      * Определяем является пользователь другом или нет
@@ -1946,21 +1966,21 @@ function GalleryController($scope, localize, Leagues, User, AuthUser, $element, 
      * @return {object}      
      */
     $scope.onUserMouseEnter = function(user, $event) {
-        if(!user.hover) {
-            user.hovered = true;
-
-            $timeout(function() {
-                if(user.hovered) {
-                    angular.forEach($scope.users, function(item, key) {
-                        if(item != user) {
-                            item.hovered = false;
-                            item.hover = false;     
-                        }
-                    });
-                    user.hover = user.hovered ? true : false;
-                }
-            }, $scope.showTick);
-        }
+//        if(!user.hover) {
+//            user.hovered = true;
+//
+//            $timeout(function() {
+//                if(user.hovered) {
+//                    angular.forEach($scope.users, function(item, key) {
+//                        if(item != user) {
+//                            item.hovered = false;
+//                            item.hover = false;
+//                        }
+//                    });
+//                    user.hover = user.hovered ? true : false;
+//                }
+//            }, $scope.showTick);
+//        }
     }
 
     /**
@@ -1969,11 +1989,11 @@ function GalleryController($scope, localize, Leagues, User, AuthUser, $element, 
      * @return {object}      
      */
     $scope.onUserMouseLeave = function(user, $event) {
-        user.hovered = false;
-            
-        $timeout(function() {
-            user.hover = false;
-        }, $scope.showTick);
+//        user.hovered = false;
+//
+//        $timeout(function() {
+//            user.hover = false;
+//        }, $scope.showTick);
     }
 
     /**
@@ -2100,6 +2120,7 @@ function RootController($scope, $facebook, AuthUser, User, $rootScope, Needs, So
         return follows;
     }
 
+    $scope.authUserId = AuthUser.get();
     $scope.authUserId = AuthUser.get();
     $scope.workspace = {};
     $scope.tmpFollows = $scope.guestFollowGetOnStorage();
@@ -2291,6 +2312,11 @@ function RootController($scope, $facebook, AuthUser, User, $rootScope, Needs, So
                     $scope.workspace.user.points = 0;
                 }
                 AuthUser.set(message.sguid);
+                if($scope.workspace.user.points == 0) {
+                  $cookieStore.put("myProfileTab", 3);
+                } else {
+                  $cookieStore.put("myProfileTab", 1);
+                }
 
                 User.get_friends({id: message.sguid}, function(frends) {
                     $scope.workspace.user.frends = frends;
@@ -2303,7 +2329,8 @@ function RootController($scope, $facebook, AuthUser, User, $rootScope, Needs, So
                     }
 
                     if(!message.noRedirect) {
-                        $location.path("/");    
+//                        $location.path("/");
+                        $location.path('/my_profile');
                     }
                 });
             });    

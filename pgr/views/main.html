@@ -1,8 +1,11 @@
-<section 
+<section
 	msd-wheel="onWheel($event, $delta, $deltaX, $deltaY)"
 	hm-dragleft="onDrag($event)"
 	hm-dragright="onDrag($event)"
 	class="gallery" ng-controller="GalleryController">
+    <div class="rate-yourself">
+        <h2 ng-click="onLogin()">Sign in and rate yourself</h2>
+    </div>
 	<div isotope-container iso-options="opts" ng-style="{left: scrollDelta}" >
 		<div
 			ng-mouseenter="onUserMouseEnter(userItem, $event)"
