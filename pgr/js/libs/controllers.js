@@ -2923,7 +2923,8 @@ function MyProfileController($scope, $rootScope, User, $location, $cookieStore, 
     }
 
     $scope.onChangePassword = function() {
-        $location.path("/change_password"); 
+        $cookieStore.put("changePasswordOnUser", "1");
+        $location.path("/change_password");
     }
 
     $scope.$watch("workspace.user.points", function (newVal, oldVal, scope) {
@@ -2977,7 +2978,7 @@ function ChangeEmailController($scope, User, $location, Sessions) {
     }
 }
 
-function ChangePasswordController($scope, Sessions, User, $location, $rootScope, MailHash, $routeParams, Password, $window) {
+function ChangePasswordController($scope, Sessions, User, $location, $rootScope, MailHash, $routeParams, Password, $window, $cookieStore) {
     $scope.form = {
         oldPassword: "",
         newPassword: "",
@@ -2987,7 +2988,7 @@ function ChangePasswordController($scope, Sessions, User, $location, $rootScope,
     }
 
     $scope.onChangePasswordCancel = function() {
-        $window.history.back();
+        $scope.onBack();
     }
 
     $scope.onChangePasswordCancel2 = function() {
@@ -3007,12 +3008,22 @@ function ChangePasswordController($scope, Sessions, User, $location, $rootScope,
         $scope.state = 2;
     }
 
+    $scope.onBack = function() {
+        if($cookieStore.get("changePasswordOnUser")) {
+            $location.path("/my_profile");
+        } else {
+            $location.path("/login");
+        }
+
+        $cookieStore.remove("changePasswordOnUser");
+    }
+
     $scope.onChangePasswordChanged = function() {
-        $scope.message = 0;
+        $scope.onBack();
     }
 
     $scope.onCancel = function() {
-        $location.path("/my_profile");
+        $scope.onBack();
     }
 
     $scope.onChangePasswordOk = function() {
