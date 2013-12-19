@@ -1568,8 +1568,8 @@ function FollowController($scope, $rootScope, User, $location, $routeParams, Aut
         $scope.setAuthUserData();
     });
 
-    $scope.$on('logout', function() {
-        $scope.frends = [];
+    $scope.$on('getTmpFollowsCallback_', function() {
+        $scope.frends = $scope.tmpFollows;
     });
 
     $scope.onUnfollow = function(user) {
@@ -2190,6 +2190,15 @@ function RootController($scope, $facebook, AuthUser, User, $rootScope, Needs, So
         $rootScope.$broadcast('hideSearch');
     });
 
+    $scope.$on('getTmpFollows', function($event, message) {
+        $scope.tmpFollows = $scope.guestFollowGetOnStorage();
+        $rootScope.$broadcast('getTmpFollowsCallback_');
+    });
+
+    $scope.$on('logout', function($event, message) {
+        $scope.authUserId = null;
+    });
+
     $scope.shareFacebook = function(url, title, descr, image) {
         var winWidth = 600;
         var winHeight = 600;
@@ -2229,6 +2238,7 @@ function RootController($scope, $facebook, AuthUser, User, $rootScope, Needs, So
         
         $scope.workspace.user = null;
         $rootScope.$broadcast('logout');
+        $rootScope.$broadcast('getTmpFollows');
         $location.path("/");
     }
 
