@@ -3146,7 +3146,7 @@ function SearchController($scope, User, $rootScope, $location) {
 
     $scope.test_ = function() {
         angular.forEach($scope.usersCollections, function(value, key) {
-            var reg = new RegExp($scope.searchText, "i");
+            var reg = new RegExp($scope.searchText.replace("[", "\\[").replace("]", "\\]"), "i");
             if(reg.test(value.name)) {
                 value.points = parseInt(value.points);
                 if(!value.league) {
