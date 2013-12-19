@@ -61,6 +61,11 @@ pgrModule.factory('User', function ($resource) {
                 isArray: true,
                 url: host+"/users/by_league/:league_guid"
             },
+            "by_league_and_limit": {
+                method: 'GET',
+                isArray: true,
+                url: host+"/users/by_league/:league_guid/skip/:skip/limit/:limit"
+            },
             "update_legue": {
                 url: host+"/users/:id/league",
                 method: "POST"

@@ -164,6 +164,13 @@ function ProfileController($scope, $routeParams, AuthUser, $route, $rootScope, $
         $scope.comments = 0;
     });
     
+
+
+    $scope.updateOnScrollEvents = function($event, isEnd) {
+        if(isEnd) {
+            $rootScope.$broadcast('incrTopPage');
+        }
+    }
 }
 
 /**
@@ -1918,27 +1925,45 @@ function CompareController($scope, $location) {
 }
 
 function TopGalleryController($scope, Leagues, User, $routeParams, $location, $rootScope) {
-    $scope.range = 10000;
+    $scope.limit = 10;
+    $scope.skip = 0;
+    $scope.users = [];
+    $scope.league_sguid = null;
+    $rootScope.topUsers = [];
 
     $scope.onUserPage = function(userItem) {
         $location.path("/profile/"+userItem.sguid);
     }
 
+    $(document.body).on("scroll", "#content .nearblock", function() {
+        alert("fd");
+        if($(this).scrollTop() + $(this).innerHeight() >= $(this)[0].scrollHeight)
+        {
+          alert('end reached');
+        }
+    });
+
+    $scope.getNewPage = function(league_sguid) {
+        User.by_league_and_limit({league_guid: league_sguid, limit: $scope.limit, skip: $scope.skip}, {}, function(newUsers) {
+            angular.forEach(newUsers, function(value, key) {
+                if($routeParams.userId1 != value.sguid) {
+                    value.points = parseInt(value.points);
+                    $scope.users.push(value);
+                    $rootScope.topUsers.push(value);
+                }
+            });
+        });
+    }
+
+    $scope.$on("incrTopPage", function($event, message) {
+        $scope.skip += 1;
+        $scope.getNewPage($scope.league_sguid);
+    });
+
     $scope.$on("userControllerGetUser", function($event, message) {
         if(!$rootScope.topUsers || $rootScope.topUsers.length == 0) {
-            User.by_league({league_guid: message.user.league.sguid}, {}, function(newUsers) {
-                angular.forEach(newUsers, function(value, key){
-                    if(!value.published) {
-                        //newUsers.splice(key, 1);
-                    }
-                    if($routeParams.userId1 == value.sguid) {
-                        newUsers.splice(key, 1);
-                    } 
-                    value.points = parseInt(value.points);
-                });
-                $scope.users = newUsers;
-                $rootScope.topUsers = newUsers;
-            }); 
+            $scope.league_sguid = message.user.league.sguid;
+            $scope.getNewPage(message.user.league.sguid);
         } else {
             if(!$scope.users ||  $scope.users.length == 0) {
                 $scope.users = $rootScope.topUsers;    

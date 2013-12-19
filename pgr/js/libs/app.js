@@ -52,7 +52,8 @@ var pgrModule = angular.module(
         'ui.autocomplete',
         'ui.keypress',
         'vcRecaptcha',
-        'uiSlider'
+        'uiSlider',
+        'ngScrollEvent'
 		]
 	);
 
