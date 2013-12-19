@@ -141,7 +141,7 @@ pgrModule.factory('Comments', function ($resource) {
         {
             create: {method: 'POST'},
             get_by_user: {
-                url: host + "/comments/for_user/:user_guid/by_owner/:owner_type/:owner_id",
+                url: host + "/comments/by_owner/:owner_type/:owner_guid",
                 method: 'GET',
                 isArray: true
             },

@@ -2282,10 +2282,12 @@ function RootController($scope, $facebook, AuthUser, User, $rootScope, Needs, So
     };
 
     $scope.getState = function() {
+        /**
         States.query({}, {}, function(data) {
             $scope.workspace.states = data;
             $rootScope.$broadcast('statesGet');
         });
+        **/
     };
 
     $scope.getProfessions = function() {
@@ -3320,7 +3322,7 @@ function CommentsController($scope, $rootScope, Comments, $routeParams) {
     });
 
     $scope.getMessages = function() {
-        Comments.get_by_user({user_guid: "null", owner_id: $scope.user, owner_type: 1}, {}, function(data) {
+        Comments.get_by_user({owner_guid: $scope.user, owner_type: 0}, {}, function(data) {
             angular.forEach(data, function(value, key){
                 value.post_date = moment(value.post_date).format("DD-MM-YYYY");
             });
@@ -3333,11 +3335,11 @@ function CommentsController($scope, $rootScope, Comments, $routeParams) {
     $scope.onSendMessage = function() {
         $rootScope.$broadcast('loaderShow');
         Comments.create({}, {
-            owner_type: 1,
+            owner_type: 0,
             author_guid: $scope.workspace.user.sguid,
             post_date: moment().format("DD-MM-YYYY"),
             message: $scope.form.message,
-            user_guid: $scope.user
+            owner_guid: $scope.user
         }, function(data) {
             $rootScope.$broadcast('loaderHide');
             $scope.getMessages();
