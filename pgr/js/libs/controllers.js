@@ -1823,7 +1823,8 @@ function CompareController($scope, $location) {
           containers.find(".du").remove();
           if(pointsValues[$location.search().user2] > pointsValues[$location.search().user1]) {
             containers.eq(1).append('<sup class="du"></sup>');
-          } else {
+          }
+          if(pointsValues[$location.search().user2] < pointsValues[$location.search().user1]) {
             containers.eq(0).append('<sup class="du"></sup>');
           }
           pointsCountLoaded = 1;
