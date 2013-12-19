@@ -3203,7 +3203,15 @@ function SearchController($scope, User, $rootScope, $location) {
                 if(!value.league) {
                     value.league = {name: "10"};
                 }
-                $scope.resultSearch.push(value);
+                var isset = false;
+                angular.forEach($scope.resultSearch, function(resValue, resKey){
+                    if(resValue.sguid == value.sguid) {
+                        isset = true;
+                    }
+                });
+                if(!isset) {
+                    $scope.resultSearch.push(value);   
+                }
             }
         });
         $rootScope.$broadcast('loaderHide');
