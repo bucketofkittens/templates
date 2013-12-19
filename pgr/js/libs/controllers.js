@@ -1276,7 +1276,7 @@ function LoginController($scope, Sessions, $rootScope, User, Social, $facebook, 
      * @return {[type]}        [description]
      */
     $scope.onSingin = function(data) {
-
+        console.log($scope.login.password);
         Sessions.signin({}, $.param({
             "email": $scope.login.email,
             "password": $scope.login.password
