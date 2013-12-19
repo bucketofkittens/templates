@@ -1512,12 +1512,22 @@ function FollowController($scope, $rootScope, User, $location, $routeParams, Aut
             }
         } else {
             if($scope.workspace.user && $scope.workspace.user.sguid) {
-                $location.path("/compare").search(
-                    {
-                        user1: $scope.workspace.user.sguid, 
-                        user2: user.sguid
-                    }
-                );    
+                if($scope.workspace.user.frends.length > 0) {
+                    $location.path("/compare").search(
+                        {
+                            user1: $scope.workspace.user.frends[0].user.sguid, 
+                            user2: user.sguid
+                        }
+                    );
+                } else {
+                    $location.path("/compare").search(
+                        {
+                            user1: $scope.workspace.user.sguid, 
+                            user2: user.sguid
+                        }
+                    );
+                }
+                    
             } else {
                 if($scope.tmpFollows[0].user.sguid != user.sguid) {
                     $location.path("/compare").search({user1: $scope.tmpFollows[0].user.sguid, user2: user.sguid});

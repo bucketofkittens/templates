@@ -40,7 +40,7 @@
 					<div ng-cloak class="searchResult" ng-if="resultSearch.length > 0">
 						<div class="item" ng-repeat="(userKey, userItem) in resultSearch | limitTo: limit">
 							<div class="image" ng-click="onCompare(userItem)">
-								<img ng-src="{{userItem.avatar}}" alt="">
+								<img ng-src="{{userItem.avatar}}" alt="" err-src="/images/unknown-person.png" />
 								<i>{{userItem.points}}</i>
 							</div>
 							<div class="text" ng-click="onCompare(userItem)">
