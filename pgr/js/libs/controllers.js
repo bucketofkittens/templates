@@ -148,12 +148,16 @@ function NavCtrl($scope, localize, $location, AuthUser, $rootScope, $route) {
 function ProfileController($scope, $routeParams, AuthUser, $route, $rootScope, $location) {
     $scope.comments = 0;
 
-    $scope.onShowComments = function(criteria, user) {
+    $scope.onShowComments = function() {
         if($scope.comments == 0) {
             $scope.comments = 1;   
         }
 
-        $rootScope.$broadcast('openComments', { criteria: criteria,  user: $routeParams.userId1 });
+        $rootScope.$broadcast('openComments', {  });
+    }
+
+    $scope.closeComments = function() {
+        $scope.comments = 0;
     }
 
     $scope.$on('closeComments', function() {
@@ -1922,7 +1926,7 @@ function TopGalleryController($scope, Leagues, User, $routeParams, $location, $r
 
     $scope.$on("userControllerGetUser", function($event, message) {
         if(!$rootScope.topUsers || $rootScope.topUsers.length == 0) {
-            User.get_from_to_points({from: parseInt(message.user.points-$scope.range), to: parseInt(message.user.points+$scope.range)}, {}, function(newUsers) {
+            User.by_league({league_guid: message.user.league.sguid}, {}, function(newUsers) {
                 angular.forEach(newUsers, function(value, key){
                     if(!value.published) {
                         //newUsers.splice(key, 1);
@@ -3291,9 +3295,8 @@ function SearchAdvanceController($scope) {
 
 }
 
-function CommentsController($scope, $rootScope, Comments) {
+function CommentsController($scope, $rootScope, Comments, $routeParams) {
     $scope.user = null;
-    $scope.criteria = null;
     $scope.form = {
         message: ""
     }
@@ -3305,15 +3308,14 @@ function CommentsController($scope, $rootScope, Comments) {
     }
 
     $scope.$on('openComments', function($event, message) {
-        $scope.user = message.user;
-        $scope.criteria = message.criteria;
+        $scope.user = $routeParams.userId1;
 
         $rootScope.$broadcast('loaderShow');
         $scope.getMessages();
     });
 
     $scope.getMessages = function() {
-        Comments.get_by_user({user_guid: $scope.user, owner_type: 0, owner_id: $scope.criteria.sguid}, {}, function(data) {
+        Comments.get_by_user({user_guid: "null", owner_id: $scope.user, owner_type: 1}, {}, function(data) {
             angular.forEach(data, function(value, key){
                 value.post_date = moment(value.post_date).format("DD-MM-YYYY");
             });
@@ -3326,11 +3328,10 @@ function CommentsController($scope, $rootScope, Comments) {
     $scope.onSendMessage = function() {
         $rootScope.$broadcast('loaderShow');
         Comments.create({}, {
-            owner_type: 0,
+            owner_type: 1,
             author_guid: $scope.workspace.user.sguid,
             post_date: moment().format("DD-MM-YYYY"),
             message: $scope.form.message,
-            owner_id: $scope.criteria.sguid,
             user_guid: $scope.user
         }, function(data) {
             $rootScope.$broadcast('loaderHide');

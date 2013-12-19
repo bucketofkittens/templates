@@ -1,4 +1,11 @@
 <section class="promain" ng-include src="'partials/user.html'" ></section>
 
-<section class="pronear" ng-show="!comments" id="compare" app-view-segment="1"></section>
-<section ng-controller="CommentsController" id="comments" ng-show="comments" class="pronear" ng-include src="'partials/comments.html'" ></section>
+<div class="user_right">
+	<ul id="nav2">
+		<li><a ng-click="closeComments()" ng-class="{current: !comments}">Top of the league</a></li>
+		<li><a ng-click="onShowComments()" ng-class="{current: comments}">Comments</a></li>
+	</ul>
+
+	<section class="pronear" ng-show="!comments" id="compare" app-view-segment="1"></section>
+	<section ng-controller="CommentsController" id="comments" ng-show="comments" class="pronear" ng-include src="'partials/comments.html'" ></section>	
+</div>

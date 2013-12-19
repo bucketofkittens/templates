@@ -697,7 +697,7 @@ body {
             .galblo {
                 display: block;
                 width: 100%;
-                margin: 15px auto;
+                margin: 0px auto;
                 text-align: center;
                 position: relative;
                 .galblos {
@@ -2141,7 +2141,7 @@ ng-form:not(.ng-pristine) {
     }
 
 #compare {
-    margin: 80px 0px 0px 0px;
+    margin: 10px 0px 0px 0px;
 }
 
 #favorite_compare {
@@ -2837,4 +2837,41 @@ sup.bidubi {
     #header {
         width: 100%;
     }
+}
+
+#nav2 {
+    position: relative;
+    left: -20px;
+    li {
+        float: left;
+        width: 49.5%;
+        a {
+            font-family: 'Helvetica Neue Light';
+            line-height: 16px;
+            padding: 12px 0px 10px 0px !important;
+            vertical-align: middle !important;
+            display: inline-block;
+            width: 100%;
+            cursor: pointer;
+            background: none;
+            display: inline-block;
+            text-align: center;
+            border: 1px solid #cccccc;
+            font-size: 20px;
+            &.current {
+                color: #ffffff;
+                background: #36374b;
+            }
+        }
+    }
+}
+
+.user_right {
+    display: inline-block;
+    position: relative;
+    top: 80px;
+    float: right;
+    vertical-align: top;
+    width: 350px;
+    height: 100%;
 }

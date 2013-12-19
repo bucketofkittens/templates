@@ -1,7 +1,3 @@
-<div class="topcomm">
-	<h5>Comments for "<s>{{criteria.name}}</s>"</h5>
-	<b ng-click="onClose()">Close</b>
-</div>
 <div class="comm">
 	<div class="cmnt" ng-repeat="comment in commentsList | orderBy:'post_date'"  >
 		<strong>{{comment.user.name}}</strong>
