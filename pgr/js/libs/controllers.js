@@ -1204,7 +1204,24 @@ function LoginController($scope, Sessions, $rootScope, User, Social, $facebook, 
 
     $scope.onSignStateChange = function() {
         $scope.signup = $scope.signup ? false : true;
+        if($scope.signup) {
+            $location.search({signup: true});
+        } else {
+            $location.search({signup: false});
+        }
     }
+
+    if($location.search().signup == true) {
+        $scope.signup = true;
+    }
+
+    $rootScope.$on('$locationChangeSuccess', function(event){
+        if($location.search().signup == true) {
+            $scope.signup = true;
+        } else {
+            $scope.signup = false;
+        }
+    });
 
     $scope.improvaLogin = function() {
         $scope.improva = 1;
