@@ -36,7 +36,7 @@
 						placeholder="Search people" 
 						class="search"
 						ng-change="onSearch()" />
-					<input type="submit" class="searcher" ng-click="onSearch()" />
+					<input type="submit" class="searcher" ng-click="onAdvanceSearch()" />
 					<div ng-cloak class="searchResult" ng-if="resultSearch.length > 0">
 						<div class="item" ng-repeat="(userKey, userItem) in resultSearch | limitTo: limit">
 							<div class="image" ng-click="onCompare(userItem)">

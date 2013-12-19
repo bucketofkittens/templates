@@ -82,6 +82,11 @@ body {
                         cursor: pointer;
                     }
                 }
+                @media (max-height: 500px) {
+                    .all {
+                        padding-bottom: 180px;
+                    }
+                }
                 .search {
                     font-size: 14px;
                     color: #666666;
@@ -2306,6 +2311,7 @@ ng-form:not(.ng-pristine) {
     }
 }
 
+
 .searchResult {
     position: absolute;
     background: #ffffff;
@@ -2313,8 +2319,15 @@ ng-form:not(.ng-pristine) {
     right: -95px;
     top: 31px;
     width: 370px;
+    height: 520px;
     padding-top: 15px;
     padding-bottom: 15px;
+    overflow-y: scroll;
+    overflow-x: visible;
+    &::-webkit-scrollbar {
+        width: 0px;
+        height: 0px; 
+    }
     .item {
         width: 100%;
         overflow: hidden;
