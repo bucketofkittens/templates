@@ -2916,6 +2916,7 @@ function MyProfileController($scope, $rootScope, User, $location, $cookieStore, 
                     $scope.state = value;
                 }
             });
+            console.log($scope.state);
             $scope.selectCityByState({}, $scope.state);
             $scope.showState = true;
         }
@@ -2991,6 +2992,10 @@ function MyProfileController($scope, $rootScope, User, $location, $cookieStore, 
 
         if($scope.workspace.user.name) {
             user["name"] = $scope.workspace.user.name;
+        }
+
+        if($scope.state) {
+            user["state"] = $scope.state.sguid;
         }
 
         if($scope.workspace.user.city) {
