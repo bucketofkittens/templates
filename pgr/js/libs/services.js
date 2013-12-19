@@ -52,6 +52,10 @@ pgrModule.factory('User', function ($resource) {
                 method: 'GET',
                 url: host+"/users_names/"
             },
+            'test_email': {
+                method: 'POST',
+                url: host+"/users/check_email/"
+            },
             "by_league": {
                 method: 'GET',
                 isArray: true,

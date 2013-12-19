@@ -3123,6 +3123,8 @@ function ChangePasswordController($scope, Sessions, User, $location, $rootScope,
 
     $scope.hash = "";
 
+    $scope.isEmailNotFound = false;
+
     if($routeParams.hash) {
         $scope.hash = $routeParams.hash;
         $scope.state = 2;
@@ -3152,12 +3154,18 @@ function ChangePasswordController($scope, Sessions, User, $location, $rootScope,
     }
 
     $scope.onChangePassword = function() {
-        $scope.message = 1;
-
-        MailHash.create({}, {
-            "email": $scope.form.email
-        }, function(data) {
-            $scope.userSguid = data.guid;
+        User.test_email({}, {email: $scope.form.email}, function(data) {
+            if(data.success) {
+                $scope.isEmailNotFound = false;
+                MailHash.create({}, {
+                    "email": $scope.form.email
+                }, function(data) {
+                    $scope.userSguid = data.guid;
+                    $scope.message = 1;
+                });
+            } else {
+                $scope.isEmailNotFound = true;
+            }
         });
     }
 
