@@ -34,8 +34,8 @@
 				<img class="pp" ng-src="{{user.avatar}}" err-src="/images/unknown-person.png" />
 				<i>{{user.points}}</i>
 				<a ng-click="onUpdateFile()" title="">Update image</a>
-				<span></span>			
-				<sup></sup>	
+				<span></span>	
+				<sup ng-if="user.artificial"></sup>	
 				<div class="sub">
 					<b>{{user.name}} <br /><s>{{user.league.name}} league</s></b>
 					<ul>
