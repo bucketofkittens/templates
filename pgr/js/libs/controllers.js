@@ -1486,8 +1486,8 @@ function FollowController($scope, $rootScope, User, $location, $routeParams, Aut
         var noCl = false;
         if($location.search().user1) {
             if($scope.compareState == 1) {
-                $scope.compareState = 2;
-                if($location.search().user2 != user.sguid) {
+                if($location.search().user2 != user.sguid && $location.search().user1 != user.sguid) {
+                    $scope.compareState = 2;
                     $location.path("/compare").search(
                         {
                             user1: $location.search().user2, 
@@ -1498,8 +1498,8 @@ function FollowController($scope, $rootScope, User, $location, $routeParams, Aut
                     noCl = true;
                 }
             } else {
-                $scope.compareState = 1;
-                if($location.search().user1 != user.sguid) {
+                if($location.search().user1 != user.sguid && $location.search().user2 != user.sguid) {
+                    $scope.compareState = 1;
                     $location.path("/compare").search(
                         {
                             user1: $location.search().user2, 
