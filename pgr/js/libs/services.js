@@ -48,6 +48,10 @@ pgrModule.factory('User', function ($resource) {
                 isArray: true,
                 url: host+"/users/for/main/"
             },
+            'get_names': {
+                method: 'GET',
+                url: host+"/users_names/"
+            },
             "by_league": {
                 method: 'GET',
                 isArray: true,

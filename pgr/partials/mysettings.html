@@ -55,8 +55,16 @@
 					id="name_i" 
 					ng-model="workspace.user.name"
 					required
-					ng-minlength="6" />
+					ng-minlength="6"
+					ng-change="testUserNames_($event)" />
 			</p>
+			<div class="proffesion_list" ng-if="showedNames.length > 0">
+				<ul>
+					<li ng-repeat="(nameKey, nameItem) in showedNames">
+						<a>{{nameItem}}</a>
+					</li>
+				</ul>
+			</div>
 			<p class="errors" ng-if="nameIsError">Name already user.</p>
 			<p>
 				<label for="age_i">{{'_BirthdayL_' | i18n}}:</label>

@@ -2549,12 +2549,62 @@ function MyProfileController($scope, $rootScope, User, $location, $cookieStore, 
     $scope.countCareerChange = 0;
     $scope.countCityChange = 0;
 
+    /**
+     * Имена всех пользователей
+     * @type {Array}
+     */
+    $scope.names = [];
+
+    /**
+     * Список имен отображаемый
+     * @type {Array}
+     */
+    $scope.showedNames = [];
+
+    /**
+     * Показываем или нет список имен пользователей
+     * @type {Boolean}
+     */
+    $scope.isShowNames = false;
+
     $("body").on("click", function() {
         $scope.$apply(function() {
             $scope.showProf2 = false;
             $scope.showState2 = false;
+            $scope.showedNames = [];
         });
     });
+
+    /**
+     * Забираем имена всех пользователей
+     * @param  {[type]} $event [description]
+     * @return {[type]}        [description]
+     */
+    $scope.getAllNames = function($event) {
+        User.get_names({}, {}, function(data) {
+            $scope.names = JSON.parse(data.message);
+        });
+    }
+
+    /**
+     * Проверяем вхождение введенного имени в списке имен
+     * @param  {[type]} $event [description]
+     * @return {[type]}        [description]
+     */
+    $scope.testUserNames_ = function($event) {
+        $scope.showedNames = [];
+
+        var reg = new RegExp($scope.workspace.user.name, "i");
+        angular.forEach($scope.names, function(value, key) {
+            if(value && reg.test(value)) {
+                $scope.showedNames.push(value);
+            }
+        });
+        console.log($scope.showedNames);
+        if(!$scope.workspace.user.name) {
+            $scope.showedNames = [];
+        }
+    }
 
     $scope.selectCareer = function($event, career) {
         if(career) {
@@ -2604,6 +2654,7 @@ function MyProfileController($scope, $rootScope, User, $location, $cookieStore, 
 
     $scope.getStates();
     $scope.selectCity();
+    $scope.getAllNames();
 
     $scope.deleteItem = function($event, item, key) {
         ProfessionCreate.del({id: item.sguid}, {}, function(data) {
@@ -3159,7 +3210,6 @@ function SearchController($scope, User, $rootScope, $location) {
     }
 
     $scope.onSearch = function() {
-        console.log($scope.searchText.length);
         if($scope.searchText.length > 0) {
             $rootScope.$broadcast('loaderShow');
             $scope.resultSearch = [];
