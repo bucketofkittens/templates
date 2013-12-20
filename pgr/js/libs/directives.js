@@ -59,7 +59,7 @@ pgrModule.directive('backImg', function() {
 pgrModule.directive('scroller', function($window) {
   return {
     link: function(scope, element, attrs) {
-      var footerSize = 70;
+      var footerSize = 60;
       $(element).height($(window).height()-$(element).offset().top-footerSize);
       $(window).resize(function() {
         $(element).height($(window).height()-$(element).offset().top-footerSize);
