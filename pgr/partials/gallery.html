@@ -1,9 +1,7 @@
 <div class="galblo">
 	<div class="galblos isotope item"
-		ng-repeat="(userKey, userItem) in users"
-		ng-mouseenter="onUserMouseEnter(userItem, $event)"
-		ng-mouseleave="onUserMouseLeave(userItem, $event)"
-		 ng-click="onUserPage(userItem)">
+		ng-repeat="userItem in users"
+		ng-click="onUserPage(userItem)">
 		<div class="image">
 			<img ng-src="{{userItem.avatar}}" alt="" err-src="/images/unknown-person.png" />
 			<i>{{userItem.points}}</i>

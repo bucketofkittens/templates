@@ -95,7 +95,7 @@
 					ng-click="onElementClick($event)"
 					ng-if="isEdit && user.sguid == authUserId">
 				</select>
-				<i ng-if="!isEdit || user.sguid != authUserId">{{user.state.name}}</i>
+				<i ng-if="!isEdit || user.sguid != authUserId">{{user.state.name}}<span ng-if="user.city.name">, {{user.city.name}}</span></i>
 			<p>
 				<label for="pro_i">{{'_ProfL_' | i18n}}:</label>
 				<input 

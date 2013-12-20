@@ -3,7 +3,7 @@
 <div class="user_right">
 	<ul id="nav2">
 		<li><a ng-click="closeComments()" ng-class="{current: !comments}">Top of the league</a></li>
-		<li><a ng-click="onShowComments()" ng-class="{current: comments}">Comments</a></li>
+		<li ng-if="workspace.user"><a ng-click="onShowComments()" ng-class="{current: comments}">Comments</a></li>
 	</ul>
 
 	<section class="pronear" ng-show="!comments" app-view-segment="1"></section>

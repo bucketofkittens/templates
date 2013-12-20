@@ -1932,16 +1932,9 @@ function TopGalleryController($scope, Leagues, User, $routeParams, $location, $r
     $rootScope.topUsers = [];
 
     $scope.onUserPage = function(userItem) {
+        console.log(userItem);
         $location.path("/profile/"+userItem.sguid);
     }
-
-    $(document.body).on("scroll", "#content .nearblock", function() {
-        alert("fd");
-        if($(this).scrollTop() + $(this).innerHeight() >= $(this)[0].scrollHeight)
-        {
-          alert('end reached');
-        }
-    });
 
     $scope.getNewPage = function(league_sguid) {
         User.by_league_and_limit({league_guid: league_sguid, limit: $scope.limit, skip: $scope.skip}, {}, function(newUsers) {
@@ -2661,18 +2654,7 @@ function MyProfileController($scope, $rootScope, User, $location, $cookieStore, 
      * @return {[type]}        [description]
      */
     $scope.testUserNames_ = function($event) {
-        $scope.showedNames = [];
-
-        var reg = new RegExp($scope.workspace.user.name, "i");
-        angular.forEach($scope.names, function(value, key) {
-            if(value && reg.test(value)) {
-                $scope.showedNames.push(value);
-            }
-        });
-        console.log($scope.showedNames);
-        if(!$scope.workspace.user.name) {
-            $scope.showedNames = [];
-        }
+        
     }
 
     $scope.selectCareer = function($event, career) {
@@ -2985,6 +2967,16 @@ function MyProfileController($scope, $rootScope, User, $location, $cookieStore, 
     });
 
     $scope.$watch("workspace.user.name", function (newVal, oldVal, scope) {
+        $scope.showedNames = [];
+
+        if($scope.workspace.user && $scope.workspace.user.name && $scope.workspace.user.name.length > 0) {
+            var reg = new RegExp($scope.workspace.user.name, "i");
+            angular.forEach($scope.names, function(value, key) {
+                if(value && reg.test(value)) {
+                    $scope.showedNames.push(value);
+                }
+            });    
+        }
         if(oldVal && newVal) {
             $scope.onPublish();
         }
@@ -3380,4 +3372,8 @@ function ConfirmController($scope, ConfirmSignup, $routeParams, $location) {
             $location.path("/login/").search({ onSuccess: true});
         }
     });
+}
+
+function NeighboursGalleryController($scope) {
+
 }

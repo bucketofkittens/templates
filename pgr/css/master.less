@@ -229,14 +229,14 @@ body {
             right: auto !important;
         }
         .image_box {
-            width: 170px;
-            height: 170px;
+            width: 140px;
+            height: 140px;
         }
         &.pro {
             padding: 15px;
             .block {
                 display: inline-block;
-                width: 170px;
+                width: 140px;
                 vertical-align: middle;
                 margin-right: 15px;
                 .pp {
@@ -255,11 +255,11 @@ body {
                 p {
                     font-size: 18px;
                     color: #969696;
-                    line-height: 36px;
+                    line-height: 30px;
                 }
                 label {
                     display: inline-block;
-                    width: 120px; 
+                    width: 100px; 
                     vertical-align: middle;                  
                     cursor: pointer;
                 }
@@ -304,13 +304,13 @@ body {
             .il {
                 position: absolute;
                 right: 20px;
-                top: 140px;
+                top: 120px;
                 cursor: pointer;
                 img {
                     width: 40px;
                 }
                 &:last-child {
-                    top: 50px;
+                    top: 30px;
                 }
             }
         }
@@ -2248,7 +2248,7 @@ ng-form:not(.ng-pristine) {
                 top: 35px !important;
                 right: -15px !important;
                 left: auto !important;
-                border-width: 105px 0 105px 15px !important;
+                border-width: 85px 0 85px 15px !important;
                 border-color: transparent transparent transparent #576d91 !important; 
             }
         }
@@ -2261,7 +2261,7 @@ ng-form:not(.ng-pristine) {
             .du {
                 top: 35px !important;
                 left: -15px !important;
-                border-width: 105px 15px 105px 0 !important;
+                border-width: 85px 15px 85px 0 !important;
                 border-color: transparent #576d91 transparent transparent !important;
             }
         }
@@ -2281,7 +2281,7 @@ ng-form:not(.ng-pristine) {
         width: 100%;
     }
     .pmpar p i {
-        max-width: 138px;
+        max-width: 170px;
         text-overflow: ellipsis;
         overflow: hidden;
         display: inline-block;
@@ -2851,6 +2851,9 @@ sup.bidubi {
 #nav2 {
     position: relative;
     left: -20px;
+    margin-bottom: 10px;
+    width: 100%;
+    overflow: hidden;
     li {
         float: left;
         width: 49.5%;
@@ -2883,4 +2886,11 @@ sup.bidubi {
     vertical-align: top;
     width: 350px;
     height: 100%;
+}
+
+.controller__my_profile {
+    .image_box {
+        width: 180px !important;
+        height: 180px !important;
+    }
 }

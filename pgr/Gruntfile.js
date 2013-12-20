@@ -18,6 +18,7 @@ module.exports = function(grunt) {
                 	'js/angular-route-segment.min.js',
                 	'js/angular-isotope.min.js',
                     'js/angular-recaptcha.min.js',
+                    'js/angular-scroll.js',
                     'js/jquery.Jcrop.min.js',
                     'js/jquery.jcrop-canvas.js',
                     'js/jquery.icheck.min.js',
@@ -71,7 +72,7 @@ module.exports = function(grunt) {
                 ngApp: 'pgrModule'
               },
               files: {
-                'js/libs/templates.js': ['views/*.html', 'partials/*.html'],
+                'js/libs/templates.js': ['views/*.html', 'partials/*.html', 'views/profile/*.html'],
               }
             }
         },
