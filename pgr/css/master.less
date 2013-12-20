@@ -1259,21 +1259,29 @@ body {
         height: 100%;
       &.rate-yourself {
         position: fixed !important;
-        margin-top: 17% !important;
-        margin-left: 40% !important;
+        top: 50%;
+        left: 50%;
+        margin-top: -100px !important;
+        margin-left: -100px !important;
         width: 200px !important;
         height: 200px !important;
-        background-color: rgba(255,0,0,0.8) !important;
+        background: url("../images/unknown-person.png") left top no-repeat;
+        background-size: 200px 200px;
         z-index: 999999 !important;
+        cursor: pointer;
         h2 {
-          color: #ffffff;
-          font-size: 1.8em;
-          width: 100%;
-          text-align: center;
-          margin-top: 80px;
-          cursor: pointer;
+            color: #ffffff;
+            font-size: 25px;
+            width: 100%;
+            text-align: center;
+            top: 5px;
+            position: absolute;
+            &:last-child {
+                top: auto;
+                bottom: 5px;
+            }
         }
-      }
+    }
        > div {
             overflow: hidden;
             display: none; 

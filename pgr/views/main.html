@@ -3,8 +3,9 @@
 	hm-dragleft="onDrag($event)"
 	hm-dragright="onDrag($event)"
 	class="gallery" ng-controller="GalleryController">
-   <div class="rate-yourself">
-      <h2 ng-click="onLogin()">Sign in and rate yourself</h2>
+   <div ng-click="onLogin()" class="rate-yourself">
+      <h2>Click to find</h2>
+      <h2>where are you</h2>
    </div>
 	<div isotope-container iso-options="opts" ng-style="{left: scrollDelta}" >
 		<div
