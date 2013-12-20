@@ -990,7 +990,9 @@ function NeedsAndGoalsController($scope, Goals, Criterion, AuthUser, UserCriteri
      * @return {[type]}          [description]
      */
     $scope.getAffects = function(depend_guids, goalItem, deps) {
-        var criteriums = 1;
+        var criteriums = 0;
+        var firstCrit = false;
+
         angular.forEach(depend_guids, function(value, key){
             var sguid = value;
 
@@ -1008,10 +1010,14 @@ function NeedsAndGoalsController($scope, Goals, Criterion, AuthUser, UserCriteri
             })[0];
 
             if(fsCriteriumValue && fsCriteriumValue.value) {
+                if(!firstCrit) {
+                    firstCrit = true;
+                    criteriums = 1;
+                }
                 criteriums *= fsCriteriumValue.value;
             }
-
         });
+
         return criteriums;
     }
 
@@ -1055,21 +1061,21 @@ function NeedsAndGoalsController($scope, Goals, Criterion, AuthUser, UserCriteri
         }
 
         if(criteria["affects?"]) {
-        angular.forEach(criteria["affect_guids"], function(value, key){
-          var sguid = value;
+            angular.forEach(criteria["affect_guids"], function(value, key){
+              var sguid = value;
 
-          var fsCriterium = goalItem.criteriums.filter(function (criterium) {
-            return criterium.sguid == sguid;
-          })[0];
+              var fsCriterium = goalItem.criteriums.filter(function (criterium) {
+                return criterium.sguid == sguid;
+              })[0];
 
-          var fsCriteriumValue = fsCriterium.criteria_values.filter(function(value) {
-            return value.sguid == fsCriterium.user_criteria_sguid;
-          })[0];
+              var fsCriteriumValue = fsCriterium.criteria_values.filter(function(value) {
+                return value.sguid == fsCriterium.user_criteria_sguid;
+              })[0];
 
-          if(fsCriteriumValue) {
-            $scope.updateNeedsAndAreaPoints(fsCriteriumValue, fsCriterium, needItem, goalItem);
-          }
-        });
+              if(fsCriteriumValue) {
+                $scope.updateNeedsAndAreaPoints(fsCriteriumValue, fsCriterium, needItem, goalItem);
+              }
+            });
         }
 
         if(fCriterium[0].user_criteria_sguid) {
