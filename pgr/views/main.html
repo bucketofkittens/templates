@@ -3,10 +3,12 @@
 	hm-dragleft="onDrag($event)"
 	hm-dragright="onDrag($event)"
 	class="gallery" ng-controller="GalleryController">
-   <div ng-click="onLogin()" class="rate-yourself">
+
+   <div ng-click="onLogin()" class="rate-yourself" ng-if="!workspace.user">
       <h2>Click to find</h2>
       <h2>where are you</h2>
    </div>
+   
 	<div isotope-container iso-options="opts" ng-style="{left: scrollDelta}" >
 		<div
 			ng-mouseenter="onUserMouseEnter(userItem, $event)"
