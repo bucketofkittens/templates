@@ -1938,15 +1938,15 @@ function TopGalleryController($scope, Leagues, User, $routeParams, $location, $r
     $rootScope.topUsers = [];
 
     $scope.onUserPage = function(userItem) {
-        console.log(userItem);
         $location.path("/profile/"+userItem.sguid);
     }
 
     $scope.getNewPage = function(league_sguid) {
-        User.by_league_and_limit({league_guid: league_sguid, limit: $scope.limit, skip: $scope.skip}, {}, function(newUsers) {
+        User.by_league_and_limit({league_guid: league_sguid, limit: $scope.limit, skip: $scope.skip*$scope.limit}, {}, function(newUsers) {
             angular.forEach(newUsers, function(value, key) {
                 if($routeParams.userId1 != value.sguid) {
                     value.points = parseInt(value.points);
+                    value.show = true;
                     $scope.users.push(value);
                     $rootScope.topUsers.push(value);
                 }
