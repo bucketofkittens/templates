@@ -95,7 +95,13 @@
 					ng-click="onElementClick($event)"
 					ng-if="isEdit && user.sguid == authUserId">
 				</select>
-				<i ng-if="!isEdit || user.sguid != authUserId">{{user.state.name}}<span ng-if="user.city.name">, {{user.city.name}}</span></i>
+				<i ng-if="!isEdit || user.sguid != authUserId">
+					<span ng-if="user.state.name">{{user.state.name}}</span>
+					<span ng-if="user.city.name">
+						<span ng-if="user.state.name">,</span> 
+						{{user.city.name}}
+					</span>
+				</i>
 			<p>
 				<label for="pro_i">{{'_ProfL_' | i18n}}:</label>
 				<input 
@@ -106,7 +112,7 @@
 					bs-typeahead="professionFn"
 					readonly="readonly"
 					ng-click="onElementClick($event)" />
-				<i ng-if="!isEdit || user.sguid != authUserId">{{user.profession.name}}</i>
+				<i ng-if="!isEdit || user.sguid != authUserId">{{user.profession.name}}<span ng-if="user.goal_name">, {{user.goal_name}}</span></i>
 			</p>
 
 			<p>
