@@ -121,7 +121,7 @@ pgrModule.directive('setWidth', function() {
       var getSize = 0;
       var pElement = $(element).parent().parent();
       var parentElement = $(element).parent();
-      getSize = pElement.height() / 3;
+      getSize = "210px";
 
       if(scope.userItem.league) {
         if(
@@ -129,14 +129,14 @@ pgrModule.directive('setWidth', function() {
           scope.userItem.league.name == "10" ||
           scope.userItem.league.name == "9" ||
           scope.userItem.league.name == "8") {
-          getSize = getSize / 3;
+          getSize = "140px";
         }
 
         if(
           scope.userItem.league.name == "7" || 
           scope.userItem.league.name == "6" ||
           scope.userItem.league.name == "5") {
-          getSize = getSize / 3 * 2;
+          getSize = "70px";
         }
       }
 

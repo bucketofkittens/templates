@@ -48,6 +48,11 @@ pgrModule.factory('User', function ($resource) {
                 isArray: true,
                 url: host+"/users/for/main/"
             },
+            'for_main_from_limit': {
+                method: 'GET',
+                isArray: true,
+                url: host+"/users/for/main/:skip/skip/:limit/limit"
+            },
             'get_names': {
                 method: 'GET',
                 url: host+"/users_names/"

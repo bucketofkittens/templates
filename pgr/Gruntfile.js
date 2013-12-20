@@ -22,6 +22,7 @@ module.exports = function(grunt) {
                     'js/jquery.Jcrop.min.js',
                     'js/jquery.jcrop-canvas.js',
                     'js/jquery.icheck.min.js',
+                    'js/jquery.isotope.perfectmasonry.js',
                     'js/spin.js',
                     'js/date.js',
                     'js/autocomplete.js',

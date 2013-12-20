@@ -1649,12 +1649,15 @@ function FollowController($scope, $rootScope, User, $location, $routeParams, Aut
  * @returns {MainController}
  */
 function MainController($scope, Leagues, User, $rootScope, $location, $timeout, AuthUser) {
+    $scope.limit = 300;
+    $scope.skip = 0;
+
     /**
      * Забираем список пользователей
      * @return {object} 
      */
     $scope.getPublishedUser = function() {
-        User.for_main({}, {}, function(data) {
+        User.for_main_from_limit({limit: $scope.limit, skip: $scope.skip}, {}, function(data) {
             var users = [];
             data.shuffle();
             angular.forEach(data, function(value, key){
@@ -1725,7 +1728,10 @@ function MainController($scope, Leagues, User, $rootScope, $location, $timeout, 
      * @type {Object}
      */
     $scope.opts = {
-        layoutMode: "masonryHorizontal"
+        layoutMode: "perfectMasonry",
+        perfectMasonry: {
+          layout: 'horizontal'      // Set layout as vertical/horizontal (default: vertical)
+       }
     };
 
     /**
@@ -1764,7 +1770,9 @@ function MainController($scope, Leagues, User, $rootScope, $location, $timeout, 
         if(!$scope.scrollDelta) {
             $scope.scrollDelta = 0;
         }
+
         $scope.scrollDelta = $event.gesture.deltaX;
+        
     }
 
     $scope.onLogin = function() {
@@ -1942,7 +1950,7 @@ function TopGalleryController($scope, Leagues, User, $routeParams, $location, $r
     }
 
     $scope.getNewPage = function(league_sguid) {
-        User.by_league_and_limit({league_guid: league_sguid, limit: $scope.limit, skip: $scope.skip*$scope.limit}, {}, function(newUsers) {
+        User.by_league_and_limit({league_guid: league_sguid, limit: $scope.limit, skip: ($scope.skip*$scope.limit)+1}, {}, function(newUsers) {
             angular.forEach(newUsers, function(value, key) {
                 if($routeParams.userId1 != value.sguid) {
                     value.points = parseInt(value.points);
@@ -2210,7 +2218,7 @@ function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-function RootController($scope, $facebook, AuthUser, User, $rootScope, Needs, Social, $cookieStore, States, Professions, $location) {
+function RootController($scope, $facebook, AuthUser, User, $rootScope, Needs, Social, $cookieStore, States, Professions, $location, $timeout) {
     /**
      * Забираем список друзей из localStorage
      * @return {Array} [description]
@@ -2330,10 +2338,14 @@ function RootController($scope, $facebook, AuthUser, User, $rootScope, Needs, So
         });
     };
 
-    $scope.getProfessions();
-    $scope.getState();
-    $scope.getUserInfo();
-    $scope.getNeeds();
+
+    $timeout(function() {
+        $scope.getProfessions();
+        $scope.getState();
+        $scope.getUserInfo();
+        $scope.getNeeds();
+    }, 0);
+    
 
     $scope.$on('updateUserData', function($event, message) {
         if(message.user.sguid === $rootScope.authUserId) {
