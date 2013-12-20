@@ -3068,6 +3068,7 @@ function MyProfileController($scope, $rootScope, User, $location, $cookieStore, 
 
         User.updateUser({"id": $scope.workspace.user.sguid},  {user: JSON.stringify(user)}, function(data) {
                 $scope.workspace.user.published = 0;
+                $rootScope.$broadcast('updatePubliched');
             }
         );
     }
@@ -3085,6 +3086,7 @@ function MyProfileController($scope, $rootScope, User, $location, $cookieStore, 
 
         User.updateUser({"id": $scope.workspace.user.sguid},  {user: JSON.stringify(user)}, function(data) {
                 $scope.workspace.user.published = 1;
+                $rootScope.$broadcast('updatePubliched');
             }
         );
     }
@@ -3273,6 +3275,10 @@ function SearchController($scope, User, $rootScope, $location) {
             $scope.resultSearch = [];
             $scope.searchText = "";
         });
+    });
+
+    $scope.$on('updatePubliched', function($event) {
+       $scope.usersCollections = [];
     });
 
     $scope.test_ = function() {
