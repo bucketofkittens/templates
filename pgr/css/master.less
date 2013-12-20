@@ -849,7 +849,7 @@ body {
             padding: 15px;
             overflow-y: scroll;
             overflow-x: hidden;
-            width: 714px;
+            width: 685px;
             &::-webkit-scrollbar {
                 width: 0px;
                 height: 0px; 
@@ -861,6 +861,11 @@ body {
                 margin-left: 15px !important;
                 position: relative;
                 z-index: 10;
+                @media (max-height: 800px) {
+                    .crits {
+                        margin-bottom: 1200px;
+                    }
+                }
                 .crits {
                     height: 100%;
                     margin-bottom: 1000px;
