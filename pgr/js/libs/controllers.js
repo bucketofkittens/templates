@@ -953,10 +953,9 @@ function NeedsAndGoalsController($scope, Goals, Criterion, AuthUser, UserCriteri
      */
     $scope.onPointsSet = function(currentValue, criteriaValue, needItem, goalItem) {
         if(currentValue != criteriaValue) {
-            var delta = criteriaValue - currentValue;
+            var delta = parseInt(criteriaValue) - parseInt(currentValue);
             needItem.current_value = parseInt(needItem.current_value) + parseInt(delta);
             goalItem.current_value = parseInt(goalItem.current_value) + parseInt(delta);
-
             if(needItem.name == "Career") {
                 var max = 0;
                 var carreerMax = {};
@@ -996,8 +995,7 @@ function NeedsAndGoalsController($scope, Goals, Criterion, AuthUser, UserCriteri
      * @return {[type]}          [description]
      */
     $scope.getAffects = function(depend_guids, goalItem, deps) {
-        var criteriums = 0;
-        var firstCrit = false;
+        var criteriums = 1;
 
         angular.forEach(depend_guids, function(value, key){
             var sguid = value;
@@ -1015,14 +1013,14 @@ function NeedsAndGoalsController($scope, Goals, Criterion, AuthUser, UserCriteri
                 
             })[0];
 
-            if(fsCriteriumValue && fsCriteriumValue.value) {
-                if(!firstCrit) {
-                    firstCrit = true;
-                    criteriums = 1;
-                }
+
+            if(fsCriteriumValue) {
                 criteriums *= fsCriteriumValue.value;
+            } else {
+                criteriums = 0;
             }
         });
+
 
         return criteriums;
     }
