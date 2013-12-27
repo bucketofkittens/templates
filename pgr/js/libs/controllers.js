@@ -1856,9 +1856,14 @@ function GraphsController($scope, $rootScope, $route, $location, Leagues, User) 
 
     })
 
+    /**
+     * Забираем список всех пользователей и выбираем только тех у которых 0 пользователей
+     * @param  {[type]} datas [description]
+     * @return {[type]}       [description]
+     */
     User.get_all({}, {}, function(datas) {
         $scope.looserUser = datas.filter(function(item) {
-            if(!item.league) {
+            if(item.points == 0) {
                 return item;
             }
         });
