@@ -69,6 +69,7 @@ pgrModule.config(function($routeSegmentProvider, $routeProvider) {
     
         .when('/my_profile',                'my_profile')
         .when('/login',                     'login')
+        .when('/profile/',          'profile.oneUser')
         .when('/profile/:userId1',          'profile.oneUser')
         .when('/profile/:userId1/:userId2', 'profile.manyUser')
         .when('/change_email',              'changeEmail')
@@ -91,7 +92,8 @@ pgrModule.config(function($routeSegmentProvider, $routeProvider) {
         .within()
             .segment('oneUser', {
                 templateUrl: 'views/profile/one.html',
-            	dependencies: ['userId1']})
+            	dependencies: ['userId1'],
+            	reloadOnSearch: false})
                 
             .segment('manyUser', {
                 templateUrl: 'views/profile/many.html',

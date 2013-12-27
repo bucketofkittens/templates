@@ -243,7 +243,7 @@ function UserController($scope, $element, $route, $routeParams, User, Needs, Pro
     $scope.bindIn = "";
     $scope.hidden = false;
 
-    $scope.userId = $routeParams.userId1;
+    $scope.userId = $location.search().user;
 
     $scope.$on('authUserIdChange', function() {
         $scope.userId = AuthUser.get();
@@ -296,12 +296,10 @@ function UserController($scope, $element, $route, $routeParams, User, Needs, Pro
             $scope.userId = $routeParams.userId1;
             $scope.getUserInfo();
         }
-    });
 
-    $scope.$on('$routeChangeSuccess', function(event, next, current) {
-        if($routeParams.userId1) {
+        if($location.search().user) {
             $("sub.du, sup.du").remove();
-            $scope.userId = $routeParams.userId1;
+            $scope.userId = $location.search().user;
             $scope.getUserInfo();
         }
     });
@@ -635,6 +633,7 @@ function NeedsAndGoalsController($scope, Goals, Criterion, AuthUser, UserCriteri
             angular.forEach($scope.needs, function(value, key){
                 value.current = true;
             });
+            $scope.loadUserData_();
             if($scope.allOpen) {
                 $scope.openAllNeeds($scope.needs);
             }
@@ -642,6 +641,10 @@ function NeedsAndGoalsController($scope, Goals, Criterion, AuthUser, UserCriteri
     });
 
     $scope.$watch('user', function (newVal, oldVal, scope) {
+        $scope.loadUserData_();
+    });
+
+    $scope.loadUserData_ = function() {
         if($scope.user && $scope.user.sguid) {
             $scope.bindUserNeedsValues();
             angular.forEach($scope.needs, function(value, key){
@@ -652,8 +655,12 @@ function NeedsAndGoalsController($scope, Goals, Criterion, AuthUser, UserCriteri
                 });
             });
         }
-    });
+    }
     
+    /**
+     * Подставляем баллы пользоватля
+     * @return {[type]} [description]
+     */
     $scope.bindUserNeedsValues = function() {
         User.goals_points({id: $scope.user.sguid}, {}, function(goalsData) {
             var needsData = {};
@@ -727,7 +734,6 @@ function NeedsAndGoalsController($scope, Goals, Criterion, AuthUser, UserCriteri
                 }, 0);
             }
         });
-        /*});*/
     }
 
     $scope.addEmptyElement = function(goal) {
@@ -2008,7 +2014,7 @@ function TopGalleryController($scope, Leagues, User, $routeParams, $location, $r
     $rootScope.topUsers = [];
 
     $scope.onUserPage = function(userItem) {
-        $location.path("/profile/"+userItem.sguid);
+        $location.path("/profile/").search({user: userItem.sguid});
     }
 
     $scope.getNewPage = function(league_sguid) {
@@ -2199,7 +2205,7 @@ function GalleryController($scope, localize, Leagues, User, AuthUser, $element, 
      * @return {object}     
      */
     $scope.onMoveToProfile = function(user) {
-        $location.path("/profile/"+user.sguid);
+        $location.path("/profile/").search({user: user.sguid});
     }
 
     $scope.onMoveToCompare = function(user) {
@@ -3424,7 +3430,7 @@ function SearchAdvanceController($scope, $location, $rootScope, User) {
  * @param {[type]} Comments     [description]
  * @param {[type]} $routeParams [description]
  */
-function CommentsController($scope, $rootScope, Comments, $routeParams) {
+function CommentsController($scope, $rootScope, Comments, $routeParams, $location) {
     $scope.user = null;
     $scope.form = {
         message: ""
@@ -3437,7 +3443,7 @@ function CommentsController($scope, $rootScope, Comments, $routeParams) {
     }
 
     $scope.$on('openComments', function($event, message) {
-        $scope.user = $routeParams.userId1;
+        $scope.user = $location.search().user;
 
         $rootScope.$broadcast('loaderShow');
         $scope.getMessages();
