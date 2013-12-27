@@ -8,7 +8,7 @@
       <h2>Click to find</h2>
       <h2>where are you</h2>
    </div>
-   
+
 	<div isotope-container iso-options="opts" ng-style="{left: scrollDelta}" >
 		<div
 			ng-mouseenter="onUserMouseEnter(userItem, $event)"
@@ -17,8 +17,8 @@
 			ng-class="{big: userItem.hover, 'full-animate': userItem.fullAnimate}"
 			class="league_{{userItem.league.name}} isotope" 
 			ng-repeat="userItem in users"
-			hm-dragleft="onDrag($event)"
-			hm-dragright="onDrag($event)" >
+			hm-dragleft="onDragLeft($event)"
+			hm-dragright="onDragRight($event)" >
 			<div set-width class="wr" back-img="{{userItem.avatar}}" ng-click="switchState(userItem)" >
 				<i>{{userItem.points}}</i>
 				<div class="sub">

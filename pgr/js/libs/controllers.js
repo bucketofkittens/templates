@@ -1730,7 +1730,9 @@ function MainController($scope, Leagues, User, $rootScope, $location, $timeout, 
     $scope.opts = {
         layoutMode: "perfectMasonry",
         perfectMasonry: {
-          layout: 'horizontal'      // Set layout as vertical/horizontal (default: vertical)
+            layout: 'horizontal',
+            columnWidth: 70,
+            rowHeight: 70
        }
     };
 
@@ -1766,12 +1768,25 @@ function MainController($scope, Leagues, User, $rootScope, $location, $timeout, 
      * @param  {[type]} $event [description]
      * @return {[type]}        [description]
      */
-    $scope.onDrag = function($event) {
+    $scope.onDragLeft = function($event) {
         if(!$scope.scrollDelta) {
             $scope.scrollDelta = 0;
         }
 
-        $scope.scrollDelta = $event.gesture.deltaX;
+        $scope.scrollDelta = $scope.scrollDelta + $event.gesture.velocityX*10;
+    }
+
+    /**
+     * Скроллинг плинки на ipad
+     * @param  {[type]} $event [description]
+     * @return {[type]}        [description]
+     */
+    $scope.onDragRight = function($event) {
+        if(!$scope.scrollDelta) {
+            $scope.scrollDelta = 0;
+        }
+
+        $scope.scrollDelta = $scope.scrollDelta - $event.gesture.velocityX*10;
         
     }
 
