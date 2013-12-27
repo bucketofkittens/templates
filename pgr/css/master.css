@@ -252,11 +252,12 @@ sup.bidubi{top:13px !important;border-width:23px 0 23px 15px}
 .improva .right{width:280px;margin-top:15px;display:inline-block;vertical-align:top}.improva .right p{margin-bottom:15px}
 .improva .buttons{margin-left:8px}.improva .buttons input{margin-left:5px}
 .cursor{cursor:pointer;vertical-align:middle}
-#recaptcha_image,.recaptcha_image_cell{width:170px !important}
-.recaptchatable .recaptcha_image_cell center img{width:150px !important}
-.recaptcha_image_cell{width:170px !important}
+#recaptcha_table{border:0 !important}
+#recaptcha_image,.recaptcha_image_cell{width:230px !important}
+.recaptchatable .recaptcha_image_cell center img{width:230px !important}
+.recaptcha_image_cell{width:230px !important}
 #recaptcha_logo,#recaptcha_privacy{display:none}
-#recaptcha_image,#recaptcha_response_field{width:170px !important}
+#recaptcha_image,#recaptcha_response_field{width:230px !important}
 #recaptcha_response_field{border:1px solid #ddd !important}
 .recaptchatable .recaptcha_image_cell{padding:0 !important}
 #comments .topcomm{border-bottom:1px solid #d8d8d8;overflow:hidden;padding:15px;width:320px}#comments .topcomm h5{float:left;font-size:20px;max-width:260px}#comments .topcomm h5 s{font-size:20px;text-decoration:none}
@@ -266,7 +267,7 @@ sup.bidubi{top:13px !important;border-width:23px 0 23px 15px}
 #comments .comm .cmnt i{float:right;color:#636363;font-size:16px}
 #comments .comm .cmnt br{clear:both}
 #comments .comm .cmnt p{font-size:16px;margin-top:15px}
-#comments .butcomm{overflow:hidden;padding:15px;width:320px;position:absolute;bottom:100px;left:0}#comments .butcomm textarea{float:left;border:1px solid #d8d8d8;font-size:18px;color:#666;line-height:20px;max-width:200px;height:20px;padding:10px !important;font-family:'Helvetica Neue Light';vertical-align:middle;margin-top:7px}
+#comments .butcomm{overflow:hidden;padding:15px;width:320px;position:absolute;bottom:20%;left:0}#comments .butcomm textarea{float:left;border:1px solid #d8d8d8;font-size:18px;color:#666;line-height:20px;max-width:200px;height:20px;padding:10px !important;font-family:'Helvetica Neue Light';vertical-align:middle;margin-top:7px}
 #comments .butcomm button{float:right;border:2px solid #d8d8d8;font-size:18px;color:#666;line-height:27px;padding:10px 15px;vertical-align:middle;font-family:'Helvetica Neue Light';background:none;cursor:pointer}
 .searchfull{position:relative;top:80px;margin-left:20px;width:380px;height:90%;min-height:550px;background:#fff;border:1px solid #ddd;box-shadow:0 0 20px 1px rgba(0,0,0,0.2);z-index:3;display:inline-block;overflow-y:scroll;overflow-x:hidden}.searchfull::-webkit-scrollbar{width:0;height:0}
 .searchfull .fullsearch input[type="text"]{left:0;width:379px}
