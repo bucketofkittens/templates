@@ -11,9 +11,9 @@
 				ui-keypress="{13:'onSearch()'}" />
 			<input type="button" class="searcher" ng-click="onSearch()" />
 			<div ng-cloak class="searchResult" ng-if="resultSearch.length > 0">
-				<div class="item" ng-repeat="(userKey, userItem) in resultSearch">
+				<div class="item" ng-repeat="(userKey, userItem) in resultSearch" ng-click="changeUser(userItem)">
 					<div class="image">
-						<img ng-src="{{userItem.avatar}}" ng-click="changeUser(userItem)" alt="">
+						<img ng-src="{{userItem.avatar}}" alt="">
 						<i ng-if="userItem.points">{{userItem.points}}</i>
 					</div>
 					<div class="text">
