@@ -149,6 +149,7 @@ pgrModule.directive('setWidth', function() {
       }, 0);
 
       scope.$watch("userItem.hover", function() {
+        console.log(scope.userItem.hover);
         if(scope.userItem.hover) {
           var newSize = $(window).height()/100*30;
           var oldSize = $(element).height();

@@ -2176,7 +2176,9 @@ function GalleryController($scope, localize, Leagues, User, AuthUser, $element, 
      * @return {object} 
      */
     $scope.onUserClick = function(user, $event) {
-        if(!$event.toElement.classList.contains('navigate')) {
+        console.log($event);
+        var target = $event.toElement ? $event.toElement : $event.target;
+        if(!target.classList.contains('navigate')) {
             angular.forEach($scope.users, function(item, key) {
                 if(item != user) {
                     item.hovered = false;
