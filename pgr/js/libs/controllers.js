@@ -1250,19 +1250,39 @@ function LoginController($scope, Sessions, $rootScope, User, Social, $facebook, 
 
     $scope.onImprovaSign = function() {
         $rootScope.$broadcast('loaderShow');
+
+        /**
+         * Проверяем есть ли такой пользователь в improva
+         * @param  {[type]} dataImprova [description]
+         * @return {[type]}             [description]
+         */
         ImprovaLogin.isset({}, {email: $scope.improvaForm.email, password: $scope.improvaForm.password}, function(dataImprova) {
             if(!dataImprova.authorized) {
                 $scope.improvaError = "No user";
                 $rootScope.$broadcast('loaderHide');
             } else {
+                /**
+                 * Если пользователь пытаемся авторизироваться
+                 * @param  {[type]}
+                 * @param  {[type]}
+                 * @return {[type]}
+                 */
                 Sessions.signin({}, $.param({
                     "email": dataImprova.email,
                     "password": ""
                 }), function(data) {
                     if(data.success) {
+                        /**
+                         * Отправляю событие на авторизацию пользователя
+                         * @type {[type]}
+                         */
                         $rootScope.$broadcast('onSignin', {sguid: data.guid});
                         $rootScope.$broadcast('loaderHide');
                     } else {
+                        /**
+                         * Если пользователя нет, тогда создаем его основывваясь на данных из импурвы
+                         * @return {[type]} [description]
+                         */
                         User.create(
                             {user: JSON.stringify({
                                 "login": dataImprova.email,
@@ -1280,6 +1300,11 @@ function LoginController($scope, Sessions, $rootScope, User, Social, $facebook, 
                                         user["birthday"] = dataImprova.birthday;
                                     }
 
+                                    /**
+                                     * Обновляем данные пользователя зашедшего через импуру первый раз
+                                     * @param  {[type]} data [description]
+                                     * @return {[type]}      [description]
+                                     */
                                     User.updateUser({"id": data.message.guid},  {user: JSON.stringify(user)}, function(data) {
                                             Sessions.signin({}, $.param({
                                                 "email": dataImprova.email,
@@ -3372,6 +3397,13 @@ function SearchAdvanceController($scope) {
 
 }
 
+/**
+ * Контроллер комментаев
+ * @param {[type]} $scope       [description]
+ * @param {[type]} $rootScope   [description]
+ * @param {[type]} Comments     [description]
+ * @param {[type]} $routeParams [description]
+ */
 function CommentsController($scope, $rootScope, Comments, $routeParams) {
     $scope.user = null;
     $scope.form = {
@@ -3413,6 +3445,7 @@ function CommentsController($scope, $rootScope, Comments, $routeParams) {
         }, function(data) {
             $rootScope.$broadcast('loaderHide');
             $scope.getMessages();
+            $scope.form.message = "";
         });
     }
 }
