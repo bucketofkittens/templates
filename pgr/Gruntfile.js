@@ -12,6 +12,7 @@ module.exports = function(grunt) {
                     'js/jquery-ui-1.10.3.custom.min.js',
                 	'js/angular.min.js',
                 	'js/angular-route.min.js',
+                    'js/angular-animate.min.js',
                 	'js/angular-resource.min.js',
                 	'js/angular-cookies.min.js',
                 	'js/angular-touch.min.js',

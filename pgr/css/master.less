@@ -156,18 +156,6 @@ body {
         width: 1020px;
         margin: 0px auto;
         position: relative;
-        &.ng-enter, &.ng-leave {
-          -webkit-transition:0.5s linear all;
-          -moz-transition:0.5s linear all;
-          -o-transition:0.5s linear all;
-          transition:0.5s linear all;
-
-          position:absolute;
-          top:0;
-          left:0;
-          right:0;
-          height:600px;
-        }
 
         &.ng-enter {
           z-index:100;
@@ -2973,4 +2961,23 @@ table#graphs {
     img {
         width: 50px;
     }
+}
+
+.animate-list.ng-enter,
+.animate-list.ng-leave,
+.animate-list.ng-move {
+  -webkit-transition:1.5s linear all;
+  transition:1.5s linear all;
+}
+
+.animate-list.ng-enter,
+.animate-list.ng-leave.ng-leave-active {
+  opacity:0;
+  -webkit-transition:.1s linear all;
+  transition:.1s linear all;
+}
+.animate-list.ng-leave,
+.animate-list.ng-enter.ng-enter-active {
+  opacity:1;
+
 }

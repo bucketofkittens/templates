@@ -37,7 +37,8 @@ var pgrModule = angular.module(
 	[ 
 		"ngRoute", 
 		"ngCookies", 
-		"ngResource", 
+		"ngResource",
+		"ngAnimate",
 		"localization", 
 		'route-segment', 
 		'view-segment', 

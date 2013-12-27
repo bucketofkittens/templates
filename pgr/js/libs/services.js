@@ -372,6 +372,11 @@ pgrModule.factory('CriterionByGoal', function ($resource) {
             query: {
                 method: 'GET',
                 isArray: true
+            },
+            by_guid: {
+                url: host + "/criterion/:criteria_sguid",
+                method: 'GET',
+                isArray: true
             }
         }
     );

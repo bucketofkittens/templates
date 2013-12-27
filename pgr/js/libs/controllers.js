@@ -755,30 +755,35 @@ function NeedsAndGoalsController($scope, Goals, Criterion, AuthUser, UserCriteri
      * @return {[type]}      [description]
      */
     $scope.getCriteriumByGoal = function(goal, need) {
-        $rootScope.$broadcast('loaderShow');
-
         $scope.currentGoal = goal;
         $scope.currentNeed = need;
 
-        CriterionByGoal.query({id: goal.sguid}, function(data) {
-            goal.criteriums = data;
+        goal.criteriums = [];
 
-            /**
-             * добавляем пустой элемент
-             */
-            $scope.addEmptyElement(goal);
+        $scope.countLoad_ = 0;
 
-            /**
-             * забираем значения для текущего пользователя
-             */
-            $scope.getCriteriumValueByUser(goal);
+        angular.forEach($scope.currentGoal.criterion_guids, function(value, key){
+            CriterionByGoal.by_guid({criteria_sguid: value}, function(data) {
+                goal.criteriums.push(data[0]);
+                $scope.countLoad_ += 1;
+                
+                if($scope.countLoad_ == $scope.currentGoal.criterion_guids.length) {
+                    /**
+                     * добавляем пустой элемент
+                     */
+                    $scope.addEmptyElement(goal);
 
-            $rootScope.$broadcast('loaderHide');
+                    /**
+                     * забираем значения для текущего пользователя
+                     */
+                    $scope.getCriteriumValueByUser(goal);
 
-            setTimeout(function() {
-                $("#content .crits ul li ul li .criterion li .bord .crp .tab").css("height", $("#content .crits ul li .cr").height());
+                    setTimeout(function() {
+                        $("#content .crits ul li ul li .criterion li .bord .crp .tab").css("height", $("#content .crits ul li .cr").height());
+                    });    
+                }
             });
-        }); 
+        });
     }
 
     /**
