@@ -36,6 +36,8 @@
 				    </p>
 				</section>
 
+
+
 				<!-- Поиск -->
 				<div id="search" ng-controller="SearchController" ng-init="limit=5">
 					<input 
@@ -65,6 +67,10 @@
 						</div>
 					</div>
 				</div>
+
+				<!-- GRAPHS -->
+				<a class="graphlink" ng-if="workspace.user" ng-cloak href="#/graphs">{{'_GRAPHS_' | i18n}}</a>
+				
 			</div>
 		</header>
 
