@@ -114,10 +114,7 @@ pgrModule.directive('caruselPosition', function($window) {
 
 pgrModule.directive('setWidth', function() {
   return {
-    priority: 0,
     link: function(scope, element, attrs) {
-      $(".gallery").height($(window).height() - 115);
-      $(".gallery > div").height($(window).height() - 115);
       var getSize = 0;
       var pElement = $(element).parent().parent();
       var parentElement = $(element).parent();
@@ -129,14 +126,14 @@ pgrModule.directive('setWidth', function() {
           scope.userItem.league.name == "10" ||
           scope.userItem.league.name == "9" ||
           scope.userItem.league.name == "8") {
-          getSize = "140px";
+          getSize = "70px";
         }
 
         if(
           scope.userItem.league.name == "7" || 
           scope.userItem.league.name == "6" ||
           scope.userItem.league.name == "5") {
-          getSize = "70px";
+          getSize = "140px";
         }
       }
 
@@ -149,7 +146,7 @@ pgrModule.directive('setWidth', function() {
       setTimeout(function() {
         parentElement.addClass("show");
         pElement.isotope( 'insert', parentElement);
-      }, randomRange(100, 500));
+      }, 0);
 
       scope.$watch("userItem.hover", function() {
         if(scope.userItem.hover) {

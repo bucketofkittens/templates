@@ -1269,13 +1269,15 @@ function LoginController($scope, Sessions, $rootScope, User, Social, $facebook, 
                  */
                 Sessions.signin({}, $.param({
                     "email": dataImprova.email,
-                    "password": ""
+                    "password": "",
+                    "from_improva": "1"
                 }), function(data) {
                     if(data.success) {
                         /**
                          * Отправляю событие на авторизацию пользователя
                          * @type {[type]}
                          */
+
                         $rootScope.$broadcast('onSignin', {sguid: data.guid});
                         $rootScope.$broadcast('loaderHide');
                     } else {
@@ -1607,7 +1609,6 @@ function FollowController($scope, $rootScope, User, $location, $routeParams, Aut
      * Получаем список друзей. Или временный или же из массива пользователя.
      */
     $scope.setAuthUserData = function() {
-
         if($scope.workspace.user && $scope.workspace.user.sguid) {
             $scope.frends = $scope.workspace.user.frends;
         } else {
@@ -1673,9 +1674,12 @@ function FollowController($scope, $rootScope, User, $location, $routeParams, Aut
  * @param {object} $timeout
  * @returns {MainController}
  */
-function MainController($scope, Leagues, User, $rootScope, $location, $timeout, AuthUser) {
-    $scope.limit = 300;
+function MainController($scope, Leagues, User, $rootScope, $location, $timeout, AuthUser, $cookieStore) {
+    $scope.limit = parseInt($(window).height()/30);
     $scope.skip = 0;
+    $scope.view_count = 0;
+    $scope.total_count = 0;
+    $scope.users = [];
 
     /**
      * Забираем список пользователей
@@ -1683,21 +1687,24 @@ function MainController($scope, Leagues, User, $rootScope, $location, $timeout, 
      */
     $scope.getPublishedUser = function() {
         User.for_main_from_limit({limit: $scope.limit, skip: $scope.skip}, {}, function(data) {
-            var users = [];
             data.shuffle();
-            angular.forEach(data, function(value, key){
+            angular.forEach(data, function(value, key) {
                 value.points = parseInt(value.points);
+                $scope.total_count = value.total_count;
                 if(isNaN(value.points)) {
                     value.points = 0;
                 }
                 if(!value.league) {
                     value.league = {name: "10"};
                 }
-                if(value.avatar) {
-                    users.push(value);
-                }
+                $scope.users.push(value);
             });
-            $scope.users = users;
+
+            $scope.view_count += $scope.limit;
+            if($scope.view_count < $scope.total_count) {
+                $scope.skip += $scope.limit;
+                $scope.getPublishedUser();
+            }
         });
     }
 
@@ -1705,6 +1712,7 @@ function MainController($scope, Leagues, User, $rootScope, $location, $timeout, 
      * Забираем список пользователей
      */
     $scope.getPublishedUser();
+    
     
 
     /**
@@ -2398,7 +2406,7 @@ function RootController($scope, $facebook, AuthUser, User, $rootScope, Needs, So
         $scope.getState();
         $scope.getUserInfo();
         $scope.getNeeds();
-    }, 0);
+    }, 1000);
     
 
     $scope.$on('updateUserData', function($event, message) {
