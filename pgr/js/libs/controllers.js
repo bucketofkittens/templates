@@ -3332,6 +3332,7 @@ function SearchController($scope, User, $rootScope, $location) {
     $scope.resultSearch = [];
     $scope.usersCollections = [];
 
+
     $scope.onCompare = function(userItem) {
         $scope.resultSearch = [];
         $scope.searchText = "";
@@ -3339,9 +3340,10 @@ function SearchController($scope, User, $rootScope, $location) {
     }
 
     $scope.onAdvanceSearch = function() {
+        $location.path("/search").search({text: $scope.searchText});
+
         $scope.resultSearch = [];
         $scope.searchText = "";
-        $location.path("/search").search({text: $scope.searchText});
     }
 
     $("body").on("click", function() {
@@ -3399,10 +3401,18 @@ function SearchController($scope, User, $rootScope, $location) {
        $scope.resultSearch = [];
        $scope.searchText = "";
     });
+
+    $scope.$watch("id", function (newVal, oldVal, scope) {
+        if(newVal == "adv" && $location.search().text) {
+            $scope.searchText = $location.search().text;
+            $scope.onSearch();
+        }
+    });
+
 }
 
-function SearchAdvanceController($scope) {
-
+function SearchAdvanceController($scope, $location, $rootScope, User) {
+    $scope.searchText = $location.search().text;
 }
 
 /**
