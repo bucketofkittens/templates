@@ -377,7 +377,7 @@ function UserController($scope, $element, $route, $routeParams, User, Needs, Pro
 
     /** Событие перехода к пользователю */
     $scope.onMoveToProfile = function(user) {
-        $location.path("/profile/"+user.sguid).search({});
+        $location.path("/profile/").search({user: user.sguid});;
     }
 
     /**
@@ -1646,7 +1646,7 @@ function FollowController($scope, $rootScope, User, $location, $routeParams, Aut
         if($scope.rootUser.sguid) {
             $location.path("/profile/"+$scope.rootUser.sguid+"/"+user.sguid);
         } else {
-            $location.path("/profile/"+user.sguid);
+            $location.path("/profile/").search({user: user.sguid});
         }
     }
 
@@ -1727,7 +1727,7 @@ function MainController($scope, Leagues, User, $rootScope, $location, $timeout, 
      * @return {object}     
      */
     $scope.onMoveToProfile = function(user) {
-        $location.path("/profile/"+user.sguid);
+        $location.path("/profile/").search({user: user.sguid});
     }
 
     $scope.onMoveToCompare = function(user) {
@@ -1740,7 +1740,7 @@ function MainController($scope, Leagues, User, $rootScope, $location, $timeout, 
      * @return {object}
      */
     $scope.onCompareToUser = function(user) {
-        $location.path("/profile/"+$scope.rootUser.sguid+"/"+user.sguid);
+        $location.path("/profile/"+$scope.rootUser.sguid+"/"+user.sguid)
     }
 
     /**
@@ -2402,11 +2402,23 @@ function RootController($scope, $facebook, AuthUser, User, $rootScope, Needs, So
     };
 
     $scope.getNeeds = function() {
+        var needs = lscache.get("needs");
+        if(!needs) {
+            $scope.getNeedsOnServer_();
+        } else {
+            $scope.workspace.needs = needs;
+            $rootScope.$broadcast('needsGet');
+        }
+        
+    };
+
+    $scope.getNeedsOnServer_ = function() {
         Needs.query({}, {}, function(data) {
             $scope.workspace.needs = data;
+            lscache.set('needs', JSON.stringify(data), 1440);
             $rootScope.$broadcast('needsGet');
         });
-    };
+    }
 
 
     $timeout(function() {
@@ -2459,8 +2471,6 @@ function RootController($scope, $facebook, AuthUser, User, $rootScope, Needs, So
     $scope.guestFollowPersist = function() {
         localStorage.setItem('follows', JSON.stringify($scope.tmpFollows));
     }
-
-    
 
     $scope.authUnFollow = function(message) {
         User.destroy_friendship({id: message.userId, friendId: message.frendId}, { }, function() {
@@ -3344,7 +3354,7 @@ function SearchController($scope, User, $rootScope, $location) {
     $scope.onCompare = function(userItem) {
         $scope.resultSearch = [];
         $scope.searchText = "";
-        $location.path("/profile/"+userItem.sguid);
+        $location.path("/profile/").search({userItem: user.sguid});
     }
 
     $scope.onAdvanceSearch = function() {
