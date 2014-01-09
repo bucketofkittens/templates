@@ -1298,15 +1298,17 @@ function LoginController($scope, Sessions, $rootScope, User, Social, $facebook, 
                             {user: JSON.stringify({
                                 "login": dataImprova.email,
                                 "email": dataImprova.email,
+                                "name": dataImprova.email,
                                 "password": "",
                                 "confirmed": "1"
                             })}
                             ,function(data) {
                                 if(data.success) {
-                                    var user = {
-                                        "name": dataImprova.name
-                                    }
+                                    var user = {}
 
+                                    if(dataImprova.name) {
+                                        user["name"] = dataImprova.name;
+                                    }
                                     if(dataImprova.birthday) {
                                         user["birthday"] = dataImprova.birthday;
                                     }
@@ -1457,9 +1459,11 @@ function LoginController($scope, Sessions, $rootScope, User, Social, $facebook, 
                 }, function(dataWL) {
                     Social.login({}, {email: dataWL.emails.account}, function(data) {
                         var updateUser = {};
-                        console.log(dataWL);
                         if(data.was_created) {
                             updateUser["name"] = dataWL.first_name;
+                            if(dataWL.last_name) {
+                                updateUser["name"] = updateUser["name"]+" "+dataWL.last_name;
+                            }
                             if(dataWL.birth_day) {
                                 updateUser["birthday"] = dataWL.birth_day+"/"+dataWL.birth_month+"/"+dataWL.birth_year;
                             }
@@ -1488,8 +1492,9 @@ function LoginController($scope, Sessions, $rootScope, User, Social, $facebook, 
         FB.api('/me', {fields: 'name,id,location,birthday,email'}, function(response) {
             Social.login({}, {email: response.email}, function(data) {
                 var updateUser = {};
+
                 if(data.was_created) {
-                    updateUser["name"] = data.name;
+                    updateUser["name"] = response.name;
                 }
                 
                 $rootScope.$broadcast('onSignin', {
@@ -3525,7 +3530,7 @@ function SearchController($scope, User, $rootScope, $location) {
  * @param {[type]} $rootScope [description]
  * @param {[type]} User       [description]
  */
-function SearchAdvanceController($scope, $location, $rootScope, User, Professions, CityByState, Leagues) {
+function SearchAdvanceController($scope, $location, $rootScope, User, Professions, CityByState, Leagues, $timeout) {
     /**
      * Тект поиска
      * @type {[type]}

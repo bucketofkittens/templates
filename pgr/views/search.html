@@ -85,8 +85,9 @@
 				type="text" 
 				ng-model="search.birthday_from" 
 				class="search"
-				ui-date="dateOptions" />
-			<input type="button" class="searcher" ng-click="onSearch()" />
+				ui-date="dateOptions"
+				id="dFrom" />
+			<input type="button" class="searcher" />
 			<img src="./images/fusedel.png" ng-click="selectParam('birthday_from', '', true)">
 		</div>
 		<div>
@@ -95,8 +96,9 @@
 				type="text" 
 				ng-model="search.birthday_till" 
 				class="search"
-				ui-date="dateOptions" />
-			<input type="button" class="searcher" ng-click="onSearch()" />
+				ui-date="dateOptions"
+				id="dTill" />
+			<input type="button" class="searcher" />
 			<img src="./images/fusedel.png" ng-click="selectParam('birthday_till', '', true)">
 		</div>
 	</div>
