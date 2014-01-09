@@ -32,8 +32,7 @@
 			<input 
 				type="text" 
 				ng-model="search.career.name" 
-				class="search"
-				ng-change="onSearch()" />
+				class="search" />
 			<input type="button" class="searcher" ng-click="toggleShowState('career')" />
 			<img src="./images/fusedel.png">
 			<ul class="proffesion_list" ng-class="{show: shows.career}">
@@ -45,8 +44,7 @@
 			<input 
 				type="text" 
 				ng-model="search.profession.name" 
-				class="search"
-				ng-change="onSearch()" />
+				class="search" />
 			<input type="button" class="searcher" ng-click="toggleShowState('profession')" />
 			<img src="./images/fusedel.png">
 			<ul class="proffesion_list" ng-class="{show: shows.profession}">
@@ -59,23 +57,25 @@
 			<h6>Country</h6>
 			<input 
 				type="text" 
-				ng-model="searchText" 
-				placeholder="Country" 
-				class="search"
-				ng-change="onSearch()" />
-			<input type="button" class="searcher" ng-click="onSearch()" />
+				ng-model="search.country.name" 
+				class="search" />
+			<input type="button" class="searcher" ng-click="toggleShowState('country')" />
 			<img src="./images/fusedel.png">
+			<ul class="proffesion_list" ng-class="{show: shows.country}">
+				<li ng-repeat="(key, value) in workspace.countries" ng-click="selectContryParam('country', value)">{{value.name}}</li>
+			</ul>
 		</div>
 		<div>
 			<h6>City</h6>
 			<input 
 				type="text" 
-				ng-model="searchText" 
-				placeholder="City" 
-				class="search"
-				ng-change="onSearch()" />
-			<input type="button" class="searcher" ng-click="onSearch()" />
+				ng-model="search.city.name" 
+				class="search" />
+			<input type="button" class="searcher" ng-click="toggleShowState('city')" />
 			<img src="./images/fusedel.png">
+			<ul class="proffesion_list" ng-class="{show: shows.city}">
+				<li ng-repeat="(key, value) in cityList" ng-click="selectParam('city', value)">{{value.name}}</li>
+			</ul>
 		</div>
 	</div>
 	<div class="fsp">
@@ -83,10 +83,9 @@
 			<h6>Birthday from</h6>
 			<input 
 				type="text" 
-				ng-model="searchText" 
-				placeholder="Birthday from" 
+				ng-model="search.birthday_from" 
 				class="search"
-				ng-change="onSearch()" />
+				ui-date="birthdayFromParams" />
 			<input type="button" class="searcher" ng-click="onSearch()" />
 			<img src="./images/fusedel.png">
 		</div>
@@ -94,10 +93,9 @@
 			<h6>Birthday till</h6>
 			<input 
 				type="text" 
-				ng-model="searchText" 
-				placeholder="Birthday till" 
+				ng-model="search.birthday_till" 
 				class="search"
-				ng-change="onSearch()" />
+				ui-date="birthdayTillParams" />
 			<input type="button" class="searcher" ng-click="onSearch()" />
 			<img src="./images/fusedel.png">
 		</div>
@@ -107,12 +105,14 @@
 			<h6>League</h6>
 			<input 
 				type="text" 
-				ng-model="searchText" 
-				placeholder="League" 
-				class="search"
-				ng-change="onSearch()" />
-			<input type="button" class="searcher" ng-click="onSearch()" />
+				ng-model="search.league.name" 
+				class="search" />
+			<input type="button" class="searcher" ng-click="toggleShowState('league')" />
 			<img src="./images/fusedel.png">
+			<ul class="proffesion_list" ng-class="{show: shows.league}">
+				<li ng-repeat="(key, value) in workspace.leagues" ng-click="selectParam('league', value)">{{value.name}}</li>
+			</ul>
+			
 		</div>
 		<div>
 			<h6>Score</h6>

@@ -2291,7 +2291,7 @@ function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-function RootController($scope, $facebook, AuthUser, User, $rootScope, Needs, Social, $cookieStore, States, Professions, $location, $timeout) {
+function RootController($scope, $facebook, AuthUser, User, $rootScope, Needs, Social, $cookieStore, States, Professions, $location, $timeout, Leagues) {
     /**
      * Забираем список друзей из localStorage
      * @return {Array} [description]
@@ -2426,9 +2426,28 @@ function RootController($scope, $facebook, AuthUser, User, $rootScope, Needs, So
     $timeout(function() {
         $scope.getUserInfo();
         $scope.getNeeds();
+        $scope.getCountries();
+        $scope.getAllLeagues();
     }, 1000);
-    
 
+
+    $scope.getCountries = function() {
+        States.query({}, {}, function(data) {
+            $scope.workspace.countries = data;
+        });    
+    }
+
+    $scope.getAllLeagues = function() {
+        /**
+         * Забираем список всех лиг
+         * @param  {[type]} data [description]
+         * @return {[type]}      [description]
+         */
+        Leagues.query({}, {}, function(data) {
+            $scope.workspace.leagues = data;
+        });
+    }
+    
     $scope.$on('updateUserData', function($event, message) {
         if(message.user.sguid === $rootScope.authUserId) {
             $rootScope.workspace.user = message.user;
@@ -3463,7 +3482,7 @@ function SearchController($scope, User, $rootScope, $location) {
  * @param {[type]} $rootScope [description]
  * @param {[type]} User       [description]
  */
-function SearchAdvanceController($scope, $location, $rootScope, User, Professions) {
+function SearchAdvanceController($scope, $location, $rootScope, User, Professions, CityByState, Leagues) {
     /**
      * Тект поиска
      * @type {[type]}
@@ -3476,7 +3495,12 @@ function SearchAdvanceController($scope, $location, $rootScope, User, Profession
      */
     $scope.search = {
         career: {},
-        profession: {}
+        profession: {},
+        country: {},
+        city: {},
+        birthday_from: "",
+        birthday_till: "",
+        league: {}
     };
 
     /**
@@ -3485,7 +3509,10 @@ function SearchAdvanceController($scope, $location, $rootScope, User, Profession
      */
     $scope.shows = {
         career: false,
-        profession: false
+        profession: false,
+        country: false,
+        city: false, 
+        league: false
     }
 
     /**
@@ -3493,6 +3520,12 @@ function SearchAdvanceController($scope, $location, $rootScope, User, Profession
      * @type {Object}
      */
     $scope.professionList = {};
+
+    /**
+     * Список городов
+     * @type {Object}
+     */
+    $scope.cityList = {};
 
     /**
      * В модель расширенного поиска передаем новые данные выбранные из выпадающего списка
@@ -3531,6 +3564,21 @@ function SearchAdvanceController($scope, $location, $rootScope, User, Profession
     }
 
     /**
+     * Изменяем карьеру
+     * @param  {[type]} paramName [description]
+     * @param  {[type]} value     [description]
+     * @return {[type]}           [description]
+     */
+    $scope.selectContryParam = function(paramName, value) {
+        $scope.selectParam(paramName, value);
+        $scope.getCityByContry_(value.sguid, $scope.getCityByContryCallback_);
+
+        // очищаем город если сменилась страна
+        $scope.selectParam("city", "");
+        $scope.toggleShowState("city");
+    }
+
+    /**
      * Получаем список профессий для текущей карьеры
      * @param  {[type]} careerId  [description]
      * @param  {[type]} callback_ [description]
@@ -3547,6 +3595,25 @@ function SearchAdvanceController($scope, $location, $rootScope, User, Profession
      */
     $scope.getProfessionByCareerCallback_ = function(data) {
         $scope.professionList = data;
+    }
+
+    /**
+     * Получаем список профессий для текущей карьеры
+     * @param  {[type]} careerId  [description]
+     * @param  {[type]} callback_ [description]
+     * @return {[type]}           [description]
+     */
+    $scope.getCityByContry_ = function(contryId, callback_) {
+        CityByState.query({ id: contryId }, {}, callback_);
+    }
+
+    /**
+     * callback после получения списка профессий для текущей карьеры
+     * @param  {[type]} data [description]
+     * @return {[type]}      [description]
+     */
+    $scope.getCityByContryCallback_ = function(data) {
+        $scope.cityList = data;
     }
 }
 
