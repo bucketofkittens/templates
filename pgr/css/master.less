@@ -2754,14 +2754,20 @@ sup.bidubi {
         width: 0px;
         height: 0px; 
     }
-    .fsp {
-        overflow: hidden;        
+    .fsp {    
         background: #ffffff;
         border: 1px solid #dddddd;
         box-shadow: 0px 0px 20px 1px rgba(0, 0, 0, 0.2);
         margin: 30px auto;
         width: 525px;
         padding: 15px;
+        &:after {
+            content: ".";
+            display: block;
+            height: 0;
+            clear: both;
+            visibility: hidden;
+        }
         div {
             float: left;
             width: 250px;
@@ -2782,7 +2788,7 @@ sup.bidubi {
             input[type="button"] {
                 width: 30px !important;
                 height: 30px !important;
-                background: url(../images/fullsearch.png) no-repeat;
+                background: url(../images/fullsearch.png) 2px -4px no-repeat;
                 position: absolute;
                 right: 30px !important;
                 top: 30px !important;
@@ -2980,4 +2986,19 @@ table#graphs {
 .animate-list.ng-enter.ng-enter-active {
   opacity:1;
 
+}
+
+.controller__search {
+    .proffesion_list {
+        margin-left: 0px;
+        margin-top: -2px;
+        width: 200px;
+        display: none;
+        li {
+            cursor: pointer;
+        }
+        &.show {
+            display: block;
+        }
+    }
 }

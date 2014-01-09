@@ -2304,9 +2304,22 @@ function RootController($scope, $facebook, AuthUser, User, $rootScope, Needs, So
         return follows;
     }
 
+    /**
+     * ID авторизованного пользователя
+     * @type {[type]}
+     */
     $scope.authUserId = AuthUser.get();
-    $scope.authUserId = AuthUser.get();
+
+    /**
+     * Массив всяких данных
+     * @type {Object}
+     */
     $scope.workspace = {};
+
+    /**
+     * Массив хренения списка друзей для не авторизованного пользователя
+     * @type {[type]}
+     */
     $scope.tmpFollows = $scope.guestFollowGetOnStorage();
 
     $scope.controller = $location.path().split("/").join("_");
@@ -2369,6 +2382,10 @@ function RootController($scope, $facebook, AuthUser, User, $rootScope, Needs, So
         $location.path("/");
     }
 
+    /**
+     * Получаем данные по авторизаованному пользователю
+     * @return {[type]} [description]
+     */
     $scope.getUserInfo = function() {
         if($scope.authUserId) {
             User.query({id: $scope.authUserId}, function(data) {
@@ -2384,24 +2401,6 @@ function RootController($scope, $facebook, AuthUser, User, $rootScope, Needs, So
                 });
             });
         }
-    };
-
-    $scope.getState = function() {
-        /**
-        States.query({}, {}, function(data) {
-            $scope.workspace.states = data;
-            $rootScope.$broadcast('statesGet');
-        });
-        **/
-    };
-
-    $scope.getProfessions = function() {
-        /*
-        Professions.query({}, {}, function(data) {
-            $scope.workspace.professions = data;
-            $rootScope.$broadcast('professionsGet');
-        });
-        */
     };
 
     $scope.getNeeds = function() {
@@ -2425,8 +2424,6 @@ function RootController($scope, $facebook, AuthUser, User, $rootScope, Needs, So
 
 
     $timeout(function() {
-        $scope.getProfessions();
-        $scope.getState();
         $scope.getUserInfo();
         $scope.getNeeds();
     }, 1000);
@@ -2564,6 +2561,33 @@ function RootController($scope, $facebook, AuthUser, User, $rootScope, Needs, So
     $scope.gplusFalse = function() {
         $rootScope.$broadcast('loaderHide');
     };
+
+    /**
+     * Список карьер
+     * @type {Array}
+     */
+    $scope.careerList = [];
+
+    /**
+     * Получаем список карьер когда загружены needs
+     * @param  {[type]} newVal [description]
+     * @param  {[type]} oldVal [description]
+     * @param  {[type]} scope  [description]
+     * @return {[type]}        [description]
+     */
+    $scope.$watch("workspace.needs", function (newVal, oldVal, scope) {
+        if(newVal) {
+            var needs = JSON.parse(JSON.stringify($scope.workspace.needs));
+            var curNeed = needs.filter(function(value) {
+                if(value.sguid == "169990243011789827") {
+                    return value;
+                }
+            })[0];
+            $scope.careerList = curNeed.goals.filter(function(value) {
+                if(value.sguid != "170689401829983233") { return value }
+            });
+        }
+    });
 }
 
 function LeaguesController($scope, Leagues, User) {
@@ -3432,8 +3456,98 @@ function SearchController($scope, User, $rootScope, $location) {
 
 }
 
-function SearchAdvanceController($scope, $location, $rootScope, User) {
+/**
+ * Контроллер страницы расширенного поиска
+ * @param {[type]} $scope     [description]
+ * @param {[type]} $location  [description]
+ * @param {[type]} $rootScope [description]
+ * @param {[type]} User       [description]
+ */
+function SearchAdvanceController($scope, $location, $rootScope, User, Professions) {
+    /**
+     * Тект поиска
+     * @type {[type]}
+     */
     $scope.searchText = $location.search().text;
+
+    /**
+     * Модель данных расширенного поиска
+     * @type {Object}
+     */
+    $scope.search = {
+        career: {},
+        profession: {}
+    };
+
+    /**
+     * Состояние выпадающих меню
+     * @type {Object}
+     */
+    $scope.shows = {
+        career: false,
+        profession: false
+    }
+
+    /**
+     * Список профессий
+     * @type {Object}
+     */
+    $scope.professionList = {};
+
+    /**
+     * В модель расширенного поиска передаем новые данные выбранные из выпадающего списка
+     * @param  {[type]} paramName [description]
+     * @param  {[type]} value     [description]
+     * @return {[type]}           [description]
+     */
+    $scope.selectParam = function(paramName, value) {
+        $scope.search[paramName] = value;
+        $scope.toggleShowState(paramName);
+    }
+
+    /**
+     * Меняем постояние параметра param на обратное
+     * @param  {[type]} param [description]
+     * @return {[type]}       [description]
+     */
+    $scope.toggleShowState = function(param) {
+        $scope.shows[param] = $scope.shows[param] ? false : true;
+    }
+
+    /**
+     * Изменяем карьеру
+     * @param  {[type]} paramName [description]
+     * @param  {[type]} value     [description]
+     * @return {[type]}           [description]
+     */
+    $scope.selectCareerParam = function(paramName, value) {
+        $scope.selectParam(paramName, value);
+        $scope.getProfessionByCareer_(value.sguid, $scope.getProfessionByCareerCallback_);
+
+        // очищаем профессию если сменилась карьера
+        $scope.selectParam("profession", "");
+        $scope.toggleShowState("profession");
+        
+    }
+
+    /**
+     * Получаем список профессий для текущей карьеры
+     * @param  {[type]} careerId  [description]
+     * @param  {[type]} callback_ [description]
+     * @return {[type]}           [description]
+     */
+    $scope.getProfessionByCareer_ = function(careerId, callback_) {
+        Professions.query({ id: careerId }, {}, callback_);
+    }
+
+    /**
+     * callback после получения списка профессий для текущей карьеры
+     * @param  {[type]} data [description]
+     * @return {[type]}      [description]
+     */
+    $scope.getProfessionByCareerCallback_ = function(data) {
+        $scope.professionList = data;
+    }
 }
 
 /**
