@@ -1,6 +1,5 @@
-//var debugHost = "http://localhost:3000/api/v1";
 var host = "http://dev.sir.improva.com/api/v1";
-//var host = "http://localhost:3000/api/v1"; 
+var debugHost = "http://192.168.1.116:3000/api/v1"; 
 var hostShort = host.replace("/api/v1", "");
 
 /**
@@ -105,6 +104,11 @@ pgrModule.factory('User', function ($resource) {
                 method: "GET",
                 isArray: true,
                 url: host+"/users/by_profession/:profession_guid"
+            },
+            "search": {
+                method: "POST",
+                isArray: true,
+                url: host+'/users/search'
             }
         }
     );

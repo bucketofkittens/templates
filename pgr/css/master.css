@@ -274,7 +274,7 @@ sup.bidubi{top:13px !important;border-width:23px 0 23px 15px}
 .fusepar{display:inline-block;position:relative;margin:50px 20px 0 0;float:right;vertical-align:top;width:580px;height:90%;min-height:550px;z-index:3;overflow:hidden;overflow-y:scroll;padding-bottom:500px}.fusepar::-webkit-scrollbar{width:0;height:0}
 .fusepar .fsp{background:#fff;border:1px solid #ddd;box-shadow:0 0 20px 1px rgba(0,0,0,0.2);margin:30px auto;width:525px;padding:15px}.fusepar .fsp:after{content:".";display:block;height:0;clear:both;visibility:hidden}
 .fusepar .fsp div{float:left;width:250px;position:relative}.fusepar .fsp div h6{font-size:20px;margin-bottom:7px}
-.fusepar .fsp div input[type="text"]{font-size:18px;line-height:20px;vertical-align:middle;padding:5px 10px !important;border:1px solid #aaa !important;font-family:'Helvetica Neue Light';width:180px}
+.fusepar .fsp div input[type="text"]{font-size:18px;line-height:20px;vertical-align:middle;padding:5px 36px 5px 10px !important;border:1px solid #aaa !important;font-family:'Helvetica Neue Light';width:155px}
 .fusepar .fsp div input[type="button"]{width:30px !important;height:30px !important;background:url(../images/fullsearch.png) 2px -4px no-repeat;position:absolute;right:30px !important;top:30px !important;border:none;border-left:1px solid #aaa !important;vertical-align:middle}
 .fusepar .fsp div img{cursor:pointer;vertical-align:middle;width:30px;height:30px;border:1px solid #aaa !important;margin-left:10px}
 .fusepar .fsp div:last-child{float:right}
@@ -296,5 +296,5 @@ table#graphs tr:last-child td{border-top:none}
 .animate-list.ng-enter,.animate-list.ng-leave,.animate-list.ng-move{-webkit-transition:1.5s linear all;transition:1.5s linear all}
 .animate-list.ng-enter,.animate-list.ng-leave.ng-leave-active{opacity:0;-webkit-transition:.1s linear all;transition:.1s linear all}
 .animate-list.ng-leave,.animate-list.ng-enter.ng-enter-active{opacity:1}
-.controller__search .proffesion_list{margin-left:0;margin-top:-2px;width:200px;display:none}.controller__search .proffesion_list li{cursor:pointer}
+.controller__search .proffesion_list{margin-left:0;margin-top:-2px;width:200px;display:none;max-height:300px;overflow:auto}.controller__search .proffesion_list li{cursor:pointer}
 .controller__search .proffesion_list.show{display:block}

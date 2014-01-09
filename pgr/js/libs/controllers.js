@@ -3396,7 +3396,6 @@ function SearchController($scope, User, $rootScope, $location) {
     $scope.resultSearch = [];
     $scope.usersCollections = [];
 
-
     $scope.onCompare = function(userItem) {
         $scope.resultSearch = [];
         $scope.searchText = "";
@@ -3411,10 +3410,12 @@ function SearchController($scope, User, $rootScope, $location) {
     }
 
     $("body").on("click", function() {
-        $scope.$apply(function() {
-            $scope.resultSearch = [];
-            $scope.searchText = "";
-        });
+        if($scope.id != "adv") {
+            $scope.$apply(function() {
+                $scope.resultSearch = [];
+                $scope.searchText = "";
+            });    
+        }
     });
 
     $scope.$on('updatePubliched', function($event) {
@@ -3466,13 +3467,18 @@ function SearchController($scope, User, $rootScope, $location) {
        $scope.searchText = "";
     });
 
+    $scope.$on('updateSearchList', function($event, message) {
+        if($scope.id == message.id) {
+            $scope.resultSearch = message.data;    
+        }
+    });
+
     $scope.$watch("id", function (newVal, oldVal, scope) {
         if(newVal == "adv" && $location.search().text) {
             $scope.searchText = $location.search().text;
             $scope.onSearch();
         }
     });
-
 }
 
 /**
@@ -3498,10 +3504,11 @@ function SearchAdvanceController($scope, $location, $rootScope, User, Profession
         profession: {},
         country: {},
         city: {},
-        birthday_from: "",
-        birthday_till: "",
-        league: {}
+        league: {},
+        minScore: 0,
+        maxScore: 100000
     };
+
 
     /**
      * Состояние выпадающих меню
@@ -3528,14 +3535,38 @@ function SearchAdvanceController($scope, $location, $rootScope, User, Profession
     $scope.cityList = {};
 
     /**
+     * Метод очищает все текущие выбранные значения в форме
+     * @return {[type]} [description]
+     */
+    $scope.clearAll = function() {
+        $scope.search = {
+            career: {},
+            profession: {},
+            country: {},
+            city: {},
+            league: {}
+        };
+
+        $scope.shows = {
+            career: false,
+            profession: false,
+            country: false,
+            city: false, 
+            league: false
+        }
+    }
+
+    /**
      * В модель расширенного поиска передаем новые данные выбранные из выпадающего списка
      * @param  {[type]} paramName [description]
      * @param  {[type]} value     [description]
      * @return {[type]}           [description]
      */
-    $scope.selectParam = function(paramName, value) {
+    $scope.selectParam = function(paramName, value, isNotToggle) {
         $scope.search[paramName] = value;
-        $scope.toggleShowState(paramName);
+        if(!isNotToggle) {
+            $scope.toggleShowState(paramName);   
+        }
     }
 
     /**
@@ -3615,6 +3646,57 @@ function SearchAdvanceController($scope, $location, $rootScope, User, Profession
     $scope.getCityByContryCallback_ = function(data) {
         $scope.cityList = data;
     }
+
+    $scope.translateParamsToServer_ = function() {
+        var params = {};
+        if($scope.search.career && $scope.search.career.sguid) {
+            params["career_goal_guid"] = $scope.search.career.sguid;
+        }
+        if($scope.search.country && $scope.search.country.sguid) {
+            params["state_guid"] = $scope.search.country.sguid;
+        }
+        if($scope.search.city && $scope.search.city.sguid) {
+            params["city_guid"] = $scope.search.city.sguid;
+        }
+        if($scope.search.profession && $scope.search.profession.sguid) {
+            params["profession_guid"] = $scope.search.profession.sguid;
+        }
+        if($scope.search.league && $scope.search.league.sguid) {
+            params["league"] = $scope.search.league;
+        }
+        if($scope.search.birthday_from) {
+            params["birthday_from"] = moment($scope.search.birthday_from).format("DD/MM/YYYY");
+        }
+        if($scope.search.birthday_till) {
+            params["birthday_till"] = moment($scope.search.birthday_till).format("DD/MM/YYYY");
+        }
+        if($scope.search.minScore) {
+            params["points_from"] = $scope.search.minScore;
+        }
+        if($scope.search.maxScore) {
+            params["points_till"] = $scope.search.maxScore;
+        }
+
+        return params;
+    }
+
+    $scope.advanceSearch = function() {
+        $rootScope.$broadcast('loaderShow');
+
+        User.search({}, $scope.translateParamsToServer_(), $scope.advanceSearchCallback_);
+    }
+
+    $scope.advanceSearchCallback_ = function(data) {
+        $rootScope.$broadcast('loaderHide');
+        $rootScope.$broadcast('updateSearchList', {id: "adv", data: data});
+    }
+
+    $scope.dateOptions = {
+        changeYear: true,
+        changeMonth: true,
+        yearRange: '1900:-0',
+        dateFormat: 'dd/mm/yy'
+    };
 }
 
 /**
