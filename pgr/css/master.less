@@ -2786,7 +2786,16 @@ sup.bidubi {
                 font-family: 'Helvetica Neue Light';
                 width: 155px;
             }
-            input[type="button"] {
+            input[type="button"], .ui-datepicker-trigger {
+                color: #000000;
+                font-family: 'Helvetica Neue Light';
+                cursor: pointer;
+                background: transparent;
+                border: 1px solid #dddddd;
+                font-size: 115%;
+                padding: 4% 7% 3% 7% !important;
+                float: right;
+                margin-right: 7%;
                 width: 30px !important;
                 height: 30px !important;
                 background: url(../images/fullsearch.png) 2px -4px no-repeat;
@@ -2796,6 +2805,8 @@ sup.bidubi {
                 border: none;
                 border-left: 1px solid #aaaaaa !important;
                 vertical-align: middle;
+                display: block;
+                text-indent: -999px;
             }
             img {
                 cursor: pointer;

@@ -275,7 +275,7 @@ sup.bidubi{top:13px !important;border-width:23px 0 23px 15px}
 .fusepar .fsp{background:#fff;border:1px solid #ddd;box-shadow:0 0 20px 1px rgba(0,0,0,0.2);margin:30px auto;width:525px;padding:15px}.fusepar .fsp:after{content:".";display:block;height:0;clear:both;visibility:hidden}
 .fusepar .fsp div{float:left;width:250px;position:relative}.fusepar .fsp div h6{font-size:20px;margin-bottom:7px}
 .fusepar .fsp div input[type="text"]{font-size:18px;line-height:20px;vertical-align:middle;padding:5px 36px 5px 10px !important;border:1px solid #aaa !important;font-family:'Helvetica Neue Light';width:155px}
-.fusepar .fsp div input[type="button"]{width:30px !important;height:30px !important;background:url(../images/fullsearch.png) 2px -4px no-repeat;position:absolute;right:30px !important;top:30px !important;border:none;border-left:1px solid #aaa !important;vertical-align:middle}
+.fusepar .fsp div input[type="button"],.fusepar .fsp div .ui-datepicker-trigger{color:#000;font-family:'Helvetica Neue Light';cursor:pointer;background:transparent;border:1px solid #ddd;font-size:115%;padding:4% 7% 3% 7% !important;float:right;margin-right:7%;width:30px !important;height:30px !important;background:url(../images/fullsearch.png) 2px -4px no-repeat;position:absolute;right:30px !important;top:30px !important;border:none;border-left:1px solid #aaa !important;vertical-align:middle;display:block;text-indent:-999px}
 .fusepar .fsp div img{cursor:pointer;vertical-align:middle;width:30px;height:30px;border:1px solid #aaa !important;margin-left:10px}
 .fusepar .fsp div:last-child{float:right}
 .fusepar .fsp slider{height:2px;margin:10px 0 0 0;color:#dfdfdf}.fusepar .fsp slider span.bar.selection{background:#666}

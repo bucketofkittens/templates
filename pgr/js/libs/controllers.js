@@ -3756,7 +3756,8 @@ function SearchAdvanceController($scope, $location, $rootScope, User, Profession
         changeYear: true,
         changeMonth: true,
         yearRange: '1900:-0',
-        dateFormat: 'dd/mm/yy'
+        dateFormat: 'dd/mm/yy',
+        showOn: 'button'
     };
 
     /**
