@@ -3430,7 +3430,7 @@ function SearchController($scope, User, $rootScope, $location) {
     $scope.onCompare = function(userItem) {
         $scope.resultSearch = [];
         $scope.searchText = "";
-        $location.path("/profile/").search({userItem: user.sguid});
+        $location.path("/profile/").search({user: userItem.sguid});
     }
 
     /**
