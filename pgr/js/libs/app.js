@@ -83,7 +83,7 @@ pgrModule.config(function($routeSegmentProvider, $routeProvider) {
         
         .when('/graphs',                    'graphs')
         .when('/leagues',                   'leagues')
-        .when('/confirm_signup/:hash',            'confirm')
+        .when('/confirm_signup/:hash',      'confirm')
         
         
         .segment('profile', {
@@ -104,7 +104,8 @@ pgrModule.config(function($routeSegmentProvider, $routeProvider) {
 
         .segment('main', {
             templateUrl: 'views/main.html',
-            controller: MainController})
+            controller: MainController,
+        	reloadOnSearch: false})
 
         .segment('confirm', {
             templateUrl: 'views/confirm.html',

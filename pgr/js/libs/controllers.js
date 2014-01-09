@@ -3391,17 +3391,48 @@ function FollowCaruselController($scope) {
     });
 }
 
+/**
+ * Конроллер поиска
+ * @param {[type]} $scope     [description]
+ * @param {[type]} User       [description]
+ * @param {[type]} $rootScope [description]
+ * @param {[type]} $location  [description]
+ */
 function SearchController($scope, User, $rootScope, $location) {
+    /**
+     * Текст который ищется
+     * @type {String}
+     */
     $scope.searchText = "";
+
+    /**
+     * Отфильтрованный результат поиска
+     * @type {Array}
+     */
     $scope.resultSearch = [];
+
+    /**
+     * Не отфильтрованный список всех пользователей
+     * @type {Array}
+     */
     $scope.usersCollections = [];
 
+    /**
+     * Переход на страницу профиля пользователя
+     * @todo переменовать в toLocationProfile например
+     * @param  {[type]} userItem [description]
+     * @return {[type]}          [description]
+     */
     $scope.onCompare = function(userItem) {
         $scope.resultSearch = [];
         $scope.searchText = "";
         $location.path("/profile/").search({userItem: user.sguid});
     }
 
+    /**
+     * Переход на страницу расширенного поиска
+     * @return {[type]} [description]
+     */
     $scope.onAdvanceSearch = function() {
         $location.path("/search").search({text: $scope.searchText});
 
@@ -3409,6 +3440,11 @@ function SearchController($scope, User, $rootScope, $location) {
         $scope.searchText = "";
     }
 
+    /**
+     * Скрывать поиск при клике вне него
+     * @todo по хорошему надо переписать!
+     * @return {[type]} [description]
+     */
     $("body").on("click", function() {
         if($scope.id != "adv") {
             $scope.$apply(function() {
@@ -3447,6 +3483,7 @@ function SearchController($scope, User, $rootScope, $location) {
     $scope.onSearch = function() {
         if($scope.searchText.length > 0) {
             $rootScope.$broadcast('loaderShow');
+            $rootScope.$broadcast('updateSearchText', {text: $scope.searchText});
             $scope.resultSearch = [];
             if($scope.usersCollections.length == 0) {
                 User.for_main({}, {}, function(data) {
@@ -3647,6 +3684,10 @@ function SearchAdvanceController($scope, $location, $rootScope, User, Profession
         $scope.cityList = data;
     }
 
+    /**
+     * Транслирует модель параметров в тот вид что нужен backend-у
+     * @return {[type]} [description]
+     */
     $scope.translateParamsToServer_ = function() {
         var params = {};
         if($scope.search.career && $scope.search.career.sguid) {
@@ -3662,7 +3703,7 @@ function SearchAdvanceController($scope, $location, $rootScope, User, Profession
             params["profession_guid"] = $scope.search.profession.sguid;
         }
         if($scope.search.league && $scope.search.league.sguid) {
-            params["league"] = $scope.search.league;
+            params["league_guid"] = $scope.search.league.sguid;
         }
         if($scope.search.birthday_from) {
             params["birthday_from"] = moment($scope.search.birthday_from).format("DD/MM/YYYY");
@@ -3676,27 +3717,53 @@ function SearchAdvanceController($scope, $location, $rootScope, User, Profession
         if($scope.search.maxScore) {
             params["points_till"] = $scope.search.maxScore;
         }
+        if($scope.searchText) {
+            params["name"] = $scope.searchText;
+        }
 
         return params;
     }
 
+    /**
+     * Функция расширенного поиска
+     * @return {[type]} [description]
+     */
     $scope.advanceSearch = function() {
         $rootScope.$broadcast('loaderShow');
 
         User.search({}, $scope.translateParamsToServer_(), $scope.advanceSearchCallback_);
     }
 
+    /**
+     * Callback для поиска
+     * @param  {[type]} data [description]
+     * @return {[type]}      [description]
+     */
     $scope.advanceSearchCallback_ = function(data) {
         $rootScope.$broadcast('loaderHide');
         $rootScope.$broadcast('updateSearchList', {id: "adv", data: data});
     }
 
+    /**
+     * Параметры календарей
+     * @type {Object}
+     */
     $scope.dateOptions = {
         changeYear: true,
         changeMonth: true,
         yearRange: '1900:-0',
         dateFormat: 'dd/mm/yy'
     };
+
+    /**
+     * Событие изменения в поле поиска текста
+     * @param  {[type]} $event  [description]
+     * @param  {[type]} message [description]
+     * @return {[type]}         [description]
+     */
+    $scope.$on('updateSearchText', function($event, message) {
+        $scope.searchText = message.text;
+    });
 }
 
 /**
