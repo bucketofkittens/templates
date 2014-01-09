@@ -625,7 +625,6 @@ function NeedsAndGoalsController($scope, Goals, Criterion, AuthUser, UserCriteri
     $scope.needs = [];
     $scope.currentGoal = null;
 
-    $rootScope.$broadcast('loaderShow');
 
     $scope.$watch('workspace.needs', function (newVal, oldVal, scope) {
         if($scope.workspace.needs) {
