@@ -3015,11 +3015,11 @@ table#graphs {
     #header {
         width: 100% !important;
     }
-    #content .controller__login .content_wrap {
-        margin-left: -100px;
-        width: 1020px;
-    }
     #content {
+        &.controller__login .content_wrap {
+            margin-left: -100px;
+            width: 1020px;
+        } 
         .content_wrap {
             width: 100%;
             .searchfull {
@@ -3096,9 +3096,20 @@ table#graphs {
             .pmain.pro .il img {
                 width: 35px;
             }
-            .crits h5 a {
-                width: 220px;
-            }
+            .crits {
+                h5 a {
+                    width: 220px;
+                }
+                .criterion li .bord .crp .tab li {
+                    padding: 0px 5px;
+                    &:first-child {
+                        width: 0px;
+                    }
+                    i:last-child {
+                        padding-right: 3px;
+                    }
+                }
+            } 
         }
         .user_right {
             width: 260px;
