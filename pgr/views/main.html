@@ -1,7 +1,5 @@
 <section
 	msd-wheel="onWheel($event, $delta, $deltaX, $deltaY)"
-	hm-dragleft="onDrag($event)"
-	hm-dragright="onDrag($event)"
 	class="gallery" ng-controller="GalleryController">
 
    <div ng-click="onLogin()" class="rate-yourself" ng-if="!workspace.user">
@@ -9,17 +7,25 @@
       <h2>where are you</h2>
    </div>
 
-	<div isotope-container iso-options="opts" ng-style="{left: scrollDelta}" >
+	<div 
+		isotope-container 
+		iso-options="opts" 
+		ng-style="{left: scrollDelta}" >
 		<div
-			ng-mouseenter="onUserMouseEnter(userItem, $event)"
-			ng-mouseleave="onUserMouseLeave(userItem, $event)"
 			ng-click="onUserClick(userItem, $event)"
-			ng-class="{big: userItem.hover, 'full-animate': userItem.fullAnimate}"
-			class="league_{{userItem.league.name}} isotope" 
+			ng-class="{big: userItem.big}"
+			class="isotope full-animate l_{userItem.league.name}"
 			ng-repeat="userItem in users"
-			hm-dragleft="onDragLeft($event)"
-			hm-dragright="onDragRight($event)" >
-			<div set-width class="wr" back-img="{{userItem.avatar}}" ng-click="switchState(userItem)" >
+			isotope-item
+			
+			ng-style="{width: userItem.size, height: userItem.size}" >
+			<div 	
+				class="wr" 
+				ng-style="{width: userItem.size, height: userItem.size}" 
+				back-img="{{userItem.avatar}}" 
+				ng-class="{big: userItem.big}"
+				ng-click="switchState(userItem)"
+				set-width >
 				<i>{{userItem.points}}</i>
 				<div class="sub">
 					<b>{{userItem.name}} <br /><s>{{userItem.league.name}} league</s></b>

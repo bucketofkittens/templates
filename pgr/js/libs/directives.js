@@ -115,42 +115,9 @@ pgrModule.directive('caruselPosition', function($window) {
 pgrModule.directive('setWidth', function() {
   return {
     link: function(scope, element, attrs) {
-      var getSize = 0;
-      var pElement = $(element).parent().parent();
-      var parentElement = $(element).parent();
-      getSize = "210px";
 
-      if(scope.userItem.league) {
-        if(
-          !scope.userItem.league || 
-          scope.userItem.league.name == "10" ||
-          scope.userItem.league.name == "9" ||
-          scope.userItem.league.name == "8") {
-          getSize = "70px";
-        }
-
-        if(
-          scope.userItem.league.name == "7" || 
-          scope.userItem.league.name == "6" ||
-          scope.userItem.league.name == "5") {
-          getSize = "140px";
-        }
-      }
-
-      $(element).width(getSize);
-      $(element).height(getSize);
-
-      parentElement.width(getSize);
-      parentElement.height(getSize);
-
-      setTimeout(function() {
-        parentElement.addClass("show");
-        pElement.isotope( 'insert', parentElement);
-      }, 0);
-
-      scope.$watch("userItem.hover", function() {
-        console.log(scope.userItem.hover);
-        if(scope.userItem.hover) {
+      scope.$watch("userItem.big", function() {
+        if(scope.userItem.big) {
           var newSize = $(window).height()/100*30;
           var oldSize = $(element).height();
           var parentElement = $(element).parent();

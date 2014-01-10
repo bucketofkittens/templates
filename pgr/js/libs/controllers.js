@@ -1694,6 +1694,15 @@ function MainController($scope, Leagues, User, $rootScope, $location, $timeout, 
     $scope.total_count = 0;
     $scope.users = [];
 
+    window.onorientationchange = function() {
+        angular.forEach($scope.users, function(value, key) {
+            value.big = false;
+        });
+        setTimeout(function() {
+          $(".isotope").isotope('reLayout');
+        }, 500);
+    };
+
     /**
      * Забираем список пользователей
      * @return {object} 
@@ -1710,6 +1719,14 @@ function MainController($scope, Leagues, User, $rootScope, $location, $timeout, 
                 if(!value.league) {
                     value.league = {name: "10"};
                 }
+                value.size = 270;
+                if(!value.league || value.league.name == "10" || value.league.name == "9" || value.league.name == "8") {
+                    value.size = 70;
+                }
+                if(value.league.name == "7" || value.league.name == "6" || value.league.name == "5") {
+                    value.size = 140;
+                }
+                value.size += "px";
                 $scope.users.push(value);
             });
 
@@ -1726,8 +1743,6 @@ function MainController($scope, Leagues, User, $rootScope, $location, $timeout, 
      */
     $scope.getPublishedUser();
     
-    
-
     /**
      * Событие перехода к пользователю
      * @param  {object} user
@@ -2189,20 +2204,15 @@ function GalleryController($scope, localize, Leagues, User, AuthUser, $element, 
      * @return {object} 
      */
     $scope.onUserClick = function(user, $event) {
-        console.log($event);
         var target = $event.toElement ? $event.toElement : $event.target;
         if(!target.classList.contains('navigate')) {
             angular.forEach($scope.users, function(item, key) {
                 if(item != user) {
-                    item.hovered = false;
-                    item.hover = false;
+                    item.big = false;
                 }
-                item.fullAnimate = true;
             });
 
-            $timeout(function() {
-                user.hover = user.hover ? false : true;
-            }, 0);
+            user.big = user.big ? false : true;
         }
     }
 
@@ -2592,6 +2602,17 @@ function RootController($scope, $facebook, AuthUser, User, $rootScope, Needs, So
     $scope.careerList = [];
 
     /**
+     * Показываем все елементы списка.
+     * @param  {[type]} listName [description]
+     * @return {[type]}          [description]
+     */
+    $scope.showAllListElement = function(listName) {
+        angular.forEach($scope[listName], function(value, key){
+            value.show = true;
+        });
+    }
+
+    /**
      * Получаем список карьер когда загружены needs
      * @param  {[type]} newVal [description]
      * @param  {[type]} oldVal [description]
@@ -2609,8 +2630,11 @@ function RootController($scope, $facebook, AuthUser, User, $rootScope, Needs, So
             $scope.careerList = curNeed.goals.filter(function(value) {
                 if(value.sguid != "170689401829983233") { return value }
             });
+            $scope.showAllListElement("careerList");
         }
     });
+
+    
 }
 
 function LeaguesController($scope, Leagues, User) {
@@ -3576,6 +3600,54 @@ function SearchAdvanceController($scope, $location, $rootScope, User, Profession
     $scope.cityList = {};
 
     /**
+     * Список стран
+     * @type {Object}
+     */
+    $scope.countriesList = {};
+
+    /**
+     * Скрывать все списоки при клике вне него
+     * @todo по хорошему надо переписать!
+     * @return {[type]} [description]
+     */
+    $("body").on("click", function() {
+        $scope.$apply(function() {
+            $scope.shows = {
+                career: false,
+                profession: false,
+                country: false,
+                city: false, 
+                league: false
+            }
+        });    
+    });
+
+    /**
+     * Показываем все елементы списка.
+     * @param  {[type]} listName [description]
+     * @return {[type]}          [description]
+     */
+    $scope.showAllListElement = function(listName) {
+        angular.forEach($scope[listName], function(value, key){
+            value.show = true;
+        });
+    }
+
+    /**
+     * Забираем список стран в переменную когда он загрузится в другом контроллере
+     * @param  {[type]} newVal [description]
+     * @param  {[type]} oldVal [description]
+     * @param  {[type]} scope  [description]
+     * @return {[type]}        [description]
+     */
+    $scope.$watch("workspace.countries", function (newVal, oldVal, scope) {
+        if(newVal) {
+            $scope.countriesList = newVal;
+            $scope.showAllListElement('countriesList');
+        }
+    });
+
+    /**
      * Метод очищает все текущие выбранные значения в форме
      * @return {[type]} [description]
      */
@@ -3620,6 +3692,24 @@ function SearchAdvanceController($scope, $location, $rootScope, User, Profession
     }
 
     /**
+     * Показываем выпадающий спслк
+     * @param  {[type]} param [description]
+     * @return {[type]}       [description]
+     */
+    $scope.enableShowState = function(param) {
+        $scope.shows[param] = true;
+    }
+
+    /**
+     * Убираем выпадающий спслк
+     * @param  {[type]} param [description]
+     * @return {[type]}       [description]
+     */
+    $scope.disableShowState = function(param) {
+        $scope.shows[param] = false;
+    }
+
+    /**
      * Изменяем карьеру
      * @param  {[type]} paramName [description]
      * @param  {[type]} value     [description]
@@ -3632,7 +3722,6 @@ function SearchAdvanceController($scope, $location, $rootScope, User, Profession
         // очищаем профессию если сменилась карьера
         $scope.selectParam("profession", "");
         $scope.toggleShowState("profession");
-        
     }
 
     /**
@@ -3667,6 +3756,7 @@ function SearchAdvanceController($scope, $location, $rootScope, User, Profession
      */
     $scope.getProfessionByCareerCallback_ = function(data) {
         $scope.professionList = data;
+        $scope.showAllListElement('professionList');
     }
 
     /**
@@ -3686,6 +3776,7 @@ function SearchAdvanceController($scope, $location, $rootScope, User, Profession
      */
     $scope.getCityByContryCallback_ = function(data) {
         $scope.cityList = data;
+        $scope.showAllListElement('cityList');
     }
 
     /**
@@ -3769,6 +3860,33 @@ function SearchAdvanceController($scope, $location, $rootScope, User, Profession
     $scope.$on('updateSearchText', function($event, message) {
         $scope.searchText = message.text;
     });
+
+    /**
+     * Фильтрует и показывает указанный выпадающий список
+     * @param  {[type]} listName [description]
+     * @return {[type]}          [description]
+     */
+    $scope.filteredList = function(listName, filteredText, showParam) {
+        var countView = 0;
+        if($scope[listName].length > 0 && filteredText.length > 0) {
+            angular.forEach($scope[listName], function(value, key) {
+                var reg = new RegExp(filteredText, "i");
+                if(reg.test(value.name)) {
+                    $scope.enableShowState(showParam);
+                    value.show = true;
+                    countView += 1;
+                } else {
+                    value.show = false;
+                }
+            });
+            if(countView == 0) {
+                $scope.disableShowState(showParam);
+            }
+        } else {
+            $scope.showAllListElement(listName);
+            $scope.disableShowState(showParam);
+        }
+    }
 }
 
 /**

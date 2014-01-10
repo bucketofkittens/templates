@@ -32,11 +32,12 @@
 			<input 
 				type="text" 
 				ng-model="search.career.name" 
-				class="search" />
+				class="search"
+				ng-change="filteredList('careerList', search.career.name, 'career')" />
 			<input type="button" class="searcher" ng-click="toggleShowState('career')" />
 			<img src="./images/fusedel.png" ng-click="selectParam('career', '', true)">
 			<ul class="proffesion_list" ng-class="{show: shows.career}">
-				<li ng-repeat="(key, value) in careerList" ng-click="selectCareerParam('career', value)">{{value.name}}</li>
+				<li ng-if="value.show" ng-repeat="(key, value) in careerList" ng-click="selectCareerParam('career', value)">{{value.name}}</li>
 			</ul>
 		</div>
 		<div>
@@ -44,11 +45,12 @@
 			<input 
 				type="text" 
 				ng-model="search.profession.name" 
-				class="search" />
+				class="search"
+				ng-change="filteredList('professionList', search.profession.name, 'profession')" />
 			<input type="button" class="searcher" ng-click="toggleShowState('profession')" />
 			<img src="./images/fusedel.png" ng-click="selectParam('profession', '', true)">
 			<ul class="proffesion_list" ng-class="{show: shows.profession}">
-				<li ng-repeat="(key, value) in professionList" ng-click="selectParam('profession', value)">{{value.name}}</li>
+				<li ng-if="value.show" ng-repeat="(key, value) in professionList" ng-click="selectParam('profession', value)">{{value.name}}</li>
 			</ul>
 		</div>
 	</div>
@@ -58,11 +60,12 @@
 			<input 
 				type="text" 
 				ng-model="search.country.name" 
-				class="search" />
+				class="search"
+				ng-change="filteredList('countriesList', search.country.name, 'country')" />
 			<input type="button" class="searcher" ng-click="toggleShowState('country')" />
 			<img src="./images/fusedel.png" ng-click="selectParam('country', '', true)">
 			<ul class="proffesion_list" ng-class="{show: shows.country}">
-				<li ng-repeat="(key, value) in workspace.countries" ng-click="selectContryParam('country', value)">{{value.name}}</li>
+				<li ng-if="value.show" ng-repeat="(key, value) in countriesList" ng-click="selectContryParam('country', value)">{{value.name}}</li>
 			</ul>
 		</div>
 		<div>
@@ -70,11 +73,12 @@
 			<input 
 				type="text" 
 				ng-model="search.city.name" 
-				class="search" />
+				class="search"
+				ng-change="filteredList('cityList', search.city.name, 'city')" />
 			<input type="button" class="searcher" ng-click="toggleShowState('city')" />
 			<img src="./images/fusedel.png" ng-click="selectParam('city', '', true)">
 			<ul class="proffesion_list" ng-class="{show: shows.city}">
-				<li ng-repeat="(key, value) in cityList" ng-click="selectParam('city', value)">{{value.name}}</li>
+				<li ng-if="value.show" ng-repeat="(key, value) in cityList" ng-click="selectParam('city', value)">{{value.name}}</li>
 			</ul>
 		</div>
 	</div>
