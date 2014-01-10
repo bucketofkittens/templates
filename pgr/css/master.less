@@ -590,7 +590,6 @@ body {
                                                 i {
                                                     display: block;
                                                     cursor: default;
-                                                    word-break: break-all;
                                                     position: relative;
                                                     top: -3px;
                                                     word-break: normal;
@@ -601,6 +600,9 @@ body {
                                                 }
                                                 &:first-child {
                                                     width: 20px;
+                                                }
+                                                &:last-child i {
+                                                    word-break: break-all;
                                                 }
                                             }
                                         }
@@ -1047,7 +1049,6 @@ body {
                                         i {
                                             display: block;
                                             cursor: pointer;
-                                            word-break: break-all;
                                             position: relative;
                                             top:-3px;
                                             word-break: normal;
@@ -1059,6 +1060,9 @@ body {
                                         &:first-child {
                                             width: 5px;
                                         }  
+                                        &:last-child i {
+                                            word-break: break-all;
+                                        }
                                     }
                                 }
                                 span {
@@ -3120,8 +3124,9 @@ table#graphs {
                     &:first-child {
                         width: 0px;
                     }
-                    i:last-child {
+                    &:last-child i {
                         padding-right: 3px;
+                        word-break: break-all;
                     }
                 }
             } 
