@@ -114,7 +114,7 @@
 			<input type="button" class="searcher" ng-click="toggleShowState('league')" />
 			<img src="./images/fusedel.png" ng-click="selectParam('league', '', true)">
 			<ul class="proffesion_list" ng-class="{show: shows.league}">
-				<li ng-repeat="(key, value) in workspace.leagues" ng-click="selectParam('league', value)">{{value.name}}</li>
+				<li ng-repeat="(key, value) in workspace.leagues" ng-click="selectLeagueParam('league', value)">{{value.name}}</li>
 			</ul>
 			
 		</div>

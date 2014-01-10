@@ -3610,16 +3610,19 @@ function SearchAdvanceController($scope, $location, $rootScope, User, Profession
      * @todo по хорошему надо переписать!
      * @return {[type]} [description]
      */
-    $("body").on("click", function() {
-        $scope.$apply(function() {
-            $scope.shows = {
-                career: false,
-                profession: false,
-                country: false,
-                city: false, 
-                league: false
-            }
-        });    
+    $("body").on("click", function(e) {
+        if(!$(e.target).hasClass("searcher") && !$(e.target).hasClass("search")) {
+            $scope.$apply(function() {
+                $scope.shows = {
+                    career: false,
+                    profession: false,
+                    country: false,
+                    city: false, 
+                    league: false
+                }
+            });  
+        }
+          
     });
 
     /**
@@ -3646,6 +3649,36 @@ function SearchAdvanceController($scope, $location, $rootScope, User, Profession
             $scope.showAllListElement('countriesList');
         }
     });
+
+    /**
+     * Событие изменения maxScore
+     * @param  {[type]} newVal [description]
+     * @param  {[type]} oldVal [description]
+     * @param  {[type]} scope  [description]
+     * @return {[type]}        [description]
+     */
+    $scope.$watch("search.minScore", function (newVal, oldVal, scope) {
+        $scope.collapseLeague();
+    });
+
+    /**
+     * Событие изменения maxScore
+     * @param  {[type]} newVal [description]
+     * @param  {[type]} oldVal [description]
+     * @param  {[type]} scope  [description]
+     * @return {[type]}        [description]
+     */
+    $scope.$watch("search.maxScore", function (newVal, oldVal, scope) {
+        $scope.collapseLeague();
+    });
+
+    /**
+     * Скидываем лигу
+     * @return {[type]} [description]
+     */
+    $scope.collapseLeague = function() {
+        $scope.search.league = {};
+    }
 
     /**
      * Метод очищает все текущие выбранные значения в форме
@@ -3680,6 +3713,21 @@ function SearchAdvanceController($scope, $location, $rootScope, User, Profession
         if(!isNotToggle) {
             $scope.toggleShowState(paramName);   
         }
+    }
+
+    /**
+     * Указывает новую лигу
+     * @param  {[type]}  paramName   [description]
+     * @param  {[type]}  value       [description]
+     * @param  {Boolean} isNotToggle [description]
+     * @return {[type]}              [description]
+     */
+    $scope.selectLeagueParam = function(paramName, value, isNotToggle) {
+        $scope.selectParam(paramName, value);
+
+        var leagueName = 10 - parseInt(value.name);
+        $scope.search.minScore = leagueName*10000;
+        $scope.search.maxScore = (leagueName+1)*10000;
     }
 
     /**
