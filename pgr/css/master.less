@@ -1276,6 +1276,10 @@ body {
     }
        > div {
             overflow: hidden;
+            -webkit-transform : translateZ(0); 
+            -o-transform : translateZ(0); 
+            -moz-transform : translateZ(0); 
+            transform : translateZ(0);
             &.show {
                 display: block;
             }
@@ -1976,11 +1980,11 @@ ng-form:not(.ng-pristine) {
 }
 
 .isotope .isotope-item {
-  -webkit-transition-property: -webkit-transform, opacity, margin, height, width;
-     -moz-transition-property:    -moz-transform, opacity, margin, height, width;
-      -ms-transition-property:     -ms-transform, opacity, margin, height, width;
-       -o-transition-property:      -o-transform, opacity, margin, height, width;
-          transition-property:         transform, opacity, margin, height, width;
+  -webkit-transition-property: height, width, margin;
+     -moz-transition-property: height, width, margin;
+      -ms-transition-property: height, width, margin;
+       -o-transition-property: height, width, margin;
+          transition-property: height, width, margin;
 }
 
 /**** disabling Isotope CSS3 transitions ****/

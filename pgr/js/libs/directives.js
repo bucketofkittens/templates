@@ -118,6 +118,7 @@ pgrModule.directive('setWidth', function() {
 
       scope.$watch("userItem.big", function() {
         if(scope.userItem.big) {
+
           var newSize = $(window).height()/100*30;
           var oldSize = $(element).height();
           var parentElement = $(element).parent();
@@ -151,6 +152,7 @@ pgrModule.directive('setWidth', function() {
           }
         } else {
           if(scope.userItem.isUpdateSize) {
+
             var newSize = scope.userItem.oldSize;
             var parentElement = $(element).parent();
 

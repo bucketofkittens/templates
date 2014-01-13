@@ -16,8 +16,8 @@
 			ng-class="{big: userItem.big}"
 			class="isotope full-animate l_{userItem.league.name}"
 			ng-repeat="userItem in users"
+			bindonce
 			isotope-item
-			
 			ng-style="{width: userItem.size, height: userItem.size}" >
 			<div 	
 				class="wr" 

@@ -55,7 +55,8 @@ var pgrModule = angular.module(
         'ui.keypress',
         'vcRecaptcha',
         'rzModule',
-        'ngScrollEvent'
+        'ngScrollEvent',
+        'pasvaz.bindonce'
 		]
 	);
 

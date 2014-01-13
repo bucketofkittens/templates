@@ -1731,6 +1731,10 @@ function MainController($scope, Leagues, User, $rootScope, $location, $timeout, 
             });
 
             $scope.view_count += $scope.limit;
+            var isiPad = navigator.userAgent.match(/iPad/i) != null;
+            if(isiPad) {
+                $scope.total_count = 30;
+            }
             if($scope.view_count < $scope.total_count) {
                 $scope.skip += $scope.limit;
                 $scope.getPublishedUser();
@@ -2579,7 +2583,6 @@ function RootController($scope, $facebook, AuthUser, User, $rootScope, Needs, So
     
     $scope.gplusAuth = function(email, name) {
         Social.login({}, {email: email}, function(data) {
-            console.log(data);
             var updateUser = {};
             if(data.was_created) {
                 updateUser["name"] = name;

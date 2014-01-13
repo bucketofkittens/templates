@@ -39,6 +39,7 @@ module.exports = function(grunt) {
                 	'js/localize.js',
                     'js/lscache.js',
                     'js/rzslider.min.js',
+                    'js/bindonce.js',
                     'js/libs/*.js'
                 ],
                 dest: 'build/scripts.js'
