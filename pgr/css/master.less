@@ -2823,12 +2823,32 @@ sup.bidubi {
         div:last-child {
             float: right;
         }
-        slider {
+        rzslider {
             height: 2px;
             margin: 10px 0px 0px 0px;
             color: #dfdfdf;
+            span.bubble {
+                top: 10px;
+                color: #000000;
+                font-size: 12px;
+            }
             span.bar.selection {
-                background: #666666;
+                background: #000000;
+                position: relative;
+                top: -11px;
+            }
+            span.bar {
+                -webkit-border-radius: 1em/1em;
+                border-radius: 1em/1em;
+                background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #c0c0c0), color-stop(1, #8d8d8d));
+                background: -webkit-linear-gradient(top, #c0c0c0 0, #8d8d8d 100%);
+                background: -moz-linear-gradient(top, #c0c0c0 0, #8d8d8d 100%);
+                background: -o-linear-gradient(top, #c0c0c0 0, #8d8d8d 100%);
+                background: -ms-linear-gradient(top, #c0c0c0 0, #8d8d8d 100%);
+                background: linear-gradient(top, #c0c0c0 0, #8d8d8d 100%);
+                -webkit-box-shadow: inset 2px 2px 5px;
+                box-shadow: inset 2px 2px 5px;
+                z-index: 0;
             }
             span.pointer {                
                 background-color: inherit;
@@ -2843,6 +2863,9 @@ sup.bidubi {
                 &:after {
                     display: none;
                 }
+            }
+            .bubble.limit {
+                display: none;
             }
         }
         &.fspb {     

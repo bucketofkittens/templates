@@ -120,7 +120,12 @@
 		</div>
 		<div>
 			<h6>Score</h6>
-			<slider floor="0" ceiling="100000" ng-model-low="search.minScore" ng-model-high="search.maxScore"></slider>
+			<rzslider 
+				rz-slider-floor="0" 
+				rz-slider-ceil="100000" 
+				rz-slider-model="search.minScore" 
+				rz-slider-high="search.maxScore">
+			</rzslider>
 		</div>
 	</div>
 	<div class="fsp fspb">

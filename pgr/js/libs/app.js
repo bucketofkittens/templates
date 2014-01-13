@@ -39,6 +39,7 @@ var pgrModule = angular.module(
 		"ngCookies", 
 		"ngResource",
 		"ngAnimate",
+		"ngSanitize",
 		"localization", 
 		'route-segment', 
 		'view-segment', 
@@ -53,7 +54,7 @@ var pgrModule = angular.module(
         'ui.autocomplete',
         'ui.keypress',
         'vcRecaptcha',
-        'uiSlider',
+        'rzModule',
         'ngScrollEvent'
 		]
 	);

@@ -13,6 +13,7 @@ module.exports = function(grunt) {
                 	'js/angular.min.js',
                 	'js/angular-route.min.js',
                     'js/angular-animate.min.js',
+                    'js/angular-sanitize.min.js',
                 	'js/angular-resource.min.js',
                 	'js/angular-cookies.min.js',
                 	'js/angular-touch.min.js',
@@ -37,7 +38,7 @@ module.exports = function(grunt) {
                     'js/moment+langs.min.js',
                 	'js/localize.js',
                     'js/lscache.js',
-                    'js/angular-slider.min.js',
+                    'js/rzslider.min.js',
                     'js/libs/*.js'
                 ],
                 dest: 'build/scripts.js'
@@ -47,7 +48,7 @@ module.exports = function(grunt) {
                     "css/reset.css",
                     "css/jquery-ui-1.10.3.custom.min.css",
                     "css/jquery.Jcrop.min.css",
-                    "css/angular-slider.min.css",
+                    "css/rzslider.min.css",
                     "css/fonts.css",
                     "css/master.css"
                 ],

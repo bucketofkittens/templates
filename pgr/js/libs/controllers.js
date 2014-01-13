@@ -3723,18 +3723,22 @@ function SearchAdvanceController($scope, $location, $rootScope, User, Profession
      * @return {[type]}              [description]
      */
     $scope.selectLeagueParam = function(paramName, value, isNotToggle) {
-        $scope.selectParam(paramName, value);
 
         var leagueName = 10 - parseInt(value.name);
         $scope.search.minScore = leagueName*10000;
         $scope.search.maxScore = (leagueName+1)*10000;
+
+        $timeout(function(){
+            $scope.selectParam(paramName, value);
+            $scope.disableShowState(paramName);
+        }, 0);
     }
 
     /**
      * Меняем постояние параметра param на обратное
      * @param  {[type]} param [description]
      * @return {[type]}       [description]
-     */
+     */ 
     $scope.toggleShowState = function(param) {
         $scope.shows[param] = $scope.shows[param] ? false : true;
     }
