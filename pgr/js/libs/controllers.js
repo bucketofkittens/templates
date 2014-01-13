@@ -1286,7 +1286,7 @@ function LoginController($scope, Sessions, $rootScope, User, Social, $facebook, 
                          * @type {[type]}
                          */
 
-                        $rootScope.$broadcast('onSignin', {sguid: data.guid});
+                        $rootScope.$broadcast('onSignin', {sguid: data.guid, token: data.token});
                         $rootScope.$broadcast('loaderHide');
                     } else {
                         /**
@@ -1323,7 +1323,7 @@ function LoginController($scope, Sessions, $rootScope, User, Social, $facebook, 
                                                 "password": ""
                                             }), function(data) {
                                                 if(data.success) {
-                                                    $rootScope.$broadcast('onSignin', {sguid: data.guid});
+                                                    $rootScope.$broadcast('onSignin', {sguid: data.guid, token: data.token});
                                                     $rootScope.$broadcast('loaderHide');
                                                 }
                                             });
@@ -1347,13 +1347,12 @@ function LoginController($scope, Sessions, $rootScope, User, Social, $facebook, 
      * @return {[type]}        [description]
      */
     $scope.onSingin = function(data) {
-        console.log($scope.login.password);
         Sessions.signin({}, $.param({
             "email": $scope.login.email,
             "password": $scope.login.password
         }), function(data) {
             if(data.success) {
-                $rootScope.$broadcast('onSignin', {sguid: data.guid, isSocial: true});
+                $rootScope.$broadcast('onSignin', {sguid: data.guid, isSocial: true, token: data.token});
                 $scope.show = false;
             } else {
                 $scope.error = data.message;
@@ -1470,7 +1469,8 @@ function LoginController($scope, Sessions, $rootScope, User, Social, $facebook, 
                         $rootScope.$broadcast('onSignin', {
                             sguid: data.guid, 
                             isSocial: true,
-                            update: updateUser
+                            update: updateUser, 
+                            token: data.token
                         });
                         $rootScope.$broadcast('loaderHide');
                         socialsAccess.live.isLoggined = true;
@@ -1479,7 +1479,7 @@ function LoginController($scope, Sessions, $rootScope, User, Social, $facebook, 
             },
             function (sessionError) {
                 Social.login({}, {email: response.email}, function(data) {
-                    $rootScope.$broadcast('onSignin', {sguid: data.guid, isSocial: true});
+                    $rootScope.$broadcast('onSignin', {sguid: data.guid, isSocial: true, token: data.token});
                     $rootScope.$broadcast('loaderHide');
                     socialsAccess.facebook.isLoggined = true;
                 });
@@ -1499,7 +1499,8 @@ function LoginController($scope, Sessions, $rootScope, User, Social, $facebook, 
                 $rootScope.$broadcast('onSignin', {
                     sguid: data.guid, 
                     isSocial: true, 
-                    update: updateUser
+                    update: updateUser, 
+                    token: data.token
                 });
                 $rootScope.$broadcast('loaderHide');
                 socialsAccess.facebook.isLoggined = true;
@@ -2555,7 +2556,9 @@ function RootController($scope, $facebook, AuthUser, User, $rootScope, Needs, So
                 if(isNaN($scope.workspace.user.points)) {
                     $scope.workspace.user.points = 0;
                 }
-                AuthUser.set(message.sguid);
+
+                AuthUser.set(message.sguid, message.token);
+
                 if($scope.workspace.user.points == 0) {
                   $cookieStore.put("myProfileTab", 3);
                 } else {
@@ -2588,7 +2591,7 @@ function RootController($scope, $facebook, AuthUser, User, $rootScope, Needs, So
                 updateUser["name"] = name;
             }
 
-            $rootScope.$broadcast('onSignin', {sguid: data.guid, isSocial: true , update: updateUser});
+            $rootScope.$broadcast('onSignin', {sguid: data.guid, isSocial: true , update: updateUser, token: data.token});
             $rootScope.$broadcast('loaderHide');
 
         });

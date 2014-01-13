@@ -412,8 +412,13 @@ pgrModule.factory('AuthUser', function ($cookieStore) {
             return $cookieStore.get("user");
         }
 
-        this.set = function(guid) {
+        this.getToken = function() {
+            return $cookieStore.get("token");
+        }
+
+        this.set = function(guid, token) {
             $cookieStore.put("user", guid);
+            $cookieStore.put("token", token);
         }
 
         this.logout = function() {
