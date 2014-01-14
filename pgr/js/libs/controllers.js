@@ -3289,6 +3289,39 @@ function MyProfileController($scope, $rootScope, User, $location, $cookieStore, 
         $scope.tab = tab;
         $cookieStore.put("myProfileTab", tab);
     }
+
+    /**
+     * Рисуем dashboard
+     * @type {createjs}
+     */
+    $(window).on("load", function() {
+        var dashboard = new createjs.Stage("mydash_draw");
+        var dashboard_size = { width: $("#mydash_draw").width(), height: $("#mydash_draw").height() };
+        
+        /**
+         * Рисуем центральный круг
+         * @type {createjs}
+         */
+        var circle = new createjs.Shape();
+        var centerImg        = new Image();
+        centerImg.src    = "/images/db1.png";
+        centerImg.onload = function() {
+            var center = new createjs.Bitmap(centerImg);
+            center.x = dashboard_size.width/2-centerImg.width/2;
+            center.y = dashboard_size.height/2-centerImg.height/2;
+
+            var centerText = new createjs.Text($scope.workspace.user.points, "30px Courier", "#000000");
+            centerText.maxWidth = centerImg.width;
+            centerText.textAlign = "center";
+            centerText.x = dashboard_size.width/2-centerImg.width;
+            centerText.y = dashboard_size.height/2-centerImg.height/2;
+
+            dashboard.addChild(center);
+            dashboard.addChild(centerText);
+            dashboard.update();
+        };
+        
+    });
 }
 
 function ChangeEmailController($scope, User, $location, Sessions) {

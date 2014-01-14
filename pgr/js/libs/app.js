@@ -160,8 +160,8 @@ pgrModule.factory('httpRequestInterceptor', function () {
     		config.headers = {};
     	}
 
-    	config.headers['HTTP_AUTH_TOKEN'] = token;
-    	config.headers['REMOTE_USER'] = user;
+    	config.headers['AUTH_TOKEN'] = token.split('"').join("");
+    	config.headers['REMOTE_USER'] = user.split('"').join("");
       	return config;
     }
   };
