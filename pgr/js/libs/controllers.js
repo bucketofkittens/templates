@@ -3306,42 +3306,42 @@ function MyProfileController($scope, $rootScope, User, $location, $cookieStore, 
     });
 
     $scope.drawDashboard_ = function() {
-        var dashboard = new createjs.Stage("mydash_draw");
-        var dashboard_size = { width: $("#mydash_draw").width(), height: $("#mydash_draw").height() };
-        
-        /**
-         * Рисуем центральный круг
-         * @type {createjs}
-         */
-        var circle = new createjs.Shape();
-        var centerImg        = new Image();
-        centerImg.src    = "/images/db1.png";
-        centerImg.onload = function() {
-            var center = new createjs.Bitmap(centerImg);
-            center.x = dashboard_size.width/2-centerImg.width/2;
-            center.y = dashboard_size.height/2-centerImg.height/2;
+        if($scope.workspace.user && $scope.workspace.user.points) {
+            var dashboard = new createjs.Stage("mydash_draw");
+            var dashboard_size = { width: $("#mydash_draw").width(), height: $("#mydash_draw").height() };
+            
+            /**
+             * Рисуем центральный круг
+             * @type {createjs}
+             */
+            var circle = new createjs.Shape();
+            var centerImg        = new Image();
+            centerImg.src    = "/images/db1.png";
+            centerImg.onload = function() {
+                var container = new createjs.Container();
+                container.x = dashboard_size.width/2-centerImg.width/2;
+                container.y = dashboard_size.height/2-centerImg.height/2;
+                container.setBounds(0, 0, centerImg.width, centerImg.height);
 
-            if($scope.workspace.user && $scope.workspace.user.points) {
-                var centerText = new createjs.Text($scope.workspace.user.points, "30px Courier", "#000000");
-                centerText.maxWidth = centerImg.width;
-                centerText.textAlign = "center";
-                centerText.x = dashboard_size.width/2-centerImg.width;
-                centerText.y = dashboard_size.height/2-centerImg.height/2;
+                var center = new createjs.Bitmap(centerImg);
+                center.x = 0;
+                center.y = 0;
 
-                dashboard.addChild(center);
-                dashboard.addChild(centerText);
+                container.addChild(center);
+
+                var stepY = 40;
+                var centerText = new createjs.Text($scope.workspace.user.points, "25px 'Helvetica Neue Light'", "#000000");
+                centerText.y = stepY;
+                centerText.x = centerText.getBounds().width/2;
+
+                container.addChild(centerText);
+
+                dashboard.addChild(container);
                 dashboard.update();    
-            }
-        };
-    }
-
-    
-
-    $scope.$watch("tab", function (newVal, oldVal, scope) {
-        if(newVal == 2) {
-            $scope.drawDashboard_();
+                
+            };
         }
-    });
+    }
 }
 
 function ChangeEmailController($scope, User, $location, Sessions) {
