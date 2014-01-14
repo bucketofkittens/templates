@@ -3302,44 +3302,73 @@ function MyProfileController($scope, $rootScope, User, $location, $cookieStore, 
      * @type {createjs}
      */
     $(window).on("load", function() {
-        $scope.drawDashboard_();
+        var dashboard = new createjs.Stage("mydash_draw");
+        var dashboard_size = { width: $("#mydash_draw").width(), height: $("#mydash_draw").height() };
+
+        $scope.drawDashboard_(dashboard, dashboard_size);
     });
 
-    $scope.drawDashboard_ = function() {
+    $scope.drawAllPoints_ = function(dashboard, dashboard_size) {
+        /**
+         * Рисуем центральный круг
+         * @type {createjs}
+         */
+        var circle = new createjs.Shape();
+        var centerImg        = new Image();
+        centerImg.src    = "/images/db2.png";
+        centerImg.onload = function() {
+            var container = new createjs.Container();
+            container.x = dashboard_size.width/2-centerImg.width/2;
+            container.y = dashboard_size.height/2-centerImg.height/2;
+            container.setBounds(0, 0, centerImg.width, centerImg.height);
+
+            var centerImgContainer = new createjs.Bitmap(centerImg);
+            centerImgContainer.x = 0;
+            centerImgContainer.y = 0;
+
+            container.addChild(centerImgContainer);
+
+            dashboard.addChild(container);
+            dashboard.update();   
+        };
+    } 
+
+    $scope.drawCenter_ = function(dashboard, dashboard_size) {
+        /**
+         * Рисуем центральный круг
+         * @type {createjs}
+         */
+        var circle = new createjs.Shape();
+        var centerImg        = new Image();
+        centerImg.src    = "/images/db1.png";
+        centerImg.onload = function() {
+            var container = new createjs.Container();
+            container.x = dashboard_size.width/2-centerImg.width/2;
+            container.y = dashboard_size.height/2-centerImg.height/2;
+            container.setBounds(0, 0, centerImg.width, centerImg.height);
+
+            var centerImgContainer = new createjs.Bitmap(centerImg);
+            centerImgContainer.x = 0;
+            centerImgContainer.y = 0;
+
+            container.addChild(centerImgContainer);
+
+            var stepY = 40;
+            var centerText = new createjs.Text($scope.workspace.user.points, "25px 'Helvetica Neue Light'", "#000000");
+            centerText.y = stepY;
+            centerText.x = centerText.getBounds().width/2;
+
+            container.addChild(centerText);
+
+            dashboard.addChild(container);
+            dashboard.update();   
+        };
+    }
+
+    $scope.drawDashboard_ = function(dashboard, dashboard_size) {
         if($scope.workspace.user && $scope.workspace.user.points) {
-            var dashboard = new createjs.Stage("mydash_draw");
-            var dashboard_size = { width: $("#mydash_draw").width(), height: $("#mydash_draw").height() };
-            
-            /**
-             * Рисуем центральный круг
-             * @type {createjs}
-             */
-            var circle = new createjs.Shape();
-            var centerImg        = new Image();
-            centerImg.src    = "/images/db1.png";
-            centerImg.onload = function() {
-                var container = new createjs.Container();
-                container.x = dashboard_size.width/2-centerImg.width/2;
-                container.y = dashboard_size.height/2-centerImg.height/2;
-                container.setBounds(0, 0, centerImg.width, centerImg.height);
-
-                var center = new createjs.Bitmap(centerImg);
-                center.x = 0;
-                center.y = 0;
-
-                container.addChild(center);
-
-                var stepY = 40;
-                var centerText = new createjs.Text($scope.workspace.user.points, "25px 'Helvetica Neue Light'", "#000000");
-                centerText.y = stepY;
-                centerText.x = centerText.getBounds().width/2;
-
-                container.addChild(centerText);
-
-                dashboard.addChild(container);
-                dashboard.update();    
-                
-            };
+            $scope.drawCenter_(dashboard, dashboard_size);
+            $scope.drawAllPoints_(dashboard, dashboard_size);
         }
     }
 }
