@@ -3295,6 +3295,10 @@ function MyProfileController($scope, $rootScope, User, $location, $cookieStore, 
      * @type {createjs}
      */
     $(window).on("load", function() {
+        $scope.drawDashboard_();
+    });
+
+    $scope.drawDashboard_ = function() {
         var dashboard = new createjs.Stage("mydash_draw");
         var dashboard_size = { width: $("#mydash_draw").width(), height: $("#mydash_draw").height() };
         
@@ -3322,7 +3326,14 @@ function MyProfileController($scope, $rootScope, User, $location, $cookieStore, 
                 dashboard.update();    
             }
         };
-        
+    }
+
+    
+
+    $scope.$watch("tab", function (newVal, oldVal, scope) {
+        if(newVal == 2) {
+            $scope.drawDashboard_();
+        }
     });
 }
 
