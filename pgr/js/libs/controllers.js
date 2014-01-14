@@ -2726,7 +2726,14 @@ function CropImageController($scope, $rootScope) {
             data.append("picture", img);
             data.append("owner_type", 0);
 
+            var token = getCookie('token') ? getCookie('token') : "";
+            var user = getCookie('user') ? getCookie('user') : "";
+
             $.ajax({
+                beforeSend: function(xhrObj){
+                    xhrObj.setRequestHeader("AUTH_TOKEN",token.split('"').join(""));
+                    xhrObj.setRequestHeader("REMOTE_USER",user.split('"').join(""));
+                },
                 url: host+'/pictures/'+$scope.user.sguid,
                 data: data,
                 cache: false,
