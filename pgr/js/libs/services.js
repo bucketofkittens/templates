@@ -431,7 +431,7 @@ pgrModule.factory('AuthUser', function ($cookieStore) {
 
 pgrModule.factory('UserCriteriaValue', function ($resource) {
     return $resource(
-        debugHost+'/user_criterion_values/:id', 
+        host+'/user_criterion_values/:id', 
         {id:'@id'}, 
         {
             create: {method: 'POST',  headers : {'Content-Type': 'application/x-www-form-urlencoded'}},

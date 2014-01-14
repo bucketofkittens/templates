@@ -3310,15 +3310,17 @@ function MyProfileController($scope, $rootScope, User, $location, $cookieStore, 
             center.x = dashboard_size.width/2-centerImg.width/2;
             center.y = dashboard_size.height/2-centerImg.height/2;
 
-            var centerText = new createjs.Text($scope.workspace.user.points, "30px Courier", "#000000");
-            centerText.maxWidth = centerImg.width;
-            centerText.textAlign = "center";
-            centerText.x = dashboard_size.width/2-centerImg.width;
-            centerText.y = dashboard_size.height/2-centerImg.height/2;
+            if($scope.workspace.user && $scope.workspace.user.points) {
+                var centerText = new createjs.Text($scope.workspace.user.points, "30px Courier", "#000000");
+                centerText.maxWidth = centerImg.width;
+                centerText.textAlign = "center";
+                centerText.x = dashboard_size.width/2-centerImg.width;
+                centerText.y = dashboard_size.height/2-centerImg.height/2;
 
-            dashboard.addChild(center);
-            dashboard.addChild(centerText);
-            dashboard.update();
+                dashboard.addChild(center);
+                dashboard.addChild(centerText);
+                dashboard.update();    
+            }
         };
         
     });
