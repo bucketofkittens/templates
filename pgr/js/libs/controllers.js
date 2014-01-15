@@ -3391,7 +3391,7 @@ function MyProfileController($scope, $rootScope, User, $location, $cookieStore, 
                     {x: 0, y: 0}, 
                     [preload.getResult("db2"), preload.getResult("db2p")],
                     null,
-                    {x: 3, y: 5}
+                    {x: 8, y: 7}
                 );
                 $scope.drawSegmentPoints_(
                     dashboard, 
@@ -3399,7 +3399,7 @@ function MyProfileController($scope, $rootScope, User, $location, $cookieStore, 
                     {x: 0, y: 0}, 
                     [preload.getResult("db3"), preload.getResult("db3p")],
                     {x: 200, y: 100},
-                    {x: 5, y: 3}
+                    {x: 9, y: 6}
                 );
             });
             preload.loadManifest(manifest);
