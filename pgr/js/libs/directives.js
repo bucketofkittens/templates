@@ -172,6 +172,8 @@ pgrModule.directive('mydash', function() {
 
           dashboard.addChild(container);
           dashboard.update();
+
+
       } 
 
       scope.drawCenter_ = function(dashboard, dashboard_size) {
@@ -194,9 +196,9 @@ pgrModule.directive('mydash', function() {
               centerImgContainer.y = 0;
 
               container.addChild(centerImgContainer);
-
+              //scope.workspace.user.points
               var stepY = 40;
-              var centerText = new createjs.Text(scope.workspace.user.points, "25px 'Helvetica Neue Light'", "#000000");
+              var centerText = new createjs.Text("", "25px 'Helvetica Neue Light'", "#000000");
               centerText.y = stepY;
               centerText.x = centerText.getBounds().width/2;
 
