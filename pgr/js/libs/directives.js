@@ -139,6 +139,23 @@ pgrModule.directive('masonry', function() {
 pgrModule.directive('mydash', function() {
   return {
     link: function(scope, element, attrs) {
+      scope.centerTextDraw = null;
+
+      scope.$watch("workspace.user.points", function (newVal, oldVal, scope) {
+        if(newVal && newVal > 0) {
+          if(scope.centerTextDraw) {
+            var stepY = 40;
+            scope.centerTextDraw.text = scope.workspace.user.points;
+            scope.centerTextDraw.y = stepY;
+            scope.centerTextDraw.x = scope.centerTextDraw.getBounds().width/2;
+            scope.dashboard.update();  
+          } else {
+            scope.drawFullDashboard_(); 
+          }
+          
+        }
+      });
+
       scope.drawSegmentPoints_ = function(dashboard, dashboard_size, positions, images, specialPosition, dotCorruptions) {
           var container = new createjs.Container();
           var centerImg        = images[0];
@@ -160,7 +177,7 @@ pgrModule.directive('mydash', function() {
           container.addChildAt(centerImgContainer, 0);
           dashboard.update();
 
-           var centerImgDotContainer = new createjs.Bitmap(centerDotImg);
+          var centerImgDotContainer = new createjs.Bitmap(centerDotImg);
           centerImgDotContainer.x = dotCorruptions.x;
           centerImgDotContainer.y = dotCorruptions.y;
 
@@ -197,15 +214,24 @@ pgrModule.directive('mydash', function() {
 
               container.addChild(centerImgContainer);
               //scope.workspace.user.points
-              var stepY = 40;
+              
               var centerText = new createjs.Text("", "25px 'Helvetica Neue Light'", "#000000");
-              centerText.y = stepY;
-              centerText.x = centerText.getBounds().width/2;
+              if(scope.workspace.user && scope.workspace.user.points) {
+                var stepY = 40;
+                centerText.text = scope.workspace.user.points;
+                centerText.y = stepY;
+                centerText.x = centerText.getBounds().width/2;
+              }
+
+              //centerText.y = stepY;
+              //centerText.x = centerText.getBounds().width/2;
 
               container.addChild(centerText);
 
               dashboard.addChild(container);
-              dashboard.update();   
+              dashboard.update();
+
+              scope.centerTextDraw = centerText;
           };
       }
 
@@ -240,16 +266,22 @@ pgrModule.directive('mydash', function() {
             preload.loadManifest(manifest);
       }
 
-      $(window).on("load", function() {
+      scope.drawFullDashboard_ = function() {
         scope.dashboard = new createjs.Stage("mydash_draw");
         scope.dashboard_size = { width: 1000, height: 700 };
-        scope.drawDashboard_(scope.dashboard, scope.dashboard_size);
+        scope.drawDashboard_(scope.dashboard, scope.dashboard_size); 
+      }
+
+      $(window).on("load", function() {
+        if(!scope.dashboard) {
+          scope.drawFullDashboard_();
+        }
       });
 
       $(document).ready(function() {
-        scope.dashboard = new createjs.Stage("mydash_draw");
-        scope.dashboard_size = { width: 1000, height: 700 };
-        scope.drawDashboard_(scope.dashboard, scope.dashboard_size);
+        if(!scope.dashboard) {
+          scope.drawFullDashboard_(); 
+        }
       });
     }
   }
