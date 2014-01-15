@@ -136,6 +136,121 @@ pgrModule.directive('masonry', function() {
   }
 })
 
+pgrModule.directive('mydash', function() {
+  return {
+    link: function(scope, element, attrs) {
+      scope.drawSegmentPoints_ = function(dashboard, dashboard_size, positions, images, specialPosition, dotCorruptions) {
+          var container = new createjs.Container();
+          var centerImg        = images[0];
+          var centerDotImg        = images[1];
+
+          if(specialPosition && specialPosition.x && specialPosition.y) {
+              container.x = specialPosition.x;
+              container.y = specialPosition.y;
+          } else {
+              container.x = dashboard_size.width/2-centerImg.width/2;
+              container.y = dashboard_size.height/2-centerImg.height/2;
+          }
+          container.setBounds(positions.x, positions.y, centerImg.width, centerImg.height);
+
+          var centerImgContainer = new createjs.Bitmap(centerImg);
+          centerImgContainer.x = 0;
+          centerImgContainer.y = 0;
+
+          container.addChildAt(centerImgContainer, 0);
+          dashboard.update();
+
+           var centerImgDotContainer = new createjs.Bitmap(centerDotImg);
+          centerImgDotContainer.x = dotCorruptions.x;
+          centerImgDotContainer.y = dotCorruptions.y;
+
+          if(dotCorruptions.angle) {
+              centerImgDotContainer.rotation = dotCorruptions.angle;    
+          }
+
+          container.addChildAt(centerImgDotContainer, 1);
+
+          dashboard.addChild(container);
+          dashboard.update();
+      } 
+
+      scope.drawCenter_ = function(dashboard, dashboard_size) {
+          /**
+           * Рисуем центральный круг
+           * @type {createjs}
+           */
+          var circle = new createjs.Shape();
+          var centerImg        = new Image();
+          centerImg.src    = "/images/db1.png";
+
+          centerImg.onload = function() {
+              var container = new createjs.Container();
+              container.x = dashboard_size.width/2-centerImg.width/2;
+              container.y = dashboard_size.height/2-centerImg.height/2;
+              container.setBounds(0, 0, centerImg.width, centerImg.height);
+
+              var centerImgContainer = new createjs.Bitmap(centerImg);
+              centerImgContainer.x = 0;
+              centerImgContainer.y = 0;
+
+              container.addChild(centerImgContainer);
+
+              var stepY = 40;
+              var centerText = new createjs.Text(scope.workspace.user.points, "25px 'Helvetica Neue Light'", "#000000");
+              centerText.y = stepY;
+              centerText.x = centerText.getBounds().width/2;
+
+              container.addChild(centerText);
+
+              dashboard.addChild(container);
+              dashboard.update();   
+          };
+      }
+
+      scope.drawDashboard_ = function(dashboard, dashboard_size) {
+          if(scope.workspace.user && scope.workspace.user.points) {
+              scope.drawCenter_(dashboard, dashboard_size);
+              var manifest = [
+                  {src:"db22.png", id:"db2"},
+                  {src:"db22p.png", id:"db2p"},
+                  {src:"db3.png", id:"db3"},
+                  {src:"db3p.png", id:"db3p"}
+              ];
+
+              var preload = new createjs.LoadQueue(true, "/images/");
+              preload.on("complete", function(event) {
+                  scope.drawSegmentPoints_(
+                      dashboard, 
+                      dashboard_size, 
+                      {x: 0, y: 0}, 
+                      [preload.getResult("db2"), preload.getResult("db2p")],
+                      null,
+                      {x: 9, y: 7}
+                  );
+                  scope.drawSegmentPoints_(
+                      dashboard, 
+                      dashboard_size, 
+                      {x: 0, y: 0}, 
+                      [preload.getResult("db3"), preload.getResult("db3p")],
+                      {x: 200, y: 100},
+                      {x: -10, y: 15}
+                  );
+              });
+              preload.loadManifest(manifest);
+          }
+      }
+
+      $(window).on("load", function() {
+        scope.dashboard = new createjs.Stage("mydash_draw");
+        scope.dashboard_size = { width: 1000, height: 700 };
+        console.log(scope.dashboard_size);
+        scope.drawDashboard_(scope.dashboard, scope.dashboard_size);
+      });
+      
+    }
+  }
+})
+
 pgrModule.directive('masonryItem', function() {
   return {
     link: function(scope, element, attrs) {
