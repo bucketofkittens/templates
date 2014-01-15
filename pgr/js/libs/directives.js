@@ -208,36 +208,34 @@ pgrModule.directive('mydash', function() {
       }
 
       scope.drawDashboard_ = function(dashboard, dashboard_size) {
-          if(scope.workspace.user && scope.workspace.user.points) {
-              scope.drawCenter_(dashboard, dashboard_size);
-              var manifest = [
-                  {src:"db22.png", id:"db2"},
-                  {src:"db22p.png", id:"db2p"},
-                  {src:"db3.png", id:"db3"},
-                  {src:"db3p.png", id:"db3p"}
-              ];
+            scope.drawCenter_(dashboard, dashboard_size);
+            var manifest = [
+                {src:"db22.png", id:"db2"},
+                {src:"db22p.png", id:"db2p"},
+                {src:"db3.png", id:"db3"},
+                {src:"db3p.png", id:"db3p"}
+            ];
 
-              var preload = new createjs.LoadQueue(true, "/images/");
-              preload.on("complete", function(event) {
-                  scope.drawSegmentPoints_(
-                      dashboard, 
-                      dashboard_size, 
-                      {x: 0, y: 0}, 
-                      [preload.getResult("db2"), preload.getResult("db2p")],
-                      null,
-                      {x: 9, y: 7}
-                  );
-                  scope.drawSegmentPoints_(
-                      dashboard, 
-                      dashboard_size, 
-                      {x: 0, y: 0}, 
-                      [preload.getResult("db3"), preload.getResult("db3p")],
-                      {x: 200, y: 100},
-                      {x: -15, y: 20}
-                  );
-              });
-              preload.loadManifest(manifest);
-          }
+            var preload = new createjs.LoadQueue(true, "/images/");
+            preload.on("complete", function(event) {
+                scope.drawSegmentPoints_(
+                    dashboard, 
+                    dashboard_size, 
+                    {x: 0, y: 0}, 
+                    [preload.getResult("db2"), preload.getResult("db2p")],
+                    null,
+                    {x: 9, y: 7}
+                );
+                scope.drawSegmentPoints_(
+                    dashboard, 
+                    dashboard_size, 
+                    {x: 0, y: 0}, 
+                    [preload.getResult("db3"), preload.getResult("db3p")],
+                    {x: 200, y: 100},
+                    {x: 9, y: 7}
+                );
+            });
+            preload.loadManifest(manifest);
       }
 
       $(window).on("load", function() {
