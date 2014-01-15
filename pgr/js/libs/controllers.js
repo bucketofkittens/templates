@@ -3303,10 +3303,12 @@ function MyProfileController($scope, $rootScope, User, $location, $cookieStore, 
      * @type {createjs}
      */
     $(window).on("load", function() {
-        var dashboard = new createjs.Stage("mydash_draw");
-        var dashboard_size = { width: $("#mydash_draw").width(), height: $("#mydash_draw").height() };
+        $scope.$apply(function() {
+            $scope.dashboard = new createjs.Stage("mydash_draw");
+            $scope.dashboard_size = { width: $("#mydash_draw").width(), height: $("#mydash_draw").height() };
 
-        $scope.drawDashboard_(dashboard, dashboard_size);
+            $scope.drawDashboard_($scope.dashboard, $scope.dashboard_size);
+        });
     });
 
     $scope.drawSegmentPoints_ = function(dashboard, dashboard_size, positions, images, specialPosition, dotCorruptions) {
@@ -3405,6 +3407,12 @@ function MyProfileController($scope, $rootScope, User, $location, $cookieStore, 
             preload.loadManifest(manifest);
         }
     }
+
+    $(document).ready(function() {
+        $scope.dashboard = new createjs.Stage("mydash_draw");
+        $scope.dashboard_size = { width: $("#mydash_draw").width(), height: $("#mydash_draw").height() };
+        $scope.drawDashboard_($scope.ashboard, $scope.dashboard_size);
+    });
 }
 
 function ChangeEmailController($scope, User, $location, Sessions) {
