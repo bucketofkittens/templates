@@ -131,14 +131,7 @@ pgrModule.directive('masonry', function() {
       });
       scope.pckry.layout();
 
-      window.onorientationchange = function() {
-        angular.forEach(scope.users, function(value, key) {
-            value.big = false;
-        });
-        setTimeout(function() {
-          scope.pckry.layout();
-        }, 0);
-      };
+      
     }
   }
 })

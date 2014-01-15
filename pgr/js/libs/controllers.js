@@ -1695,6 +1695,15 @@ function MainController($scope, Leagues, User, $rootScope, $location, $timeout, 
     $scope.total_count = 0;
     $scope.users = [];
 
+    window.onorientationchange = function() {
+        angular.forEach($scope.users, function(value, key) {
+            value.big = false;
+        });
+        $timeout(function() {
+            $(document.querySelector('#masonry')).packery();
+        }, 1000);
+    };
+
     /**
      * Забираем список пользователей
      * @return {object} 
@@ -1726,7 +1735,7 @@ function MainController($scope, Leagues, User, $rootScope, $location, $timeout, 
             $scope.view_count += $scope.limit;
             var isiPad = navigator.userAgent.match(/iPad/i) != null;
             if(isiPad) {
-                $scope.total_count = 30;
+                $scope.total_count = 60;
             }
             if($scope.view_count < $scope.total_count) {
                 $scope.skip += $scope.limit;
@@ -3301,19 +3310,15 @@ function MyProfileController($scope, $rootScope, User, $location, $cookieStore, 
     });
 
     $scope.drawAllPoints_ = function(dashboard, dashboard_size) {
-        /**
-         * Рисуем центральный круг
-         * @type {createjs}
-         */
-        var circle = new createjs.Shape();
+        var container = new createjs.Container();
+        var appendBitmap = 0;
+
         var centerImg        = new Image();
         centerImg.src    = "/images/db2.png";
-
-        var container = new createjs.Container();
-        dashboard.addChild(container);
         
         var centerDotImg        = new Image();
         centerDotImg.src    = "/images/db2p.png";
+
 
         centerImg.onload = function() {
             container.x = dashboard_size.width/2-centerImg.width/2;
@@ -3325,20 +3330,28 @@ function MyProfileController($scope, $rootScope, User, $location, $cookieStore, 
             centerImgContainer.y = 0;
 
             container.addChildAt(centerImgContainer, 0);
-            dashboard.update();   
+
+            appendBitmap += 1;
+            if(appendBitmap == 2) {
+                dashboard.addChild(container);
+                dashboard.update();
+            }
         };
 
         centerDotImg.onload = function() {
+            console.log("centerDotImg");
             var centerImgDotContainer = new createjs.Bitmap(centerDotImg);
-            centerImgDotContainer.x = 0;
-            centerImgDotContainer.y = 0;
+            centerImgDotContainer.x = 9;
+            centerImgDotContainer.y = 7;
 
             container.addChildAt(centerImgDotContainer, 1);
-            dashboard.update();   
-        };
 
-        
-        dashboard.update();
+            appendBitmap += 1;
+            if(appendBitmap == 2) {
+                dashboard.addChild(container);
+                dashboard.update();
+            }
+        };
     } 
 
     $scope.drawCenter_ = function(dashboard, dashboard_size) {
