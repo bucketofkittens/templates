@@ -193,6 +193,27 @@ pgrModule.directive('mydash', function() {
 
       } 
 
+      scope.drawText_ = function(dashboard, dashboard_size, image) {
+          var container = new createjs.Container();
+          var centerImg        = image;
+
+          container.x = dashboard_size.width/2-centerImg.width/2;
+          container.y = dashboard_size.height/2-centerImg.height/2;
+          container.setBounds(0, 0, centerImg.width, centerImg.height);
+
+          var centerImgContainer = new createjs.Bitmap(centerImg);
+          centerImgContainer.x = 0;
+          centerImgContainer.y = 0;
+
+          container.addChildAt(centerImgContainer, 0);
+          dashboard.update();
+
+          dashboard.addChild(container);
+          dashboard.update();
+
+
+      } 
+
       scope.drawCenter_ = function(dashboard, dashboard_size) {
           /**
            * Рисуем центральный круг
@@ -241,7 +262,8 @@ pgrModule.directive('mydash', function() {
                 {src:"db22.png", id:"db2"},
                 {src:"db22p.png", id:"db2p"},
                 {src:"db3.png", id:"db3"},
-                {src:"db3p.png", id:"db3p"}
+                {src:"db3p.png", id:"db3p"},
+                {src:"db-t.png", id:"dbt"}
             ];
 
             var preload = new createjs.LoadQueue(true, "/images/");
@@ -262,6 +284,7 @@ pgrModule.directive('mydash', function() {
                     {x: 200, y: 100},
                     {x: 9, y: 7}
                 );
+                scope.drawText_(dashboard, dashboard_size, preload.getResult("dbt"));
             });
             preload.loadManifest(manifest);
       }
