@@ -148,9 +148,11 @@ pgrModule.directive('mydash', function() {
             scope.centerTextDraw.text = scope.workspace.user.points;
             scope.centerTextDraw.y = stepY;
             scope.centerTextDraw.x = scope.centerTextDraw.getBounds().width/2;
-            scope.dashboard.update();  
+            scope.dashboard.update();
+
+            scope.drawCenterArc_(scope.dashboard, scope.dashboard_size);
           } else {
-            scope.drawFullDashboard_(); 
+            scope.drawFullDashboard_();
           }
           
         }
@@ -189,8 +191,6 @@ pgrModule.directive('mydash', function() {
 
           dashboard.addChild(container);
           dashboard.update();
-
-
       } 
 
       scope.drawText_ = function(dashboard, dashboard_size, image) {
@@ -213,13 +213,26 @@ pgrModule.directive('mydash', function() {
       } 
 
       scope.drawCenterArc_ = function(dashboard, dashboard_size) {
-        var drawing = new createjs.Shape();
-        drawing.graphics.beginStroke('red')
-                        .setStrokeStyle(100).arc(dashboard_size.width/2-100,dashboard_size.height/2-100, 170, 0, Math.PI);
+        if(scope.workspace.user && scope.workspace.user.points) {
+          var drawing = new createjs.Shape();
+          var corruption = 90;
+          var oneStep = 100000/360;
+          console.log(scope.workspace.user.points/oneStep);
+          drawing.graphics.beginStroke('red')
+                          .setStrokeStyle(63)
+                          .arc(
+                            dashboard_size.width/2-100,
+                            dashboard_size.height/2-103, 
+                            149, 
+                            degToRad(0+corruption), 
+                            degToRad(90+corruption)
+          );
 
-        drawing.x = 100;
-        drawing.y = 100;
-        dashboard.addChild(drawing);
+          drawing.x = 100;
+          drawing.y = 100;
+          dashboard.addChild(drawing);
+          dashboard.update();
+        }
       }
 
       scope.drawCenter_ = function(dashboard, dashboard_size) {
