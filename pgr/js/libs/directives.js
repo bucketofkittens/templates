@@ -150,12 +150,11 @@ pgrModule.directive('mydash', function() {
             scope.centerTextDraw.y = stepY;
             scope.centerTextDraw.x = scope.centerTextDraw.getBounds().width/2;
             scope.dashboard.update();
-
-            scope.drawCenterArc_(scope.dashboard, scope.dashboard_size, scope.db2Draw);
           } else {
             scope.drawFullDashboard_();
           }
           
+          scope.drawCenterArc_(scope.dashboard, scope.dashboard_size, scope.db2Draw);
         }
       });
 
@@ -221,7 +220,7 @@ pgrModule.directive('mydash', function() {
           var drawing = new createjs.Shape();
           var corruption = 90;
           var oneStep = 100000/360;
-          drawing.graphics.beginRadialGradientStroke(["#7286a7", "#b8cce4"], [0, 1], 44, 44, 0, 100, 100, 150)
+          drawing.graphics.beginRadialGradientStroke(["#3e445c", "#c0d2e9"], [0, 1], 44, 44, 0, 100, 100, 150)
                           .setStrokeStyle(63)
                           .arc(
                             dashboard_size.width/2-315,
