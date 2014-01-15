@@ -217,7 +217,6 @@ pgrModule.directive('mydash', function() {
           var drawing = new createjs.Shape();
           var corruption = 90;
           var oneStep = 100000/360;
-          console.log(scope.workspace.user.points/oneStep);
           drawing.graphics.beginStroke('red')
                           .setStrokeStyle(63)
                           .arc(
@@ -225,7 +224,7 @@ pgrModule.directive('mydash', function() {
                             dashboard_size.height/2-103, 
                             149, 
                             degToRad(0+corruption), 
-                            degToRad(90+corruption)
+                            degToRad(scope.workspace.user.points/oneStep+corruption)
           );
 
           drawing.x = 100;
