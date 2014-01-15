@@ -3309,21 +3309,27 @@ function MyProfileController($scope, $rootScope, User, $location, $cookieStore, 
         $scope.drawDashboard_(dashboard, dashboard_size);
     });
 
-    $scope.drawAllPoints_ = function(dashboard, dashboard_size) {
+    $scope.drawSegmentPoints_ = function(dashboard, dashboard_size, positions, images, specialPosition, dotCorruptions) {
         var container = new createjs.Container();
         var appendBitmap = 0;
 
         var centerImg        = new Image();
-        centerImg.src    = "/images/db2.png";
+        centerImg.src    = images[0];
         
         var centerDotImg        = new Image();
-        centerDotImg.src    = "/images/db2p.png";
-
+        centerDotImg.src    = images[1];
 
         centerImg.onload = function() {
-            container.x = dashboard_size.width/2-centerImg.width/2;
-            container.y = dashboard_size.height/2-centerImg.height/2;
-            container.setBounds(0, 0, centerImg.width, centerImg.height);
+            console.log(specialPosition);
+            if(specialPosition && specialPosition.x && specialPosition.y) {
+                container.x = specialPosition.x;
+                container.y = specialPosition.y;
+            } else {
+                container.x = dashboard_size.width/2-centerImg.width/2;
+                container.y = dashboard_size.height/2-centerImg.height/2;
+            }
+            console.log(container);
+            container.setBounds(positions.x, positions.y, centerImg.width, centerImg.height);
 
             var centerImgContainer = new createjs.Bitmap(centerImg);
             centerImgContainer.x = 0;
@@ -3339,10 +3345,9 @@ function MyProfileController($scope, $rootScope, User, $location, $cookieStore, 
         };
 
         centerDotImg.onload = function() {
-            console.log("centerDotImg");
             var centerImgDotContainer = new createjs.Bitmap(centerDotImg);
-            centerImgDotContainer.x = 9;
-            centerImgDotContainer.y = 7;
+            centerImgDotContainer.x = dotCorruptions.x;
+            centerImgDotContainer.y = dotCorruptions.y;
 
             container.addChildAt(centerImgDotContainer, 1);
 
@@ -3362,6 +3367,7 @@ function MyProfileController($scope, $rootScope, User, $location, $cookieStore, 
         var circle = new createjs.Shape();
         var centerImg        = new Image();
         centerImg.src    = "/images/db1.png";
+
         centerImg.onload = function() {
             var container = new createjs.Container();
             container.x = dashboard_size.width/2-centerImg.width/2;
@@ -3389,7 +3395,46 @@ function MyProfileController($scope, $rootScope, User, $location, $cookieStore, 
     $scope.drawDashboard_ = function(dashboard, dashboard_size) {
         if($scope.workspace.user && $scope.workspace.user.points) {
             $scope.drawCenter_(dashboard, dashboard_size);
-            $scope.drawAllPoints_(dashboard, dashboard_size);
+            $scope.drawSegmentPoints_(
+                dashboard, 
+                dashboard_size, 
+                {x: 0, y: 0}, 
+                ["/images/db2.png", "/images/db2p.png"],
+                null,
+                {x: 9, y: 7}
+            );
+            $scope.drawSegmentPoints_(
+                dashboard, 
+                dashboard_size, 
+                {x: 0, y: 0}, 
+                ["/images/db-lb.png", "/images/db-lb-p.png"],
+                {x: 200, y: 350},
+                {x: 5, y: 3}
+            );
+            $scope.drawSegmentPoints_(
+                dashboard, 
+                dashboard_size, 
+                {x: 0, y: 0}, 
+                ["/images/db-lt.png", "/images/db-lt-p.png"],
+                {x: 200, y: 100},
+                {x: 7, y: 7}
+            );
+            $scope.drawSegmentPoints_(
+                dashboard, 
+                dashboard_size, 
+                {x: 0, y: 0}, 
+                ["/images/db-rt.png", "/images/db-rt-p.png"],
+                {x: 625, y: 100},
+                {x: 25, y: 5}
+            );
+            $scope.drawSegmentPoints_(
+                dashboard, 
+                dashboard_size, 
+                {x: 0, y: 0}, 
+                ["/images/db-rb.png", "/images/db-rb-p.png"],
+                {x: 670, y: 340},
+                {x: 25, y: 5}
+            );
         }
     }
 }
