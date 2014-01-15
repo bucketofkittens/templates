@@ -140,6 +140,7 @@ pgrModule.directive('mydash', function() {
   return {
     link: function(scope, element, attrs) {
       scope.centerTextDraw = null;
+      scope.db2Draw = null;
 
       scope.$watch("workspace.user.points", function (newVal, oldVal, scope) {
         if(newVal && newVal > 0) {
@@ -150,7 +151,7 @@ pgrModule.directive('mydash', function() {
             scope.centerTextDraw.x = scope.centerTextDraw.getBounds().width/2;
             scope.dashboard.update();
 
-            scope.drawCenterArc_(scope.dashboard, scope.dashboard_size);
+            scope.drawCenterArc_(scope.dashboard, scope.dashboard_size, scope.db2Draw);
           } else {
             scope.drawFullDashboard_();
           }
@@ -191,6 +192,9 @@ pgrModule.directive('mydash', function() {
 
           dashboard.addChild(container);
           dashboard.update();
+
+
+          return container;
       } 
 
       scope.drawText_ = function(dashboard, dashboard_size, image) {
@@ -212,24 +216,25 @@ pgrModule.directive('mydash', function() {
           dashboard.update();
       } 
 
-      scope.drawCenterArc_ = function(dashboard, dashboard_size) {
-        if(scope.workspace.user && scope.workspace.user.points) {
+      scope.drawCenterArc_ = function(dashboard, dashboard_size, container) {
+        if(scope.workspace.user && scope.workspace.user.points && container) {
           var drawing = new createjs.Shape();
           var corruption = 90;
           var oneStep = 100000/360;
-          drawing.graphics.beginStroke('red')
+          drawing.graphics.beginRadialGradientStroke(["#7286a7", "#b8cce4"], [0, 1], 44, 44, 0, 100, 100, 150)
                           .setStrokeStyle(63)
                           .arc(
-                            dashboard_size.width/2-100,
-                            dashboard_size.height/2-103, 
+                            dashboard_size.width/2-315,
+                            dashboard_size.height/2-167, 
                             149, 
                             degToRad(0+corruption), 
-                            degToRad(scope.workspace.user.points/oneStep+corruption)
+                            degToRad(scope.workspace.user.points/oneStep+corruption
+                          )
           );
 
-          drawing.x = 100;
-          drawing.y = 100;
-          dashboard.addChild(drawing);
+          drawing.x = 0;
+          drawing.y = 0;
+          container.addChildAt(drawing, 1);
           dashboard.update();
         }
       }
@@ -254,7 +259,6 @@ pgrModule.directive('mydash', function() {
               centerImgContainer.y = 0;
 
               container.addChild(centerImgContainer);
-              //scope.workspace.user.points
               
               var centerText = new createjs.Text("", "25px 'Helvetica Neue Light'", "#000000");
               if(scope.workspace.user && scope.workspace.user.points) {
@@ -288,7 +292,7 @@ pgrModule.directive('mydash', function() {
 
             var preload = new createjs.LoadQueue(true, "/images/");
             preload.on("complete", function(event) {
-                scope.drawSegmentPoints_(
+                var cont = scope.drawSegmentPoints_(
                     dashboard, 
                     dashboard_size, 
                     {x: 0, y: 0}, 
@@ -296,6 +300,7 @@ pgrModule.directive('mydash', function() {
                     null,
                     {x: 9, y: 7}
                 );
+                scope.db2Draw = cont;
                 scope.drawSegmentPoints_(
                     dashboard, 
                     dashboard_size, 
@@ -305,7 +310,7 @@ pgrModule.directive('mydash', function() {
                     {x: 9, y: 7}
                 );
                 scope.drawText_(dashboard, dashboard_size, preload.getResult("dbt"));
-                scope.drawCenterArc_(dashboard, dashboard_size);
+                scope.drawCenterArc_(dashboard, dashboard_size, cont);
             });
             preload.loadManifest(manifest);
       }
