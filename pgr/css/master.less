@@ -1281,11 +1281,9 @@ body {
             -moz-transform : translateZ(0); 
             transform : translateZ(0);
             opacity: 1;
-            transition: opacity 0.3 linear;
-            -webkit-transition: opacity 0.3s linear;
-            &.show {
-                display: block;
-                opacity: 1;
+            &.all {
+                transition: all 0.4s linear;
+                -webkit-transition: all 0.4s linear;
             }
             .wr {
                 position: relative;
@@ -3249,7 +3247,6 @@ table#graphs {
 
 #masonry {
     height: 93%;
-    margin: auto;
     &:after {
       content: ' ';
       display: block;

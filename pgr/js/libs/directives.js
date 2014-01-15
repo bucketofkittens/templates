@@ -146,10 +146,12 @@ pgrModule.directive('masonry', function() {
 pgrModule.directive('masonryItem', function() {
   return {
     link: function(scope, element, attrs) {
+      scope.pckry.addItems(element[0]);
+      scope.pckry.layout();
+
       setTimeout(function() {
-        scope.pckry.addItems(element[0]);
-        scope.pckry.layout();
-      }, 0);
+        $(element).addClass("all");
+      }, 2000);
     }
   }
 })

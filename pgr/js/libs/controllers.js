@@ -3308,8 +3308,14 @@ function MyProfileController($scope, $rootScope, User, $location, $cookieStore, 
         var circle = new createjs.Shape();
         var centerImg        = new Image();
         centerImg.src    = "/images/db2.png";
+
+        var container = new createjs.Container();
+        dashboard.addChild(container);
+        
+        var centerDotImg        = new Image();
+        centerDotImg.src    = "/images/db2p.png";
+
         centerImg.onload = function() {
-            var container = new createjs.Container();
             container.x = dashboard_size.width/2-centerImg.width/2;
             container.y = dashboard_size.height/2-centerImg.height/2;
             container.setBounds(0, 0, centerImg.width, centerImg.height);
@@ -3318,11 +3324,21 @@ function MyProfileController($scope, $rootScope, User, $location, $cookieStore, 
             centerImgContainer.x = 0;
             centerImgContainer.y = 0;
 
-            container.addChild(centerImgContainer);
-
-            dashboard.addChild(container);
+            container.addChildAt(centerImgContainer, 0);
             dashboard.update();   
         };
+
+        centerDotImg.onload = function() {
+            var centerImgDotContainer = new createjs.Bitmap(centerDotImg);
+            centerImgDotContainer.x = 0;
+            centerImgDotContainer.y = 0;
+
+            container.addChildAt(centerImgDotContainer, 1);
+            dashboard.update();   
+        };
+
+        
+        dashboard.update();
     } 
 
     $scope.drawCenter_ = function(dashboard, dashboard_size) {
