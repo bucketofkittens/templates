@@ -202,8 +202,8 @@ pgrModule.directive('mydash', function() {
           container.setBounds(0, 0, centerImg.width, centerImg.height);
 
           var centerImgContainer = new createjs.Bitmap(centerImg);
-          centerImgContainer.x = 0;
-          centerImgContainer.y = 0;
+          centerImgContainer.x = 3;
+          centerImgContainer.y = -30;
 
           container.addChildAt(centerImgContainer, 0);
           dashboard.update();
