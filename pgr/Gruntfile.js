@@ -38,6 +38,7 @@ module.exports = function(grunt) {
                     'js/lscache.js',
                     'js/rzslider.min.js',
                     'js/bindonce.js',
+                    'js/preloadjs-0.4.1.min.js',
                     'js/easeljs-0.7.1.min.js',
                     'js/libs/*.js'
                 ],
