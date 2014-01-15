@@ -233,7 +233,7 @@ pgrModule.directive('mydash', function() {
                       {x: 0, y: 0}, 
                       [preload.getResult("db3"), preload.getResult("db3p")],
                       {x: 200, y: 100},
-                      {x: -10, y: 15}
+                      {x: -15, y: 20}
                   );
               });
               preload.loadManifest(manifest);
@@ -243,10 +243,14 @@ pgrModule.directive('mydash', function() {
       $(window).on("load", function() {
         scope.dashboard = new createjs.Stage("mydash_draw");
         scope.dashboard_size = { width: 1000, height: 700 };
-        console.log(scope.dashboard_size);
         scope.drawDashboard_(scope.dashboard, scope.dashboard_size);
       });
-      
+
+      $(document).ready(function() {
+        scope.dashboard = new createjs.Stage("mydash_draw");
+        scope.dashboard_size = { width: 1000, height: 700 };
+        scope.drawDashboard_(scope.dashboard, scope.dashboard_size);
+      });
     }
   }
 })
