@@ -3312,51 +3312,37 @@ function MyProfileController($scope, $rootScope, User, $location, $cookieStore, 
     $scope.drawSegmentPoints_ = function(dashboard, dashboard_size, positions, images, specialPosition, dotCorruptions) {
         var container = new createjs.Container();
         var appendBitmap = 0;
-
+        console.log(images);
         var centerImg        = new Image();
         centerImg.src    = images[0];
         
         var centerDotImg        = new Image();
         centerDotImg.src    = images[1];
 
-        centerImg.onload = function() {
-            console.log(specialPosition);
-            if(specialPosition && specialPosition.x && specialPosition.y) {
-                container.x = specialPosition.x;
-                container.y = specialPosition.y;
-            } else {
-                container.x = dashboard_size.width/2-centerImg.width/2;
-                container.y = dashboard_size.height/2-centerImg.height/2;
-            }
-            console.log(container);
-            container.setBounds(positions.x, positions.y, centerImg.width, centerImg.height);
+        if(specialPosition && specialPosition.x && specialPosition.y) {
+            container.x = specialPosition.x;
+            container.y = specialPosition.y;
+        } else {
+            container.x = dashboard_size.width/2-centerImg.width/2;
+            container.y = dashboard_size.height/2-centerImg.height/2;
+        }
+        container.setBounds(positions.x, positions.y, centerImg.width, centerImg.height);
 
-            var centerImgContainer = new createjs.Bitmap(centerImg);
-            centerImgContainer.x = 0;
-            centerImgContainer.y = 0;
+        var centerImgContainer = new createjs.Bitmap(centerImg);
+        centerImgContainer.x = 0;
+        centerImgContainer.y = 0;
 
-            container.addChildAt(centerImgContainer, 0);
+        container.addChildAt(centerImgContainer, 0);
+        dashboard.update();
 
-            appendBitmap += 1;
-            if(appendBitmap == 2) {
-                dashboard.addChild(container);
-                dashboard.update();
-            }
-        };
+         var centerImgDotContainer = new createjs.Bitmap(centerDotImg);
+        centerImgDotContainer.x = dotCorruptions.x;
+        centerImgDotContainer.y = dotCorruptions.y;
 
-        centerDotImg.onload = function() {
-            var centerImgDotContainer = new createjs.Bitmap(centerDotImg);
-            centerImgDotContainer.x = dotCorruptions.x;
-            centerImgDotContainer.y = dotCorruptions.y;
+        container.addChildAt(centerImgDotContainer, 1);
 
-            container.addChildAt(centerImgDotContainer, 1);
-
-            appendBitmap += 1;
-            if(appendBitmap == 2) {
-                dashboard.addChild(container);
-                dashboard.update();
-            }
-        };
+        dashboard.addChild(container);
+        dashboard.update();
     } 
 
     $scope.drawCenter_ = function(dashboard, dashboard_size) {
@@ -3395,14 +3381,36 @@ function MyProfileController($scope, $rootScope, User, $location, $cookieStore, 
     $scope.drawDashboard_ = function(dashboard, dashboard_size) {
         if($scope.workspace.user && $scope.workspace.user.points) {
             $scope.drawCenter_(dashboard, dashboard_size);
-            $scope.drawSegmentPoints_(
-                dashboard, 
-                dashboard_size, 
-                {x: 0, y: 0}, 
-                ["/images/db2.png", "/images/db2p.png"],
-                null,
-                {x: 9, y: 7}
-            );
+            var manifest = [
+                {src:"db2.png", id:"image0"},
+                {src:"db2p.png", id:"image1"},
+                {src:"db3.png", id:"image2"},
+                {src:"db3p.png", id:"image3"}
+            ];
+
+            var preload = new createjs.LoadQueue(true, "/images/");
+            preload.on("complete", function(event) {
+                $scope.drawSegmentPoints_(
+                    dashboard, 
+                    dashboard_size, 
+                    {x: 0, y: 0}, 
+                    [preload.getResult("image0"), preload.getResult("image1")],
+                    null,
+                    {x: 9, y: 7}
+                );
+                $scope.drawSegmentPoints_(
+                    dashboard, 
+                    dashboard_size, 
+                    {x: 0, y: 0}, 
+                    [preload.getResult("image2"), preload.getResult("image3")],
+                    {x: 200, y: 100},
+                    {x: 5, y: 3}
+                );
+            });
+            preload.loadManifest(manifest);
+
+            
+            /*
             $scope.drawSegmentPoints_(
                 dashboard, 
                 dashboard_size, 
@@ -3433,8 +3441,9 @@ function MyProfileController($scope, $rootScope, User, $location, $cookieStore, 
                 {x: 0, y: 0}, 
                 ["/images/db-rb.png", "/images/db-rb-p.png"],
                 {x: 670, y: 340},
-                {x: 25, y: 5}
+                {x: 30, y: 1}
             );
+            */
         }
     }
 }
