@@ -3391,7 +3391,7 @@ function MyProfileController($scope, $rootScope, User, $location, $cookieStore, 
                     {x: 0, y: 0}, 
                     [preload.getResult("db2"), preload.getResult("db2p")],
                     null,
-                    {x: 8, y: 7}
+                    {x: 9, y: 7}
                 );
                 $scope.drawSegmentPoints_(
                     dashboard, 
@@ -3403,42 +3403,6 @@ function MyProfileController($scope, $rootScope, User, $location, $cookieStore, 
                 );
             });
             preload.loadManifest(manifest);
-
-            
-            /*
-            $scope.drawSegmentPoints_(
-                dashboard, 
-                dashboard_size, 
-                {x: 0, y: 0}, 
-                ["/images/db-lb.png", "/images/db-lb-p.png"],
-                {x: 200, y: 350},
-                {x: 5, y: 3}
-            );
-            $scope.drawSegmentPoints_(
-                dashboard, 
-                dashboard_size, 
-                {x: 0, y: 0}, 
-                ["/images/db-lt.png", "/images/db-lt-p.png"],
-                {x: 200, y: 100},
-                {x: 7, y: 7}
-            );
-            $scope.drawSegmentPoints_(
-                dashboard, 
-                dashboard_size, 
-                {x: 0, y: 0}, 
-                ["/images/db-rt.png", "/images/db-rt-p.png"],
-                {x: 625, y: 100},
-                {x: 25, y: 5}
-            );
-            $scope.drawSegmentPoints_(
-                dashboard, 
-                dashboard_size, 
-                {x: 0, y: 0}, 
-                ["/images/db-rb.png", "/images/db-rb-p.png"],
-                {x: 670, y: 340},
-                {x: 30, y: 1}
-            );
-            */
         }
     }
 }

@@ -33,7 +33,7 @@
 <div ng-if="tab == 1 && workspace.user" class="tab">
 	<section class="tab" ng-include src="'partials/myprofile.html'" ></section>
 </div>
-<div ng-if="tab == 2 && workspace.user" class="tab">
+<div ng-show="tab == 2 && workspace.user" class="tab">
 	<section class="tab" ng-include src="'partials/mydash.html'" ></section>
 </div>
 <div ng-if="tab == 3 && workspace.user" class="tab">
