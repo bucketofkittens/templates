@@ -3311,13 +3311,8 @@ function MyProfileController($scope, $rootScope, User, $location, $cookieStore, 
 
     $scope.drawSegmentPoints_ = function(dashboard, dashboard_size, positions, images, specialPosition, dotCorruptions) {
         var container = new createjs.Container();
-        var appendBitmap = 0;
-        console.log(images);
-        var centerImg        = new Image();
-        centerImg.src    = images[0];
-        
-        var centerDotImg        = new Image();
-        centerDotImg.src    = images[1];
+        var centerImg        = images[0];
+        var centerDotImg        = images[1];
 
         if(specialPosition && specialPosition.x && specialPosition.y) {
             container.x = specialPosition.x;
@@ -3382,10 +3377,10 @@ function MyProfileController($scope, $rootScope, User, $location, $cookieStore, 
         if($scope.workspace.user && $scope.workspace.user.points) {
             $scope.drawCenter_(dashboard, dashboard_size);
             var manifest = [
-                {src:"db2.png", id:"image0"},
-                {src:"db2p.png", id:"image1"},
-                {src:"db3.png", id:"image2"},
-                {src:"db3p.png", id:"image3"}
+                {src:"db22.png", id:"db2"},
+                {src:"db22p.png", id:"db2p"},
+                {src:"db3.png", id:"db3"},
+                {src:"db3p.png", id:"db3p"}
             ];
 
             var preload = new createjs.LoadQueue(true, "/images/");
@@ -3394,15 +3389,15 @@ function MyProfileController($scope, $rootScope, User, $location, $cookieStore, 
                     dashboard, 
                     dashboard_size, 
                     {x: 0, y: 0}, 
-                    [preload.getResult("image0"), preload.getResult("image1")],
+                    [preload.getResult("db2"), preload.getResult("db2p")],
                     null,
-                    {x: 9, y: 7}
+                    {x: 3, y: 5}
                 );
                 $scope.drawSegmentPoints_(
                     dashboard, 
                     dashboard_size, 
                     {x: 0, y: 0}, 
-                    [preload.getResult("image2"), preload.getResult("image3")],
+                    [preload.getResult("db3"), preload.getResult("db3p")],
                     {x: 200, y: 100},
                     {x: 5, y: 3}
                 );
