@@ -210,9 +210,17 @@ pgrModule.directive('mydash', function() {
 
           dashboard.addChild(container);
           dashboard.update();
-
-
       } 
+
+      scope.drawCenterArc_ = function(dashboard, dashboard_size) {
+        var drawing = new createjs.Shape();
+        drawing.graphics.beginStroke('red')
+                        .setStrokeStyle(100).arc(dashboard_size.width/2-100,dashboard_size.height/2-100, 170, 0, Math.PI);
+
+        drawing.x = 100;
+        drawing.y = 100;
+        dashboard.addChild(drawing);
+      }
 
       scope.drawCenter_ = function(dashboard, dashboard_size) {
           /**
@@ -285,6 +293,7 @@ pgrModule.directive('mydash', function() {
                     {x: 9, y: 7}
                 );
                 scope.drawText_(dashboard, dashboard_size, preload.getResult("dbt"));
+                scope.drawCenterArc_(dashboard, dashboard_size);
             });
             preload.loadManifest(manifest);
       }
