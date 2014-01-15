@@ -1695,41 +1695,33 @@ function MainController($scope, Leagues, User, $rootScope, $location, $timeout, 
     $scope.total_count = 0;
     $scope.users = [];
 
-    window.onorientationchange = function() {
-        angular.forEach($scope.users, function(value, key) {
-            value.big = false;
-        });
-        setTimeout(function() {
-          $(".isotope").isotope('reLayout');
-        }, 500);
-    };
-
     /**
      * Забираем список пользователей
      * @return {object} 
      */
     $scope.getPublishedUser = function() {
         User.for_main_from_limit({limit: $scope.limit, skip: $scope.skip}, {}, function(data) {
-            data.shuffle();
+            var newArray = [];
             angular.forEach(data, function(value, key) {
                 value.points = parseInt(value.points);
                 $scope.total_count = value.total_count;
                 if(isNaN(value.points)) {
                     value.points = 0;
                 }
-                if(!value.league) {
-                    value.league = {name: "10"};
-                }
                 value.size = 270;
-                if(!value.league || value.league.name == "10" || value.league.name == "9" || value.league.name == "8") {
+                if(!value.points || (value.points > 0 && value.points < 30000)) {
                     value.size = 70;
                 }
-                if(value.league.name == "7" || value.league.name == "6" || value.league.name == "5") {
+                if((value.points > 30000 && value.points < 60000)) {
                     value.size = 140;
                 }
                 value.size += "px";
-                $scope.users.push(value);
+                newArray.push(value);
             });
+
+            $scope.users = $scope.users.concat(newArray);
+
+            $rootScope.$broadcast('addUsersToMasonry', { users:  newArray });
 
             $scope.view_count += $scope.limit;
             var isiPad = navigator.userAgent.match(/iPad/i) != null;
@@ -1811,7 +1803,7 @@ function MainController($scope, Leagues, User, $rootScope, $location, $timeout, 
      * @return {object}         [description]
      */
     $scope.onWheel = function($event, $delta, $deltaX, $deltaY) {
-        var contentWidth = $(".isotope").width();
+        var contentWidth = $("#masonry").width();
         var windowWidth = $(window).width();
 
         if(contentWidth > windowWidth) {

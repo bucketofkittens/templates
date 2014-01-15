@@ -112,12 +112,53 @@ pgrModule.directive('caruselPosition', function($window) {
   }
 })
 
+pgrModule.directive('masonry', function() {
+  return {
+    link: function(scope, element, attrs) {
+      scope.$on('addUsersToMasonry', function(event, message) {
+        
+      });
+
+      scope.masonryContainer = document.querySelector('#masonry');
+      scope.pckry = new Packery(scope.masonryContainer, {
+          itemSelector: '.item',
+          gutter: 0,
+          isHorizontal: true,
+          isInitLayout: false,
+          isLayoutInstant: true,
+          columnWidth: 70,
+          rowHeight: 70
+      });
+      scope.pckry.layout();
+
+      window.onorientationchange = function() {
+        angular.forEach(scope.users, function(value, key) {
+            value.big = false;
+        });
+        setTimeout(function() {
+          scope.pckry.layout();
+        }, 0);
+      };
+    }
+  }
+})
+
+pgrModule.directive('masonryItem', function() {
+  return {
+    link: function(scope, element, attrs) {
+      setTimeout(function() {
+        scope.pckry.addItems(element[0]);
+        scope.pckry.layout();
+      }, 0);
+    }
+  }
+})
+
 pgrModule.directive('setWidth', function() {
   return {
     link: function(scope, element, attrs) {
-
       scope.$watch("userItem.big", function() {
-        if(scope.userItem.big) {
+        if(scope.userItem && scope.userItem.big) {
 
           var newSize = $(window).height()/100*30;
           var oldSize = $(element).height();
@@ -130,20 +171,20 @@ pgrModule.directive('setWidth', function() {
           parentElement.width(newSize);
           parentElement.height(newSize);
 
-          parentElement.css("left", delta);
-          parentElement.css("top", delta);
+          parentElement.css("margin-left", delta);
+          parentElement.css("margin-top", delta);
 
           if(parentElement.offset().left < newSize / 2) {
-            parentElement.css("left", 0);
+            parentElement.css("margin-left", 0);
           }
           if(parentElement.offset().top < newSize / 2) {
-            parentElement.css("top", 0);
+            parentElement.css("margin-top", 0);
           }
           if(parentElement.offset().top + newSize >  $(window).height()) {
-            parentElement.css("top", "-"+newSize/1.5+"px");
+            parentElement.css("margin-top", "-"+newSize/1.5+"px");
           }
           if(parentElement.offset().left + newSize > $(window).width()) {
-            parentElement.css("left", "-"+newSize/2+"px");
+            parentElement.css("margin-left", "-"+newSize/2+"px");
           }
 
           if(!scope.userItem.isUpdateSize) {
@@ -151,7 +192,7 @@ pgrModule.directive('setWidth', function() {
             scope.userItem.oldSize =  oldSize;
           }
         } else {
-          if(scope.userItem.isUpdateSize) {
+          if(scope.userItem && scope.userItem.isUpdateSize) {
 
             var newSize = scope.userItem.oldSize;
             var parentElement = $(element).parent();
@@ -162,8 +203,8 @@ pgrModule.directive('setWidth', function() {
             parentElement.width(newSize);
             parentElement.height(newSize);  
 
-            parentElement.css("left", 0);
-            parentElement.css("top", 0);
+            parentElement.css("margin-left", 0);
+            parentElement.css("margin-top", 0);
           }
         }
       });

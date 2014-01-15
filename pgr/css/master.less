@@ -1280,21 +1280,17 @@ body {
             -o-transform : translateZ(0); 
             -moz-transform : translateZ(0); 
             transform : translateZ(0);
+            opacity: 1;
+            transition: opacity 0.3 linear;
+            -webkit-transition: opacity 0.3s linear;
             &.show {
                 display: block;
-            }
-            &.full-animate {
-                transition: all 0.3s linear;
-                -moz-transition: all 0.3s linear;
-                -webkit-transition: all 0.3s linear;
+                opacity: 1;
             }
             .wr {
                 position: relative;
                 overflow: hidden;
                 width: 100%;
-                transition: all 0.3s linear;
-                -moz-transition: all 0.3s linear;
-                -webkit-transition: all 0.3s linear;
                 i {
                     display: none;
                     position: absolute;
@@ -1404,10 +1400,10 @@ body {
           }
         }
         i {
-            font-size: 160% !important;
+            font-size: 29px !important;
         }
         b {
-            font-size: 130% !important;
+            font-size: 24px !important;
         }
         em {
             display: block;
@@ -1971,21 +1967,6 @@ ng-form:not(.ng-pristine) {
           transition-duration: 0.8s;
 }
 
-.isotope {
-  -webkit-transition-property: height, width, margin;
-     -moz-transition-property: height, width, margin;
-      -ms-transition-property: height, width, margin;
-       -o-transition-property: height, width, margin;
-          transition-property: height, width, margin;
-}
-
-.isotope .isotope-item {
-  -webkit-transition-property: height, width, margin;
-     -moz-transition-property: height, width, margin;
-      -ms-transition-property: height, width, margin;
-       -o-transition-property: height, width, margin;
-          transition-property: height, width, margin;
-}
 
 /**** disabling Isotope CSS3 transitions ****/
 
@@ -3264,4 +3245,17 @@ table#graphs {
             border-width: 95px 10px 95px 0 !important;
         }
     } 
+}
+
+#masonry {
+    height: 93%;
+    margin: auto;
+    &:after {
+      content: ' ';
+      display: block;
+      clear: both;
+    }
+    .item {
+        float: left;
+    }
 }

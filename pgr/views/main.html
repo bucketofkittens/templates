@@ -8,17 +8,17 @@
    </div>
 
 	<div 
-		isotope-container 
-		iso-options="opts" 
-		ng-style="{left: scrollDelta}" >
+		id="masonry"
+		ng-style="{left: scrollDelta}" 
+		class="packery"
+		masonry>
 		<div
 			ng-click="onUserClick(userItem, $event)"
 			ng-class="{big: userItem.big}"
-			class="isotope full-animate l_{userItem.league.name}"
-			ng-repeat="userItem in users"
-			bindonce
-			isotope-item
-			ng-style="{width: userItem.size, height: userItem.size}" >
+			class="item l_{userItem.league.name}"
+			ng-repeat="(userKey, userItem) in users"
+			ng-style="{width: userItem.size, height: userItem.size}"
+			masonry-item >
 			<div 	
 				class="wr" 
 				ng-style="{width: userItem.size, height: userItem.size}" 
