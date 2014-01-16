@@ -222,7 +222,7 @@ pgrModule.directive('mydash', function() {
         if(scope.workspace.user && scope.workspace.user.points && container) {
           var corruption = 90;
           var oneStep = 100000/360;
-          var newAngle = degToRad(50000/oneStep+corruption);
+          var newAngle = degToRad(scope.workspace.user.points/oneStep+corruption);
           var baseAngle = degToRad(corruption);
 
           var centerRX = scope.dashboard.getWidth()/2-316;

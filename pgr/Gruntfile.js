@@ -39,7 +39,7 @@ module.exports = function(grunt) {
                     'js/rzslider.min.js',
                     'js/bindonce.js',
                     'js/preloadjs-0.4.1.min.js',
-                    'js/easeljs-0.7.1.min.js',
+                    'js/kinetic-v5.0.0.min.js',
                     'js/libs/*.js'
                 ],
                 dest: 'build/scripts.js'
