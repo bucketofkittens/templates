@@ -191,7 +191,7 @@ pgrModule.directive('mydash', function() {
           container.add(centerImgDotContainer);
 
           centerImgContainer.setZIndex(0);
-          centerImgDotContainer.setZIndex(2);
+          centerImgDotContainer.setZIndex(3);
 
           scope.dashboard.add(container);
 
@@ -223,27 +223,55 @@ pgrModule.directive('mydash', function() {
           var corruption = 90;
           var oneStep = 100000/360;
           var newAngle = degToRad(scope.workspace.user.points/oneStep+corruption);
-          var baseAngle = degToRad(0+corruption);
+          var baseAngle = degToRad(corruption);
+
+          var centerRX = scope.dashboard.getWidth()/2-316;
+          var centerRY = scope.dashboard.getHeight()/2-167;
+          var endX = centerRX + Math.cos(newAngle) * 149;
+          var endY = centerRY + Math.sin(newAngle) * 149;
 
           var arc = new Kinetic.Shape({
               drawFunc: function(context) {
-                var x = scope.dashboard.getWidth()/2-315;
-                var y = scope.dashboard.getHeight()/2-167;
+                var ctx = context.canvas.getContext()._context;
+                var x = centerRX;
+                var y = centerRY;
                 var radius = 149;
                 var startAngle = baseAngle;
                 var endAngle = newAngle;
-                context.beginPath();
-                context.arc(x, y, radius, startAngle, endAngle);
-                context.fillStrokeShape(this);
+
+                var gradient = context.createLinearGradient(
+                  endX, 
+                  endY,
+                  scope.dashboard.getWidth()/2-316,
+                  scope.dashboard.getHeight()/2-167
+                );
+                gradient.addColorStop(0, '#3e445c');
+                gradient.addColorStop(1, '#c1d3ea');
+
+                ctx.beginPath();
+                ctx.arc(x, y, radius, startAngle, endAngle, false);
+                ctx.strokeStyle = gradient;
+                ctx.lineWidth = 61;
+                ctx.stroke();
+                ctx.closePath();
             },
-            stroke: 'c0d2e9',
-            strokeWidth: 63
           });
 
-          container.add(arc);
+          var triangle = new Kinetic.RegularPolygon({
+            x: endX,
+            y: endY,
+            sides: 3,
+            radius: 35,
+            fill: "#3e445c",
+            lineJoin: 'bevel'
+          });
 
+          //triangle.rotateDeg(scope.workspace.user.points/oneStep+corruption+180);
+
+          container.add(arc);
+          container.add(triangle);
           arc.setZIndex(1);
-          
+          triangle.setZIndex(2); 
           container.draw();
         }
       }
