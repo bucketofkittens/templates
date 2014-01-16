@@ -222,7 +222,7 @@ pgrModule.directive('mydash', function() {
         if(scope.workspace.user && scope.workspace.user.points && container) {
           var corruption = 90;
           var oneStep = 100000/360;
-          var newAngle = degToRad(scope.workspace.user.points/oneStep+corruption);
+          var newAngle = degToRad(50000/oneStep+corruption);
           var baseAngle = degToRad(corruption);
 
           var centerRX = scope.dashboard.getWidth()/2-316;
@@ -254,9 +254,30 @@ pgrModule.directive('mydash', function() {
                 ctx.lineWidth = 61;
                 ctx.stroke();
                 ctx.closePath();
+                ctx.beginPath();
+                ctx.moveTo(centerRX + Math.cos(newAngle-0.02) * 149, centerRY + Math.sin(newAngle-0.02) * 149);
+                ctx.lineTo(centerRX + Math.cos(newAngle+0.1) * 149,centerRY + Math.sin(newAngle+0.1) * 149);
+                ctx.lineTo(centerRX + Math.cos(newAngle) * 180,centerRY + Math.sin(newAngle) * 180);
+                ctx.fillStyle = gradient;
+                ctx.strokeStyle = gradient;
+                ctx.lineWidth = 2;
+                ctx.stroke();
+                ctx.fill();
+                ctx.closePath();
+                ctx.beginPath();
+                ctx.moveTo(centerRX + Math.cos(newAngle-0.02) * 149, centerRY + Math.sin(newAngle-0.02) * 149);
+                ctx.lineTo(centerRX + Math.cos(newAngle+0.1) * 149,centerRY + Math.sin(newAngle+0.1) * 149);
+                ctx.lineTo(centerRX + Math.cos(newAngle) * 120,centerRY + Math.sin(newAngle) * 120);
+                ctx.fillStyle = gradient;
+                ctx.strokeStyle = gradient;
+                ctx.lineWidth = 2;
+                ctx.stroke();
+                ctx.fill();
+                ctx.closePath();
             },
           });
 
+          /*
           var triangle = new Kinetic.RegularPolygon({
             x: endX,
             y: endY,
@@ -266,12 +287,14 @@ pgrModule.directive('mydash', function() {
             lineJoin: 'bevel'
           });
 
-          //triangle.rotateDeg(scope.workspace.user.points/oneStep+corruption+180);
+
+          triangle.rotateDeg(scope.workspace.user.points/oneStep+corruption+90);
+          */
 
           container.add(arc);
-          container.add(triangle);
+          //container.add(triangle);
           arc.setZIndex(1);
-          triangle.setZIndex(2); 
+          //triangle.setZIndex(1); 
           container.draw();
         }
       }
