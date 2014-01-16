@@ -142,167 +142,156 @@ pgrModule.directive('mydash', function() {
       scope.centerTextDraw = null;
       scope.db2Draw = null;
 
+      scope.updatePointText_ = function() {
+        if(scope.workspace.user && scope.workspace.user.points) {
+          scope.centerTextDraw.setText(scope.workspace.user.points);
+          scope.centerTextDraw.offsetY("-"+(scope.dashboard_size.height/2-30));
+          scope.centerTextDraw.offsetX(scope.centerTextDraw.width()/2);
+
+          scope.centerTextDraw.getLayer().draw();  
+        }
+      }
+
       scope.$watch("workspace.user.points", function (newVal, oldVal, scope) {
         if(newVal && newVal > 0) {
           if(scope.centerTextDraw) {
-            var stepY = 40;
-            scope.centerTextDraw.text = scope.workspace.user.points;
-            scope.centerTextDraw.y = stepY;
-            scope.centerTextDraw.x = scope.centerTextDraw.getBounds().width/2;
-            scope.dashboard.update();
+            scope.updatePointText_();
           } else {
             scope.drawFullDashboard_();
           }
           
-          scope.drawCenterArc_(scope.dashboard, scope.dashboard_size, scope.db2Draw);
+          scope.drawCenterArc_(scope.db2Draw);
         }
       });
 
-      scope.drawSegmentPoints_ = function(dashboard, dashboard_size, positions, images, specialPosition, dotCorruptions) {
-          var container = new createjs.Container();
-          var centerImg        = images[0];
-          var centerDotImg        = images[1];
+      scope.drawSegmentPoints_ = function(positions, images, specialPosition, dotCorruptions) {
+          var containerParams = {
+            x: specialPosition ? specialPosition.x : scope.dashboard_size.width/2-images[0].width/2,
+            y: specialPosition ? specialPosition.y : scope.dashboard_size.height/2-images[0].height/2,
+            width: images[0].width,
+            height: images[0].height
+          };
+          var container = new Kinetic.Layer(containerParams);
 
-          if(specialPosition && specialPosition.x && specialPosition.y) {
-              container.x = specialPosition.x;
-              container.y = specialPosition.y;
-          } else {
-              container.x = dashboard_size.width/2-centerImg.width/2;
-              container.y = dashboard_size.height/2-centerImg.height/2;
-          }
-          container.setBounds(positions.x, positions.y, centerImg.width, centerImg.height);
+          var centerImgContainer =  new Kinetic.Image({
+              image: images[0],
+              x: 0,
+              y: 0,
+              name: "image1"
+          });
 
-          var centerImgContainer = new createjs.Bitmap(centerImg);
-          centerImgContainer.x = 0;
-          centerImgContainer.y = 0;
+          var centerImgDotContainer = new Kinetic.Image({
+              image: images[1],
+              x: dotCorruptions ? dotCorruptions.x : 0,
+              y: dotCorruptions ? dotCorruptions.y : 0,
+              name: "image2"
+          });
 
-          container.addChildAt(centerImgContainer, 0);
-          dashboard.update();
+          container.add(centerImgContainer);
+          container.add(centerImgDotContainer);
 
-          var centerImgDotContainer = new createjs.Bitmap(centerDotImg);
-          centerImgDotContainer.x = dotCorruptions.x;
-          centerImgDotContainer.y = dotCorruptions.y;
+          centerImgContainer.setZIndex(0);
+          centerImgDotContainer.setZIndex(2);
 
-          if(dotCorruptions.angle) {
-              centerImgDotContainer.rotation = dotCorruptions.angle;    
-          }
-
-          container.addChildAt(centerImgDotContainer, 1);
-
-          dashboard.addChild(container);
-          dashboard.update();
-
+          scope.dashboard.add(container);
 
           return container;
       } 
 
-      scope.drawText_ = function(dashboard, dashboard_size, image) {
-          var container = new createjs.Container();
-          var centerImg        = image;
+      scope.drawText_ = function(image) {
+          var containerParams = {
+            x: scope.dashboard_size.width/2-image.width/2,
+            y: scope.dashboard_size.height/2-image.height/2,
+            width: image.width,
+            height: image.height
+          };
+          var container = new Kinetic.Layer(containerParams);
 
-          container.x = dashboard_size.width/2-centerImg.width/2;
-          container.y = dashboard_size.height/2-centerImg.height/2;
-          container.setBounds(0, 0, centerImg.width, centerImg.height);
+          var centerImgContainer =  new Kinetic.Image({
+              image: image,
+              x: 3,
+              y: -30,
+              name: "image4"
+          });
 
-          var centerImgContainer = new createjs.Bitmap(centerImg);
-          centerImgContainer.x = 3;
-          centerImgContainer.y = -30;
-
-          container.addChildAt(centerImgContainer, 0);
-          dashboard.update();
-
-          dashboard.addChild(container);
-          dashboard.update();
+          container.add(centerImgContainer);
+          scope.dashboard.add(container);
       } 
 
-      scope.drawCenterArc_ = function(dashboard, dashboard_size, container) {
+      scope.drawCenterArc_ = function(container) {
         if(scope.workspace.user && scope.workspace.user.points && container) {
-          var drawing = new createjs.Shape();
           var corruption = 90;
           var oneStep = 100000/360;
-          var rec = {};
-          rec.y = (180*Math.sin(degToRad(scope.workspace.user.points/oneStep+corruption)))+206;
-          rec.x = (180*Math.cos(degToRad(scope.workspace.user.points/oneStep+corruption)))+206;
-          console.log(rec);
-          drawing.graphics.beginRadialGradientStroke(["#3e445c", "#c0d2e9"], [0, 1], 0, 0, 0, 0, 0, 100)
-                          .setStrokeStyle(63)
-                          .arc(
-                            dashboard_size.width/2-315,
-                            dashboard_size.height/2-167, 
-                            149, 
-                            degToRad(0+corruption), 
-                            degToRad(scope.workspace.user.points/oneStep+corruption)
-                          )
-                          .setStrokeStyle(47)
-                          .drawPolyStar(rec.x, rec.y, 1, 2, 0.1, scope.workspace.user.points/oneStep);
+          var newAngle = degToRad(scope.workspace.user.points/oneStep+corruption);
+          var baseAngle = degToRad(0+corruption);
 
-    //      );
+          var arc = new Kinetic.Shape({
+              drawFunc: function(context) {
+                var x = scope.dashboard.getWidth()/2-315;
+                var y = scope.dashboard.getHeight()/2-167;
+                var radius = 149;
+                var startAngle = baseAngle;
+                var endAngle = newAngle;
+                context.beginPath();
+                context.arc(x, y, radius, startAngle, endAngle);
+                context.fillStrokeShape(this);
+            },
+            stroke: 'c0d2e9',
+            strokeWidth: 63
+          });
 
-/**/
+          container.add(arc);
 
-          drawing.x = 0;
-          drawing.y = 0;
-          container.addChildAt(drawing, 1);
-          dashboard.update();
+          arc.setZIndex(1);
+          
+          container.draw();
         }
       }
 
-      scope.drawCenter_ = function(dashboard, dashboard_size) {
-          /**
-           * Рисуем центральный круг
-           * @type {createjs}
-           */
-          var circle = new createjs.Shape();
-          var centerImg        = new Image();
-          centerImg.src    = "/images/db1.png";
+      scope.drawCenter_ = function(image) {
+          var container = new Kinetic.Layer();
 
-          centerImg.onload = function() {
-              var container = new createjs.Container();
-              container.x = dashboard_size.width/2-centerImg.width/2;
-              container.y = dashboard_size.height/2-centerImg.height/2;
-              container.setBounds(0, 0, centerImg.width, centerImg.height);
+          var centerImgContainer = new Kinetic.Image({
+              image: image,
+              x: scope.dashboard_size.width/2-image.width/2,
+              y: scope.dashboard_size.height/2-image.height/2,
+              name: "image"
+          });
 
-              var centerImgContainer = new createjs.Bitmap(centerImg);
-              centerImgContainer.x = 0;
-              centerImgContainer.y = 0;
+          container.add(centerImgContainer);
+          
+          var centerText = new Kinetic.Text({
+            text: '',
+            fontSize: 25,
+            fontFamily: 'Helvetica Neue Light',
+            fill: '#000000',
+            x: scope.dashboard_size.width/2
+          });
 
-              container.addChild(centerImgContainer);
-              
-              var centerText = new createjs.Text("", "25px 'Helvetica Neue Light'", "#000000");
-              if(scope.workspace.user && scope.workspace.user.points) {
-                var stepY = 40;
-                centerText.text = scope.workspace.user.points;
-                centerText.y = stepY;
-                centerText.x = centerText.getBounds().width/2;
-              }
+          container.add(centerText);
+          scope.dashboard.add(container);
 
-              //centerText.y = stepY;
-              //centerText.x = centerText.getBounds().width/2;
+          scope.centerTextDraw = centerText;
+          scope.pointsLayer = container;
 
-              container.addChild(centerText);
-
-              dashboard.addChild(container);
-              dashboard.update();
-
-              scope.centerTextDraw = centerText;
-          };
+          scope.updatePointText_();
       }
 
-      scope.drawDashboard_ = function(dashboard, dashboard_size) {
-            scope.drawCenter_(dashboard, dashboard_size);
+      scope.drawDashboard_ = function() {
             var manifest = [
                 {src:"db22.png", id:"db2"},
                 {src:"db22p.png", id:"db2p"},
                 {src:"db3.png", id:"db3"},
                 {src:"db3p.png", id:"db3p"},
-                {src:"db-t.png", id:"dbt"}
+                {src:"db-t.png", id:"dbt"},
+                {src:"db1.png", id:"db"}
             ];
 
             var preload = new createjs.LoadQueue(true, "/images/");
             preload.on("complete", function(event) {
-                var cont = scope.drawSegmentPoints_(
-                    dashboard, 
-                    dashboard_size, 
+                scope.drawCenter_(preload.getResult("db"));
+
+                var cont = scope.drawSegmentPoints_( 
                     {x: 0, y: 0}, 
                     [preload.getResult("db2"), preload.getResult("db2p")],
                     null,
@@ -310,23 +299,25 @@ pgrModule.directive('mydash', function() {
                 );
                 scope.db2Draw = cont;
                 scope.drawSegmentPoints_(
-                    dashboard, 
-                    dashboard_size, 
                     {x: 0, y: 0}, 
                     [preload.getResult("db3"), preload.getResult("db3p")],
                     {x: 200, y: 100},
                     {x: 9, y: 7}
                 );
-                scope.drawText_(dashboard, dashboard_size, preload.getResult("dbt"));
-                scope.drawCenterArc_(dashboard, dashboard_size, cont);
+                scope.drawText_(preload.getResult("dbt"));
+                scope.drawCenterArc_(cont);
             });
             preload.loadManifest(manifest);
       }
 
       scope.drawFullDashboard_ = function() {
-        scope.dashboard = new createjs.Stage("mydash_draw");
+        scope.dashboard = new Kinetic.Stage({
+          container: 'mydash_draw',
+          width: 1000,
+          height: 700
+        });
         scope.dashboard_size = { width: 1000, height: 700 };
-        scope.drawDashboard_(scope.dashboard, scope.dashboard_size); 
+        scope.drawDashboard_(); 
       }
 
       $(window).on("load", function() {
