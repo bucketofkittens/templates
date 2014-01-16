@@ -220,16 +220,25 @@ pgrModule.directive('mydash', function() {
           var drawing = new createjs.Shape();
           var corruption = 90;
           var oneStep = 100000/360;
-          drawing.graphics.beginRadialGradientStroke(["#3e445c", "#c0d2e9"], [0, 1], 44, 44, 0, 100, 100, 150)
+          var rec = {};
+          rec.y = (180*Math.sin(degToRad(scope.workspace.user.points/oneStep+corruption)))+206;
+          rec.x = (180*Math.cos(degToRad(scope.workspace.user.points/oneStep+corruption)))+206;
+          console.log(rec);
+          drawing.graphics.beginRadialGradientStroke(["#3e445c", "#c0d2e9"], [0, 1], 0, 0, 0, 0, 0, 100)
                           .setStrokeStyle(63)
                           .arc(
                             dashboard_size.width/2-315,
                             dashboard_size.height/2-167, 
                             149, 
                             degToRad(0+corruption), 
-                            degToRad(scope.workspace.user.points/oneStep+corruption
+                            degToRad(scope.workspace.user.points/oneStep+corruption)
                           )
-          );
+                          .setStrokeStyle(47)
+                          .drawPolyStar(rec.x, rec.y, 1, 2, 0.1, scope.workspace.user.points/oneStep);
+
+    //      );
+
+/**/
 
           drawing.x = 0;
           drawing.y = 0;
