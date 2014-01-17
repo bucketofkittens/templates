@@ -115,18 +115,19 @@ pgrModule.directive('caruselPosition', function($window) {
 pgrModule.directive('masonry', function(User) {
   return {
     link: function($scope, element, attrs) {
-      $scope.masonryContainer = $('#masonry');
-      $scope.masonryContainer.isotope({
-        // options
-        itemSelector: '.item',
-        rowHeight: 70,
-        layoutMode: "perfectMasonry",
-        perfectMasonry: {
-            layout: 'horizontal',
-            columnWidth: 70,
-            rowHeight: 70
-       }
-      });
+      $scope.initIso = function() {
+        $scope.masonryContainer = $('#masonry');
+        $scope.masonryContainer.isotope({
+          itemSelector: '.iso-item',
+          rowHeight: 70,
+          layoutMode: "perfectMasonry",
+          perfectMasonry: {
+              layout: 'horizontal',
+              columnWidth: 70,
+              rowHeight: 70
+         }
+        });  
+      }
 
       $scope.getPublishedUser = function() {
         User.for_main_from_limit({limit: $scope.limit, skip: $scope.skip}, {}, function(data) {
@@ -153,10 +154,6 @@ pgrModule.directive('masonry', function(User) {
             newArray.shuffle();
             $scope.users = $scope.users.concat(newArray);
 
-            setTimeout(function() {
-              $scope.masonryContainer.isotope("reLayout");
-            }, 1000);
-
             $scope.view_count += $scope.limit;
             var isiPad = navigator.userAgent.match(/iPad/i) != null;
             if(isiPad) {
@@ -165,6 +162,8 @@ pgrModule.directive('masonry', function(User) {
             if($scope.view_count < $scope.total_count) {
                 $scope.skip += $scope.limit;
                 $scope.getPublishedUser();
+            } else {
+
             }
         });
       }
@@ -173,6 +172,7 @@ pgrModule.directive('masonry', function(User) {
        * Забираем список пользователей
        */
       $scope.getPublishedUser();
+      $scope.initIso();
     }
 
     
@@ -181,10 +181,16 @@ pgrModule.directive('masonry', function(User) {
 
 pgrModule.directive('masonryItem', function() {
   return {
-    link: function(scope, element, attrs) {
-      setTimeout(function() {
-        scope.masonryContainer.isotope("appended",element);
-      }, 0);
+    link: function(scope, element, attrs) { 
+      imagesLoaded(element, function( instance ) {
+        setTimeout(function() {
+          $(element).addClass("iso-item");
+          scope.masonryContainer.isotope("insert", $(element));
+        }, randomRange(1000, 3000));
+        setTimeout(function() {
+          $(element).addClass("all");
+        }, 5000);
+      });
     }
   }
 })

@@ -18,13 +18,14 @@
 			class="item l_{{userItem.league.name}} isotope-item"
 			ng-repeat="(userKey, userItem) in users"
 			ng-style="{width: userItem.size, height: userItem.size}"
-			masonry-item>
+			masonry-item
+			ng-style="{width: userItem.size, height: userItem.size}">
 			<div 	
 				class="wr" 
-				ng-style="{width: userItem.size, height: userItem.size}" 
 				back-img="{{userItem.avatar}}" 
 				ng-class="{big: userItem.big}"
 				ng-click="switchState(userItem)"
+				ng-style="{width: userItem.size, height: userItem.size}"
 				set-width >
 				<i>{{userItem.points}}</i>
 				<div class="sub">

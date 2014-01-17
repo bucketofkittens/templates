@@ -1284,12 +1284,22 @@ body {
        > div {
             overflow: hidden;
             opacity: 0;
-            .show {
+            max-width: 0px !important;
+            max-height: 0px !important;
+            &.iso-item {
+                opacity: 1;
+                max-width: 400px !important;
+                max-height: 400px !important;
+            }
+            &.all {
+                transition: all 0.5s linear;
+                -webkit-transition: all 0.5s linear;
             }
             .wr {
                 position: relative;
                 overflow: hidden;
                 width: 100%;
+
                 i {
                     display: none;
                     position: absolute;
@@ -3249,6 +3259,9 @@ table#graphs {
 
 #masonry {
     height: 100%;
+    .item {
+        float: left;
+    }
 }
 
 .isotope,
@@ -3269,11 +3282,11 @@ table#graphs {
 }
 
 .isotope .isotope-item {
-  -webkit-transition-property: -webkit-transform, opacity;
-     -moz-transition-property:    -moz-transform, opacity;
-      -ms-transition-property:     -ms-transform, opacity;
-       -o-transition-property:      -o-transform, opacity;
-          transition-property:         transform, opacity;
+  -webkit-transition-property: height, width, opacity, max-width, max-height;
+     -moz-transition-property: height, width, opacity, max-width, max-height;
+      -ms-transition-property: height, width, opacity, max-width, max-height;
+       -o-transition-property: height, width, opacity, max-width, max-height;
+          transition-property: height, width, opacity, max-width, max-height;
 }
 
 /**** disabling Isotope CSS3 transitions ****/
@@ -3295,4 +3308,8 @@ table#graphs {
 .isotope-hidden.isotope-item {
   pointer-events: none;
   z-index: 1;
+}
+
+.w_hidden {
+    visibility: hidden;
 }
