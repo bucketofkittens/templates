@@ -239,7 +239,10 @@ pgrModule.directive('mydash', function() {
               y: dotCorruptions ? dotCorruptions.y : 0,
               name: "image2"
           });
-            
+
+          container.add(centerImgContainer);
+          container.add(centerImgDotContainer);
+
           centerImgContainer.setZIndex(0);
           centerImgDotContainer.setZIndex(3);
 
