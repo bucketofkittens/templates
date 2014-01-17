@@ -1699,9 +1699,6 @@ function MainController($scope, Leagues, User, $rootScope, $location, $timeout, 
         angular.forEach($scope.users, function(value, key) {
             value.big = false;
         });
-        $timeout(function() {
-            $(document.querySelector('#masonry')).packery();
-        }, 1000);
     };
 
     /**
@@ -1730,10 +1727,8 @@ function MainController($scope, Leagues, User, $rootScope, $location, $timeout, 
                 value.size += "px";
                 newArray.push(value);
             });
-
+            newArray.shuffle();
             $scope.users = $scope.users.concat(newArray);
-
-            $rootScope.$broadcast('addUsersToMasonry', { users:  newArray });
 
             $scope.view_count += $scope.limit;
             var isiPad = navigator.userAgent.match(/iPad/i) != null;

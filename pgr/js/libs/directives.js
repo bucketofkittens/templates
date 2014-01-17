@@ -115,12 +115,17 @@ pgrModule.directive('caruselPosition', function($window) {
 pgrModule.directive('masonry', function() {
   return {
     link: function(scope, element, attrs) {
-      scope.masonryContainer = document.querySelector('#masonry');
-      scope.iso = new Isotope( scope.masonryContainer, {
+      scope.masonryContainer = $('#masonry');
+      scope.masonryContainer.isotope({
         // options
         itemSelector: '.item',
-        layoutMode: 'masonryHorizontal',
-        rowHeight: 70
+        rowHeight: 70,
+        layoutMode: "perfectMasonry",
+        perfectMasonry: {
+            layout: 'horizontal',
+            columnWidth: 70,
+            rowHeight: 70
+       }
       });
 
       /*
@@ -142,10 +147,12 @@ pgrModule.directive('masonryItem', function() {
   return {
     link: function(scope, element, attrs) {
       var isiPad = navigator.userAgent.match(/iPad/i) != null;
-      console.log(scope.iso);
+      scope.masonryContainer.isotope("appended",element);
+      
+        
       setTimeout(function() {
-        scope.iso.appended(element[0]);
-        scope.iso.layout();
+        scope.masonryContainer.isotope("reLayout");
+        $(element).addClass("show");
       }, 0);
       
       

@@ -1,7 +1,7 @@
 select, textarea, input {
     padding: 0px !important;
 } 
-  
+   
 img {
     image-rendering: optimizeQuality; 
     -ms-interpolation-mode: bicubic;
@@ -1283,13 +1283,10 @@ body {
     }
        > div {
             overflow: hidden;
-            -webkit-transform : translateZ(0); 
-            -o-transform : translateZ(0); 
-            -moz-transform : translateZ(0); 
-            transform : translateZ(0);
-            opacity: 1;
-            transition: all 1s linear;
-            -webkit-transition: all 1s linear;
+            opaticy: 0;
+            .show {
+                opaticy: 1;
+            }
             .wr {
                 position: relative;
                 overflow: hidden;
@@ -3253,12 +3250,41 @@ table#graphs {
 
 #masonry {
     height: 100%;
-    &:after {
-      content: ' ';
-      display: block;
-      clear: both;
-    }
-    .item {
-        float: left;
-    }
+}
+
+.isotope,
+.isotope .isotope-item {
+  -webkit-transition-duration: 0.8s;
+     -moz-transition-duration: 0.8s;
+      -ms-transition-duration: 0.8s;
+       -o-transition-duration: 0.8s;
+          transition-duration: 0.8s;
+}
+
+.isotope {
+  -webkit-transition-property: height, width;
+     -moz-transition-property: height, width;
+      -ms-transition-property: height, width;
+       -o-transition-property: height, width;
+          transition-property: height, width;
+}
+
+.isotope .isotope-item {
+  -webkit-transition-property: -webkit-transform, opacity;
+     -moz-transition-property:    -moz-transform, opacity;
+      -ms-transition-property:     -ms-transform, opacity;
+       -o-transition-property:      -o-transform, opacity;
+          transition-property:         transform, opacity;
+}
+
+/**** disabling Isotope CSS3 transitions ****/
+
+.isotope.no-transition,
+.isotope.no-transition .isotope-item,
+.isotope .isotope-item.no-transition {
+  -webkit-transition-duration: 0s;
+     -moz-transition-duration: 0s;
+      -ms-transition-duration: 0s;
+       -o-transition-duration: 0s;
+          transition-duration: 0s;
 }
