@@ -115,23 +115,53 @@ pgrModule.directive('caruselPosition', function($window) {
 pgrModule.directive('masonry', function() {
   return {
     link: function(scope, element, attrs) {
-      scope.$on('addUsersToMasonry', function(event, message) {
-        
+      scope.masonryContainer = document.querySelector('#masonry');
+      scope.iso = new Isotope( scope.masonryContainer, {
+        // options
+        itemSelector: '.item',
+        layoutMode: 'masonryHorizontal',
+        rowHeight: 70
       });
 
-      scope.masonryContainer = document.querySelector('#masonry');
+      /*
       scope.pckry = new Packery(scope.masonryContainer, {
           itemSelector: '.item',
           gutter: 0,
           isHorizontal: true,
           isInitLayout: false,
-          isLayoutInstant: true,
           columnWidth: 70,
           rowHeight: 70
       });
       scope.pckry.layout();
+      */
+    }
+  }
+})
 
+pgrModule.directive('masonryItem', function() {
+  return {
+    link: function(scope, element, attrs) {
+      var isiPad = navigator.userAgent.match(/iPad/i) != null;
+      console.log(scope.iso);
+      setTimeout(function() {
+        scope.iso.appended(element[0]);
+        scope.iso.layout();
+      }, 0);
       
+      
+      /*
+      if(!isiPad) {
+        setTimeout(function() {
+            $(element).addClass("animate");
+        }, 0);
+        setTimeout(function() {
+            $(element).addClass("show");
+        }, 1600);
+      } else {
+        setTimeout(function() {
+            $(element).addClass("show");
+        }, 0);
+      }*/
     }
   }
 })
@@ -186,9 +216,6 @@ pgrModule.directive('mydash', function() {
               y: dotCorruptions ? dotCorruptions.y : 0,
               name: "image2"
           });
-
-          container.add(centerImgContainer);
-          container.add(centerImgDotContainer);
 
           centerImgContainer.setZIndex(0);
           centerImgDotContainer.setZIndex(3);
@@ -382,19 +409,6 @@ pgrModule.directive('mydash', function() {
           scope.drawFullDashboard_(); 
         }
       });
-    }
-  }
-})
-
-pgrModule.directive('masonryItem', function() {
-  return {
-    link: function(scope, element, attrs) {
-      scope.pckry.addItems(element[0]);
-      scope.pckry.layout();
-
-      setTimeout(function() {
-        $(element).addClass("all");
-      }, 2000);
     }
   }
 })

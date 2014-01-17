@@ -1,0 +1,41 @@
+<div
+	ng-click="onUserClick(userItem, $event)"
+	ng-class="{big: userItem.big}"
+	class="item l_{userItem.league.name}"
+	ng-repeat="(userKey, userItem) in users"
+	ng-style="{width: userItem.size, height: userItem.size}"
+	masonry-item>
+	<div 	
+		class="wr" 
+		ng-style="{width: userItem.size, height: userItem.size}" 
+		back-img="{{userItem.avatar}}" 
+		ng-class="{big: userItem.big}"
+		ng-click="switchState(userItem)"
+		set-width >
+		<i>{{userItem.points}}</i>
+		<div class="sub">
+			<b>{{userItem.name}} <br /><s>{{userItem.league.name}} league</s></b>
+			<ul>
+				<li>
+					<a ng-click="onMoveToProfile(userItem)">
+						<span class="icon profile navigate"></span>
+					</a>
+				</li>
+				<li>
+					<a ng-click="onMoveToCompare(userItem)">
+						<span class="icon compare navigate"></span>
+					</a>
+				</li>
+				<li>
+					<a ng-if="!userItem.isFrend" ng-click="onFollow(userItem)">
+						<span class="icon follow navigate"></span>
+					</a>
+					<a ng-if="userItem.isFrend" ng-click="onUnFollow(userItem)">
+						<span class="icon unfollow navigate"></span>
+					</a>
+				</li>
+			</ul>
+		</div>
+		<em></em>
+	</div>
+</div>
