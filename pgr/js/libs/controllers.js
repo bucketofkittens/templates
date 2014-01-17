@@ -1717,12 +1717,15 @@ function MainController($scope, Leagues, User, $rootScope, $location, $timeout, 
                 if(isNaN(value.points)) {
                     value.points = 0;
                 }
-                value.size = 270;
-                if(!value.points || (value.points > 0 && value.points < 30000)) {
+                value.size = 280;
+                if(!value.points || (value.points > 0 && value.points <= 30000)) {
                     value.size = 70;
                 }
-                if((value.points > 30000 && value.points < 60000)) {
+                if((value.points > 30000 && value.points <= 60000)) {
                     value.size = 140;
+                }
+                if((value.points > 60000 && value.points <= 80000)) {
+                    value.size = 210;
                 }
                 value.size += "px";
                 newArray.push(value);
