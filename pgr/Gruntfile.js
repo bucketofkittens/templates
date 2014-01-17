@@ -32,8 +32,6 @@ module.exports = function(grunt) {
                 	'js/mousewheel.js',
                 	'js/ngFacebook.js',
                 	'js/google-plus-signin.js',
-                    'js/hammer.min.js',
-                    'js/angular-hammer.js',
                     'js/keypress.js',
                     'js/moment+langs.min.js',
                 	'js/localize.js',

@@ -46,7 +46,6 @@ var pgrModule = angular.module(
 		'ngTouch', 
 		'ngFacebook',
         'monospaced.mousewheel',
-        'hmTouchEvents',
         'ui.date',
         'ui.autocomplete',
         'ui.keypress',
