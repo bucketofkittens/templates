@@ -219,7 +219,7 @@ pgrModule.directive('mydash', function() {
             scope.drawFullDashboard_();
           }
           
-          scope.drawCenterArc_(scope.db2Draw);
+          //scope.drawCenterArc_(scope.db2Draw);
         }
       });
 
@@ -336,24 +336,230 @@ pgrModule.directive('mydash', function() {
             },
           });
 
-          /*
-          var triangle = new Kinetic.RegularPolygon({
-            x: endX,
-            y: endY,
-            sides: 3,
-            radius: 35,
-            fill: "#3e445c",
-            lineJoin: 'bevel'
-          });
-
-
-          triangle.rotateDeg(scope.workspace.user.points/oneStep+corruption+90);
-          */
-
           container.add(arc);
-          //container.add(triangle);
           arc.setZIndex(1);
-          //triangle.setZIndex(1); 
+          container.draw();
+        }
+      }
+
+      scope.drawBottomLeftArc_ = function(container) {
+        if(scope.workspace.needs) {
+          var myselfNeed = scope.workspace.needs.filter(function(value) {
+            if(value.sguid == "169990243011789826") {
+              return value;
+            }
+          })[0];  
+        }
+        
+        if(container) {
+          var corruption = 135;
+          var radius = 260;
+          var oneStep = 15000/40;
+          var newAngle = degToRad(1000/oneStep+corruption);
+          var baseAngle = degToRad(corruption);
+
+          var centerRX = scope.dashboard.getWidth()/2-205;
+          var centerRY = scope.dashboard.getHeight()/2-110;
+          var endX = centerRX + Math.cos(newAngle) * radius;
+          var endY = centerRY + Math.sin(newAngle) * radius;
+
+          var arc = new Kinetic.Shape({
+              drawFunc: function(context) {
+                var ctx = context.canvas.getContext()._context;
+                var x = centerRX;
+                var y = centerRY;
+                var startAngle = baseAngle;
+                var endAngle = newAngle;
+                var gradient = context.createLinearGradient(
+                  endX, 
+                  endY,
+                  scope.dashboard.getWidth()/2-205,
+                  scope.dashboard.getHeight()/2-110
+                );
+
+                gradient.addColorStop(0, '#3e445c');
+                gradient.addColorStop(1, '#c1d3ea');
+
+                ctx.beginPath();
+                ctx.arc(x, y, radius, startAngle, endAngle, false);
+                ctx.strokeStyle = gradient;
+                ctx.lineWidth = 61;
+                ctx.stroke();
+                ctx.closePath();
+                ctx.beginPath();
+                ctx.moveTo(centerRX + Math.cos(newAngle-0.02) * radius, centerRY + Math.sin(newAngle-0.02) * radius);
+                ctx.lineTo(centerRX + Math.cos(newAngle+0.1) * radius,centerRY + Math.sin(newAngle+0.1) * radius);
+                ctx.lineTo(centerRX + Math.cos(newAngle) * (radius+30),centerRY + Math.sin(newAngle) * (radius+30));
+                ctx.fillStyle = gradient;
+                ctx.strokeStyle = gradient;
+                ctx.lineWidth = 2;
+                ctx.stroke();
+                ctx.fill();
+                ctx.closePath();
+                ctx.beginPath();
+                ctx.moveTo(centerRX + Math.cos(newAngle-0.02) * radius, centerRY + Math.sin(newAngle-0.02) * radius);
+                ctx.lineTo(centerRX + Math.cos(newAngle+0.1) * radius,centerRY + Math.sin(newAngle+0.1) * radius);
+                ctx.lineTo(centerRX + Math.cos(newAngle) * (radius-30),centerRY + Math.sin(newAngle) * (radius-30));
+                ctx.fillStyle = gradient;
+                ctx.strokeStyle = gradient;
+                ctx.lineWidth = 2;
+                ctx.stroke();
+                ctx.fill();
+                ctx.closePath();
+            },
+          });
+          console.log(container);
+          container.add(arc);
+          arc.setZIndex(1);
+          container.draw();
+        }
+      }
+
+      scope.drawTopLeftArc_ = function(container) {
+        if(scope.workspace.needs) {
+          var relationNeed = scope.workspace.needs.filter(function(value) {
+            if(value.sguid == "169990243011789825") {
+              return value;
+            }
+          })[0];  
+        }
+        
+        if(container) {
+          var corruption = 188;
+          var radius = 250;
+          var oneStep = 10000/41; 
+          var newAngle = degToRad(7000/oneStep+corruption);
+          var baseAngle = degToRad(corruption);
+
+          var centerRX = scope.dashboard.getWidth()/2-215;
+          var centerRY = scope.dashboard.getHeight()/2-110;
+          var endX = centerRX + Math.cos(newAngle) * radius;
+          var endY = centerRY + Math.sin(newAngle) * radius;
+
+          var arc = new Kinetic.Shape({
+              drawFunc: function(context) {
+                var ctx = context.canvas.getContext()._context;
+                var x = centerRX;
+                var y = centerRY;
+                var startAngle = baseAngle;
+                var endAngle = newAngle;
+                var gradient = context.createLinearGradient(
+                  endX, 
+                  endY,
+                  scope.dashboard.getWidth()/2-205,
+                  scope.dashboard.getHeight()/2-110
+                );
+
+                gradient.addColorStop(0, '#3e445c');
+                gradient.addColorStop(1, '#c1d3ea');
+
+                ctx.beginPath();
+                ctx.arc(x, y, radius, startAngle, endAngle, false);
+                ctx.strokeStyle = gradient;
+                ctx.lineWidth = 61;
+                ctx.stroke();
+                ctx.closePath();
+                ctx.beginPath();
+                ctx.moveTo(centerRX + Math.cos(newAngle-0.02) * radius, centerRY + Math.sin(newAngle-0.02) * radius);
+                ctx.lineTo(centerRX + Math.cos(newAngle+0.1) * radius,centerRY + Math.sin(newAngle+0.1) * radius);
+                ctx.lineTo(centerRX + Math.cos(newAngle) * (radius+30),centerRY + Math.sin(newAngle) * (radius+30));
+                ctx.fillStyle = gradient;
+                ctx.strokeStyle = gradient;
+                ctx.lineWidth = 2;
+                ctx.stroke();
+                ctx.fill();
+                ctx.closePath();
+                ctx.beginPath();
+                ctx.moveTo(centerRX + Math.cos(newAngle-0.02) * radius, centerRY + Math.sin(newAngle-0.02) * radius);
+                ctx.lineTo(centerRX + Math.cos(newAngle+0.1) * radius,centerRY + Math.sin(newAngle+0.1) * radius);
+                ctx.lineTo(centerRX + Math.cos(newAngle) * (radius-30),centerRY + Math.sin(newAngle) * (radius-30));
+                ctx.fillStyle = gradient;
+                ctx.strokeStyle = gradient;
+                ctx.lineWidth = 2;
+                ctx.stroke();
+                ctx.fill();
+                ctx.closePath();
+
+            },
+          });
+          console.log(container);
+          container.add(arc);
+          arc.setZIndex(1);
+          container.draw();
+        }
+      }
+
+      scope.drawTopRightArc_ = function(container) {
+        if(scope.workspace.needs) {
+          var relationNeed = scope.workspace.needs.filter(function(value) {
+            if(value.sguid == "169990243011789825") {
+              return value;
+            }
+          })[0];  
+        }
+        
+        if(container) {
+          var corruption = 305;
+          var radius = 295;
+          var oneStep = 10000/33; 
+          var newAngle = degToRad(10000/oneStep+corruption);
+          var baseAngle = degToRad(corruption);
+
+          var centerRX = scope.dashboard.getWidth()/2-236;
+          var centerRY = scope.dashboard.getHeight()/2-70;
+          var endX = centerRX + Math.cos(newAngle) * radius;
+          var endY = centerRY + Math.sin(newAngle) * radius;
+
+          var arc = new Kinetic.Shape({
+              drawFunc: function(context) {
+                var ctx = context.canvas.getContext()._context;
+                var x = centerRX;
+                var y = centerRY;
+                var startAngle = baseAngle;
+                var endAngle = newAngle;
+                var gradient = context.createLinearGradient(
+                  endX, 
+                  endY,
+                  scope.dashboard.getWidth()/2-205,
+                  scope.dashboard.getHeight()/2-110
+                );
+
+                gradient.addColorStop(0, '#3e445c');
+                gradient.addColorStop(1, '#c1d3ea');
+
+                ctx.beginPath();
+                ctx.rotate(degToRad(-1));
+                ctx.arc(x, y, radius, startAngle, endAngle, false);
+                ctx.strokeStyle = gradient;
+                ctx.lineWidth = 61;
+                ctx.stroke();
+                ctx.closePath();
+                ctx.beginPath();
+                ctx.moveTo(centerRX + Math.cos(newAngle-0.02) * radius, centerRY + Math.sin(newAngle-0.02) * radius);
+                ctx.lineTo(centerRX + Math.cos(newAngle+0.1) * radius,centerRY + Math.sin(newAngle+0.1) * radius);
+                ctx.lineTo(centerRX + Math.cos(newAngle) * (radius+30),centerRY + Math.sin(newAngle) * (radius+30));
+                ctx.fillStyle = gradient;
+                ctx.strokeStyle = gradient;
+                ctx.lineWidth = 2;
+                ctx.stroke();
+                ctx.fill();
+                ctx.closePath();
+                ctx.beginPath();
+                ctx.moveTo(centerRX + Math.cos(newAngle-0.02) * radius, centerRY + Math.sin(newAngle-0.02) * radius);
+                ctx.lineTo(centerRX + Math.cos(newAngle+0.1) * radius,centerRY + Math.sin(newAngle+0.1) * radius);
+                ctx.lineTo(centerRX + Math.cos(newAngle) * (radius-30),centerRY + Math.sin(newAngle) * (radius-30));
+                ctx.fillStyle = gradient;
+                ctx.strokeStyle = gradient;
+                ctx.lineWidth = 2;
+                ctx.stroke();
+                ctx.fill();
+                ctx.closePath();
+
+            },
+          });
+          console.log(container);
+          container.add(arc);
+          arc.setZIndex(1);
           container.draw();
         }
       }
@@ -408,14 +614,17 @@ pgrModule.directive('mydash', function() {
                     {x: 9, y: 7}
                 );
                 scope.db2Draw = cont;
-                scope.drawSegmentPoints_(
+                var cont2 =scope.drawSegmentPoints_(
                     {x: 0, y: 0}, 
                     [preload.getResult("db3"), preload.getResult("db3p")],
                     {x: 200, y: 100},
                     {x: 9, y: 7}
                 );
                 scope.drawText_(preload.getResult("dbt"));
-                scope.drawCenterArc_(cont);
+                //scope.drawCenterArc_(cont);
+                scope.drawBottomLeftArc_(cont2);
+                scope.drawTopLeftArc_(cont2);
+                scope.drawTopRightArc_(cont2);
             });
             preload.loadManifest(manifest);
       }

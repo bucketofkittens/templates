@@ -32,7 +32,12 @@
 				        <span ng-click="onLogin()">{{'_SignIn_' | i18n}}</span>
 				    </p>
 				    <p ng-if="workspace.user">
-				        <img ng-click="onOpenProfileAuthUser()" err-src="/images/unknown-person.png" ng-src="{{workspace.user.avatar}}" class="current" alt="{{workspace.user.name}}" />
+				        <img 
+				        	ng-click="onOpenProfileAuthUser()" 
+				        	err-src="/images/unknown-person.png" 
+				        	ng-src="{{workspace.user.avatar}}" 
+				        	class="current" 
+				        	alt="{{workspace.user.name}}" />
 				    </p>
 				</section>
 
@@ -85,8 +90,11 @@
 					<a 
 						href="https://twitter.com/intent/tweet?text=iRate&url=http://www.irate.com" 
 						target="_blank"></a>
-					<a ng-click="shareFacebook('http://www.irate.com', 'iRate', '', 'http://www.improva.com/src/assets/images/icons/improva_icon.png')" class="facebook"></a>
-					<a ng-click="shareGoogle('http://www.irate.com')" class="google"></a>
+					<a 
+						ng-click="shareFacebook('http://www.irate.com', 'iRate', '', 'http://www.improva.com/src/assets/images/icons/improva_icon.png')" class="facebook"></a>
+					<a 
+						ng-click="shareGoogle('http://www.irate.com')" 
+						class="google"></a>
 				</div>
 				
 				<div ng-if="controller != '_compare'">
