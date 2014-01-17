@@ -112,11 +112,11 @@ pgrModule.directive('caruselPosition', function($window) {
   }
 })
 
-pgrModule.directive('masonry', function() {
+pgrModule.directive('masonry', function(User) {
   return {
-    link: function(scope, element, attrs) {
-      scope.masonryContainer = $('#masonry');
-      scope.masonryContainer.isotope({
+    link: function($scope, element, attrs) {
+      $scope.masonryContainer = $('#masonry');
+      $scope.masonryContainer.isotope({
         // options
         itemSelector: '.item',
         rowHeight: 70,
@@ -128,47 +128,63 @@ pgrModule.directive('masonry', function() {
        }
       });
 
-      /*
-      scope.pckry = new Packery(scope.masonryContainer, {
-          itemSelector: '.item',
-          gutter: 0,
-          isHorizontal: true,
-          isInitLayout: false,
-          columnWidth: 70,
-          rowHeight: 70
-      });
-      scope.pckry.layout();
-      */
+      $scope.getPublishedUser = function() {
+        User.for_main_from_limit({limit: $scope.limit, skip: $scope.skip}, {}, function(data) {
+            var newArray = [];
+            angular.forEach(data, function(value, key) {
+                value.points = parseInt(value.points);
+                $scope.total_count = value.total_count;
+                if(isNaN(value.points)) {
+                    value.points = 0;
+                }
+                value.size = 280;
+                if(!value.points || (value.points > 0 && value.points <= 30000)) {
+                    value.size = 70;
+                }
+                if((value.points > 30000 && value.points <= 60000)) {
+                    value.size = 140;
+                }
+                if((value.points > 60000 && value.points <= 80000)) {
+                    value.size = 210;
+                }
+                value.size += "px";
+                newArray.push(value);
+            });
+            newArray.shuffle();
+            $scope.users = $scope.users.concat(newArray);
+
+            setTimeout(function() {
+              $scope.masonryContainer.isotope("reLayout");
+            }, 1000);
+
+            $scope.view_count += $scope.limit;
+            var isiPad = navigator.userAgent.match(/iPad/i) != null;
+            if(isiPad) {
+                $scope.total_count = 60;
+            }
+            if($scope.view_count < $scope.total_count) {
+                $scope.skip += $scope.limit;
+                $scope.getPublishedUser();
+            }
+        });
+      }
+
+      /**
+       * Забираем список пользователей
+       */
+      $scope.getPublishedUser();
     }
+
+    
   }
 })
 
 pgrModule.directive('masonryItem', function() {
   return {
     link: function(scope, element, attrs) {
-      var isiPad = navigator.userAgent.match(/iPad/i) != null;
-      scope.masonryContainer.isotope("appended",element);
-      
-        
       setTimeout(function() {
-        scope.masonryContainer.isotope("reLayout");
-        $(element).addClass("show");
+        scope.masonryContainer.isotope("appended",element);
       }, 0);
-      
-      
-      /*
-      if(!isiPad) {
-        setTimeout(function() {
-            $(element).addClass("animate");
-        }, 0);
-        setTimeout(function() {
-            $(element).addClass("show");
-        }, 1600);
-      } else {
-        setTimeout(function() {
-            $(element).addClass("show");
-        }, 0);
-      }*/
     }
   }
 })
@@ -223,7 +239,7 @@ pgrModule.directive('mydash', function() {
               y: dotCorruptions ? dotCorruptions.y : 0,
               name: "image2"
           });
-
+            
           centerImgContainer.setZIndex(0);
           centerImgDotContainer.setZIndex(3);
 

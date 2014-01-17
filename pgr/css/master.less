@@ -1283,9 +1283,8 @@ body {
     }
        > div {
             overflow: hidden;
-            opaticy: 0;
+            opacity: 0;
             .show {
-                opaticy: 1;
             }
             .wr {
                 position: relative;
@@ -3262,11 +3261,11 @@ table#graphs {
 }
 
 .isotope {
-  -webkit-transition-property: height, width;
-     -moz-transition-property: height, width;
-      -ms-transition-property: height, width;
-       -o-transition-property: height, width;
-          transition-property: height, width;
+  -webkit-transition-property: height, width, opacity;
+     -moz-transition-property: height, width, opacity;
+      -ms-transition-property: height, width, opacity;
+       -o-transition-property: height, width, opacity;
+          transition-property: height, width, opacity;
 }
 
 .isotope .isotope-item {
@@ -3287,4 +3286,13 @@ table#graphs {
       -ms-transition-duration: 0s;
        -o-transition-duration: 0s;
           transition-duration: 0s;
+}
+
+.isotope-item {
+  z-index: 2;
+}
+
+.isotope-hidden.isotope-item {
+  pointer-events: none;
+  z-index: 1;
 }
