@@ -124,7 +124,7 @@
 		<a class="il" ng-if="user && !user.isFollow && !compare" ng-click="onFollow()"><img src="../images/i3l.png"></a>
 		<a class="il" ng-if="user && user.isFollow && !compare" ng-click="onUnFollow()"><img src="../images/i3i.png"></a>
 
-		<a class="il" ng-if="user && !compare" ng-click="onCompareUser()"><img src="../images/i2l.png"></a> 
+		<a class="il" ng-if="user && !compare && user.sguid != workspace.user.sguid" ng-click="onCompareUser()"><img src="../images/i2l.png"></a> 
 	</div>
 
 	<div 

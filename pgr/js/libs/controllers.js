@@ -259,7 +259,7 @@ function UserController($scope, $element, $route, $routeParams, User, Needs, Pro
         $scope.bindIn = "user2";
     }
 
-    if($location.search().user1 == $location.search().user2) {
+    if($location.search().user1 && $location.search().user2 && $location.search().user1 == $location.search().user2) {
         User.for_main({}, {}, function(data) {
             var index = getRandomInt(0, data.length-1);
             $location.path("/compare").search({user1: $location.search().user1, user2: data[index].sguid})
