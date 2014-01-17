@@ -15,7 +15,7 @@
 		<div
 			ng-click="onUserClick(userItem, $event)"
 			ng-class="{big: userItem.big}"
-			class="item l_{userItem.league.name}"
+			class="item l_{{userItem.league.name}}"
 			ng-repeat="(userKey, userItem) in users"
 			ng-style="{width: userItem.size, height: userItem.size}"
 			masonry-item>
