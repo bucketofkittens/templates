@@ -184,6 +184,7 @@ ng-form:not(.ng-pristine) input.ng-invalid:not(.ng-pristine){border-color:rgba(2
 .icon.favorite{background:url("../images/fw.png") left top no-repeat;width:118px;height:24px}
 .icon.favorite_nav_left{background:url("../images/fl.png") left top no-repeat;width:11px;height:16px}
 .icon.favorite_nav_right{background:url("../images/fr.png") left top no-repeat;width:11px;height:16px}
+.icon.logo{background:url("../images/logobg.png") left top no-repeat;width:140px;height:50px}
 #bridge{position:absolute;width:32px;left:0;top:0;background:#fff;height:57px !important;display:none;border-top:1px solid #ddd;border-bottom:1px solid #ddd;z-index:200;box-shadow:0 20px 30px -20px rgba(0,0,0,0.5),0 -20px 30px -20px rgba(0,0,0,0.5)}
 #crop_modal{background:#fff;padding:20px;position:absolute;top:0;left:50%;width:500px;margin-left:-250px;z-index:1199;display:none;box-shadow:0 0 20px 1px rgba(0,0,0,0.2)}#crop_modal.show{display:block}
 #crop_modal #cropContainer{width:460px}
