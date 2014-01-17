@@ -1953,6 +1953,7 @@ function CompareController($scope, $location) {
     var pointsCountLoaded = 0;
     var pointsValues = {};
 
+    /*
     $scope.$on('getSelectedUserData', function($event, message) {
       pointsCountLoaded += 1;
       pointsValues[message.user.sguid] = message.user.points;
@@ -1968,6 +1969,7 @@ function CompareController($scope, $location) {
           pointsCountLoaded = 1;
       }
     });
+    */
 
     $scope.$on('needUserValueLoaded', function($event, message) {
       needsCountLoaded += 1;
