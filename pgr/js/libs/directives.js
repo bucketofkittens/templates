@@ -518,7 +518,7 @@ pgrModule.directive('mydash', function(User) {
                 centerY: 97,
                 segment: 33,
                 gradientX: 50,
-                gradientY: 130,
+                gradientY: 150,
                 zIndex: 1,
                 segmentMax: 46
              });
@@ -530,8 +530,8 @@ pgrModule.directive('mydash', function(User) {
                 centerX: 210,
                 centerY: 92,
                 segment: 33,
-                gradientX: 50,
-                gradientY: 50,
+                gradientX: 120,
+                gradientY: 100,
                 zIndex: 2,
                 segmentMax: 45
              });
@@ -543,8 +543,8 @@ pgrModule.directive('mydash', function(User) {
                 centerX: 228,
                 centerY: 102,
                 segment: 41,
-                gradientX: -50,
-                gradientY: -130,
+                gradientX: -10,
+                gradientY: -110,
                 zIndex: 3,
                 segmentMax: 48
              });
