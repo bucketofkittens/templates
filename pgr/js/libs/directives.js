@@ -523,17 +523,17 @@ pgrModule.directive('mydash', function(User) {
                 segmentMax: 46
              });
             scope.drawNeed_(scope.db3Draw, {
-                corruption: 305,
-                radius: 295,
+                corruption: 303,
+                radius: 260,
                 need_max: scope.carreeMax,
                 need_value: needsData["169990243011789827"],
-                centerX: 236,
-                centerY: 70,
+                centerX: 210,
+                centerY: 92,
                 segment: 33,
                 gradientX: 50,
                 gradientY: 50,
                 zIndex: 2,
-                segmentMax: 43
+                segmentMax: 45
              });
             scope.drawNeed_(scope.db3Draw, {
                 corruption: 190,
