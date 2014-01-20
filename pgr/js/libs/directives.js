@@ -464,8 +464,10 @@ pgrModule.directive('mydash', function(User) {
       });
 
       scope.setNeeds = function() {
-          scope.clearNeeds();
-          scope.db3Draw.draw();
+          if(scope.db3Draw) {
+            scope.clearNeeds();
+            scope.db3Draw.draw();  
+          }
 
           User.goals_points({id: scope.workspace.user.sguid}, {}, function(goalsData) {
             var needsData = {};
