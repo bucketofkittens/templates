@@ -200,6 +200,7 @@ pgrModule.directive('mydash', function(User) {
     link: function(scope, element, attrs) {
       scope.centerTextDraw = null;
       scope.db2Draw = null;
+      scope.needsLine = [];
 
       scope.updatePointText_ = function() {
         if(scope.workspace.user && scope.workspace.user.points) {
@@ -220,6 +221,10 @@ pgrModule.directive('mydash', function(User) {
           }
           
           scope.drawCenterArc_(scope.db2Draw);
+
+          if(scope.workspace.user && scope.workspace.needs && scope.workspace.needs.length > 0) {
+            scope.setNeeds();
+          }
         }
       });
 
@@ -412,6 +417,7 @@ pgrModule.directive('mydash', function(User) {
           container.add(arc);
           arc.setZIndex(params.zIndex);
           container.draw();
+          scope.needsLine.push(arc);
         }
       }
 
@@ -424,8 +430,6 @@ pgrModule.directive('mydash', function(User) {
               y: scope.dashboard_size.height/2-image.height/2,
               name: "image"
           });
-
-          container.add(centerImgContainer);
           
           var centerText = new Kinetic.Text({
             text: '',
@@ -435,7 +439,9 @@ pgrModule.directive('mydash', function(User) {
             x: scope.dashboard_size.width/2
           });
 
+          container.add(centerImgContainer);
           container.add(centerText);
+          
           scope.dashboard.add(container);
 
           scope.centerTextDraw = centerText;
@@ -457,6 +463,9 @@ pgrModule.directive('mydash', function(User) {
       });
 
       scope.setNeeds = function() {
+          scope.clearNeeds();
+          scope.db3Draw.draw();
+
           User.goals_points({id: scope.workspace.user.sguid}, {}, function(goalsData) {
             var needsData = {};
             var needs = JSON.parse(JSON.stringify(scope.workspace.needs));
@@ -543,6 +552,12 @@ pgrModule.directive('mydash', function(User) {
                 segmentMax: 45
              });
           });
+      }
+
+      scope.clearNeeds = function() {
+        angular.forEach(scope.needsLine, function(value, key){
+          value.remove();
+        });
       }
 
       scope.findNeedBySguid = function(sguid) {
