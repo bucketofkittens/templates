@@ -490,20 +490,18 @@ pgrModule.directive('mydash', function(User) {
                 needItem.current_value = needsData[needItem.sguid];
             });
 
-            console.log(scope.workspace.needs);
-
             scope.drawNeed_(scope.db3Draw, {
-                corruption: 359,
-                radius: 295,
+                corruption: 361,
+                radius: 310,
                 need_max: scope.findNeedBySguid("169990243011789824").points_summary,
                 need_value: needsData["169990243011789824"],
-                centerX: 249,
-                centerY: 100,
+                centerX: 262,
+                centerY: 110,
                 segment: 33,
                 gradientX: 50,
                 gradientY: 130,
                 zIndex: 1,
-                segmentMax: 43
+                segmentMax: 38
              });
             scope.drawNeed_(scope.db3Draw, {
                 corruption: 305,
