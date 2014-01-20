@@ -364,14 +364,14 @@ pgrModule.directive('mydash', function(User) {
                 var startAngle = baseAngle;
                 var endAngle = newAngle;
                 var gradient = context.createLinearGradient(
-                  endX, 
-                  endY,
-                  scope.dashboard.getWidth()/2-205,
-                  scope.dashboard.getHeight()/2-110
+                  centerRX + Math.cos(newAngle) * radius-params.gradientX, 
+                  centerRY + Math.sin(newAngle) * radius-params.gradientY,
+                  endX,
+                  endY
                 );
 
-                gradient.addColorStop(0, '#3e445c');
-                gradient.addColorStop(1, '#c1d3ea');
+                gradient.addColorStop(0, '#c1d3ea');
+                gradient.addColorStop(1, '#3e445c');
 
                 ctx.beginPath();
                 ctx.rotate(degToRad(-1.5));
@@ -495,6 +495,8 @@ pgrModule.directive('mydash', function(User) {
                 centerX: 249,
                 centerY: 100,
                 segment: 33,
+                gradientX: 50,
+                gradientY: 130,
                 zIndex: 1
              });
             scope.drawNeed_(scope.db3Draw, {
@@ -505,16 +507,20 @@ pgrModule.directive('mydash', function(User) {
                 centerX: 236,
                 centerY: 70,
                 segment: 33,
+                gradientX: 50,
+                gradientY: 50,
                 zIndex: 2
              });
             scope.drawNeed_(scope.db3Draw, {
                 corruption: 191,
-                radius: 250,
+                radius: 249,
                 need_max: scope.findNeedBySguid("169990243011789825").points_summary,
                 need_value: needsData["169990243011789825"],
                 centerX: 225,
                 centerY: 98,
                 segment: 41,
+                gradientX: -50,
+                gradientY: -130,
                 zIndex: 3
              });
             scope.drawNeed_(scope.db3Draw, {
@@ -522,9 +528,11 @@ pgrModule.directive('mydash', function(User) {
                 radius: 268,
                 need_max: scope.findNeedBySguid("169990243011789826").points_summary,
                 need_value: needsData["169990243011789826"],
-                centerX: 205,
-                centerY: 110,
+                centerX: 208,
+                centerY: 114,
                 segment: 40,
+                gradientX: -100,
+                gradientY: -100,
                 zIndex: 4
              });
           });
