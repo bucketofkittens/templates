@@ -549,17 +549,17 @@ pgrModule.directive('mydash', function(User) {
                 segmentMax: 48
              });
             scope.drawNeed_(scope.db3Draw, {
-                corruption: 135,
-                radius: 255,
+                corruption: 134.5,
+                radius: 245,
                 need_max: scope.findNeedBySguid("169990243011789826").points_summary,
                 need_value: needsData["169990243011789826"],
-                centerX: 218,
-                centerY: 107,
+                centerX: 227,
+                centerY: 100,
                 segment: 40,
                 gradientX: -100,
                 gradientY: -100,
                 zIndex: 4,
-                segmentMax: 46
+                segmentMax: 48
              });
           });
       }
