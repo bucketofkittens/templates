@@ -3312,7 +3312,7 @@ table#graphs {
 }
 
 .isotope .isotope-item {
-  -webkit-transition-property: height, width, opacity, max-width, max-height;
+  -webkit-transition-property: height, width, opacity, max-width, max-height; 
      -moz-transition-property: height, width, opacity, max-width, max-height;
       -ms-transition-property: height, width, opacity, max-width, max-height;
        -o-transition-property: height, width, opacity, max-width, max-height;
@@ -3342,4 +3342,113 @@ table#graphs {
 
 .w_hidden {
     visibility: hidden;
+}
+
+#zoom_element {
+    position: absolute;
+    z-index: 19999;
+    left: 50%;
+    top: 50%;
+    overflow: hidden;
+    transition: transform 0.3s linear;
+    -webkit-transition: -webkit-transform 0.3s linear;
+    -webkit-transform: scale(0);
+    transform: scale(0);
+    &.show {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
+    .sub2 {
+        width: 280px;
+        height: 280px;        
+    }
+    .wr {
+        position: relative;
+        overflow: hidden;
+        width: 280px;
+        height: 280px;     
+        i {
+            position: absolute;
+            left: 0px;
+            bottom: -4px;
+            width: 99%;
+            padding: 3px 1% 3px 0px;
+            text-align: center;
+            color: rgba(255,255,255,0.8);
+            line-height: 100%;
+            font-size: 29px;
+            font-family: 'Helvetica Neue Light';
+            z-index: 3;
+            transition: all 0.3s linear;
+            -webkit-transition: all 0.3s linear;
+            font-weight: bold;
+            text-shadow: 0px 0px 5px #000000;
+            background: rgba(0, 0, 0, 0.48);
+        }
+    }
+    img {
+        display: block;
+    }
+    em {
+        display: block;
+        position: absolute;
+        bottom: 0px;
+        left: -5px;
+        background: url("../images/league.png") left bottom no-repeat;
+        background-size: 40px 30px;
+        width: 40px;
+        height: 30px;
+        z-index: 5;
+    }
+    .sub {
+        position: absolute;
+        z-index: 2;
+        width: 100%;
+        height: 100%;
+        top: 0px;
+        left: 0px;
+        overflow: hidden;
+        transition: all 0.3s linear;
+        -webkit-transition: all 0.3s linear;
+        text-align: center;
+        background: rgba(0, 0, 0, 0.45);
+        ul {
+            padding-top: 10%;
+            text-align: center;
+            height: 20%;
+            li {
+                display: inline-block;
+                width: 25%;
+                height: 100%;
+                img, span {
+                    width: 100%;
+                    height: 100%;
+                    display: inline-block;
+                    background-size: 100%;
+                }
+                a {
+                    width: 70%;
+                    height: 100%;
+                    display: inline-block;
+                    cursor: pointer;
+                }
+            }
+        }
+        b {
+            font-family: 'Helvetica Neue Light';
+            color: #ffffff;
+            font-size: 24px;
+            display: block;
+            text-align: center;
+            padding: 20% 5% 0% 5%;
+            transition: all 0.3s linear;
+            -webkit-transition: all 0.3s linear;
+            s {
+                font-size: 90%;
+                padding-top: 5%;
+                display: block;
+                text-decoration: none;
+            }
+        }
+    }
 }

@@ -46,6 +46,12 @@ pgrModule.directive('positionNeed', function() {
 pgrModule.directive('backImg', function() {
   return {
     link: function(scope, element, attrs) {
+      attrs.$observe("backImg", function (newVal, oldVal, scope) {
+        element.css({
+            'background-image': 'url(' + newVal +')',
+            'background-size' : '100% 100%'
+        });
+      });
       element.css({
           'background-image': 'url(' + attrs.backImg +')',
           'background-size' : '100% 100%'
@@ -502,8 +508,6 @@ pgrModule.directive('mydash', function(User) {
 
                     scope.carreeMax = parseInt(carreerMax.max + moneyMax);
                     needsData[needItem.sguid] = parseInt(carreerMax.points + moneyPoints);
-                    console.log(scope.carreeMax);
-                    console.log(carreerMax.points + moneyPoints);
                 }
 
                 needItem.current_value = needsData[needItem.sguid];
@@ -642,56 +646,26 @@ pgrModule.directive('mydash', function(User) {
 pgrModule.directive('setWidth', function() {
   return {
     link: function(scope, element, attrs) {
-      scope.$watch("userItem.big", function() {
-        if(scope.userItem && scope.userItem.big) {
-
-          var newSize = $(window).height()/100*30;
-          var oldSize = $(element).height();
-          var parentElement = $(element).parent();
-          var delta = (oldSize-newSize)/2;
-
-          $(element).width(newSize);
-          $(element).height(newSize);
-
-          parentElement.width(newSize);
-          parentElement.height(newSize);
-
-          parentElement.css("margin-left", delta);
-          parentElement.css("margin-top", delta);
-
-          if(parentElement.offset().left < newSize / 2) {
-            parentElement.css("margin-left", 0);
+      scope.$watch("zoomElement", function() {
+          if(scope.zoomElement && scope.zoomElement.x) {
+            $(element).removeClass("show");
+            setTimeout(function() {
+              console.log(scope.scrollDelta);
+              var newX = scope.zoomElement.x-scope.zoomElement.width/2;
+              if(scope.scrollDelta) {
+                newX += scope.scrollDelta;
+              }
+              if(newX < 0) {
+                newX = 0;
+              }
+              var newY = scope.zoomElement.y-scope.zoomElement.height/2;
+              $(element).css("left", newX+"px");
+              $(element).css("top", newY+"px"); 
+              $(element).addClass("show");
+            }, 400);
+          } else {
+            $(element).removeClass("show");
           }
-          if(parentElement.offset().top < newSize / 2) {
-            parentElement.css("margin-top", 0);
-          }
-          if(parentElement.offset().top + newSize >  $(window).height()) {
-            parentElement.css("margin-top", "-"+newSize/1.5+"px");
-          }
-          if(parentElement.offset().left + newSize > $(window).width()) {
-            parentElement.css("margin-left", "-"+newSize/2+"px");
-          }
-
-          if(!scope.userItem.isUpdateSize) {
-            scope.userItem.isUpdateSize = true;
-            scope.userItem.oldSize =  oldSize;
-          }
-        } else {
-          if(scope.userItem && scope.userItem.isUpdateSize) {
-
-            var newSize = scope.userItem.oldSize;
-            var parentElement = $(element).parent();
-
-            $(element).width(newSize);
-            $(element).height(newSize);
-
-            parentElement.width(newSize);
-            parentElement.height(newSize);  
-
-            parentElement.css("margin-left", 0);
-            parentElement.css("margin-top", 0);
-          }
-        }
       });
     }
   }

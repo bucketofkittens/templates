@@ -1775,7 +1775,7 @@ function MainController($scope, Leagues, User, $rootScope, $location, $timeout, 
     $scope.onWheel = function($event, $delta, $deltaX, $deltaY) {
         var contentWidth = $("#masonry").width();
         var windowWidth = $(window).width();
-
+        $scope.zoomElement = null;
         if(contentWidth > windowWidth) {
             var step = $event.wheelDeltaY ? $event.wheelDeltaY/2 : $event.deltaY * 40;
 
@@ -1821,7 +1821,15 @@ function MainController($scope, Leagues, User, $rootScope, $location, $timeout, 
     $scope.onLogin = function() {
       $location.path('/login/');
     };
-    
+
+
+    $scope.$on('galleryElementClick', function($event, message) {
+      $scope.zoomElement = message.item;
+      $scope.zoomElement.x = $(message.event.target).parent().position().left;
+      $scope.zoomElement.y = $(message.event.target).parent().position().top;
+      $scope.zoomElement.width = $(message.event.target).parent().width();
+      $scope.zoomElement.height = $(message.event.target).parent().height();
+    });
 }
 
 /** Контроллер графика */
@@ -2182,6 +2190,8 @@ function GalleryController($scope, localize, Leagues, User, AuthUser, $element, 
             });
 
             user.big = user.big ? false : true;
+
+            $rootScope.$broadcast('galleryElementClick', {item: user, event: $event});
         }
     }
 
@@ -3014,7 +3024,6 @@ function MyProfileController($scope, $rootScope, User, $location, $cookieStore, 
     $scope.$watch("workspace.user.birthday", function (newVal, oldVal, scope) {
         if(newVal) {
             $scope.workspace.user.birthdayDate = moment(newVal).toDate();
-            console.log($scope.workspace.user.birthdayDate);
         }
     });
 
@@ -3074,7 +3083,6 @@ function MyProfileController($scope, $rootScope, User, $location, $cookieStore, 
                     $scope.state = value;
                 }
             });
-            console.log($scope.state);
             $scope.selectCityByState({}, $scope.state);
             $scope.showState = true;
         }

@@ -14,45 +14,53 @@
 		masonry>
 		<div
 			ng-click="onUserClick(userItem, $event)"
-			ng-class="{big: userItem.big}"
 			class="item l_{{userItem.league.name}} isotope-item"
 			ng-repeat="(userKey, userItem) in users"
 			ng-style="{width: userItem.size, height: userItem.size}"
-			masonry-item
-			ng-style="{width: userItem.size, height: userItem.size}">
+			masonry-item>
 			<div 	
 				class="wr" 
 				back-img="{{userItem.avatar}}" 
-				ng-class="{big: userItem.big}"
 				ng-click="switchState(userItem)"
-				ng-style="{width: userItem.size, height: userItem.size}"
-				set-width >
+				ng-style="{width: userItem.size, height: userItem.size}" >
 				<i>{{userItem.points}}</i>
-				<div class="sub">
-					<b>{{userItem.name}} <br /><s>{{userItem.league.name}} league</s></b>
-					<ul>
-						<li>
-							<a ng-click="onMoveToProfile(userItem)">
-								<span class="icon profile navigate"></span>
-							</a>
-						</li>
-						<li>
-							<a ng-click="onMoveToCompare(userItem)">
-								<span class="icon compare navigate"></span>
-							</a>
-						</li>
-						<li>
-							<a ng-if="!userItem.isFrend" ng-click="onFollow(userItem)">
-								<span class="icon follow navigate"></span>
-							</a>
-							<a ng-if="userItem.isFrend" ng-click="onUnFollow(userItem)">
-								<span class="icon unfollow navigate"></span>
-							</a>
-						</li>
-					</ul>
-				</div>
 				<em></em>
 			</div>
 		</div>
 	</div>
 </section>
+<div id="zoom_element" set-width>
+	<div ng-if="zoomElement" class="sub2" >
+		<div class="item l_{{zoomElement.league.name}} isotope-item" >
+			<div 	
+				class="wr" 
+				back-img="{{zoomElement.avatar}}" >
+				<i>{{zoomElement.points}}</i>
+				<div class="sub">
+					<b>{{zoomElement.name}} <br /><s>{{zoomElement.league.name}} league</s></b>
+					<ul>
+						<li>
+							<a ng-click="onMoveToProfile(zoomElement)">
+								<span class="icon profile navigate"></span>
+							</a>
+						</li>
+						<li>
+							<a ng-click="onMoveToCompare(zoomElement)">
+								<span class="icon compare navigate"></span>
+							</a>
+						</li>
+						<li>
+							<a ng-if="!zoomElement.isFrend" ng-click="onFollow(zoomElement)">
+								<span class="icon follow navigate"></span>
+							</a>
+							<a ng-if="zoomElement.isFrend" ng-click="onUnFollow(zoomElement)">
+								<span class="icon unfollow navigate"></span>
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<em></em>
+		</div>
+	</div>
+</div>
