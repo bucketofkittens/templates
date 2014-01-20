@@ -201,6 +201,7 @@ pgrModule.directive('mydash', function(User) {
       scope.centerTextDraw = null;
       scope.db2Draw = null;
       scope.needsLine = [];
+      scope.carreeMax = 0;
 
       scope.updatePointText_ = function() {
         if(scope.workspace.user && scope.workspace.user.points) {
@@ -441,7 +442,7 @@ pgrModule.directive('mydash', function(User) {
 
           container.add(centerImgContainer);
           container.add(centerText);
-          
+
           scope.dashboard.add(container);
 
           scope.centerTextDraw = centerText;
@@ -483,17 +484,24 @@ pgrModule.directive('mydash', function(User) {
                     var max = 0;
                     var carreerMax = {};
                     var moneyPoints = 0;
+                    var moneyMax = 0;
 
                     angular.forEach(needItem.goals, function(goal) {
                         if (goal.current_value > max && goal.name != "Money") {
                           max = goal.current_value;
-                          carreerMax = {goal: goal.sguid, points: goal.current_value};
+                          carreerMax = {goal: goal.sguid, points: goal.current_value, max: goal.points_summary};
                         }
                         if(goal.name == "Money") {
                           moneyPoints = goal.current_value;
+                          moneyMax = goal.points_summary;
                         }
+
                     });
+
+                    scope.carreeMax = parseInt(carreerMax.max + moneyMax);
                     needsData[needItem.sguid] = parseInt(carreerMax.points + moneyPoints);
+                    console.log(scope.carreeMax);
+                    console.log(carreerMax.points + moneyPoints);
                 }
 
                 needItem.current_value = needsData[needItem.sguid];
@@ -515,7 +523,7 @@ pgrModule.directive('mydash', function(User) {
             scope.drawNeed_(scope.db3Draw, {
                 corruption: 305,
                 radius: 295,
-                need_max: scope.findNeedBySguid("169990243011789827").points_summary,
+                need_max: scope.carreeMax,
                 need_value: needsData["169990243011789827"],
                 centerX: 236,
                 centerY: 70,
