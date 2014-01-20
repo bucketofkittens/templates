@@ -343,11 +343,13 @@ pgrModule.directive('mydash', function(User) {
       }
 
       scope.drawNeed_ = function(container, params) {
-        
         if(container) {
           var corruption = params.corruption;
           var radius =  params.radius;
-          var oneStep =  params.need_max/params.segment; 
+          var oneStep =  params.need_max/params.segment;
+          if(params.need_max - params.need_value < 500) {
+            var oneStep =  params.need_max/params.segmentMax;
+          }
           var newAngle = degToRad(params.need_value/oneStep+corruption);
           var baseAngle = degToRad(corruption);
 
@@ -380,26 +382,29 @@ pgrModule.directive('mydash', function(User) {
                 ctx.lineWidth = 61;
                 ctx.stroke();
                 ctx.closePath();
-                ctx.beginPath();
-                ctx.moveTo(centerRX + Math.cos(newAngle-0.02) * radius, centerRY + Math.sin(newAngle-0.02) * radius);
-                ctx.lineTo(centerRX + Math.cos(newAngle+0.1) * radius,centerRY + Math.sin(newAngle+0.1) * radius);
-                ctx.lineTo(centerRX + Math.cos(newAngle) * (radius+30),centerRY + Math.sin(newAngle) * (radius+30));
-                ctx.fillStyle = gradient;
-                ctx.strokeStyle = gradient;
-                ctx.lineWidth = 2;
-                ctx.stroke();
-                ctx.fill();
-                ctx.closePath();
-                ctx.beginPath();
-                ctx.moveTo(centerRX + Math.cos(newAngle-0.02) * radius, centerRY + Math.sin(newAngle-0.02) * radius);
-                ctx.lineTo(centerRX + Math.cos(newAngle+0.1) * radius,centerRY + Math.sin(newAngle+0.1) * radius);
-                ctx.lineTo(centerRX + Math.cos(newAngle) * (radius-30),centerRY + Math.sin(newAngle) * (radius-30));
-                ctx.fillStyle = gradient;
-                ctx.strokeStyle = gradient;
-                ctx.lineWidth = 2;
-                ctx.stroke();
-                ctx.fill();
-                ctx.closePath();
+
+                if(params.need_max - params.need_value > 500) {
+                  ctx.beginPath();
+                  ctx.moveTo(centerRX + Math.cos(newAngle-0.02) * radius, centerRY + Math.sin(newAngle-0.02) * radius);
+                  ctx.lineTo(centerRX + Math.cos(newAngle+0.1) * radius,centerRY + Math.sin(newAngle+0.1) * radius);
+                  ctx.lineTo(centerRX + Math.cos(newAngle) * (radius+30),centerRY + Math.sin(newAngle) * (radius+30));
+                  ctx.fillStyle = gradient;
+                  ctx.strokeStyle = gradient;
+                  ctx.lineWidth = 2;
+                  ctx.stroke();
+                  ctx.fill();
+                  ctx.closePath();
+                  ctx.beginPath();
+                  ctx.moveTo(centerRX + Math.cos(newAngle-0.02) * radius, centerRY + Math.sin(newAngle-0.02) * radius);
+                  ctx.lineTo(centerRX + Math.cos(newAngle+0.1) * radius,centerRY + Math.sin(newAngle+0.1) * radius);
+                  ctx.lineTo(centerRX + Math.cos(newAngle) * (radius-30),centerRY + Math.sin(newAngle) * (radius-30));
+                  ctx.fillStyle = gradient;
+                  ctx.strokeStyle = gradient;
+                  ctx.lineWidth = 2;
+                  ctx.stroke();
+                  ctx.fill();
+                  ctx.closePath();
+                }
 
             },
           });
@@ -497,7 +502,8 @@ pgrModule.directive('mydash', function(User) {
                 segment: 33,
                 gradientX: 50,
                 gradientY: 130,
-                zIndex: 1
+                zIndex: 1,
+                segmentMax: 43
              });
             scope.drawNeed_(scope.db3Draw, {
                 corruption: 305,
@@ -509,7 +515,8 @@ pgrModule.directive('mydash', function(User) {
                 segment: 33,
                 gradientX: 50,
                 gradientY: 50,
-                zIndex: 2
+                zIndex: 2,
+                segmentMax: 43
              });
             scope.drawNeed_(scope.db3Draw, {
                 corruption: 191,
@@ -521,19 +528,21 @@ pgrModule.directive('mydash', function(User) {
                 segment: 41,
                 gradientX: -50,
                 gradientY: -130,
-                zIndex: 3
+                zIndex: 3,
+                segmentMax: 47
              });
             scope.drawNeed_(scope.db3Draw, {
-                corruption: 135,
+                corruption: 136,
                 radius: 268,
                 need_max: scope.findNeedBySguid("169990243011789826").points_summary,
                 need_value: needsData["169990243011789826"],
-                centerX: 208,
-                centerY: 114,
+                centerX: 204,
+                centerY: 110,
                 segment: 40,
                 gradientX: -100,
                 gradientY: -100,
-                zIndex: 4
+                zIndex: 4,
+                segmentMax: 45
              });
           });
       }
