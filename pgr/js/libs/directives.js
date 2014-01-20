@@ -508,17 +508,17 @@ pgrModule.directive('mydash', function(User) {
             });
 
             scope.drawNeed_(scope.db3Draw, {
-                corruption: 361,
-                radius: 310,
+                corruption: 358,
+                radius: 253,
                 need_max: scope.findNeedBySguid("169990243011789824").points_summary,
                 need_value: needsData["169990243011789824"],
-                centerX: 262,
-                centerY: 110,
+                centerX: 205,
+                centerY: 97,
                 segment: 33,
                 gradientX: 50,
                 gradientY: 130,
                 zIndex: 1,
-                segmentMax: 38
+                segmentMax: 46
              });
             scope.drawNeed_(scope.db3Draw, {
                 corruption: 305,
@@ -534,30 +534,30 @@ pgrModule.directive('mydash', function(User) {
                 segmentMax: 43
              });
             scope.drawNeed_(scope.db3Draw, {
-                corruption: 191,
-                radius: 249,
+                corruption: 190,
+                radius: 245,
                 need_max: scope.findNeedBySguid("169990243011789825").points_summary,
                 need_value: needsData["169990243011789825"],
-                centerX: 225,
-                centerY: 98,
+                centerX: 228,
+                centerY: 102,
                 segment: 41,
                 gradientX: -50,
                 gradientY: -130,
                 zIndex: 3,
-                segmentMax: 47
+                segmentMax: 48
              });
             scope.drawNeed_(scope.db3Draw, {
-                corruption: 136,
-                radius: 268,
+                corruption: 135,
+                radius: 255,
                 need_max: scope.findNeedBySguid("169990243011789826").points_summary,
                 need_value: needsData["169990243011789826"],
-                centerX: 204,
-                centerY: 110,
+                centerX: 218,
+                centerY: 107,
                 segment: 40,
                 gradientX: -100,
                 gradientY: -100,
                 zIndex: 4,
-                segmentMax: 45
+                segmentMax: 46
              });
           });
       }
