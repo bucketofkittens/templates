@@ -76,6 +76,7 @@ pgrModule.config(function($routeSegmentProvider, $routeProvider) {
         .when('/forgot/:hash',              'changePassword')
         .when('/compare',                   'compare')
         .when('/search',                    'search')
+        .when('/nsi',                       'nsi')
         
         .when('/',                          'main')
         
@@ -113,6 +114,10 @@ pgrModule.config(function($routeSegmentProvider, $routeProvider) {
         .segment('search', {
             templateUrl: 'views/search.html',
             controller: SearchAdvanceController})
+
+        .segment('nsi', {
+            templateUrl: 'views/nsi.html',
+            controller: NSIController})
 
         .segment('compare', {
             templateUrl: 'views/compare.html',

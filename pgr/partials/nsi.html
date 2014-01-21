@@ -1,0 +1,28 @@
+<div id="nsi_content" ng-controller="NSIController">
+	<h2>NSI</h2>
+	<table>
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Min</th>
+				<th>Max</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="(key, value) in leagues | orderBy: 'position'">
+				<td width="20%" class="editing_cell">{{value.name}}</td>
+				<td width="20%" class="editing_cell">{{value.min_border}}</td>
+				<td width="20%" class="editing_cell">{{value.max_border}}</td>
+				<td width="40%">
+					<span class="icon edit" ng-click="edit(value)"></span>
+					<span class="icon delete" ng-click="delete(value)"></span>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	<div class="btns">
+		<a class="buttons green" ng-click="addLeague()">Add league</a>
+		<a class="buttons red" ng-click="closeModal()">Close</a>
+	</div>
+</div>

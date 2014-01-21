@@ -1,0 +1,24 @@
+<div id="nsi_content" ng-controller="NSIEditController">
+	<h2>Edit league</h2>
+	<table>
+		<tr>
+			<td>Name:</td>
+			<td><input type="text" ng-model="league.name" /></td>
+		</tr>
+		<tr>
+			<td>Min:</td>
+			<td><input type="text" ng-model="league.min_border" /></td>
+		</tr>
+		<tr>
+			<td>Max:</td>
+			<td><input type="text" ng-model="league.max_border" /></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td>
+				<a class="buttons green" ng-click="editLeague()">Save</a>
+				<a class="buttons red" ng-click="close()">Close</a>
+			</td>
+		</tr>
+	</table>
+</div>

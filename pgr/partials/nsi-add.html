@@ -1,0 +1,27 @@
+<div id="nsi_content" ng-controller="NSIAddController">
+	<h2>Add league</h2>
+	<table>
+		<tr>
+			<td>Name:</td>
+			<td><input type="text" ng-model="form.name" /></td>
+		</tr>
+		<tr>
+			<td>Min:</td>
+			<td><input type="text" ng-model="form.min_border" /></td>
+		</tr>
+		<tr>
+			<td>Max:</td>
+			<td><input type="text" ng-model="form.max_border" /></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td>
+				<a class="buttons green" ng-click="addLeague()">Save</a>
+				<a class="buttons red" ng-click="close()">Close</a>
+			</td>
+		</tr>
+	</table>
+	<div class="btns">
+		
+	</div>
+</div>

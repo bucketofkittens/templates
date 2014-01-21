@@ -31,3 +31,9 @@
 <section ng-controller="ShadowCtrl">
 	<div id="shadow" ng-class="{show: show}" ng-click="onHideModal()"></div>
 </section>
+
+<section ng-controller="ModalController" id="modal">
+	<div ng-class="{show: show}" class="body {{template}}" ng-if="template">
+		<section ng-include src="'/partials/'+template+'.html'"></section>
+	</div>
+</section>

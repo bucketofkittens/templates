@@ -52,45 +52,7 @@
 		</div>
 
 		<!-- GRAPHS -->
-		<a class="graphlink" ng-if="workspace.user" ng-cloak href="#/graphs">{{'_GRAPHS_' | i18n}}</a>
-
+		<a class="link" ng-if="workspace.user" ng-cloak ng-click="showModal('nsi')">NSI</a>
+		<a class="link" ng-if="workspace.user" ng-cloak href="#/graphs">GRAPH</a>
 	</div>
 </header>
-
-<!-- Контент -->
-<div id="content" class="controller_{{controller}} my-slide-container" ng-controller="ContentController">
-	<div class="content_wrap" app-view-segment="0"></div>
-</div>
-
-<!-- Футер -->
-<footer>
-	<div id="footer">
-		<div class="sexual">
-			<a 
-				href="https://twitter.com/intent/tweet?text=iRate&url=http://www.irate.com" 
-				target="_blank"></a>
-			<a 
-				ng-click="shareFacebook('http://www.irate.com', 'iRate', '', 'http://www.improva.com/src/assets/images/icons/improva_icon.png')" class="facebook"></a>
-			<a 
-				ng-click="shareGoogle('http://www.irate.com')" 
-				class="google"></a>
-		</div>
-		
-		<div ng-if="controller != '_compare'">
-			<div 
-				class="lnbl" 
-				ng-include
-				src="'partials/follow.html'"  >
-			</div>	
-		</div>	
-	</div>
-</footer>
-
-<section ng-include src="'partials/loader.html'"></section>
-
-<div id="fb-root"></div>
-
-<!-- Тенюшка -->
-<section ng-controller="ShadowCtrl">
-	<div id="shadow" ng-class="{show: show}" ng-click="onHideModal()"></div>
-</section>

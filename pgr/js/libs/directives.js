@@ -10,14 +10,6 @@ pgrModule.directive('errSrc', function() {
   }
 });
 
-pgrModule.directive('disablePaste', function() {
-  return {
-    link: function(scope, element, attrs) {
-    }
-  }
-});
-
-
 
 pgrModule.directive('positionGoal', function() {
   return {

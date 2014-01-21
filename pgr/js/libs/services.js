@@ -462,7 +462,10 @@ pgrModule.factory('Leagues', function ($resource) {
             "by_position": {
                 method: 'GET',
                 url: host+"/leagues/by_position/:position"
-            }
+            },
+            del: {method: "DELETE"},
+            create: {method: 'POST'},
+            updateLeague: {method: 'PUT'}
         }
     );
 });

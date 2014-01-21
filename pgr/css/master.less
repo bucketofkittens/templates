@@ -55,7 +55,7 @@ body {
                     height: 50px;
                 }
             }
-            .graphlink {
+            .link {
                 float: right;
                 color: #ffffff;
                 text-decoration: none;
@@ -2059,6 +2059,18 @@ ng-form:not(.ng-pristine) {
         width: 140px;
         height: 50px;
     }
+    &.delete {
+        background: url("../images/delete.png") left top no-repeat;
+        width: 30px;
+        height: 30px;
+        background-size: 100% 100%;
+    }
+    &.edit {
+        background: url("../images/edit.png") left top no-repeat;
+        width: 30px;
+        height: 30px;
+        background-size: 100% 100%;
+    }
 }
 
 
@@ -3455,4 +3467,69 @@ table#graphs {
 
 #body_include {
     height: 100%;
+}
+
+#modal {
+    z-index: 9999;
+    position: absolute;
+    left: 50%;
+    top: 100px;
+    width: 800px;
+    margin-left: -400px;
+    background: #ffffff;
+    .body {
+        position: relative;
+    }
+}
+
+.body.nsi, .body.nsi-add, .body.nsi-edit {
+    padding: 15px;
+    h2 {
+        font-size: 24px;
+        text-align: center;
+        padding-bottom: 10px;
+    }
+    th {
+        font-weight: bold;
+    }
+    .icon {
+        cursor: pointer;
+    }
+    tbody {
+        max-height: 500px;
+        overflow: auto;
+    }
+    table {
+        width: 100%;
+    }
+    .editing_cell {
+        cursor: pointer;
+    }
+    td { 
+        vertical-align: middle;
+    }
+    .btns {
+        margin-top: 10px;
+    }
+}
+.body.nsi {
+    td { 
+        border-top: 1px solid #cccccc;
+    }
+}
+
+.buttons {
+    color: #000000;
+    padding: 4px 10px;
+    display: inline-block;
+    margin-right: 10px;
+    border-radius: 3px;
+    text-decoration: none;
+    cursor: pointer;
+    &.green {
+        background: #BCF5A9;
+    }
+    &.red {
+        background: red;
+    }
 }
