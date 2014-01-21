@@ -1708,7 +1708,21 @@ function MainController($scope, Leagues, User, $rootScope, $location, $timeout, 
         });
     };
 
-    
+    $(document).on("click touchstart", function(event) {
+        event.stopPropagation();
+        if(
+            !$(event.target).hasClass("wr") 
+            && $(event.target).parents(".sub2").size() == 0) {
+            $("#zoom_element").removeClass("show");
+        }
+        $scope.$apply(function() {
+            if(
+                !$(event.target).hasClass("wr") 
+                && $(event.target).parents(".sub2").size() == 0  ) {
+                $scope.zoomElement = null;
+            }
+        });
+    });
     
     /**
      * Событие перехода к пользователю
@@ -1775,7 +1789,7 @@ function MainController($scope, Leagues, User, $rootScope, $location, $timeout, 
     $scope.onWheel = function($event, $delta, $deltaX, $deltaY) {
         var contentWidth = $("#masonry").width();
         var windowWidth = $(window).width();
-        $scope.zoomElement = null;
+
         if(contentWidth > windowWidth) {
             var step = $event.wheelDeltaY ? $event.wheelDeltaY/2 : $event.deltaY * 40;
 
@@ -1822,13 +1836,14 @@ function MainController($scope, Leagues, User, $rootScope, $location, $timeout, 
       $location.path('/login/');
     };
 
-
     $scope.$on('galleryElementClick', function($event, message) {
-      $scope.zoomElement = message.item;
-      $scope.zoomElement.x = $(message.event.target).parent().position().left;
-      $scope.zoomElement.y = $(message.event.target).parent().position().top;
-      $scope.zoomElement.width = $(message.event.target).parent().width();
-      $scope.zoomElement.height = $(message.event.target).parent().height();
+        if(message.item != $scope.zoomElement) {
+          $scope.zoomElement = message.item;
+          $scope.zoomElement.x = $(message.event.target).parent().position().left;
+          $scope.zoomElement.y = $(message.event.target).parent().position().top;
+          $scope.zoomElement.width = $(message.event.target).parent().width();
+          $scope.zoomElement.height = $(message.event.target).parent().height();
+        }
     });
 }
 
@@ -1878,8 +1893,12 @@ function GraphsController($scope, $rootScope, $route, $location, Leagues, User) 
          */
         angular.forEach($scope.leagues, function(value, key){
             User.by_league({league_guid:value.sguid}, {}, function(v2, k2){
+                v2.sort(function(a, b) {
+                    if(a.points < b.points) return 1;
+                    if(a.points > b.points) return -1;
+                    return 0;
+                })
                 var users = v2.splice(0,10);
-
                 if(users.length < 10) {
                     var i = 0;
                     for(i = users.length; i <= 10; i++) {

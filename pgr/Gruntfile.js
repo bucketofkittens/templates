@@ -7,6 +7,7 @@ module.exports = function(grunt) {
         concat: {
             main: {
                 src: [
+                    'js/wl.js',
                 	'js/jquery-2.0.3.min.js',
                     'js/jquery-ui-1.10.3.custom.min.js',
                 	'js/angular.min.js',

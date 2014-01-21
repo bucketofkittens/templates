@@ -646,25 +646,36 @@ pgrModule.directive('mydash', function(User) {
 pgrModule.directive('setWidth', function() {
   return {
     link: function(scope, element, attrs) {
+      function setPosition() {
+        if(scope.zoomElement && scope.zoomElement.x) {
+          $(element).removeClass("show");
+          setTimeout(function() {
+            var newX = scope.zoomElement.x-scope.zoomElement.width/2;
+            if(scope.scrollDelta) {
+              newX += scope.scrollDelta;
+            }
+            if(newX < 0) {
+              newX = 0;
+            }
+            var newY = scope.zoomElement.y-scope.zoomElement.height/2;
+            $(element).css("left", newX+"px");
+            $(element).css("top", newY+"px"); 
+            $(element).addClass("show");
+          }, 200);
+        } else {
+          $(element).removeClass("show");
+        }
+      }
       scope.$watch("zoomElement", function() {
+          setPosition();
+      });
+      scope.$watch("scrollDelta", function() {
           if(scope.zoomElement && scope.zoomElement.x) {
-            $(element).removeClass("show");
-            setTimeout(function() {
-              console.log(scope.scrollDelta);
-              var newX = scope.zoomElement.x-scope.zoomElement.width/2;
-              if(scope.scrollDelta) {
-                newX += scope.scrollDelta;
-              }
-              if(newX < 0) {
-                newX = 0;
-              }
-              var newY = scope.zoomElement.y-scope.zoomElement.height/2;
-              $(element).css("left", newX+"px");
-              $(element).css("top", newY+"px"); 
-              $(element).addClass("show");
-            }, 400);
-          } else {
-            $(element).removeClass("show");
+            var newX = scope.zoomElement.x-scope.zoomElement.width/2;
+            if(scope.scrollDelta) {
+              newX += scope.scrollDelta;
+            }
+            $(element).css("left", newX+"px");
           }
       });
     }
