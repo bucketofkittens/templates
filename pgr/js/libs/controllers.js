@@ -34,31 +34,6 @@ function ShadowCtrl($scope, $rootScope) {
 }
 
 /**
- * Контроллер аватарки
- * @param {Object} $scope
- * @param {Object} $rootScope
- * @param {Object} $location
- * @returns {undefined}
- */
-function AvatarCtrl($scope, $rootScope, $location) {
-    /**
-     * Открываем окно авторизации
-     * @returns {undefined}
-     */
-    $scope.onLogin = function() {
-        $location.path("/login/");
-    };
-
-    /**
-     * Переход на страницу профиля
-     * @return {undefined}
-     */
-    $scope.onOpenProfileAuthUser = function() {
-        $location.path("/my_profile/").search({});
-    };
-}
-
-/**
  * Навигационное меню сверху
  * @param {type} $scope
  * @param {type} localize
@@ -2304,6 +2279,22 @@ function getRandomInt(min, max) {
 }
 
 function RootController($scope, $facebook, AuthUser, User, $rootScope, Needs, Social, $cookieStore, States, Professions, $location, $timeout, Leagues) {
+    /**
+     * Открываем окно авторизации
+     * @returns {undefined}
+     */
+    $scope.onLogin = function() {
+        $location.path("/login/");
+    };
+
+    /**
+     * Переход на страницу профиля
+     * @return {undefined}
+     */
+    $scope.onOpenProfileAuthUser = function() {
+        $location.path("/my_profile/").search({});
+    };
+
     /**
      * Забираем список друзей из localStorage
      * @return {Array} [description]

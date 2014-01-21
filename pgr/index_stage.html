@@ -10,93 +10,14 @@
 		<link rel="stylesheet" href="/build/style.base64.css" />
 	</head>
 	<body ng-controller="RootController" >
-		<header class="header_{{controller}}">
-			<div id="header">
-				<!-- Логотип -->
-				<a href="#/" class="logo">
-					<span class="logo icon"></span>
-				</a>
-
-				<!-- Аватар -->
-				<section id="avatar" ng-cloak ng-controller="AvatarCtrl">
-				    <p ng-if="!workspace.user">
-				        <img ng-click="onLogin()" ng-src="/images/anon.png" alt="" />
-				        <span ng-click="onLogin()">{{'_SignIn_' | i18n}}</span>
-				    </p>
-				    <p ng-if="workspace.user">
-				        <img ng-click="onOpenProfileAuthUser()" err-src="/images/unknown-person.png" ng-src="{{workspace.user.avatar}}" class="current" alt="{{workspace.user.name}}" />
-				    </p>
-				</section>
-
-				<!-- Поиск -->
-				<div id="search" ng-controller="SearchController" ng-init="limit=5">
-					<input 
-						type="text" 
-						ng-model="searchText" 
-						placeholder="Search people" 
-						class="search"
-						ng-change="onSearch()" />
-					<input type="submit" class="searcher" ng-click="onAdvanceSearch()" />
-					<div ng-cloak class="searchResult" ng-if="resultSearch.length > 0">
-						<div class="item" ng-repeat="(userKey, userItem) in resultSearch | limitTo: limit">
-							<div class="image" ng-click="onCompare(userItem)">
-								<img ng-src="{{userItem.avatar}}" alt="" err-src="/images/unknown-person.png" />
-								<i>{{userItem.points}}</i>
-							</div>
-							<div class="text" ng-click="onCompare(userItem)">
-								<p class="name">{{userItem.name}}</p>
-								<p class="birthday">{{userItem.birthday}}</p>
-								<p class="birthday gr">{{userItem.state.name}}</p>
-								<p class="profession gr">{{userItem.profession.name}}</p>
-								<p class="league">{{userItem.league.name}} league</p>
-							</div>
-							<img class="sealin" src="./images/i1l.png" alt="" ng-click="onCompare(userItem)">
-						</div>
-						<div class="all" ng-if="resultSearch.length > limit">
-							<a ng-click="onAdvanceSearch()">See all results</a>
-						</div>
-					</div>
-				</div>
-
-				<!-- GRAPHS -->
-				<a class="graphlink" ng-if="workspace.user" ng-cloak href="#/graphs">{{'_GRAPHS_' | i18n}}</a>	
-			</div>
-		</header>
+		<div ng-include id="body_include" src="'partials/header.html'"></div>
 
 		<!-- Контент -->
 		<div id="content" class="controller_{{controller}} my-slide-container" ng-controller="ContentController">
 			<div class="content_wrap" app-view-segment="0"></div>
 		</div>
-		
-		<!-- Футер -->
-		<footer>
-			<div id="footer">
-				<div class="sexual">
-					<a 
-						href="https://twitter.com/intent/tweet?text=iRate&url=http://www.irate.com" 
-						target="_blank"></a>
-					<a ng-click="shareFacebook('http://www.irate.com', 'iRate', '', 'http://www.improva.com/src/assets/images/icons/improva_icon.png')" class="facebook"></a>
-					<a ng-click="shareGoogle('http://www.irate.com')" class="google"></a>
-				</div>
-				
-				<div ng-if="controller != '_compare'">
-					<div 
-						class="lnbl" 
-						ng-include
-						src="'partials/follow.html'"  >
-					</div>	
-				</div>	
-			</div>
-		</footer>
 
-        <section ng-include src="'partials/loader.html'"></section>
-
-        <div id="fb-root"></div>
-
-        <!-- Тенюшка -->
-        <section ng-controller="ShadowCtrl">
-        	<div id="shadow" ng-class="{show: show}" ng-click="onHideModal()"></div>
-        </section>
+		<div ng-include id="body_include" src="'partials/footer.html'"></div>
 
 		<script type="text/javascript" src="http://www.google.com/recaptcha/api/js/recaptcha_ajax.js"></script>
 		
