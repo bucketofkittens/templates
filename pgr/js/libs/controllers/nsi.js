@@ -37,4 +37,14 @@ function NSIController($scope, Leagues, $rootScope, $timeout) {
             });
         }); 
     }
+
+    $scope.ok = function(value) {
+        $rootScope.$broadcast('loaderShow');
+
+        Leagues.recal({}, {}, function(data) {
+            $rootScope.$broadcast('closeModal');
+            $rootScope.$broadcast('loaderHide');
+            location.reload();
+        }); 
+    }
 }

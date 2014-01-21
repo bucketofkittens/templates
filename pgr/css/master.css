@@ -88,7 +88,7 @@ body header #header #avatar p span{color:#fff;text-decoration:none;font-family:'
 #content .tab .myset .promy .pmpar select,#content .tab .myset .promy .pmpar input{width:220px;padding:5px !important;border:1px solid #ccc;font-family:'Helvetica Neue Light';box-shadow:none;height:26px}
 #content .tab .myset .promy .pmpar select{width:233px;height:38px}
 #content .tab .myset .promy .pmpar button{width:170px;height:100%;font-size:16px;font-family:'Helvetica Neue Light';line-height:16px;margin-left:15px;padding:10px !important;vertical-align:middle !important;display:inline-block;cursor:pointer;background:none;border:1px solid #ccc}
-#modal-shadow{position:fixed;left:0;top:0;width:100%;height:100%;background:rgba(0,0,0,0.5);display:none;z-index:2500}#modal-shadow.show{display:block}
+#modal-shadow{position:fixed;left:0;top:0;width:100%;height:100%;background:rgba(0,0,0,0.5);display:none;z-index:12500}#modal-shadow.show{display:block}
 #modal-shadow span{display:inline-block;position:relative;z-index:9999;width:100px;height:100px;top:50%;margin-top:-100px;left:50%}
 .gallery{height:100%;margin-top:60px;position:relative;overflow:visible !important}.gallery>div{cursor:pointer;overflow:visible !important;transition:all .1s linear;-webkit-transition:all .1s linear;left:0;height:100%}.gallery>div.rate-yourself{position:fixed !important;top:50%;left:50%;margin-top:-100px !important;margin-left:-100px !important;width:200px !important;height:200px !important;background:url("../images/unknown-person.png") left top no-repeat;background-size:200px 200px;z-index:999999 !important;cursor:pointer}.gallery>div.rate-yourself h2{color:#fff;font-size:25px;width:100%;text-align:center;top:5px;position:absolute}.gallery>div.rate-yourself h2:last-child{top:auto;bottom:5px}
 .gallery>div .l_1 i,.gallery>div .l_2 i,.gallery>div .l_3 i,.gallery>div .l_4 i{display:block !important}
@@ -335,3 +335,4 @@ table#graphs tr:last-child td{border-top:none}
 .body.nsi td{border-top:1px solid #ccc}
 .buttons{color:#000;padding:4px 10px;display:inline-block;margin-right:10px;border-radius:3px;text-decoration:none;cursor:pointer}.buttons.green{background:#bcf5a9}
 .buttons.red{background:#f00}
+.buttons.all{background:#ccc}

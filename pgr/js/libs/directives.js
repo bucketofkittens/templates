@@ -136,17 +136,8 @@ pgrModule.directive('masonry', function(User) {
                 if(isNaN(value.points)) {
                     value.points = 0;
                 }
-                value.size = 280;
-                if(!value.points || (value.points > 0 && value.points <= 30000)) {
-                    value.size = 70;
-                }
-                if((value.points > 30000 && value.points <= 60000)) {
-                    value.size = 140;
-                }
-                if((value.points > 60000 && value.points <= 80000)) {
-                    value.size = 210;
-                }
-                value.size += "px";
+                console.log(value.league);
+                value.size = value.league.size+"px";
                 newArray.push(value);
             });
             newArray.shuffle();

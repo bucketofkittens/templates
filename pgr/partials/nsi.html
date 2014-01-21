@@ -6,6 +6,7 @@
 				<th>Name</th>
 				<th>Min</th>
 				<th>Max</th>
+				<th>Size</th>
 				<th></th>
 			</tr>
 		</thead>
@@ -14,6 +15,7 @@
 				<td width="20%" class="editing_cell">{{value.name}}</td>
 				<td width="20%" class="editing_cell">{{value.min_border}}</td>
 				<td width="20%" class="editing_cell">{{value.max_border}}</td>
+				<td width="20%" class="editing_cell">{{value.size}}</td>
 				<td width="40%">
 					<span class="icon edit" ng-click="edit(value)"></span>
 					<span class="icon delete" ng-click="delete(value)"></span>
@@ -22,6 +24,7 @@
 		</tbody>
 	</table>
 	<div class="btns">
+		<a class="buttons all" ng-click="ok()">Ok</a>
 		<a class="buttons green" ng-click="addLeague()">Add league</a>
 		<a class="buttons red" ng-click="closeModal()">Close</a>
 	</div>

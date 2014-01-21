@@ -465,7 +465,11 @@ pgrModule.factory('Leagues', function ($resource) {
             },
             del: {method: "DELETE"},
             create: {method: 'POST'},
-            updateLeague: {method: 'PUT'}
+            updateLeague: {method: 'PUT'},
+            recal: {
+                url: host+"/leagues/recalc_for_all",
+                method: 'POST'
+            }
         }
     );
 });
