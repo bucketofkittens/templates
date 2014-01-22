@@ -36,23 +36,22 @@ var pgrModule = angular.module(
 	'pgrModule', 
 	[ 
 		"ngRoute", 
-		"ngCookies", 
+		"ngCookies",
 		"ngResource",
 		"ngAnimate",
 		"ngSanitize",
+		'ngTouch', 
+		'ngFacebook',
 		"localization", 
 		'route-segment', 
 		'view-segment', 
-		'ngTouch', 
-		'ngFacebook',
         'monospaced.mousewheel',
         'ui.date',
         'ui.autocomplete',
         'ui.keypress',
         'vcRecaptcha',
         'rzModule',
-        'ngScrollEvent',
-        'pasvaz.bindonce'
+        'ngScrollEvent'
 		]
 	);
 

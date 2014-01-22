@@ -38,7 +38,6 @@ module.exports = function(grunt) {
                 	'js/localize.js',
                     'js/lscache.js',
                     'js/rzslider.min.js',
-                    'js/bindonce.js',
                     'js/preloadjs-0.4.1.min.js',
                     'js/kinetic-v5.0.0.min.js',
                     'js/libs/*.js',

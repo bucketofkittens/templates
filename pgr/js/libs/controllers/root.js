@@ -103,10 +103,24 @@ function RootController($scope, $facebook, AuthUser, User, $rootScope, Needs, So
         $rootScope.$broadcast('getTmpFollowsCallback_');
     });
 
+    /**
+     * Выход
+     * @param  {[type]} $event  [description]
+     * @param  {[type]} message [description]
+     * @return {[type]}         [description]
+     */
     $scope.$on('logout', function($event, message) {
         $scope.authUserId = null;
     });
 
+    /**
+     * Share facebook
+     * @param  {[type]} url   [description]
+     * @param  {[type]} title [description]
+     * @param  {[type]} descr [description]
+     * @param  {[type]} image [description]
+     * @return {[type]}       [description]
+     */
     $scope.shareFacebook = function(url, title, descr, image) {
         var winWidth = 600;
         var winHeight = 600;
@@ -116,6 +130,11 @@ function RootController($scope, $facebook, AuthUser, User, $rootScope, Needs, So
         return false;
     };
 
+    /**
+     * Share google
+     * @param  {[type]} url [description]
+     * @return {[type]}     [description]
+     */
     $scope.shareGoogle = function(url) {
         var winWidth = 600;
         var winHeight = 600;
@@ -233,6 +252,12 @@ function RootController($scope, $facebook, AuthUser, User, $rootScope, Needs, So
         });
     }
 
+    /**
+     * Событие обновления списка лиг
+     * @param  {[type]} $event  [description]
+     * @param  {[type]} message [description]
+     * @return {[type]}         [description]
+     */
     $scope.$on('reloadLeagues', function($event, message) {
         $scope.getAllLeagues();
     });
@@ -243,6 +268,12 @@ function RootController($scope, $facebook, AuthUser, User, $rootScope, Needs, So
         }
     });
 
+    /**
+     * Удаление человека из списка друзей
+     * @param  {[type]} $event  [description]
+     * @param  {[type]} message [description]
+     * @return {[type]}         [description]
+     */
     $scope.$on('unfollow', function($event, message) {
         if($scope.authUserId) {
             $scope.authUnFollow(message);
@@ -251,6 +282,12 @@ function RootController($scope, $facebook, AuthUser, User, $rootScope, Needs, So
         }
     });
 
+    /**
+     * Добавление человека в список друзей
+     * @param  {[type]} $event  [description]
+     * @param  {[type]} message [description]
+     * @return {[type]}         [description]
+     */
     $scope.$on('follow', function($event, message) {
         if($scope.authUserId) {
             $scope.authFollow(message);
@@ -259,6 +296,11 @@ function RootController($scope, $facebook, AuthUser, User, $rootScope, Needs, So
         }
     });
 
+    /**
+     * Добавление в друзья если пользователь авторизирован
+     * @param  {[type]} message [description]
+     * @return {[type]}         [description]
+     */
     $scope.authFollow = function(message) {
         User.create_friendship({id: message.userId}, {
             friend_guid: message.frendId
@@ -270,16 +312,30 @@ function RootController($scope, $facebook, AuthUser, User, $rootScope, Needs, So
         });
     };
 
+    /**
+     * Добавление в друзья если пользователь не авторизирован
+     * @param  {[type]} message [description]
+     * @return {[type]}         [description]
+     */
     $scope.guestFollow = function(message) {
         $scope.tmpFollows.push({sguid: null, user: message.user});
         $scope.guestFollowPersist();
         $rootScope.$broadcast('followCallback', {frendId: message.frendId});
     };
 
+    /**
+     * Сохраняем список друзей для не авторизированного пользователя в localstorage
+     * @return {[type]} [description]
+     */
     $scope.guestFollowPersist = function() {
         localStorage.setItem('follows', JSON.stringify($scope.tmpFollows));
     }
 
+    /**
+     * Убираем из друзей если пользователь  авторизирован
+     * @param  {[type]} message [description]
+     * @return {[type]}         [description]
+     */
     $scope.authUnFollow = function(message) {
         User.destroy_friendship({id: message.userId, friendId: message.frendId}, { }, function() {
             var frend = $scope.workspace.user.frends.filter(function(data) {
@@ -294,6 +350,11 @@ function RootController($scope, $facebook, AuthUser, User, $rootScope, Needs, So
         });
     };
 
+    /**
+     * Убираем из друзей если пользователь не авторизирован
+     * @param  {[type]} message [description]
+     * @return {[type]}         [description]
+     */
     $scope.guestUnFollow = function(message) {
         var frend = $scope.tmpFollows.filter(function(data) {
             if(data.user.sguid === message.frendId) {
@@ -306,6 +367,12 @@ function RootController($scope, $facebook, AuthUser, User, $rootScope, Needs, So
         $rootScope.$broadcast('unfollowCallback', {frendId: message.frendId});
     };
 
+    /**
+     * Событие авторизации
+     * @param  {[type]} $event  [description]
+     * @param  {[type]} message [description]
+     * @return {[type]}         [description]
+     */
     $scope.$on('onSignin', function($event, message) {
         if(message && message.sguid) {
             User.query({id: message.sguid}, function(data) {
@@ -353,6 +420,12 @@ function RootController($scope, $facebook, AuthUser, User, $rootScope, Needs, So
         }
     });
     
+    /**
+     * Авторизация через google plus
+     * @param  {[type]} email [description]
+     * @param  {[type]} name  [description]
+     * @return {[type]}       [description]
+     */
     $scope.gplusAuth = function(email, name) {
         Social.login({}, {email: email}, function(data) {
             var updateUser = {};
@@ -408,6 +481,4 @@ function RootController($scope, $facebook, AuthUser, User, $rootScope, Needs, So
             $scope.showAllListElement("careerList");
         }
     });
-
-    
 }
