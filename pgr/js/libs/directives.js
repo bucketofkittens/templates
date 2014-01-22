@@ -114,6 +114,12 @@ pgrModule.directive('masonry', function(User) {
   return {
     link: function($scope, element, attrs) {
 
+      window.onorientationchange = function() {
+          angular.forEach($scope.users, function(value, key) {
+              value.big = false;
+          });
+      };
+
       $scope.limit = parseInt($(window).height()/30);
       $scope.skip = 0;
       $scope.view_count = 0;

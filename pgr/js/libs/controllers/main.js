@@ -11,12 +11,6 @@
  */
 function MainController($scope, Leagues, User, $rootScope, $location, $timeout, AuthUser, $cookieStore) {
 
-    window.onorientationchange = function() {
-        angular.forEach($scope.users, function(value, key) {
-            value.big = false;
-        });
-    };
-
     $(document).on("click touchstart", function(event) {
         event.stopPropagation();
         if(
@@ -72,20 +66,6 @@ function MainController($scope, Leagues, User, $rootScope, $location, $timeout, 
     $scope.onUnFollow = function(user) {
         $rootScope.$broadcast('unfollow', {userId: AuthUser.get(), frendId: user.sguid, user: user});
     }
-
-    
-    /**
-     * Настройки masonry
-     * @type {Object}
-     */
-    $scope.opts = {
-        layoutMode: "perfectMasonry",
-        perfectMasonry: {
-            layout: 'horizontal',
-            columnWidth: 70,
-            rowHeight: 70
-       }
-    };
 
     /**
      * Событие скроллинга мышкой
