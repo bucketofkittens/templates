@@ -254,7 +254,7 @@ sup.bidubi{top:13px !important;border-width:23px 0 23px 15px}
 .improva p{position:relative}
 .improva .left{display:inline-block;margin-top:15px;width:110px;vertical-align:top}.improva .left img{width:70px}
 .improva .right{width:280px;margin-top:15px;display:inline-block;vertical-align:top}.improva .right p{margin-bottom:15px}
-.improva .buttons{margin-left:8px}.improva .buttons input{margin-left:5px}
+.improva .buttons{margin-left:8px;padding:0 !important;display:block !important}.improva .buttons input{margin-left:5px;display:inline-block}
 .cursor{cursor:pointer;vertical-align:middle}
 #recaptcha_table{border:0 !important}
 #recaptcha_image,.recaptcha_image_cell{width:230px !important}

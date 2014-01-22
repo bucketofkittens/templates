@@ -113,6 +113,13 @@ pgrModule.directive('caruselPosition', function($window) {
 pgrModule.directive('masonry', function(User) {
   return {
     link: function($scope, element, attrs) {
+
+      $scope.limit = parseInt($(window).height()/30);
+      $scope.skip = 0;
+      $scope.view_count = 0;
+      $scope.total_count = 0;
+      $scope.users = [];
+
       $scope.initIso = function() {
         $scope.masonryContainer = $('#masonry');
         $scope.masonryContainer.isotope({
@@ -150,8 +157,6 @@ pgrModule.directive('masonry', function(User) {
             if($scope.view_count < $scope.total_count) {
                 $scope.skip += $scope.limit;
                 $scope.getPublishedUser();
-            } else {
-
             }
         });
       }
@@ -629,7 +634,7 @@ pgrModule.directive('setWidth', function() {
   return {
     link: function(scope, element, attrs) {
       function setPosition() {
-        if(scope.zoomElement && scope.zoomElement.x) {
+        if(scope.zoomElement) {
           $(element).removeClass("show");
           setTimeout(function() {
             var newX = scope.zoomElement.x-scope.zoomElement.width/2;

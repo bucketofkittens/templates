@@ -10,11 +10,6 @@
  * @returns {MainController}
  */
 function MainController($scope, Leagues, User, $rootScope, $location, $timeout, AuthUser, $cookieStore) {
-    $scope.limit = parseInt($(window).height()/30);
-    $scope.skip = 0;
-    $scope.view_count = 0;
-    $scope.total_count = 0;
-    $scope.users = [];
 
     window.onorientationchange = function() {
         angular.forEach($scope.users, function(value, key) {
@@ -151,7 +146,8 @@ function MainController($scope, Leagues, User, $rootScope, $location, $timeout, 
     };
 
     $scope.$on('galleryElementClick', function($event, message) {
-        if(message.item != $scope.zoomElement) {
+        console.log(message.item);
+        if(message.item) {
           $scope.zoomElement = message.item;
           $scope.zoomElement.x = $(message.event.target).parent().position().left;
           $scope.zoomElement.y = $(message.event.target).parent().position().top;
