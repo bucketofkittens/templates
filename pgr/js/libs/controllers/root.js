@@ -222,15 +222,6 @@ function RootController($scope, $facebook, AuthUser, User, $rootScope, Needs, So
         });
     }
 
-
-    $timeout(function() {
-        $scope.getUserInfo();
-        $scope.getNeeds();
-        $scope.getCountries();
-        $scope.getAllLeagues();
-    }, 1000);
-
-
     $scope.getCountries = function() {
         States.query({}, {}, function(data) {
             $scope.workspace.countries = data;
@@ -251,6 +242,12 @@ function RootController($scope, $facebook, AuthUser, User, $rootScope, Needs, So
             $scope.workspace.leagues = data;
         });
     }
+
+    // грузим данные
+    $scope.getUserInfo();
+    $scope.getNeeds();
+    $scope.getCountries();
+    $scope.getAllLeagues();
 
     /**
      * Событие обновления списка лиг

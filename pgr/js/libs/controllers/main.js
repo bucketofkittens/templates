@@ -146,7 +146,6 @@ function MainController($scope, Leagues, User, $rootScope, $location, $timeout, 
     };
 
     $scope.$on('galleryElementClick', function($event, message) {
-        console.log(message.item);
         if(message.item) {
           $scope.zoomElement = message.item;
           $scope.zoomElement.x = $(message.event.target).parent().position().left;

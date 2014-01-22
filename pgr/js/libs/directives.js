@@ -118,7 +118,7 @@ pgrModule.directive('masonry', function(User) {
       $scope.skip = 0;
       $scope.view_count = 0;
       $scope.total_count = 0;
-      $scope.users = [];
+      $scope.users = lscache.get("masonry");
 
       $scope.initIso = function() {
         $scope.masonryContainer = $('#masonry');
@@ -149,14 +149,17 @@ pgrModule.directive('masonry', function(User) {
             newArray.shuffle();
             $scope.users = $scope.users.concat(newArray);
 
+
             $scope.view_count += $scope.limit;
             var isiPad = navigator.userAgent.match(/iPad/i) != null;
             if(isiPad) {
                 $scope.total_count = 60;
             }
             if($scope.view_count < $scope.total_count) {
-                $scope.skip += $scope.limit;
-                $scope.getPublishedUser();
+              $scope.skip += $scope.limit;
+              $scope.getPublishedUser();
+            } else {
+              lscache.set('masonry', JSON.stringify($scope.users), 1440);
             }
         });
       }
@@ -164,7 +167,11 @@ pgrModule.directive('masonry', function(User) {
       /**
        * Забираем список пользователей
        */
-      $scope.getPublishedUser();
+      if(!$scope.users) {
+        $scope.users = [];
+        $scope.getPublishedUser();  
+      }
+      
       $scope.initIso();
     }
 
