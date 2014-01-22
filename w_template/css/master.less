@@ -1,0 +1,117 @@
+html, body {
+	height: 100%;
+}
+#center {
+	width: 1366px;
+	height: 768px;
+	margin: 0px auto;
+	background: url("../images/gr2.jpg") center top no-repeat;
+	color: #ffffff;
+	#center_wrap {
+		margin: 0px 50px;
+		h1 {
+			padding: 50px 0px 40px 0px;
+			font-family: 'segoe_uiregular';
+			font-size: 38px;
+		}
+		#content_list {
+			.cell {
+				width: 600px;
+				float: right;
+				&:first-child {
+					float: left;
+				}
+				h2 {
+					font-family: 'segoe_uilight';
+					font-size: 40px;
+					line-height: 120%;
+					padding-bottom: 3px;
+					* {
+						vertical-align: middle;
+					}
+					i {
+						padding-left: 10px;
+					}
+				}
+				ul {
+					li {
+						width: 100%;
+						overflow: hidden;
+						margin-bottom: 20px;
+						.left {
+							float: left;
+							position: relative;
+							width: 100px;
+							i {
+								position: absolute;
+								left: 0px;
+								bottom: 0px;
+								width: 100%;
+								background: rgba(0, 0, 0, 0.51);
+								font-family: 'segoe_uilight';
+								font-size: 16px;
+								text-indent: 10px;
+								text-shadow: 3px 3px 2px rgba(150, 150, 150, 1);
+							}
+						}
+						.right {
+							float: left;
+							width: 288px;
+							h3 {
+								font-family: 'segoe_uiregular';
+								font-size: 18px;
+								padding-bottom: 6px;
+							}
+							p {
+								font-family: 'segoe_uilight';
+								font-size: 16px;
+								color: #d7d7d7;
+								padding-bottom: 10px;
+							}
+							h4 {
+								font-family: 'segoe_uilight';
+								font-size: 16px;
+							}
+						}
+						.buttons {
+							float: right;
+						}
+					}
+				}
+			}
+		}
+	}
+	.icon {
+		display: inline-block;
+		&.call {
+			width: 25px;
+			height: 28px;
+			background: url("../images/call.png") left top no-repeat;
+		}
+		&.user {
+			width: 22px;
+			height: 27px;
+			background: url("../images/user.png") left top no-repeat;
+		}
+		&.accept {
+			width: 87px;
+			height: 87px;
+			background: url("../images/accept.png") left top no-repeat;
+		}
+		&.decline {
+			width: 87px;
+			height: 87px;
+			background: url("../images/decline.png") left top no-repeat;
+		}
+		&.accept_call {
+			width: 87px;
+			height: 87px;
+			background: url("../images/accept_call.png") left top no-repeat;
+		}
+		&.decline_call {
+			width: 87px;
+			height: 87px;
+			background: url("../images/decline_call.png") left top no-repeat;
+		}
+	}
+}
