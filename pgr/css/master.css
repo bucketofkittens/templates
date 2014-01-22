@@ -293,8 +293,8 @@ sup.bidubi{top:13px !important;border-width:23px 0 23px 15px}
 #nav2{position:relative;left:-20px;margin-bottom:10px;width:100%;overflow:hidden}#nav2 li{float:left;width:49.5%}#nav2 li a{font-family:'Helvetica Neue Light';line-height:16px;padding:12px 0 10px 0 !important;vertical-align:middle !important;width:100%;cursor:pointer;background:none;display:inline-block;text-align:center;border:1px solid #ccc;font-size:20px}#nav2 li a.current{color:#fff;background:#36374b}
 .user_right{display:inline-block;position:relative;top:80px;float:right;vertical-align:top;width:350px;height:100%}
 .controller__my_profile .image_box{width:180px !important;height:180px !important}
-#graph_container{height:100%;width:100%;overflow-y:scroll;overflow-x:hidden}#graph_container::-webkit-scrollbar{width:0;height:0}
-table#graphs{height:90%;width:90%;margin:0 auto;position:relative;table-layout:fixed}table#graphs tr{height:100px}table#graphs tr td,table#graphs tr th{vertical-align:top;text-align:center;border-top:1px solid #ccc;height:200px}table#graphs tr td img,table#graphs tr th img{width:70px;position:relative}
+#graph_container{height:90%;width:100%;overflow-y:scroll;overflow-x:scroll}
+table#graphs{height:90%}table#graphs tr td,table#graphs tr th{vertical-align:top;text-align:center;border-top:1px solid #ccc;height:200px}table#graphs tr td img,table#graphs tr th img{width:70px;position:relative}
 table#graphs tr td a,table#graphs tr th a{display:block;position:relative}
 table#graphs tr th{border-top:none;border-right:1px solid #000;line-height:50% !important;width:10%}
 table#graphs tr:last-child th{border-right:none}
@@ -331,8 +331,10 @@ table#graphs tr:last-child td{border-top:none}
 .body.nsi table,.body.nsi-add table,.body.nsi-edit table{width:100%}
 .body.nsi .editing_cell,.body.nsi-add .editing_cell,.body.nsi-edit .editing_cell{cursor:pointer}
 .body.nsi td,.body.nsi-add td,.body.nsi-edit td{vertical-align:middle}
+.body.nsi th,.body.nsi-add th,.body.nsi-edit th{text-align:left !important}
 .body.nsi .btns,.body.nsi-add .btns,.body.nsi-edit .btns{margin-top:10px}
 .body.nsi td{border-top:1px solid #ccc}
 .buttons{color:#000;padding:4px 10px;display:inline-block;margin-right:10px;border-radius:3px;text-decoration:none;cursor:pointer}.buttons.green{background:#bcf5a9}
 .buttons.red{background:#f00}
 .buttons.all{background:#ccc}
+#loosers{margin-top:100px}

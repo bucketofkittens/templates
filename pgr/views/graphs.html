@@ -4,48 +4,13 @@
 		
 			<tr ng-repeat="(lKey,lItem) in leagues | orderBy:'position':true"	>
 				<th>
-					{{(lItem.position+1)*10000}}
+					{{lItem.min_border}}
 				</th>
 				<td ng-repeat="(uKey,uItem) in lItem.users" points" data-points="{{uItem.points}}" data-step="{{lItem.position+1}}">
 					<a ng-if="uItem.name" href="#/profile/?user={{uItem.sguid}}">
 						<img ng-if="uItem.avatar" ng-src="{{uItem.avatar}}" />
 						<img ng-if="!uItem.avatar" src="./images/unknown-person.png" />	
 					</a>
-				</td>
-			</tr>
-			<tr>
-				<th>
-					0
-				</th>
-				<td >
-					
-				</td>
-				<td >
-					
-				</td>
-				<td >
-					
-				</td>
-				<td >
-					
-				</td>
-				<td >
-					
-				</td>
-				<td >
-					
-				</td>
-				<td >
-					
-				</td>
-				<td >
-					
-				</td>
-				<td >
-					
-				</td>
-				<td >
-					
 				</td>
 			</tr>
 		</tbody>

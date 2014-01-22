@@ -136,7 +136,6 @@ pgrModule.directive('masonry', function(User) {
                 if(isNaN(value.points)) {
                     value.points = 0;
                 }
-                console.log(value.league);
                 value.size = value.league.size+"px";
                 newArray.push(value);
             });

@@ -47,4 +47,20 @@ function NSIController($scope, Leagues, $rootScope, $timeout) {
             location.reload();
         }); 
     }
+
+    $scope.update = function(value) {
+        var sguid = value.sguid;
+
+        delete value.icon;
+        delete value.sguid;
+        delete value.$$hashKey;
+
+        Leagues.updateLeague(
+            {id: sguid}, 
+            {
+                "league": JSON.stringify(value)
+            }, function(data) {
+            }
+        );
+    }
 }
