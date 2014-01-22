@@ -1,5 +1,8 @@
 html,body{height:100%}
-#center{width:1366px;height:768px;margin:0 auto;background:url("../images/gr2.jpg") center top no-repeat;color:#fff}#center #center_wrap{margin:0 50px}#center #center_wrap h1{padding:50px 0 40px 0;font-family:'segoe_uiregular';font-size:38px}
+#center{width:1366px;height:768px;margin:0 auto;background:#26201f url("../images/gr2.jpg") center top no-repeat;color:#fff;position:relative}#center #center_wrap{margin:0 50px}#center #center_wrap h1{padding:50px 0 40px 0;font-family:'segoe_uiregular';font-size:38px}
+#center #center_wrap .modal{position:absolute;left:50%;top:100px;margin-left:-440px;width:886px;background:#292523;z-index:20;display:none}#center #center_wrap .modal .sub{position:relative;padding:25px 18px}#center #center_wrap .modal .sub h2{font-family:'segoe_uilight';font-size:30px;padding-bottom:40px}
+#center #center_wrap .modal .sub .close{position:absolute;right:25px;top:25px}
+#center #center_wrap #modal2{top:260px}#center #center_wrap #modal2 nav a{display:inline-block;background:url("../images/123.png") center top no-repeat;width:129px;height:73px;text-align:center;line-height:72px;text-decoration:none;font-family:'segoe_uilight';font-size:20px;color:#d7d7d7}
 #center #center_wrap #content_list .cell{width:600px;float:right}#center #center_wrap #content_list .cell:first-child{float:left}
 #center #center_wrap #content_list .cell h2{font-family:'segoe_uilight';font-size:40px;line-height:120%;padding-bottom:3px}#center #center_wrap #content_list .cell h2 *{vertical-align:middle}
 #center #center_wrap #content_list .cell h2 i{padding-left:10px}
@@ -14,3 +17,6 @@ html,body{height:100%}
 #center .icon.decline{width:87px;height:87px;background:url("../images/decline.png") left top no-repeat}
 #center .icon.accept_call{width:87px;height:87px;background:url("../images/accept_call.png") left top no-repeat}
 #center .icon.decline_call{width:87px;height:87px;background:url("../images/decline_call.png") left top no-repeat}
+#center .icon.close{width:39px;height:39px;background:url("../images/close.png") left top no-repeat}
+#center #shadow{width:1366px;height:768px;background:rgba(0,0,0,0.68);position:absolute;left:0;top:0;z-index:10;display:none}
+#center .show{display:block !important}

@@ -5,14 +5,56 @@ html, body {
 	width: 1366px;
 	height: 768px;
 	margin: 0px auto;
-	background: url("../images/gr2.jpg") center top no-repeat;
+	background: #26201f url("../images/gr2.jpg") center top no-repeat;
 	color: #ffffff;
+	position: relative;
 	#center_wrap {
 		margin: 0px 50px;
 		h1 {
 			padding: 50px 0px 40px 0px;
 			font-family: 'segoe_uiregular';
 			font-size: 38px;
+		}
+		.modal {
+			position: absolute;
+			left: 50%;
+			top: 100px;
+			margin-left: -440px;
+			width: 886px;
+			background: #292523;
+			z-index: 20;
+			display: none;
+			.sub {
+				position: relative;
+				padding: 25px 18px;
+				h2 {
+					font-family: 'segoe_uilight';
+					font-size: 30px;
+					padding-bottom: 40px;
+				}
+				.close {
+					position: absolute;
+					right: 25px;
+					top: 25px;
+				}
+			}
+		}
+		#modal2 {
+			top: 260px;
+			nav {
+				a {
+					display: inline-block;
+					background: url("../images/123.png") center top no-repeat;
+					width: 129px;
+					height: 73px;
+					text-align: center;
+					line-height: 72px;
+					text-decoration: none;
+					font-family: 'segoe_uilight';
+					font-size: 20px;
+					color: #d7d7d7;
+				}
+			}
 		}
 		#content_list {
 			.cell {
@@ -113,5 +155,23 @@ html, body {
 			height: 87px;
 			background: url("../images/decline_call.png") left top no-repeat;
 		}
+		&.close {
+			width: 39px;
+			height: 39px;
+			background: url("../images/close.png") left top no-repeat;
+		}
+	}
+	#shadow {
+		width: 1366px;
+		height: 768px;
+		background: rgba(0, 0, 0, 0.68);
+		position: absolute;
+		left: 0px;
+		top: 0px;
+		z-index: 10;
+		display: none;
+	}
+	.show {
+		display: block !important;
 	}
 }
