@@ -1,11 +1,12 @@
 <section
 	msd-wheel="onWheel($event, $delta, $deltaX, $deltaY)"
-	class="gallery" ng-controller="GalleryController">
+	class="gallery" 
+	ng-controller="GalleryController">
 
-   <div ng-click="onLogin()" class="rate-yourself" ng-if="!workspace.user">
-      <h2>Click to find</h2>
-      <h2>where are you</h2>
-   </div>
+	<div ng-click="onLogin()" class="rate-yourself" ng-if="!workspace.user">
+		<h2>Click to find</h2>
+		<h2>where are you</h2>
+	</div>
 
 	<div 
 		id="masonry"
@@ -29,6 +30,7 @@
 		</div>
 	</div>
 </section>
+
 <div id="zoom_element" set-width>
 	<div class="sub2" >
 		<div class="item l_{{zoomElement.league.name}} isotope-item" >
