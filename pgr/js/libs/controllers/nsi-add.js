@@ -26,7 +26,7 @@ function NSIAddController($scope, Leagues, $rootScope) {
         Leagues.create({}, {
             "league": JSON.stringify($scope.form)
         }, function(data) {
-            console.log(data);
+            $rootScope.$broadcast('reloadLeagues');
             $scope.close();
         });
     }

@@ -3,41 +3,38 @@
  * @param {[type]} $scope [description]
  */
 function NSIController($scope, Leagues, $rootScope, $timeout) {
-    /**
-    * Забираем запросом список лиг.
-    * @param  {[type]} data [description]
-    * @return {[type]}      [description]
-    */
-    Leagues.query({}, {}, function(data) {
-        $scope.leagues = data;
-    })
 
+    /**
+     * Добавляем новую лигу
+     */
     $scope.addLeague = function() {
         $rootScope.$broadcast('openModal', { name: 'nsi-add'});
 
         $timeout(function(){
-            $rootScope.$broadcast('nseAddOpen', { size: $scope.leagues.length});
+            $rootScope.$broadcast('nseAddOpen', { size: $scope.workspace.leagues.length});
         }, 100);
     }
 
-    $scope.edit = function(value) {
-        $rootScope.$broadcast('openModal', { name: 'nsi-edit'});
-
-        $timeout(function(){
-            $rootScope.$broadcast('nseEditOpen', { league: value});
-        }, 100);
-    }
-
+    /**
+     * Удаление лиги
+     * @param  {[type]} value [description]
+     * @return {[type]}       [description]
+     */
     $scope.delete = function(value) {
         Leagues.del({id: value.sguid}, {}, function(data) {
-            angular.forEach($scope.leagues, function(value2, key2){
+            angular.forEach($scope.workspace.leagues, function(value2, key2){
                 if(value2.sguid == value.sguid) {
-                    $scope.leagues.splice(key2, 1);
+                    $scope.workspace.leagues.splice(key2, 1);
                 }
             });
         }); 
     }
 
+    /**
+     * Закрываем окошко и иницилизируем пересчет пользователей
+     * @param  {[type]} value [description]
+     * @return {[type]}       [description]
+     */
     $scope.ok = function(value) {
         $rootScope.$broadcast('loaderShow');
 
@@ -48,6 +45,11 @@ function NSIController($scope, Leagues, $rootScope, $timeout) {
         }); 
     }
 
+    /**
+     * Обновление лиги
+     * @param  {[type]} value [description]
+     * @return {[type]}       [description]
+     */
     $scope.update = function(value) {
         var sguid = value.sguid;
 

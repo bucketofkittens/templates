@@ -1,3 +1,20 @@
+/**
+ * Основной контроллер.
+ * В нем используются данные которые нужны на всех страницах.
+ * @param {[type]} $scope       [description]
+ * @param {[type]} $facebook    [description]
+ * @param {[type]} AuthUser     [description]
+ * @param {[type]} User         [description]
+ * @param {[type]} $rootScope   [description]
+ * @param {[type]} Needs        [description]
+ * @param {[type]} Social       [description]
+ * @param {[type]} $cookieStore [description]
+ * @param {[type]} States       [description]
+ * @param {[type]} Professions  [description]
+ * @param {[type]} $location    [description]
+ * @param {[type]} $timeout     [description]
+ * @param {[type]} Leagues      [description]
+ */
 function RootController($scope, $facebook, AuthUser, User, $rootScope, Needs, Social, $cookieStore, States, Professions, $location, $timeout, Leagues) {
     
     /**
@@ -55,14 +72,32 @@ function RootController($scope, $facebook, AuthUser, User, $rootScope, Needs, So
      */
     $scope.tmpFollows = $scope.guestFollowGetOnStorage();
 
+    /**
+     * получаем имя текущего контроллера
+     * @type {[type]}
+     */
     $scope.controller = $location.path().split("/").join("_");
 
+    /**
+     * События перехода по страницам
+     * @param  {[type]}   event   [description]
+     * @param  {Function} next    [description]
+     * @param  {[type]}   current [description]
+     * @return {[type]}           [description]
+     */
     $scope.$on('$routeChangeStart', function(event, next, current) {
         $scope.controller = $location.path().split("/").join("_");
 
+        // скрываем поиск
         $rootScope.$broadcast('hideSearch');
     });
 
+    /**
+     * Забираем список друзей для не зарегистрированного пользователя
+     * @param  {[type]} $event  [description]
+     * @param  {[type]} message [description]
+     * @return {[type]}         [description]
+     */
     $scope.$on('getTmpFollows', function($event, message) {
         $scope.tmpFollows = $scope.guestFollowGetOnStorage();
         $rootScope.$broadcast('getTmpFollowsCallback_');
@@ -90,6 +125,10 @@ function RootController($scope, $facebook, AuthUser, User, $rootScope, Needs, So
         return false;
     };
 
+    /**
+     * Выходим из системы
+     * @return {[type]} [description]
+     */
     $scope.onLogout = function() {
         AuthUser.logout();
     
@@ -136,6 +175,11 @@ function RootController($scope, $facebook, AuthUser, User, $rootScope, Needs, So
         }
     };
 
+    /**
+     * Берем список needs
+     * Если он есть в localstoreage то сначала оттуда
+     * @return {[type]} [description]
+     */
     $scope.getNeeds = function() {
         var needs = lscache.get("needs");
         if(!needs) {
@@ -147,6 +191,10 @@ function RootController($scope, $facebook, AuthUser, User, $rootScope, Needs, So
         
     };
 
+    /**
+     * Забираем список нидсов с сервера
+     * @return {[type]} [description]
+     */
     $scope.getNeedsOnServer_ = function() {
         Needs.query({}, {}, function(data) {
             $scope.workspace.needs = data;
@@ -170,6 +218,10 @@ function RootController($scope, $facebook, AuthUser, User, $rootScope, Needs, So
         });    
     }
 
+    /**
+     * Забираем список всех лиг
+     * @return {[type]} [description]
+     */
     $scope.getAllLeagues = function() {
         /**
          * Забираем список всех лиг
@@ -180,6 +232,10 @@ function RootController($scope, $facebook, AuthUser, User, $rootScope, Needs, So
             $scope.workspace.leagues = data;
         });
     }
+
+    $scope.$on('reloadLeagues', function($event, message) {
+        $scope.getAllLeagues();
+    });
     
     $scope.$on('updateUserData', function($event, message) {
         if(message.user.sguid === $rootScope.authUserId) {
@@ -290,7 +346,6 @@ function RootController($scope, $facebook, AuthUser, User, $rootScope, Needs, So
                     }
 
                     if(!message.noRedirect) {
-//                        $location.path("/");
                         $location.path('/my_profile');
                     }
                 });

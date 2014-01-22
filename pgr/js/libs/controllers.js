@@ -11,23 +11,6 @@ function LeftUserController($scope, $location) {
     $scope.compare = true;
 }
 
-
-
-
-
-
-
-
-
-
-function ContentController($scope, $rootScope, $route, $location) {
-    
-}
-
-
-
-
-
 /** Контроллер графика */
 function GraphsController($scope, $rootScope, $route, $location, Leagues, User) {
     /**
