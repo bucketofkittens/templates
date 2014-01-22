@@ -157,10 +157,6 @@ pgrModule.directive('masonry', function(User) {
 
 
             $scope.view_count += $scope.limit;
-            var isiPad = navigator.userAgent.match(/iPad/i) != null;
-            if(isiPad) {
-                $scope.total_count = 60;
-            }
             if($scope.view_count < $scope.total_count) {
               $scope.skip += $scope.limit;
               $scope.getPublishedUser();
