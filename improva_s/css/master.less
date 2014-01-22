@@ -1,5 +1,12 @@
 body {
-	background: url("../images/bg.png") center top no-repeat;
+	&.blue {
+		background: url("../images/bg.png") center top no-repeat;
+	}
+	&.top {
+		header {
+			margin-bottom: 40px !important;
+		}		
+	}
 	#page {
 		height: 100%;
       width: 1020px;
@@ -48,11 +55,14 @@ body {
 				vertical-align: top;
 				img {
 					display: block;
+					&.lower {
+						margin-top: 40px;
+					}
 				}
 				a {
 					display: inline-block;
 					width: 200px;
-					margin-top: 70px;
+					margin-top: 50px;
 					&:last-child {
 						margin-left: 95px;
 					}
@@ -60,6 +70,7 @@ body {
 				&.flah {
 					margin: 30px 0px 0px 50px;
 					width: 450px;
+					overflow: hidden;
 					p {
 						font-family: 'Helvetica Neue Light';
 						font-size: 18px;
@@ -70,7 +81,118 @@ body {
 							color: #028dda;
 						}
 					}
+					i {
+						font-family: 'Helvetica Neue Light';
+						font-size: 18px;
+						display: inline-block;
+						&:last-child {
+							float: right;
+						}
+					}
 				}
+			}
+			.about {
+				img {
+					margin: 0px auto;
+					display: block;
+				}
+				h3 {
+					font-family: 'Helvetica Neue Light';
+					font-size: 20px;	
+					color: #000000;
+					padding: 5px 0px 20px 50px;
+					margin: 20px 0px 5px 180px;
+					background: url("http://localhost:3000/images/icon.png") left 0px no-repeat;
+				}
+				p {
+					font-family: 'Helvetica Neue Light';
+					font-size: 18px;
+					line-height: 25px;	
+					color: #000000;
+					width: 650px;
+					margin: 0px auto;
+				}
+			}
+		}
+		.bottom {
+			overflow: hidden;
+			position: absolute;
+			bottom: 0px;
+			width: 100%;
+			.bot {				
+				margin-left: 50%;
+				position: relative;
+				left: -35px;
+				display: inline-block;				
+			}
+			ul {
+				float: right;
+				margin-right: 10px;
+				display: inline-block;
+				li {
+					margin: 5px;
+					display: inline-block;
+				}
+			}
+		}
+	}
+	footer {
+		width: 100%;
+		height: 30px;
+		margin-top: -40px;
+		border-top: 1px solid #cccccc;
+		p {
+			float: right;
+			font-family: 'Helvetica Neue Light';
+			font-size: 16px;	
+			color: #000000;
+			padding: 10px 20px 10px 0px;
+			b {
+				color: #028dda;
+			}
+		}
+	}
+}
+
+@media (max-width: 800px) {	
+	&.blue #page .half {
+		&.flah {			
+			width: 600px !important;
+			padding-left: 100px;
+		}
+	}
+	#page {
+      width: 750px !important;
+		header {
+			margin-bottom: 70px !important;
+		}	
+		.about {
+			img {
+				width: 500px;
+			}
+			h3 {
+				margin: 50px 0px 20px 180px !important;
+			}
+			p {
+				width: 500px !important;
+			}
+		}
+		.half {
+			display: block !important;
+			margin: 0px auto !important;
+			.lower {
+				margin: -10px 0px 50px 0px !important;
+			}
+			a {
+				margin-top: 20px!important;
+				margin-bottom: 30px;
+				&:last-child {
+					margin-left: 95px;
+				}
+			}
+			&.flah {
+				margin: 30px 0px 0px 0px;
+				width: 500px !important;
 			}
 		}
 	}
