@@ -1,16 +1,18 @@
 html,body{height:100%}
 #center{width:1366px;height:768px;margin:0 auto;background:#26201f url("../images/gr2.jpg") center top no-repeat;color:#fff;position:relative}#center #center_wrap{margin:0 50px}#center #center_wrap h1{padding:50px 0 40px 0;font-family:'segoe_uiregular';font-size:38px}
-#center #center_wrap .modal{position:absolute;left:50%;top:100px;margin-left:-440px;width:886px;background:#292523;z-index:20;display:none}#center #center_wrap .modal .sub{position:relative;padding:25px 18px}#center #center_wrap .modal .sub h2{font-family:'segoe_uilight';font-size:30px;padding-bottom:40px}
+#center #center_wrap .modal{position:absolute;left:50%;top:100px;margin-left:-440px;width:886px;background:#292523;z-index:20;display:none;box-shadow:0 0 60px rgba(31,136,255,0.3)}#center #center_wrap .modal .sub{position:relative;padding:25px 18px}#center #center_wrap .modal .sub h2{font-family:'segoe_uilight';font-size:30px;padding-bottom:40px}
 #center #center_wrap .modal .sub .close{position:absolute;right:25px;top:25px}
-#center #center_wrap #modal2{top:260px}#center #center_wrap #modal2 nav a{display:inline-block;background:url("../images/123.png") center top no-repeat;width:129px;height:73px;text-align:center;line-height:72px;text-decoration:none;font-family:'segoe_uilight';font-size:20px;color:#d7d7d7}
+#center #center_wrap #modal2{top:260px}#center #center_wrap #modal2 nav a{display:inline-block;background:url("../images/123.png") center top no-repeat;width:129px;height:73px;text-align:center;line-height:72px;text-decoration:none;font-family:'segoe_uilight';font-size:20px;color:#d7d7d7;margin-right:7px}#center #center_wrap #modal2 nav a.cancel{background:url("../images/321.png") center top no-repeat}
+#center #center_wrap #modal1{width:640px;margin-left:-320px;top:20px}#center #center_wrap #modal1 .img_user{margin-top:-20px;display:block;margin-bottom:20px}
+#center #center_wrap #modal1 nav a{display:inline-block;background:url("../images/2.png") center top no-repeat;width:91px;height:52px;text-align:center;line-height:51px;text-decoration:none;font-family:'segoe_uilight';font-size:17px;color:#d7d7d7;margin-right:6px}#center #center_wrap #modal1 nav a.cancel{background:url("../images/3.png") center top no-repeat}
 #center #center_wrap #content_list .cell{width:600px;float:right}#center #center_wrap #content_list .cell:first-child{float:left}
 #center #center_wrap #content_list .cell h2{font-family:'segoe_uilight';font-size:40px;line-height:120%;padding-bottom:3px}#center #center_wrap #content_list .cell h2 *{vertical-align:middle}
 #center #center_wrap #content_list .cell h2 i{padding-left:10px}
-#center #center_wrap #content_list .cell ul li{width:100%;overflow:hidden;margin-bottom:20px}#center #center_wrap #content_list .cell ul li .left{float:left;position:relative;width:100px}#center #center_wrap #content_list .cell ul li .left i{position:absolute;left:0;bottom:0;width:100%;background:rgba(0,0,0,0.51);font-family:'segoe_uilight';font-size:16px;text-indent:10px;text-shadow:3px 3px 2px #969696}
-#center #center_wrap #content_list .cell ul li .right{float:left;width:288px}#center #center_wrap #content_list .cell ul li .right h3{font-family:'segoe_uiregular';font-size:18px;padding-bottom:6px}
-#center #center_wrap #content_list .cell ul li .right p{font-family:'segoe_uilight';font-size:16px;color:#d7d7d7;padding-bottom:10px}
-#center #center_wrap #content_list .cell ul li .right h4{font-family:'segoe_uilight';font-size:16px}
-#center #center_wrap #content_list .cell ul li .buttons{float:right}
+#center ul.list1 li{width:100%;overflow:hidden;margin-bottom:20px}#center ul.list1 li .left{float:left;position:relative;width:100px}#center ul.list1 li .left i{position:absolute;left:0;bottom:0;width:100%;background:rgba(0,0,0,0.51);font-family:'segoe_uilight';font-size:16px;text-indent:10px;text-shadow:3px 3px 2px #969696}
+#center ul.list1 li .right{float:left;width:288px}#center ul.list1 li .right h3{font-family:'segoe_uiregular';font-size:18px;padding-bottom:6px}
+#center ul.list1 li .right p{font-family:'segoe_uilight';font-size:16px;color:#d7d7d7;padding-bottom:10px}
+#center ul.list1 li .right h4{font-family:'segoe_uilight';font-size:16px}
+#center ul.list1 li .buttons{float:right}
 #center .icon{display:inline-block}#center .icon.call{width:25px;height:28px;background:url("../images/call.png") left top no-repeat}
 #center .icon.user{width:22px;height:27px;background:url("../images/user.png") left top no-repeat}
 #center .icon.accept{width:87px;height:87px;background:url("../images/accept.png") left top no-repeat}

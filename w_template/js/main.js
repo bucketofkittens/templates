@@ -15,6 +15,10 @@ $(document).ready(function() {
 		$("#modal2").addClass("show");
 	});
 
+	$(".accept, .accept_call").on("click", function() {
+		$("#modal1").addClass("show");
+	});
+
 	$(".modal .close").on("click", function() {
 		hideShadow();
 		$(".modal").removeClass("show");
