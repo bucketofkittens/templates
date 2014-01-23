@@ -40,6 +40,11 @@ $(document).ready(function() {
 	$("#content").on("touchmove", function(e) {
 		scrollFix_();
 	});
+
+	$('#socials').share({
+        networks: ['facebook','googleplus','twitter']
+    });
+
 })
 
 $(window).load(function() {
