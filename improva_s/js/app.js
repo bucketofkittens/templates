@@ -17,8 +17,16 @@ $(document).ready(function() {
 	      }
 	    }
 	  });
-})
 
-$(function() {
-  
-});
+	var $sw = $('#content');
+
+    $sw.on('swipedown', function (event) {
+       event.preventDefault();
+       alert("sw"); 
+    });
+
+    var isiPad = navigator.userAgent.match(/iPad/i) != null;
+    if(isiPad) {
+    	$(".iphone_app").hide();
+    }
+})
