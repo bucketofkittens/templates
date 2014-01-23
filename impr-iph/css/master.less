@@ -1,139 +1,105 @@
 body {
+	font-family: 'Helvetica Neue Light';
+	color: #000000;
+	font-size: 15px;
+
 	&.blue {
 		background: url("../images/bg.png") center top no-repeat;
 	}
-	&.top {
-		header {
-			margin-bottom: 30px !important;
-		}		
-	}
 	#page {
 		height: 100%;
-      width: 970px;
+      width: 300px;
       margin: 0px auto;
       position: relative;
 		header {
 			position: relative;
 			width: 100%;
-			top: 10px;
 			overflow: hidden;
-			margin-bottom: 50px;
+			margin: 10px auto;
+			text-align: center;
 			.logo {
-				font-family: 'Helvetica Neue Light';
-				font-size: 50px;	
+				font-size: 40px;	
 				color: #000000;
-				text-decoration: none;	
-				display: inline-block;
-				margin-left: 5px;
+				text-decoration: none;
 			}
-			ul {
-				position: relative;
-				right: 10px;
-				top: 20px;
-				display: inline-block;
-				float: right;
-				li {
-					display: inline-block;
-					margin-left: 50px;
-					a {
-						font-family: 'Helvetica Neue Light';
-						font-size: 20px;	
-						color: #000000;
-						text-decoration: none;
-					}
-				}
+			p {
+				font-size: 16px;
 			}
 		}	
 		#content {			
 			position: relative;
 			width: 100%;
 			overflow: hidden;
-			.half {
-				width: 500px;
-				margin-left: 10px;
+			.ip {
+				width: 100px;
+				margin: 0px auto 10px auto;
+				display: block;
+			}
+			.ma {
+				width: 230px;
+				text-align: center;
+				margin: 0px auto;
+				font-size: 17px;
+			}
+
+			.pi {
+				width: 200px;
+				margin: 40px auto;
+				display: block;
+			}
+			.am {
+				width: 250px;
+				margin: 0px auto;
+				line-height: 20px;
+			}
+
+			.pip {
+				width: 230px;
+				margin: 20px auto 10px auto;
+				display: block;
+			}
+			h3 {
+				font-size: 16px;	
+				color: #000000;
+				padding: 5px 0px 10px 30px;
+				margin-left: 20px;
+				background: url("../images/icon.png") left 0px no-repeat;
+			}
+			
+			.pii {
+				width: 230px;
+				margin: 40px auto;
+				display: block;
+			}
+			.mma {
+				width: 250px;
+				text-align: center;
+				margin: 0px auto;
+				color: #444444;
+				font-size: 17px;
+				margin-top: 20px;
+			}
+			b {
+				color: #028dda;			
+			}
+
+			.ppi {
+				width: 230px;
+				margin: 0px auto 10px auto;
+				display: block;
+			}
+			.aam {
+				width: 300px;
+				margin: 0px auto;
+				line-height: 20px;
+				font-size: 14px;
+			}
+			i {
 				display: inline-block;
-				vertical-align: top;
-				img {
-					display: block;
-					&.lower {
-						margin-top: 40px;
-					}
-				}
-				a {
-					display: inline-block;
-					width: 200px;
-					margin-top: 50px;
-					&:last-child {
-						margin-left: 95px;
-					}
-				}
-				&.flah {
-					margin: 30px 0px 0px 50px;
-					width: 400px;
-					overflow: hidden;
-					p {
-						font-family: 'Helvetica Neue Light';
-						font-size: 18px;
-						line-height: 25px;	
-						color: #000000;
-						margin-bottom: 30px;
-						b {
-							color: #028dda;
-						}
-					}
-					i {
-						font-family: 'Helvetica Neue Light';
-						font-size: 18px;
-						display: inline-block;
-						&:last-child {
-							float: right;
-						}
-					}
-				}
-			}
-			.about {
-				img {
-					margin: 0px auto;
-					display: block;
-					width: 600px;
-				}
-				h3 {
-					font-family: 'Helvetica Neue Light';
-					font-size: 20px;	
-					color: #000000;
-					padding: 5px 0px 20px 50px;
-					margin: 20px 0px 5px 180px;
-					background: url("../images/icon.png") left 0px no-repeat;
-				}
-				p {
-					font-family: 'Helvetica Neue Light';
-					font-size: 18px;
-					line-height: 25px;	
-					color: #000000;
-					width: 650px;
-					margin: 0px auto;
-				}
-			}
-		}
-		.bottom {
-			overflow: hidden;
-			position: absolute;
-			bottom: 20px;
-			width: 100%;
-			.bot {				
-				margin-left: 50%;
-				position: relative;
-				left: -35px;
-				top: 7px;
-				display: inline-block;				
-			}
-			ul {
-				float: right;
-				margin-right: 10px;
-				display: inline-block;
-				li {
-					margin: 5px 10px;
-					display: inline-block;
+				line-height: 20px;
+				font-size: 14px;
+				&:last-child {
+					float: right;
 				}
 			}
 		}
@@ -141,64 +107,16 @@ body {
 	footer {
 		width: 100%;
 		height: 30px;
-		margin-top: -60px;
+		margin-top: -25px;
 		border-top: 1px solid #cccccc;
 		p {
 			float: right;
-			font-family: 'Helvetica Neue Light';
-			font-size: 16px;	
+			font-size: 15px;	
 			color: #000000;
-			padding: 10px 20px 10px 0px;
+			padding: 5px 10px 5px 0px;
 			b {
 				color: #028dda;
 			}
 		}
-	}
-}
-
-@media (max-width: 800px) {	
-	&.blue #page .half {
-		&.flah {			
-			width: 600px !important;
-			padding-left: 100px;
-		}
-	}
-	#page {
-      width: 750px !important;
-		header {
-			margin-bottom: 70px !important;
-		}	
-		.about {
-			h3 {
-				margin: 50px 0px 20px 130px !important;
-			}
-			p {
-				width: 550px !important; 
-			}
-		}
-		.half {
-			display: block !important;
-			margin: 0px auto !important;
-			.lower {
-				margin: -10px 0px 50px 0px !important;
-			}
-			a {
-				margin-top: 20px!important;
-				margin-bottom: 30px;
-				&:last-child {
-					margin-left: 95px;
-				}
-			}
-			&.flah {
-				margin: 30px 0px 0px 0px;
-				width: 500px !important;
-			}
-		}
-		.bottom {
-			bottom: 0px !important;
-		}
-	}
-	footer {
-		margin-top: -40px !important;
 	}
 }
