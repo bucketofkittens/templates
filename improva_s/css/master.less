@@ -21,10 +21,18 @@ body {
 			padding-bottom: 10px;
 			border-bottom: 1px solid #000000;
 			z-index: 20;
-			-webkit-transition: all 0.3s ease;
-			transition: all 0.3s ease;
+			-webkit-transition: all 0.2s linear;
+			transition: all 0.2s linear;
+			top: 0px;
+			&.top {
+				position: static;
+			}
 			&.while {
 				background: #ffffff;
+				opacity: 0;
+			}
+			&.show {
+				opacity: 1;
 			}
 			.logo {
 				font-family: 'Helvetica Neue Light';
@@ -164,6 +172,9 @@ body {
 	}
 	.page {
 		padding-top: 100px;
+	}
+	#main {
+		margin-top: -100px;
 	}
 }
 

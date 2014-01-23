@@ -1,8 +1,8 @@
 function scrollFix_() {
-	if($("body").scrollTop() > $(window).height()) {
-		$("header").addClass("while");
+	if($("body").scrollTop() > $("#main").height()) {
+		$("header.while").addClass("show");
 	} else {
-		$("header").removeClass("while");
+		$("header.while").removeClass("show");
 	}
 }
 
@@ -25,13 +25,6 @@ $(document).ready(function() {
 	      }
 	    }
 	  });
-
-	var $sw = $('#content');
-
-    $sw.on('swipedown', function (event) {
-       event.preventDefault();
-       alert("sw"); 
-    });
 
     var isiPad = navigator.userAgent.match(/iPad/i) != null;
     if(isiPad) {
