@@ -1,8 +1,16 @@
+function scrollFix_() {
+	if($("body").scrollTop() > $(window).height()) {
+		$("header").addClass("while");
+	} else {
+		$("header").removeClass("while");
+	}
+}
+
 $(document).ready(function() {
-	$(".page").css("min-height", $(window).height());
+	$(".page").css("min-height", $(window).height()-100);
 
 	$(window).resize(function() {
-		$(".page").css("min-height", $(window).height());
+		$(".page").css("min-height", $(window).height()-100);
 	});
 
 	$('a[href*=#]:not([href=#])').click(function() {
@@ -29,4 +37,18 @@ $(document).ready(function() {
     if(isiPad) {
     	$(".iphone_app").hide();
     }
+
+    scrollFix_();
+
+    $(document).scroll(function() {
+    	scrollFix_();
+	});
+
+	$("#content").on("touchmove", function(e) {
+		scrollFix_();
+	});
 })
+
+$(window).load(function() {
+	scrollFix_();
+});
