@@ -13,11 +13,14 @@ body {
       margin: 0px auto;
       position: relative;
 		header {
-			position: relative;
-			width: 100%;
+			position: fixed;
+			width: 970px;
 			top: 10px;
 			overflow: hidden;
-			margin-bottom: 50px;
+			margin-bottom: 40px;
+			padding-bottom: 10px;
+			border-bottom: 1px solid #000000;
+			z-index: 20;
 			.logo {
 				font-family: 'Helvetica Neue Light';
 				font-size: 50px;	
@@ -26,7 +29,7 @@ body {
 				display: inline-block;
 				margin-left: 5px;
 			}
-			ul {
+			#navbar {
 				position: relative;
 				right: 10px;
 				top: 20px;
@@ -153,6 +156,9 @@ body {
 				color: #028dda;
 			}
 		}
+	}
+	.page {
+		padding-top: 100px;
 	}
 }
 
