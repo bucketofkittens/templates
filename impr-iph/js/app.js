@@ -1,3 +1,3 @@
 $(document).ready(function() {
-	$(".page").css("min-height", $(window).height()-100);
+	$(".page").css("min-height", $(window).height());
 })

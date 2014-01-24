@@ -1,3 +1,8 @@
+if(navigator.userAgent.match(/iPhone/i)) {
+	alert(window.location);
+	window.location = window.location+"iphone/";
+}
+
 function scrollFix_() {
 	if($("body").scrollTop() > $("#main").height()) {
 		$("header.while").addClass("show");
@@ -7,6 +12,8 @@ function scrollFix_() {
 }
 
 $(document).ready(function() {
+
+
 	$(".page").css("min-height", $(window).height()-100);
 
 	$(window).resize(function() {
