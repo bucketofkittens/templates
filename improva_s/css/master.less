@@ -134,9 +134,18 @@ body {
 					font-size: 20px;	
 					color: #000000;
 					padding: 5px 0px 20px 50px;
-					margin: 20px 0px 5px 180px;
+					margin: 20px auto 5px auto;
 					background: url("../images/icon.png") left 0px no-repeat;
 					background-size: 30px 30px;
+					width: 650px;
+					* {
+						vertical-align: middle;
+					}
+					img {
+						width: 30px;
+						display: inline-block;
+						padding-right: 10px;
+					}
 				}
 				p {
 					font-family: 'Helvetica Neue Light';
@@ -205,6 +214,20 @@ body {
 	}
 	.page {
 		padding-top: 100px;
+		width: 970px;
+		margin: 0px auto;
+		position: relative;
+	}
+	.items {
+		height: 300px;
+		overflow: hidden;
+		
+		.itms {
+			position: relative;
+		}
+		.item {
+			height: 300px;
+		}
 	}
 }
 
@@ -216,7 +239,9 @@ body {
 		}
 	}
 	#page {
-      width: 750px !important;
+      	#c1 {
+      		width: 750px !important;
+      	}
 		header {
 			margin-bottom: 70px !important;
 			width: 750px !important;
