@@ -7,7 +7,9 @@ var scrollStepItems = 0;
 var touchStartEvent;
 
 document.ontouchmove = function(e){
-	e.preventDefault(); 
+	if(e.touches.length == 1) {
+		e.preventDefault();	
+	}
 }
 
 function scrollFix_() {
@@ -81,7 +83,7 @@ $(document).ready(function() {
 	});
 
 	$(document).bind('mousewheel', function(e){
-		console.log(scrollStep);
+		console.log(e);
 		if(scrollStep == 1) {
 			if(e.deltaY < 0) {
 		    	scrollStepItems += 1;

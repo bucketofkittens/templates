@@ -1,6 +1,6 @@
-html{height:100%;overflow:hidden}
-body{font-family:'Helvetica Neue Light';color:#000;font-size:15px;height:100%;overflow:hidden}body #first_page{background:url("../images/bg.png") center top no-repeat}
-body #page{margin:0 auto;position:relative;height:100%;overflow:hidden;transition:all .3s ease-out;-webkit-transition:all .3s ease-out}body #page header{position:relative;width:100%;overflow:hidden;margin:0 auto 10px auto;text-align:center}body #page header .logo{font-size:40px;color:#000;text-decoration:none}
+html{height:100%;overflow:hidden;-webkit-overflow-scrolling:touch}
+body{font-family:'Helvetica Neue Light';color:#000;font-size:15px;height:100%;overflow:hidden;-webkit-overflow-scrolling:touch}body #first_page{background:url("../images/bg.png") center top no-repeat}
+body #page{margin:0 auto;position:relative;height:100%;overflow:hidden;transition:all .3s ease-out;-webkit-transition:all .3s ease-out;-webkit-overflow-scrolling:touch}body #page header{position:relative;width:100%;overflow:hidden;margin:0 auto 10px auto;text-align:center}body #page header .logo{font-size:40px;color:#000;text-decoration:none}
 body #page header p{font-size:16px}
 body #page #content{position:relative;width:100%;overflow:hidden;transition:all .3s linear;-webkit-transition:all .3s linear}body #page #content .ip{width:100px;margin:0 auto 10px auto;display:block}
 body #page #content .ma{width:230px;text-align:center;margin:0 auto;font-size:17px}

@@ -1,7 +1,11 @@
 var scrollStep = 0;
 var scrollStepItems = 0;
 
-document.ontouchmove = function(e){ e.preventDefault(); }
+document.ontouchmove = function(e){
+	if(e.touches.length == 1) {
+		e.preventDefault();	
+	}
+}
 
 function slide() {
 	if(scrollStep < 0) {
