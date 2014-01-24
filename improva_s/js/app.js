@@ -60,14 +60,12 @@ $(document).ready(function() {
 	});
 
 	$(document).bind('mousewheel', function(e){
-
 		if(scrollStep == 1) {
 			if(e.deltaY < 0) {
 		    	scrollStepItems += 1;
 		    } else {
 		    	scrollStepItems -= 1;
 		    }
-		    console.log(scrollStepItems);
 		    scrollItems();
 		} else {
 			if(e.deltaY < 0) {
@@ -77,7 +75,6 @@ $(document).ready(function() {
 		    }
 		    scroll();
 		}
-	    
 	 });
 
 	$('a[href*=#]:not([href=#])').click(function() {
@@ -99,7 +96,12 @@ $(document).ready(function() {
 	var element = document.getElementById('content');
 	Hammer(element).on("dragend", function(event) {
 		if(scrollStep == 1) {
-
+			if(event.gesture.direction == "up") {
+				scrollStepItems += 1;
+			} else {
+				scrollStepItems -= 1;
+			}
+		    scrollItems();
 		} else {
 			if(event.gesture.direction == "up") {
 				scrollStep += 1;
