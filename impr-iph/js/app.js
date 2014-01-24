@@ -1,9 +1,14 @@
 var scrollStep = 0;
 var scrollStepItems = 0;
 
+document.ontouchmove = function(e){ e.preventDefault(); }
+
 function slide() {
 	if(scrollStep < 0) {
 		scrollStep = 0;
+	}
+	if(scrollStep > 4) {
+		scrollStep = 4;
 	}
 	$("#content").animate({
 		top: "-"+(scrollStep*$(window).height())+"px"

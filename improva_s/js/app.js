@@ -4,6 +4,11 @@ if(navigator.userAgent.match(/iPhone/i)) {
 
 var scrollStep = 0;
 var scrollStepItems = 0;
+var touchStartEvent;
+
+document.ontouchmove = function(e){
+	e.preventDefault(); 
+}
 
 function scrollFix_() {
 	if($("body").scrollTop() > $("#main").height()) {
@@ -48,7 +53,7 @@ function scrollItems() {
 		scroll();
 	}
 	$(".itms").animate({
-		top: "-"+(scrollStepItems*300)+"px"
+		top: "-"+(scrollStepItems*200)+"px"
 	}, 600);
 }
 
