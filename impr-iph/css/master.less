@@ -1,20 +1,28 @@
+html {
+	height: 100%;
+	overflow: hidden;
+}
 body {
 	font-family: 'Helvetica Neue Light';
 	color: #000000;
 	font-size: 15px;
-
-	&.blue {
+	height: 100%;
+	overflow: hidden;
+	#first_page {
 		background: url("../images/bg.png") center top no-repeat;
 	}
 	#page {
-      width: 300px;
       margin: 0px auto;
       position: relative;
+      height: 100%;
+		overflow: hidden;
+		transition: all 0.5s ease-out;
+        -webkit-transition: all 0.5s ease-out;
 		header {
 			position: relative;
 			width: 100%;
 			overflow: hidden;
-			margin: 10px auto;
+			margin: 0px auto 10px auto;
 			text-align: center;
 			.logo {
 				font-size: 40px;	
@@ -29,6 +37,8 @@ body {
 			position: relative;
 			width: 100%;
 			overflow: hidden;
+			transition: all 0.5s linear;
+        	-webkit-transition: all 0.5s linear;
 			.ip {
 				width: 100px;
 				margin: 0px auto 10px auto;
@@ -52,12 +62,12 @@ body {
 			.am {
 				width: 250px;
 				margin: 0px auto;
-				line-height: 20px;
+				line-height: 18px;
 			}
 
 			.pip {
 				width: 80px;
-				margin: 20px auto 10px auto;
+				margin: 0px auto 10px auto;
 				display: block;
 			}
 			h3 {
@@ -88,13 +98,14 @@ body {
 
 			.ppi {
 				width: 230px;
-				margin: 0px auto 10px auto;
+				margin: -80px auto 10px auto;
 				display: block;
 			}
 			.aam {
 				width: 300px;
 				margin: 0px auto;
-				line-height: 20px;
+				margin-bottom: 3px;
+				line-height: 14px;
 				font-size: 14px;
 			}
 			i {
