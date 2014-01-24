@@ -1,6 +1,6 @@
 body {
 	&.blue {
-		background: url("../images/bg.png") center top no-repeat;
+		
 	}
 	&.top {
 		header {
@@ -9,12 +9,12 @@ body {
 	}
 	#page {
 		height: 100%;
-      width: 970px;
-      margin: 0px auto;
+      
       position: relative;
+      overflow: hidden;
 		header {
 			position: fixed;
-			width: 970px;
+			width: 100%;
 			padding-top: 10px;
 			overflow: hidden;
 			margin-bottom: 40px;
@@ -24,8 +24,15 @@ body {
 			-webkit-transition: all 0.2s linear;
 			transition: all 0.2s linear;
 			top: 0px;
+			section {
+				width: 970px;
+				margin: 0px auto;
+				a {
+					cursor: pointer;
+				}
+			}
 			&.top {
-				position: static;
+				position: absolute;
 			}
 			&.while {
 				background: #ffffff;
@@ -41,7 +48,7 @@ body {
 				text-decoration: none;	
 				display: inline-block;
 				margin-left: 5px;
-			}
+			} 
 			#navbar {
 				position: relative;
 				right: 10px;
@@ -64,6 +71,15 @@ body {
 			position: relative;
 			width: 100%;
 			overflow: hidden;
+			padding-bottom: 1px;
+			background: url("../images/bg.png") center top no-repeat;
+			transition: all 0.5s linear;
+        	-webkit-transition: all 0.5s linear;
+			#c1 {
+				width: 970px;
+      			margin: 0px auto;
+      			position: relative;
+			}
 			.half {
 				width: 500px;
 				margin-left: 10px;
@@ -189,9 +205,6 @@ body {
 	}
 	.page {
 		padding-top: 100px;
-	}
-	#main {
-		margin-top: -100px;
 	}
 }
 
