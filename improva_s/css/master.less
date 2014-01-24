@@ -124,10 +124,17 @@ body {
 				}
 			}
 			.about {
+				position: relative;
 				img {
 					margin: 0px auto;
 					display: block;
 					width: 600px;
+					&.imgs {
+						width: 493px;
+						position: absolute;
+						top: 27px;
+						left: 238px;
+					}
 				}
 				h3 {
 					font-family: 'Helvetica Neue Light';
@@ -252,6 +259,9 @@ body {
 			}
 			p {
 				width: 550px !important; 
+			}
+			.imgs {
+				left: 128px !important;
 			}
 		}
 		.half {
