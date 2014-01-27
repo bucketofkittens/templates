@@ -1,7 +1,7 @@
 html,body{height:100%;background:#1f1b1a}
 #center{background:#1f1b1a url("../images/gr2.jpg") center top no-repeat;color:#fff;position:relative;min-height:661px;max-width:1365px;margin:0 auto}#center #center_wrap{margin:0 3%}#center #center_wrap h1{padding:40px 0 30px 0;font-family:'segoe_uiregular';font-size:34px}
 #center #center_wrap .modal{position:absolute;left:50%;top:100px;margin-left:-440px;width:886px;background:#292523;z-index:20;display:none;box-shadow:0 0 60px rgba(31,136,255,0.3)}#center #center_wrap .modal .sub{position:relative;padding:25px 18px}#center #center_wrap .modal .sub h2{font-family:'segoe_uilight';font-size:30px;padding-bottom:40px}
-#center #center_wrap .modal .sub .close{position:absolute;right:25px;top:25px}
+#center #center_wrap .modal .sub .close{position:absolute;right:25px;top:25px;width:30px;height:30px;background-size:100% 100%}
 #center #center_wrap #modal2{top:260px}#center #center_wrap #modal2 nav a{display:inline-block;background:url("../images/123.png") center top no-repeat;width:109px;height:53px;text-align:center;line-height:52px;text-decoration:none;font-family:'segoe_uilight';font-size:18px;color:#d7d7d7;margin-right:7px}#center #center_wrap #modal2 nav a.cancel{background:url("../images/321.png") center top no-repeat}
 #center #center_wrap #modal1{width:640px;margin-left:-320px;top:20px}#center #center_wrap #modal1 .img_user{margin-top:-20px;display:block;margin-bottom:20px;height:400px;width:100%}
 #center #center_wrap #modal1 nav a{display:inline-block;background:url("../images/2.png") center top no-repeat;width:91px;height:52px;text-align:center;line-height:51px;text-decoration:none;font-family:'segoe_uilight';font-size:17px;color:#d7d7d7;margin-right:6px}#center #center_wrap #modal1 nav a.cancel{background:url("../images/3.png") center top no-repeat}
@@ -19,7 +19,7 @@ html,body{height:100%;background:#1f1b1a}
 #center .icon.decline{width:67px;height:67px;background:url("../images/decline.png") left top no-repeat;background-size:100% 100%}#center .icon.decline:active{background:url("../images/decline-v.png") left top no-repeat;background-size:100% 100%}
 #center .icon.accept_call{width:67px;height:67px;background:url("../images/accept_call.png") left top no-repeat;background-size:100% 100%}#center .icon.accept_call:active{background:url("../images/accept_call-v.png") left top no-repeat;background-size:100% 100%}
 #center .icon.decline_call{width:67px;height:67px;background:url("../images/decline_call.png") left top no-repeat;background-size:100% 100%}#center .icon.decline_call:active{background:url("../images/decline_call-v.png") left top no-repeat;background-size:100% 100%}
-#center .icon.close{width:39px;height:39px;background:url("../images/close.png") left top no-repeat}
+#center .icon.close{width:39px;height:39px;background:url("../images/close.png") left top no-repeat}#center .icon.close:active{background:url("../images/close-v.png") left top no-repeat;background-size:100% 100%}
 #center #shadow{width:1366px;height:768px;background:rgba(0,0,0,0.68);position:absolute;left:0;top:0;z-index:10;display:none}
 #center .show{display:block !important}
 .modal ul.list1 li .buttons{min-width:67px !important;position:relative;left:7px}
