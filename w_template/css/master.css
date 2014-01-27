@@ -15,13 +15,13 @@ html,body{height:100%;background:#1f1b1a}
 #center ul.list1 li .buttons{vertical-align:middle;display:table-cell;min-width:150px}
 #center .icon{display:inline-block}#center .icon.call{width:25px;height:28px;background:url("../images/call.png") left top no-repeat}
 #center .icon.user{width:22px;height:27px;background:url("../images/user.png") left top no-repeat}
-#center .icon.accept{width:67px;height:67px;background:url("../images/accept.png") left top no-repeat;background-size:100% 100%}
-#center .icon.decline{width:67px;height:67px;background:url("../images/decline.png") left top no-repeat;background-size:100% 100%}
-#center .icon.accept_call{width:67px;height:67px;background:url("../images/accept_call.png") left top no-repeat;background-size:100% 100%}
-#center .icon.decline_call{width:67px;height:67px;background:url("../images/decline_call.png") left top no-repeat;background-size:100% 100%}
+#center .icon.accept{width:67px;height:67px;background:url("../images/accept.png") left top no-repeat;background-size:100% 100%}#center .icon.accept:active{background:url("../images/accept-v.png") left top no-repeat;background-size:100% 100%}
+#center .icon.decline{width:67px;height:67px;background:url("../images/decline.png") left top no-repeat;background-size:100% 100%}#center .icon.decline:active{background:url("../images/decline-v.png") left top no-repeat;background-size:100% 100%}
+#center .icon.accept_call{width:67px;height:67px;background:url("../images/accept_call.png") left top no-repeat;background-size:100% 100%}#center .icon.accept_call:active{background:url("../images/accept_call-v.png") left top no-repeat;background-size:100% 100%}
+#center .icon.decline_call{width:67px;height:67px;background:url("../images/decline_call.png") left top no-repeat;background-size:100% 100%}#center .icon.decline_call:active{background:url("../images/decline_call-v.png") left top no-repeat;background-size:100% 100%}
 #center .icon.close{width:39px;height:39px;background:url("../images/close.png") left top no-repeat}
 #center #shadow{width:1366px;height:768px;background:rgba(0,0,0,0.68);position:absolute;left:0;top:0;z-index:10;display:none}
 #center .show{display:block !important}
 .modal ul.list1 li .buttons{min-width:67px !important;position:relative;left:7px}
-.decline_call,.accept_call,.accept,.decline{text-decoration:none}
+.decline_call,.accept_call,.accept,.decline{text-decoration:none;color:#fff;font-family:'segoe_uiregular';font-size:13px;text-align:center;overflow:hidden;line-height:100px}
 @media only screen and (device-width:768px) and (orientation:portrait){.decline_call,.accept_call,.accept,.decline{width:40px !important;height:40px !important} .buttons{min-width:100px !important} .right h3{font-size:12px !important} .right p{font-size:10px !important} .right h4{font-size:10px !important} #center{background:#19191b url("../images/gr2.jpg") center top no-repeat !important} #modal2{width:600px !important;margin-left:-300px !important}}

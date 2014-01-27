@@ -185,24 +185,40 @@ html, body {
 			height: 67px;
 			background: url("../images/accept.png") left top no-repeat;
 			background-size: 100% 100%;
+			&:active {
+				background: url("../images/accept-v.png") left top no-repeat;
+				background-size: 100% 100%;
+			}
 		}
 		&.decline {
 			width: 67px;
 			height: 67px;
 			background: url("../images/decline.png") left top no-repeat;
 			background-size: 100% 100%;
+			&:active {
+				background: url("../images/decline-v.png") left top no-repeat;
+				background-size: 100% 100%;
+			}
 		}
 		&.accept_call {
 			width: 67px;
 			height: 67px;
 			background: url("../images/accept_call.png") left top no-repeat;
 			background-size: 100% 100%;
+			&:active {
+				background: url("../images/accept_call-v.png") left top no-repeat;
+				background-size: 100% 100%;
+			}
 		}
 		&.decline_call {
 			width: 67px;
 			height: 67px;
 			background: url("../images/decline_call.png") left top no-repeat;
 			background-size: 100% 100%;
+			&:active {
+				background: url("../images/decline_call-v.png") left top no-repeat;
+				background-size: 100% 100%;
+			}
 		}
 		&.close {
 			width: 39px;
@@ -231,6 +247,12 @@ html, body {
 }
 .decline_call, .accept_call, .accept, .decline {
 	text-decoration: none;
+	color: #ffffff;
+	font-family: 'segoe_uiregular';
+	font-size: 13px;
+	text-align: center;
+	overflow: hidden;
+	line-height: 100px;
 }
 @media only screen and (device-width:768px) and(orientation:portrait) {
   .decline_call, .accept_call, .accept, .decline {
