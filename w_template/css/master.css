@@ -1,4 +1,4 @@
-html,body{height:100%;background:url("../images/gr2.jpg") center top no-repeat}
+html,body{height:100%;background:#292325 url("../images/gr2.jpg") center top no-repeat}
 #center{color:#fff;position:relative;min-height:661px;max-width:1365px;margin:0 auto}#center #center_wrap{margin:0 3%}#center #center_wrap h1{padding:40px 0 30px 0;font-family:'segoe_uiregular';font-size:34px}
 #center #center_wrap .modal{position:absolute;left:50%;top:100px;margin-left:-440px;width:886px;background:#292523;z-index:20;display:none;box-shadow:0 0 60px rgba(31,136,255,0.3)}#center #center_wrap .modal .sub{position:relative;padding:25px 18px}#center #center_wrap .modal .sub h2{font-family:'segoe_uilight';font-size:30px;padding-bottom:40px}
 #center #center_wrap .modal .sub .close{position:absolute;right:25px;top:25px;width:30px;height:30px;background-size:100% 100%}
