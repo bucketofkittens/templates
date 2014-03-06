@@ -10,4 +10,20 @@ $(document).ready(function() {
 	});
 
 	proportion();
+
+	$("body #content ul li").on("click", function() {
+		$("body #content ul li").removeClass("current");
+		$(this).addClass("current");
+
+		$("header nav a").removeClass("current");
+		$("header nav a[target='"+$(this).attr("id")+"']").addClass("current");
+	});
+
+	$("header nav a").on("click", function() {
+		$("body #content ul li").removeClass("current");
+		$("body #content ul li#"+$(this).attr("target")).addClass("current");
+
+		$("header nav a").removeClass("current");
+		$(this).addClass("current");
+	});
 });

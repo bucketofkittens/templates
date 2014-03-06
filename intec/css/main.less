@@ -18,6 +18,7 @@ body {
 			width: 170px;
 			height: 70px;
 			vertical-align: top;
+			float: left;
 		}
 		h1 {
 			width: 400px;
@@ -27,6 +28,7 @@ body {
 			font-size: 15px;
 			font-family: 'noto_sans';
 			line-height: 17px;
+			float: left;
 		}
 		section {
 			float: right;
@@ -78,9 +80,11 @@ body {
 					border-bottom: 1px dashed #0075bf;
 					margin: 0px 5px;
 					font-family: 'noto_sans';
+					cursor: pointer;
 					&.current {
 						border: none;
 						font-weight: bold;
+						cursor: default;
 					}
 				}
 			}
@@ -126,6 +130,11 @@ body {
 				float: right;
 				background-size: 100% 100%;
 				max-width: 80px;
+				cursor: pointer;
+				-webkit-transition: all 1s linear;
+				-moz-transition: all 1s linear;
+				-ms-transition: all 1s linear;
+				transition: all 1s linear;
 				&#project {
 					background: url("../images/1.png") left top no-repeat;
 					background-size: cover;
@@ -142,6 +151,7 @@ body {
 					width: 80%;
 					max-width: 100%;
 					background-size: 100% 100%;
+					cursor: default;
 				}
 			}
 		}
