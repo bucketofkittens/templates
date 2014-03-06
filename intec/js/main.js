@@ -11,11 +11,22 @@ $(document).ready(function() {
 
 	proportion();
 
-	var texts = {
-		"project": "Холдинг объединяет <br />высокотехнологичные компании, <br />успешно работающие на IT-рынке <br />Российской Федерации",
-		"client": "Компании Холдинга заслужили высокую репутацию как надежные поставщики, обладающие глубокой профессиональной экспертизойв сфере системной интеграции, разработки программного обеспеченияна заказ и информатизации целого ряда отраслей",
-		"contact": "Сегодня компании Холдинга представлены в трех крупнейших субъектах Российской Федерации: в Москве, Санкт-Петербурге и Новосибирской области. Представительства компаний группы, партнеры и агенты работают на всей территории Российской Федерации."
-	};
+	if(lang == "RUS") {
+		var texts = {
+			"project": "Холдинг объединяет <br />высокотехнологичные компании, <br />успешно работающие на IT-рынке <br />Российской Федерации",
+			"client": "Компании Холдинга заслужили высокую репутацию как надежные поставщики, обладающие глубокой профессиональной экспертизойв сфере системной интеграции, разработки программного обеспеченияна заказ и информатизации целого ряда отраслей.",
+			"contact": "Сегодня компании Холдинга представлены в трех крупнейших субъектах Российской Федерации: в Москве, Санкт-Петербурге и Новосибирской области. Представительства компаний группы, партнеры и агенты работают на всей территории Российской Федерации."
+		};	
+	}
+
+	if(lang == "ENG") {
+		var texts = {
+			"project": "The Holding unites <br />several hi-tech companies, <br />which are successfully operating <br />in the Russian IT market",
+			"client": "The companies of the Holding have recommended themselves in the areas of system integration, custom-made development of software and informatization of a number of branches as the reliable suppliers possessing deep professional expertise.",
+			"contact": "Today the Holding is presented in the three largest territories of the Russian Federation: in Moscow, St. Petersburg and Novosibirsk region. Representatives of the companies under the Holding, its partners and agents, work for the most part in the territory of the Russian Federation."
+		};	
+	}
+	
 
 	$("body #content ul li").on("click", function() {
 		$("body #content ul li").removeClass("current");

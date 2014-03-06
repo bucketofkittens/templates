@@ -38,19 +38,7 @@ body {
 			div {
 				text-align: right;
 				margin-right: 5px;
-				b {
-					display: inline-block;
-					color: #8c8c8c;
-					font-size: 12px;
-					cursor: pointer;
-					vertical-align: middle;
-					margin-top: 2px;
-					text-decoration: underline;
-					font-family: 'noto_sans';
-					&.current {
-						text-decoration: none;
-					}
-				}
+				
 				a {
 					display: inline-block;
 					vertical-align: middle;
@@ -66,6 +54,23 @@ body {
 					&.tw {
 						background: url("../images/sex.png") -25px 0px no-repeat;
 						background-size: 77px 25px;
+					}
+
+					&.link {
+						display: inline-block;
+						color: #8c8c8c;
+						font-size: 12px;
+						cursor: pointer;
+						vertical-align: middle;
+						margin-top: 2px;
+						text-decoration: underline;
+						font-family: 'noto_sans';
+						background: none;
+						height: auto;
+						width: auto;
+						&.current {
+							text-decoration: none;
+						}
 					}
 				}
 			}
@@ -249,5 +254,11 @@ body {
 				}
 			}
 		}
+	}
+}
+
+body.eng {
+	#contact {
+		background: url("../images/3-eng.png") left top no-repeat !important;
 	}
 }
