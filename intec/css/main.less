@@ -116,7 +116,7 @@ body {
 
 	#content {
 		width: 100%;
-		top: 170px;
+		top: 150px;
 		overflow: hidden;
 		position: relative;
 		z-index: 1;
@@ -131,11 +131,14 @@ body {
 				background-size: 100% 100%;
 				position: relative;
 				cursor: pointer;
-				-webkit-transition: all 1s linear;
-				-moz-transition: all 1s linear;
-				-ms-transition: all 1s linear;
-				transition: all 1s linear;
+				-webkit-transition: all 1s ease-in-out;
+				-moz-transition: all 1s ease-in-out;
+				-ms-transition: all 1s ease-in-out;
+				transition: all 1s ease-in-out;
 				overflow: hidden;
+				* {
+					display: none;
+				}
 				&#project {
 					background: url("../images/1.png") left top no-repeat;
 					background-size: cover;
@@ -151,19 +154,22 @@ body {
 				&.current {
 					width: 80%;
 					max-width: 100%;
-					background-size: 100% 100% !important;
+					background-size: cover !important;
 					cursor: default;
+					* {
+						display: block;
+					}
 				}
 
 				.whitenote {
 					width: 250px;
-					height: 345px;
+					height: 350px;
 					background: rgba(255, 255, 255, 0.8);
 					font-family: 'noto_sans';
 					position: absolute;
-					top: 20px;
-					left: 70px;
-					padding: 0px 10px;
+					top: 30px;
+					left: 80px;
+					padding-left: 10px;
 					strong {
 						font-size: 14px;
 						font-weight: bold;
@@ -192,11 +198,11 @@ body {
 				.discs {
 					position: absolute;
 					top: 50%;
-					margin: -12% 0px 0px 350px;
+					margin: -70px 0px 0px 350px;
 					.disc {
 						display: inline-block;
-						width: 28%;
-						margin: 0px 2%;
+						width: 30%;
+						margin: 0px 1.3%;
 					}					
 				}
 			}
