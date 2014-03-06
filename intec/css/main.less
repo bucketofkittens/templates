@@ -120,7 +120,7 @@ body {
 		overflow: hidden;
 		position: relative;
 		z-index: 1;
-		ul {
+		ul#mainul {
 			width: 900px;
 			float: right;
 			position: relative;
@@ -129,12 +129,14 @@ body {
 				width: 5%;
 				float: right;
 				background-size: 100% 100%;
+				position: relative;
 				max-width: 80px;
 				cursor: pointer;
 				-webkit-transition: all 1s linear;
 				-moz-transition: all 1s linear;
 				-ms-transition: all 1s linear;
 				transition: all 1s linear;
+				overflow: hidden;
 				&#project {
 					background: url("../images/1.png") left top no-repeat;
 					background-size: cover;
@@ -150,8 +152,53 @@ body {
 				&.current {
 					width: 80%;
 					max-width: 100%;
-					background-size: 100% 100%;
+					background-size: 100% 100% !important;
 					cursor: default;
+				}
+
+				.whitenote {
+					width: 250px;
+					height: 350px;
+					background: rgba(255, 255, 255, 0.8);
+					font-family: 'noto_sans';
+					position: absolute;
+					top: 30px;
+					left: 80px;
+					padding-left: 10px;
+					strong {
+						font-size: 14px;
+						font-weight: bold;
+						line-height: 16px;
+						margin-top: 10px;
+						display: block;
+					}
+					p {
+						font-size: 14px;
+						line-height: 15px;
+					}
+					ul.contul {
+						li {
+							font-size: 14px;
+							line-height: 15px;
+							list-style-type: circle;
+							width: 90%;
+							float: none;
+							max-width: 90%;
+							cursor: default;
+							margin-left: 20px;
+							overflow: visible;
+						}
+					}
+				}
+				.discs {
+					position: absolute;
+					top: 50%;
+					margin: -70px 0px 0px 350px;
+					.disc {
+						display: inline-block;
+						width: 30%;
+						margin: 0px 1.3%;
+					}					
 				}
 			}
 		}
