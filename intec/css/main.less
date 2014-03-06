@@ -133,7 +133,7 @@ body {
 			> li {
 				width: 5%;
 				float: right;
-				background-size: 100% 100%;
+				background-size: cover;
 				position: relative;
 				cursor: pointer;
 				-webkit-transition: all 1s ease-in-out;
@@ -147,6 +147,9 @@ body {
 					-moz-transition: all 1s ease-in-out;
 					-ms-transition: all 1s ease-in-out;
 					transition: all 1s ease-in-out;
+				}
+				a {
+					display: none;
 				}
 				&#project {
 					background: url("../images/1.png") left top no-repeat;
@@ -167,6 +170,9 @@ body {
 					cursor: default;
 					* {
 						opacity: 1;
+					}
+					a {
+						display: block;
 					}
 				}
 
@@ -260,5 +266,6 @@ body {
 body.eng {
 	#contact {
 		background: url("../images/3-eng.png") left top no-repeat !important;
+		background-size: cover !important;
 	}
 }

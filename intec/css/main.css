@@ -7,11 +7,13 @@ body header section div a.link{display:inline-block;color:#8c8c8c;font-size:12px
 body header section nav{margin-top:30px;text-align:right}body header section nav a{display:inline-block;color:#0075bf;font-size:14px;text-decoration:none;border-bottom:1px dashed #0075bf;margin:0 5px;font-family:'noto_sans';cursor:pointer}body header section nav a.current{border:none;font-weight:bold;cursor:default}
 body footer{height:50px;background:#383838;width:100%;position:fixed;bottom:0;overflow:hidden}body footer img{display:inline-block;float:left;margin:10px 0 0 30px;vertical-align:middle}
 body footer i{display:inline-block;float:right;color:#fff;margin:20px 40px 0 0;vertical-align:middle;font-family:'noto_sans';font-size:12px}
-body #content{width:100%;top:150px;overflow:hidden;position:relative;z-index:1}body #content ul#mainul{width:900px;float:right;position:relative;bottom:0}body #content ul#mainul>li{width:5%;float:right;background-size:100% 100%;position:relative;cursor:pointer;-webkit-transition:all 1s ease-in-out;-moz-transition:all 1s ease-in-out;-ms-transition:all 1s ease-in-out;transition:all 1s ease-in-out;overflow:hidden}body #content ul#mainul>li *{opacity:0;-webkit-transition:all 1s ease-in-out;-moz-transition:all 1s ease-in-out;-ms-transition:all 1s ease-in-out;transition:all 1s ease-in-out}
+body #content{width:100%;top:150px;overflow:hidden;position:relative;z-index:1}body #content ul#mainul{width:900px;float:right;position:relative;bottom:0}body #content ul#mainul>li{width:5%;float:right;background-size:cover;position:relative;cursor:pointer;-webkit-transition:all 1s ease-in-out;-moz-transition:all 1s ease-in-out;-ms-transition:all 1s ease-in-out;transition:all 1s ease-in-out;overflow:hidden}body #content ul#mainul>li *{opacity:0;-webkit-transition:all 1s ease-in-out;-moz-transition:all 1s ease-in-out;-ms-transition:all 1s ease-in-out;transition:all 1s ease-in-out}
+body #content ul#mainul>li a{display:none}
 body #content ul#mainul>li#project{background:url("../images/1.png") left top no-repeat;background-size:cover}
 body #content ul#mainul>li#client{background:url("../images/2.png") left top no-repeat;background-size:cover}
 body #content ul#mainul>li#contact{background:url("../images/3.png") left top no-repeat;background-size:cover}
 body #content ul#mainul>li.current{width:80%;max-width:100%;background-size:cover !important;cursor:default}body #content ul#mainul>li.current *{opacity:1}
+body #content ul#mainul>li.current a{display:block}
 body #content ul#mainul>li .whitenote{width:250px;height:340px;background:rgba(255,255,255,0.8);font-family:'noto_sans';position:absolute;top:20px;left:7%;padding-left:10px}body #content ul#mainul>li .whitenote strong{font-size:14px;font-weight:bold;line-height:16px;margin-top:10px;display:block}
 body #content ul#mainul>li .whitenote p{font-size:14px;line-height:15px}
 body #content ul#mainul>li .whitenote ul.contul li{font-size:14px;line-height:15px;list-style-type:circle;width:90%;float:none;max-width:90%;cursor:default;margin-left:20px;overflow:visible}
@@ -22,4 +24,4 @@ body #content ul#mainul>li .whitenote.notecon a{color:#000;display:block}
 body #content ul#mainul>li .discs{position:absolute;top:50%;margin:-70px 10px 0 370px}body #content ul#mainul>li .discs .disc{display:inline-block;width:28%;max-width:250px;margin:0 2%}
 body #content ul#mainul>li .dicks{position:absolute;top:20px;margin-left:370px}body #content ul#mainul>li .dicks .dick{display:block;width:90%}
 body #content ul#mainul>li .dicks p{color:#fff;font-family:'noto_sans';font-size:14px;font-weight:bold;margin:30px 0}
-body.eng #contact{background:url("../images/3-eng.png") left top no-repeat !important}
+body.eng #contact{background:url("../images/3-eng.png") left top no-repeat !important;background-size:cover !important}
