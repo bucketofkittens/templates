@@ -1,0 +1,10 @@
+@font-face {
+    font-family: 'noto_sans';
+    src: url('../font/notosans-regular-webfont.eot');
+    src: url('../font/notosans-regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../font/notosans-regular-webfont.woff') format('woff'),
+         url('../font/notosans-regular-webfont.ttf') format('truetype');
+   font-weight: normal;
+   font-style: normal;
+
+}
