@@ -113,35 +113,35 @@ body {
 	#content {
 		width: 100%;
 		top: 150px;
-		height: 400px;
 		overflow: hidden;
 		position: relative;
 		z-index: 1;
 		ul {
 			width: 900px;
-			height: 400px;
 			float: right;
 			position: relative;
 			bottom: 0px;
 			li {
-				width: 40px;
-				height: 325px;
-				display: inline-block;
-				margin: 0px -2px;
-				&.current {
-					width: 820px;
-				}
+				width: 5%;
+				float: right;
+				background-size: 100% 100%;
+				max-width: 80px;
 				&#project {
 					background: url("../images/1.png") left top no-repeat;
-					background-size: 820px 325px;					
+					background-size: cover;
 				}
 				&#client {
 					background: url("../images/2.png") left top no-repeat;
-					background-size: 820px 325px;					
+					background-size: cover;
 				}
 				&#contact {
 					background: url("../images/3.png") left top no-repeat;
-					background-size: 820px 325px;					
+					background-size: cover;
+				}
+				&.current {
+					width: 80%;
+					max-width: 100%;
+					background-size: 100% 100%;
 				}
 			}
 		}
