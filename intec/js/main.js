@@ -2,9 +2,22 @@ $(document).ready(function() {
 
 	function proportion() {
 		var step = 300;
-		if($(window).width()<800) {
-			step=630;
+
+		if($(window).width() < 805) {
+			step = 630;
 		}
+
+		var isiPad = navigator.userAgent.match(/iPad/i) != null;
+
+		if(isiPad) {
+			if(orientation == 0 || orientation == 180) {
+				step = 630;
+			}
+			if((orientation == 0 || orientation == 180) && window.devicePixelRatio > 1) {
+				step = 810;
+			}
+		}
+
 		$("body #content > ul > li, body #content > ul").css("height", $(window).height()-step);
 		$("body #content > ul").css("width", ($(window).height()-step)*2.9);
 	}
@@ -14,6 +27,8 @@ $(document).ready(function() {
 	});
 
 	proportion();
+
+	window.addEventListener("orientationchange", proportion, false);
 
 	if(lang == "RUS") {
 		var texts = {
