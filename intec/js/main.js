@@ -1,8 +1,12 @@
 $(document).ready(function() {
 
 	function proportion() {
-		$("body #content > ul > li, body #content > ul").css("height", $(window).height()-300);
-		$("body #content > ul").css("width", ($(window).height()-300)*2.9);
+		var step = 300;
+		if($(window).width()<800) {
+			step=630;
+		}
+		$("body #content > ul > li, body #content > ul").css("height", $(window).height()-step);
+		$("body #content > ul").css("width", ($(window).height()-step)*2.9);
 	}
 
 	$(window).resize(function() {

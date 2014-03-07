@@ -183,8 +183,8 @@ body {
 					font-family: 'noto_sans';
 					position: absolute;
 					top: 20px;
-					left: 7%;
-					padding: 0px 0px 10px 10px;
+					left: 6%;
+					padding: 0px 10px 10px 10px;
 					strong {
 						font-size: 2vh;
 						font-weight: bold;
@@ -271,5 +271,24 @@ body.eng {
 	#contact {
 		background: url("../images/3-eng.png") left top no-repeat !important;
 		background-size: cover !important;
+	}
+}
+
+
+@media (max-width: 800px) {
+	header {
+		height: 300px !important;
+		h1 {
+			width: 580px !important;
+			margin: 150px 0px 0px -130px !important;
+			text-align: center;
+		}
+	}
+	#content {
+		top: 300px !important;
+		p, a, strong, b, li {
+			font-size: 1.3vw !important;
+			line-height: 1.4vw !important;
+		}
 	}
 }
