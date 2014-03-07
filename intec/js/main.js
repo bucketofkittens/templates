@@ -47,4 +47,12 @@ $(document).ready(function() {
 
 		$("header h1").html(texts[$(this).attr("target")]);
 	});
+	
+	$('body').flowtype({
+		minimum   : 500,
+		maximum   : 1200,
+		minFont   : 12,
+		maxFont   : 40,
+		fontRatio : 30
+	});
 });
