@@ -1,7 +1,7 @@
 $(document).ready(function() {
 
 	function proportion() {
-		var step = 300;
+		var step = 350;
 
 		if($(window).width() < 805) {
 			step = 630;
