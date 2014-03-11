@@ -3,22 +3,7 @@ $(document).ready(function() {
 	function proportion() {
 		var step = 280;
 
-		if($(window).width() < 805) {
-			step = 630;
-		}
-
-		var isiPad = navigator.userAgent.match(/iPad/i) != null;
-
-		if(isiPad) {
-			if(orientation == 0 || orientation == 180) {
-				step = 630;
-			}
-			if((orientation == 0 || orientation == 180) && window.devicePixelRatio > 1) {
-				step = 810;
-			}
-		}
-
-		$("body #content > ul > li, body #content > ul").css("height", $(window).height()-step);
+		$("body #content > ul > li, body #content > ul").css("height", $(window).width()/2.19);
 	}
 
 	$(window).resize(function() {
