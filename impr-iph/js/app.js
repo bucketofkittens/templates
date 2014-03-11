@@ -42,9 +42,25 @@ function scrollItems() {
 	$(".itms").animate({
 		top: "-"+(scrollStepItems*200)+"px"
 	}, 600);
+	$(".imgs").attr("src", "./images/img"+(scrollStepItems+1)+".png");
+}
+
+function preload(arrayOfImages) {
+    $(arrayOfImages).each(function(){
+        $('<img/>')[0].src = this;
+    });
 }
 
 $(document).ready(function() {
+	preload([
+	    './images/img1.png',
+	    './images/img2.png',
+	    './images/img3.png',
+	    './images/img4.png',
+	    './images/img5.png',
+	    './images/img6.png'
+	]);
+	
 	$(".page").css("height", $(window).height());
 
 

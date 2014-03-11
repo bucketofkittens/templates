@@ -57,7 +57,7 @@ function scrollItems() {
 	$(".itms").animate({
 		top: "-"+(scrollStepItems*200)+"px"
 	}, 600);
-	$(".imgs").attr("src", "./images/img"+(scrollStepItems+1)+".jpeg");
+	$(".imgs").attr("src", "./images/img"+(scrollStepItems+1)+".png");
 }
 
 function preload(arrayOfImages) {
@@ -68,12 +68,12 @@ function preload(arrayOfImages) {
 
 $(document).ready(function() {
 	preload([
-	    './images/img1.jpeg',
-	    './images/img2.jpeg',
-	    './images/img3.jpeg',
-	    './images/img4.jpeg',
-	    './images/img5.jpeg',
-	    './images/img6.jpeg'
+	    './images/img1.png',
+	    './images/img2.png',
+	    './images/img3.png',
+	    './images/img4.png',
+	    './images/img5.png',
+	    './images/img6.png'
 	]);
 
 	$(".page").css("min-height", $(window).height()-100);
