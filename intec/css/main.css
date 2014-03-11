@@ -14,7 +14,7 @@ body #content ul#mainul>li#client{background:url("../images/2-rus.png") left top
 body #content ul#mainul>li#contact{background:url("../images/3.png") left top no-repeat;background-size:cover}
 body #content ul#mainul>li.current{width:90%;max-width:100%;background-size:cover !important;cursor:default}body #content ul#mainul>li.current *{opacity:1}
 body #content ul#mainul>li.current a{display:block}
-body #content ul#mainul>li .whitenote{width:20%;background:rgba(255,255,255,0.8);font-family:'noto_sans';position:absolute;top:30px;left:7%;padding:5px 10px 10px 10px}body #content ul#mainul>li .whitenote strong{font-size:1.2vw;font-weight:bold;line-height:1.3vw;margin-top:5px;display:block}
+body #content ul#mainul>li .whitenote{width:20%;background:rgba(255,255,255,0.8);font-family:'noto_sans';position:absolute;top:20px;left:7%;padding:5px 10px 10px 10px}body #content ul#mainul>li .whitenote strong{font-size:1.2vw;font-weight:bold;line-height:1.3vw;margin-top:5px;display:block}
 body #content ul#mainul>li .whitenote p{font-size:1.2vw;line-height:1.3vw}
 body #content ul#mainul>li .whitenote ul.contul li{font-size:1.2vw;line-height:1.3vw;list-style-type:circle;width:90%;float:none;max-width:90%;cursor:default;margin-left:20px;overflow:visible}
 body #content ul#mainul>li .whitenote ul.contul.olul li{margin:10px 20px;text-transform:uppercase}
