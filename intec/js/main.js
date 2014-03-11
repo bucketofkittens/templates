@@ -1,7 +1,7 @@
 $(document).ready(function() {
 
 	function proportion() {
-		var step = 350;
+		var step = 280;
 
 		if($(window).width() < 805) {
 			step = 630;
@@ -19,7 +19,6 @@ $(document).ready(function() {
 		}
 
 		$("body #content > ul > li, body #content > ul").css("height", $(window).height()-step);
-		$("body #content > ul").css("width", ($(window).height()-step)*2.9);
 	}
 
 	$(window).resize(function() {
