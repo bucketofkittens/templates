@@ -1,7 +1,7 @@
 $(document).ready(function() {
 
 	function proportion() {
-		$("body #content > ul > li, body #content > ul").css("height", $(window).width()/2.69);
+		$("body #content > ul > li, body #content > ul").css("height", $(window).width()/2.8);
 	}
 
 	$(window).resize(function() {
