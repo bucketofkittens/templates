@@ -1,9 +1,7 @@
 $(document).ready(function() {
 
 	function proportion() {
-		var step = 280;
-
-		$("body #content > ul > li, body #content > ul").css("height", $(window).width()/2.19);
+		$("body #content > ul > li, body #content > ul").css("height", $(window).width()/2.69);
 	}
 
 	$(window).resize(function() {
