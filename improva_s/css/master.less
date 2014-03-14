@@ -71,7 +71,6 @@ body {
 			width: 100%;
 			overflow: hidden;
 			padding-bottom: 1px;
-			background: url("../images/bg.png") center top no-repeat;
 			transition: all 0.5s linear;
         	-webkit-transition: all 0.5s linear;
 			#c1 {
@@ -80,27 +79,20 @@ body {
       			position: relative;
 			}
 			.half {
-				width: 500px;
+				width: 530px;
 				margin-left: 10px;
 				display: inline-block;
 				vertical-align: top;
 				img {
 					display: block;
+					width: inherit;
 					&.lower {
 						margin-top: 40px;
 					}
 				}
-				a {
-					display: inline-block;
-					width: 200px;
-					margin-top: 50px;
-					&:last-child {
-						margin-left: 95px;
-					}
-				}
 				&.flah {
 					margin: 30px 0px 0px 20px;
-					width: 430px;
+					width: 400px;
 					overflow: hidden;
 					p {
 						font-family: 'Helvetica Neue Light';
@@ -118,6 +110,14 @@ body {
 						display: inline-block;
 						&:last-child {
 							float: right;
+						}
+					}
+					a.buy {
+						display: inline-block;
+						width: 150px;
+						margin-top: 10px;
+						&:last-child {
+							margin-left: 95px;
 						}
 					}
 				}
