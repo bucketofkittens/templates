@@ -58,6 +58,11 @@ function scrollItems() {
 		top: "-"+(scrollStepItems*200)+"px"
 	}, 600);
 	$(".imgs").attr("src", "./images/img"+(scrollStepItems+1)+".png");
+
+	$(".imag").animate({
+		top: "-"+(scrollStepItems*-115)+"px"
+	}, 600);
+	$(".imag").attr("src", "./images/img"+(scrollStepItems+11)+".png");
 }
 
 function preload(arrayOfImages) {
@@ -73,7 +78,13 @@ $(document).ready(function() {
 	    './images/img3.png',
 	    './images/img4.png',
 	    './images/img5.png',
-	    './images/img6.png'
+	    './images/img6.png',
+	    './images/img11.png',
+	    './images/img12.png',
+	    './images/img13.png',
+	    './images/img14.png',
+	    './images/img15.png',
+	    './images/img16.png'
 	]);
 
 	$(".page").css("min-height", $(window).height()-100);
