@@ -44,6 +44,11 @@ function scroll() {
 }
 
 function scrollItems() {
+	var step = 200;
+
+	if(window.orientation && (window.orientation == 0 || window.orientation == 180)) {
+		step = 450;
+	}
 	if(scrollStepItems < 0) {
 		scrollStepItems = 0;
 		scrollStep -= 1;
@@ -55,7 +60,7 @@ function scrollItems() {
 		scroll();
 	}
 	$(".itms").animate({
-		top: "-"+(scrollStepItems*200)+"px"
+		top: "-"+(scrollStepItems*step)+"px"
 	}, 600);
 
 	$(".imgs").attr("src", "./images/img"+(scrollStepItems+1)+".png");
