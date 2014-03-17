@@ -57,11 +57,8 @@ function scrollItems() {
 	$(".itms").animate({
 		top: "-"+(scrollStepItems*200)+"px"
 	}, 600);
+	
 	$(".imgs").attr("src", "./images/img"+(scrollStepItems+1)+".png");
-
-	$(".imag").animate({
-		top: "-"+(scrollStepItems*-115)+"px"
-	}, 600);
 	$(".imag").attr("src", "./images/img"+(scrollStepItems+11)+".png");
 }
 
@@ -94,22 +91,24 @@ $(document).ready(function() {
 	});
 
 	$(document).bind('mousewheel', function(e){
-		console.log(e);
-		if(scrollStep == 1) {
-			if(e.deltaY < 0) {
-		    	scrollStepItems += 1;
-		    } else {
-		    	scrollStepItems -= 1;
-		    }
-		    scrollItems();
-		} else {
-			if(e.deltaY < 0) {
-		    	scrollStep += 1;
-		    } else {
-		    	scrollStep -= 1;
-		    }
-		    scroll();
-		}
+		clearTimeout($.data(this, 'timer'));
+		$.data(this, 'timer', setTimeout(function() {
+			if(scrollStep == 1) {
+				if(e.deltaY < 0) {
+			    	scrollStepItems += 1;
+			    } else {
+			    	scrollStepItems -= 1;
+			    }
+			    scrollItems();
+			} else {
+				if(e.deltaY < 0) {
+			    	scrollStep += 1;
+			    } else {
+			    	scrollStep -= 1;
+			    }
+			    scroll();
+			}
+		}, 250));
 	 });
 
 	$('a[href*=#]:not([href=#])').click(function() {
@@ -156,8 +155,6 @@ $(document).ready(function() {
     if(isiPad) {
     	$(".iphone_app").hide();
     }
-
-
 
 	$('#socials').share({
         networks: ['facebook','googleplus','twitter']
