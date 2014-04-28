@@ -1,0 +1,112 @@
+@import "reset.css";
+@import "fonts.css";
+
+#app {
+  background: url("../images/100.png") left top no-repeat;
+  width: 1920px;
+  height: 1080px;
+  background-size: 100% 100%;
+}
+h1
+{
+  position:absolute;
+  background:url("../images/region.png") center center no-repeat;
+  height:70px;
+  width:590px;
+  font-family: NeoSansPro-Light;
+  font-size:21px;
+  color:#fff;
+  line-height:67px;
+  left:660px;
+  top:54px;
+  text-align:center;
+}
+
+#content {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+#content .time
+{
+  background:url("../images/time.png") right top no-repeat;
+  height:174px;
+  width:564px;
+  position:absolute;
+  top:0;
+  right:0;
+  z-index:130;
+}
+
+#content .time b
+{
+  font-family:NeoSansPro-Light;
+  font-size:30px;
+  color:#fff;
+  text-align:center;
+  max-width:100px;
+  display:block;
+  padding:12px 0 0 437px;
+}
+
+#content .time p
+{
+  font-family:NeoSansPro-Light;
+  font-size:13px;
+  color:#fff;
+  text-align:center;
+  max-width:100px;
+  display:block;
+  padding-left:437px;
+}
+
+#login {
+  width: 500px;
+  height: 400px;
+  background: url("../images/login.png") left top no-repeat;
+  background-size: 100% 100%;
+  position: relative;
+  top: 300px;
+  margin: 0px auto;
+  padding: 30px;
+}
+#login h2 {
+  color: #ffffff;
+  font-family:NeoSansPro-Light;
+  font-size: 16px;
+  margin: 20px auto;
+  text-align: center;
+  line-height: 25px;
+}
+#login img {
+  display: block;
+  width: 95%;
+  margin: 20px auto;
+}
+#login input {
+  display: block;
+  width: 400px;
+  background: url("../images/line.png") center center no-repeat;
+  background-size: 100% 100%;
+  border: none;
+  margin: 20px auto;
+  color: #ffffff;
+  font-family:NeoSansPro-Light;
+  font-size: 20px;
+  line-height: 50px;
+  text-align: center;
+}
+#login button {
+  display: block;
+  width: 170px;
+  height: 35px;
+  background: url("../images/in.png") center center no-repeat;
+  background-size: 100% 100%;
+  border: none;
+  margin: 30px auto;
+  color: #000000;
+  font-family:NeoSansPro-Light;
+  font-size: 20px;
+  line-height: 30px;
+  text-align: center;
+}
